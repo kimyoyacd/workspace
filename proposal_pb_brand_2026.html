@@ -11,6 +11,7 @@
   :root {
     --black: #000000;
     --white: #FFFFFF;
+    --hl-bg: rgba(232,255,0,0.07);
     --gray-900: #111111;
     --gray-700: #333333;
     --gray-500: #666666;
@@ -334,6 +335,59 @@
     color: var(--black);
   }
 
+  /* ========== LIGHT MODE ========== */
+  .slide.light {
+    background: #FFFFFF;
+    color: #111111;
+
+    --black: #FFFFFF;
+    --white: #111111;
+    --gray-900: #F0F0F0;
+    --gray-700: #E0E0E0;
+    --gray-500: #909090;
+    --gray-300: #555555;
+    --gray-100: #CCCCCC;
+    --gray-50: #F8F8F8;
+
+    /* Adjust neon tones for white-bg legibility */
+    --neon-yellow: #B89000;
+    --neon-cyan: #0099BB;
+    --neon-green: #009955;
+    --neon-mint: #00BB88;
+
+    /* HIVELAB highlight column: more visible on white */
+    --hl-bg: rgba(184,144,0,0.10);
+  }
+
+  /* Section Divider large background number */
+  .divider-bg-num {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 320px;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: var(--white);
+    opacity: 0.03;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Cover hex grid background */
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, var(--neon-pink) 0px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(60deg, var(--neon-cyan) 0px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(120deg, var(--neon-yellow) 0px, transparent 1px, transparent 60px);
+    pointer-events: none;
+  }
+
   /* Slide transitions */
   .slide { animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -346,7 +400,7 @@
     transform: translateX(-50%);
     font-family: var(--font-en);
     font-size: 11px;
-    color: var(--gray-700);
+    color: #999;
     letter-spacing: 0.1em;
   }
 
@@ -372,21 +426,37 @@
 
   <!-- ==================== SLIDE 01: COVER ==================== -->
   <div class="slide active" data-slide="1">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:32px;">
-      <div class="neon-stripe" style="width:80px; margin-bottom:16px;"></div>
-      <div class="label" style="color:var(--gray-300);">Collaboration Proposal 2026</div>
-      <div class="h1" style="font-size:44px; letter-spacing:-0.03em; max-width:800px;">
+    <div class="cover-bg"></div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:32px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+        <div style="width:32px; height:2px; background:var(--neon-pink);"></div>
+        <div class="label" style="color:var(--neon-pink); letter-spacing:0.2em;">HIVELAB</div>
+        <div style="width:32px; height:2px; background:var(--neon-pink);"></div>
+      </div>
+      <div class="label" style="color:var(--gray-500);">Collaboration Proposal 2026</div>
+      <div class="h1" style="font-size:48px; letter-spacing:-0.03em; max-width:800px; line-height:1.25;">
         색조 PB브랜드<br>상세페이지 제작 협력사 제안
       </div>
-      <div class="body-text" style="color:var(--gray-500); margin-top:8px;">
+      <div class="body-text" style="color:var(--gray-500); margin-top:4px;">
         브랜드 경험을 설계하는 크리에이티브 파트너
       </div>
-      <div class="neon-stripe" style="width:320px; height:2px; margin-top:40px;"></div>
-      <div style="display:flex; gap:24px; margin-top:16px;">
-        <div class="caption">Prepared by HIVELAB</div>
-        <div class="caption">|</div>
-        <div class="caption">June 2026</div>
+
+      <div style="display:flex; gap:0; margin-top:48px; border:1px solid var(--gray-900); border-radius:8px; overflow:hidden;">
+        <div style="padding:16px 32px; border-right:1px solid var(--gray-900);">
+          <div class="caption" style="margin-bottom:4px;">제안 대상</div>
+          <div style="font-size:13px; font-weight:500; color:var(--white);">색조 PB브랜드</div>
+        </div>
+        <div style="padding:16px 32px; border-right:1px solid var(--gray-900);">
+          <div class="caption" style="margin-bottom:4px;">제안 범위</div>
+          <div style="font-size:13px; font-weight:500; color:var(--white);">상세페이지 제작 전담</div>
+        </div>
+        <div style="padding:16px 32px;">
+          <div class="caption" style="margin-bottom:4px;">제안일</div>
+          <div style="font-size:13px; font-weight:500; color:var(--white);">June 2026</div>
+        </div>
       </div>
+
+      <div class="neon-stripe" style="width:280px; height:2px; margin-top:16px;"></div>
     </div>
     <span class="page-num">01</span>
   </div>
@@ -443,7 +513,7 @@
   </div>
 
   <!-- ==================== SLIDE 03: OPENING QUESTION ==================== -->
-  <div class="slide" data-slide="3">
+  <div class="slide light" data-slide="3">
     <div class="label" style="color:var(--neon-rose); margin-bottom:24px;">OPENING QUESTION</div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:48px;">
       <div>
@@ -474,7 +544,7 @@
   </div>
 
   <!-- ==================== SLIDE 04: PURPOSE (목적) ==================== -->
-  <div class="slide" data-slide="4">
+  <div class="slide light" data-slide="4">
     <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
     <div class="h2" style="margin-bottom:40px;">본 제안의 목적</div>
 
@@ -524,7 +594,7 @@
   </div>
 
   <!-- ==================== SLIDE 05: GOALS (목표) ==================== -->
-  <div class="slide" data-slide="5">
+  <div class="slide light" data-slide="5">
     <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
     <div class="h2" style="margin-bottom:32px;">파트너십 KPI 목표</div>
 
@@ -614,7 +684,7 @@
   </div>
 
   <!-- ==================== SLIDE 06: DISCOVERY QUESTIONS ==================== -->
-  <div class="slide" data-slide="6">
+  <div class="slide light" data-slide="6">
     <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">DISCOVERY QUESTIONS</div>
     <div class="h2" style="margin-bottom:8px;">시작 전 확인이 필요한 4가지 질문</div>
     <div class="body-text" style="margin-bottom:32px; max-width:720px;">본격적인 제작에 들어가기 전, 아래 질문에 대한 답변을 함께 정리하면 더 정확한 견적과 운영안을 설계할 수 있습니다.</div>
@@ -685,19 +755,25 @@
 
   <!-- ==================== SLIDE 07: DIVIDER — SECTION 1 ==================== -->
   <div class="slide" data-slide="7">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;">
-      <div class="label" style="color:var(--neon-pink);">SECTION 01</div>
-      <div class="h1" style="font-size:52px;">시장 현황 & 기회</div>
-      <div class="body-text" style="max-width:520px; margin-top:8px;">
+    <div class="divider-bg-num">01</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:4px; height:48px; background:var(--neon-pink); border-radius:2px;"></div>
+        <div>
+          <div class="label" style="color:var(--neon-pink); margin-bottom:4px;">SECTION 01</div>
+          <div class="h1" style="font-size:52px;">시장 현황 & 기회</div>
+        </div>
+      </div>
+      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
         색조 시장의 PB브랜드 성장과 상세페이지가<br>구매 전환에 미치는 결정적 영향력
       </div>
-      <div class="neon-stripe" style="width:120px; margin-top:24px;"></div>
+      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
     <span class="page-num">07</span>
   </div>
 
-  <!-- ==================== SLIDE 04: HERO STAT — 시장 규모 ==================== -->
-  <div class="slide" data-slide="4">
+  <!-- ==================== SLIDE 08: HERO STAT — 시장 규모 ==================== -->
+  <div class="slide light" data-slide="8">
     <div class="label" style="margin-bottom:12px;">BEAUTY PB MARKET SIZE 2026</div>
     <div class="h2" style="color:var(--gray-300); margin-bottom:auto;">색조 PB브랜드 시장은 매년 두 자릿수 성장을 기록하고 있습니다</div>
 
@@ -723,8 +799,8 @@
     <span class="page-num">08</span>
   </div>
 
-  <!-- ==================== SLIDE 05: BAR CHART — 채널별 전환율 ==================== -->
-  <div class="slide" data-slide="5">
+  <!-- ==================== SLIDE 09: BAR CHART — 채널별 전환율 ==================== -->
+  <div class="slide light" data-slide="9">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px;">
       <div>
         <div class="label" style="margin-bottom:8px;">CONVERSION RATE BY CHANNEL</div>
@@ -803,8 +879,8 @@
     <span class="page-num">09</span>
   </div>
 
-  <!-- ==================== SLIDE 06: DOT MATRIX + STACKED BAR ==================== -->
-  <div class="slide" data-slide="6">
+  <!-- ==================== SLIDE 10: DOT MATRIX + STACKED BAR ==================== -->
+  <div class="slide light" data-slide="10">
     <div class="label" style="margin-bottom:8px;">CONSUMER BEHAVIOR</div>
     <div class="h2" style="margin-bottom:40px;">소비자 구매 결정 요인 분석</div>
 
@@ -892,20 +968,26 @@
   </div>
 
   <!-- ==================== SLIDE: DIVIDER — SECTION 2 (DIFFERENTIATION) ==================== -->
-  <div class="slide" data-slide="10">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;">
-      <div class="label" style="color:var(--neon-orange);">SECTION 02</div>
-      <div class="h1" style="font-size:52px;">시장 내 차별화 포인트</div>
-      <div class="body-text" style="max-width:520px; margin-top:8px;">
+  <div class="slide" data-slide="11">
+    <div class="divider-bg-num">02</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:4px; height:48px; background:var(--neon-orange); border-radius:2px;"></div>
+        <div>
+          <div class="label" style="color:var(--neon-orange); margin-bottom:4px;">SECTION 02</div>
+          <div class="h1" style="font-size:52px;">시장 내 차별화 포인트</div>
+        </div>
+      </div>
+      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
         기존 외주·종합 에이전시·프리랜서 모델과<br>HIVELAB이 다른 결정적 4가지 이유
       </div>
-      <div class="neon-stripe" style="width:120px; margin-top:24px;"></div>
+      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
     <span class="page-num">11</span>
   </div>
 
-  <!-- ==================== SLIDE: DIFFERENTIATION COMPARISON ==================== -->
-  <div class="slide" data-slide="11">
+  <!-- ==================== SLIDE 12: DIFFERENTIATION COMPARISON ==================== -->
+  <div class="slide light" data-slide="12">
     <div class="label" style="margin-bottom:8px;">MARKET COMPARISON</div>
     <div class="h2" style="margin-bottom:24px;">기존 협력 모델 vs HIVELAB</div>
 
@@ -923,7 +1005,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--neon-cyan);">●●●●●</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
 
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
@@ -931,7 +1013,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●○○○○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
 
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
@@ -939,7 +1021,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●○○○○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
 
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
@@ -947,7 +1029,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">○○○○○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
 
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
@@ -955,7 +1037,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
 
       <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px;">
@@ -963,7 +1045,7 @@
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
         <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
-        <div style="text-align:center; align-self:center; background:rgba(232,255,0,0.08);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
       </div>
     </div>
 
@@ -971,8 +1053,8 @@
     <span class="page-num">12</span>
   </div>
 
-  <!-- ==================== SLIDE: 4 KEY DIFFERENTIATORS ==================== -->
-  <div class="slide" data-slide="12">
+  <!-- ==================== SLIDE 13: 4 KEY DIFFERENTIATORS ==================== -->
+  <div class="slide light" data-slide="13">
     <div class="label" style="margin-bottom:8px;">OUR 4 KEY DIFFERENTIATORS</div>
     <div class="h2" style="margin-bottom:24px;">HIVELAB이 다른 4가지 이유</div>
 
@@ -1041,20 +1123,26 @@
   </div>
 
   <!-- ==================== SLIDE: DIVIDER — SECTION 3 (CAPABILITIES) ==================== -->
-  <div class="slide" data-slide="13">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;">
-      <div class="label" style="color:var(--neon-cyan);">SECTION 03</div>
-      <div class="h1" style="font-size:52px;">역량 & 포트폴리오</div>
-      <div class="body-text" style="max-width:520px; margin-top:8px;">
+  <div class="slide" data-slide="14">
+    <div class="divider-bg-num">03</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:4px; height:48px; background:var(--neon-cyan); border-radius:2px;"></div>
+        <div>
+          <div class="label" style="color:var(--neon-cyan); margin-bottom:4px;">SECTION 03</div>
+          <div class="h1" style="font-size:52px;">역량 & 포트폴리오</div>
+        </div>
+      </div>
+      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
         뷰티 브랜드 상세페이지 전문 제작 역량과<br>검증된 성과 기반의 크리에이티브 파트너십
       </div>
-      <div class="neon-stripe" style="width:120px; margin-top:24px;"></div>
+      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
     <span class="page-num">14</span>
   </div>
 
-  <!-- ==================== SLIDE 08: KPI DASHBOARD ==================== -->
-  <div class="slide" data-slide="8">
+  <!-- ==================== SLIDE 15: KPI DASHBOARD ==================== -->
+  <div class="slide light" data-slide="15">
     <div class="label" style="margin-bottom:8px;">KEY PERFORMANCE INDICATORS</div>
     <div class="h2" style="margin-bottom:28px;">상세페이지 제작 실적 & 성과</div>
 
@@ -1109,42 +1197,42 @@
       </div>
       <div style="flex:1; display:flex; align-items:flex-end; gap:10px; padding-top:8px;">
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:45%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Jan</span>
+          <div style="width:100%; height:45%; background:linear-gradient(180deg, var(--neon-pink) 0%, rgba(255,45,138,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jan</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:48%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Feb</span>
+          <div style="width:100%; height:48%; background:linear-gradient(180deg, var(--neon-pink) 0%, rgba(255,45,138,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Feb</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:55%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Mar</span>
+          <div style="width:100%; height:55%; background:linear-gradient(180deg, var(--neon-orange) 0%, rgba(255,107,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Mar</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:62%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Apr</span>
+          <div style="width:100%; height:62%; background:linear-gradient(180deg, var(--neon-orange) 0%, rgba(255,107,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Apr</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:70%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">May</span>
+          <div style="width:100%; height:70%; background:linear-gradient(180deg, var(--neon-yellow) 0%, rgba(232,255,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">May</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:78%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Jun</span>
+          <div style="width:100%; height:78%; background:linear-gradient(180deg, var(--neon-yellow) 0%, rgba(232,255,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jun</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:65%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Jul</span>
+          <div style="width:100%; height:65%; background:linear-gradient(180deg, var(--neon-green) 0%, rgba(0,255,136,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jul</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:72%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Aug</span>
+          <div style="width:100%; height:72%; background:linear-gradient(180deg, var(--neon-green) 0%, rgba(0,255,136,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Aug</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:85%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Sep</span>
+          <div style="width:100%; height:85%; background:linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,240,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Sep</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:92%; background:linear-gradient(180deg, var(--neon-cyan), var(--white)); border-radius:2px 2px 0 0; position:relative;">
-            <span class="badge" style="background:var(--neon-yellow); color:var(--black); position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:11px;">56</span>
+          <div style="width:100%; height:92%; background:linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,240,255,0.3) 100%); border-radius:2px 2px 0 0; position:relative;">
+            <span class="badge" style="background:var(--neon-yellow); color:var(--black); position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:11px; white-space:nowrap;">Peak 56</span>
           </div><span class="caption">Oct</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:88%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Nov</span>
+          <div style="width:100%; height:88%; background:linear-gradient(180deg, var(--neon-purple) 0%, rgba(168,85,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Nov</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:95%; background:var(--white); border-radius:2px 2px 0 0;"></div><span class="caption">Dec</span>
+          <div style="width:100%; height:95%; background:linear-gradient(180deg, var(--neon-purple) 0%, rgba(168,85,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Dec</span>
         </div>
       </div>
     </div>
@@ -1152,8 +1240,8 @@
     <span class="page-num">15</span>
   </div>
 
-  <!-- ==================== SLIDE 09: 2x2 GRID — 포트폴리오 ==================== -->
-  <div class="slide" data-slide="9">
+  <!-- ==================== SLIDE 16: 2x2 GRID — 포트폴리오 ==================== -->
+  <div class="slide light" data-slide="16">
     <div class="label" style="margin-bottom:8px;">PORTFOLIO HIGHLIGHTS</div>
     <div class="h2" style="margin-bottom:20px;">주요 색조 브랜드 상세페이지 제작 사례</div>
 
@@ -1222,19 +1310,25 @@
 
   <!-- ==================== SLIDE: DIVIDER — SECTION 4 (PROCESS) ==================== -->
   <div class="slide" data-slide="17">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;">
-      <div class="label" style="color:var(--neon-green);">SECTION 04</div>
-      <div class="h1" style="font-size:52px;">제작 프로세스 & 방법론</div>
-      <div class="body-text" style="max-width:520px; margin-top:8px;">
+    <div class="divider-bg-num">04</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:4px; height:48px; background:var(--neon-green); border-radius:2px;"></div>
+        <div>
+          <div class="label" style="color:var(--neon-green); margin-bottom:4px;">SECTION 04</div>
+          <div class="h1" style="font-size:52px;">제작 프로세스 & 방법론</div>
+        </div>
+      </div>
+      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
         체계적인 워크플로우와 품질 관리 시스템으로<br>일관된 퀄리티와 효율적인 납기를 보장합니다
       </div>
-      <div class="neon-stripe" style="width:120px; margin-top:24px;"></div>
+      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
     <span class="page-num">17</span>
   </div>
 
-  <!-- ==================== SLIDE 11: PROCESS ==================== -->
-  <div class="slide" data-slide="11">
+  <!-- ==================== SLIDE 18: PROCESS ==================== -->
+  <div class="slide light" data-slide="18">
     <div class="label" style="margin-bottom:8px;">PRODUCTION WORKFLOW</div>
     <div class="h2" style="margin-bottom:48px;">5단계 상세페이지 제작 프로세스</div>
 
@@ -1300,8 +1394,8 @@
     <span class="page-num">18</span>
   </div>
 
-  <!-- ==================== SLIDE 12: POSITIONING MAP ==================== -->
-  <div class="slide" data-slide="12">
+  <!-- ==================== SLIDE 19: POSITIONING MAP ==================== -->
+  <div class="slide light" data-slide="19">
     <div class="label" style="margin-bottom:8px;">COMPETITIVE POSITIONING</div>
     <div class="h2" style="margin-bottom:32px;">상세페이지 제작 파트너 포지셔닝</div>
 
@@ -1358,19 +1452,25 @@
 
   <!-- ==================== SLIDE: DIVIDER — SECTION 5 (OPERATION) ==================== -->
   <div class="slide" data-slide="20">
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;">
-      <div class="label" style="color:var(--neon-yellow);">SECTION 05</div>
-      <div class="h1" style="font-size:52px;">운영 체계 & 견적</div>
-      <div class="body-text" style="max-width:520px; margin-top:8px;">
+    <div class="divider-bg-num">05</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:4px; height:48px; background:var(--neon-yellow); border-radius:2px;"></div>
+        <div>
+          <div class="label" style="color:var(--neon-yellow); margin-bottom:4px;">SECTION 05</div>
+          <div class="h1" style="font-size:52px;">운영 체계 & 견적</div>
+        </div>
+      </div>
+      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
         효율적인 운영 모델과 투명한 비용 구조로<br>지속 가능한 파트너십을 제안합니다
       </div>
-      <div class="neon-stripe" style="width:120px; margin-top:24px;"></div>
+      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
     <span class="page-num">20</span>
   </div>
 
-  <!-- ==================== SLIDE 14: PRICING TABLE ==================== -->
-  <div class="slide" data-slide="14">
+  <!-- ==================== SLIDE 21: PRICING TABLE ==================== -->
+  <div class="slide light" data-slide="21">
     <div class="label" style="margin-bottom:8px;">PRICING STRUCTURE</div>
     <div class="h2" style="margin-bottom:28px;">패키지별 견적 구조</div>
 
@@ -1438,34 +1538,41 @@
     <span class="page-num">21</span>
   </div>
 
-  <!-- ==================== SLIDE 15: CLOSING ==================== -->
-  <div class="slide" data-slide="15">
+  <!-- ==================== SLIDE 22: CLOSING ==================== -->
+  <div class="slide light" data-slide="22">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:32px;">
-      <div class="neon-stripe" style="width:80px; margin-bottom:16px;"></div>
-      <div class="h1" style="font-size:40px; max-width:600px; letter-spacing:-0.03em;">
+      <div class="neon-stripe" style="width:80px; margin-bottom:8px;"></div>
+
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+        <div style="width:24px; height:2px; background:var(--neon-pink);"></div>
+        <div class="label" style="color:var(--neon-pink);">HIVELAB</div>
+        <div style="width:24px; height:2px; background:var(--neon-pink);"></div>
+      </div>
+
+      <div class="h1" style="font-size:44px; max-width:600px; letter-spacing:-0.03em; line-height:1.25;">
         색조의 감각을<br>구매의 확신으로
       </div>
-      <div class="body-text" style="max-width:480px; margin-top:8px;">
+      <div class="body-text" style="max-width:480px; margin-top:4px;">
         브랜드의 색을 가장 정확하게 전달하는 상세페이지,<br>
         HIVELAB이 함께 만들겠습니다.
       </div>
 
-      <div style="display:flex; gap:48px; margin-top:56px;">
-        <div style="text-align:left;">
-          <div class="caption" style="margin-bottom:4px;">Contact</div>
-          <div class="body-text" style="color:var(--white);">proposal@hivelab.co.kr</div>
+      <div style="display:flex; gap:0; margin-top:48px; border:1px solid var(--gray-700); border-radius:10px; overflow:hidden;">
+        <div style="padding:20px 36px; border-right:1px solid var(--gray-700); text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Contact</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">proposal@hivelab.co.kr</div>
         </div>
-        <div style="text-align:left;">
-          <div class="caption" style="margin-bottom:4px;">Phone</div>
-          <div class="body-text" style="color:var(--white);">02-0000-0000</div>
+        <div style="padding:20px 36px; border-right:1px solid var(--gray-700); text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Phone</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">02-0000-0000</div>
         </div>
-        <div style="text-align:left;">
-          <div class="caption" style="margin-bottom:4px;">Web</div>
-          <div class="body-text" style="color:var(--white);">www.hivelab.co.kr</div>
+        <div style="padding:20px 36px; text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Web</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">www.hivelab.co.kr</div>
         </div>
       </div>
 
-      <div class="neon-stripe" style="width:320px; height:2px; margin-top:40px;"></div>
+      <div class="neon-stripe" style="width:280px; height:2px; margin-top:24px;"></div>
       <div class="caption">HIVELAB © 2026. All Rights Reserved.</div>
     </div>
     <span class="page-num">22</span>
