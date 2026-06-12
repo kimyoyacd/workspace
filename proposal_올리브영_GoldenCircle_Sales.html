@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>올리브영 색조 PB — Kinetic Identity Proposal | MAX Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+:root {
+  --wm-coral: #E8785A;
+  --wm-wine: #8B2252;
+  --cg-pink: #FF6B9D;
+  --cg-violet: #9B59B6;
+  --fm-mint: #4ECDC4;
+  --fm-dark: #1a1a2e;
+  --bg-dark: #09090F;
+  --bg-deep: #0D0D1A;
+  --bg-card: rgba(255,255,255,0.03);
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.35);
+  --accent: #E8785A;
+  --gold: #D4A853;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-dark);
+  -webkit-font-smoothing: antialiased;
+  padding-top: 52px;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(9,9,15,0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0 48px; z-index: 1000;
+  display: flex; align-items: center; height: 52px; gap: 6px;
+}
+.nav-brand {
+  font-family: 'Inter'; font-weight: 900; font-size: 13px;
+  letter-spacing: 2px; text-transform: uppercase;
+  background: linear-gradient(135deg, var(--wm-coral), var(--cg-pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-right: 28px;
+}
+.nav a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+  padding: 6px 12px; border-radius: 6px; transition: all 0.3s;
+}
+.nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.nav a.active { color: var(--accent); }
+
+/* SLIDE */
+.slide {
+  width: 100%; max-width: 1020px;
+  margin: 0 auto; padding: 80px 72px;
+  position: relative; min-height: 680px;
+}
+.slide-num {
+  position: absolute; bottom: 24px; right: 40px;
+  font-family: 'Inter'; font-size: 10px; font-weight: 700;
+  color: var(--text-muted); letter-spacing: 1px;
+}
+.slide-id {
+  position: absolute; top: 24px; right: 40px;
+  font-family: 'Inter'; font-size: 9px; font-weight: 800;
+  color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* COVER */
+.cover {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: radial-gradient(ellipse 800px 600px at 50% 40%, rgba(232,120,90,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 600px 400px at 30% 60%, rgba(255,107,157,0.04) 0%, transparent 70%),
+              var(--bg-dark);
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle 1px at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 100%),
+              radial-gradient(circle 1px at 60% 20%, rgba(255,255,255,0.06) 0%, transparent 100%),
+              radial-gradient(circle 1px at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 100%),
+              radial-gradient(circle 1px at 40% 80%, rgba(255,255,255,0.04) 0%, transparent 100%);
+  pointer-events: none;
+}
+.cover .overline {
+  font-family: 'Inter'; font-size: 11px; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 32px;
+}
+.cover h1 {
+  font-size: 52px; font-weight: 900; letter-spacing: -2px;
+  line-height: 1.2; margin-bottom: 20px;
+}
+.cover h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--wm-coral), var(--cg-pink), var(--fm-mint));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.cover .sub {
+  font-size: 16px; color: var(--text-secondary); line-height: 1.8;
+  margin-bottom: 48px;
+}
+.cover .meta {
+  font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; line-height: 2;
+}
+.brand-chips {
+  display: flex; gap: 8px; margin-bottom: 24px;
+}
+.brand-chips span {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.brand-chips .wm { color: var(--wm-coral); border-color: rgba(232,120,90,0.3); }
+.brand-chips .cg { color: var(--cg-pink); border-color: rgba(255,107,157,0.3); }
+.brand-chips .fm { color: var(--fm-mint); border-color: rgba(78,205,196,0.3); }
+
+/* SECTION DIVIDER */
+.divider {
+  min-height: 400px; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: var(--bg-deep); position: relative;
+}
+.divider .circle-label {
+  font-family: 'Inter'; font-size: 10px; font-weight: 800;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.divider h2 {
+  font-size: 42px; font-weight: 900; letter-spacing: -1px; margin-bottom: 12px;
+}
+.divider .desc {
+  font-size: 14px; color: var(--text-secondary); max-width: 500px; line-height: 1.8;
+}
+.stripe-3 {
+  display: flex; gap: 0; margin-top: 32px;
+}
+.stripe-3 span {
+  width: 40px; height: 3px;
+}
+.stripe-3 span:nth-child(1) { background: var(--wm-coral); }
+.stripe-3 span:nth-child(2) { background: var(--cg-pink); }
+.stripe-3 span:nth-child(3) { background: var(--fm-mint); }
+
+/* CONTENT STYLES */
+.overline-sm {
+  font-family: 'Inter'; font-size: 10px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+h3 {
+  font-size: 30px; font-weight: 900; letter-spacing: -0.5px;
+  line-height: 1.35; margin-bottom: 12px;
+}
+.subline {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 36px;
+}
+
+/* GOLDEN CIRCLE */
+.gc-ring {
+  width: 480px; height: 480px; margin: 0 auto;
+  position: relative;
+}
+.gc-layer {
+  position: absolute; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+}
+.gc-why {
+  width: 160px; height: 160px;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: linear-gradient(135deg, var(--wm-coral), var(--cg-pink));
+  z-index: 3;
+}
+.gc-how {
+  width: 300px; height: 300px;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: rgba(232,120,90,0.12);
+  border: 1px solid rgba(232,120,90,0.2);
+  z-index: 2;
+}
+.gc-what {
+  width: 440px; height: 440px;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: rgba(232,120,90,0.04);
+  border: 1px solid rgba(232,120,90,0.1);
+  z-index: 1;
+}
+
+/* CARDS */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 28px;
+}
+.card-label {
+  font-family: 'Inter'; font-size: 9px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 12px;
+}
+.card-title {
+  font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.4;
+}
+.card-body {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.8;
+}
+.card-accent {
+  border-top: 3px solid var(--accent);
+}
+
+/* KINETIC IDENTITY */
+.ki-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 36px;
+}
+.ki-item {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 32px; position: relative; overflow: hidden;
+}
+.ki-item::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.ki-item.wm::before { background: linear-gradient(90deg, var(--wm-coral), var(--wm-wine)); }
+.ki-item.cg::before { background: linear-gradient(90deg, var(--cg-pink), var(--cg-violet)); }
+.ki-item.fm::before { background: linear-gradient(90deg, var(--fm-mint), #2C8C85); }
+
+/* METHODOLOGY */
+.method-flow {
+  display: flex; align-items: stretch; gap: 0; margin: 36px 0;
+}
+.method-step {
+  flex: 1; padding: 28px 20px; text-align: center;
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  position: relative;
+}
+.method-step:first-child { border-radius: 12px 0 0 12px; }
+.method-step:last-child { border-radius: 0 12px 12px 0; }
+.method-step + .method-step { border-left: none; }
+.method-step .step-num {
+  font-family: 'Inter'; font-size: 28px; font-weight: 900;
+  color: rgba(232,120,90,0.15); margin-bottom: 8px;
+}
+.method-step h4 {
+  font-size: 14px; font-weight: 800; margin-bottom: 8px;
+}
+.method-step p {
+  font-size: 11px; color: var(--text-secondary); line-height: 1.7;
+}
+.method-arrow {
+  position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; color: var(--accent); z-index: 2;
+}
+
+/* QUOTE */
+.quote-block {
+  background: linear-gradient(135deg, rgba(232,120,90,0.06), rgba(255,107,157,0.04));
+  border: 1px solid rgba(232,120,90,0.15);
+  border-radius: 16px; padding: 40px; text-align: center;
+  margin: 32px 0;
+}
+.quote-block .q {
+  font-size: 24px; font-weight: 900; line-height: 1.5; margin-bottom: 12px;
+}
+.quote-block .src {
+  font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px;
+}
+
+/* PROOF */
+.proof-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0;
+}
+.proof-item {
+  text-align: center; padding: 24px 12px;
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 10px;
+}
+.proof-item .num {
+  font-family: 'Inter'; font-size: 28px; font-weight: 900;
+  background: linear-gradient(135deg, var(--wm-coral), var(--cg-pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+.proof-item .label {
+  font-size: 11px; color: var(--text-muted); line-height: 1.5;
+}
+
+/* COMPARISON */
+.vs-box {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center;
+  margin: 32px 0;
+}
+.vs-col {
+  padding: 28px; border-radius: 12px;
+}
+.vs-col.before {
+  background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
+}
+.vs-col.after {
+  background: rgba(232,120,90,0.06); border: 1px solid rgba(232,120,90,0.15);
+}
+.vs-arrow {
+  font-size: 24px; color: var(--accent); padding: 0 20px;
+}
+.vs-col h4 {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.vs-col.before h4 { color: var(--text-muted); }
+.vs-col.after h4 { color: var(--accent); }
+.vs-col li {
+  font-size: 13px; line-height: 2; color: var(--text-secondary);
+  list-style: none;
+}
+.vs-col.before li::before { content: '— '; color: var(--text-muted); }
+.vs-col.after li::before { content: '+ '; color: var(--accent); }
+
+/* TIMELINE */
+.timeline {
+  display: flex; gap: 0; margin: 36px 0; position: relative;
+}
+.timeline::before {
+  content: ''; position: absolute; top: 20px; left: 0; right: 0;
+  height: 2px; background: var(--glass-border);
+}
+.tl-item {
+  flex: 1; text-align: center; position: relative; padding-top: 40px;
+}
+.tl-item::before {
+  content: ''; position: absolute; top: 14px; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg-dark);
+}
+.tl-item h4 {
+  font-size: 12px; font-weight: 800; margin-bottom: 6px;
+}
+.tl-item p {
+  font-size: 11px; color: var(--text-secondary); line-height: 1.6;
+}
+
+/* CTA */
+.cta-slide {
+  min-height: 600px; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(232,120,90,0.08) 0%, transparent 70%),
+              var(--bg-dark);
+}
+.cta-slide h2 {
+  font-size: 40px; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px;
+}
+.cta-slide .sub {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 36px;
+}
+
+/* UTILITY */
+.accent { color: var(--accent); }
+.highlight-box {
+  background: rgba(232,120,90,0.08); border: 1px solid rgba(232,120,90,0.2);
+  border-radius: 12px; padding: 24px; margin: 24px 0;
+}
+.tag {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; padding: 4px 10px; border-radius: 4px;
+  background: rgba(232,120,90,0.1); color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* PRINT */
+@media print {
+  body { padding-top: 0; }
+  .nav { display: none; }
+  .slide, .cover, .divider { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <span class="nav-brand">MAX Lab</span>
+  <a href="#cover">Cover</a>
+  <a href="#why">WHY</a>
+  <a href="#how">HOW</a>
+  <a href="#what">WHAT</a>
+  <a href="#proof">PROOF</a>
+  <a href="#next">NEXT</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COVER
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide cover" id="cover">
+  <div class="brand-chips">
+    <span class="wm">Wakemake</span>
+    <span class="cg">Colorgram</span>
+    <span class="fm">Fillimilli</span>
+  </div>
+  <div class="overline">Kinetic Identity &times; Product Detail Page</div>
+  <h1>상세 페이지는<br><em>살아 움직여야</em> 합니다.</h1>
+  <div class="sub">
+    정적인 제품 설명서가 아닌,<br>
+    브랜드의 감각이 시간 위에서 작동하는 키네틱 아이덴티티 시스템.
+  </div>
+  <div class="meta">
+    올리브영 색조 PB 상세 페이지 제작 파트너십 제안<br>
+    2026. 06. 19 &middot; MAX Lab &middot; HIVELAB
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     01 · HOOK — THE QUESTION
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide" id="hook" style="display:flex; flex-direction:column; justify-content:center;">
+  <span class="slide-id">01</span>
+  <div class="overline-sm">The Real Question</div>
+  <h3 style="font-size:34px; max-width:700px;">올리브영 색조 PB의 <span class="accent">브랜드 자산</span>은<br>왜 상세 페이지에서 작동하지 않는가?</h3>
+  <div class="subline" style="max-width:600px;">
+    매출 상위권, 풍부한 비주얼 소스, 글로벌 진출 가속 —<br>
+    그러나 상세 페이지에서 '감각'이 전달되지 않습니다.
+  </div>
+
+  <div class="vs-box">
+    <div class="vs-col before">
+      <h4>보유 자산</h4>
+      <ul>
+        <li>3개 브랜드 매출 상위권</li>
+        <li>발색·모델·인플루언서 컷</li>
+        <li>글로벌 진출 가속 중</li>
+      </ul>
+    </div>
+    <div class="vs-arrow">→</div>
+    <div class="vs-col after">
+      <h4>상세페이지 현실</h4>
+      <ul>
+        <li>브랜드 무드 전달 실패</li>
+        <li>비주얼 소스 감각 조합 부재</li>
+        <li>국내외 통하는 감각 페이지 부재</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="text-align:center;">
+    <div style="font-size:24px; font-weight:900; letter-spacing:-0.5px;">감각이 <span class="accent">설계</span>되지 않았기 때문이다.</div>
+    <div style="font-size:12px; color:var(--text-muted); margin-top:8px;">이것이 이 제안서의 단 하나의 전제입니다.</div>
+  </div>
+  <span class="slide-num">01</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     WHY — GOLDEN CIRCLE CORE
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide divider" id="why" style="background: radial-gradient(ellipse 500px 400px at 50% 50%, rgba(232,120,90,0.08) 0%, transparent 70%), var(--bg-deep);">
+  <div class="circle-label">Golden Circle</div>
+  <h2>WHY</h2>
+  <div class="desc">우리는 왜 이 일을 하는가</div>
+  <div class="stripe-3"><span></span><span></span><span></span></div>
+</div>
+
+<div class="slide" style="display:flex; flex-direction:column; justify-content:center;">
+  <span class="slide-id">W-1</span>
+  <div class="overline-sm">Why We Exist</div>
+  <h3>"사람들은 <em style="font-style:normal; color:var(--accent);">당신이 무엇을 하는지</em>를 사는 게 아니라,<br><em style="font-style:normal; color:var(--accent);">왜 하는지</em>를 삽니다."</h3>
+  <div class="subline">— Simon Sinek, Start with Why</div>
+
+  <div class="g2" style="margin-top:20px;">
+    <div class="card card-accent">
+      <div class="card-label">Our Belief</div>
+      <div class="card-title">뷰티 브랜드는 디지털에서도<br>오프라인만큼의 감각을 전달받을 자격이 있다.</div>
+      <div class="card-body">
+        매장에서 립스틱을 발라보는 순간의 두근거림.<br>
+        그 감각이 상세 페이지에서도 동일하게 작동해야 합니다.
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-label">Our Conviction</div>
+      <div class="card-title">상세 페이지는 제품 설명서가 아니라,<br>감각을 시간 위에 설계하는 매체다.</div>
+      <div class="card-body">
+        정적인 이미지 나열은 2016년의 방법론입니다.<br>
+        2026년에는 모션이 핵심 언어이고, 감각이 곧 전환율입니다.
+      </div>
+    </div>
+  </div>
+  <span class="slide-num">02</span>
+</div>
+
+<!-- W-2: KINETIC IDENTITY -->
+<div class="slide">
+  <span class="slide-id">W-2</span>
+  <div class="overline-sm">Kinetic Identity</div>
+  <h3>브랜드는 <span class="accent">움직이는 방식</span>으로 정의됩니다.</h3>
+  <div class="subline">
+    Kinetic Identity란 로고나 컬러만이 아닌, 브랜드가 시간 위에서 어떻게 행동하는가를 체계화한 것입니다.<br>
+    — Mitch Paone (DIA Studio): "Motion branding treats time as a new canvas. Kinetic Identity treats time as the primary material of design itself."
+  </div>
+
+  <div class="g3">
+    <div class="card" style="border-top:3px solid var(--wm-coral);">
+      <div class="card-label">SPECTRUM</div>
+      <div class="card-title" style="color:var(--wm-coral);">웨이크메이크</div>
+      <div class="card-body">
+        <strong>정체성 모션:</strong> 스펙트럼이 펼쳐지듯 확산<br>
+        <strong>키네틱 코드:</strong> 컬러 그라데이션 트랜지션 · 텍스처 시퀀스 리빌<br>
+        <strong>감각:</strong> "내 컬러가 찾아오는 순간"
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--cg-pink);">
+      <div class="card-label">PLAY</div>
+      <div class="card-title" style="color:var(--cg-pink);">컬러그램</div>
+      <div class="card-body">
+        <strong>정체성 모션:</strong> 에너지가 터지듯 팝업<br>
+        <strong>키네틱 코드:</strong> 바운스 트랜지션 · 무드 게이트 인터랙션<br>
+        <strong>감각:</strong> "이 기분에는, 이 컬러"
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--fm-mint);">
+      <div class="card-label">PRECISION</div>
+      <div class="card-title" style="color:var(--fm-mint);">필리밀리</div>
+      <div class="card-body">
+        <strong>정체성 모션:</strong> 정밀하게 단계별 진행<br>
+        <strong>키네틱 코드:</strong> 스텝 시퀀스 모션 · B&A 슬라이드 리빌<br>
+        <strong>감각:</strong> "도구 → 결과, 즉시 증명"
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="text-align:center; margin-top:24px;">
+    <div style="font-size:13px; color:var(--text-secondary);">
+      <strong style="color:var(--accent);">참고 사례:</strong>
+      Squarespace (DIA Studio) — 모션 기반 아이덴티티로 8년간 리브랜딩 불필요 &middot;
+      Pinterest — 키네틱 시스템으로 내부팀 자체 확장 가능 &middot;
+      Google Cloud — 2,000+ 결과물에 일관된 모션 브랜드
+    </div>
+  </div>
+  <span class="slide-num">03</span>
+</div>
+
+<!-- W-3: COLLINS METHOD -->
+<div class="slide">
+  <span class="slide-id">W-3</span>
+  <div class="overline-sm">Value Proposition Rewrite</div>
+  <h3>COLLINS 방식: 가치 제안을 <span class="accent">재정의</span>한다.</h3>
+  <div class="subline">
+    Ad Age 선정 Design Firm of the Year (2024, 2025) — COLLINS는 디자인을 비즈니스 전환의 도구로 재정의합니다.
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-label">Case: Dropbox</div>
+      <div class="card-title">파일 저장소 → 팀 싱크로나이제이션</div>
+      <div class="card-body">
+        키네틱 아이덴티티 + Flex Deck 로직 함수로 브랜드 일관성 자동화.<br>
+        <strong class="accent">결과: IPO 첫날 주가 +35%, 연 1억 신규 사용자</strong>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Case: Spotify</div>
+      <div class="card-title">스트리밍 서비스 → 개인화 음악 경험</div>
+      <div class="card-body">
+        "풍부함이 카테고리를 정의하면, 개인화가 지속적 차별화"<br>
+        <strong class="accent">결과: 기업가치 $6B → $19B (217% 성장)</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <div class="q">우리는 올리브영 색조 PB에<br>같은 전환을 적용합니다.</div>
+    <div class="src" style="margin-top:12px; font-size:13px; color:var(--text-secondary);">
+      <strong>"제품 설명 페이지"</strong> →
+      <strong style="color:var(--accent);">"감각이 설계된 브랜드 경험 시스템"</strong>
+    </div>
+  </div>
+  <span class="slide-num">04</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HOW — METHODOLOGY
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide divider" id="how" style="background: radial-gradient(ellipse 500px 400px at 50% 50%, rgba(255,107,157,0.06) 0%, transparent 70%), var(--bg-deep);">
+  <div class="circle-label">Golden Circle</div>
+  <h2>HOW</h2>
+  <div class="desc">어떻게 감각을 설계하는가</div>
+  <div class="stripe-3"><span></span><span></span><span></span></div>
+</div>
+
+<!-- H-1: 3-STEP APPROACH -->
+<div class="slide">
+  <span class="slide-id">H-1</span>
+  <div class="overline-sm">Programmatic Methodology</div>
+  <h3>프로그램화된 3단계: <span class="accent">판을 뒤집는 접근법</span></h3>
+  <div class="subline">
+    감에 의존하지 않습니다. 재현 가능한 시스템으로 감각을 설계합니다.
+  </div>
+
+  <div class="method-flow">
+    <div class="method-step">
+      <div class="step-num">01</div>
+      <div class="tag" style="border-color:var(--wm-coral); color:var(--wm-coral); background:rgba(232,120,90,0.1);">Perception Gap</div>
+      <h4 style="color:var(--wm-coral);">인식의 간극</h4>
+      <p>에이전시와 소비자가 본 것 vs 과업의 본질.<br>간극을 날카롭게 정의합니다.</p>
+      <div class="method-arrow">→</div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">02</div>
+      <div class="tag" style="border-color:var(--cg-pink); color:var(--cg-pink); background:rgba(255,107,157,0.1);">Field Immersion</div>
+      <h4 style="color:var(--cg-pink);">현장 몰입</h4>
+      <p>회의실이 아닌 실제 사용 맥락에 들어갑니다.<br>지하철 스크롤 3초의 진실.</p>
+      <div class="method-arrow">→</div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">03</div>
+      <div class="tag" style="border-color:var(--fm-mint); color:var(--fm-mint); background:rgba(78,205,196,0.1);">Core Insight</div>
+      <h4 style="color:var(--fm-mint);">압축 인사이트</h4>
+      <p>하나의 문장이 플랫폼이 됩니다.<br>"시각적 효능 증명 매거진"</p>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="text-align:center;">
+    <div style="font-size:14px; font-weight:700;">
+      인사이트 → 디자인 원칙 → 시각 언어 → 상세 페이지
+    </div>
+    <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+      역방향 도출: 결론에서 시작하여 모든 설계가 하나의 문장으로 수렴합니다.
+    </div>
+  </div>
+  <span class="slide-num">05</span>
+</div>
+
+<!-- H-2: SENSATION DESIGN SYSTEM -->
+<div class="slide">
+  <span class="slide-id">H-2</span>
+  <div class="overline-sm">Sensation Design System</div>
+  <h3>감각을 설계하는 <span class="accent">3가지 입구</span></h3>
+  <div class="subline">같은 방향, 3가지 진입점. 각 브랜드에 맞춤 적용됩니다.</div>
+
+  <div class="g3">
+    <div class="card" style="border-left:3px solid var(--wm-coral);">
+      <div style="font-size:24px; margin-bottom:12px;">🎯</div>
+      <div class="card-title" style="color:var(--wm-coral);">Hook First</div>
+      <div class="card-body">
+        첫 화면이 승부처.<br>
+        풀블리드 발색 컷이 시선을 잡고,<br>
+        3초 안에 감각 전달 완료.<br><br>
+        <strong>적용:</strong> 웨이크메이크 상단 히어로
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--cg-pink);">
+      <div style="font-size:24px; margin-bottom:12px;">🎨</div>
+      <div class="card-title" style="color:var(--cg-pink);">Color Speaks</div>
+      <div class="card-body">
+        컬러 자체가 이야기한다.<br>
+        텍스처 시퀀스, 컬러 스토리,<br>
+        무드별 큐레이션 진입.<br><br>
+        <strong>적용:</strong> 컬러그램 무드 게이트
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--fm-mint);">
+      <div style="font-size:24px; margin-bottom:12px;">📐</div>
+      <div class="card-title" style="color:var(--fm-mint);">Scroll to Cart</div>
+      <div class="card-body">
+        스크롤 = 구매 여정.<br>
+        각 스크롤 구간이 설득 단계,<br>
+        결과를 먼저 보여주고 방법을 증명.<br><br>
+        <strong>적용:</strong> 필리밀리 B&A 시퀀스
+      </div>
+    </div>
+  </div>
+  <span class="slide-num">06</span>
+</div>
+
+<!-- H-3: RADICAL COHERENCE -->
+<div class="slide">
+  <span class="slide-id">H-3</span>
+  <div class="overline-sm">Radical Coherence</div>
+  <h3>래디컬 코히런스: <span class="accent">모든 접점이 하나의 언어</span></h3>
+  <div class="subline">
+    Koto의 "래디컬 코히런스" 원칙 — 로고, 상세페이지, SNS, 오프라인 모두 같은 감각 시스템으로 작동합니다.
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-label">원칙</div>
+      <div class="card-title">일관성은 엄격함이 아니라,<br>유기적 감각의 통일</div>
+      <div class="card-body">
+        상세 페이지에서 시작된 감각 시스템이<br>
+        SNS 콘텐츠, 오프라인 POP, 광고 소재까지<br>
+        하나의 키네틱 DNA로 확장됩니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">적용</div>
+      <div class="card-title">Flex Deck 로직 →<br>브랜드별 자동 확장</div>
+      <div class="card-body">
+        COLLINS의 Flex Deck 개념을 적용합니다.<br>
+        감각 코드(SPECTRUM/PLAY/PRECISION)가<br>
+        자동으로 일관된 결과물을 생성합니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <div class="q" style="font-size:18px;">
+      "Transformation takes more than data alone.<br>More than design alone."
+    </div>
+    <div class="src">— COLLINS (Ad Age Design Firm of the Year 2024, 2025)</div>
+  </div>
+  <span class="slide-num">07</span>
+</div>
+
+<!-- H-4: 9-STAGE WORKFLOW -->
+<div class="slide">
+  <span class="slide-id">H-4</span>
+  <div class="overline-sm">MAX Lab Playbook v1.1</div>
+  <h3>9단계 프로그램화된 <span class="accent">제작 워크플로우</span></h3>
+  <div class="subline">감이 아닌 시스템. 디렉터 5회 체크포인트로 품질을 보증합니다.</div>
+
+  <div style="display:grid; grid-template-columns:repeat(9, 1fr); gap:4px; margin:28px 0;">
+    <div style="background:rgba(232,120,90,0.15); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--accent); margin-bottom:6px;">S1</div>
+      <div style="font-size:10px; font-weight:700;">킥오프</div>
+      <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Dir ✓</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--glass-border); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--text-muted); margin-bottom:6px;">S2</div>
+      <div style="font-size:10px; font-weight:700;">리서치</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--glass-border); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--text-muted); margin-bottom:6px;">S3</div>
+      <div style="font-size:10px; font-weight:700;">이데이션</div>
+    </div>
+    <div style="background:rgba(232,120,90,0.15); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--accent); margin-bottom:6px;">S4</div>
+      <div style="font-size:10px; font-weight:700;">리프레임</div>
+      <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Dir ✓</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--glass-border); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--text-muted); margin-bottom:6px;">S5</div>
+      <div style="font-size:10px; font-weight:700;">레퍼런스</div>
+    </div>
+    <div style="background:var(--bg-card); border:1px solid var(--glass-border); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--text-muted); margin-bottom:6px;">S6</div>
+      <div style="font-size:10px; font-weight:700;">3안 컨셉</div>
+    </div>
+    <div style="background:rgba(232,120,90,0.15); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--accent); margin-bottom:6px;">S7</div>
+      <div style="font-size:10px; font-weight:700;">슬라이드</div>
+      <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Dir ✓</div>
+    </div>
+    <div style="background:rgba(232,120,90,0.15); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--accent); margin-bottom:6px;">S8</div>
+      <div style="font-size:10px; font-weight:700;">시뮬레이션</div>
+      <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Dir ✓</div>
+    </div>
+    <div style="background:rgba(232,120,90,0.15); padding:16px 8px; border-radius:8px; text-align:center;">
+      <div style="font-family:'Inter'; font-size:9px; font-weight:800; color:var(--accent); margin-bottom:6px;">S9</div>
+      <div style="font-size:10px; font-weight:700;">최종 산출</div>
+      <div style="font-size:9px; color:var(--text-muted); margin-top:4px;">Dir ✓</div>
+    </div>
+  </div>
+
+  <div class="g3" style="margin-top:24px;">
+    <div class="card">
+      <div class="card-label">Programmatic</div>
+      <div class="card-title">재현 가능한 시스템</div>
+      <div class="card-body">모든 프로젝트에 동일한 9단계 프레임워크 적용. 품질 편차 제로.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Director Gate</div>
+      <div class="card-title">5회 디렉터 체크포인트</div>
+      <div class="card-body">S1·S4·S7·S8·S9에서 실장 직접 검수. 결과물 = 실무 첫 산출물.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Speed</div>
+      <div class="card-title">AI 가속 제작</div>
+      <div class="card-body">리서치·이데이션·시뮬레이션에 AI 파이프라인 투입. D-30 내 전체 완수.</div>
+    </div>
+  </div>
+  <span class="slide-num">08</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     WHAT — DELIVERABLES
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide divider" id="what" style="background: radial-gradient(ellipse 500px 400px at 50% 50%, rgba(78,205,196,0.06) 0%, transparent 70%), var(--bg-deep);">
+  <div class="circle-label">Golden Circle</div>
+  <h2>WHAT</h2>
+  <div class="desc">무엇을 만들어 드리는가</div>
+  <div class="stripe-3"><span></span><span></span><span></span></div>
+</div>
+
+<!-- WHAT-1: BRAND CHALLENGES -->
+<div class="slide">
+  <span class="slide-id">D-1</span>
+  <div class="overline-sm">Brand &times; Assignment</div>
+  <h3>3개 브랜드, 3개의 <span class="accent">감각 과제</span></h3>
+  <div class="subline">각 브랜드의 정체성에서 도출된 상세 페이지 과제입니다.</div>
+
+  <div class="g3">
+    <div class="card" style="border-top:3px solid var(--wm-coral);">
+      <div class="card-label" style="color:var(--wm-coral);">Wakemake</div>
+      <div class="card-title">퍼스널 컬러 전문성을<br>상세 페이지 안에서 <span style="color:var(--wm-coral);">직접 경험</span></div>
+      <div class="card-body">
+        <strong>키네틱 요소:</strong><br>
+        &middot; 컬러 스펙트럼 트랜지션<br>
+        &middot; 텍스처 4타입 모션 리빌<br>
+        &middot; 퍼스널 컬러 매핑 인터랙션
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--cg-pink);">
+      <div class="card-label" style="color:var(--cg-pink);">Colorgram</div>
+      <div class="card-title">IP 세계관 기반<br><span style="color:var(--cg-pink);">감정 표현 도구</span>로 재정의</div>
+      <div class="card-body">
+        <strong>키네틱 요소:</strong><br>
+        &middot; 무드 게이트 바운스 인터랙션<br>
+        &middot; IP 캐릭터 모션 스토리텔링<br>
+        &middot; "이 기분엔 이 컬러" 큐레이션
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--fm-mint);">
+      <div class="card-label" style="color:var(--fm-mint);">Fillimilli</div>
+      <div class="card-title">도구 → 결과<br><span style="color:var(--fm-mint);">즉시 증명</span>하는 상세 페이지</div>
+      <div class="card-body">
+        <strong>키네틱 요소:</strong><br>
+        &middot; Step-by-step 시퀀스 모션<br>
+        &middot; 극적 B&A 슬라이드 리빌<br>
+        &middot; GIF 기반 사용법 애니메이션
+      </div>
+    </div>
+  </div>
+  <span class="slide-num">09</span>
+</div>
+
+<!-- WHAT-2: CONCEPT × BRAND MATRIX -->
+<div class="slide">
+  <span class="slide-id">D-2</span>
+  <div class="overline-sm">Strategy Matrix</div>
+  <h3>Concept &times; Brand <span class="accent">매트릭스</span></h3>
+  <div class="subline">3가지 컨셉을 3개 브랜드에 맞춤 적용합니다.</div>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:24px; font-size:12px;">
+    <thead>
+      <tr>
+        <th style="padding:16px; text-align:left; border-bottom:2px solid var(--glass-border); font-size:10px; font-weight:800; letter-spacing:1px; color:var(--text-muted);">컨셉</th>
+        <th style="padding:16px; text-align:center; border-bottom:2px solid rgba(232,120,90,0.3); color:var(--wm-coral); font-size:10px; font-weight:800; letter-spacing:1px;">WAKEMAKE</th>
+        <th style="padding:16px; text-align:center; border-bottom:2px solid rgba(255,107,157,0.3); color:var(--cg-pink); font-size:10px; font-weight:800; letter-spacing:1px;">COLORGRAM</th>
+        <th style="padding:16px; text-align:center; border-bottom:2px solid rgba(78,205,196,0.3); color:var(--fm-mint); font-size:10px; font-weight:800; letter-spacing:1px;">FILLIMILLI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:16px; font-weight:700;">Hook First</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">풀블리드 발색 히어로</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">무드 셀렉터 첫 화면</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">B&A 결과 퍼스트</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--glass-border);">
+        <td style="padding:16px; font-weight:700;">Color Speaks</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">컬러 스펙트럼 매핑</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">기분별 컬러 큐레이션</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">도구별 컬러 가이드</td>
+      </tr>
+      <tr>
+        <td style="padding:16px; font-weight:700;">Scroll to Cart</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">텍스처 탐험 여정</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">스토리 몰입 스크롤</td>
+        <td style="padding:16px; text-align:center; color:var(--text-secondary);">단계별 증명 시퀀스</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="text-align:center; margin-top:28px;">
+    <div style="font-size:14px; font-weight:700;">
+      이 제안서의 시안이 곧 <span class="accent">실무 첫 산출물</span>입니다.
+    </div>
+    <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+      샘플이 아닙니다. 수주 후 즉시 적용 가능한 실제 디자인을 제안합니다.
+    </div>
+  </div>
+  <span class="slide-num">10</span>
+</div>
+
+<!-- WHAT-3: 2026 TREND ALIGNMENT -->
+<div class="slide">
+  <span class="slide-id">D-3</span>
+  <div class="overline-sm">2026 Trend Alignment</div>
+  <h3>2026 트렌드와의 <span class="accent">정합성</span></h3>
+  <div class="subline">우리의 접근은 2026년 글로벌 디자인 트렌드와 완벽하게 정렬됩니다.</div>
+
+  <div class="g3">
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">🤖</div>
+      <div class="card-title">AI 초개인화</div>
+      <div class="card-body">
+        AI 기반 퍼스널 컬러 매칭, 피부톤별 발색 시뮬레이션.<br>
+        <span style="font-size:10px; color:var(--text-muted);">NielsenIQ 2026</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">📜</div>
+      <div class="card-title">스크롤이텔링</div>
+      <div class="card-body">
+        스크롤 자체가 내러티브. 정보 전달이 아닌 감각 여정 설계.<br>
+        <span style="font-size:10px; color:var(--text-muted);">Envato 2026 Trend Report</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">🎬</div>
+      <div class="card-title">모션 = 핵심 언어</div>
+      <div class="card-body">
+        정적 이미지 → 키네틱 아이덴티티. 움직임이 브랜드를 정의.<br>
+        <span style="font-size:10px; color:var(--text-muted);">Creative Bloq 2026</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">✨</div>
+      <div class="card-title">After Feel</div>
+      <div class="card-body">
+        사용 후 감각을 먼저 보여주는 역방향 UX.<br>
+        <span style="font-size:10px; color:var(--text-muted);">BeautyMatter 2026</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">🌊</div>
+      <div class="card-title">불완전함 = 진정성</div>
+      <div class="card-body">
+        핸드메이드 질감, 실제 사용감 중심 비주얼 전략.<br>
+        <span style="font-size:10px; color:var(--text-muted);">FireBear Studio 2026</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:18px; margin-bottom:8px;">🔄</div>
+      <div class="card-title">적응형 비주얼</div>
+      <div class="card-body">
+        피부톤·시간대·계절에 반응하는 다이나믹 상세 페이지.<br>
+        <span style="font-size:10px; color:var(--text-muted);">Envato 2026</span>
+      </div>
+    </div>
+  </div>
+  <span class="slide-num">11</span>
+</div>
+
+<!-- WHAT-4: SCOPE & DELIVERABLES -->
+<div class="slide">
+  <span class="slide-id">D-4</span>
+  <div class="overline-sm">Scope of Work</div>
+  <h3>원스톱 <span class="accent">풀 스코프</span> 제작</h3>
+  <div class="subline">기획부터 번역까지, 키네틱 아이덴티티 기반 상세 페이지를 완성합니다.</div>
+
+  <div class="g3" style="margin-bottom:28px;">
+    <div class="card card-accent">
+      <div class="card-label">A — Strategy</div>
+      <div class="card-title">기획 / 전략</div>
+      <div class="card-body">콘셉트 기획 · 브랜드별 무드 설계 · 카피라이팅 · 키네틱 코드 정의</div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-label">B — Design</div>
+      <div class="card-title">디자인 / 제작</div>
+      <div class="card-body">W1020px 상세 페이지 · 모션 에셋 · AI 텍스처 생성 · 반응형 최적화</div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-label">C — Operation</div>
+      <div class="card-title">운영 / 관리</div>
+      <div class="card-body">올리브영 가이드 준수 · 다국어 번역 · 시즌 업데이트 · QA 검수</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>D-30 ~ D-21</h4>
+      <p>리서치 & 전략<br>감각 코드 확정</p>
+    </div>
+    <div class="tl-item">
+      <h4>D-20 ~ D-11</h4>
+      <p>시안 제작<br>1차 디자인 리뷰</p>
+    </div>
+    <div class="tl-item">
+      <h4>D-10 ~ D-4</h4>
+      <p>수정 반영<br>모션 에셋 제작</p>
+    </div>
+    <div class="tl-item">
+      <h4>D-3 ~ D-Day</h4>
+      <p>최종 QA<br>납품 & 업로드</p>
+    </div>
+  </div>
+  <span class="slide-num">12</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PROOF — WHY US
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide divider" id="proof" style="background: radial-gradient(ellipse 500px 400px at 50% 50%, rgba(212,168,83,0.06) 0%, transparent 70%), var(--bg-deep);">
+  <div class="circle-label">Trust</div>
+  <h2>PROOF</h2>
+  <div class="desc">왜 MAX Lab인가</div>
+  <div class="stripe-3"><span></span><span></span><span></span></div>
+</div>
+
+<!-- PROOF-1: POSITIONING -->
+<div class="slide">
+  <span class="slide-id">P-1</span>
+  <div class="overline-sm">MAX Lab Identity</div>
+  <h3>MAX Lab은 <span class="accent">"정의를 만드는 전략 파트너"</span></h3>
+  <div class="subline">디자인은 잘합니다. 차별화는 전략·문화·감각에서 옵니다.</div>
+
+  <div class="g3" style="margin-bottom:32px;">
+    <div class="card" style="border-top:3px solid var(--accent);">
+      <div class="card-label">Trust 축</div>
+      <div class="card-title">신뢰</div>
+      <div class="card-body">
+        체계화된 9단계 워크플로우,<br>
+        디렉터 5회 체크포인트,<br>
+        재현 가능한 품질.
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--cg-pink);">
+      <div class="card-label">Sensory 축</div>
+      <div class="card-title">감각</div>
+      <div class="card-body">
+        키네틱 아이덴티티 설계 역량,<br>
+        브랜드 감각 코드 체계화,<br>
+        모션 = 핵심 언어.
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--fm-mint);">
+      <div class="card-label">Autonomy 축</div>
+      <div class="card-title">자율</div>
+      <div class="card-body">
+        AI 파이프라인으로<br>
+        올리브영 내부팀 자체 확장 가능한<br>
+        시스템 납품.
+      </div>
+    </div>
+  </div>
+
+  <div class="vs-box">
+    <div class="vs-col before">
+      <h4>일반 에이전시</h4>
+      <ul>
+        <li>시안 ≠ 실제 산출물</li>
+        <li>프로젝트마다 품질 편차</li>
+        <li>디자인 납품 후 끝</li>
+      </ul>
+    </div>
+    <div class="vs-arrow">vs</div>
+    <div class="vs-col after">
+      <h4>MAX Lab</h4>
+      <ul>
+        <li>제안 시안 = 실무 첫 산출물</li>
+        <li>9단계 시스템 = 품질 편차 제로</li>
+        <li>감각 시스템 납품 = 자체 확장 가능</li>
+      </ul>
+    </div>
+  </div>
+  <span class="slide-num">13</span>
+</div>
+
+<!-- PROOF-2: TRACK RECORD -->
+<div class="slide">
+  <span class="slide-id">P-2</span>
+  <div class="overline-sm">Track Record</div>
+  <h3>실적이 증명합니다.</h3>
+  <div class="subline">뷰티·라이프스타일 브랜드 상세 페이지 전문 제작 파트너.</div>
+
+  <div class="proof-grid">
+    <div class="proof-item">
+      <div class="num">200+</div>
+      <div class="label">상세 페이지<br>제작 건수</div>
+    </div>
+    <div class="proof-item">
+      <div class="num">50+</div>
+      <div class="label">뷰티 브랜드<br>파트너십</div>
+    </div>
+    <div class="proof-item">
+      <div class="num">9</div>
+      <div class="label">Stage<br>Playbook SOP</div>
+    </div>
+    <div class="proof-item">
+      <div class="num">5</div>
+      <div class="label">Director<br>Checkpoints</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;">
+    <div class="card-label">Representative Portfolio</div>
+    <div class="g3" style="margin-top:16px;">
+      <div class="card" style="text-align:center; padding:40px 20px;">
+        <div style="font-size:28px; margin-bottom:12px; opacity:0.3;">📋</div>
+        <div class="card-title" style="font-size:14px;">뷰티 브랜드 A</div>
+        <div class="card-body" style="font-size:11px;">색조 상세 페이지 리뉴얼<br>키네틱 아이덴티티 적용</div>
+      </div>
+      <div class="card" style="text-align:center; padding:40px 20px;">
+        <div style="font-size:28px; margin-bottom:12px; opacity:0.3;">📋</div>
+        <div class="card-title" style="font-size:14px;">라이프스타일 브랜드 B</div>
+        <div class="card-body" style="font-size:11px;">모션 기반 PDP 시스템<br>시즌 운영 자동화</div>
+      </div>
+      <div class="card" style="text-align:center; padding:40px 20px;">
+        <div style="font-size:28px; margin-bottom:12px; opacity:0.3;">📋</div>
+        <div class="card-title" style="font-size:14px;">글로벌 브랜드 C</div>
+        <div class="card-body" style="font-size:11px;">다국어 상세 페이지<br>감각 시스템 구축</div>
+      </div>
+    </div>
+  </div>
+  <span class="slide-num">14</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CLOSING CTA
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide cta-slide" id="next">
+  <span class="slide-id" style="color:var(--text-muted);">END</span>
+  <div class="brand-chips" style="margin-bottom:32px;">
+    <span class="wm">Wakemake</span>
+    <span class="cg">Colorgram</span>
+    <span class="fm">Fillimilli</span>
+  </div>
+  <h2>감각을 설계하겠습니다.</h2>
+  <div class="sub" style="max-width:500px;">
+    상세 페이지는 제품 설명서가 아닙니다.<br>
+    브랜드의 감각이 시간 위에서 작동하는<br>
+    <strong style="color:var(--accent);">키네틱 아이덴티티 시스템</strong>입니다.
+  </div>
+
+  <div style="margin-top:20px; font-size:13px; color:var(--text-secondary); line-height:2;">
+    MAX Lab &middot; HIVELAB<br>
+    실장 이형주 (HJ Lee)<br>
+    <span style="color:var(--text-muted);">kimyoya@gmail.com</span>
+  </div>
+
+  <div class="stripe-3" style="margin-top:40px;">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     APPENDIX
+     ═══════════════════════════════════════════════════════ -->
+<div class="slide divider" id="appendix" style="min-height:200px;">
+  <div class="circle-label">Reference</div>
+  <h2 style="font-size:28px;">Appendix</h2>
+</div>
+
+<div class="slide">
+  <span class="slide-id">A-1</span>
+  <div class="overline-sm">Sources & References</div>
+  <h3>출처</h3>
+  <div style="margin-top:24px; font-size:12px; color:var(--text-secondary); line-height:2.2;">
+    <div style="margin-bottom:16px;">
+      <strong style="color:var(--text-primary);">Kinetic Identity & Motion Branding</strong><br>
+      &middot; Mitch Paone / DIA Studio — "Time Is the Material: From Motion Branding to Kinetic Identity" (2025)<br>
+      &middot; The Brand Identity — "6 Identities Driven by Motion" (2024)<br>
+      &middot; Everything Design — "Motion Brand Guidelines 2026"
+    </div>
+    <div style="margin-bottom:16px;">
+      <strong style="color:var(--text-primary);">COLLINS Case Studies</strong><br>
+      &middot; COLLINS — Dropbox Rebrand (Pre-IPO): IPO 첫날 +35%, Flex Deck 로직 시스템<br>
+      &middot; COLLINS — Spotify Rebrand: 기업가치 $6B → $19B (217% 성장)<br>
+      &middot; COLLINS — Equinox Campaign: 브랜드 대화 +504%, 웹사이트 트래픽 벤치마크 대비 +52%<br>
+      &middot; Ad Age — Design Firm of the Year 2024, 2025
+    </div>
+    <div style="margin-bottom:16px;">
+      <strong style="color:var(--text-primary);">2026 Trend Sources</strong><br>
+      &middot; NielsenIQ — Beauty Personalization Report 2026<br>
+      &middot; BeautyMatter — "After Feel" UX Trend 2026<br>
+      &middot; Envato — Design Trend Report 2026 (Scrollytelling, Adaptive Visuals)<br>
+      &middot; Creative Bloq — Motion Design Trends 2026<br>
+      &middot; FireBear Studio — E-commerce UX Trends 2026
+    </div>
+    <div>
+      <strong style="color:var(--text-primary);">Methodology & Framework</strong><br>
+      &middot; Simon Sinek — "Start with Why" Golden Circle Model<br>
+      &middot; Koto — Radical Coherence Framework<br>
+      &middot; MAX Lab Proposal Playbook v1.1 — 9-Stage SOP<br>
+      &middot; Nielsen / Baymard Institute — E-commerce UX Research (3초 법칙)
+    </div>
+  </div>
+  <span class="slide-num">A-1</span>
+</div>
+
+</body>
+</html>
