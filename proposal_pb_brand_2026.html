@@ -24,17 +24,17 @@
     --accent-light: #6A8FA3;
     --accent-bg: #222222;
 
-    /* Keep neon palette for light content slides only */
-    --neon-yellow: #E8FF00;
-    --neon-pink: #FF2D8A;
-    --neon-cyan: #00F0FF;
-    --neon-green: #00FF88;
-    --neon-purple: #A855FF;
-    --neon-orange: #FF6B00;
-    --neon-blue: #3B82F6;
-    --neon-rose: #FF0055;
-    --neon-lime: #AAFF00;
-    --neon-mint: #00FFAA;
+    /* Monotone grayscale palette */
+    --neon-yellow: #FFFFFF;
+    --neon-pink: #CCCCCC;
+    --neon-cyan: #E0E0E0;
+    --neon-green: #BBBBBB;
+    --neon-purple: #999999;
+    --neon-orange: #AAAAAA;
+    --neon-blue: #888888;
+    --neon-rose: #DDDDDD;
+    --neon-lime: #C0C0C0;
+    --neon-mint: #B0B0B0;
 
     --font-en: 'Inter', sans-serif;
     --font-kr: 'Pretendard', sans-serif;
@@ -258,7 +258,7 @@
     background: var(--gray-700);
   }
 
-  .dot-matrix .dot.active { background: var(--neon-cyan); }
+  .dot-matrix .dot.active { background: var(--accent); }
 
   /* Stacked Bar */
   .stacked-bar {
@@ -411,10 +411,14 @@
     --gray-100: #CCCCCC;
     --gray-50: #F8F8F8;
 
-    --neon-yellow: #B89000;
-    --neon-cyan: #0099BB;
-    --neon-green: #009955;
-    --neon-mint: #00BB88;
+    --neon-yellow: #222222;
+    --neon-cyan: #3E5A6C;
+    --neon-green: #555555;
+    --neon-mint: #666666;
+    --neon-pink: #333333;
+    --neon-orange: #666666;
+    --neon-purple: #777777;
+    --neon-blue: #555555;
 
     --hl-bg: rgba(62,90,108,0.10);
   }
@@ -575,7 +579,7 @@
     <div class="label" style="color:var(--accent); margin-bottom:24px; margin-top:24px;">OPENING QUESTION</div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:48px;">
       <div>
-        <div style="font-family:var(--font-en); font-weight:300; font-size:140px; line-height:0.9; color:var(--neon-yellow); letter-spacing:-0.05em;">"</div>
+        <div style="font-family:var(--font-en); font-weight:300; font-size:140px; line-height:0.9; color:var(--accent); letter-spacing:-0.05em;">"</div>
         <div class="h1" style="font-size:42px; letter-spacing:-0.03em; max-width:1100px; line-height:1.35; margin-top:-40px;">
           소비자는 <span style="color:var(--neon-pink);">3초</span> 안에<br>
           이 색조 제품이 <span style="color:var(--neon-cyan);">"내 것"</span>인지 결정합니다.<br>
@@ -583,7 +587,7 @@
         </div>
       </div>
 
-      <div style="display:flex; gap:48px; padding-top:32px; border-top:1px solid var(--gray-900);">
+      <div style="display:flex; gap:48px; padding-top:32px; border-top:1px solid #E8E8E8;">
         <div style="flex:1;">
           <div class="label" style="margin-bottom:12px;">THE PROBLEM</div>
           <div class="body-text" style="color:var(--gray-300);">색조 PB브랜드는 NB 대비 <strong style="color:var(--white);">브랜드 신뢰도가 낮고</strong>, 소비자는 상세페이지만으로 제품의 발색·텍스처·지속력을 판단합니다.</div>
@@ -619,7 +623,7 @@
       </div>
 
       <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
-        <div class="card" style="background:rgba(255,45,138,0.06); border-left:3px solid var(--neon-pink);">
+        <div class="card" style="background:var(--gray-900); ">
           <div style="display:flex; gap:16px; align-items:flex-start;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-pink); line-height:1;">01</div>
             <div>
@@ -628,7 +632,7 @@
             </div>
           </div>
         </div>
-        <div class="card" style="background:rgba(0,240,255,0.06); border-left:3px solid var(--neon-cyan);">
+        <div class="card" style="background:var(--gray-900); ">
           <div style="display:flex; gap:16px; align-items:flex-start;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-cyan); line-height:1;">02</div>
             <div>
@@ -637,7 +641,7 @@
             </div>
           </div>
         </div>
-        <div class="card" style="background:rgba(0,255,136,0.06); border-left:3px solid var(--neon-green);">
+        <div class="card" style="background:var(--gray-900); ">
           <div style="display:flex; gap:16px; align-items:flex-start;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-green); line-height:1;">03</div>
             <div>
@@ -663,7 +667,7 @@
           <div class="label">QUANTITY · 제작량</div>
           <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-pink); line-height:1;">240<span style="font-size:24px; color:var(--gray-500);">건</span></div>
-            <span class="badge" style="background:rgba(255,45,138,0.15); color:var(--neon-pink); margin-bottom:8px;">연간</span>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-pink); margin-bottom:8px;">연간</span>
           </div>
           <div class="caption" style="margin-top:auto;">월 평균 20건 / 분기당 60건의 안정적 제작 처리량</div>
         </div>
@@ -672,7 +676,7 @@
           <div class="label">QUALITY · 전환율</div>
           <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-cyan); line-height:1;">+25<span style="font-size:24px;">%</span></div>
-            <span class="badge" style="background:rgba(0,240,255,0.15); color:var(--neon-cyan); margin-bottom:8px;">YoY</span>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-cyan); margin-bottom:8px;">YoY</span>
           </div>
           <div class="caption" style="margin-top:auto;">기존 상세페이지 대비 자사몰 평균 전환율 25% 이상 상승</div>
         </div>
@@ -681,7 +685,7 @@
           <div class="label">SPEED · 납기</div>
           <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-green); line-height:1;">10<span style="font-size:24px; color:var(--gray-500);">영업일</span></div>
-            <span class="badge" style="background:rgba(0,255,136,0.15); color:var(--neon-green); margin-bottom:8px;">표준</span>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-green); margin-bottom:8px;">표준</span>
           </div>
           <div class="caption" style="margin-top:auto;">기획 ~ 업로드까지 표준 10영업일 / 긴급건 5영업일</div>
         </div>
@@ -690,7 +694,7 @@
           <div class="label">COST · 비용 효율</div>
           <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-yellow); line-height:1;">-30<span style="font-size:24px;">%</span></div>
-            <span class="badge" style="background:rgba(232,255,0,0.15); color:var(--neon-yellow); margin-bottom:8px;">절감</span>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-yellow); margin-bottom:8px;">절감</span>
           </div>
           <div class="caption" style="margin-top:auto;">개별 외주 대비 통합 운영 시 단가 30% 절감</div>
         </div>
@@ -703,7 +707,7 @@
         </div>
 
         <div style="display:flex; gap:0; flex:1; position:relative;">
-          <div style="flex:1; padding:16px 20px; border-right:1px solid var(--gray-900);">
+          <div style="flex:1; padding:16px 20px; ">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
               <div class="neon-dot" style="background:var(--neon-pink); width:10px; height:10px;"></div>
               <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-pink);">Q1</span>
@@ -711,7 +715,7 @@
             <div class="h2" style="font-size:14px; margin-bottom:8px;">파일럿 & 셋업</div>
             <div class="body-text" style="font-size:12px;">초기 5건 시범 제작 / 템플릿 시스템 구축 / 워크플로우 합의</div>
           </div>
-          <div style="flex:1; padding:16px 20px; border-right:1px solid var(--gray-900);">
+          <div style="flex:1; padding:16px 20px; ">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
               <div class="neon-dot" style="background:var(--neon-orange); width:10px; height:10px;"></div>
               <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-orange);">Q2</span>
@@ -719,7 +723,7 @@
             <div class="h2" style="font-size:14px; margin-bottom:8px;">스케일업</div>
             <div class="body-text" style="font-size:12px;">월 15건 안정화 / 채널별 최적화 / A/B 테스트 시작</div>
           </div>
-          <div style="flex:1; padding:16px 20px; border-right:1px solid var(--gray-900);">
+          <div style="flex:1; padding:16px 20px; ">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
               <div class="neon-dot" style="background:var(--neon-green); width:10px; height:10px;"></div>
               <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-green);">Q3</span>
@@ -861,10 +865,10 @@
     </div>
 
     <div style="display:flex; gap:32px;">
-      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid var(--gray-900);">
+      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid #E8E8E8;">
         자체 브랜드(PB) 화장품의 온라인 구매 비중이 전체 채널의 67%를 차지하며, 상세페이지 품질이 구매 결정의 핵심 요소로 부상
       </div>
-      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid var(--gray-900);">
+      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid #E8E8E8;">
         전문적으로 제작된 상세페이지는 일반 상세페이지 대비 체류 시간 2.4배, 전환율 18.7% 우위
       </div>
     </div>
@@ -880,7 +884,7 @@
       </div>
       <div style="display:flex; gap:16px; align-items:center;">
         <div style="display:flex; align-items:center; gap:6px;"><div class="neon-dot" style="background:var(--gray-500);"></div><span class="caption">일반 제작</span></div>
-        <div style="display:flex; align-items:center; gap:6px;"><div class="neon-dot" style="background:var(--neon-cyan);"></div><span class="caption">전문 제작</span></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div class="neon-dot" style="background:var(--accent);"></div><span class="caption">전문 제작</span></div>
       </div>
     </div>
 
@@ -900,7 +904,7 @@
           <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
             <div style="width:36px; height:37.5%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
             <div style="width:36px; height:75%; background:var(--neon-cyan); border-radius:3px 3px 0 0; position:relative;">
-              <span class="badge" style="background:var(--neon-yellow); color:var(--black); position:absolute; top:-28px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:11px;">6.0%</span>
+              <span class="badge" style="background:var(--accent); color:#FFFFFF; position:absolute; top:-28px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:11px;">6.0%</span>
             </div>
             <div class="caption" style="position:absolute; bottom:-24px; text-align:center; width:80px; left:50%; transform:translateX(-50%);">자사몰</div>
           </div>
@@ -936,7 +940,7 @@
       </div>
 
       <!-- Insight -->
-      <div style="flex:0 0 280px; display:flex; flex-direction:column; justify-content:center; gap:24px; padding-left:32px; border-left:1px solid var(--gray-900);">
+      <div style="flex:0 0 280px; display:flex; flex-direction:column; justify-content:center; gap:24px; padding-left:32px; ">
         <div class="card" style="background:transparent; padding:0; gap:12px;">
           <div class="h2" style="font-size:18px;">핵심 인사이트</div>
           <div class="body-text">전문 제작 상세페이지 적용 시 모든 채널에서 전환율이 <strong style="color:var(--neon-cyan);">평균 2배</strong> 이상 상승</div>
@@ -1141,61 +1145,61 @@
     <div class="h2" style="margin-bottom:24px;">HIVELAB이 다른 4가지 이유</div>
 
     <div class="grid-2x2" style="flex:1;">
-      <div class="card" style="justify-content:space-between; background:linear-gradient(135deg, rgba(255,45,138,0.08) 0%, rgba(0,0,0,0) 60%);">
+      <div class="card" style="justify-content:space-between; ">
         <div>
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-pink);">#01</div>
-            <span class="badge" style="background:rgba(255,45,138,0.2); color:var(--neon-pink); font-size:11px;">전문성</span>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-pink); font-size:11px;">전문성</span>
           </div>
           <div class="h2" style="font-size:22px; margin-bottom:12px;">색조 전용 컬러 워크플로우</div>
           <div class="body-text" style="font-size:13px;">립/아이/베이스 카테고리별 표준 촬영 라이팅·스와치 가이드를 보유, 실제 발색과 모니터/모바일 컬러 매칭 정확도 <strong style="color:var(--white);">ΔE 2.0 이하</strong>로 관리</div>
         </div>
-        <div style="display:flex; gap:16px; padding-top:16px; border-top:1px solid rgba(255,45,138,0.15);">
+        <div style="display:flex; gap:16px; padding-top:16px; ">
           <div><div class="caption">컬러 정확도</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-pink);">ΔE&lt;2.0</div></div>
           <div><div class="caption">전용 가이드</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">4종</div></div>
         </div>
       </div>
 
-      <div class="card" style="justify-content:space-between; background:linear-gradient(135deg, rgba(0,240,255,0.08) 0%, rgba(0,0,0,0) 60%);">
+      <div class="card" style="justify-content:space-between; ">
         <div>
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-cyan);">#02</div>
-            <span class="badge" style="background:rgba(0,240,255,0.2); color:var(--neon-cyan); font-size:11px;">확장성</span>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-cyan); font-size:11px;">확장성</span>
           </div>
           <div class="h2" style="font-size:22px; margin-bottom:12px;">모듈형 템플릿 시스템</div>
           <div class="body-text" style="font-size:13px;">12개의 검증된 섹션 블록을 자유 조합하여 신제품 상세페이지 <strong style="color:var(--white);">최소 3일 내 1차 시안</strong> 도출, 동시 처리 캐파 월 30건까지 확장 가능</div>
         </div>
-        <div style="display:flex; gap:16px; padding-top:16px; border-top:1px solid rgba(0,240,255,0.15);">
+        <div style="display:flex; gap:16px; padding-top:16px; ">
           <div><div class="caption">검증 블록</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-cyan);">12종</div></div>
           <div><div class="caption">월 최대 캐파</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">30건</div></div>
         </div>
       </div>
 
-      <div class="card" style="justify-content:space-between; background:linear-gradient(135deg, rgba(0,255,136,0.08) 0%, rgba(0,0,0,0) 60%);">
+      <div class="card" style="justify-content:space-between; ">
         <div>
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-green);">#03</div>
-            <span class="badge" style="background:rgba(0,255,136,0.2); color:var(--neon-green); font-size:11px;">데이터</span>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-green); font-size:11px;">데이터</span>
           </div>
           <div class="h2" style="font-size:22px; margin-bottom:12px;">전환 데이터 기반 개선 사이클</div>
           <div class="body-text" style="font-size:13px;">제작 후 <strong style="color:var(--white);">2주 단위 A/B 테스트</strong>와 채널별 전환율 트래킹, 월간 인사이트 리포트로 차기 상세페이지에 학습 반영</div>
         </div>
-        <div style="display:flex; gap:16px; padding-top:16px; border-top:1px solid rgba(0,255,136,0.15);">
+        <div style="display:flex; gap:16px; padding-top:16px; ">
           <div><div class="caption">테스트 주기</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-green);">2주</div></div>
           <div><div class="caption">리포트</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">월간</div></div>
         </div>
       </div>
 
-      <div class="card" style="justify-content:space-between; background:linear-gradient(135deg, rgba(232,255,0,0.08) 0%, rgba(0,0,0,0) 60%);">
+      <div class="card" style="justify-content:space-between; ">
         <div>
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
             <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-yellow);">#04</div>
-            <span class="badge" style="background:rgba(232,255,0,0.2); color:var(--neon-yellow); font-size:11px;">파트너십</span>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-yellow); font-size:11px;">파트너십</span>
           </div>
           <div class="h2" style="font-size:22px; margin-bottom:12px;">전담팀 + 통합 단가 모델</div>
           <div class="body-text" style="font-size:13px;">PB 전담 PM·디자이너·포토그래퍼로 구성된 <strong style="color:var(--white);">5인 전담팀</strong> 배치, 연단위 통합 계약 시 건당 단가 30% 절감</div>
         </div>
-        <div style="display:flex; gap:16px; padding-top:16px; border-top:1px solid rgba(232,255,0,0.15);">
+        <div style="display:flex; gap:16px; padding-top:16px; ">
           <div><div class="caption">전담 인원</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-yellow);">5명</div></div>
           <div><div class="caption">단가 절감</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">-30%</div></div>
         </div>
@@ -1245,8 +1249,8 @@
         <div style="display:flex; align-items:flex-end; justify-content:space-between;">
           <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">480<span style="font-size:20px; font-weight:500; color:var(--gray-500);">+건</span></div>
           <svg class="sparkline" width="80" height="36" viewBox="0 0 80 36">
-            <polyline points="0,32 12,28 24,24 36,20 48,18 60,12 72,6 80,2" fill="none" stroke="var(--neon-cyan)" stroke-width="2"/>
-            <circle cx="80" cy="2" r="3" fill="var(--neon-cyan)"/>
+            <polyline points="0,32 12,28 24,24 36,20 48,18 60,12 72,6 80,2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="80" cy="2" r="3" fill="var(--accent)"/>
           </svg>
         </div>
       </div>
@@ -1256,7 +1260,7 @@
         <div style="flex:1;"></div>
         <div style="display:flex; align-items:flex-end; justify-content:space-between;">
           <div style="font-family:var(--font-en); font-weight:800; font-size:44px; color:var(--neon-green);">+24<span style="font-size:24px;">%</span></div>
-          <span class="badge" style="background:rgba(0,255,136,0.15); color:var(--neon-green);">↑ 4.2%p</span>
+          <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-green);">↑ 4.2%p</span>
         </div>
       </div>
 
@@ -1266,8 +1270,8 @@
         <div style="display:flex; align-items:flex-end; justify-content:space-between;">
           <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">92<span style="font-size:24px;">%</span></div>
           <svg class="sparkline" width="80" height="36" viewBox="0 0 80 36">
-            <polyline points="0,20 16,18 32,16 48,10 64,8 80,4" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
-            <circle cx="80" cy="4" r="3" fill="var(--neon-yellow)"/>
+            <polyline points="0,20 16,18 32,16 48,10 64,8 80,4" fill="none" stroke="#888888" stroke-width="2"/>
+            <circle cx="80" cy="4" r="3" fill="#888888"/>
           </svg>
         </div>
       </div>
@@ -1277,7 +1281,7 @@
         <div style="flex:1;"></div>
         <div style="display:flex; align-items:flex-end; justify-content:space-between;">
           <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">98.5<span style="font-size:24px;">%</span></div>
-          <span class="badge" style="background:rgba(168,85,255,0.15); color:var(--neon-purple);">On-time</span>
+          <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-purple);">On-time</span>
         </div>
       </div>
     </div>
@@ -1289,42 +1293,42 @@
       </div>
       <div style="flex:1; display:flex; align-items:flex-end; gap:10px; padding-top:8px;">
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:45%; background:linear-gradient(180deg, var(--neon-pink) 0%, rgba(255,45,138,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jan</span>
+          <div style="width:100%; height:45%; background:linear-gradient(180deg, #AAAAAA 0%, #D0D0D0 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jan</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:48%; background:linear-gradient(180deg, var(--neon-pink) 0%, rgba(255,45,138,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Feb</span>
+          <div style="width:100%; height:48%; background:linear-gradient(180deg, #AAAAAA 0%, #D0D0D0 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Feb</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:55%; background:linear-gradient(180deg, var(--neon-orange) 0%, rgba(255,107,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Mar</span>
+          <div style="width:100%; height:55%; background:linear-gradient(180deg, #999999 0%, #C8C8C8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Mar</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:62%; background:linear-gradient(180deg, var(--neon-orange) 0%, rgba(255,107,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Apr</span>
+          <div style="width:100%; height:62%; background:linear-gradient(180deg, #999999 0%, #C8C8C8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Apr</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:70%; background:linear-gradient(180deg, var(--neon-yellow) 0%, rgba(232,255,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">May</span>
+          <div style="width:100%; height:70%; background:linear-gradient(180deg, #777777 0%, #B8B8B8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">May</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:78%; background:linear-gradient(180deg, var(--neon-yellow) 0%, rgba(232,255,0,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jun</span>
+          <div style="width:100%; height:78%; background:linear-gradient(180deg, #777777 0%, #B8B8B8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jun</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:65%; background:linear-gradient(180deg, var(--neon-green) 0%, rgba(0,255,136,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jul</span>
+          <div style="width:100%; height:65%; background:linear-gradient(180deg, #666666 0%, #A8A8A8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jul</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:72%; background:linear-gradient(180deg, var(--neon-green) 0%, rgba(0,255,136,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Aug</span>
+          <div style="width:100%; height:72%; background:linear-gradient(180deg, #666666 0%, #A8A8A8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Aug</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:85%; background:linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,240,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Sep</span>
+          <div style="width:100%; height:85%; background:linear-gradient(180deg, #555555 0%, #999999 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Sep</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:92%; background:linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,240,255,0.3) 100%); border-radius:2px 2px 0 0; position:relative;">
-            <span class="badge" style="background:var(--neon-yellow); color:var(--black); position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:11px; white-space:nowrap;">Peak 56</span>
+          <div style="width:100%; height:92%; background:linear-gradient(180deg, #555555 0%, #999999 100%); border-radius:2px 2px 0 0; position:relative;">
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:11px; white-space:nowrap;">Peak 56</span>
           </div><span class="caption">Oct</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:88%; background:linear-gradient(180deg, var(--neon-purple) 0%, rgba(168,85,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Nov</span>
+          <div style="width:100%; height:88%; background:linear-gradient(180deg, #444444 0%, #888888 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Nov</span>
         </div>
         <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
-          <div style="width:100%; height:95%; background:linear-gradient(180deg, var(--neon-purple) 0%, rgba(168,85,255,0.3) 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Dec</span>
+          <div style="width:100%; height:95%; background:linear-gradient(180deg, #444444 0%, #888888 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Dec</span>
         </div>
       </div>
     </div>
@@ -1342,11 +1346,11 @@
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
             <div class="label">BRAND A — 립 컬렉션</div>
-            <span class="badge" style="background:var(--neon-pink); color:var(--black); font-size:11px;">BEST</span>
+            <span class="badge" style="background:#333333; color:#FFFFFF; font-size:11px;">BEST</span>
           </div>
           <div class="body-text">프리미엄 립스틱 라인 12종 상세페이지 리뉴얼. 색감 표현에 집중한 스와치 촬영 + 인터랙티브 컬러 비교 모듈 적용</div>
         </div>
-        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
           <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-pink);">+31%</div></div>
           <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×2.8</div></div>
           <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">3주</div></div>
@@ -1357,11 +1361,11 @@
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
             <div class="label">BRAND B — 쿠션 파운데이션</div>
-            <span class="badge" style="background:var(--neon-cyan); color:var(--black); font-size:11px;">NEW</span>
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; font-size:11px;">NEW</span>
           </div>
           <div class="body-text">신제품 론칭 상세페이지. 피부 밀착 텍스처 표현을 위한 마이크로 촬영 기법 + 비포/애프터 인터랙션</div>
         </div>
-        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
           <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-cyan);">+27%</div></div>
           <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×2.3</div></div>
           <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">2주</div></div>
@@ -1375,7 +1379,7 @@
           </div>
           <div class="body-text">시즌 한정판 아이섀도우 팔레트. 컬러 스토리텔링 기반 상세페이지 + 360° 제품 뷰어</div>
         </div>
-        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
           <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-green);">+22%</div></div>
           <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×1.9</div></div>
           <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">2.5주</div></div>
@@ -1389,7 +1393,7 @@
           </div>
           <div class="body-text">유통사 PB 전용 베이스 메이크업 5종. 대량 제작 효율화 시스템 도입 + 모듈형 상세페이지 템플릿</div>
         </div>
-        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
           <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-yellow);">+19%</div></div>
           <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×1.7</div></div>
           <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">1.5주</div></div>
@@ -1475,19 +1479,19 @@
       </div>
 
       <div style="display:flex; margin-top:48px; gap:0;">
-        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(255,45,138,0.1); border-bottom:2px solid var(--neon-pink);">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.03); border-bottom:2px solid #CCCCCC;">
           <span class="caption" style="color:var(--neon-pink);">D+1~3</span>
         </div>
-        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(255,107,0,0.1); border-bottom:2px solid var(--neon-orange);">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.04); border-bottom:2px solid #AAAAAA;">
           <span class="caption" style="color:var(--neon-orange);">D+3~5</span>
         </div>
-        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(232,255,0,0.1); border-bottom:2px solid var(--neon-yellow);">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.05); border-bottom:2px solid #888888;">
           <span class="caption" style="color:var(--neon-yellow);">D+5~8</span>
         </div>
-        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,255,136,0.1); border-bottom:2px solid var(--neon-green);">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.06); border-bottom:2px solid #666666;">
           <span class="caption" style="color:var(--neon-green);">D+8~10</span>
         </div>
-        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,240,255,0.1); border-bottom:2px solid var(--neon-cyan);">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.07); border-bottom:2px solid #444444;">
           <span class="caption" style="color:var(--neon-cyan);">D+10~14</span>
         </div>
       </div>
@@ -1509,19 +1513,19 @@
 
         <div style="display:flex; flex-direction:column; gap:12px;">
           <div style="display:flex; align-items:center; gap:10px;">
-            <div class="neon-dot" style="background:var(--neon-yellow); width:12px; height:12px;"></div>
+            <div class="neon-dot" style="background:var(--accent); width:12px; height:12px;"></div>
             <span class="body-text" style="color:var(--white);">HIVELAB (us)</span>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
-            <div class="neon-dot" style="background:var(--neon-purple); width:12px; height:12px;"></div>
+            <div class="neon-dot" style="background:#999999; width:12px; height:12px;"></div>
             <span class="caption">A사 — 대형 종합 에이전시</span>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
-            <div class="neon-dot" style="background:var(--neon-cyan); width:12px; height:12px;"></div>
+            <div class="neon-dot" style="background:#777777; width:12px; height:12px;"></div>
             <span class="caption">B사 — 뷰티 전문 스튜디오</span>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
-            <div class="neon-dot" style="background:var(--neon-pink); width:12px; height:12px;"></div>
+            <div class="neon-dot" style="background:#AAAAAA; width:12px; height:12px;"></div>
             <span class="caption">C사 — 이커머스 대행사</span>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
@@ -1540,10 +1544,10 @@
           <div class="axis-label" style="left:calc(50% + 8px); top:0;">뷰티 전문성 ↑</div>
           <div class="axis-label" style="left:calc(50% + 8px); bottom:0;">범용 ↓</div>
 
-          <div class="bubble" style="width:52px; height:52px; background:var(--neon-yellow); top:18%; left:72%; font-size:11px; font-weight:700;">US</div>
-          <div class="bubble" style="width:40px; height:40px; background:var(--neon-purple); top:60%; left:78%;">A</div>
-          <div class="bubble" style="width:36px; height:36px; background:var(--neon-cyan); top:22%; left:30%;">B</div>
-          <div class="bubble" style="width:36px; height:36px; background:var(--neon-pink); top:58%; left:55%;">C</div>
+          <div class="bubble" style="width:52px; height:52px; background:var(--accent); top:18%; left:72%; font-size:11px; font-weight:700;">US</div>
+          <div class="bubble" style="width:40px; height:40px; background:#999999; top:60%; left:78%;">A</div>
+          <div class="bubble" style="width:36px; height:36px; background:#777777; top:22%; left:30%;">B</div>
+          <div class="bubble" style="width:36px; height:36px; background:#AAAAAA; top:58%; left:55%;">C</div>
           <div class="bubble" style="width:32px; height:32px; background:var(--gray-500); top:72%; left:25%;">D</div>
         </div>
       </div>
@@ -1583,7 +1587,7 @@
     <div class="h2" style="margin-bottom:28px;">패키지별 견적 구조</div>
 
     <div class="card-row" style="flex:1; align-items:stretch;">
-      <div class="card" style="justify-content:space-between; gap:20px; border:1px solid var(--gray-700);">
+      <div class="card" style="justify-content:space-between; gap:20px; ">
         <div>
           <div class="label" style="color:var(--neon-green); margin-bottom:12px;">STANDARD</div>
           <div class="h2" style="margin-bottom:4px;">기본 상세페이지</div>
@@ -1601,12 +1605,12 @@
         </div>
       </div>
 
-      <div class="card" style="justify-content:space-between; gap:20px; border:1px solid var(--neon-cyan); position:relative;">
-        <div style="position:absolute; top:-1px; left:0; right:0; height:2px; background:var(--neon-cyan);"></div>
+      <div class="card" style="justify-content:space-between; gap:20px;  position:relative;">
+        
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div class="label" style="color:var(--neon-cyan); margin-bottom:12px;">PREMIUM</div>
-            <span class="badge" style="background:var(--neon-cyan); color:var(--black); font-size:10px;">RECOMMEND</span>
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; font-size:10px;">RECOMMEND</span>
           </div>
           <div class="h2" style="margin-bottom:4px;">프리미엄 상세페이지</div>
           <div class="caption">단품 제품 1종 기준</div>
@@ -1623,7 +1627,7 @@
         </div>
       </div>
 
-      <div class="card" style="justify-content:space-between; gap:20px; border:1px solid var(--gray-700);">
+      <div class="card" style="justify-content:space-between; gap:20px; ">
         <div>
           <div class="label" style="color:var(--neon-yellow); margin-bottom:12px;">ENTERPRISE</div>
           <div class="h2" style="margin-bottom:4px;">대량 제작 패키지</div>
@@ -1652,9 +1656,9 @@
       <div class="neon-stripe" style="width:80px; margin-bottom:8px;"></div>
 
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
-        <div style="width:24px; height:2px; background:var(--neon-pink);"></div>
-        <div class="label" style="color:var(--neon-pink);">HIVELAB</div>
-        <div style="width:24px; height:2px; background:var(--neon-pink);"></div>
+        <div style="width:24px; height:2px; background:var(--accent);"></div>
+        <div class="label" style="color:var(--accent);">HIVELAB</div>
+        <div style="width:24px; height:2px; background:var(--accent);"></div>
       </div>
 
       <div class="h1" style="font-size:44px; max-width:600px; letter-spacing:-0.03em; line-height:1.25;">
@@ -1665,12 +1669,12 @@
         HIVELAB이 함께 만들겠습니다.
       </div>
 
-      <div style="display:flex; gap:0; margin-top:48px; border:1px solid var(--gray-700); border-radius:10px; overflow:hidden;">
-        <div style="padding:20px 36px; border-right:1px solid var(--gray-700); text-align:left;">
+      <div style="display:flex; gap:0; margin-top:48px;  border-radius:10px; overflow:hidden; background:var(--gray-900);">
+        <div style="padding:20px 36px; text-align:left;">
           <div class="caption" style="margin-bottom:6px;">Contact</div>
           <div style="font-size:14px; font-weight:500; color:var(--white);">proposal@hivelab.co.kr</div>
         </div>
-        <div style="padding:20px 36px; border-right:1px solid var(--gray-700); text-align:left;">
+        <div style="padding:20px 36px; text-align:left;">
           <div class="caption" style="margin-bottom:6px;">Phone</div>
           <div style="font-size:14px; font-weight:500; color:var(--white);">02-0000-0000</div>
         </div>
