@@ -11,7 +11,7 @@
   :root {
     --black: #000000;
     --white: #FFFFFF;
-    --hl-bg: rgba(232,255,0,0.07);
+    --hl-bg: rgba(62,90,108,0.08);
     --gray-900: #111111;
     --gray-700: #333333;
     --gray-500: #666666;
@@ -19,6 +19,12 @@
     --gray-100: #E5E5E5;
     --gray-50: #F5F5F5;
 
+    /* Single point color — dark teal/slate */
+    --accent: #3E5A6C;
+    --accent-light: #5A8296;
+    --accent-bg: #3E5A6C;
+
+    /* Keep neon palette for light content slides only */
     --neon-yellow: #E8FF00;
     --neon-pink: #FF2D8A;
     --neon-cyan: #00F0FF;
@@ -40,7 +46,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #000;
+    background: #2C4453;
     font-family: var(--font-kr);
     overflow: hidden;
     display: flex;
@@ -170,11 +176,15 @@
     flex: 1;
   }
 
-  /* Neon Gradient Stripe */
+  /* Accent Stripe */
   .neon-stripe {
-    height: 4px;
-    background: linear-gradient(90deg, var(--neon-pink), var(--neon-orange), var(--neon-yellow), var(--neon-green), var(--neon-cyan), var(--neon-purple));
-    border-radius: 2px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .slide.light .neon-stripe {
+    background: var(--accent);
   }
 
   .neon-dot {
@@ -335,6 +345,58 @@
     color: var(--black);
   }
 
+  /* ========== SLIDE TOP BAR ========== */
+  .slide-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .slide-topbar .topbar-left { color: rgba(255,255,255,0.45); }
+  .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
+  .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
+
+  .slide.light .slide-topbar .topbar-left { color: var(--accent); opacity: 0.6; }
+  .slide.light .slide-topbar .topbar-center { color: var(--gray-500); }
+  .slide.light .slide-topbar .topbar-right { color: var(--gray-500); }
+
+  /* ========== DARK ACCENT (cover, index, dividers) ========== */
+  .slide.dark-accent {
+    background: var(--accent-bg);
+    color: #FFFFFF;
+  }
+
+  .slide.dark-accent .slide-topbar .topbar-left { color: rgba(255,255,255,0.5); }
+  .slide.dark-accent .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
+  .slide.dark-accent .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
+
+  /* Cover gradient */
+  .slide.cover-slide {
+    background: linear-gradient(160deg, #2C4453 0%, #3E5A6C 35%, #5A8296 65%, #8BB5C9 100%);
+  }
+
+  /* Index warm background */
+  .slide.index-slide {
+    background: #F2EDE8;
+    color: var(--accent);
+  }
+
+  .slide.index-slide .slide-topbar .topbar-left { color: var(--accent); opacity: 0.55; }
+  .slide.index-slide .slide-topbar .topbar-center { color: var(--accent); opacity: 0.35; }
+  .slide.index-slide .slide-topbar .topbar-right { color: var(--accent); opacity: 0.35; }
+
   /* ========== LIGHT MODE ========== */
   .slide.light {
     background: #FFFFFF;
@@ -349,14 +411,12 @@
     --gray-100: #CCCCCC;
     --gray-50: #F8F8F8;
 
-    /* Adjust neon tones for white-bg legibility */
     --neon-yellow: #B89000;
     --neon-cyan: #0099BB;
     --neon-green: #009955;
     --neon-mint: #00BB88;
 
-    /* HIVELAB highlight column: more visible on white */
-    --hl-bg: rgba(184,144,0,0.10);
+    --hl-bg: rgba(62,90,108,0.10);
   }
 
   /* Section Divider large background number */
@@ -367,25 +427,13 @@
     transform: translateY(-50%);
     font-family: var(--font-en);
     font-weight: 900;
-    font-size: 320px;
+    font-size: 280px;
     line-height: 1;
     letter-spacing: -0.06em;
-    color: var(--white);
-    opacity: 0.03;
+    color: #FFFFFF;
+    opacity: 0.06;
     pointer-events: none;
     user-select: none;
-  }
-
-  /* Cover hex grid background */
-  .cover-bg {
-    position: absolute;
-    inset: 0;
-    opacity: 0.04;
-    background-image:
-      repeating-linear-gradient(0deg, var(--neon-pink) 0px, transparent 1px, transparent 60px),
-      repeating-linear-gradient(60deg, var(--neon-cyan) 0px, transparent 1px, transparent 60px),
-      repeating-linear-gradient(120deg, var(--neon-yellow) 0px, transparent 1px, transparent 60px);
-    pointer-events: none;
   }
 
   /* Slide transitions */
@@ -409,7 +457,7 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+    background: var(--accent);
     transition: width 0.3s ease;
     z-index: 100;
   }
@@ -425,96 +473,102 @@
 <div class="deck" id="deck">
 
   <!-- ==================== SLIDE 01: COVER ==================== -->
-  <div class="slide active" data-slide="1">
-    <div class="cover-bg"></div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:32px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-        <div style="width:32px; height:2px; background:var(--neon-pink);"></div>
-        <div class="label" style="color:var(--neon-pink); letter-spacing:0.2em;">HIVELAB</div>
-        <div style="width:32px; height:2px; background:var(--neon-pink);"></div>
-      </div>
-      <div class="label" style="color:var(--gray-500);">Collaboration Proposal 2026</div>
-      <div class="h1" style="font-size:48px; letter-spacing:-0.03em; max-width:800px; line-height:1.25;">
-        색조 PB브랜드<br>상세페이지 제작 협력사 제안
-      </div>
-      <div class="body-text" style="color:var(--gray-500); margin-top:4px;">
-        브랜드 경험을 설계하는 크리에이티브 파트너
-      </div>
-
-      <div style="display:flex; gap:0; margin-top:48px; border:1px solid var(--gray-900); border-radius:8px; overflow:hidden;">
-        <div style="padding:16px 32px; border-right:1px solid var(--gray-900);">
-          <div class="caption" style="margin-bottom:4px;">제안 대상</div>
-          <div style="font-size:13px; font-weight:500; color:var(--white);">색조 PB브랜드</div>
-        </div>
-        <div style="padding:16px 32px; border-right:1px solid var(--gray-900);">
-          <div class="caption" style="margin-bottom:4px;">제안 범위</div>
-          <div style="font-size:13px; font-weight:500; color:var(--white);">상세페이지 제작 전담</div>
-        </div>
-        <div style="padding:16px 32px;">
-          <div class="caption" style="margin-bottom:4px;">제안일</div>
-          <div style="font-size:13px; font-weight:500; color:var(--white);">June 2026</div>
-        </div>
-      </div>
-
-      <div class="neon-stripe" style="width:280px; height:2px; margin-top:16px;"></div>
+  <div class="slide active cover-slide" data-slide="1">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
     </div>
-    <span class="page-num">01</span>
+
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-start; padding-top:40px;">
+      <div style="font-family:var(--font-en); font-weight:800; font-size:108px; line-height:0.95; letter-spacing:-0.04em; color:#FFFFFF; max-width:1300px; text-transform:uppercase;">
+        색조 PB브랜드<br>상세페이지 제작<br>협력사 제안
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+      <div style="max-width:540px;">
+        <div style="font-size:13px; line-height:1.7; color:rgba(255,255,255,0.55);">
+          본 문서는 26년 색조 PB브랜드 상세페이지 제작을 위해 HIVELAB이 수행한 시장 분석·전략 도출·운영 체계 설계 결과물을 담고 있습니다.<br>이 문서를 당사의 허락없이 활용하거나, 배포할 수 없습니다.
+        </div>
+      </div>
+      <div style="display:flex; gap:56px;">
+        <div>
+          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">SCOPE</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.75);">상세페이지 제작 전담</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">DATE</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.75);">2026. 06</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">CLIENT</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.75);">[고객사명]</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ==================== SLIDE 02: INDEX ==================== -->
-  <div class="slide" data-slide="2">
-    <div class="label" style="margin-bottom:40px;">CONTENTS</div>
-    <div class="h1" style="margin-bottom:40px;">Index</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:0;">
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-rose); color:var(--black);">00</span>
-          <span class="h2">제안 배경 & 목적</span>
+  <div class="slide index-slide" data-slide="2">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+
+    <div style="flex:1; display:flex; align-items:center; padding-top:32px;">
+      <!-- Left: Large Index title -->
+      <div style="flex:0 0 420px;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:120px; line-height:0.95; letter-spacing:-0.04em; color:var(--accent);">
+          Index
         </div>
-        <span class="caption" style="align-self:center;">Background & Purpose</span>
       </div>
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-pink); color:var(--black);">01</span>
-          <span class="h2">시장 현황 & 기회</span>
+
+      <!-- Right: Numbered list -->
+      <div style="flex:1; display:flex; flex-direction:column; gap:28px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">01</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Background & Purpose</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">제안 배경 & 목적</span>
         </div>
-        <span class="caption" style="align-self:center;">Market Overview</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-orange); color:var(--black);">02</span>
-          <span class="h2">시장 내 차별화 포인트</span>
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">02</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Market & User Insight</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">시장 현황 & 기회</span>
         </div>
-        <span class="caption" style="align-self:center;">Differentiation</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-cyan); color:var(--black);">03</span>
-          <span class="h2">역량 & 포트폴리오</span>
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">03</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Differentiation</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">시장 내 차별화 포인트</span>
         </div>
-        <span class="caption" style="align-self:center;">Capabilities</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-green); color:var(--black);">04</span>
-          <span class="h2">제작 프로세스 & 방법론</span>
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">04</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Capabilities</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">역량 & 포트폴리오</span>
         </div>
-        <span class="caption" style="align-self:center;">Process</span>
-      </div>
-      <div style="display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--gray-900);">
-        <div style="display:flex; gap:24px; align-items:center;">
-          <span class="badge" style="background:var(--neon-yellow); color:var(--black);">05</span>
-          <span class="h2">운영 체계 & 견적</span>
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">05</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Process</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">제작 프로세스 & 방법론</span>
         </div>
-        <span class="caption" style="align-self:center;">Operation & Pricing</span>
+        <div style="display:flex; align-items:baseline; gap:20px;">
+          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:rgba(62,90,108,0.35);">06</span>
+          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:var(--accent);">Operation & Pricing</span>
+          <span style="font-size:14px; color:rgba(62,90,108,0.5); margin-left:8px;">운영 체계 & 견적</span>
+        </div>
       </div>
     </div>
-    <span class="page-num">02</span>
   </div>
 
   <!-- ==================== SLIDE 03: OPENING QUESTION ==================== -->
   <div class="slide light" data-slide="3">
-    <div class="label" style="color:var(--neon-rose); margin-bottom:24px;">OPENING QUESTION</div>
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="label" style="color:var(--accent); margin-bottom:24px; margin-top:24px;">OPENING QUESTION</div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:48px;">
       <div>
         <div style="font-family:var(--font-en); font-weight:300; font-size:140px; line-height:0.9; color:var(--neon-yellow); letter-spacing:-0.05em;">"</div>
@@ -545,7 +599,7 @@
 
   <!-- ==================== SLIDE 04: PURPOSE (목적) ==================== -->
   <div class="slide light" data-slide="4">
-    <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
     <div class="h2" style="margin-bottom:40px;">본 제안의 목적</div>
 
     <div style="flex:1; display:flex; gap:40px;">
@@ -595,7 +649,7 @@
 
   <!-- ==================== SLIDE 05: GOALS (목표) ==================== -->
   <div class="slide light" data-slide="5">
-    <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
     <div class="h2" style="margin-bottom:32px;">파트너십 KPI 목표</div>
 
     <div style="flex:1; display:flex; flex-direction:column; gap:24px;">
@@ -685,7 +739,7 @@
 
   <!-- ==================== SLIDE 06: DISCOVERY QUESTIONS ==================== -->
   <div class="slide light" data-slide="6">
-    <div class="label" style="color:var(--neon-rose); margin-bottom:8px;">DISCOVERY QUESTIONS</div>
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">DISCOVERY QUESTIONS</div>
     <div class="h2" style="margin-bottom:8px;">시작 전 확인이 필요한 4가지 질문</div>
     <div class="body-text" style="margin-bottom:32px; max-width:720px;">본격적인 제작에 들어가기 전, 아래 질문에 대한 답변을 함께 정리하면 더 정확한 견적과 운영안을 설계할 수 있습니다.</div>
 
@@ -754,22 +808,36 @@
   </div>
 
   <!-- ==================== SLIDE 07: DIVIDER — SECTION 1 ==================== -->
-  <div class="slide" data-slide="7">
-    <div class="divider-bg-num">01</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:4px; height:48px; background:var(--neon-pink); border-radius:2px;"></div>
-        <div>
-          <div class="label" style="color:var(--neon-pink); margin-bottom:4px;">SECTION 01</div>
-          <div class="h1" style="font-size:52px;">시장 현황 & 기회</div>
+  <div class="slide dark-accent" data-slide="7">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">02</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">02</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Market &<br>User Insight
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">시장 현황 & 기회</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">시장 규모 & 성장률</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">채널별 전환율 비교</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.3</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">소비자 구매 결정 요인</span>
         </div>
       </div>
-      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
-        색조 시장의 PB브랜드 성장과 상세페이지가<br>구매 전환에 미치는 결정적 영향력
-      </div>
-      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
-    <span class="page-num">07</span>
   </div>
 
   <!-- ==================== SLIDE 08: HERO STAT — 시장 규모 ==================== -->
@@ -967,23 +1035,33 @@
     <span class="page-num">10</span>
   </div>
 
-  <!-- ==================== SLIDE: DIVIDER — SECTION 2 (DIFFERENTIATION) ==================== -->
-  <div class="slide" data-slide="11">
-    <div class="divider-bg-num">02</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:4px; height:48px; background:var(--neon-orange); border-radius:2px;"></div>
-        <div>
-          <div class="label" style="color:var(--neon-orange); margin-bottom:4px;">SECTION 02</div>
-          <div class="h1" style="font-size:52px;">시장 내 차별화 포인트</div>
+  <!-- ==================== SLIDE: DIVIDER — SECTION 3 (DIFFERENTIATION) ==================== -->
+  <div class="slide dark-accent" data-slide="11">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">03</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">03</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Differentiation
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">시장 내 차별화 포인트</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">3.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">경쟁 모델 비교 분석</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">3.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">HIVELAB 4대 차별점</span>
         </div>
       </div>
-      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
-        기존 외주·종합 에이전시·프리랜서 모델과<br>HIVELAB이 다른 결정적 4가지 이유
-      </div>
-      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
-    <span class="page-num">11</span>
   </div>
 
   <!-- ==================== SLIDE 12: DIFFERENTIATION COMPARISON ==================== -->
@@ -1122,23 +1200,33 @@
     <span class="page-num">13</span>
   </div>
 
-  <!-- ==================== SLIDE: DIVIDER — SECTION 3 (CAPABILITIES) ==================== -->
-  <div class="slide" data-slide="14">
-    <div class="divider-bg-num">03</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:4px; height:48px; background:var(--neon-cyan); border-radius:2px;"></div>
-        <div>
-          <div class="label" style="color:var(--neon-cyan); margin-bottom:4px;">SECTION 03</div>
-          <div class="h1" style="font-size:52px;">역량 & 포트폴리오</div>
+  <!-- ==================== SLIDE: DIVIDER — SECTION 4 (CAPABILITIES) ==================== -->
+  <div class="slide dark-accent" data-slide="14">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">04</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">04</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Capabilities
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">역량 & 포트폴리오</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">4.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">제작 실적 & KPI</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">4.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">포트폴리오 하이라이트</span>
         </div>
       </div>
-      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
-        뷰티 브랜드 상세페이지 전문 제작 역량과<br>검증된 성과 기반의 크리에이티브 파트너십
-      </div>
-      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
-    <span class="page-num">14</span>
   </div>
 
   <!-- ==================== SLIDE 15: KPI DASHBOARD ==================== -->
@@ -1308,23 +1396,33 @@
     <span class="page-num">16</span>
   </div>
 
-  <!-- ==================== SLIDE: DIVIDER — SECTION 4 (PROCESS) ==================== -->
-  <div class="slide" data-slide="17">
-    <div class="divider-bg-num">04</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:4px; height:48px; background:var(--neon-green); border-radius:2px;"></div>
-        <div>
-          <div class="label" style="color:var(--neon-green); margin-bottom:4px;">SECTION 04</div>
-          <div class="h1" style="font-size:52px;">제작 프로세스 & 방법론</div>
+  <!-- ==================== SLIDE: DIVIDER — SECTION 5 (PROCESS) ==================== -->
+  <div class="slide dark-accent" data-slide="17">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">05</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">05</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Process
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">제작 프로세스 & 방법론</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">5.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">5단계 제작 워크플로우</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">5.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">포지셔닝 & 경쟁 우위</span>
         </div>
       </div>
-      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
-        체계적인 워크플로우와 품질 관리 시스템으로<br>일관된 퀄리티와 효율적인 납기를 보장합니다
-      </div>
-      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
-    <span class="page-num">17</span>
   </div>
 
   <!-- ==================== SLIDE 18: PROCESS ==================== -->
@@ -1450,23 +1548,29 @@
     <span class="page-num">19</span>
   </div>
 
-  <!-- ==================== SLIDE: DIVIDER — SECTION 5 (OPERATION) ==================== -->
-  <div class="slide" data-slide="20">
-    <div class="divider-bg-num">05</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px; position:relative; z-index:1;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:4px; height:48px; background:var(--neon-yellow); border-radius:2px;"></div>
-        <div>
-          <div class="label" style="color:var(--neon-yellow); margin-bottom:4px;">SECTION 05</div>
-          <div class="h1" style="font-size:52px;">운영 체계 & 견적</div>
+  <!-- ==================== SLIDE: DIVIDER — SECTION 6 (OPERATION) ==================== -->
+  <div class="slide dark-accent" data-slide="20">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">06</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">06</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Operation &<br>Pricing
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">운영 체계 & 견적</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">6.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">패키지별 견적 구조</span>
         </div>
       </div>
-      <div class="body-text" style="max-width:520px; margin-top:8px; padding-left:16px;">
-        효율적인 운영 모델과 투명한 비용 구조로<br>지속 가능한 파트너십을 제안합니다
-      </div>
-      <div class="neon-stripe" style="width:120px; margin-top:8px;"></div>
     </div>
-    <span class="page-num">20</span>
   </div>
 
   <!-- ==================== SLIDE 21: PRICING TABLE ==================== -->
