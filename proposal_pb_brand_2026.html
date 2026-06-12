@@ -19,10 +19,10 @@
     --gray-100: #E5E5E5;
     --gray-50: #F5F5F5;
 
-    /* Single point color — dark teal/slate */
+    /* Single point color (only for accent elements) */
     --accent: #3E5A6C;
-    --accent-light: #5A8296;
-    --accent-bg: #3E5A6C;
+    --accent-light: #6A8FA3;
+    --accent-bg: #222222;
 
     /* Keep neon palette for light content slides only */
     --neon-yellow: #E8FF00;
@@ -46,7 +46,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #2C4453;
+    background: #1A1A1A;
     font-family: var(--font-kr);
     overflow: hidden;
     display: flex;
@@ -372,9 +372,9 @@
   .slide.light .slide-topbar .topbar-center { color: var(--gray-500); }
   .slide.light .slide-topbar .topbar-right { color: var(--gray-500); }
 
-  /* ========== DARK ACCENT (cover, index, dividers) ========== */
+  /* ========== DARK ACCENT (dividers) — monochrome ========== */
   .slide.dark-accent {
-    background: var(--accent-bg);
+    background: #2A2A2A;
     color: #FFFFFF;
   }
 
@@ -382,9 +382,9 @@
   .slide.dark-accent .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
   .slide.dark-accent .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
 
-  /* Cover gradient */
+  /* Cover — monochrome dark gradient */
   .slide.cover-slide {
-    background: linear-gradient(160deg, #2C4453 0%, #3E5A6C 35%, #5A8296 65%, #8BB5C9 100%);
+    background: linear-gradient(160deg, #1A1A1A 0%, #2A2A2A 40%, #3D3D3D 70%, #4A4A4A 100%);
   }
 
   /* Index warm background */
@@ -473,37 +473,41 @@
 <div class="deck" id="deck">
 
   <!-- ==================== SLIDE 01: COVER ==================== -->
-  <div class="slide active cover-slide" data-slide="1">
-    <div class="slide-topbar">
+  <div class="slide active cover-slide" data-slide="1" style="padding:0;">
+    <div class="slide-topbar" style="padding:28px 48px;">
       <span class="topbar-left">[고객사] X HIVELAB</span>
       <span class="topbar-center">PROPOSAL</span>
       <span class="topbar-right">2026</span>
     </div>
 
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-start; padding-top:40px;">
-      <div style="font-family:var(--font-en); font-weight:800; font-size:108px; line-height:0.95; letter-spacing:-0.04em; color:#FFFFFF; max-width:1300px; text-transform:uppercase;">
-        색조 PB브랜드<br>상세페이지 제작<br>협력사 제안
+    <div style="flex:1; display:flex; flex-direction:column; padding:0 48px;">
+      <!-- Title area — starts right below topbar, fills most of the slide -->
+      <div style="flex:1; display:flex; align-items:flex-start; padding-top:64px;">
+        <div style="font-family:var(--font-en); font-weight:800; font-size:118px; line-height:0.92; letter-spacing:-0.04em; color:#FFFFFF; text-transform:uppercase;">
+          색조 PB브랜드<br>상세페이지 제작<br>협력사 제안
+        </div>
       </div>
-    </div>
 
-    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-      <div style="max-width:540px;">
-        <div style="font-size:13px; line-height:1.7; color:rgba(255,255,255,0.55);">
-          본 문서는 26년 색조 PB브랜드 상세페이지 제작을 위해 HIVELAB이 수행한 시장 분석·전략 도출·운영 체계 설계 결과물을 담고 있습니다.<br>이 문서를 당사의 허락없이 활용하거나, 배포할 수 없습니다.
+      <!-- Bottom row — description left, metadata right -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; padding-bottom:40px;">
+        <div style="max-width:500px;">
+          <div style="font-size:12px; line-height:1.7; color:rgba(255,255,255,0.45);">
+            본 문서는 26년 색조 PB브랜드 상세페이지 제작을 위해 HIVELAB이 수행한 시장 분석·전략 도출 과정과 운영 체계 설계 결과물을 담고 있습니다.<br>이 문서를 당사의 허락없이 활용하거나, 배포할 수 없습니다.
+          </div>
         </div>
-      </div>
-      <div style="display:flex; gap:56px;">
-        <div>
-          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">SCOPE</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.75);">상세페이지 제작 전담</div>
-        </div>
-        <div>
-          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">DATE</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.75);">2026. 06</div>
-        </div>
-        <div>
-          <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:6px;">CLIENT</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.75);">[고객사명]</div>
+        <div style="display:flex; gap:48px;">
+          <div>
+            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">SCOPE</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.7);">상세페이지 제작 전담</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">DATE</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.7);">2026. 06</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">CLIENT</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.7);">[고객사명]</div>
+          </div>
         </div>
       </div>
     </div>
