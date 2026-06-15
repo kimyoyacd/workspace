@@ -327,7 +327,159 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
 <!-- ═══════════════════════════════════════════
-     SLIDE 05 · 인식의 간극
+     SLIDE 05 · 추상어 해석 매트릭스
+══════════════════════════════════════════════ -->
+<div class="slide" style="background:#fff;padding:64px 72px;display:flex;flex-direction:column;">
+
+  <div style="margin-bottom:24px;">
+    <div class="label" style="color:var(--accent);margin-bottom:12px;">1-2 · 추상어 → 구체 파라미터 변환</div>
+    <div class="h1" style="color:var(--black);">"다채롭게", "힙하게"를 어떻게 만들 것인가</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;gap:0;">
+
+    <!-- 헤더 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--black);padding:12px 16px;">
+        <div class="label" style="color:var(--accent-light);font-size:10px;">클라이언트 발언</div>
+      </div>
+      <div style="background:var(--black);padding:12px 16px;">
+        <div class="label" style="color:rgba(255,255,255,.5);font-size:10px;">실제 의미 해석</div>
+      </div>
+      <div style="background:var(--black);padding:12px 16px;">
+        <div class="label" style="color:rgba(255,255,255,.5);font-size:10px;">디자인 파라미터</div>
+      </div>
+      <div style="background:var(--black);padding:12px 16px;">
+        <div class="label" style="color:rgba(255,255,255,.5);font-size:10px;">측정 기준</div>
+      </div>
+      <div style="background:var(--black);padding:12px 16px;">
+        <div class="label" style="color:rgba(255,255,255,.5);font-size:10px;">킥오프 합의 질문</div>
+      </div>
+    </div>
+
+    <!-- Row 1: 다채롭게 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--card-bg);padding:14px 16px;display:flex;align-items:center;">
+        <div>
+          <div class="body" style="color:var(--black);font-weight:700;">"다채롭게"</div>
+          <div class="caption" style="color:var(--gray-500);">고주현</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">동일 SKU라도 <strong>레이아웃 프레임이 반복되지 않는</strong> 구조. 컷-설명 패턴 탈피.</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">• 레이아웃 변형 수 (3종 이상)<br>• 그리드 브레이크 포인트<br>• 섹션별 톤 전환 횟수</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">1개 상세페이지 내 <strong>최소 4종 레이아웃</strong> 사용 여부</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--accent);">"레이아웃 변형은 몇 종까지 허용하시나요? 브랜드 가이드와 충돌 범위는?"</div>
+      </div>
+    </div>
+
+    <!-- Row 2: 힙하게 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--card-bg);padding:14px 16px;display:flex;align-items:center;">
+        <div>
+          <div class="body" style="color:var(--black);font-weight:700;">"힙하게"</div>
+          <div class="caption" style="color:var(--gray-500);">윤진희</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">타깃(20대)이 <strong>SNS에 캡처해 공유</strong>하고 싶은 비주얼. 트렌디한 레퍼런스 반영.</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">• 트렌드 반영 주기 (Y3K 등)<br>• 인터랙션 유형 (GIF·모션)<br>• 타이포·컬러 트렌드 적용</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">SNS 캡처/공유 <strong>유도 요소 2개 이상</strong> 포함 여부</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--accent);">"힙함의 레퍼런스 3개를 공유해 주실 수 있나요? 경쟁사 중 벤치마크 대상은?"</div>
+      </div>
+    </div>
+
+    <!-- Row 3: 후킹 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--card-bg);padding:14px 16px;display:flex;align-items:center;">
+        <div>
+          <div class="body" style="color:var(--black);font-weight:700;">"후킹"</div>
+          <div class="caption" style="color:var(--gray-500);">윤진희</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">상단 진입 <strong>0.5초 이내 시선 고정</strong>. 스크롤 중단 유도 → 끝까지 열람.</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">• KV 영역 높이 (px)<br>• 텍스트/이미지 비율<br>• 동적 요소 유무 (GIF·영상)</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">상단 1/3 내 <strong>핵심 USP 전달 완료</strong> 여부</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--accent);">"후킹 존에 텍스트 카피 vs. 순수 이미지, 어느 쪽 선호하시나요?"</div>
+      </div>
+    </div>
+
+    <!-- Row 4: 자연스럽게 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--card-bg);padding:14px 16px;display:flex;align-items:center;">
+        <div>
+          <div class="body" style="color:var(--black);font-weight:700;">"자연스럽게"</div>
+          <div class="caption" style="color:var(--gray-500);">이선민</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">AI 생성물이 <strong>실사와 구분 불가</strong> 수준. 부자연스러운 아티팩트 제로.</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">• 피부 질감 해상도 (dpi)<br>• 손가락·모공 아티팩트 유무<br>• 조명 일관성</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">블라인드 테스트 <strong>실사 오인율 90%</strong> 이상</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--accent);">"AI 컷 vs. 실사 컷을 섞어 블라인드 테스트 한 번 진행해도 될까요?"</div>
+      </div>
+    </div>
+
+    <!-- Row 5: 정리가 잘 -->
+    <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr 1fr;gap:1px;background:var(--gray-100);">
+      <div style="background:var(--card-bg);padding:14px 16px;display:flex;align-items:center;">
+        <div>
+          <div class="body" style="color:var(--black);font-weight:700;">"정리가 잘"</div>
+          <div class="caption" style="color:var(--gray-500);">윤진희</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">정보 계층이 <strong>시각적으로 즉각 파악</strong> 가능. 읽지 않아도 구조가 보이는 레이아웃.</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">• 정보 계층 단계 수 (3단계)<br>• 여백·그리드 일관성<br>• 타이포 사이즈 위계</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--black);">5초 스캔 테스트 — <strong>핵심 정보 3개 인지</strong> 여부</div>
+      </div>
+      <div style="background:#fff;padding:14px 16px;">
+        <div class="body-sm" style="color:var(--accent);">"정보량은 현재 대비 줄일까요, 유지하되 구조만 바꿀까요?"</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;gap:16px;align-items:center;">
+      <span class="caption" style="color:var(--accent);font-weight:600;">킥오프 S1에서 이 매트릭스로 용어 정의를 합의 → 리비전 리스크 80% 감소</span>
+    </div>
+    <span class="caption" style="color:var(--gray-300);">05</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 06 · 인식의 간극
 ══════════════════════════════════════════════ -->
 <div class="slide" style="background:#fff;padding:64px 72px;display:flex;flex-direction:column;">
 
