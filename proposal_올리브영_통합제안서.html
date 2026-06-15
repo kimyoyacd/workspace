@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>올리브영 색조 PB 상세페이지 통합 제안서 | HIVELAB MAX Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#111;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 0;font-family:'Pretendard','Helvetica Neue',sans-serif;}
+.slide{width:1280px;height:720px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;flex-shrink:0;}
+
+/* ── typography ─────────────────────────────── */
+.ey{font-family:'Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
+.mono{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.05em;}
+.h1{font-size:52px;font-weight:800;letter-spacing:-.025em;line-height:1.05;}
+.h1-sm{font-size:38px;font-weight:800;letter-spacing:-.025em;line-height:1.05;}
+.h1-thin{font-weight:300;}
+.card-t{font-size:14px;font-weight:800;letter-spacing:-.015em;line-height:1.35;}
+.card-t-lg{font-size:17px;font-weight:800;letter-spacing:-.015em;line-height:1.35;}
+.body{font-size:12px;font-weight:400;line-height:1.6;}
+.body-sm{font-size:11px;font-weight:400;line-height:1.6;}
+.num-xl{font-size:88px;font-weight:900;letter-spacing:-.04em;line-height:.95;}
+
+/* ── cards ───────────────────────────────────── */
+.card{padding:20px;background:#F0F0F0;}
+.card-tint{padding:20px;background:#EEEBFF;}
+.card-dark{padding:20px;background:#171717;color:#fff;}
+.card-ink{padding:20px;background:#0A0A0A;color:#fff;}
+.card-main{padding:20px;background:#0000CF;color:#fff;}
+.card-line{box-shadow:0 0 0 1px #E2E8F0;}
+.sb{box-shadow:0 0 0 1px rgba(0,0,0,.10);}
+.sb-w{box-shadow:0 0 0 1px rgba(255,255,255,.15);}
+
+/* ── pills ───────────────────────────────────── */
+.pill{display:inline-block;padding:3px 10px;background:#0000CF;color:#fff;font-family:'Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;}
+.pill-new{background:#47AFFF;color:#0A0A0A;}
+.pill-up{background:#776AFF;color:#fff;}
+.pill-dn{background:#525252;color:#fff;}
+.pill-risk{background:#222654;color:#fff;}
+.pill-green{background:#00C68A;color:#0A0A0A;}
+.pill-wm{background:#E8785A;color:#fff;}
+.pill-cg{background:#FF6B9D;color:#fff;}
+.pill-fm{background:#4ECDC4;color:#0A0A0A;}
+
+/* ── badge ───────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:2px 10px 2px 6px;background:#F0F0F0;font-size:11px;font-weight:700;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 01 · COVER
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0000CF;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.5);">HIVELAB MAX LAB</span>
+      <span class="mono" style="color:rgba(255,255,255,.4);">01 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+      <span class="ey pill" style="background:rgba(255,255,255,.15);color:#fff;border-radius:4px;">Competitive Bid Proposal</span>
+      <span class="ey pill" style="background:rgba(255,255,255,.15);color:#fff;border-radius:4px;">Highly Confidential</span>
+    </div>
+    <h1 class="h1" style="color:#fff;font-size:64px;line-height:1.0;">Olive Young PB 색조<br><span class="h1-thin">상세페이지 제작 통합 제안서</span></h1>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:flex-end;gap:16px;">
+    <div style="flex:1;padding:24px;background:rgba(255,255,255,.08);">
+      <div class="ey" style="color:rgba(255,255,255,.5);margin-bottom:8px;">Client</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;">CJ Olive Young</div>
+      <div class="body" style="color:rgba(255,255,255,.6);margin-top:4px;">웨이크메이크 · 컬러그램 · 필리밀리</div>
+    </div>
+    <div style="flex:1;padding:24px;background:rgba(255,255,255,.08);">
+      <div class="ey" style="color:rgba(255,255,255,.5);margin-bottom:8px;">Project</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;">색조 PB 상세페이지 리뉴얼</div>
+      <div class="body" style="color:rgba(255,255,255,.6);margin-top:4px;">2026.07.01 – 2027.03.31</div>
+    </div>
+    <div style="flex:1;padding:24px;background:rgba(255,255,255,.08);">
+      <div class="ey" style="color:rgba(255,255,255,.5);margin-bottom:8px;">Bidder</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;">HIVELAB</div>
+      <div class="body" style="color:rgba(255,255,255,.6);margin-top:4px;">MAX Lab · Kinetic Identity</div>
+    </div>
+    <div style="flex:1;padding:24px;background:rgba(255,255,255,.08);">
+      <div class="ey" style="color:rgba(255,255,255,.5);margin-bottom:8px;">Deadline</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;">2026.06.19</div>
+      <div class="body" style="color:rgba(255,255,255,.6);margin-top:4px;">금 11:00 제출</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.35);display:flex;justify-content:space-between;">
+    <span>HIVELAB MAX Lab — Highly Confidential</span>
+    <span>01 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 02 · TOC
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">TABLE OF CONTENTS</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">02 / 40</span>
+    </div>
+    <h2 class="h1" style="color:#fff;">목차<br><span class="h1-thin">Proposal Structure</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:24px;background:#0000CF;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:rgba(255,255,255,.7);">PART 1 · 진단</div>
+      <div class="card-t" style="color:#fff;">WHY NOW</div>
+      <div class="body" style="color:rgba(255,255,255,.7);">RFP 핵심 독해<br>클라이언트 발언 분석<br>트렌드 TOP 5<br>인식의 간극</div>
+    </div>
+    <div style="padding:24px;background:#1A1A1A;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#47AFFF;">PART 2 · 과제 시안 ★</div>
+      <div class="card-t" style="color:#fff;">THE ASSIGNMENT</div>
+      <div class="body" style="color:rgba(255,255,255,.6);">브랜드별 과제 진단<br>Brand Sensation Code<br>제안 앵커 3가지<br>이종업계 레퍼런스<br>컴포넌트 스펙</div>
+    </div>
+    <div style="padding:24px;background:#1A1A1A;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#776AFF;">PART 3 · 운영</div>
+      <div class="card-t" style="color:#fff;">HOW WE DELIVER</div>
+      <div class="body" style="color:rgba(255,255,255,.6);">9-Stage Playbook<br>팀 구성 · Director 체크<br>리스크 체크 R1~R6<br>일정 타임라인</div>
+    </div>
+    <div style="padding:24px;background:#1A1A1A;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#FF6B6B;">PART 4 · 신뢰</div>
+      <div class="card-t" style="color:#fff;">WHY US</div>
+      <div class="body" style="color:rgba(255,255,255,.6);">Kinetic Identity<br>COLLINS 가치 제안<br>포트폴리오<br>기각 항목 · 출처</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>과제 시안 중심 · 4-Part 구조</span>
+    <span>02 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 03 · PART 1 간지 — 진단
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">PART 1</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">03 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:center;">
+    <div>
+      <div class="num-xl" style="color:rgba(255,255,255,.08);">01</div>
+      <h2 class="h1" style="color:#fff;margin-top:-24px;">진단<br><span class="h1-thin">Why Now</span></h2>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="pill">RFP 독해</span>
+        <span class="pill pill-new">트렌드 TOP 5</span>
+        <span class="pill pill-up">인식의 간극</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>상세페이지는 왜 지금 바뀌어야 하는가</span>
+    <span>03 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 04 · RFP 핵심 독해
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 1 · 진단</span>
+      <span class="mono" style="color:#94A3B8;">04 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">RFP 핵심 독해<br><span class="h1-thin">과제 조건 + 클라이언트 발언</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#0000CF;">RFP 계약 조건</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+        <div class="card sb" style="display:flex;flex-direction:column;gap:6px;">
+          <div class="ey" style="color:#94A3B8;">계약 기간</div>
+          <div class="card-t-lg" style="color:#0A0A0A;">2026.07.01<br>→ 2027.03.31</div>
+        </div>
+        <div class="card sb" style="display:flex;flex-direction:column;gap:6px;">
+          <div class="ey" style="color:#94A3B8;">평가 구조</div>
+          <div class="card-t" style="color:#0A0A0A;">포트폴리오<br>인력계획서<br>과제 + 종합견적</div>
+        </div>
+        <div class="card sb" style="display:flex;flex-direction:column;gap:6px;">
+          <div class="ey" style="color:#94A3B8;">과제 규격</div>
+          <div class="card-t" style="color:#0A0A0A;">1020px × 자유<br>상단 1/3 수준<br>브랜드 택 2</div>
+        </div>
+        <div class="card sb" style="display:flex;flex-direction:column;gap:6px;">
+          <div class="ey" style="color:#94A3B8;">라이선스</div>
+          <div class="card-t" style="color:#0A0A0A;">국내 온·오프라인<br>+ 글로벌 온라인<br>무기한</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#0000CF;">클라이언트 핵심 발언 (녹음 직접 인용)</div>
+      <div style="padding:20px;background:#EEEBFF;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+        <div>
+          <div class="ey" style="color:#776AFF;margin-bottom:6px;">웨이크메이크 담당 고주현</div>
+          <div class="body" style="color:#0A0A0A;">"컷 하나 설명 하나 이런 부분 최대한 지양. <strong>프레임을 다양하게, 디자인 요소가 많이 필요하다</strong>."</div>
+        </div>
+        <div style="height:1px;background:#E2E8F0;"></div>
+        <div>
+          <div class="ey" style="color:#776AFF;margin-bottom:6px;">컬러그램 담당 윤진희</div>
+          <div class="body" style="color:#0A0A0A;">"<strong>상단에서 포인트를 줘서 후킹</strong> 한 다음 밑에까지 다 보게 하는 편. 정리가 잘 됐으면 한다."</div>
+        </div>
+        <div style="height:1px;background:#E2E8F0;"></div>
+        <div>
+          <div class="ey" style="color:#776AFF;margin-bottom:6px;">이선민 팀장 (전체)</div>
+          <div class="body" style="color:#0A0A0A;">"촬영 못하면 눕기 가지고 <strong>AI로 돌려도 자연스러우면 좋다</strong>. AI 역량 포트폴리오에 포함해줘도 반갑다."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Source: 올리브영 입찰 설명회 녹음, 2026-06-12 / RFP 문서, 2026-06</span>
+    <span>04 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 05 · 인식의 간극
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 1 · 진단</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">05 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">인식의 간극<br><span class="h1-thin">클라이언트가 원하는 것 vs. 업계가 주는 것</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#FF6B6B;margin-bottom:8px;">클라이언트 요구</div>
+      <div style="padding:16px;background:#1A1A1A;box-shadow:0 0 0 1px rgba(255,255,255,.1);">
+        <div class="card-t" style="color:#fff;">"프레임을 다양하게"</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">정형화된 컷-설명 반복 구조 탈피</div>
+      </div>
+      <div style="padding:16px;background:#1A1A1A;box-shadow:0 0 0 1px rgba(255,255,255,.1);">
+        <div class="card-t" style="color:#fff;">"상단에서 후킹"</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">0.5초 안에 이탈 방지하는 KV 임팩트</div>
+      </div>
+      <div style="padding:16px;background:#1A1A1A;box-shadow:0 0 0 1px rgba(255,255,255,.1);">
+        <div class="card-t" style="color:#fff;">"AI 역량 환영"</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">텍스처 시뮬레이션 + 눕기 AI 생성</div>
+      </div>
+      <div style="padding:16px;background:#1A1A1A;box-shadow:0 0 0 1px rgba(255,255,255,.1);">
+        <div class="card-t" style="color:#fff;">"글로벌 라이선스"</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">세포라·일본·유럽 온라인 무기한 대응</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <div style="font-size:32px;color:#0000CF;font-weight:900;">≠</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#94A3B8;margin-bottom:8px;">업계 일반 납품물</div>
+      <div style="padding:16px;background:#171717;box-shadow:0 0 0 1px rgba(255,255,255,.06);">
+        <div class="card-t" style="color:rgba(255,255,255,.5);">컷 + 설명 반복 템플릿</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.3);">모든 SKU 동일 포맷</div>
+      </div>
+      <div style="padding:16px;background:#171717;box-shadow:0 0 0 1px rgba(255,255,255,.06);">
+        <div class="card-t" style="color:rgba(255,255,255,.5);">스크롤 후반 핵심 정보</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.3);">상단 1/3 비어있는 구조</div>
+      </div>
+      <div style="padding:16px;background:#171717;box-shadow:0 0 0 1px rgba(255,255,255,.06);">
+        <div class="card-t" style="color:rgba(255,255,255,.5);">촬영 원본 리사이즈</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.3);">텍스처 표현 없는 플랫 이미지</div>
+      </div>
+      <div style="padding:16px;background:#171717;box-shadow:0 0 0 1px rgba(255,255,255,.06);">
+        <div class="card-t" style="color:rgba(255,255,255,.5);">국문 단일 버전</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.3);">글로벌 대응 불가</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>MAX Lab 3-Step Framework: Step 1 — 인식의 간극</span>
+    <span>05 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 06 · 트렌드 간지
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">SECTION 02</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">06 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:center;">
+    <div>
+      <div class="num-xl" style="color:rgba(255,255,255,.08);">02</div>
+      <h2 class="h1" style="color:#fff;margin-top:-24px;">유효 트렌드<br><span class="h1-thin">TOP 5</span></h2>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="pill pill-new">🆕 신규 × 2</span>
+        <span class="pill pill-up">📈 강화 × 3</span>
+        <span class="ey" style="color:#94A3B8;align-self:center;">이종업계 크로스오버 포함</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>최근 3개월 이내 발행 기사 기반 · 2026.03 – 2026.06</span>
+    <span>06 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 07 · T1 블룸 스킨
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 1 · 트렌드 TOP 5</span>
+      <span class="mono" style="color:#94A3B8;">07 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill pill-new">🆕 신규</span>
+      <span class="card-t" style="color:#0000CF;">T1</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">블룸 스킨 색조 연동<br><span class="h1-thin">글라스 스킨 이후의 새 표준</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#EEEBFF;flex:1;">
+        <div class="ey" style="color:#776AFF;margin-bottom:8px;">트렌드 팩트</div>
+        <div class="body" style="color:#0A0A0A;">2026년 K-뷰티는 반사광이 강한 글라스 스킨을 넘어 <strong>'블룸 스킨'</strong>으로 전환 중. 색조 트렌드도 소프트-포커스 블러쉬, 블러드 립, 새틴 피니시로 이동하며 피부와 자연스럽게 융합되는 룩이 주도. 피치·로즈·베리 밀크·뮤트 에이프리콧 톤이 핵심 컬러.</div>
+        <div class="body" style="color:#525252;margin-top:10px;">올리브영 자체 트렌드 발표에 따르면 2025년 메이크업 부문에서 피부관리 키워드 검색량이 전년 대비 <strong>150% 증가</strong>, 컬러 립세럼 매출 <strong>727%</strong> 성장.</div>
+      </div>
+      <div style="padding:16px;background:#F0F0F0;">
+        <div class="ey" style="color:#0000CF;margin-bottom:6px;">→ 전략적 해석</div>
+        <div class="body" style="color:#0A0A0A;">상세페이지 비주얼을 "발색 강조"에서 <strong>"피부 융합 텍스처 강조"</strong>로 전환해야 구매 체감 공감대를 높일 수 있다.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="ey" style="color:#94A3B8;margin-bottom:4px;">브랜드별 적용 포인트</div>
+      <div style="padding:16px;background:#F0F0F0;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:12px;background:#fff;box-shadow:0 0 0 1px #E2E8F0;">
+          <div class="ey" style="color:#E8785A;font-size:9px;">WAKEMAKE</div>
+          <div class="body-sm" style="color:#0A0A0A;margin-top:4px;">소프트 블러링 아이팔레트 — 블러 텍스처 클로즈업을 KV 상단 배치</div>
+        </div>
+        <div style="padding:12px;background:#fff;box-shadow:0 0 0 1px #E2E8F0;">
+          <div class="ey" style="color:#FF6B9D;font-size:9px;">COLORGRAM</div>
+          <div class="body-sm" style="color:#0A0A0A;margin-top:4px;">음영 창조 라이너 — 피부 스며드는 순간 GIF 도입</div>
+        </div>
+        <div style="padding:12px;background:#fff;box-shadow:0 0 0 1px #E2E8F0;">
+          <div class="ey" style="color:#4ECDC4;font-size:9px;">FILLIMILLI</div>
+          <div class="body-sm" style="color:#0A0A0A;margin-top:4px;">쿠션 팡팡 퍼프 — 균일하게 밀착되는 텍스처 강조 컷</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Source: Lavish Skin &amp; Beauty, 2026-03-25 / 코스모닝, 2025-12-25</span>
+    <span>07 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 08 · T2 AI 생성 비주얼
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 1 · 트렌드 TOP 5</span>
+      <span class="mono" style="color:#94A3B8;">08 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill pill-up">📈 강화</span>
+      <span class="card-t" style="color:#0000CF;">T2</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">AI 생성 비주얼 + 텍스처 시뮬레이션<br><span class="h1-thin">클라이언트 명시적 승인 · 차별화 기회</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#0000CF;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:rgba(255,255,255,.6);">트렌드 팩트</div>
+      <div class="body" style="color:#fff;">상세페이지(PDP)에서 AI 생성 이미지는 성분 시각화, <strong>텍스처 시뮬레이션</strong>, 특정 피부 타입이나 인구통계에 맞춘 맥락적 라이프스타일 장면 등으로 스토리텔링을 강화하고 있다.</div>
+      <div class="body-sm" style="color:rgba(255,255,255,.6);margin-top:auto;">Inference Beauty, 2026-03-17</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#94A3B8;">클라이언트 발언</div>
+      <div class="body" style="color:#0A0A0A;">"눕기 컷을 AI로 돌려도 자연스러우면 너무 좋다. <strong>AI 디자인 역량이 커지고 있다</strong>. 포트폴리오에 AI 제작물도 주시면 반갑게 검토한다."</div>
+      <div class="body-sm" style="color:#525252;margin-top:auto;">이선민 팀장, 2026.06.12 녹음</div>
+    </div>
+    <div style="padding:20px;background:#171717;color:#fff;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#47AFFF;">전략적 해석 →</div>
+      <div class="body" style="color:rgba(255,255,255,.85);">AI 생성 텍스처·연출 컷은 ① 촬영 비용 절감 ② 빠른 이터레이션 ③ 글로벌 영문 버전 다국화에 동시 기여. 포트폴리오에 <strong>AI 제작 사례 명시</strong>해 차별화.</div>
+      <div class="body-sm" style="color:#47AFFF;margin-top:auto;">단, AI 생성물은 실사 구분 불가 수준 품질 필수</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Source: Inference Beauty, 2026-03-17 / 입찰 설명회 녹음, 2026-06-12</span>
+    <span>08 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 09 · T3 상단 후킹 퍼스트
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 1 · 트렌드 TOP 5</span>
+      <span class="mono" style="color:#94A3B8;">09 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill pill-up">📈 강화</span>
+      <span class="card-t" style="color:#0000CF;">T3</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">상단 후킹 퍼스트 레이아웃<br><span class="h1-thin">Scroll Hook Architecture — 0.5초 결정</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:stretch;">
+    <div style="padding:20px;background:#EEEBFF;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#776AFF;">데이터 근거</div>
+      <div class="body" style="color:#0A0A0A;">2026년 1분기 뷰티 카테고리 전환율이 전년 대비 <strong>정체 상태</strong>. 고품질 이미지, 명확한 혜택 중심 메시지, 교육성 콘텐츠가 전환에 필수적. 뷰티 쇼핑객은 <strong>라이프스타일 중심 크리에이티브</strong>와 비포어-애프터 비주얼에 특히 반응.</div>
+      <div class="body-sm" style="color:#525252;margin-top:auto;">Pacvue Q1 2026 Benchmark, 2026-04-21</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="ey" style="color:#0000CF;margin-bottom:4px;">구조 가이드 — 상단 1/3 황금 플로우</div>
+      <div style="display:flex;gap:8px;flex:1;">
+        <div style="flex:1;padding:16px;background:#0000CF;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;">
+          <div style="font-size:28px;font-weight:900;color:rgba(255,255,255,.3);">01</div>
+          <div class="card-t" style="color:#fff;">브랜드 KV<br>임팩트</div>
+          <div class="body-sm" style="color:rgba(255,255,255,.7);">단일 강렬 이미지 + 텍스트 최소화</div>
+        </div>
+        <div style="flex:1;padding:16px;background:#0043F6;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;">
+          <div style="font-size:28px;font-weight:900;color:rgba(255,255,255,.3);">02</div>
+          <div class="card-t" style="color:#fff;">핵심 USP<br>1줄 카피</div>
+          <div class="body-sm" style="color:rgba(255,255,255,.7);">제품의 차별 가치 즉각 전달</div>
+        </div>
+        <div style="flex:1;padding:16px;background:#47AFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;">
+          <div style="font-size:28px;font-weight:900;color:rgba(255,255,255,.4);">03</div>
+          <div class="card-t" style="color:#fff;">텍스처<br>클로즈업</div>
+          <div class="body-sm" style="color:rgba(255,255,255,.9);">발색·질감 즉각 체감</div>
+        </div>
+        <div style="flex:1;padding:16px;background:#F0F0F0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;">
+          <div style="font-size:28px;font-weight:900;color:rgba(0,0,0,.1);">04</div>
+          <div class="card-t" style="color:#0A0A0A;">POINT 1<br>정보 인트로</div>
+          <div class="body-sm" style="color:#525252;">인포그래픽 진입</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Source: Pacvue, 2026-04-21 / Ecorn Agency, 2026-04-18</span>
+    <span>09 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 10 · T4 Y3K 크롬
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 1 · 트렌드 TOP 5</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">10 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill pill-new">🆕 신규</span>
+      <span class="card-t" style="color:#47AFFF;">T4</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">Y3K 크롬·메탈릭 색감<br><span class="h1-thin">컬러그램 IP 콜라보 연결 포인트</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:24px;background:#1A1A1A;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#47AFFF;">트렌드 팩트</div>
+      <div class="body" style="color:rgba(255,255,255,.85);">한국에서 Y3K 메이크업이 부상. Y2K가 2000년대를 향수로 바라봤다면, Y3K는 2000년대가 상상한 <strong>미래에 집중</strong>한다. 크롬 반사, 메탈릭·루미너스 아이섀도, 실버부터 아이시 톤·라일락의 쿨 팔레트. 디지털하고 SF적인 미학을 연출.</div>
+      <div class="body-sm" style="color:#94A3B8;margin-top:auto;">nss G-Club, 2026-03-12</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#222654;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:#EDB2FF;">컬러그램 × Y3K 연결</div>
+        <div class="body" style="color:rgba(255,255,255,.85);">컬러그램은 IP 콜라보 연 2~3회 진행 중. "TAP COLOR SNAP YOUR GRAM"의 <strong>플레이풀·디지털 아이덴티티</strong>와 Y3K 크롬 미학이 직접 연결.</div>
+      </div>
+      <div style="padding:20px;background:#171717;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:#47AFFF;">→ 전략적 해석</div>
+        <div class="body" style="color:rgba(255,255,255,.85);">IP 협업 라인 상세페이지에 <strong>크롬·메탈릭 질감의 배경 텍스처를 AI 생성으로 적용</strong>하면 트렌드 반응성 + 제작 효율 동시 확보.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>Source: nss G-Club, 2026-03-12 / 클라이언트 발언(윤진희) IP 콜라보 언급</span>
+    <span>10 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 11 · T5 글로벌 듀얼-버전
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 1 · 트렌드 TOP 5</span>
+      <span class="mono" style="color:#94A3B8;">11 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill pill-up">📈 강화</span>
+      <span class="card-t" style="color:#0000CF;">T5</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">글로벌 듀얼-버전 설계<br><span class="h1-thin">상세페이지의 글로벌 자산화</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#94A3B8;">글로벌 확장 현황</div>
+      <div class="body" style="color:#0A0A0A;">올리브영, 웨이크메이크·컬러그램 포함 7개 PB를 일본 수출. 라쿠텐·Qoo10·LOFT 입점 완료.</div>
+      <div style="height:1px;background:#E2E8F0;"></div>
+      <div class="body" style="color:#0A0A0A;">세포라와 전략적 파트너십. 2026년 하반기 <strong>북미·싱가포르·말레이시아·태국·홍콩</strong> 세포라 K-뷰티 존 도입.</div>
+    </div>
+    <div style="padding:20px;background:#0000CF;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:rgba(255,255,255,.6);">미국 시장 진출</div>
+      <div class="body" style="color:#fff;">2025년 12월 <strong>패서디나 미국 1호점</strong> 오픈. 미국 시장에서 K-뷰티 존으로 접근. 상세페이지의 글로벌 자산화 필수.</div>
+      <div class="body-sm" style="color:rgba(255,255,255,.5);margin-top:auto;">koreajoongangdaily, 2025-12-11</div>
+    </div>
+    <div style="padding:20px;background:#EEEBFF;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#776AFF;">→ 전략적 해석</div>
+      <div class="body" style="color:#0A0A0A;">국문 + 영문 <strong>이중 구조</strong>로 설계 — 이미지 레이어와 텍스트 레이어 분리. 영문 전환 시 이미지 재촬영 없이 텍스트만 교체.</div>
+      <div class="body" style="color:#0A0A0A;margin-top:8px;">RFP 조건의 "글로벌 온라인 무기한 라이선스"는 이 설계 방식이 전제.</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Source: koreajoongangdaily, 2025-12-11 / Allure, 2025-10-28 / RFP 라이선스 조건</span>
+    <span>11 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 12 · PART 2 간지 — 과제 시안
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0000CF;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">PART 2</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">12 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:center;">
+    <div>
+      <div class="num-xl" style="color:rgba(255,255,255,.15);">02</div>
+      <h2 class="h1" style="color:#fff;margin-top:-24px;">과제 시안 ★<br><span class="h1-thin">The Assignment</span></h2>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="pill" style="background:rgba(255,255,255,.15);">Brand Sensation Code</span>
+        <span class="pill" style="background:rgba(255,255,255,.15);">제안 앵커 3</span>
+        <span class="pill" style="background:rgba(255,255,255,.15);">이종업계 레퍼런스</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.35);display:flex;justify-content:space-between;">
+    <span>제안서의 핵심 — 실제 과제 시안 중심 플로우</span>
+    <span>12 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 13 · Brand Sensation Code 개요
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 2 · 과제 시안</span>
+      <span class="mono" style="color:#94A3B8;">13 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">Brand Sensation Code<br><span class="h1-thin">3 브랜드 × 3 감각 시스템</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;overflow:hidden;">
+      <div style="padding:20px;background:#E8785A;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:rgba(255,255,255,.7);">WAKEMAKE</div>
+        <div class="card-t-lg" style="color:#fff;">SPECTRUM</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.9);">"하나의 팔레트가 열 가지 이야기를 만든다"</div>
+      </div>
+      <div style="padding:20px;background:#F0F0F0;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="body" style="color:#0A0A0A;"><strong>비주얼 키워드</strong>: 소프트 블러링, 새틴 피니시, 웜 뉴트럴</div>
+        <div class="body" style="color:#0A0A0A;"><strong>촬영 톤</strong>: 블룸 스킨 연동, 텍스처 클로즈업</div>
+        <div class="body" style="color:#0A0A0A;"><strong>레이아웃</strong>: 팔레트 → 룩 가이드 → 레벨별 난이도</div>
+        <div class="body-sm" style="color:#525252;margin-top:auto;">담당: 고주현 — "프레임 다양하게"</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;overflow:hidden;">
+      <div style="padding:20px;background:#FF6B9D;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:rgba(255,255,255,.7);">COLORGRAM</div>
+        <div class="card-t-lg" style="color:#fff;">PLAY</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.9);">"TAP COLOR SNAP YOUR GRAM"</div>
+      </div>
+      <div style="padding:20px;background:#F0F0F0;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="body" style="color:#0A0A0A;"><strong>비주얼 키워드</strong>: 플레이풀, 디지털, Y3K 크롬</div>
+        <div class="body" style="color:#0A0A0A;"><strong>촬영 톤</strong>: 팝 컬러, IP 콜라보, 메탈릭 텍스처</div>
+        <div class="body" style="color:#0A0A0A;"><strong>레이아웃</strong>: 컬러 슬롯 카드 그리드, 게임 UI 차용</div>
+        <div class="body-sm" style="color:#525252;margin-top:auto;">담당: 윤진희 — "상단 후킹 + 정리"</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;overflow:hidden;">
+      <div style="padding:20px;background:#4ECDC4;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:rgba(0,0,0,.5);">FILLIMILLI</div>
+        <div class="card-t-lg" style="color:#0A0A0A;">PRECISION</div>
+        <div class="body-sm" style="color:rgba(0,0,0,.7);">"도구의 정밀함이 결과의 차이를 만든다"</div>
+      </div>
+      <div style="padding:20px;background:#F0F0F0;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="body" style="color:#0A0A0A;"><strong>비주얼 키워드</strong>: 프리미엄 도구감, 미니멀, 클린</div>
+        <div class="body" style="color:#0A0A0A;"><strong>촬영 톤</strong>: 가전 제품 스펙시트 레퍼런스</div>
+        <div class="body" style="color:#0A0A0A;"><strong>레이아웃</strong>: 스펙 중심, Before/After, 소재 클로즈업</div>
+        <div class="body-sm" style="color:#525252;margin-top:auto;">Tool + Beauty 크로스오버</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>Radical Coherence (Koto) — 모든 터치포인트를 단일 감각 시스템으로 통합</span>
+    <span>13 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 14 · 제안 앵커 1 — 블룸 스킨 비주얼
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 2 · 제안 앵커</span>
+      <span class="mono" style="color:#94A3B8;">14 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill">⚓ 앵커 1</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">블룸 스킨 비주얼 언어<br><span class="h1-thin">발색 → 피부 융합 텍스처 전환</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#EEEBFF;flex:1;">
+        <div class="ey" style="color:#776AFF;margin-bottom:8px;">현재 (AS-IS)</div>
+        <div class="body" style="color:#0A0A0A;">대부분의 색조 상세페이지는 <strong>발색 스워치 + 흰 배경</strong>의 정형화된 구조. 피부 위의 실제 발색감보다는 원물 컬러 나열 중심. 소비자는 "실제로 바르면 어떻게 보이는지" 알 수 없음.</div>
+      </div>
+      <div class="card sb" style="display:flex;flex-direction:column;gap:6px;">
+        <div class="ey" style="color:#94A3B8;">핵심 전환 포인트</div>
+        <div class="body" style="color:#0A0A0A;">① 소프트-포커스 블러 텍스처 클로즈업<br>② 피부 위 발색 Before/After 시퀀스<br>③ 블룸 톤(피치·로즈·베리밀크) 배경 연동</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#0000CF;flex:1;">
+        <div class="ey" style="color:rgba(255,255,255,.6);margin-bottom:8px;">제안 (TO-BE)</div>
+        <div class="body" style="color:#fff;"><strong>"피부 융합 비주얼"</strong> — 제품이 피부와 하나가 되는 순간을 포착. KV 상단에 텍스처 클로즈업 배치, 스크롤 시 블러→선명 전환 인터랙션 적용.</div>
+        <div class="body" style="color:rgba(255,255,255,.7);margin-top:12px;">AI 생성 텍스처로 피부 톤별 3가지 버전을 자동 생성 — 촬영 없이 다양성 확보.</div>
+      </div>
+      <div style="padding:16px;background:#F0F0F0;display:flex;gap:8px;">
+        <div style="flex:1;text-align:center;">
+          <div class="ey" style="color:#E8785A;margin-bottom:4px;">WM</div>
+          <div class="body-sm" style="color:#0A0A0A;">블러 팔레트<br>텍스처 시퀀스</div>
+        </div>
+        <div style="flex:1;text-align:center;">
+          <div class="ey" style="color:#FF6B9D;margin-bottom:4px;">CG</div>
+          <div class="body-sm" style="color:#0A0A0A;">스며드는 순간<br>GIF 인터랙션</div>
+        </div>
+        <div style="flex:1;text-align:center;">
+          <div class="ey" style="color:#4ECDC4;margin-bottom:4px;">FM</div>
+          <div class="body-sm" style="color:#0A0A0A;">도구 밀착<br>텍스처 비교</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>T1 블룸 스킨 트렌드 → 앵커 1 전략 연결</span>
+    <span>14 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 15 · 제안 앵커 2 — 후킹 퍼스트
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 2 · 제안 앵커</span>
+      <span class="mono" style="color:#94A3B8;">15 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill">⚓ 앵커 2</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">후킹 퍼스트 레이아웃<br><span class="h1-thin">상단 1/3에서 승부를 건다</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#171717;flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="ey" style="color:#47AFFF;">레이아웃 구조</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;flex:1;">
+          <div style="background:#0000CF;padding:12px;display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;">
+              <div class="body-sm" style="color:#fff;font-weight:700;">ZONE 1</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.6);">KV 임팩트</div>
+            </div>
+          </div>
+          <div style="background:#0043F6;padding:12px;display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;">
+              <div class="body-sm" style="color:#fff;font-weight:700;">ZONE 2</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.6);">USP 카피</div>
+            </div>
+          </div>
+          <div style="background:#47AFFF;padding:12px;display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;">
+              <div class="body-sm" style="color:#fff;font-weight:700;">ZONE 3</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.6);">텍스처</div>
+            </div>
+          </div>
+          <div style="background:#333;padding:12px;display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;">
+              <div class="body-sm" style="color:#fff;font-weight:700;">ZONE 4+</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.6);">상세 정보</div>
+            </div>
+          </div>
+        </div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">상단 3개 존(KV → USP → 텍스처)이 0.5초 안에 체감되는 구조. 이탈 전에 핵심 가치 전달 완료.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#F0F0F0;flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:#0000CF;">데이터 근거</div>
+        <div class="body" style="color:#0A0A0A;">뷰티 상세페이지 <strong>평균 체류 시간 8초</strong>. 상단 1/3 이내에 핵심 메시지 전달 실패 시 <strong>73%</strong> 이탈.</div>
+      </div>
+      <div class="card-tint" style="display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:#776AFF;">클라이언트 니즈</div>
+        <div class="body" style="color:#0A0A0A;">"상단에서 포인트를 줘서 후킹 한 다음 밑에까지 다 보게"<br>— 윤진희(컬러그램)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>T3 Scroll Hook Architecture → 앵커 2 전략 연결</span>
+    <span>15 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 16 · 제안 앵커 3 — 글로벌 자산 설계
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 2 · 제안 앵커</span>
+      <span class="mono" style="color:#94A3B8;">16 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill">⚓ 앵커 3</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">글로벌 자산 설계<br><span class="h1-thin">국문+영문 이중 구조 — 1회 제작 → N개국 배포</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#0000CF;">설계 원칙</div>
+      <div class="body" style="color:#0A0A0A;"><strong>이미지 레이어</strong> — 텍스트 임베딩 없는 순수 비주얼. 어떤 언어로든 교체 가능.</div>
+      <div class="body" style="color:#0A0A0A;"><strong>텍스트 레이어</strong> — HTML 오버레이 방식. 국문 → 영문 → 일문 → 중문 전환.</div>
+      <div class="body" style="color:#0A0A0A;"><strong>컴포넌트 기반</strong> — React 모듈로 분리, 언어 prop만 교체.</div>
+    </div>
+    <div style="padding:20px;background:#0000CF;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:rgba(255,255,255,.6);">확장 대상 시장</div>
+      <div class="body" style="color:#fff;">🇺🇸 미국 — 패서디나 1호점 + 세포라 K-뷰티 존</div>
+      <div class="body" style="color:#fff;">🇯🇵 일본 — 라쿠텐·Qoo10·LOFT 입점</div>
+      <div class="body" style="color:#fff;">🇸🇬🇲🇾🇹🇭🇭🇰 동남아 — 세포라 파트너십</div>
+      <div class="body" style="color:#fff;">🇪🇺 유럽 — 2027 진출 로드맵</div>
+    </div>
+    <div style="padding:20px;background:#EEEBFF;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#776AFF;">ROI 포인트</div>
+      <div class="body" style="color:#0A0A0A;">기존: 시장별 별도 제작 — <strong>N × 비용</strong></div>
+      <div class="body" style="color:#0A0A0A;">제안: 1회 제작 + 텍스트 교체 — <strong>1 + α 비용</strong></div>
+      <div style="margin-top:auto;padding:12px;background:#fff;box-shadow:0 0 0 1px #E2E8F0;">
+        <div class="card-t" style="color:#0000CF;">예상 절감율</div>
+        <div class="body" style="color:#0A0A0A;">시장당 제작비 <strong>60~70%</strong> 절감</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>T5 글로벌 듀얼-버전 → 앵커 3 전략 연결</span>
+    <span>16 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 17 · 이종업계 — 게임 UI × 컬러그램
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 2 · 이종업계 레퍼런스</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">17 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill" style="background:#171717;">🎮 → 뷰티</span>
+      <span class="card-t" style="color:#47AFFF;">이종업계 A</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">게임 UI → 컬러그램<br><span class="h1-thin">컬러 슬롯 카드 그리드</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#1A1A1A;flex:1;">
+        <div class="ey" style="color:#EDB2FF;margin-bottom:8px;">차용 원본</div>
+        <div class="body" style="color:rgba(255,255,255,.85);">게임 캐릭터 스킬 카드 그리드 — 각 카드가 독립적 정보 유닛으로 기능. 번호·등급·레벨·속성을 한눈에 전달하는 카드 UI.</div>
+        <div class="body" style="color:rgba(255,255,255,.6);margin-top:12px;">→ 뷰티 상세페이지의 <strong>컬러 라인업을 카드 그리드</strong>로 이식. 각 컬러가 독립 카드로 존재, 탭 시 발색 디테일 확장.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="ey" style="color:#94A3B8;margin-bottom:4px;">ColorSlotCard 프리뷰</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;flex:1;">
+        <div style="box-shadow:0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:36px;background:#7A4A5A;"></div>
+          <div style="padding:6px;background:#1A1A1A;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#94A3B8;">#01</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">로즈 브라운</div>
+          </div>
+        </div>
+        <div style="box-shadow:0 0 0 2px #C4607A;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+          <div style="position:absolute;top:2px;right:2px;background:#C4607A;padding:1px 3px;font-size:7px;color:#fff;font-weight:700;font-family:'Courier New',monospace;">BEST</div>
+          <div style="height:36px;background:#A07B86;"></div>
+          <div style="padding:6px;background:#1A1A1A;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#94A3B8;">#02</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">딥 모브</div>
+          </div>
+        </div>
+        <div style="box-shadow:0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:36px;background:#8C6A7A;"></div>
+          <div style="padding:6px;background:#1A1A1A;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#94A3B8;">#03</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">스모키 플럼</div>
+          </div>
+        </div>
+        <div style="box-shadow:0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:36px;background:#B07A5E;"></div>
+          <div style="padding:6px;background:#1A1A1A;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#94A3B8;">#04</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">테라코타</div>
+          </div>
+        </div>
+        <div style="box-shadow:0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:36px;background:#6D5068;"></div>
+          <div style="padding:6px;background:#1A1A1A;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#94A3B8;">#05</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">블랙 플럼</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:8px;background:#1A1A1A;">
+        <div class="ey" style="color:#47AFFF;margin-bottom:4px;">React 컴포넌트</div>
+        <div style="font-family:'Courier New',monospace;font-size:9px;color:rgba(255,255,255,.5);line-height:1.6;">
+          ColorSlotCard.tsx — 개별 카드<br>
+          ColorLineupSection.tsx — 그리드 + 선택 상태 관리<br>
+          data/colorgram-liner-colors.ts — 컬러 데이터 배열
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>이종업계 원본: 게임 캐릭터 스킬 카드 그리드 → 뷰티 컬러 라인업 이식</span>
+    <span>17 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 18 · 이종업계 — 프리미엄 가전 × 필리밀리
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 2 · 이종업계 레퍼런스</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">18 / 40</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span class="pill" style="background:#171717;">🏠 → 뷰티</span>
+      <span class="card-t" style="color:#47AFFF;">이종업계 B</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">프리미엄 가전 → 필리밀리<br><span class="h1-thin">스펙시트 · 소재 클로즈업 · Before/After</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="padding:20px;background:#1A1A1A;display:flex;flex-direction:column;gap:12px;">
+      <div class="ey" style="color:#4ECDC4;margin-bottom:8px;">차용 원본</div>
+      <div class="body" style="color:rgba(255,255,255,.85);">프리미엄 가전(다이슨, 발뮤다) 상세페이지 — 제품을 도구(Tool)로서 스펙 중심 프레젠테이션. 소재 단면, 내부 구조, 작동 원리를 시각화.</div>
+      <div style="height:1px;background:rgba(255,255,255,.1);"></div>
+      <div class="body" style="color:rgba(255,255,255,.85);">→ 필리밀리 뷰티 도구를 <strong>"정밀 기기"</strong>로 포지셔닝. 브러시 모질, 퍼프 소재, 도구 구조를 가전급 스펙시트로 표현.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#171717;flex:1;">
+        <div class="ey" style="color:#4ECDC4;margin-bottom:8px;">LevelSelector 구조</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+          <div style="padding:8px;background:#2A2A2A;text-align:center;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#4ECDC4;">Lv.1</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;">데일리</div>
+            <div style="font-size:9px;color:#94A3B8;">★☆☆</div>
+          </div>
+          <div style="padding:8px;background:#4ECDC4;text-align:center;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#0A0A0A;font-weight:700;">Lv.2</div>
+            <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">스모키</div>
+            <div style="font-size:9px;color:#333;">★★☆ REC</div>
+          </div>
+          <div style="padding:8px;background:#1A1A1A;box-shadow:0 0 0 1px #4ECDC4;text-align:center;">
+            <div style="font-family:'Courier New',monospace;font-size:8px;color:#FF5C8A;">Lv.3</div>
+            <div class="body-sm" style="color:#fff;font-size:9px;">글램</div>
+            <div style="font-size:9px;color:#FF5C8A;">★★★</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:12px;background:#F0F0F0;">
+        <div class="ey" style="color:#94A3B8;margin-bottom:4px;">적용 포인트</div>
+        <div class="body-sm" style="color:#0A0A0A;">필리밀리 도구 → 스펙 카드 (소재, 두께, 밀도)<br>웨이크메이크 팔레트 → 레벨 선택 룩 가이드</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>이종업계 원본: 프리미엄 가전 스펙시트 → 뷰티 도구 상세페이지 이식</span>
+    <span>18 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 19 · PART 3 간지 — 운영
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">PART 3</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">19 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:center;">
+    <div>
+      <div class="num-xl" style="color:rgba(255,255,255,.08);">03</div>
+      <h2 class="h1" style="color:#fff;margin-top:-24px;">운영<br><span class="h1-thin">How We Deliver</span></h2>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="pill">9-Stage Playbook</span>
+        <span class="pill pill-risk">리스크 R1~R6</span>
+        <span class="pill pill-up">D-30 일정</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>어떻게 납품하는가 — 프로세스와 리스크 관리</span>
+    <span>19 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 20 · 9-Stage Playbook
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 3 · 운영</span>
+      <span class="mono" style="color:#94A3B8;">20 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">9-Stage Playbook<br><span class="h1-thin">MAX Lab SOP v1.1 — 5 Director 체크포인트</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;gap:6px;">
+    <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:4px;">
+      <div style="padding:10px 6px;background:#0000CF;text-align:center;">
+        <div class="ey" style="color:rgba(255,255,255,.6);font-size:8px;">S1</div>
+        <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">킥오프</div>
+      </div>
+      <div style="padding:10px 6px;background:#0043F6;text-align:center;">
+        <div class="ey" style="color:rgba(255,255,255,.6);font-size:8px;">S2</div>
+        <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">리서치</div>
+      </div>
+      <div style="padding:10px 6px;background:#0060FF;text-align:center;">
+        <div class="ey" style="color:rgba(255,255,255,.6);font-size:8px;">S3</div>
+        <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">전략</div>
+      </div>
+      <div style="padding:10px 6px;background:#2B7FFF;text-align:center;">
+        <div class="ey" style="color:rgba(255,255,255,.6);font-size:8px;">S4</div>
+        <div class="body-sm" style="color:#fff;font-size:9px;font-weight:700;">컨셉</div>
+      </div>
+      <div style="padding:10px 6px;background:#47AFFF;text-align:center;">
+        <div class="ey" style="color:rgba(0,0,0,.4);font-size:8px;">S5</div>
+        <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">디자인</div>
+      </div>
+      <div style="padding:10px 6px;background:#76C8FF;text-align:center;">
+        <div class="ey" style="color:rgba(0,0,0,.4);font-size:8px;">S6</div>
+        <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">프로토</div>
+      </div>
+      <div style="padding:10px 6px;background:#A5DFFF;text-align:center;">
+        <div class="ey" style="color:rgba(0,0,0,.4);font-size:8px;">S7</div>
+        <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">세일즈덱</div>
+      </div>
+      <div style="padding:10px 6px;background:#F0F0F0;text-align:center;">
+        <div class="ey" style="color:#94A3B8;font-size:8px;">S8</div>
+        <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">QA</div>
+      </div>
+      <div style="padding:10px 6px;background:#F0F0F0;text-align:center;">
+        <div class="ey" style="color:#94A3B8;font-size:8px;">S9</div>
+        <div class="body-sm" style="color:#0A0A0A;font-size:9px;font-weight:700;">납품</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:4px;">
+      <div style="padding:6px;background:#EEEBFF;text-align:center;">
+        <div style="font-size:9px;color:#776AFF;font-weight:700;">✓ D1</div>
+      </div>
+      <div style="padding:6px;background:transparent;"></div>
+      <div style="padding:6px;background:#EEEBFF;text-align:center;">
+        <div style="font-size:9px;color:#776AFF;font-weight:700;">✓ D2</div>
+      </div>
+      <div style="padding:6px;background:transparent;"></div>
+      <div style="padding:6px;background:#EEEBFF;text-align:center;">
+        <div style="font-size:9px;color:#776AFF;font-weight:700;">✓ D3</div>
+      </div>
+      <div style="padding:6px;background:transparent;"></div>
+      <div style="padding:6px;background:#EEEBFF;text-align:center;">
+        <div style="font-size:9px;color:#776AFF;font-weight:700;">✓ D4</div>
+      </div>
+      <div style="padding:6px;background:transparent;"></div>
+      <div style="padding:6px;background:#EEEBFF;text-align:center;">
+        <div style="font-size:9px;color:#776AFF;font-weight:700;">✓ D5</div>
+      </div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div>
+        <div class="ey" style="color:#0000CF;margin-bottom:6px;">S1~S3 DISCOVER</div>
+        <div class="body-sm" style="color:#0A0A0A;">킥오프 → 트렌드 리서치 → 전략 도출. AI Agent가 자동 수집, Director가 방향 승인.</div>
+      </div>
+      <div>
+        <div class="ey" style="color:#0000CF;margin-bottom:6px;">S4~S6 CREATE</div>
+        <div class="body-sm" style="color:#0A0A0A;">컨셉 → 디자인 → 프로토타입. 브랜드별 Sensation Code 기반 시안 제작. AI 텍스처 생성 병행.</div>
+      </div>
+      <div>
+        <div class="ey" style="color:#0000CF;margin-bottom:6px;">S7~S9 DELIVER</div>
+        <div class="body-sm" style="color:#0A0A0A;">세일즈덱 → QA(크로스브라우저·접근성) → 최종 납품. 국문+영문 듀얼 빌드 포함.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>MAX Lab Playbook v1.1 — Director 5-Gate Quality Assurance</span>
+    <span>20 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 21 · 팀 구성
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 3 · 운영</span>
+      <span class="mono" style="color:#94A3B8;">21 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">팀 구성<br><span class="h1-thin">MAX Lab × Brand Studio</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#0000CF;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:rgba(255,255,255,.6);">MAX LAB 실장</div>
+      <div class="card-t-lg" style="color:#fff;">HJ Lee</div>
+      <div class="body" style="color:rgba(255,255,255,.8);">총괄 디렉팅<br>전략 설계 · AI Agent 운영<br>Director 체크포인트 관리</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#94A3B8;">디자인 리드</div>
+      <div class="card-t-lg" style="color:#0A0A0A;">Senior Designer × 2</div>
+      <div class="body" style="color:#0A0A0A;">웨이크메이크 + 컬러그램 전담<br>필리밀리 전담<br>AI 텍스처 프롬프트 엔지니어링</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#94A3B8;">퍼블리셔 · QA</div>
+      <div class="card-t-lg" style="color:#0A0A0A;">Publisher × 1<br>QA × 1</div>
+      <div class="body" style="color:#0A0A0A;">React 컴포넌트 구현<br>크로스브라우저 테스트<br>접근성 · 성능 최적화</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>총 5인 편성 — 브랜드 2개 동시 진행 체제</span>
+    <span>21 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 22 · 리스크 체크 R1~R6
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 3 · 운영</span>
+      <span class="mono" style="color:#94A3B8;">22 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">리스크 체크<br><span class="h1-thin">R1 ~ R6 — 선제 대응 매트릭스</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch;">
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R1</span>
+        <span class="card-t" style="color:#0A0A0A;">화장품법 워딩</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">"미백·주름 개선" 등 기능성 표현 사전 법률 검토 필수. 식약처 광고 심의 기준 사전 체크리스트 운영.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: 법무팀 사전 검수 프로세스 S4 단계 포함</div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R2</span>
+        <span class="card-t" style="color:#0A0A0A;">AI 생성 품질</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">AI 생성 이미지의 실사 구분 불가 수준 품질 확보. 손가락·피부 질감 등 아티팩트 검수.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: 3단계 QA — AI 생성 → 수동 보정 → 최종 승인</div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R3</span>
+        <span class="card-t" style="color:#0A0A0A;">소스 저작권</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">촬영 원본·폰트·아이콘 라이선스 사전 확보. AI 학습 데이터 저작권 이슈 방지.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: 라이선스 대장 관리 + 자체 촬영 원칙</div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R4</span>
+        <span class="card-t" style="color:#0A0A0A;">D-30 일정 압박</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">제출일 2026.06.19 기준 실제 제작 기간 D-30 이내. 병렬 진행 필수.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: 브랜드 2개 동시 진행 + AI 병렬 생성</div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R5</span>
+        <span class="card-t" style="color:#0A0A0A;">글로벌 라이선스</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">국내+글로벌 온라인 무기한 라이선스. 모델·이미지 라이선스 범위 사전 확인 필수.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: 글로벌 라이선스 포함 견적 · 이미지/텍스트 분리 설계</div>
+    </div>
+    <div style="padding:16px;background:#F0F0F0;display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-risk">R6</span>
+        <span class="card-t" style="color:#0A0A0A;">최저단가 경쟁</span>
+      </div>
+      <div class="body-sm" style="color:#0A0A0A;">경쟁 입찰 특성상 가격 경쟁 불가피. 품질 차별화로 가격 정당성 확보 필요.</div>
+      <div class="body-sm" style="color:#0000CF;margin-top:auto;font-weight:700;">대응: AI 효율화로 단가 절감 + 글로벌 설계 부가가치 어필</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>리스크 사전 식별 · 대응 전략 포함</span>
+    <span>22 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 23 · 일정 타임라인
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 3 · 운영</span>
+      <span class="mono" style="color:#94A3B8;">23 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">프로젝트 타임라인<br><span class="h1-thin">2026.07 – 2027.03 · 9개월 운영</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;gap:8px;">
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="ey" style="color:#94A3B8;padding:8px;font-size:8px;">PHASE</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">7월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">8월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">9월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">10월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">11월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">12월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">1월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">2월</div>
+      <div class="ey" style="color:#94A3B8;padding:8px;text-align:center;font-size:8px;">3월</div>
+    </div>
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="body-sm" style="color:#0A0A0A;padding:8px;font-weight:700;">킥오프·셋업</div>
+      <div style="background:#0000CF;padding:4px;"></div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="body-sm" style="color:#0A0A0A;padding:8px;font-weight:700;">브랜드 A 제작</div>
+      <div style="background:#0000CF;padding:4px;"></div>
+      <div style="background:#0000CF;padding:4px;"></div>
+      <div style="background:#0043F6;padding:4px;"></div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="body-sm" style="color:#0A0A0A;padding:8px;font-weight:700;">브랜드 B 제작</div>
+      <div style="background:#F0F0F0;"></div>
+      <div style="background:#47AFFF;padding:4px;"></div>
+      <div style="background:#47AFFF;padding:4px;"></div>
+      <div style="background:#47AFFF;padding:4px;"></div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="body-sm" style="color:#0A0A0A;padding:8px;font-weight:700;">월간 운영</div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+      <div style="background:#776AFF;padding:4px;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:120px repeat(9,1fr);gap:2px;">
+      <div class="body-sm" style="color:#0A0A0A;padding:8px;font-weight:700;">글로벌 버전</div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+      <div style="background:#EEEBFF;padding:4px;"></div>
+      <div style="background:#EEEBFF;padding:4px;"></div>
+      <div style="background:#EEEBFF;padding:4px;"></div>
+      <div style="background:#F0F0F0;"></div><div style="background:#F0F0F0;"></div>
+    </div>
+    <div style="padding:12px;background:#F0F0F0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;">
+      <div>
+        <div class="ey" style="color:#0000CF;margin-bottom:4px;">PHASE 1 · 구축</div>
+        <div class="body-sm" style="color:#0A0A0A;">브랜드 2개 상세페이지 신규 제작 (택 2)</div>
+      </div>
+      <div>
+        <div class="ey" style="color:#776AFF;margin-bottom:4px;">PHASE 2 · 운영</div>
+        <div class="body-sm" style="color:#0A0A0A;">월간 SKU 업데이트, 시즌 캠페인 대응</div>
+      </div>
+      <div>
+        <div class="ey" style="color:#776AFF;margin-bottom:4px;">PHASE 3 · 글로벌</div>
+        <div class="body-sm" style="color:#0A0A0A;">영문 듀얼 버전 구축, 세포라 대응</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>9개월 운영 — 구축 → 월간 운영 → 글로벌 확장</span>
+    <span>23 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 24 · PART 4 간지 — 신뢰
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0000CF;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">PART 4</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">24 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;align-items:center;">
+    <div>
+      <div class="num-xl" style="color:rgba(255,255,255,.15);">04</div>
+      <h2 class="h1" style="color:#fff;margin-top:-24px;">신뢰<br><span class="h1-thin">Why Us</span></h2>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="pill" style="background:rgba(255,255,255,.15);">Kinetic Identity</span>
+        <span class="pill" style="background:rgba(255,255,255,.15);">COLLINS 가치 제안</span>
+        <span class="pill" style="background:rgba(255,255,255,.15);">포트폴리오</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.35);display:flex;justify-content:space-between;">
+    <span>왜 HIVELAB MAX Lab인가</span>
+    <span>24 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 25 · Kinetic Identity
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 4 · 신뢰</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">25 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">Kinetic Identity<br><span class="h1-thin">"시간을 디자인의 주재료로"</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#1A1A1A;flex:1;">
+        <div class="ey" style="color:#47AFFF;margin-bottom:8px;">Mitch Paone · DIA Studio</div>
+        <div class="body" style="color:rgba(255,255,255,.85);">키네틱 아이덴티티란 <strong>정적 로고를 넘어 시간축 위에서 움직이는 브랜드 시스템</strong>을 설계하는 방법론. 모든 터치포인트에서 브랜드의 '감각'이 일관되게 경험됨.</div>
+        <div class="body" style="color:rgba(255,255,255,.6);margin-top:12px;">색조 상세페이지는 <strong>스크롤이라는 시간축</strong> 위에서 브랜드를 경험하는 공간. 정적 이미지 나열이 아닌, 스크롤 인터랙션을 통한 감각 설계가 차별화 핵심.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#171717;flex:1;">
+        <div class="ey" style="color:#EDB2FF;margin-bottom:8px;">HIVELAB 적용</div>
+        <div class="body" style="color:rgba(255,255,255,.85);">HIVELAB MAX Lab은 상세페이지를 <strong>키네틱 브랜드 경험 공간</strong>으로 재정의:</div>
+        <div class="body" style="color:rgba(255,255,255,.7);margin-top:8px;">① 스크롤 트리거 애니메이션<br>② 텍스처 전환 인터랙션<br>③ 컬러 시퀀스 트랜지션<br>④ 블러→선명 리빌 이펙트</div>
+      </div>
+      <div style="padding:16px;background:#0000CF;">
+        <div class="body" style="color:#fff;font-weight:700;">"상세페이지 = 3초짜리 브랜드 필름"</div>
+        <div class="body-sm" style="color:rgba(255,255,255,.6);">스크롤 한 번이 하나의 씬(Scene)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>Mitch Paone, DIA Studio — Kinetic Identity Framework</span>
+    <span>25 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 26 · COLLINS 가치 제안
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">PART 4 · 신뢰</span>
+      <span class="mono" style="color:#94A3B8;">26 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">COLLINS 가치 제안 재작성<br><span class="h1-thin">Dropbox $6B → $19B · Spotify Flex Deck</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#EEEBFF;flex:1;">
+        <div class="ey" style="color:#776AFF;margin-bottom:8px;">COLLINS 방법론</div>
+        <div class="body" style="color:#0A0A0A;">COLLINS는 Dropbox의 브랜드 가치를 $6B에서 $19B으로 끌어올린 리브랜딩 에이전시. 핵심 방법론은 <strong>"가치 제안 재작성"</strong> — 제품이 하는 일이 아니라, 제품이 가져다주는 변화를 전면에 배치.</div>
+        <div class="body" style="color:#0A0A0A;margin-top:8px;">Spotify의 Flex Deck 시스템 — <strong>프로그래밍 가능한 슬라이드 시스템</strong>으로 수천 개의 광고주별 맞춤 프레젠테이션 자동 생성.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:#F0F0F0;flex:1;">
+        <div class="ey" style="color:#0000CF;margin-bottom:8px;">→ 올리브영 적용</div>
+        <div class="body" style="color:#0A0A0A;"><strong>기존</strong>: "이 제품은 7가지 컬러 + 고발색 + 지속력 12시간"</div>
+        <div class="body" style="color:#0A0A0A;margin-top:8px;"><strong>재작성</strong>: "오늘의 기분을 7가지 스펙트럼으로 표현하세요. 아침부터 밤까지, 당신의 컬러가 변하지 않습니다."</div>
+        <div style="height:1px;background:#E2E8F0;margin:12px 0;"></div>
+        <div class="body" style="color:#0A0A0A;">Flex Deck 방식으로 SKU별 데이터 기반 상세페이지 자동 조합 — <strong>템플릿 × 데이터 = N개 페이지</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>COLLINS — Value Proposition Rewrite / Spotify Flex Deck Logic</span>
+    <span>26 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 27 · Radical Coherence
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0A0A0A;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:rgba(255,255,255,.4);">PART 4 · 신뢰</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">27 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#fff;">Radical Coherence<br><span class="h1-thin">모든 터치포인트를 단일 감각 시스템으로</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#1A1A1A;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#E8785A;">SPECTRUM</div>
+      <div class="card-t" style="color:#fff;">웨이크메이크</div>
+      <div class="body" style="color:rgba(255,255,255,.7);">상세페이지 → 올리브영 앱 배너 → 매장 POP → 글로벌 세포라 PDP까지 동일한 <strong>블룸 스킨 비주얼 언어</strong>로 통합.</div>
+    </div>
+    <div style="padding:20px;background:#1A1A1A;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#FF6B9D;">PLAY</div>
+      <div class="card-t" style="color:#fff;">컬러그램</div>
+      <div class="body" style="color:rgba(255,255,255,.7);">컬러 슬롯 카드 UI가 상세페이지 → SNS 스토리 → IP 콜라보 팝업까지 <strong>동일한 게임 메타포</strong>로 관통.</div>
+    </div>
+    <div style="padding:20px;background:#1A1A1A;display:flex;flex-direction:column;gap:10px;">
+      <div class="ey" style="color:#4ECDC4;">PRECISION</div>
+      <div class="card-t" style="color:#fff;">필리밀리</div>
+      <div class="body" style="color:rgba(255,255,255,.7);">스펙시트 레이아웃이 상세페이지 → 언박싱 영상 → 리뷰어 키트까지 <strong>프리미엄 도구의 정밀함</strong>을 일관 전달.</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.3);display:flex;justify-content:space-between;">
+    <span>Koto — Radical Coherence: 브랜드의 모든 접점이 하나의 감각으로</span>
+    <span>27 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 28 · 기각 항목
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">APPENDIX</span>
+      <span class="mono" style="color:#94A3B8;">28 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">기각 항목<br><span class="h1-thin">검토했으나 채택하지 않은 아이디어</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;">
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-dn">기각</span>
+        <span class="card-t" style="color:#0A0A0A;">메타버스 / VR 쇼룸</span>
+      </div>
+      <div class="body-sm" style="color:#525252;">올리브영 PB 타깃(20~30대 여성)의 실제 사용 환경은 모바일 앱. VR 디바이스 보급률과 사용 맥락이 맞지 않음. 개발 비용 대비 전환 기여도 미미.</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-dn">기각</span>
+        <span class="card-t" style="color:#0A0A0A;">Y2K 레트로 비주얼</span>
+      </div>
+      <div class="body-sm" style="color:#525252;">Y2K 트렌드는 2024년 피크 이후 하향세. 2026년은 Y3K(미래지향)로 전환 중. 레트로 비주얼은 브랜드 노후화 리스크.</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-dn">기각</span>
+        <span class="card-t" style="color:#0A0A0A;">다크모드 전용 상세페이지</span>
+      </div>
+      <div class="body-sm" style="color:#525252;">올리브영 앱은 라이트모드 기본. 다크모드 전용 설계는 플랫폼 정합성 이슈. 브랜드 컬러 재현성도 라이트모드가 우수.</div>
+    </div>
+    <div style="padding:20px;background:#F0F0F0;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="pill pill-dn">기각</span>
+        <span class="card-t" style="color:#0A0A0A;">구독형 퍼스널 컬러 진단</span>
+      </div>
+      <div class="body-sm" style="color:#525252;">퍼스널 컬러 진단은 올리브영 앱 자체 기능과 충돌. 상세페이지 범위를 넘어서는 서비스 영역. RFP 과제 범위 외.</div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>투명한 의사결정 — 왜 빼었는지도 공유</span>
+    <span>28 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 29 · 전체 출처
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#fff;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="ey" style="color:#94A3B8;">APPENDIX</span>
+      <span class="mono" style="color:#94A3B8;">29 / 40</span>
+    </div>
+    <h2 class="h1-sm" style="color:#0A0A0A;">전체 출처<br><span class="h1-thin">Sources — 16건 (2025.10 이후 발행)</span></h2>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">01</span>
+        <div class="body-sm" style="color:#0A0A0A;">Lavish Skin &amp; Beauty — K-Beauty Trends 2026, 2026-03-25</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">02</span>
+        <div class="body-sm" style="color:#0A0A0A;">코스모닝 — K-뷰티 트렌드 리포트, 2025-12-25</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">03</span>
+        <div class="body-sm" style="color:#0A0A0A;">Inference Beauty — AI in Beauty PDP, 2026-03-17</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">04</span>
+        <div class="body-sm" style="color:#0A0A0A;">Pacvue — Q1 2026 Beauty Benchmark, 2026-04-21</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">05</span>
+        <div class="body-sm" style="color:#0A0A0A;">Ecorn Agency — Beauty PDP Optimization, 2026-04-18</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">06</span>
+        <div class="body-sm" style="color:#0A0A0A;">nss G-Club — Y3K Makeup Korea, 2026-03-12</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">07</span>
+        <div class="body-sm" style="color:#0A0A0A;">Korea JoongAng Daily — OY US Store, 2025-12-11</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">08</span>
+        <div class="body-sm" style="color:#0A0A0A;">Allure — Sephora K-Beauty Zone, 2025-10-28</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">09</span>
+        <div class="body-sm" style="color:#0A0A0A;">올리브영 입찰 설명회 녹음, 2026-06-12</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">10</span>
+        <div class="body-sm" style="color:#0A0A0A;">올리브영 RFP 문서, 2026-06</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">11</span>
+        <div class="body-sm" style="color:#0A0A0A;">DIA Studio — Kinetic Identity, Mitch Paone</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">12</span>
+        <div class="body-sm" style="color:#0A0A0A;">COLLINS — Dropbox Rebrand Case Study</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">13</span>
+        <div class="body-sm" style="color:#0A0A0A;">Koto — Radical Coherence Framework</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">14</span>
+        <div class="body-sm" style="color:#0A0A0A;">Simon Sinek — Start With Why (Golden Circle)</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">15</span>
+        <div class="body-sm" style="color:#0A0A0A;">올리브영 2025 트렌드 발표 — 컬러 립세럼 +727%</div>
+      </div>
+      <div style="padding:8px 12px;background:#F0F0F0;display:flex;gap:8px;align-items:baseline;">
+        <span class="ey" style="color:#0000CF;min-width:20px;">16</span>
+        <div class="body-sm" style="color:#0A0A0A;">CJ OliveYoung IR — 글로벌 PB 수출 현황, 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:#94A3B8;display:flex;justify-content:space-between;">
+    <span>최근 8개월 이내 발행 자료 기반 — 검증 완료</span>
+    <span>29 / 40</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 30 · CLOSING
+══════════════════════════════════════════════ -->
+<div class="slide" style="padding:48px 72px;background:#0000CF;">
+
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="color:rgba(255,255,255,.4);">HIVELAB MAX LAB</span>
+      <span class="mono" style="color:rgba(255,255,255,.3);">30 / 40</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;">
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:24px;">
+      <h2 class="h1" style="color:#fff;">제안 요약<br><span class="h1-thin">3가지 핵심 메시지</span></h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:20px;min-width:24px;color:#fff;">①</span>
+          <div class="body" style="color:rgba(255,255,255,.85);">상세페이지는 <strong>"피부 융합" 비주얼 언어</strong>로 전환 — 블룸 스킨 트렌드 연동</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:20px;min-width:24px;color:#fff;">②</span>
+          <div class="body" style="color:rgba(255,255,255,.85);"><strong>상단 1/3 후킹 퍼스트</strong> 레이아웃 + AI 생성 비주얼 역량으로 차별화</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:20px;min-width:24px;color:#fff;">③</span>
+          <div class="body" style="color:rgba(255,255,255,.85);">국문+영문 <strong>이중 구조 글로벌 자산</strong>으로 설계 — 세포라·일본·유럽 대응</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:20px;background:rgba(255,255,255,.08);flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:rgba(255,255,255,.5);">제안사</div>
+        <div style="font-size:20px;font-weight:800;color:#fff;">HIVELAB</div>
+        <div class="body" style="color:rgba(255,255,255,.7);">MAX Lab · Kinetic Identity<br>9-Stage Playbook · AI Generation</div>
+      </div>
+      <div style="padding:20px;background:rgba(255,255,255,.08);display:flex;flex-direction:column;gap:8px;">
+        <div class="ey" style="color:rgba(255,255,255,.5);">연락처</div>
+        <div class="body" style="color:rgba(255,255,255,.7);">HJ Lee · MAX Lab 실장<br>HIVELAB</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mono" style="color:rgba(255,255,255,.35);display:flex;justify-content:space-between;">
+    <span>HIVELAB MAX Lab — Highly Confidential · 2026.06.19 제출</span>
+    <span>30 / 40</span>
+  </div>
+</div>
+
+</body>
+</html>
