@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DX 전략 컨설팅 제안서 — HIVELAB SAMPLE</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray-900: #111111;
+    --gray-700: #333333;
+    --gray-500: #666666;
+    --gray-300: #999999;
+    --gray-100: #E5E5E5;
+    --gray-50: #F5F5F5;
+    --accent: #3E5A6C;
+    --accent-light: #6A8FA3;
+    --hl-bg: rgba(62,90,108,0.08);
+    --font-en: 'Inter', sans-serif;
+    --font-kr: 'Pretendard', sans-serif;
+    --slide-width: 1440px;
+    --slide-height: 810px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1A1A1A;
+    font-family: var(--font-kr);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .deck {
+    position: relative;
+    width: var(--slide-width);
+    height: var(--slide-height);
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 64px 72px;
+    display: none;
+    flex-direction: column;
+    background: var(--black);
+    color: var(--white);
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* ===== Light Mode ===== */
+  .slide.light {
+    background: #FFFFFF;
+    color: #111111;
+    --gray-900: #F0F0F0;
+    --gray-700: #E0E0E0;
+    --gray-500: #909090;
+    --gray-300: #555555;
+    --gray-100: #CCCCCC;
+    --gray-50: #F8F8F8;
+    --hl-bg: rgba(62,90,108,0.10);
+  }
+
+  /* ===== Dark Accent (Dividers) ===== */
+  .slide.dark-accent {
+    background: #2A2A2A;
+    color: #FFFFFF;
+  }
+
+  /* ===== Typography ===== */
+  .hero-stat {
+    font-family: var(--font-en);
+    font-weight: 800;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .hero-stat-lg {
+    font-family: var(--font-en);
+    font-weight: 800;
+    font-size: 120px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .h1 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  .h2 {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .body-text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-300);
+  }
+  .caption {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--gray-500);
+  }
+  .label {
+    font-family: var(--font-en);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+  .label-accent {
+    font-family: var(--font-en);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ===== Components ===== */
+  .card {
+    background: var(--gray-900);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  .card-row {
+    display: flex;
+    gap: 16px;
+  }
+  .card-row > .card { flex: 1; }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-family: var(--font-en);
+    font-weight: 600;
+    font-size: 13px;
+    background: rgba(62,90,108,0.12);
+  }
+
+  .neon-stripe {
+    height: 3px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .split { display: flex; gap: 48px; flex: 1; }
+  .split-left { flex: 0 0 42%; display: flex; flex-direction: column; justify-content: center; }
+  .split-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+  .grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+  }
+
+  /* Bar chart */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 200px;
+    padding-top: 16px;
+  }
+  .bar-chart .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .bar-chart .bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+  }
+  .bar-chart .bar-label {
+    font-family: var(--font-en);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gray-500);
+  }
+  .bar-chart .bar-value {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-300);
+  }
+
+  /* Donut chart */
+  .donut-wrap {
+    position: relative;
+    width: 160px;
+    height: 160px;
+  }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  /* Divider background number */
+  .divider-bg-num {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 280px;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #FFFFFF;
+    opacity: 0.06;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Page number */
+  .page-num {
+    position: absolute;
+    bottom: 32px;
+    right: 72px;
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray-500);
+    letter-spacing: 0.05em;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    z-index: 9999;
+  }
+
+  /* Animations */
+  .slide { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ===== Cover Specific ===== */
+  .cover-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 80px 1fr 60px;
+  }
+  .cover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .cover-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 80px 48px;
+  }
+  .cover-subtitle {
+    font-family: var(--font-en);
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+  }
+  .cover-title {
+    font-family: var(--font-en);
+    font-size: 160px;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+  }
+  .cover-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== TOC Specific ===== */
+  .toc-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 80px 1fr 60px;
+  }
+  .toc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .toc-body {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    padding: 0 80px;
+    gap: 48px;
+    align-items: center;
+  }
+  .toc-left-title {
+    font-family: var(--font-en);
+    font-size: 110px;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+  }
+  .toc-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 48px;
+    align-content: center;
+  }
+  .toc-section-group h4 {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 10px;
+  }
+  .toc-section-group .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+  }
+  .toc-section-group .toc-item .toc-num {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    min-width: 20px;
+  }
+  .toc-section-group .toc-item .toc-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+  }
+  .toc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    font-family: var(--font-en);
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  /* Topbar for content slides */
+  .slide-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .slide.light .slide-topbar .topbar-left { color: var(--accent); opacity: 0.6; }
+  .slide.light .slide-topbar .topbar-center { color: var(--gray-500); }
+  .slide.light .slide-topbar .topbar-right { color: var(--gray-500); }
+  .slide.dark-accent .slide-topbar .topbar-left { color: rgba(255,255,255,0.5); }
+  .slide.dark-accent .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
+  .slide.dark-accent .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
+
+  /* Process steps */
+  .process-steps {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    align-items: stretch;
+  }
+  .process-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+    position: relative;
+    border-bottom: 2px solid #CCC;
+  }
+  .process-step .step-num {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .process-step .step-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .process-step .step-desc {
+    font-size: 13px;
+    color: var(--gray-300);
+    line-height: 1.6;
+  }
+  .process-step .step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -6px;
+    left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="deck">
+
+  <!-- ======================== SLIDE 01: COVER ======================== -->
+  <div class="slide active" style="padding:0; background: linear-gradient(160deg, #1A1A1A 0%, #4A4A4A 100%);">
+    <div class="cover-grid">
+      <div class="cover-header">
+        <span>고객사 X HIVELAB</span>
+        <span>PROPOSAL</span>
+        <span>2026</span>
+      </div>
+      <div class="cover-body">
+        <div class="cover-subtitle">Digital Transformation</div>
+        <div class="cover-title">DX STRATEGY</div>
+      </div>
+      <div class="cover-footer">
+        ⓒ 2026 HIVELAB Inc. All rights reserved. 본 문서는 제안 목적으로만 사용되며, 무단 복제 및 배포를 금합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SLIDE 02: TOC ======================== -->
+  <div class="slide" style="padding:0; background: #111111;">
+    <div class="toc-grid">
+      <div class="toc-header">
+        <span>HIVELAB — DX Strategy</span>
+        <span>Table of Contents</span>
+      </div>
+      <div class="toc-body">
+        <div class="toc-left-title">TABLE<br>OF<br>CON&shy;TENTS</div>
+        <div class="toc-sections">
+          <div class="toc-section-group">
+            <h4>01 — Background</h4>
+            <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">프로젝트 배경</span></div>
+            <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">추진 목적</span></div>
+          </div>
+          <div class="toc-section-group">
+            <h4>02 — Market Insight</h4>
+            <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">시장 분석</span></div>
+            <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">사용자 인사이트</span></div>
+          </div>
+          <div class="toc-section-group">
+            <h4>03 — Strategy</h4>
+            <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">DX 전략 프레임워크</span></div>
+            <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">실행 로드맵</span></div>
+          </div>
+          <div class="toc-section-group">
+            <h4>04 — Capabilities</h4>
+            <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">HIVELAB 역량</span></div>
+            <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">유사 프로젝트 경험</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="toc-footer">
+        <span>DX Strategy Proposal</span>
+        <span>2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SLIDE 03: DIVIDER §01 ======================== -->
+  <div class="slide dark-accent" style="position:relative;">
+    <div class="divider-bg-num">01</div>
+    <div class="slide-topbar">
+      <span class="topbar-left">HIVELAB</span>
+      <span class="topbar-center">DX Strategy Proposal</span>
+      <span class="topbar-right">Section 01</span>
+    </div>
+    <div class="split" style="flex:1;">
+      <div style="flex:0 0 65%; display:flex; flex-direction:column; justify-content:center; gap:16px;">
+        <div class="label" style="color: rgba(255,255,255,0.4);">Section 01</div>
+        <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
+          Background<br>& Purpose
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; padding-left:32px; border-left:1px solid rgba(255,255,255,0.1);">
+        <div style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.7;">
+          01 &nbsp;프로젝트 배경<br>
+          02 &nbsp;추진 목적
+        </div>
+      </div>
+    </div>
+    <span class="page-num">03</span>
+  </div>
+
+  <!-- ======================== SLIDE 04: Content — 프로젝트 배경 ======================== -->
+  <div class="slide light">
+    <div class="slide-topbar">
+      <span class="topbar-left">HIVELAB</span>
+      <span class="topbar-center">DX Strategy Proposal</span>
+      <span class="topbar-right">Background</span>
+    </div>
+    <div style="margin-bottom:8px;">
+      <span class="label-accent">Background</span>
+    </div>
+    <h1 class="h1" style="margin-bottom:32px;">디지털 전환, 왜 지금인가</h1>
+
+    <div class="split" style="flex:1;">
+      <div class="split-left" style="gap:20px;">
+        <p class="body-text">
+          글로벌 기업의 <strong style="color:#111;">87%</strong>가 DX를 최우선 경영과제로 선정하고 있으며,
+          국내 시장에서도 디지털 전환 투자가 전년 대비 <strong style="color:#111;">34%</strong> 증가하는 추세입니다.
+        </p>
+        <p class="body-text">
+          고객사의 기존 레거시 시스템을 현대화하고, 데이터 기반 의사결정 체계를 구축하여
+          시장 경쟁력을 확보하는 것이 본 프로젝트의 핵심입니다.
+        </p>
+      </div>
+      <div class="split-right">
+        <div class="card-row">
+          <div class="card" style="align-items:center; gap:12px;">
+            <div class="hero-stat" style="color:#111;">87<span style="font-size:36px;">%</span></div>
+            <div class="caption" style="text-align:center;">글로벌 기업<br>DX 최우선 과제</div>
+          </div>
+          <div class="card" style="align-items:center; gap:12px;">
+            <div class="hero-stat" style="color:var(--accent);">34<span style="font-size:36px;">%</span></div>
+            <div class="caption" style="text-align:center;">국내 DX 투자<br>YoY 성장률</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption" style="margin-top:12px;">출처: IDC Worldwide Digital Transformation Spending Guide, 2025</div>
+    <span class="page-num">04</span>
+  </div>
+
+  <!-- ======================== SLIDE 05: Content — 시장 분석 ======================== -->
+  <div class="slide light">
+    <div class="slide-topbar">
+      <span class="topbar-left">HIVELAB</span>
+      <span class="topbar-center">DX Strategy Proposal</span>
+      <span class="topbar-right">Market Insight</span>
+    </div>
+    <div style="margin-bottom:8px;">
+      <span class="label-accent">Market Insight</span>
+    </div>
+    <h1 class="h1" style="margin-bottom:32px;">DX 시장 투자 추이</h1>
+
+    <div class="split" style="flex:1;">
+      <div class="split-left" style="gap:20px;">
+        <p class="body-text">
+          국내 DX 시장 규모는 2026년 기준 <strong style="color:#111;">42조원</strong>에 달하며,
+          연평균 <strong style="color:#111;">18.5%</strong>의 성장률을 보이고 있습니다.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
+          <div class="card" style="flex-direction:row; align-items:center; gap:16px; padding:16px 24px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:#111;">42<span style="font-size:16px; font-weight:600;">조</span></div>
+            <div class="caption">2026 시장 규모</div>
+          </div>
+          <div class="card" style="flex-direction:row; align-items:center; gap:16px; padding:16px 24px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--accent);">18.5<span style="font-size:16px; font-weight:600;">%</span></div>
+            <div class="caption">연평균 성장률 (CAGR)</div>
+          </div>
+        </div>
+      </div>
+      <div class="split-right">
+        <div class="card" style="flex:1; gap:16px;">
+          <div class="h2" style="color:#111;">연도별 DX 투자 규모</div>
+          <div class="bar-chart" style="flex:1;">
+            <div class="bar-col">
+              <div class="bar-value">18</div>
+              <div class="bar" style="height:28%; background:linear-gradient(180deg,#AAAAAA,#D0D0D0);"></div>
+              <div class="bar-label">2021</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">22</div>
+              <div class="bar" style="height:35%; background:linear-gradient(180deg,#999999,#C8C8C8);"></div>
+              <div class="bar-label">2022</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">28</div>
+              <div class="bar" style="height:45%; background:linear-gradient(180deg,#888888,#B8B8B8);"></div>
+              <div class="bar-label">2023</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">33</div>
+              <div class="bar" style="height:55%; background:linear-gradient(180deg,#777777,#A8A8A8);"></div>
+              <div class="bar-label">2024</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">38</div>
+              <div class="bar" style="height:68%; background:linear-gradient(180deg,#666666,#999999);"></div>
+              <div class="bar-label">2025</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value" style="font-weight:800; color:var(--accent);">42</div>
+              <div class="bar" style="height:82%; background:linear-gradient(180deg,#555555,#888888);"></div>
+              <div class="bar-label" style="font-weight:600;">2026</div>
+            </div>
+          </div>
+          <div class="caption">단위: 조원 / 출처: 한국정보화진흥원</div>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">05</span>
+  </div>
+
+  <!-- ======================== SLIDE 06: Content — DX 전략 프레임워크 ======================== -->
+  <div class="slide light">
+    <div class="slide-topbar">
+      <span class="topbar-left">HIVELAB</span>
+      <span class="topbar-center">DX Strategy Proposal</span>
+      <span class="topbar-right">Strategy</span>
+    </div>
+    <div style="margin-bottom:8px;">
+      <span class="label-accent">Strategy Framework</span>
+    </div>
+    <h1 class="h1" style="margin-bottom:32px;">3단계 DX 전략 프레임워크</h1>
+
+    <div class="grid-2x2" style="grid-template-columns:1fr 1fr 1fr; gap:16px;">
+      <div class="card" style="gap:16px; position:relative;">
+        <div class="process-step" style="border:none; padding:0;">
+          <div class="step-dot" style="position:static; width:10px; height:10px; border-radius:50%; background:#CCCCCC; margin-bottom:8px;"></div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 01</div>
+        <div class="h2" style="color:#111;">Discovery</div>
+        <div class="body-text" style="font-size:14px;">
+          현황 진단 및 As-Is 분석<br>
+          사용자 리서치 & 인터뷰<br>
+          경쟁사 벤치마킹<br>
+          Pain Point 도출
+        </div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <span class="badge">4주</span>
+        </div>
+      </div>
+      <div class="card" style="gap:16px;">
+        <div class="process-step" style="border:none; padding:0;">
+          <div class="step-dot" style="position:static; width:10px; height:10px; border-radius:50%; background:#888888; margin-bottom:8px;"></div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 02</div>
+        <div class="h2" style="color:#111;">Design</div>
+        <div class="body-text" style="font-size:14px;">
+          To-Be 아키텍처 설계<br>
+          서비스 블루프린트<br>
+          UI/UX 프로토타이핑<br>
+          기술 스택 선정
+        </div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <span class="badge">6주</span>
+        </div>
+      </div>
+      <div class="card" style="gap:16px;">
+        <div class="process-step" style="border:none; padding:0;">
+          <div class="step-dot" style="position:static; width:10px; height:10px; border-radius:50%; background:#444444; margin-bottom:8px;"></div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 03</div>
+        <div class="h2" style="color:#111;">Delivery</div>
+        <div class="body-text" style="font-size:14px;">
+          MVP 개발 & QA<br>
+          데이터 파이프라인 구축<br>
+          운영 인수인계<br>
+          성과 모니터링
+        </div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <span class="badge">10주</span>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">06</span>
+  </div>
+
+  <!-- ======================== SLIDE 07: Content — HIVELAB 역량 ======================== -->
+  <div class="slide light">
+    <div class="slide-topbar">
+      <span class="topbar-left">HIVELAB</span>
+      <span class="topbar-center">DX Strategy Proposal</span>
+      <span class="topbar-right">Capabilities</span>
+    </div>
+    <div style="margin-bottom:8px;">
+      <span class="label-accent">Why HIVELAB</span>
+    </div>
+    <h1 class="h1" style="margin-bottom:32px;">HIVELAB이 최적의 파트너인 이유</h1>
+
+    <div class="grid-2x2" style="flex:1;">
+      <div class="card" style="gap:12px;">
+        <div style="font-family:var(--font-en); font-weight:800; font-size:48px; color:#111;">150<span style="font-size:20px; font-weight:600;">+</span></div>
+        <div class="h2" style="color:#111;">프로젝트 수행 경험</div>
+        <div class="body-text" style="font-size:14px;">엔터프라이즈급 DX 프로젝트<br>누적 수행 건수</div>
+      </div>
+      <div class="card" style="gap:12px;">
+        <div style="font-family:var(--font-en); font-weight:800; font-size:48px; color:var(--accent);">96<span style="font-size:20px; font-weight:600;">%</span></div>
+        <div class="h2" style="color:#111;">고객 만족도</div>
+        <div class="body-text" style="font-size:14px;">프로젝트 완료 후<br>고객 재계약률 기준</div>
+      </div>
+      <div class="card" style="gap:12px;">
+        <div style="font-family:var(--font-en); font-weight:800; font-size:48px; color:#111;">80<span style="font-size:20px; font-weight:600;">명</span></div>
+        <div class="h2" style="color:#111;">전문 인력 풀</div>
+        <div class="body-text" style="font-size:14px;">UX 리서치, 디자인, 개발<br>풀스택 전문 조직</div>
+      </div>
+      <div class="card" style="gap:12px;">
+        <div style="font-family:var(--font-en); font-weight:800; font-size:48px; color:var(--accent);">12<span style="font-size:20px; font-weight:600;">년</span></div>
+        <div class="h2" style="color:#111;">업력</div>
+        <div class="body-text" style="font-size:14px;">디지털 에이전시 분야<br>축적된 노하우</div>
+      </div>
+    </div>
+    <span class="page-num">07</span>
+  </div>
+
+  <!-- ======================== SLIDE 08: CLOSING ======================== -->
+  <div class="slide light" style="justify-content:center; align-items:center; text-align:center;">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+      <div class="neon-stripe" style="width:48px;"></div>
+      <div class="label-accent" style="font-size:13px;">HIVELAB</div>
+      <div style="font-family:var(--font-en); font-size:56px; font-weight:700; line-height:1.1; letter-spacing:-0.03em; color:#111;">
+        Let's Build<br>the Future Together.
+      </div>
+      <div class="body-text" style="margin-top:8px; text-align:center; color:var(--gray-300);">
+        감사합니다. 본 제안에 대한 문의사항은 아래로 연락 부탁드립니다.
+      </div>
+      <div style="margin-top:16px; display:flex; gap:32px;">
+        <div class="caption" style="text-align:center;">
+          <div style="font-weight:600; color:#111; margin-bottom:4px;">Contact</div>
+          proposal@hivelab.co.kr
+        </div>
+        <div class="caption" style="text-align:center;">
+          <div style="font-weight:600; color:#111; margin-bottom:4px;">Phone</div>
+          02-1234-5678
+        </div>
+        <div class="caption" style="text-align:center;">
+          <div style="font-weight:600; color:#111; margin-bottom:4px;">Website</div>
+          www.hivelab.co.kr
+        </div>
+      </div>
+    </div>
+    <span class="page-num">08</span>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = ((n % total) + total) % total;
+    slides[current].classList.add('active');
+    document.getElementById('progressBar').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); showSlide(total - 1); }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) showSlide(current + 1);
+    else showSlide(current - 1);
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>
