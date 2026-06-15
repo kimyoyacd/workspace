@@ -387,15 +387,7 @@
     background: linear-gradient(160deg, #1A1A1A 0%, #2A2A2A 40%, #3D3D3D 70%, #4A4A4A 100%);
   }
 
-  /* Index — monochrome */
-  .slide.index-slide {
-    background: #FFFFFF;
-    color: #111111;
-  }
-
-  .slide.index-slide .slide-topbar .topbar-left { color: #555555; }
-  .slide.index-slide .slide-topbar .topbar-center { color: #999999; }
-  .slide.index-slide .slide-topbar .topbar-right { color: #999999; }
+  /* Index — now handled by inline styles on dark TOC slide */
 
   /* ========== LIGHT MODE ========== */
   .slide.light {
@@ -478,94 +470,166 @@
 
   <!-- ==================== SLIDE 01: COVER ==================== -->
   <div class="slide active cover-slide" data-slide="1" style="padding:0;">
-    <div class="slide-topbar" style="padding:28px 48px;">
-      <span class="topbar-left">[고객사] X HIVELAB</span>
-      <span class="topbar-center">PROPOSAL</span>
-      <span class="topbar-right">2026</span>
-    </div>
-
-    <div style="flex:1; display:flex; flex-direction:column; padding:0 48px;">
-      <!-- Title area — starts right below topbar, fills most of the slide -->
-      <div style="flex:1; display:flex; align-items:flex-start; padding-top:64px;">
-        <div style="font-family:var(--font-en); font-weight:800; font-size:118px; line-height:0.92; letter-spacing:-0.04em; color:#FFFFFF; text-transform:uppercase;">
-          색조 PB브랜드<br>상세페이지 제작<br>협력사 제안
-        </div>
+    <div style="width:100%; height:100%; display:grid; grid-template-rows:80px 1fr 60px;">
+      <!-- Header -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px 80px 0; font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.05em; align-items:center;">
+        <span style="color:rgba(255,255,255,0.55);"><strong style="font-weight:700;">[고객사]</strong> X HIVELAB</span>
+        <span style="text-align:center; text-transform:uppercase; color:rgba(255,255,255,0.4);">PROPOSAL</span>
+        <span style="text-align:right; color:rgba(255,255,255,0.4);">2026</span>
       </div>
 
-      <!-- Bottom row — description left, metadata right -->
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; padding-bottom:40px;">
-        <div style="max-width:500px;">
-          <div style="font-size:12px; line-height:1.7; color:rgba(255,255,255,0.45);">
-            본 문서는 26년 색조 PB브랜드 상세페이지 제작을 위해 HIVELAB이 수행한 시장 분석·전략 도출 과정과 운영 체계 설계 결과물을 담고 있습니다.<br>이 문서를 당사의 허락없이 활용하거나, 배포할 수 없습니다.
-          </div>
-        </div>
-        <div style="display:flex; gap:48px;">
-          <div>
-            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">SCOPE</div>
-            <div style="font-size:13px; color:rgba(255,255,255,0.7);">상세페이지 제작 전담</div>
-          </div>
-          <div>
-            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">DATE</div>
-            <div style="font-size:13px; color:rgba(255,255,255,0.7);">2026. 06</div>
-          </div>
-          <div>
-            <div style="font-family:var(--font-en); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px;">CLIENT</div>
-            <div style="font-size:13px; color:rgba(255,255,255,0.7);">[고객사명]</div>
-          </div>
-        </div>
+      <!-- Body -->
+      <div style="padding:0 80px; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:64px;">
+        <p style="font-family:var(--font-en); font-size:42px; font-weight:400; letter-spacing:-0.025em; line-height:1.15; color:rgba(255,255,255,0.75); margin-bottom:20px;">
+          Beauty PB Brand ·<br>Detail Page Partnership
+        </p>
+        <h1 style="font-family:var(--font-en); font-weight:700; font-size:160px; letter-spacing:-0.04em; line-height:0.9; color:#FFFFFF;">
+          PB BRAND<br>PROPOSAL
+        </h1>
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:0 80px 28px; display:flex; flex-direction:column; align-items:center; gap:6px;">
+        <span style="font-family:var(--font-en); font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.05em;">COPYRIGHT &copy; ALL RIGHTS RESERVED &middot; HIVELAB</span>
+        <span style="font-size:9px; color:rgba(255,255,255,0.25); line-height:1.5; text-align:center; max-width:680px; letter-spacing:0.01em;">본 문서는 HIVELAB의 자산입니다. 외부 공유·복제·인용·2차 가공은 사전 서면 동의가 필요하며, 무단 사용 시 관련 법령에 따른 책임이 발생할 수 있습니다.</span>
       </div>
     </div>
   </div>
 
-  <!-- ==================== SLIDE 02: INDEX ==================== -->
-  <div class="slide index-slide" data-slide="2">
-    <div class="slide-topbar">
-      <span class="topbar-left">[고객사] X HIVELAB</span>
-      <span class="topbar-center">PROPOSAL</span>
-      <span class="topbar-right">2026</span>
+  <!-- ==================== SLIDE 02: TABLE OF CONTENTS ==================== -->
+  <div class="slide" data-slide="2" style="padding:0; background:#111111; color:#FFFFFF;">
+    <div style="width:100%; height:100%; display:grid; grid-template-rows:80px 1fr 60px;">
+    <!-- Header -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px 80px 0; font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.05em; align-items:center;">
+      <span style="color:rgba(255,255,255,0.45);"><strong style="font-weight:700;">[고객사]</strong> X HIVELAB</span>
+      <span style="text-align:center; text-transform:uppercase; color:rgba(255,255,255,0.35);">PROPOSAL</span>
+      <span style="text-align:right; color:rgba(255,255,255,0.35);">2026</span>
     </div>
 
-    <div style="flex:1; display:flex; align-items:center; padding-top:32px;">
-      <!-- Left: Large Index title -->
-      <div style="flex:0 0 420px;">
-        <div style="font-family:var(--font-en); font-weight:300; font-size:120px; line-height:0.95; letter-spacing:-0.04em; color:#111111;">
-          Index
-        </div>
-      </div>
+    <!-- Body -->
+    <div style="padding:48px 80px; display:grid; grid-template-columns:3fr 9fr; column-gap:64px;">
+      <!-- Left: Large Title -->
+      <h2 style="font-family:var(--font-en); font-weight:700; font-size:110px; letter-spacing:-0.03em; line-height:0.95; color:#FFFFFF; align-self:center;">
+        TABLE OF<br>CONTENTS
+      </h2>
 
-      <!-- Right: Numbered list -->
-      <div style="flex:1; display:flex; flex-direction:column; gap:28px; padding-left:40px;">
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">01</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Background & Purpose</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">제안 배경 & 목적</span>
+      <!-- Right: 2-column TOC -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:48px; row-gap:40px; align-content:center;">
+        <!-- Section 01 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">01</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Background & Purpose</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">01</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Opening &middot; 왜 이 제안인가</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">02</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Purpose &middot; 본 제안의 목적</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">03</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Goals &middot; 파트너십 KPI 목표</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">04</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Discovery &middot; 시작 전 질문</span>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">02</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Market & User Insight</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">시장 현황 & 기회</span>
+
+        <!-- Section 02 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">02</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Market & User Insight</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">05</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Market &middot; 시장 규모 & 성장률</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">06</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Conversion &middot; 채널별 전환율</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">07</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Behavior &middot; 소비자 구매 결정</span>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">03</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Differentiation</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">시장 내 차별화 포인트</span>
+
+        <!-- Section 03-04 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">03</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Differentiation</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">08</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Comparison &middot; 경쟁 모델 비교</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">09</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Key 4 &middot; HIVELAB 4대 차별점</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15); margin-top:24px;">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">04</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Capabilities</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">10</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">KPI &middot; 제작 실적 & 성과</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">11</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Portfolio &middot; 주요 제작 사례</span>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">04</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Capabilities</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">역량 & 포트폴리오</span>
-        </div>
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">05</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Process</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">제작 프로세스 & 방법론</span>
-        </div>
-        <div style="display:flex; align-items:baseline; gap:20px;">
-          <span style="font-family:var(--font-en); font-weight:300; font-size:20px; color:#BBBBBB;">06</span>
-          <span style="font-family:var(--font-en); font-weight:600; font-size:26px; color:#222222;">Operation & Pricing</span>
-          <span style="font-size:14px; color:#999999; margin-left:8px;">운영 체계 & 견적</span>
+
+        <!-- Section 05-06 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">05</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Process</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">12</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Workflow &middot; 5단계 프로세스</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">13</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Positioning &middot; 경쟁 우위 맵</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15); margin-top:24px;">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">06</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Operation & Pricing</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">14</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Pricing &middot; 패키지별 견적</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:0 80px 24px; font-family:var(--font-en); font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; display:flex; align-items:flex-end; justify-content:space-between;">
+      <span>[고객사] X HIVELAB &middot; PROPOSAL</span>
+      <span>2026</span>
+    </div>
     </div>
   </div>
 
