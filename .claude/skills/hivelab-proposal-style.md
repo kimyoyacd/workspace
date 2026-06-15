@@ -48,7 +48,7 @@ HIVELAB의 제안서는 모노톤(Monotone) 기반의 전문적이고 절제된 
 
 ### Data Visualization (Grayscale Gradient)
 - Primary: `#222222` (light) / `#FFFFFF` (dark)
-- Secondary: `#3E5A6C` accent (light) / `#E0E0E0` (dark)
+- Secondary: `#4D45A0` accent (light) / `#E0E0E0` (dark)
 - Tertiary–Quinary: `#555555` → `#777777` (light) / `#BBBBBB` → `#999999` (dark)
 
 ## 3. Typography Rules
