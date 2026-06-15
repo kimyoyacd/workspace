@@ -43,8 +43,8 @@ HIVELAB의 제안서는 모노톤(Monotone) 기반의 전문적이고 절제된 
 - **White** (`#FFFFFF`): Light slide 기본 배경
 
 ### Point Color
-- **Accent** (`#3E5A6C`): 유일한 포인트 컬러 — 섹션 라벨, 강조, sparkline, 버블 등
-- **Accent Light** (`#6A8FA3`): accent 밝은 변형 (최소 사용)
+- **Accent** (`#0010EC`): 유일한 포인트 컬러 — 섹션 라벨, 강조, sparkline, 버블 등
+- **Accent Light** (`#7F87FF`): accent 밝은 변형 (최소 사용)
 
 ### Data Visualization (Grayscale Gradient)
 - Primary: `#222222` (light) / `#FFFFFF` (dark)
