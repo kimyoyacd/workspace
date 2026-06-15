@@ -1,4 +1,4 @@
 node_modules/
-node_modules/
 slides/
 package*.json
+ref_*.html
