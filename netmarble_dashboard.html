@@ -356,64 +356,171 @@ section.light .section-desc{color:var(--text-muted-light);}
 </section>
 
 <!-- ========================================== -->
-<!-- SECTION 4: BANNER SYSTEM -->
+<!-- SECTION 1: WHY THIS PLATFORM -->
 <!-- ========================================== -->
 <section id="banner-system" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">01</div>
-    <div class="section-title">주력 제안: HIVELAB AI 배너 시스템</div>
+    <div class="section-title">왜 지금, 이 플랫폼이 필요한가</div>
+  </div>
+  <p class="section-desc">Meta&middot;Google&middot;TikTok이 자체 AI 도구를 주는데, 왜 HIVELAB 플랫폼이 따로 필요한가? — 이 질문에 대한 답</p>
+
+  <!-- 2025 시장 현실 -->
+  <div class="section-header" style="margin-top:12px;">
+    <div class="section-num" style="background:#EF4444;">!</div>
+    <div class="section-title">2025 시장 현실 — 소재 수명이 절반으로 줄었다</div>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:var(--space-md);">
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">TikTok 소재 수명</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">3~7일</div>
+      <div class="card-text">리타겟팅 시 48시간</div>
+      <div class="card-text" style="font-size:10px;">— TikAdTools 2026</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">Meta Reels 소재 수명</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">7~14일</div>
+      <div class="card-text">고예산 시 5~10일</div>
+      <div class="card-text" style="font-size:10px;">— AdLibrary 2025</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">2023년 대비 수명 단축</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">6주→2주</div>
+      <div class="card-text">Meta Andromeda 알고리즘</div>
+      <div class="card-text" style="font-size:10px;">— Advisible 2025</div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">4회 노출 후 전환율</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">-45%</div>
+      <div class="card-text">Meta 내부 연구 (26,000건)</div>
+      <div class="card-text" style="font-size:10px;">— Analytics at Meta 2023</div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:var(--space-lg);">
+    <div class="card">
+      <div class="card-label">주간 신규 소재 필요량 (고예산)</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:var(--accent);">8~15개</div>
+      <div class="card-text">월 $50K+ 지출 기준<br><span style="font-size:10px;">— TheOptimizer 2025</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">광고비 +33% vs 구매의향 +17%</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:#EF4444;">12% 갭</div>
+      <div class="card-text">"돈은 더 쓰는데 효과는 안 따라간다"<br><span style="font-size:10px;">— Shutterstock 2025.10</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">10~14일마다 교체 시</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:#10B981;">+25%</div>
+      <div class="card-text">참여율 개선<br><span style="font-size:10px;">— ZipDo / TipsOnBlogging 2025</span></div>
+    </div>
+  </div>
+
+  <!-- 플랫폼 AI 한계 -->
+  <div class="section-header">
+    <div class="section-num">VS</div>
+    <div class="section-title">플랫폼 AI 도구의 한계 — "자기 집 안에서만 작동한다"</div>
+  </div>
+  <p class="section-desc">Meta Advantage+, Google PMax, TikTok Symphony — 다 좋은 도구다. 하지만 근본적 한계가 있다.</p>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <table class="data-table">
+      <thead><tr><th>한계</th><th>무슨 뜻인가</th><th>넷마블에 미치는 영향</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Walled Garden</strong><br><span style="font-size:11px;">벽으로 둘러싸인 정원</span></td>
+          <td>Google은 Meta 데이터를 모르고, Meta는 TikTok을 모른다. 서로 데이터를 절대 공유하지 않는다.</td>
+          <td class="red">"Meta에서 잘 된 소재가 TikTok에선 왜 안 되는지" 플랫폼 AI는 답할 수 없다</td>
+        </tr>
+        <tr>
+          <td><strong>전환 뻥튀기</strong><br><span style="font-size:11px;">30~50% 과대 보고</span></td>
+          <td>같은 전환을 각 플랫폼이 자기 공이라고 중복 집계. 합산하면 실제보다 30~50% 많다.</td>
+          <td class="red">어디에 돈을 더 써야 하는지 판단 불가<br><span style="font-size:10px;">— Cometly 2025</span></td>
+        </tr>
+        <tr>
+          <td><strong>브랜드 맥락 부재</strong></td>
+          <td>Advantage+는 "클릭률 높은 이미지"는 찾지만, "넷마블 세븐나이츠 겨울 이벤트에 맞는 톤"은 모른다.</td>
+          <td class="red">IP 세계관에 안 맞는 소재가 자동 생성될 위험</td>
+        </tr>
+        <tr>
+          <td><strong>과거 학습 불가</strong></td>
+          <td>플랫폼 AI는 현재 캠페인 데이터만 사용. 3년간 축적된 HIVELAB 소재 데이터를 학습할 수 없다.</td>
+          <td class="red">매번 처음부터 학습 — "왜 작년에 잘 됐는지" 활용 불가</td>
+        </tr>
+        <tr>
+          <td><strong>Google PMax 논란</strong></td>
+          <td>증분 매출 10% 미만, 92%가 오디언스 시그널로 오히려 악화. "최악의 실행" — Digiday</td>
+          <td class="red">자동화에 맡기면 예산 낭비 위험<br><span style="font-size:10px;">— Optmyzr 24,702건 분석</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="quote">
-    이 시스템은 넷마블에 판매하는 도구가 아닙니다.<br>
-    <strong>HIVELAB이 내부에서 사용해서, 넷마블 납품물의 품질&middot;속도&middot;근거를 높이는 시스템입니다.</strong>
+    "디지털 광고비의 <strong>70%</strong>가 Walled Garden(폐쇄 생태계)을 통해 집행된다. 기업은 마케팅 인텔리전스에 대한 통제권을 포기한 채 도달 범위만 빌리고 있다."
+    <div class="quote-source">— AI Digital, "The Hidden Cost of Walled Garden Advertising" (2025)</div>
+  </div>
+
+  <!-- HIVELAB 플랫폼이 메우는 갭 -->
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num" style="background:var(--accent);">→</div>
+    <div class="section-title">HIVELAB AI 배너 리서치 플랫폼이 메우는 갭</div>
+  </div>
+  <p class="section-desc">플랫폼 AI가 "못 하는 것"을 HIVELAB 플랫폼이 한다. 이것이 존재 이유.</p>
+
+  <div class="grid-2" style="margin-bottom:var(--space-md);">
+    <div class="card" style="border-left:3px solid rgba(10,10,10,0.15);">
+      <div class="card-label" style="color:rgba(10,10,10,0.4);">플랫폼 AI (Advantage+ / PMax)</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 현재 캠페인 안에서만 최적화<br>
+        &bull; 자기 플랫폼 데이터만 사용<br>
+        &bull; "클릭률 높은 조합"은 찾지만 "왜"는 모름<br>
+        &bull; 브랜드 가이드&middot;IP 세계관 무시<br>
+        &bull; 플랫폼 간 비교 불가능<br>
+        &bull; 과거 소재 자산 활용 불가
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">HIVELAB AI 배너 리서치 플랫폼</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; <strong>6,700개 과거 소재</strong>에서 "무엇이 왜 잘 됐는지" 패턴 학습<br>
+        &bull; <strong>크로스 플랫폼</strong> 인사이트 — Meta&middot;Google&middot;TikTok&middot;네이버 통합 분석<br>
+        &bull; <strong>IP&middot;시즌&middot;이벤트별</strong> 최적 소재 추천 (Taste Layer)<br>
+        &bull; <strong>피로도 예측</strong> — 수명 소진 전에 교체 소재 준비<br>
+        &bull; <strong>근거 있는 제안</strong> — "이 디자인이 좋다"가 아니라 "이 패턴이 CTR 47% 높았다"<br>
+        &bull; <strong>원본 1개 → 40개 변형</strong> 자동 생성 (매체&middot;사이즈별)
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-blue" style="margin-bottom:var(--space-lg);">
+    <div style="font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:var(--space-sm);">핵심 요약</div>
+    <div style="font-size:16px;font-weight:600;color:#FFFFFF;line-height:1.7;">
+      Meta Advantage+는 "Meta 안에서 최적화"하고, Google PMax는 "Google 안에서 최적화"한다.<br>
+      하지만 넷마블이 필요한 건 <strong>"넷마블 IP에 맞는 소재를 모든 매체에서 최적화"</strong>하는 것이다.<br>
+      이걸 할 수 있는 건 넷마블 소재 6,700개를 직접 만든 HIVELAB뿐이다.
+    </div>
+  </div>
+
+  <!-- 넷마블 체감 변화 -->
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">넷마블이 체감하는 변화</div>
   </div>
 
   <div class="card" style="margin-bottom:20px;">
-    <div class="card-title" style="margin-bottom:var(--space-md);">HIVELAB이 이 시스템을 쓰면 넷마블에 이런 변화가 생긴다</div>
     <table class="data-table">
       <thead><tr><th>기존 (시스템 없이)</th><th>AI 시스템 적용 후</th><th>넷마블 체감</th></tr></thead>
       <tbody>
         <tr><td>과거 레퍼런스를 기억에 의존</td><td>6,700개 자산에서 AI가 3초 만에 검색</td><td class="highlight">"왜 잘 됐는지 근거가 생겼네"</td></tr>
         <tr><td>배너 10개 납품</td><td>원본 10개 + AI 변형 400개 납품</td><td class="highlight">"같은 예산으로 소재 커버리지가 달라졌다"</td></tr>
+        <tr><td>소재 죽으면 그때 새로 의뢰</td><td>피로도 예측 → 교체 소재 미리 준비</td><td class="highlight">"소재 빈 기간이 사라졌다"</td></tr>
+        <tr><td>매체별 성과를 따로 확인</td><td>크로스 플랫폼 통합 인사이트 제공</td><td class="highlight">"Meta에서 된 걸 TikTok에도 바로 테스트"</td></tr>
         <tr><td>완성 후 성과 리포트 별도</td><td>납품 시 CTR 예측 + 다음 달 방향 포함</td><td class="highlight">"다음 방향을 먼저 제안해주니 의사결정이 빠르다"</td></tr>
-        <tr><td>매체별 리사이징 수작업</td><td>AI가 매체&middot;사이즈별 자동 변환 납품</td><td class="highlight">네이버·구글·META 별도 지시 없이 처리</td></tr>
         <tr><td>임원 보고 자료 별도 요청</td><td>AI가 1장 요약 자동 생성, 납품 동봉</td><td class="highlight">보고 준비 시간 단축, 수치 오류 감소</td></tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="section-header" style="margin-top:36px;">
-    <div class="section-num">+</div>
-    <div class="section-title">추가 어필 각도 (리서치 기반)</div>
-  </div>
-
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-label">1. 크리에이티브 피로도 자동 감지</div>
-      <div class="card-text">소재 수명 3~5일 — AI가 성과 하락 시점을 예측하고 교체 소재를 미리 준비</div>
-    </div>
-    <div class="card">
-      <div class="card-label">2. 경쟁사 소재 벤치마킹</div>
-      <div class="card-text">AI로 경쟁 게임사 광고 트렌드를 자동 모니터링, 차별화 인사이트 제공</div>
-    </div>
-    <div class="card">
-      <div class="card-label">3. 매체별 최적화 자동화</div>
-      <div class="card-text">네이버&middot;구글&middot;META&middot;TikTok 각 플랫폼 알고리즘에 맞는 변형 자동 생성</div>
-    </div>
-    <div class="card">
-      <div class="card-label">4. 플레이어블 광고 연계</div>
-      <div class="card-text">배너 데이터 기반 플레이어블 광고 컨셉 추천 (UA 트래픽 70% 차지)</div>
-    </div>
-    <div class="card">
-      <div class="card-label">5. 임원 보고 자동화</div>
-      <div class="card-text">소재 성과 &rarr; 1장 요약 &rarr; 의사결정 속도 향상</div>
-    </div>
-    <div class="card">
-      <div class="card-label">6. 로컬라이징 자동화</div>
-      <div class="card-text">글로벌 런칭 시 시장별 배너 변형 자동 생성 (PURE App: CPI -74%)</div>
-    </div>
   </div>
 
   <div class="section-header" style="margin-top:36px;">
