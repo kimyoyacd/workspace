@@ -11,24 +11,26 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 
 :root{
-  --bg:#0B0F1A;
-  --bg-card:#141926;
-  --bg-card-hover:#1A2035;
-  --bg-surface:#1E2640;
-  --border:rgba(37,99,235,0.15);
-  --border-hover:rgba(37,99,235,0.35);
-  --text-primary:#E8ECF4;
-  --text-secondary:#8896B3;
-  --text-muted:#5A6A8A;
-  --accent:#2563EB;
-  --accent-light:#3B82F6;
-  --accent-glow:rgba(37,99,235,0.12);
-  --red:#EF4444;
-  --red-glow:rgba(239,68,68,0.12);
-  --green:#10B981;
-  --green-glow:rgba(16,185,129,0.12);
-  --yellow:#F59E0B;
-  --yellow-glow:rgba(245,158,11,0.12);
+  --bg:#FFFFFF;
+  --bg-card:#FAFAFA;
+  --bg-card-hover:#F5F5F5;
+  --bg-surface:#F0F0F0;
+  --border:rgba(0,0,0,0.1);
+  --border-hover:rgba(0,0,0,0.25);
+  --text-primary:#111111;
+  --text-secondary:#555555;
+  --text-muted:#999999;
+  /* 모노톤 포인트: 흑백 계열만 사용 */
+  --accent:#111111;
+  --accent-light:#333333;
+  --accent-glow:rgba(0,0,0,0.04);
+  /* 경고/강조는 명도 차이로만 구분 */
+  --red:#111111;
+  --red-glow:rgba(0,0,0,0.05);
+  --green:#111111;
+  --green-glow:rgba(0,0,0,0.04);
+  --yellow:#555555;
+  --yellow-glow:rgba(0,0,0,0.04);
   --font-kr:'Pretendard','Apple SD Gothic Neo',sans-serif;
   --font-en:'Inter','Helvetica Neue',sans-serif;
 }
@@ -45,32 +47,36 @@ body{background:var(--bg);color:var(--text-primary);font-family:var(--font-kr);l
 
 /* Hero */
 .hero{padding:60px 0 40px;border-bottom:1px solid var(--border);}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--accent-glow);border:1px solid var(--border);border-radius:100px;font-family:var(--font-en);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent-light);text-transform:uppercase;margin-bottom:20px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#111111;border-radius:100px;font-family:var(--font-en);font-size:11px;font-weight:700;letter-spacing:1.5px;color:#FFFFFF;text-transform:uppercase;margin-bottom:20px;}
 .hero h1{font-size:42px;font-weight:800;color:var(--text-primary);line-height:1.2;letter-spacing:-0.02em;}
-.hero h1 span{color:var(--accent-light);}
+.hero h1 span{color:var(--text-primary);}
 .hero-sub{font-size:17px;color:var(--text-secondary);margin-top:16px;max-width:700px;line-height:1.7;}
 
 /* Section */
-section{padding:48px 0;border-bottom:1px solid rgba(37,99,235,0.08);}
+section{padding:48px 0;border-bottom:1px solid rgba(0,0,0,0.07);}
 section:last-child{border-bottom:none;}
 .section-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
-.section-num{font-family:var(--font-en);font-size:13px;font-weight:800;color:var(--accent);background:var(--accent-glow);border:1px solid var(--border);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.section-num{font-family:var(--font-en);font-size:13px;font-weight:800;color:#FFFFFF;background:#111111;border:1px solid #111111;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
 .section-title{font-size:24px;font-weight:700;color:var(--text-primary);}
 .section-desc{font-size:14px;color:var(--text-secondary);margin-top:-16px;margin-bottom:24px;margin-left:50px;}
 
 /* Card */
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.2s;}
 .card:hover{border-color:var(--border-hover);background:var(--bg-card-hover);}
-.card-accent{background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(37,99,235,0.02));border-color:rgba(37,99,235,0.25);}
-.card-red{background:linear-gradient(135deg,rgba(239,68,68,0.06),rgba(239,68,68,0.02));border-color:rgba(239,68,68,0.2);}
-.card-green{background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(16,185,129,0.02));border-color:rgba(16,185,129,0.2);}
-.card-dark{background:#0D1220;border-color:rgba(37,99,235,0.2);}
+/* 카드 변형: 모두 회색 계열 명도 차이로만 구분 */
+.card-accent{background:#F5F5F5;border-color:rgba(0,0,0,0.15);}
+.card-red{background:#F0F0F0;border-color:rgba(0,0,0,0.15);}
+.card-green{background:#F8F8F8;border-color:rgba(0,0,0,0.12);}
+.card-dark{background:#111111;border-color:#111111;color:#FFFFFF;}
+.card-dark .card-label{color:rgba(255,255,255,0.5);}
+.card-dark .card-title{color:#FFFFFF;}
+.card-dark .card-text{color:rgba(255,255,255,0.65);}
 
 .card-label{font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
 .card-value{font-family:var(--font-en);font-size:42px;font-weight:900;color:var(--text-primary);line-height:1;}
-.card-value.accent{color:var(--accent-light);}
-.card-value.red{color:var(--red);}
-.card-value.green{color:var(--green);}
+.card-value.accent{color:#111111;}
+.card-value.red{color:#111111;}
+.card-value.green{color:#333333;}
 .card-title{font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
 .card-text{font-size:13px;color:var(--text-secondary);line-height:1.65;}
 
@@ -81,38 +87,38 @@ section:last-child{border-bottom:none;}
 
 /* Table */
 .data-table{width:100%;border-collapse:collapse;font-size:13px;}
-.data-table th{text-align:left;padding:12px 16px;background:var(--bg-surface);color:var(--text-secondary);font-weight:600;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
-.data-table td{padding:12px 16px;border-bottom:1px solid rgba(37,99,235,0.06);color:var(--text-primary);}
-.data-table tr:hover td{background:rgba(37,99,235,0.04);}
-.data-table .highlight{color:var(--accent-light);font-weight:700;}
-.data-table .red{color:var(--red);font-weight:700;}
-.data-table .green{color:var(--green);font-weight:700;}
+.data-table th{text-align:left;padding:12px 16px;background:#F0F0F0;color:var(--text-secondary);font-weight:600;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+.data-table td{padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.05);color:var(--text-primary);}
+.data-table tr:hover td{background:#F8F8F8;}
+.data-table .highlight{color:#111111;font-weight:700;}
+.data-table .red{color:#111111;font-weight:700;}
+.data-table .green{color:#333333;font-weight:700;}
 
 /* Tag */
 .tag{display:inline-flex;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;}
-.tag-blue{background:var(--accent-glow);color:var(--accent-light);border:1px solid rgba(37,99,235,0.2);}
-.tag-red{background:var(--red-glow);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
-.tag-green{background:var(--green-glow);color:var(--green);border:1px solid rgba(16,185,129,0.2);}
-.tag-yellow{background:var(--yellow-glow);color:var(--yellow);border:1px solid rgba(245,158,11,0.2);}
+.tag-blue{background:#111111;color:#FFFFFF;border:1px solid #111111;}
+.tag-red{background:#555555;color:#FFFFFF;border:1px solid #555555;}
+.tag-green{background:#333333;color:#FFFFFF;border:1px solid #333333;}
+.tag-yellow{background:#F0F0F0;color:#333333;border:1px solid rgba(0,0,0,0.2);}
 
 /* Flow diagram */
 .flow{display:flex;align-items:center;gap:0;}
 .flow-step{flex:1;padding:16px;text-align:center;border-radius:10px;}
-.flow-arrow{font-family:var(--font-en);font-size:20px;color:var(--accent);padding:0 8px;flex-shrink:0;}
+.flow-arrow{font-family:var(--font-en);font-size:20px;color:var(--text-muted);padding:0 8px;flex-shrink:0;}
 
 /* Quote */
-.quote{border-left:3px solid var(--accent);padding:16px 20px;background:var(--accent-glow);border-radius:0 10px 10px 0;font-size:15px;color:var(--text-primary);line-height:1.7;margin:20px 0;}
+.quote{border-left:3px solid #111111;padding:16px 20px;background:#F5F5F5;border-radius:0 10px 10px 0;font-size:15px;color:var(--text-primary);line-height:1.7;margin:20px 0;}
 .quote-source{font-size:12px;color:var(--text-muted);margin-top:8px;}
 
 /* Divider */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:16px 0;}
 
 /* TOC */
-.toc{position:fixed;top:20px;right:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;z-index:100;width:220px;max-height:calc(100vh - 40px);overflow-y:auto;}
+.toc{position:fixed;top:20px;right:20px;background:#FFFFFF;border:1px solid var(--border);border-radius:12px;padding:16px;z-index:100;width:220px;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 4px 24px rgba(0,0,0,0.08);}
 .toc-title{font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
 .toc a{display:block;padding:6px 10px;font-size:12px;color:var(--text-secondary);text-decoration:none;border-radius:6px;transition:all 0.15s;margin-bottom:2px;}
-.toc a:hover{background:var(--accent-glow);color:var(--accent-light);}
-.toc a.active{background:var(--accent-glow);color:var(--accent-light);font-weight:600;}
+.toc a:hover{background:#F0F0F0;color:#111111;}
+.toc a.active{background:#111111;color:#FFFFFF;font-weight:600;}
 
 /* Priority Matrix */
 .matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:2px;background:var(--border);border-radius:14px;overflow:hidden;}
@@ -486,7 +492,7 @@ section:last-child{border-bottom:none;}
   </div>
 
   <div class="section-header" style="margin-top:36px;">
-    <div class="section-num" style="background:var(--green-glow);color:var(--green);border-color:rgba(16,185,129,0.2);">+</div>
+    <div class="section-num">+</div>
     <div class="section-title">추가 어필 각도 (리서치 기반)</div>
   </div>
 
@@ -537,9 +543,9 @@ section:last-child{border-bottom:none;}
   <div class="card card-accent" style="margin-bottom:20px;">
     <div class="card-title" style="margin-bottom:16px;">HIVELAB 데이터 플라이휠</div>
     <div class="flow">
-      <div class="flow-step" style="background:var(--accent-glow);border:1px solid rgba(37,99,235,0.2);">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent-light);text-transform:uppercase;margin-bottom:4px;">START</div>
-        <div style="font-size:14px;font-weight:700;">6,700개 기존 소재</div>
+      <div class="flow-step" style="background:#111111;border:1px solid #111111;">
+        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:4px;">START</div>
+        <div style="font-size:14px;font-weight:700;color:#FFFFFF;">6,700개 기존 소재</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
       <div class="flow-step" style="background:var(--bg-surface);">
@@ -557,9 +563,9 @@ section:last-child{border-bottom:none;}
         <div style="font-size:14px;font-weight:700;">성과 데이터 수집</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
-      <div class="flow-step" style="background:var(--green-glow);border:1px solid rgba(16,185,129,0.2);">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--green);text-transform:uppercase;margin-bottom:4px;">IMPROVE</div>
-        <div style="font-size:14px;font-weight:700;">모델 정밀도 향상</div>
+      <div class="flow-step" style="background:#333333;border:1px solid #333333;">
+        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:4px;">IMPROVE</div>
+        <div style="font-size:14px;font-weight:700;color:#FFFFFF;">모델 정밀도 향상</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-secondary);">매월 반복 &rarr; 격차 가속화 &middot; 경쟁사는 첫 바퀴도 못 돌림</div>
@@ -859,9 +865,9 @@ section:last-child{border-bottom:none;}
         <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;">현재</div>
         <div style="font-size:14px;color:var(--text-secondary);">의뢰 &rarr; 제작 &rarr; 납품 &rarr; <span style="color:var(--red);">끝</span></div>
       </div>
-      <div style="padding:16px;background:var(--accent-glow);border:1px solid rgba(37,99,235,0.2);border-radius:10px;text-align:center;">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent-light);text-transform:uppercase;margin-bottom:8px;">제안</div>
-        <div style="font-size:14px;color:var(--text-primary);">의뢰 &rarr; 제작 &rarr; <strong>AI 확장</strong> &rarr; 납품 + 인사이트 &rarr; <strong style="color:var(--green);">다음 의뢰 반영 &circlearrowleft;</strong></div>
+      <div style="padding:16px;background:#111111;border:1px solid #111111;border-radius:10px;text-align:center;">
+        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:8px;">제안</div>
+        <div style="font-size:14px;color:#FFFFFF;">의뢰 &rarr; 제작 &rarr; <strong>AI 확장</strong> &rarr; 납품 + 인사이트 &rarr; <strong style="color:rgba(255,255,255,0.7);">다음 의뢰 반영 &circlearrowleft;</strong></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-secondary);">데이터가 쌓일수록 정확도 &uarr; &mdash; 이것이 플라이휠</div>
