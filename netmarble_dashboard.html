@@ -5,140 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>넷마블 AI 업세일즈 — 전체 브리핑 대시보드</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 *{box-sizing:border-box;margin:0;padding:0;}
 
 :root{
-  --bg:#FFFFFF;
-  --bg-card:#FAFAFA;
-  --bg-card-hover:#F5F5F5;
-  --bg-surface:#F0F0F0;
-  --border:rgba(0,0,0,0.1);
-  --border-hover:rgba(0,0,0,0.25);
-  --text-primary:#111111;
-  --text-secondary:#555555;
-  --text-muted:#999999;
-  /* 모노톤 포인트: 흑백 계열만 사용 */
-  --accent:#111111;
-  --accent-light:#333333;
-  --accent-glow:rgba(0,0,0,0.04);
-  /* 경고/강조는 명도 차이로만 구분 */
-  --red:#111111;
-  --red-glow:rgba(0,0,0,0.05);
-  --green:#111111;
-  --green-glow:rgba(0,0,0,0.04);
-  --yellow:#555555;
-  --yellow-glow:rgba(0,0,0,0.04);
-  --font-kr:'Pretendard','Apple SD Gothic Neo',sans-serif;
-  --font-en:'Inter','Helvetica Neue',sans-serif;
+  --bg-dark:#0A0A0A;
+  --bg-light:#F5F5F5;
+  --surface:#FFFFFF;
+  --accent:#000DFF;
+  --accent-dim:rgba(0,13,255,0.15);
+  --accent-subtle:rgba(0,13,255,0.08);
+  --text-primary:#FFFFFF;
+  --text-dark:#0A0A0A;
+  --text-muted:rgba(255,255,255,0.5);
+  --text-muted-light:rgba(10,10,10,0.4);
+  --divider:rgba(255,255,255,0.12);
+  --divider-light:rgba(10,10,10,0.1);
+  --font-sans:'Space Grotesk','Pretendard','Inter',sans-serif;
+  --font-kr:'Pretendard','Space Grotesk','Inter',sans-serif;
+  --font-mono:'Space Mono','JetBrains Mono',monospace;
+  --space-xs:4px;
+  --space-sm:8px;
+  --space-md:16px;
+  --space-lg:24px;
+  --space-xl:40px;
+  --space-2xl:64px;
+  --space-3xl:80px;
 }
 
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text-primary);font-family:var(--font-kr);line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg-dark);color:var(--text-primary);font-family:var(--font-kr);line-height:1.6;-webkit-font-smoothing:antialiased;}
 
-/* Layout */
-.container{max-width:1400px;margin:0 auto;padding:0 32px;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
-.grid-5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;}
+.container{max-width:1400px;margin:0 auto;padding:0 var(--space-xl);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-md);}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:var(--space-md);}
+.grid-5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:var(--space-md);}
 
 /* Hero */
-.hero{padding:60px 0 40px;border-bottom:1px solid var(--border);}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#111111;border-radius:100px;font-family:var(--font-en);font-size:11px;font-weight:700;letter-spacing:1.5px;color:#FFFFFF;text-transform:uppercase;margin-bottom:20px;}
-.hero h1{font-size:42px;font-weight:800;color:var(--text-primary);line-height:1.2;letter-spacing:-0.02em;}
-.hero h1 span{color:var(--text-primary);}
-.hero-sub{font-size:17px;color:var(--text-secondary);margin-top:16px;max-width:700px;line-height:1.7;}
+.hero{padding:var(--space-3xl) 0 var(--space-xl);border-bottom:1px solid var(--divider);}
+.hero-badge{display:inline-flex;align-items:center;gap:var(--space-sm);padding:6px 16px;background:var(--accent);border-radius:2px;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.12em;color:#FFFFFF;text-transform:uppercase;margin-bottom:var(--space-lg);}
+.hero h1{font-family:var(--font-sans);font-size:48px;font-weight:700;color:var(--text-primary);line-height:1.05;letter-spacing:-0.03em;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:17px;color:var(--text-muted);margin-top:var(--space-md);max-width:700px;line-height:1.7;}
 
 /* Section */
-section{padding:48px 0;border-bottom:1px solid rgba(0,0,0,0.07);}
+section{padding:var(--space-2xl) 0;border-bottom:1px solid var(--divider);}
 section:last-child{border-bottom:none;}
-.section-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
-.section-num{font-family:var(--font-en);font-size:13px;font-weight:800;color:#FFFFFF;background:#111111;border:1px solid #111111;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.section-title{font-size:24px;font-weight:700;color:var(--text-primary);}
-.section-desc{font-size:14px;color:var(--text-secondary);margin-top:-16px;margin-bottom:24px;margin-left:50px;}
+section.light{background:var(--bg-light);color:var(--text-dark);}
+section.light .section-title{color:var(--text-dark);}
+section.light .card{background:var(--surface);border-color:var(--divider-light);}
+section.light .card-title{color:var(--text-dark);}
+section.light .card-text{color:rgba(10,10,10,0.6);}
+section.light .card-label{color:var(--text-muted-light);}
+section.light .data-table th{background:var(--bg-light);color:var(--text-muted-light);border-bottom-color:var(--divider-light);}
+section.light .data-table td{color:var(--text-dark);border-bottom-color:var(--divider-light);}
+section.light .data-table tr:hover td{background:var(--bg-light);}
+section.light .quote{border-left-color:var(--accent);background:rgba(0,13,255,0.04);color:var(--text-dark);}
+section.light .quote-source{color:var(--text-muted-light);}
+section.light .section-desc{color:var(--text-muted-light);}
+
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:var(--space-lg);}
+.section-num{font-family:var(--font-sans);font-size:13px;font-weight:700;color:#FFFFFF;background:var(--accent);width:36px;height:36px;border-radius:2px;display:flex;align-items:center;justify-content:center;letter-spacing:0.05em;}
+.section-title{font-family:var(--font-sans);font-size:24px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;}
+.section-desc{font-size:14px;color:var(--text-muted);margin-top:-12px;margin-bottom:var(--space-lg);margin-left:50px;}
 
 /* Card */
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.2s;}
-.card:hover{border-color:var(--border-hover);background:var(--bg-card-hover);}
-/* 카드 변형: 모두 회색 계열 명도 차이로만 구분 */
-.card-accent{background:#F5F5F5;border-color:rgba(0,0,0,0.15);}
-.card-red{background:#F0F0F0;border-color:rgba(0,0,0,0.15);}
-.card-green{background:#F8F8F8;border-color:rgba(0,0,0,0.12);}
-.card-dark{background:#111111;border-color:#111111;color:#FFFFFF;}
-.card-dark .card-label{color:rgba(255,255,255,0.5);}
-.card-dark .card-title{color:#FFFFFF;}
-.card-dark .card-text{color:rgba(255,255,255,0.65);}
+.card{background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;padding:var(--space-lg);transition:all 0.2s;}
+.card:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06);}
+.card-accent{background:var(--accent-subtle);border-color:rgba(0,13,255,0.2);}
+.card-accent:hover{background:var(--accent-dim);border-color:rgba(0,13,255,0.35);}
+.card-blue{background:var(--accent);border-color:var(--accent);color:#FFFFFF;}
+.card-blue .card-label{color:rgba(255,255,255,0.6);}
+.card-blue .card-title{color:#FFFFFF;}
+.card-blue .card-text{color:rgba(255,255,255,0.75);}
+.card-surface{background:var(--surface);border-color:var(--divider-light);color:var(--text-dark);}
+.card-surface .card-label{color:var(--text-muted-light);}
+.card-surface .card-title{color:var(--text-dark);}
+.card-surface .card-text{color:rgba(10,10,10,0.6);}
 
-.card-label{font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;}
-.card-value{font-family:var(--font-en);font-size:42px;font-weight:900;color:var(--text-primary);line-height:1;}
-.card-value.accent{color:#111111;}
-.card-value.red{color:#111111;}
-.card-value.green{color:#333333;}
+.card-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:var(--space-sm);}
+.card-value{font-family:var(--font-sans);font-size:42px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-0.03em;}
 .card-title{font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
-.card-text{font-size:13px;color:var(--text-secondary);line-height:1.65;}
+.card-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;}
 
-/* Stat row */
+/* Stat */
 .stat-row{display:flex;align-items:baseline;gap:6px;margin-top:10px;}
-.stat-num{font-family:var(--font-en);font-size:28px;font-weight:800;}
-.stat-label{font-size:12px;color:var(--text-secondary);}
+.stat-num{font-family:var(--font-sans);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
+.stat-label{font-size:12px;color:var(--text-muted);}
 
 /* Table */
 .data-table{width:100%;border-collapse:collapse;font-size:13px;}
-.data-table th{text-align:left;padding:12px 16px;background:#F0F0F0;color:var(--text-secondary);font-weight:600;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
-.data-table td{padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.05);color:var(--text-primary);}
-.data-table tr:hover td{background:#F8F8F8;}
-.data-table .highlight{color:#111111;font-weight:700;}
-.data-table .red{color:#111111;font-weight:700;}
-.data-table .green{color:#333333;font-weight:700;}
+.data-table th{text-align:left;padding:12px 16px;background:rgba(255,255,255,0.04);color:var(--text-muted);font-family:var(--font-sans);font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--divider);}
+.data-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);color:var(--text-primary);}
+.data-table tr:hover td{background:rgba(255,255,255,0.03);}
+.data-table .highlight{color:var(--accent);font-weight:700;}
+.data-table .green{color:#10B981;font-weight:700;}
+.data-table .red{color:#EF4444;font-weight:700;}
 
 /* Tag */
-.tag{display:inline-flex;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;}
-.tag-blue{background:#111111;color:#FFFFFF;border:1px solid #111111;}
-.tag-red{background:#555555;color:#FFFFFF;border:1px solid #555555;}
-.tag-green{background:#333333;color:#FFFFFF;border:1px solid #333333;}
-.tag-yellow{background:#F0F0F0;color:#333333;border:1px solid rgba(0,0,0,0.2);}
+.tag{display:inline-flex;padding:3px 10px;border-radius:2px;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;}
+.tag-blue{background:var(--accent);color:#FFFFFF;}
+.tag-red{background:#EF4444;color:#FFFFFF;}
+.tag-green{background:#10B981;color:#FFFFFF;}
+.tag-yellow{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);}
 
-/* Flow diagram */
+/* Flow */
 .flow{display:flex;align-items:center;gap:0;}
-.flow-step{flex:1;padding:16px;text-align:center;border-radius:10px;}
-.flow-arrow{font-family:var(--font-en);font-size:20px;color:var(--text-muted);padding:0 8px;flex-shrink:0;}
+.flow-step{flex:1;padding:var(--space-md);text-align:center;border-radius:2px;}
+.flow-arrow{font-family:var(--font-sans);font-size:20px;color:var(--text-muted);padding:0 var(--space-sm);flex-shrink:0;}
 
 /* Quote */
-.quote{border-left:3px solid #111111;padding:16px 20px;background:#F5F5F5;border-radius:0 10px 10px 0;font-size:15px;color:var(--text-primary);line-height:1.7;margin:20px 0;}
-.quote-source{font-size:12px;color:var(--text-muted);margin-top:8px;}
+.quote{border-left:3px solid var(--accent);padding:var(--space-md) 20px;background:var(--accent-subtle);border-radius:0 2px 2px 0;font-size:15px;color:var(--text-primary);line-height:1.7;margin:20px 0;}
+.quote-source{font-size:12px;color:var(--text-muted);margin-top:var(--space-sm);}
 
 /* Divider */
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:16px 0;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--divider),transparent);margin:var(--space-md) 0;}
 
 /* TOC */
-.toc{position:fixed;top:20px;right:20px;background:#FFFFFF;border:1px solid var(--border);border-radius:12px;padding:16px;z-index:100;width:220px;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 4px 24px rgba(0,0,0,0.08);}
-.toc-title{font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
-.toc a{display:block;padding:6px 10px;font-size:12px;color:var(--text-secondary);text-decoration:none;border-radius:6px;transition:all 0.15s;margin-bottom:2px;}
-.toc a:hover{background:#F0F0F0;color:#111111;}
-.toc a.active{background:#111111;color:#FFFFFF;font-weight:600;}
+.toc{position:fixed;top:20px;right:20px;background:rgba(10,10,10,0.95);border:1px solid var(--divider);border-radius:2px;padding:var(--space-md);z-index:100;width:220px;max-height:calc(100vh - 40px);overflow-y:auto;backdrop-filter:blur(12px);}
+.toc-title{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+.toc a{display:block;padding:6px 10px;font-size:12px;color:var(--text-muted);text-decoration:none;border-radius:2px;transition:all 0.15s;margin-bottom:2px;}
+.toc a:hover{background:rgba(255,255,255,0.08);color:var(--text-primary);}
+.toc a.active{background:var(--accent);color:#FFFFFF;font-weight:600;}
 
 /* Priority Matrix */
-.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:2px;background:var(--border);border-radius:14px;overflow:hidden;}
-.matrix-cell{background:var(--bg-card);padding:20px;}
-.matrix-label{font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:2px;background:var(--divider);border-radius:2px;overflow:hidden;}
+.matrix-cell{background:rgba(255,255,255,0.03);padding:20px;}
+.matrix-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
 .matrix-item{font-size:13px;color:var(--text-primary);padding:4px 0;}
 
 /* Responsive */
 @media(max-width:1500px){.toc{display:none;}}
 @media(max-width:900px){
   .grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr;}
-  .container{padding:0 16px;}
+  .container{padding:0 var(--space-md);}
   .hero h1{font-size:28px;}
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:6px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--bg-surface);border-radius:3px;}
+::-webkit-scrollbar-track{background:var(--bg-dark);}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+/* Accent text utility */
+.accent{color:var(--accent);}
 </style>
 </head>
 <body>
@@ -190,45 +204,44 @@ section:last-child{border-bottom:none;}
     크래프톤은 $7,000만을 AI에 투자하고 직원 97.6%가 AI 사용.<br>
     게임 업계 상위 광고주는 분기 2,600개 소재를 제작하며, 소재 수명은 3~5일.<br>
     AI 적용 시 CTR +47%, ROAS +72%, 제작 비용 -80%.<br>
-    <strong style="color:var(--accent-light);">HIVELAB만 보유한 넷마블 6,700개 소재 데이터가 이 시스템의 핵심 연료.</strong><br>
+    <strong style="color:var(--accent);">HIVELAB만 보유한 넷마블 6,700개 소재 데이터가 이 시스템의 핵심 연료.</strong><br>
     다른 에이전시는 이 데이터 없이 AI를 돌려도 넷마블에 최적화된 결과를 낼 수 없음.
   </div>
 
-  <div class="grid-5" style="margin-top:24px;">
+  <div class="grid-5" style="margin-top:var(--space-lg);">
     <div class="card card-accent" style="text-align:center;">
       <div class="card-label">CTR 향상</div>
-      <div class="card-value accent">+47%</div>
-      <div class="card-text" style="margin-top:8px;">AI 생성 소재 평균</div>
+      <div class="card-value">+47%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">AI 생성 소재 평균</div>
     </div>
-    <div class="card card-green" style="text-align:center;">
+    <div class="card card-accent" style="text-align:center;">
       <div class="card-label">ROAS 향상</div>
-      <div class="card-value green">+72%</div>
-      <div class="card-text" style="margin-top:8px;">AI 적용 최대치</div>
+      <div class="card-value">+72%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">AI 적용 최대치</div>
     </div>
-    <div class="card card-red" style="text-align:center;">
+    <div class="card card-accent" style="text-align:center;">
       <div class="card-label">제작 비용</div>
-      <div class="card-value red">-80%</div>
-      <div class="card-text" style="margin-top:8px;">에이전시 실적 기준</div>
+      <div class="card-value">-80%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">에이전시 실적 기준</div>
     </div>
     <div class="card" style="text-align:center;">
       <div class="card-label">생산성</div>
-      <div class="card-value accent">30x</div>
-      <div class="card-text" style="margin-top:8px;">넥슨 NDC26 발표</div>
+      <div class="card-value">30x</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">넥슨 NDC26 발표</div>
     </div>
     <div class="card" style="text-align:center;">
       <div class="card-label">데이터 자산</div>
-      <div class="card-value accent">6,700<span style="font-size:18px;">+</span></div>
-      <div class="card-text" style="margin-top:8px;">HIVELAB 독점</div>
+      <div class="card-value">6,700<span style="font-size:18px;">+</span></div>
+      <div class="card-text" style="margin-top:var(--space-sm);">HIVELAB 독점</div>
     </div>
   </div>
 </div>
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 4: BANNER SYSTEM -->
 <!-- ========================================== -->
-<section id="banner-system">
+<section id="banner-system" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">01</div>
@@ -241,7 +254,7 @@ section:last-child{border-bottom:none;}
   </div>
 
   <div class="card" style="margin-bottom:20px;">
-    <div class="card-title" style="margin-bottom:16px;">HIVELAB이 이 시스템을 쓰면 넷마블에 이런 변화가 생긴다</div>
+    <div class="card-title" style="margin-bottom:var(--space-md);">HIVELAB이 이 시스템을 쓰면 넷마블에 이런 변화가 생긴다</div>
     <table class="data-table">
       <thead><tr><th>기존 (시스템 없이)</th><th>AI 시스템 적용 후</th><th>넷마블 체감</th></tr></thead>
       <tbody>
@@ -289,7 +302,6 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 5: DATA MOAT -->
 <!-- ========================================== -->
 <section id="data-moat">
@@ -305,34 +317,34 @@ section:last-child{border-bottom:none;}
   </div>
 
   <div class="card card-accent" style="margin-bottom:20px;">
-    <div class="card-title" style="margin-bottom:16px;">HIVELAB 데이터 플라이휠</div>
+    <div class="card-title" style="margin-bottom:var(--space-md);">HIVELAB 데이터 플라이휠</div>
     <div class="flow">
-      <div class="flow-step" style="background:#111111;border:1px solid #111111;">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:4px;">START</div>
+      <div class="flow-step" style="background:var(--accent);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:4px;">START</div>
         <div style="font-size:14px;font-weight:700;color:#FFFFFF;">6,700개 기존 소재</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
-      <div class="flow-step" style="background:var(--bg-surface);">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">LEARN</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">LEARN</div>
         <div style="font-size:14px;font-weight:700;">AI 학습</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
-      <div class="flow-step" style="background:var(--bg-surface);">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">CREATE</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">CREATE</div>
         <div style="font-size:14px;font-weight:700;">새 소재 생성</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
-      <div class="flow-step" style="background:var(--bg-surface);">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">MEASURE</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">MEASURE</div>
         <div style="font-size:14px;font-weight:700;">성과 데이터 수집</div>
       </div>
       <div class="flow-arrow">&rarr;</div>
-      <div class="flow-step" style="background:#333333;border:1px solid #333333;">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:4px;">IMPROVE</div>
+      <div class="flow-step" style="background:var(--accent);opacity:0.8;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:4px;">IMPROVE</div>
         <div style="font-size:14px;font-weight:700;color:#FFFFFF;">모델 정밀도 향상</div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-secondary);">매월 반복 &rarr; 정밀도 가속화 &middot; 경쟁사는 이 초기 학습 데이터 자체가 없음</div>
+    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">매월 반복 &rarr; 정밀도 가속화 &middot; 경쟁사는 이 초기 학습 데이터 자체가 없음</div>
   </div>
 
   <div class="card" style="margin-bottom:20px;">
@@ -343,29 +355,28 @@ section:last-child{border-bottom:none;}
         <tr><td><strong>1st Party 소재 데이터</strong></td><td>넷마블 전 IP 배너 6,700개 직접 제작</td><td class="red">불가능</td></tr>
         <tr><td><strong>캠페인 맥락</strong></td><td>시즌&middot;이벤트&middot;론칭 타이밍별 의도</td><td class="red">제작자만 앎</td></tr>
         <tr><td><strong>IP별 성과 패턴</strong></td><td>어떤 비주얼이 어떤 IP에서 효과적인지</td><td class="red">히스토리 없음</td></tr>
-        <tr><td><strong>제작 프로세스 지식</strong></td><td>넷마블 승인 기준&middot;브랜드 가이드 내재화</td><td style="color:var(--yellow);">신규 학습 필요</td></tr>
+        <tr><td><strong>제작 프로세스 지식</strong></td><td>넷마블 승인 기준&middot;브랜드 가이드 내재화</td><td style="color:var(--text-muted);">신규 학습 필요</td></tr>
         <tr><td><strong>연속성</strong></td><td>과거 &rarr; 현재 &rarr; 미래 연결된 데이터 체인</td><td class="red">단절</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="card card-dark">
+  <div class="card card-blue">
     <div class="card-title">매드업(Madup) — 데이터 해자 벤치마크</div>
     <div class="card-text" style="margin-top:8px;">
-      10년간 <strong style="color:var(--accent-light)">1조 원 이상</strong>의 광고 집행 데이터 축적 &rarr; AI 에이전트 "LEVER Xpert"로 마케팅 운영 90%+ 자동화<br>
+      10년간 <strong>1조 원 이상</strong>의 광고 집행 데이터 축적 &rarr; AI 에이전트 "LEVER Xpert"로 마케팅 운영 90%+ 자동화<br>
       3인&times;4시간 &rarr; 1인&times;1.5시간. 매출 502억 원, 영업이익 85억 원 (2025)<br><br>
       CEO: <em>"1조원 광고 데이터는 실제 광고비를 집행해야만 얻을 수 있다"</em><br>
-      <strong style="color:var(--accent-light);">&rarr; HIVELAB도 동일 논리: 넷마블 소재 6,700개는 직접 만들어야만 얻을 수 있는 데이터</strong>
+      <strong>&rarr; HIVELAB도 동일 논리: 넷마블 소재 6,700개는 직접 만들어야만 얻을 수 있는 데이터</strong>
     </div>
   </div>
 </div>
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 1: COMPETITOR AI STATUS -->
 <!-- ========================================== -->
-<section id="competitors">
+<section id="competitors" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">03</div>
@@ -373,7 +384,7 @@ section:last-child{border-bottom:none;}
   </div>
   <p class="section-desc">동일 시장 게임사들의 실제 투자·성과 데이터 — 넷마블이 대응할 여지가 가장 크다</p>
 
-  <div class="card card-red" style="margin-bottom:20px;">
+  <div class="card" style="margin-bottom:20px;">
     <table class="data-table">
       <thead>
         <tr><th>경쟁사</th><th>AI 활용</th><th>성과</th><th>격차</th></tr>
@@ -421,45 +432,45 @@ section:last-child{border-bottom:none;}
   <div class="grid-3">
     <div class="card">
       <div class="card-label">글로벌 모바일 게임 UA 광고비</div>
-      <div class="card-value accent">$250억</div>
-      <div class="card-text" style="margin-top:8px;">2025년 기준 (Segwise)</div>
+      <div class="card-value">$250억</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">2025년 기준 (Segwise)</div>
     </div>
     <div class="card">
       <div class="card-label">AI 게임 시장 성장</div>
-      <div class="card-value accent" style="font-size:28px;">$45.4억 &rarr; $811.9억</div>
-      <div class="card-text" style="margin-top:8px;">2025~2035, CAGR 33.6%</div>
+      <div class="card-value" style="font-size:28px;">$45.4억 &rarr; $811.9억</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">2025~2035, CAGR 33.6%</div>
     </div>
     <div class="card">
       <div class="card-label">AI 생성 소재 비중 (2026 예상)</div>
-      <div class="card-value accent">~50%</div>
-      <div class="card-text" style="margin-top:8px;">전체 UA 소재 중 (Gamelight)</div>
+      <div class="card-value">~50%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">전체 UA 소재 중 (Gamelight)</div>
     </div>
   </div>
 
-  <div class="grid-4" style="margin-top:16px;">
+  <div class="grid-4" style="margin-top:var(--space-md);">
     <div class="card">
       <div class="card-label">게임 개발자 AI 사용</div>
-      <div class="stat-row"><div class="stat-num accent" style="color:var(--accent-light)">90%</div></div>
+      <div class="stat-row"><div class="stat-num">90%</div></div>
       <div class="card-text">워크플로우 내 생성형 AI 활용</div>
     </div>
     <div class="card">
       <div class="card-label">게임 경영진 AI 도입</div>
-      <div class="stat-row"><div class="stat-num accent" style="color:var(--accent-light)">84%</div></div>
+      <div class="stat-row"><div class="stat-num">84%</div></div>
       <div class="card-text">도입/테스트 중</div>
     </div>
     <div class="card">
       <div class="card-label">광고주 AI 활용</div>
-      <div class="stat-row"><div class="stat-num accent" style="color:var(--accent-light)">90%+</div></div>
+      <div class="stat-row"><div class="stat-num">90%+</div></div>
       <div class="card-text">어떤 형태로든 활용</div>
     </div>
     <div class="card">
       <div class="card-label">한국 월 라이브 소재</div>
-      <div class="stat-row"><div class="stat-num accent" style="color:var(--accent-light)">123개</div></div>
+      <div class="stat-row"><div class="stat-num">123개</div></div>
       <div class="card-text">상위 광고주 평균 (YoY +20%)</div>
     </div>
   </div>
 
-  <div class="card" style="margin-top:16px;">
+  <div class="card" style="margin-top:var(--space-md);">
     <div class="card-title">플랫폼별 AI 광고 성과 (2026 벤치마크)</div>
     <table class="data-table" style="margin-top:12px;">
       <thead><tr><th>플랫폼</th><th>AI vs 수동 제작 CTR 차이</th></tr></thead>
@@ -472,7 +483,7 @@ section:last-child{border-bottom:none;}
     </table>
   </div>
 
-  <div class="card" style="margin-top:16px;">
+  <div class="card" style="margin-top:var(--space-md);">
     <div class="card-title">글로벌 기업 사례</div>
     <table class="data-table" style="margin-top:12px;">
       <thead><tr><th>기업</th><th>AI 활용</th><th>성과</th></tr></thead>
@@ -489,7 +500,6 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 2: PAIN POINTS -->
 <!-- ========================================== -->
 <section id="pain-points">
@@ -500,27 +510,27 @@ section:last-child{border-bottom:none;}
   </div>
 
   <div class="grid-3">
-    <div class="card card-red">
-      <div class="card-label" style="color:var(--red);">소재 물량 압박</div>
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">소재 물량 압박</div>
       <div class="card-title">분기 2,600개 변형 필요</div>
       <div class="card-text">YoY +25~30% 증가. 캠페인 스케일업 시 20개&rarr;1,000개 변형. 주간 2~3개 신규 컨셉 + 6~10개 변형 필요.</div>
-      <div class="stat-row"><div class="stat-num" style="color:var(--red);">10x</div><div class="stat-label">$50만 예산 대비 필요 소재</div></div>
+      <div class="stat-row"><div class="stat-num">10x</div><div class="stat-label">$50만 예산 대비 필요 소재</div></div>
     </div>
-    <div class="card card-red">
-      <div class="card-label" style="color:var(--red);">크리에이티브 피로도</div>
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">크리에이티브 피로도</div>
       <div class="card-title">소재 수명 3~5일</div>
-      <div class="card-text">4번째 반복 노출 시 전환율 <strong style="color:var(--red);">-45%</strong>. 상위 캠페인 주간 소재 교체율 78% (2024년 41%에서 급상승).</div>
-      <div class="stat-row"><div class="stat-num" style="color:var(--red);">-45%</div><div class="stat-label">4회 노출 후 전환율</div></div>
+      <div class="card-text">4번째 반복 노출 시 전환율 <strong style="color:#EF4444;">-45%</strong>. 상위 캠페인 주간 소재 교체율 78% (2024년 41%에서 급상승).</div>
+      <div class="stat-row"><div class="stat-num" style="color:#EF4444;">-45%</div><div class="stat-label">4회 노출 후 전환율</div></div>
     </div>
-    <div class="card card-red">
-      <div class="card-label" style="color:var(--red);">제작 병목</div>
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">제작 병목</div>
       <div class="card-title">캠페인당 80~120시간</div>
       <div class="card-text">브리프&rarr;기획&rarr;디자인&rarr;리뷰&rarr;수정(4~5회)&rarr;승인&rarr;리사이징. 평균 2~3주 소요.</div>
-      <div class="stat-row"><div class="stat-num" style="color:var(--red);">4-5회</div><div class="stat-label">수정 사이클</div></div>
+      <div class="stat-row"><div class="stat-num">4-5회</div><div class="stat-label">수정 사이클</div></div>
     </div>
   </div>
 
-  <div class="grid-2" style="margin-top:16px;">
+  <div class="grid-2" style="margin-top:var(--space-md);">
     <div class="card">
       <div class="card-label">비용 구조</div>
       <div class="card-text">배너 1세트: $500~$1,500<br>영상 1개: $800~$2,000<br>분기 2,600개 기준: 막대한 제작비</div>
@@ -534,10 +544,9 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 3: ROI -->
 <!-- ========================================== -->
-<section id="roi">
+<section id="roi" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">05</div>
@@ -575,7 +584,7 @@ section:last-child{border-bottom:none;}
     </div>
   </div>
 
-  <div class="card" style="margin-top:16px;">
+  <div class="card" style="margin-top:var(--space-md);">
     <div class="card-title">에이전시 관점 실적 비교</div>
     <table class="data-table" style="margin-top:12px;">
       <thead><tr><th>항목</th><th>기존</th><th>AI 적용 후</th><th>절감</th></tr></thead>
@@ -586,7 +595,7 @@ section:last-child{border-bottom:none;}
     </table>
   </div>
 
-  <div class="card card-green" style="margin-top:16px;">
+  <div class="card" style="margin-top:var(--space-md);">
     <div class="card-title">한국 AI 크리에이티브 실적 사례 (Draph Art)</div>
     <table class="data-table" style="margin-top:12px;">
       <thead><tr><th>클라이언트</th><th>AI 적용</th><th>결과</th></tr></thead>
@@ -602,7 +611,6 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 6: FRAMING STRATEGY -->
 <!-- ========================================== -->
 <section id="framing">
@@ -615,7 +623,7 @@ section:last-child{border-bottom:none;}
 
   <div class="grid-2">
     <div class="card card-accent">
-      <div class="card-label" style="color:var(--accent-light);">프레이밍 1: 보강, 대체 아님</div>
+      <div class="card-label" style="color:var(--accent);">프레이밍 1: 보강, 대체 아님</div>
       <div class="card-title">"HIVELAB 디자이너가 AI를 써서 넷마블에 더 많이, 더 빠르게, 더 근거 있게 납품합니다"</div>
       <div class="card-text" style="margin-top:10px;">
         &bull; 마케팅 리더 20%가 실행&rarr;전략 방향 전환 중<br>
@@ -624,7 +632,7 @@ section:last-child{border-bottom:none;}
       </div>
     </div>
     <div class="card card-accent">
-      <div class="card-label" style="color:var(--accent-light);">프레이밍 2: 결과를 판다</div>
+      <div class="card-label" style="color:var(--accent);">프레이밍 2: 결과를 판다</div>
       <div class="card-title">"이 시스템을 구매하세요"가 아니라 "다음 납품물부터 이렇게 달라집니다"</div>
       <div class="card-text" style="margin-top:10px;">
         &bull; 가장 팔기 쉬운 AI = 짧은 피드백 루프 + 눈에 보이는 개선<br>
@@ -643,19 +651,19 @@ section:last-child{border-bottom:none;}
     </div>
   </div>
 
-  <div class="card card-red" style="margin-top:20px;">
-    <div class="card-title" style="color:var(--red);">주의할 점</div>
-    <div class="grid-2" style="margin-top:12px;gap:16px;">
+  <div class="card" style="margin-top:20px;border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06);">
+    <div class="card-title" style="color:#EF4444;">주의할 점</div>
+    <div class="grid-2" style="margin-top:12px;gap:var(--space-md);">
       <div>
         <div class="card-text">
           AI 생성 광고라고 인지될 경우:<br>
-          프리미엄 인식 <strong style="color:var(--red)">-17%</strong>, 영감 점수 <strong style="color:var(--red)">-19%</strong>, 구매 의향 <strong style="color:var(--red)">-14%</strong><br>
+          프리미엄 인식 <strong style="color:#EF4444">-17%</strong>, 영감 점수 <strong style="color:#EF4444">-19%</strong>, 구매 의향 <strong style="color:#EF4444">-14%</strong><br>
           <strong>&rarr; HIVELAB 디자이너가 최종 품질을 관리한다는 점 반드시 강조</strong>
         </div>
       </div>
       <div>
         <div class="card-text">
-          기업의 <strong style="color:var(--red)">80%</strong>가 생성형 AI에서 유의미한 수익 효과를 보지 못함 (전략 부재)<br>
+          기업의 <strong style="color:#EF4444">80%</strong>가 생성형 AI에서 유의미한 수익 효과를 보지 못함 (전략 부재)<br>
           <strong>&rarr; "단순 AI 도입"이 아니라 "6,700개 데이터 기반 맞춤 시스템" 차별화</strong>
         </div>
       </div>
@@ -665,10 +673,9 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 7: 21 IDEAS -->
 <!-- ========================================== -->
-<section id="ideas">
+<section id="ideas" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">07</div>
@@ -676,9 +683,8 @@ section:last-child{border-bottom:none;}
   </div>
   <p class="section-desc">평가 기준: ★★★ 높음 | ★★☆ 보통 | ★☆☆ 낮음</p>
 
-  <!-- Category A -->
-  <div class="card" style="margin-bottom:16px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
       <span class="tag tag-blue">A</span>
       <div class="card-title" style="margin-bottom:0;">기존 제작 프로세스 + AI 강화</div>
       <div class="card-text" style="margin-bottom:0;">&mdash; 지금 하고 있는 일에 AI를 얹으면</div>
@@ -695,9 +701,8 @@ section:last-child{border-bottom:none;}
     </table>
   </div>
 
-  <!-- Category B -->
-  <div class="card" style="margin-bottom:16px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
       <span class="tag tag-blue">B</span>
       <div class="card-title" style="margin-bottom:0;">바이럴 & 팬덤</div>
       <div class="card-text" style="margin-bottom:0;">&mdash; 만든 것이 퍼지는 구조</div>
@@ -714,9 +719,8 @@ section:last-child{border-bottom:none;}
     </table>
   </div>
 
-  <!-- Category C -->
-  <div class="card" style="margin-bottom:16px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
       <span class="tag tag-blue">C</span>
       <div class="card-title" style="margin-bottom:0;">IP 확장</div>
       <div class="card-text" style="margin-bottom:0;">&mdash; 캐릭터를 게임 밖으로</div>
@@ -735,9 +739,8 @@ section:last-child{border-bottom:none;}
     </table>
   </div>
 
-  <!-- Category D -->
   <div class="card">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
       <span class="tag tag-blue">D</span>
       <div class="card-title" style="margin-bottom:0;">파트너십 확장 구조</div>
       <div class="card-text" style="margin-bottom:0;">&mdash; 함께 성장하는 구조로 전환</div>
@@ -756,7 +759,6 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 8: PRIORITY MATRIX -->
 <!-- ========================================== -->
 <section id="priority">
@@ -767,8 +769,8 @@ section:last-child{border-bottom:none;}
   </div>
 
   <div class="matrix">
-    <div class="matrix-cell" style="border-bottom:1px solid var(--border);">
-      <div class="matrix-label" style="color:var(--green);">높은 효과 &times; 즉시 실행</div>
+    <div class="matrix-cell" style="border-bottom:1px solid var(--divider);">
+      <div class="matrix-label" style="color:#10B981;">높은 효과 &times; 즉시 실행</div>
       <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A1</span> AI 배너 검색</div>
       <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A2</span> 소재 x40 확장</div>
       <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A3</span> 디자인 가이드</div>
@@ -778,8 +780,8 @@ section:last-child{border-bottom:none;}
       <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">B3</span> 논쟁 콘텐츠</div>
       <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">D1</span> AI 애드온</div>
     </div>
-    <div class="matrix-cell" style="border-bottom:1px solid var(--border);">
-      <div class="matrix-label" style="color:var(--yellow);">높은 효과 &times; 준비 필요</div>
+    <div class="matrix-cell" style="border-bottom:1px solid var(--divider);">
+      <div class="matrix-label" style="color:var(--accent);">높은 효과 &times; 준비 필요</div>
       <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">A4</span> 승인 혁신</div>
       <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">B4</span> RF 런칭 팩</div>
       <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">C4</span> 캐릭터 지수</div>
@@ -787,7 +789,7 @@ section:last-child{border-bottom:none;}
       <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">D2</span> 리테이너 전환</div>
     </div>
     <div class="matrix-cell">
-      <div class="matrix-label" style="color:var(--accent-light);">실험적 &times; 즉시 실행</div>
+      <div class="matrix-label" style="color:var(--accent);">실험적 &times; 즉시 실행</div>
       <div class="matrix-item"><span class="tag tag-blue" style="margin-right:6px;">C6</span> 포맷 실험</div>
       <div class="matrix-item"><span class="tag tag-blue" style="margin-right:6px;">B5</span> UGC 챌린지</div>
     </div>
@@ -805,10 +807,9 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 9: ROADMAP -->
 <!-- ========================================== -->
-<section id="roadmap">
+<section id="roadmap" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">09</div>
@@ -821,69 +822,67 @@ section:last-child{border-bottom:none;}
     <strong>데이터가 쌓일수록 정밀도가 높아지기 때문에, 시간이 지날수록 격차는 벌어집니다.</strong>
   </div>
 
-  <div class="grid-4" style="margin-top:24px;">
-    <div class="card card-green">
-      <div class="card-label" style="color:var(--green);">지금</div>
+  <div class="grid-4" style="margin-top:var(--space-lg);">
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div class="card-label" style="color:#10B981;">지금</div>
       <div class="card-title">다음 납품물부터</div>
-      <div class="card-text" style="margin-top:8px;">
+      <div class="card-text" style="margin-top:var(--space-sm);">
         기존 제작 + AI 소재 확장<br>
         검색 시스템 + 인사이트 리포트<br><br>
-        <strong style="color:var(--text-primary);">넷마블 체감:</strong><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
         "추가 비용 없이 퀄리티가 올라갔네"
       </div>
     </div>
-    <div class="card card-accent">
-      <div class="card-label" style="color:var(--accent-light);">1개월</div>
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">1개월</div>
       <div class="card-title">성과 확인 후</div>
-      <div class="card-text" style="margin-top:8px;">
+      <div class="card-text" style="margin-top:var(--space-sm);">
         IP 건강검진 대시보드<br>
         캐릭터 지수 리포트 제안<br><br>
-        <strong style="color:var(--text-primary);">넷마블 체감:</strong><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
         "이 데이터로 예산 배분하면 되겠다"
       </div>
     </div>
     <div class="card">
       <div class="card-label">2~3개월</div>
       <div class="card-title">캠페인 확장</div>
-      <div class="card-text" style="margin-top:8px;">
+      <div class="card-text" style="margin-top:var(--space-sm);">
         바이럴 패키지 실행<br>
         월간 소재팩 리테이너 전환<br><br>
-        <strong style="color:var(--text-primary);">넷마블 체감:</strong><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
         "제작부터 유통까지 다 하네"
       </div>
     </div>
-    <div class="card card-dark">
-      <div class="card-label">6개월+</div>
-      <div class="card-title">멀티 IP 확장</div>
-      <div class="card-text" style="margin-top:8px;">
+    <div class="card" style="background:var(--text-dark);color:#FFFFFF;border-color:var(--text-dark);">
+      <div class="card-label" style="color:rgba(255,255,255,0.5);">6개월+</div>
+      <div class="card-title" style="color:#FFFFFF;">멀티 IP 확장</div>
+      <div class="card-text" style="margin-top:var(--space-sm);color:rgba(255,255,255,0.65);">
         RF&middot;Solo Leveling 추가<br>
         공동 투자 구조 전환<br><br>
-        <strong style="color:var(--text-primary);">넷마블 체감:</strong><br>
+        <strong style="color:#FFFFFF;">넷마블 체감:</strong><br>
         "IP별 소재 성과가 누적돼서 다음 의사결정이 빨라졌다"
       </div>
     </div>
   </div>
 
-  <!-- Execution flow -->
-  <div class="card" style="margin-top:24px;">
-    <div class="card-title" style="margin-bottom:16px;">기존 프로세스 vs 제안 프로세스</div>
-    <div class="grid-2" style="gap:16px;">
-      <div style="padding:16px;background:var(--bg-surface);border-radius:10px;text-align:center;">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;">현재</div>
-        <div style="font-size:14px;color:var(--text-secondary);">의뢰 &rarr; 제작 &rarr; 납품 &rarr; <span style="color:var(--red);">끝</span></div>
+  <div class="card" style="margin-top:var(--space-lg);">
+    <div class="card-title" style="margin-bottom:var(--space-md);">기존 프로세스 vs 제안 프로세스</div>
+    <div class="grid-2" style="gap:var(--space-md);">
+      <div style="padding:var(--space-md);background:var(--bg-light);border-radius:2px;text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted-light);text-transform:uppercase;margin-bottom:var(--space-sm);">현재</div>
+        <div style="font-size:14px;color:var(--text-dark);">의뢰 &rarr; 제작 &rarr; 납품 &rarr; <span style="color:#EF4444;">끝</span></div>
       </div>
-      <div style="padding:16px;background:#111111;border:1px solid #111111;border-radius:10px;text-align:center;">
-        <div style="font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:8px;">제안</div>
-        <div style="font-size:14px;color:#FFFFFF;">의뢰 &rarr; 제작 &rarr; <strong>AI 확장</strong> &rarr; 납품 + 인사이트 &rarr; <strong style="color:rgba(255,255,255,0.7);">다음 의뢰 반영 &circlearrowleft;</strong></div>
+      <div style="padding:var(--space-md);background:var(--accent);border-radius:2px;text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:var(--space-sm);">제안</div>
+        <div style="font-size:14px;color:#FFFFFF;">의뢰 &rarr; 제작 &rarr; <strong>AI 확장</strong> &rarr; 납품 + 인사이트 &rarr; <strong style="color:rgba(255,255,255,0.8);">다음 의뢰 반영 &circlearrowleft;</strong></div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-secondary);">데이터가 쌓일수록 정확도 &uarr; &mdash; 이것이 플라이휠</div>
+    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted-light);">데이터가 쌓일수록 정확도 &uarr; &mdash; 이것이 플라이휠</div>
   </div>
 </div>
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 10: KOREAN MARKET -->
 <!-- ========================================== -->
 <section id="korea-market">
@@ -896,20 +895,20 @@ section:last-child{border-bottom:none;}
   <div class="grid-2">
     <div class="card">
       <div class="card-title">AI 도입 기업 현황 (Deloitte Korea)</div>
-      <div class="card-text" style="margin-top:8px;">
-        전사 내재화 기업 <strong>3.7%</strong>에 불과 — 대부분 탐색·파일럿 단계.<br>
-        AI 도입 후 실제 매출 성장 달성: <strong>20%</strong> (기대치 74% 대비 낮음).<br>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        전사 내재화 기업 <strong style="color:var(--accent);">3.7%</strong>에 불과 — 대부분 탐색·파일럿 단계.<br>
+        AI 도입 후 실제 매출 성장 달성: <strong style="color:var(--accent);">20%</strong> (기대치 74% 대비 낮음).<br>
         원인: 전략 없는 도입, 데이터 품질 부재.<br>
-        <span style="margin-top:8px;display:block;font-size:12px;padding:8px;background:var(--bg-surface);border-radius:6px;">
+        <span style="margin-top:8px;display:block;font-size:12px;padding:8px;background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;">
           → HIVELAB의 6,700개 기반 맞춤 시스템은 데이터 부재 문제를 원천 해소
         </span>
       </div>
     </div>
     <div class="card">
       <div class="card-title">한국 광고 시장 AI 전환 추세</div>
-      <div class="card-text" style="margin-top:8px;">
-        &bull; 한국 광고 시장 <strong>17.2조 원</strong> (2025), 디지털 60%<br>
-        &bull; AI 퍼포먼스 에이전시 성장: M.Plan.It <strong>+167%</strong>, Bom&Sense <strong>+108%</strong><br>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 한국 광고 시장 <strong style="color:var(--accent);">17.2조 원</strong> (2025), 디지털 60%<br>
+        &bull; AI 퍼포먼스 에이전시 성장: M.Plan.It <strong style="color:var(--accent);">+167%</strong>, Bom&Sense <strong style="color:var(--accent);">+108%</strong><br>
         &bull; 전통 빅5 정체: 제일 +3%, 이노션 0%, HSAD -8%<br>
         &bull; 2026 키워드: <strong>"AI 광고 물량전"</strong> — 소재 양이 UA 경쟁력<br>
         &bull; 정부 AI 바우처: 기업당 최대 2억원 지원 가능 (총 8,900억 원)
@@ -920,10 +919,9 @@ section:last-child{border-bottom:none;}
 </section>
 
 <!-- ========================================== -->
-
 <!-- SECTION 11: SOURCES -->
 <!-- ========================================== -->
-<section id="sources">
+<section id="sources" class="light">
 <div class="container">
   <div class="section-header">
     <div class="section-num">S</div>
@@ -933,55 +931,53 @@ section:last-child{border-bottom:none;}
   <div class="grid-2">
     <div class="card">
       <div class="card-label">게임 AI 광고 트렌드</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         Segwise AI Stats &middot; Marketing-Interactive 2025 &middot; Digital Applied 2026 Benchmark &middot;
         AppsFlyer &times; Ace Games &middot; Admiral Media AI Results &middot; Supercell AI Masterplan
       </div>
     </div>
     <div class="card">
       <div class="card-label">한국 게임사 사례</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         GameVu NDC26 &middot; KoreaGameDesk (크래프톤) &middot; KED Global (엔씨소프트) &middot;
         Moloco &times; 111% &middot; Airbridge &times; 웹젠
       </div>
     </div>
     <div class="card">
       <div class="card-label">ROI & 비용 절감</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         ClipRise Marketing Agency Case &middot; Influencer Marketing Hub &middot; MixFlow 2025 Report &middot;
         Draph Art AI 사례
       </div>
     </div>
     <div class="card">
       <div class="card-label">데이터 경쟁 우위</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         McKinsey AI Advantage &middot; AI Ireland (Proprietary Data Moat) &middot;
         Sparkle Insights &middot; AdExchanger 1st Party Data &middot; 매드업 데이터 해자 (Bloter)
       </div>
     </div>
     <div class="card">
       <div class="card-label">업세일즈 전략</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         ALM Corp (AI Marketing Sales) &middot; CXL B2B Agency Strategy &middot;
         Uplifted AI Creative Tools &middot; Superside AI-Powered Agencies
       </div>
     </div>
     <div class="card">
       <div class="card-label">한국 시장</div>
-      <div class="card-text" style="margin-top:8px;font-size:11px;line-height:2;word-break:break-all;">
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
         KPMG 게임 10대 트렌드 &middot; 나스미디어 2025 전망 &middot; Deloitte Korea AI 내재화 &middot;
         Digital Today (네이버 AI) &middot; Consumer News (광고비)
       </div>
     </div>
   </div>
 
-  <div style="text-align:center;padding:48px 0 24px;color:var(--text-muted);font-size:12px;">
-    HIVELAB MAX LAB &times; NETMARBLE &middot; 2026.06 &middot; 넷마블 AI 업세일즈 전체 브리핑 대시보드
+  <div style="text-align:center;padding:48px 0 24px;color:var(--text-muted-light);font-size:12px;font-family:var(--font-sans);letter-spacing:0.08em;">
+    HIVELAB MAX LAB &times; NETMARBLE &middot; 2026.06 &middot; AI UPSALES BRIEFING DASHBOARD
   </div>
 </div>
 </section>
-
-
 
 </body>
 </html>
