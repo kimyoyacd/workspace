@@ -13,7 +13,7 @@
   --bg:#0A0A0A;--bg-light:#F5F5F5;--surface:#FFFFFF;
   --accent:#000DFF;--accent-dim:rgba(0,13,255,0.15);--accent-sub:rgba(0,13,255,0.08);
   --red:#EF4444;--green:#10B981;--yellow:#F59E0B;
-  --text:#FFFFFF;--text-dark:#0A0A0A;--muted:rgba(255,255,255,0.5);--muted-lt:rgba(10,10,10,0.4);
+  --text:#FFFFFF;--text-dark:#0A0A0A;--muted:rgba(255,255,255,0.72);--muted-lt:rgba(10,10,10,0.4);
   --divider:rgba(255,255,255,0.12);--divider-lt:rgba(10,10,10,0.1);
   --sans:'Space Grotesk','Pretendard','Inter',sans-serif;
   --kr:'Pretendard','Space Grotesk','Inter',sans-serif;
@@ -46,7 +46,7 @@ h3{font-family:var(--sans);font-size:28px;font-weight:700;line-height:1.2;letter
 .light .sub{color:var(--muted-lt);}
 .blue .sub{color:rgba(255,255,255,0.7);}
 .accent{color:var(--accent);}
-.slide.blue .accent{color:rgba(255,255,255,0.6);}
+.slide.blue .accent{color:rgba(255,255,255,0.75);}
 
 .label{
   font-family:var(--sans);font-size:11px;font-weight:700;
@@ -54,10 +54,10 @@ h3{font-family:var(--sans);font-size:28px;font-weight:700;line-height:1.2;letter
 }
 .dark .label{color:var(--muted);}
 .light .label{color:var(--muted-lt);}
-.blue .label{color:rgba(255,255,255,0.5);}
+.blue .label{color:rgba(255,255,255,0.65);}
 
 .page{position:absolute;top:28px;right:44px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;}
-.dark .page{color:rgba(255,255,255,0.2);}
+.dark .page{color:rgba(255,255,255,0.35);}
 .light .page{color:rgba(10,10,10,0.15);}
 .blue .page{color:rgba(255,255,255,0.25);}
 
@@ -69,7 +69,7 @@ h3{font-family:var(--sans);font-size:28px;font-weight:700;line-height:1.2;letter
 
 /* === CARD === */
 .c{padding:28px;border-radius:2px;}
-.c-dark{background:rgba(255,255,255,0.04);border:1px solid var(--divider);}
+.c-dark{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);}
 .c-surface{background:var(--surface);border:1px solid var(--divider-lt);}
 .c-accent{background:var(--accent-sub);border:1px solid rgba(0,13,255,0.2);}
 .c-blue{background:var(--accent);border:none;color:#FFF;}
@@ -79,20 +79,20 @@ h3{font-family:var(--sans);font-size:28px;font-weight:700;line-height:1.2;letter
 .c-val{font-family:var(--sans);font-size:44px;font-weight:800;line-height:1;letter-spacing:-0.03em;}
 .c-title{font-size:16px;font-weight:700;margin-bottom:6px;}
 .c-text{font-size:13px;line-height:1.7;}
-.dark .c-text{color:rgba(255,255,255,0.55);}
+.dark .c-text{color:rgba(255,255,255,0.78);}
 .light .c-text{color:rgba(10,10,10,0.55);}
 
 /* === BAR CHART === */
 .bar-chart{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
 .bar-row{display:flex;align-items:center;gap:12px;}
 .bar-label{width:100px;font-size:13px;font-weight:600;text-align:right;flex-shrink:0;}
-.bar-track{flex:1;height:28px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;position:relative;}
+.bar-track{flex:1;height:28px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;position:relative;}
 .light .bar-track{background:rgba(10,10,10,0.06);}
 .bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;padding-left:10px;font-family:var(--sans);font-size:12px;font-weight:700;color:#FFF;transition:width 0.8s ease;}
 .bar-fill.blue{background:var(--accent);}
 .bar-fill.red{background:var(--red);}
 .bar-fill.green{background:var(--green);}
-.bar-fill.gray{background:rgba(255,255,255,0.2);}
+.bar-fill.gray{background:rgba(255,255,255,0.3);}
 .light .bar-fill.gray{background:rgba(10,10,10,0.15);}
 
 /* === DONUT === */
@@ -105,10 +105,10 @@ h3{font-family:var(--sans);font-size:28px;font-weight:700;line-height:1.2;letter
 /* === TABLE === */
 table{width:100%;border-collapse:collapse;font-size:13px;}
 th{text-align:left;padding:10px 14px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
-.dark th{background:rgba(255,255,255,0.04);color:var(--muted);border-bottom:1px solid var(--divider);}
+.dark th{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);border-bottom:1px solid rgba(255,255,255,0.18);}
 .light th{background:var(--bg-light);color:var(--muted-lt);border-bottom:1px solid var(--divider-lt);}
 td{padding:10px 14px;}
-.dark td{border-bottom:1px solid rgba(255,255,255,0.05);}
+.dark td{border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);}
 .light td{border-bottom:1px solid var(--divider-lt);}
 .hi{color:var(--accent);font-weight:700;}
 .rd{color:var(--red);font-weight:700;}
@@ -131,7 +131,7 @@ td{padding:10px 14px;}
 .progress{position:fixed;bottom:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width 0.4s ease;}
 .counter{position:fixed;bottom:14px;right:24px;font-family:var(--mono);font-size:11px;color:var(--muted);z-index:100;}
 .nav-hint{position:fixed;bottom:14px;left:24px;font-family:var(--sans);font-size:10px;color:var(--muted);z-index:100;letter-spacing:0.06em;}
-.conf{position:fixed;top:0;left:0;right:0;height:30px;background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);z-index:200;border-bottom:1px solid var(--divider);}
+.conf{position:fixed;top:0;left:0;right:0;height:30px;background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);z-index:200;border-bottom:1px solid var(--divider);}
 
 @media(max-width:1024px){
   .slide{padding:36px 28px;}
@@ -481,9 +481,9 @@ td{padding:10px 14px;}
       </div>
     </div>
     <div class="c c-blue">
-      <div class="c-label" style="color:rgba(255,255,255,0.5);">Taste Layer</div>
+      <div class="c-label" style="color:rgba(255,255,255,0.7);">Taste Layer</div>
       <div class="c-title" style="color:#FFF;font-size:18px;">AI가 대체할 수 없는 판단력</div>
-      <div class="c-text" style="color:rgba(255,255,255,0.75);margin-top:12px;font-size:15px;line-height:1.8;">
+      <div class="c-text" style="color:rgba(255,255,255,0.85);margin-top:12px;font-size:15px;line-height:1.8;">
         AI는 "클릭률 높은 이미지"는 찾습니다.<br><br>
         하지만 <strong>"넷마블 세븐나이츠 겨울 이벤트에 이 톤이 맞는지"</strong>는 HIVELAB만 판단할 수 있습니다.<br><br>
         <strong>이것이 에이전시 교체 비용을 높이는 진짜 해자입니다.</strong>
@@ -714,7 +714,7 @@ td{padding:10px 14px;}
       </div>
     </div>
     <div class="c c-dark" style="background:var(--accent);border-top:3px solid rgba(255,255,255,0.3);">
-      <div class="c-label" style="color:rgba(255,255,255,0.5);">6개월+</div>
+      <div class="c-label" style="color:rgba(255,255,255,0.7);">6개월+</div>
       <div class="c-title" style="color:#FFF;">멀티 IP 확장</div>
       <div class="c-text" style="color:rgba(255,255,255,0.7);margin-top:6px;">
         RF · Solo Leveling 추가<br>
@@ -731,7 +731,7 @@ td{padding:10px 14px;}
         의뢰→제작→납품→<span style="color:var(--red);">끝</span>
       </div>
       <div style="padding:12px 20px;background:var(--accent);border-radius:2px;text-align:center;font-size:14px;color:#FFF;">
-        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:4px;">제안</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:block;margin-bottom:4px;">제안</span>
         의뢰→제작→<strong>AI 확장</strong>→납품+인사이트→<strong>다음 의뢰 반영 ↻</strong>
       </div>
     </div>
@@ -786,7 +786,7 @@ td{padding:10px 14px;}
       </div>
     </div>
     <div class="c c-dark" style="border-top:4px solid rgba(255,255,255,0.2);position:relative;">
-      <div style="font-family:var(--sans);font-size:56px;font-weight:800;color:rgba(255,255,255,0.04);position:absolute;top:8px;right:16px;">3</div>
+      <div style="font-family:var(--sans);font-size:56px;font-weight:800;color:rgba(255,255,255,0.08);position:absolute;top:8px;right:16px;">3</div>
       <div class="c-label">PHASE 3 · 6개월+</div>
       <div class="c-title" style="font-size:18px;">독점 데이터 파트너십</div>
       <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.9;">
@@ -795,7 +795,7 @@ td{padding:10px 14px;}
         &bull; 월간 크리에이티브 인텔리전스<br>
         &bull; 경쟁사 복제 불가능 구조
       </div>
-      <div style="margin-top:16px;padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:2px;font-size:14px;color:var(--muted);font-weight:700;text-align:center;">
+      <div style="margin-top:16px;padding:8px 12px;background:rgba(255,255,255,0.08);border-radius:2px;font-size:14px;color:rgba(255,255,255,0.8);font-weight:700;text-align:center;">
         완전한 데이터 해자
       </div>
     </div>
@@ -845,7 +845,7 @@ td{padding:10px 14px;}
     <div style="font-size:20px;font-weight:700;color:#FFF;line-height:1.6;">
       "다음 납품물에 AI를 적용해서,<br>같은 예산으로 어떻게 달라지는지 보여드리겠습니다."
     </div>
-    <div style="margin-top:16px;font-size:14px;color:rgba(255,255,255,0.6);">
+    <div style="margin-top:16px;font-size:14px;color:rgba(255,255,255,0.75);">
       파일럿: 다음 캠페인 1건 &middot; 추가 비용 없음 &middot; 결과로 판단
     </div>
   </div>
