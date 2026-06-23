@@ -11,18 +11,18 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --bg:#0A0A0A;--bg-light:#F5F5F5;--surface:#FFFFFF;
-  --accent:#000DFF;--accent-dim:rgba(0,13,255,0.15);--accent-sub:rgba(0,13,255,0.08);
+  --accent:#000DFF;--accent-dim:rgba(0,13,255,0.12);--accent-sub:rgba(0,13,255,0.06);
   --red:#EF4444;--green:#10B981;--yellow:#F59E0B;
-  --text:#FFFFFF;--text-dark:#0A0A0A;--muted:rgba(255,255,255,0.72);--muted-lt:rgba(10,10,10,0.4);
-  --divider:rgba(255,255,255,0.12);--divider-lt:rgba(10,10,10,0.1);
+  --text:#FFFFFF;--text-dark:#0A0A0A;--muted:rgba(255,255,255,0.72);--muted-lt:rgba(10,10,10,0.45);
+  --divider:rgba(255,255,255,0.12);--divider-lt:rgba(10,10,10,0.08);
   --sans:'Space Grotesk','Pretendard','Inter',sans-serif;
   --kr:'Pretendard','Space Grotesk','Inter',sans-serif;
   --mono:'Space Mono','JetBrains Mono',monospace;
+  --radius:12px;
 }
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:var(--kr);-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;height:100dvh;}
 
-/* === SLIDE ENGINE === */
 .deck{position:relative;width:100vw;height:100vh;height:100dvh;}
 .slide{
   position:absolute;top:0;left:0;width:100%;min-height:100%;
@@ -35,104 +35,72 @@ body{background:var(--bg);color:var(--text);font-family:var(--kr);-webkit-font-s
 .slide.dark{background:var(--bg);color:var(--text);}
 .slide.light{background:var(--bg-light);color:var(--text-dark);}
 .slide.blue{background:var(--accent);color:#FFF;}
-.slide.split{flex-direction:row;padding:0;}
-.slide.split .split-left{width:45%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:64px 56px;}
-.slide.split .split-right{width:55%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:64px 56px;}
 
-/* === TYPO === */
 h1{font-family:var(--sans);font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-0.035em;}
 h2{font-family:var(--sans);font-size:36px;font-weight:700;line-height:1.15;letter-spacing:-0.025em;}
 h3{font-family:var(--sans);font-size:24px;font-weight:700;line-height:1.2;letter-spacing:-0.015em;}
 .sub{font-size:15px;line-height:1.7;margin-top:12px;max-width:720px;}
 .dark .sub{color:var(--muted);}
 .light .sub{color:var(--muted-lt);}
-.blue .sub{color:rgba(255,255,255,0.7);}
+.blue .sub{color:rgba(255,255,255,0.75);}
 .accent{color:var(--accent);}
-.slide.blue .accent{color:rgba(255,255,255,0.75);}
 
-.label{
-  font-family:var(--sans);font-size:11px;font-weight:700;
-  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;
-}
+.label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;}
 .dark .label{color:var(--muted);}
 .light .label{color:var(--muted-lt);}
 .blue .label{color:rgba(255,255,255,0.65);}
 
 .page{position:absolute;top:28px;right:44px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;}
 .dark .page{color:rgba(255,255,255,0.35);}
-.light .page{color:rgba(10,10,10,0.15);}
-.blue .page{color:rgba(255,255,255,0.25);}
+.light .page{color:rgba(10,10,10,0.18);}
+.blue .page{color:rgba(255,255,255,0.3);}
 
-/* === LAYOUT === */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
-.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;}
 .mt{margin-top:20px;}
 
-/* === CARD === */
-.c{padding:20px;border-radius:2px;}
-.c-dark{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);}
+.c{padding:20px;border-radius:var(--radius);}
 .c-surface{background:var(--surface);border:1px solid var(--divider-lt);}
-.c-accent{background:var(--accent-sub);border:1px solid rgba(0,13,255,0.2);}
-.c-blue{background:var(--accent);border:none;color:#FFF;}
-.c-red{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.25);}
+.c-accent{background:var(--accent-sub);border:1px solid rgba(0,13,255,0.12);}
+.c-blue{background:var(--accent);border:none;color:#FFF;border-radius:var(--radius);}
+.c-red{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius);}
+.c-green{background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.15);border-radius:var(--radius);}
 
 .c-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;}
 .c-val{font-family:var(--sans);font-size:38px;font-weight:800;line-height:1;letter-spacing:-0.03em;}
 .c-title{font-size:16px;font-weight:700;margin-bottom:6px;}
-.c-text{font-size:13px;line-height:1.7;}
-.dark .c-text{color:rgba(255,255,255,0.78);}
-.light .c-text{color:rgba(10,10,10,0.55);}
+.c-text{font-size:13px;line-height:1.7;color:var(--muted-lt);}
 
-/* === BAR CHART === */
 .bar-chart{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
 .bar-row{display:flex;align-items:center;gap:12px;}
-.bar-label{width:100px;font-size:13px;font-weight:600;text-align:right;flex-shrink:0;}
-.bar-track{flex:1;height:24px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;position:relative;}
-.light .bar-track{background:rgba(10,10,10,0.06);}
-.bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;padding-left:10px;font-family:var(--sans);font-size:12px;font-weight:700;color:#FFF;transition:width 0.8s ease;}
+.bar-label{width:100px;font-size:13px;font-weight:600;text-align:right;flex-shrink:0;color:var(--text-dark);}
+.bar-track{flex:1;height:24px;background:rgba(10,10,10,0.06);border-radius:var(--radius);overflow:hidden;}
+.bar-fill{height:100%;border-radius:var(--radius);display:flex;align-items:center;padding-left:10px;font-family:var(--sans);font-size:12px;font-weight:700;color:#FFF;}
 .bar-fill.blue{background:var(--accent);}
 .bar-fill.red{background:var(--red);}
 .bar-fill.green{background:var(--green);}
-.bar-fill.gray{background:rgba(255,255,255,0.3);}
-.light .bar-fill.gray{background:rgba(10,10,10,0.15);}
+.bar-fill.gray{background:rgba(10,10,10,0.2);}
 
-/* === DONUT === */
-.donut-wrap{display:flex;align-items:center;gap:24px;}
-.donut{width:120px;height:120px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;}
-.donut-inner{font-family:var(--sans);font-size:28px;font-weight:800;letter-spacing:-0.02em;}
-.donut-label{font-size:14px;font-weight:600;}
-.donut-desc{font-size:13px;line-height:1.7;margin-top:4px;}
-
-/* === TABLE === */
 table{width:100%;border-collapse:collapse;font-size:13px;}
-th{text-align:left;padding:8px 12px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
-.dark th{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);border-bottom:1px solid rgba(255,255,255,0.18);}
-.light th{background:var(--bg-light);color:var(--muted-lt);border-bottom:1px solid var(--divider-lt);}
-td{padding:8px 12px;}
-.dark td{border-bottom:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);}
-.light td{border-bottom:1px solid var(--divider-lt);}
+th{text-align:left;padding:8px 12px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--bg-light);color:var(--muted-lt);border-bottom:1px solid var(--divider-lt);}
+td{padding:8px 12px;border-bottom:1px solid var(--divider-lt);color:var(--text-dark);}
 .hi{color:var(--accent);font-weight:700;}
 .rd{color:var(--red);font-weight:700;}
 .gn{color:var(--green);font-weight:700;}
-.tag{display:inline-flex;padding:2px 8px;border-radius:2px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.tag{display:inline-flex;padding:2px 8px;border-radius:6px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
 
-/* === FLOW === */
 .flow{display:flex;align-items:center;gap:0;}
-.flow-step{flex:1;padding:14px;text-align:center;border-radius:2px;font-size:13px;font-weight:600;}
-.flow-arr{font-size:20px;padding:0 6px;flex-shrink:0;}
-.dark .flow-arr{color:var(--muted);}
-.light .flow-arr{color:var(--muted-lt);}
+.flow-step{flex:1;padding:14px;text-align:center;border-radius:var(--radius);font-size:13px;font-weight:600;}
+.flow-arr{font-size:20px;padding:0 6px;flex-shrink:0;color:var(--muted-lt);}
 
-/* === QUOTE === */
-.quote{border-left:3px solid var(--accent);padding:16px 22px;border-radius:0 2px 2px 0;font-size:16px;line-height:1.7;margin-top:20px;}
-.dark .quote{background:var(--accent-sub);}
-.light .quote{background:rgba(0,13,255,0.04);}
+.quote{border-left:none;padding:16px 22px;border-radius:var(--radius);font-size:15px;line-height:1.7;margin-top:16px;background:var(--accent-sub);}
 
-/* === CHROME === */
+.cta-box{padding:16px 24px;background:var(--accent);border-radius:var(--radius);color:#FFF;font-size:15px;font-weight:600;text-align:center;margin-top:16px;}
+
 .progress{position:fixed;bottom:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width 0.4s ease;}
-.counter{position:fixed;bottom:14px;right:24px;font-family:var(--mono);font-size:11px;color:var(--muted);z-index:100;}
-.nav-hint{position:fixed;bottom:14px;left:24px;font-family:var(--sans);font-size:10px;color:var(--muted);z-index:100;letter-spacing:0.06em;}
+.counter{position:fixed;bottom:14px;right:24px;font-family:var(--mono);font-size:11px;color:var(--muted-lt);z-index:100;}
+.nav-hint{position:fixed;bottom:14px;left:24px;font-family:var(--sans);font-size:10px;color:var(--muted-lt);z-index:100;letter-spacing:0.06em;}
 .conf{position:fixed;top:0;left:0;right:0;height:30px;background:rgba(10,10,10,0.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);z-index:200;border-bottom:1px solid var(--divider);}
 
 @media(max-width:1024px){
@@ -142,8 +110,6 @@ td{padding:8px 12px;}
   .g2,.g3,.g4{grid-template-columns:1fr 1fr;}
   .c{padding:14px;}
   .c-val{font-size:28px;}
-  .slide.split{flex-direction:column;}
-  .slide.split .split-left,.slide.split .split-right{width:100%;height:auto;padding:24px;}
 }
 @media(max-width:640px){
   .g2,.g3,.g4{grid-template-columns:1fr;}
@@ -159,9 +125,7 @@ td{padding:8px 12px;}
 
 <div class="deck" id="deck">
 
-<!-- ================================================ -->
-<!-- 01. 커버 -->
-<!-- ================================================ -->
+<!-- 01. 커버 (dark) -->
 <div class="slide dark active" data-slide="0">
   <div class="label" style="color:var(--accent);">HIVELAB MAX LAB &times; NETMARBLE &middot; 2026.06</div>
   <h1 style="font-size:52px;">같은 예산,<br><span class="accent">3배의 소재,</span><br>근거 있는 제안.</h1>
@@ -175,47 +139,61 @@ td{padding:8px 12px;}
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 02. 문제 정의 — 소재 수명 -->
-<!-- ================================================ -->
+<!-- 02. 목차 (dark) -->
 <div class="slide dark" data-slide="1">
   <div class="page">02</div>
+  <div class="label" style="color:var(--muted);">AGENDA</div>
+  <h2>목차</h2>
+  <div style="margin-top:24px;display:grid;grid-template-columns:40px 1fr;gap:10px 20px;font-size:17px;line-height:2.2;max-width:600px;">
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">01</div><div>왜 지금인가 — 시장이 바뀌었다</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">02</div><div>경쟁사는 이미 하고 있다</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">03</div><div>플랫폼 AI만으로는 부족한 이유</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">04</div><div>HIVELAB AI 배너 리서치 플랫폼</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">05</div><div>6,700개 — 왜 HIVELAB만 가능한가</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">06</div><div>ROI 근거 · 레퍼런스</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">07</div><div>비즈니스 모델 · 팀</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">08</div><div>로드맵 · 데이터 파트너십</div>
+    <div style="font-family:var(--sans);font-weight:700;color:var(--accent);">09</div><div>제안 · Next Step</div>
+  </div>
+</div>
+
+<!-- 03. 문제 정의 — 소재 수명 (light) -->
+<div class="slide light" data-slide="2">
+  <div class="page">03</div>
   <div class="label" style="color:var(--red);">문제 정의</div>
-  <h2>광고 소재의 수명이<br><span style="color:var(--red);">절반으로 줄었습니다</span></h2>
+  <h2>광고 소재의 수명이 <span style="color:var(--red);">절반으로 줄었습니다</span></h2>
 
   <div class="g4 mt">
-    <div class="c c-dark" style="text-align:center;border-top:3px solid var(--red);">
+    <div class="c c-surface" style="text-align:center;">
       <div class="c-label" style="color:var(--red);">TikTok</div>
       <div class="c-val" style="color:var(--red);">3–7일</div>
       <div class="c-text" style="margin-top:6px;">리타겟팅 시 48h</div>
     </div>
-    <div class="c c-dark" style="text-align:center;border-top:3px solid var(--red);">
+    <div class="c c-surface" style="text-align:center;">
       <div class="c-label" style="color:var(--red);">Meta Reels</div>
       <div class="c-val" style="color:var(--red);">7–14일</div>
       <div class="c-text" style="margin-top:6px;">고예산 시 5–10일</div>
     </div>
-    <div class="c c-dark" style="text-align:center;border-top:3px solid var(--red);">
+    <div class="c c-surface" style="text-align:center;">
       <div class="c-label" style="color:var(--red);">4회 노출 후 전환율</div>
       <div class="c-val" style="color:var(--red);">–45%</div>
       <div class="c-text" style="margin-top:6px;">Meta 내부 연구 26,000건</div>
     </div>
-    <div class="c c-dark" style="text-align:center;border-top:3px solid var(--accent);">
+    <div class="c c-surface" style="text-align:center;">
       <div class="c-label" style="color:var(--accent);">주간 신규 소재 필요</div>
       <div class="c-val" style="color:var(--accent);">8–15개</div>
       <div class="c-text" style="margin-top:6px;">월 $50K+ 집행 기준</div>
     </div>
   </div>
 
-  <div style="margin-top:20px;padding:14px 20px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:2px;font-size:15px;">
+  <div class="c-red" style="margin-top:16px;padding:14px 20px;font-size:15px;color:var(--text-dark);">
     2023년 6주였던 소재 수명이 2025년 2–3주로. <strong style="color:var(--red);">더 빠르게, 더 많이 만들어야 합니다.</strong>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 03. 문제 정의 — 물량 전쟁 (차트) -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="2">
-  <div class="page">03</div>
+<!-- 04. 문제 정의 — 물량 전쟁 (light) -->
+<div class="slide light" data-slide="3">
+  <div class="page">04</div>
   <div class="label" style="color:var(--red);">문제 정의</div>
   <h2>소재 <span style="color:var(--red);">물량 전쟁</span>의 시대</h2>
   <p class="sub">광고비는 +33% 늘었지만, 구매의향은 +17%만 올랐습니다. 돈이 아니라 소재가 경쟁력입니다.</p>
@@ -224,51 +202,31 @@ td{padding:8px 12px;}
     <div>
       <div class="c-label" style="color:var(--accent);margin-bottom:12px;">상위 광고주 분기 소재 제작량</div>
       <div class="bar-chart">
-        <div class="bar-row">
-          <div class="bar-label">2023</div>
-          <div class="bar-track"><div class="bar-fill gray" style="width:40%;">~1,000개</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">2024</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:65%;">~1,800개</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">2025</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:90%;">~2,600개</div></div>
-        </div>
+        <div class="bar-row"><div class="bar-label">2023</div><div class="bar-track"><div class="bar-fill gray" style="width:40%;">~1,000개</div></div></div>
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill blue" style="width:65%;">~1,800개</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025</div><div class="bar-track"><div class="bar-fill blue" style="width:90%;">~2,600개</div></div></div>
       </div>
       <div class="c-text" style="margin-top:8px;">YoY +25–30% 증가</div>
     </div>
     <div>
       <div class="c-label" style="color:var(--accent);margin-bottom:12px;">소재 교체 주기 변화</div>
       <div class="bar-chart">
-        <div class="bar-row">
-          <div class="bar-label">2023</div>
-          <div class="bar-track"><div class="bar-fill gray" style="width:85%;">6주</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">2024</div>
-          <div class="bar-track"><div class="bar-fill red" style="width:55%;">3–4주</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">2025</div>
-          <div class="bar-track"><div class="bar-fill red" style="width:30%;">2–3주</div></div>
-        </div>
+        <div class="bar-row"><div class="bar-label">2023</div><div class="bar-track"><div class="bar-fill gray" style="width:85%;">6주</div></div></div>
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill red" style="width:55%;">3–4주</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025</div><div class="bar-track"><div class="bar-fill red" style="width:30%;">2–3주</div></div></div>
       </div>
       <div class="c-text" style="margin-top:8px;">Meta Andromeda 알고리즘 영향</div>
     </div>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 04. 문제 정의 — 플랫폼 AI 한계 -->
-<!-- ================================================ -->
-<div class="slide light" data-slide="3">
-  <div class="page">04</div>
+<!-- 05. 플랫폼 AI 한계 (light) -->
+<div class="slide light" data-slide="4">
+  <div class="page">05</div>
   <div class="label" style="color:var(--red);">문제 정의</div>
-  <h2>Meta·Google AI만으로는<br><span style="color:var(--red);">해결되지 않습니다</span></h2>
+  <h2>Meta·Google AI만으로는 <span style="color:var(--red);">해결되지 않습니다</span></h2>
 
-  <table class="mt">
+  <table class="mt" style="border-radius:var(--radius);overflow:hidden;">
     <thead><tr><th>한계</th><th>의미</th><th>영향</th></tr></thead>
     <tbody>
       <tr><td><strong>Walled Garden</strong></td><td>Google은 Meta 데이터를 모르고, Meta는 TikTok을 모릅니다</td><td class="rd">크로스 플랫폼 인사이트 불가</td></tr>
@@ -278,32 +236,26 @@ td{padding:8px 12px;}
     </tbody>
   </table>
 
-  <div style="margin-top:20px;padding:14px 24px;background:var(--accent);border-radius:2px;color:#FFF;font-size:16px;font-weight:600;text-align:center;">
-    넷마블이 필요한 건 "넷마블 IP에 맞는 소재를 모든 매체에서 최적화"하는 것입니다.
-  </div>
+  <div class="cta-box">넷마블이 필요한 건 "넷마블 IP에 맞는 소재를 모든 매체에서 최적화"하는 것입니다.</div>
 </div>
 
-<!-- ================================================ -->
-<!-- 05. 솔루션 — 플랫폼 소개 -->
-<!-- ================================================ -->
-<div class="slide blue" data-slide="4">
-  <div class="page">05</div>
+<!-- 06. 간지 — 솔루션 (blue) -->
+<div class="slide blue" data-slide="5">
+  <div class="page">06</div>
   <div class="label">SOLUTION</div>
   <h1>HIVELAB<br>AI 배너 리서치 플랫폼</h1>
-  <p class="sub" style="margin-top:20px;">6,700개 넷마블 소재 위에 AI를 올려,<br>플랫폼 AI가 못 하는 것을 합니다.</p>
+  <p class="sub">6,700개 넷마블 소재 위에 AI를 올려,<br>플랫폼 AI가 못 하는 것을 합니다.</p>
 </div>
 
-<!-- ================================================ -->
-<!-- 06. 솔루션 — 비교 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="5">
-  <div class="page">06</div>
+<!-- 07. 솔루션 비교 (light) -->
+<div class="slide light" data-slide="6">
+  <div class="page">07</div>
   <div class="label" style="color:var(--accent);">솔루션</div>
   <h3>플랫폼 AI가 못 하는 것을 HIVELAB이 합니다</h3>
 
   <div class="g2 mt">
-    <div class="c c-dark" style="border-left:3px solid rgba(255,255,255,0.15);">
-      <div class="c-label" style="color:var(--muted);">플랫폼 AI</div>
+    <div class="c c-surface">
+      <div class="c-label" style="color:var(--muted-lt);">플랫폼 AI (Advantage+ / PMax)</div>
       <div class="c-text" style="font-size:15px;line-height:2;margin-top:8px;">
         &bull; 현재 캠페인 안에서만 최적화<br>
         &bull; 자기 플랫폼 데이터만 사용<br>
@@ -312,184 +264,127 @@ td{padding:8px 12px;}
         &bull; 과거 소재 자산 활용 불가
       </div>
     </div>
-    <div class="c c-dark" style="border-left:3px solid var(--accent);">
+    <div class="c c-accent">
       <div class="c-label" style="color:var(--accent);">HIVELAB AI 배너 리서치 플랫폼</div>
-      <div class="c-text" style="font-size:15px;line-height:2;margin-top:8px;">
-        &bull; <strong style="color:#FFF;">6,700개</strong> 과거 소재에서 "왜 잘 됐는지" 학습<br>
-        &bull; <strong style="color:#FFF;">크로스 플랫폼</strong> — Meta·Google·TikTok·네이버 통합<br>
-        &bull; <strong style="color:#FFF;">IP·시즌별</strong> 최적 소재 추천 (Taste Layer)<br>
-        &bull; <strong style="color:#FFF;">피로도 예측</strong> — 수명 소진 전 교체 준비<br>
-        &bull; <strong style="color:#FFF;">원본 1개 → 40개 변형</strong> 자동 생성
+      <div class="c-text" style="font-size:15px;line-height:2;margin-top:8px;color:var(--text-dark);">
+        &bull; <strong>6,700개</strong> 과거 소재에서 "왜 잘 됐는지" 학습<br>
+        &bull; <strong>크로스 플랫폼</strong> — Meta·Google·TikTok·네이버 통합<br>
+        &bull; <strong>IP·시즌별</strong> 최적 소재 추천 (Taste Layer)<br>
+        &bull; <strong>피로도 예측</strong> — 수명 소진 전 교체 준비<br>
+        &bull; <strong>원본 1개 → 40개 변형</strong> 자동 생성
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 07. 솔루션 — 3-Track 모델 -->
-<!-- ================================================ -->
-<div class="slide light" data-slide="6">
-  <div class="page">07</div>
+<!-- 08. 3-Track (light) -->
+<div class="slide light" data-slide="7">
+  <div class="page">08</div>
   <div class="label" style="color:var(--accent);">솔루션</div>
   <h3>3-Track 제작 모델 — 사람과 AI의 역할 분담</h3>
 
   <div class="g3 mt">
-    <div class="c c-surface" style="border-top:3px solid var(--accent);">
+    <div class="c c-accent">
       <div class="c-label" style="color:var(--accent);">CRAFT · 사람 주도</div>
       <div class="c-title" style="color:var(--text-dark);">히어로 캠페인</div>
       <div class="c-text" style="margin-top:8px;">대형 브랜드 영상, 론칭 핵심 소재<br>HIVELAB 디자이너가 컨셉부터 완성<br>AI는 레퍼런스 검색 보조</div>
     </div>
-    <div class="c c-surface" style="border-top:3px solid var(--green);">
+    <div class="c c-green">
       <div class="c-label" style="color:var(--green);">MAKER · 사람+AI</div>
       <div class="c-title" style="color:var(--text-dark);">소셜 · 이벤트 배너</div>
       <div class="c-text" style="margin-top:8px;">AI가 초안·변형 생성<br>디자이너가 방향 잡고 감수<br><strong style="color:var(--text-dark);">턴어라운드 3일→반나절</strong></div>
     </div>
-    <div class="c c-surface" style="border-top:3px solid var(--divider-lt);">
+    <div class="c c-surface">
       <div class="c-label" style="color:var(--muted-lt);">ENGINE · AI 전담</div>
       <div class="c-title" style="color:var(--text-dark);">리사이징 · 변형</div>
       <div class="c-text" style="margin-top:8px;">매체별 사이즈 변환, A/B 변형<br>원본 1개→40개 자동 생성<br>디자이너는 최종 확인만</div>
     </div>
   </div>
 
-  <div style="text-align:center;margin-top:20px;font-size:14px;color:var(--muted-lt);">
+  <div style="text-align:center;margin-top:16px;font-size:14px;color:var(--muted-lt);">
     Craft에 사람을 집중하고, Engine은 AI에 맡깁니다. <strong style="color:var(--text-dark);">품질은 유지, 산출량 3배.</strong>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 08. 시장 규모 / 기회 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="7">
-  <div class="page">08</div>
+<!-- 09. 시장 기회 (light) -->
+<div class="slide light" data-slide="8">
+  <div class="page">09</div>
   <div class="label" style="color:var(--accent);">시장 기회</div>
-  <h2>AI 게임 광고 시장은<br><span class="accent">폭발적으로 성장</span> 중입니다</h2>
+  <h2>AI 게임 광고 시장은 <span class="accent">폭발적으로 성장</span> 중입니다</h2>
 
   <div class="g3 mt">
-    <div class="c c-dark" style="text-align:center;">
-      <div class="c-label" style="color:var(--muted);">글로벌 모바일 게임 UA 광고비</div>
+    <div class="c c-surface" style="text-align:center;">
+      <div class="c-label" style="color:var(--muted-lt);">글로벌 모바일 게임 UA 광고비</div>
       <div class="c-val" style="color:var(--accent);">$250억</div>
       <div class="c-text" style="margin-top:6px;">2025년 기준</div>
     </div>
-    <div class="c c-dark" style="text-align:center;">
-      <div class="c-label" style="color:var(--muted);">AI 게임 시장 성장률</div>
-      <div class="c-val" style="color:var(--accent);font-size:36px;">CAGR 33.6%</div>
+    <div class="c c-surface" style="text-align:center;">
+      <div class="c-label" style="color:var(--muted-lt);">AI 게임 시장 성장률</div>
+      <div class="c-val" style="color:var(--accent);font-size:30px;">CAGR 33.6%</div>
       <div class="c-text" style="margin-top:6px;">$45억→$812억 (2025–2035)</div>
     </div>
-    <div class="c c-dark" style="text-align:center;">
-      <div class="c-label" style="color:var(--muted);">한국 광고 시장</div>
+    <div class="c c-surface" style="text-align:center;">
+      <div class="c-label" style="color:var(--muted-lt);">한국 광고 시장</div>
       <div class="c-val" style="color:var(--accent);">17.2조</div>
       <div class="c-text" style="margin-top:6px;">디지털 60%, AI 전환 가속</div>
     </div>
   </div>
 
-  <div style="margin-top:28px;">
-    <div class="c-label" style="color:var(--accent);margin-bottom:12px;">AI 소재 도입률 (2026 예상)</div>
+  <div style="margin-top:20px;">
+    <div class="c-label" style="color:var(--accent);margin-bottom:10px;">AI 소재 도입률 (2026 예상)</div>
     <div class="bar-chart">
-      <div class="bar-row">
-        <div class="bar-label">UA 소재 중 AI</div>
-        <div class="bar-track"><div class="bar-fill blue" style="width:50%;">~50%</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">개발자 AI 사용</div>
-        <div class="bar-track"><div class="bar-fill blue" style="width:90%;">90%</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">경영진 AI 도입</div>
-        <div class="bar-track"><div class="bar-fill blue" style="width:84%;">84%</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">광고주 AI 활용</div>
-        <div class="bar-track"><div class="bar-fill blue" style="width:92%;">90%+</div></div>
-      </div>
+      <div class="bar-row"><div class="bar-label">UA 소재 중 AI</div><div class="bar-track"><div class="bar-fill blue" style="width:50%;">~50%</div></div></div>
+      <div class="bar-row"><div class="bar-label">개발자 AI 사용</div><div class="bar-track"><div class="bar-fill blue" style="width:90%;">90%</div></div></div>
+      <div class="bar-row"><div class="bar-label">경영진 AI 도입</div><div class="bar-track"><div class="bar-fill blue" style="width:84%;">84%</div></div></div>
+      <div class="bar-row"><div class="bar-label">광고주 AI 활용</div><div class="bar-track"><div class="bar-fill blue" style="width:92%;">90%+</div></div></div>
     </div>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 09. 핵심 차별점 — 경쟁사 현황 -->
-<!-- ================================================ -->
-<div class="slide blue" data-slide="8">
-  <div class="page">09</div>
+<!-- 10. 간지 — 경쟁사 (blue) -->
+<div class="slide blue" data-slide="9">
+  <div class="page">10</div>
   <div class="label">핵심 차별점</div>
   <h1>경쟁사는 이미<br>하고 있습니다</h1>
   <p class="sub">같은 시장 게임사들의 AI 투자 현황.<br>대응하지 않으면 소재 경쟁력에서 뒤처집니다.</p>
 </div>
 
-<!-- ================================================ -->
-<!-- 10. 차별점 — 경쟁사 비교표 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="9">
-  <div class="page">10</div>
+<!-- 11. 경쟁사 비교표 (light) -->
+<div class="slide light" data-slide="10">
+  <div class="page">11</div>
   <div class="label" style="color:var(--accent);">핵심 차별점</div>
   <h3>동종 게임사 AI 광고 투자 비교</h3>
 
-  <table class="mt">
+  <table class="mt" style="border-radius:var(--radius);overflow:hidden;">
     <thead><tr><th>경쟁사</th><th>AI 활용</th><th>성과</th><th>수준</th></tr></thead>
     <tbody>
-      <tr>
-        <td><strong>넥슨</strong></td>
-        <td>AI 파이프라인 영상 광고 자동 제작</td>
-        <td>제작 1.5개월→<span class="hi">1일</span> (30x), CTR <span class="hi">14배</span></td>
-        <td><span class="tag" style="background:var(--red);color:#FFF;">양산 중</span></td>
-      </tr>
-      <tr>
-        <td><strong>크래프톤</strong></td>
-        <td>GPU 슈퍼클러스터, 전사 AI 내재화</td>
-        <td><span class="hi">$7,000만</span> 투자, 직원 <span class="hi">97.6%</span> AI 사용</td>
-        <td><span class="tag" style="background:var(--accent);color:#FFF;">전사 내재화</span></td>
-      </tr>
-      <tr>
-        <td><strong>엔씨소프트</strong></td>
-        <td>VARCO LLM/Studio, AI 자회사 분사</td>
-        <td>패션 10대 기업 기술 수출</td>
-        <td><span class="tag" style="background:var(--accent);color:#FFF;">외부 사업화</span></td>
-      </tr>
-      <tr>
-        <td><strong>웹젠</strong></td>
-        <td>Airbridge AI 크리에이티브 최적화</td>
-        <td>ROAS <span class="hi">+300%</span></td>
-        <td><span class="tag" style="background:var(--green);color:#FFF;">적용 완료</span></td>
-      </tr>
+      <tr><td><strong>넥슨</strong></td><td>AI 파이프라인 영상 광고 자동 제작</td><td>제작 1.5개월→<span class="hi">1일</span> (30x), CTR <span class="hi">14배</span></td><td><span class="tag" style="background:var(--red);color:#FFF;">양산 중</span></td></tr>
+      <tr><td><strong>크래프톤</strong></td><td>GPU 슈퍼클러스터, 전사 AI 내재화</td><td><span class="hi">$7,000만</span> 투자, 직원 <span class="hi">97.6%</span> AI 사용</td><td><span class="tag" style="background:var(--accent);color:#FFF;">전사 내재화</span></td></tr>
+      <tr><td><strong>엔씨소프트</strong></td><td>VARCO LLM/Studio, AI 자회사 분사</td><td>패션 10대 기업 기술 수출</td><td><span class="tag" style="background:var(--accent);color:#FFF;">외부 사업화</span></td></tr>
+      <tr><td><strong>웹젠</strong></td><td>Airbridge AI 크리에이티브 최적화</td><td>ROAS <span class="hi">+300%</span></td><td><span class="tag" style="background:var(--green);color:#FFF;">적용 완료</span></td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- ================================================ -->
-<!-- 11. 차별점 — 6,700개 데이터 해자 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="10">
-  <div class="page">11</div>
+<!-- 12. 데이터 해자 (light) -->
+<div class="slide light" data-slide="11">
+  <div class="page">12</div>
   <div class="label" style="color:var(--accent);">핵심 차별점</div>
-  <h2>6,700개 —<br>다른 에이전시가 <span class="accent">복제할 수 없는</span> 이유</h2>
+  <h2>6,700개 — 다른 에이전시가 <span class="accent">복제할 수 없는</span> 이유</h2>
 
   <div class="g2 mt">
     <div>
-      <div class="c-label" style="color:var(--accent);margin-bottom:12px;">HIVELAB 데이터 우위</div>
+      <div class="c-label" style="color:var(--accent);margin-bottom:10px;">HIVELAB 데이터 우위</div>
       <div class="bar-chart">
-        <div class="bar-row">
-          <div class="bar-label">1st Party 소재</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:100%;">6,700개 · 직접 제작</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">캠페인 맥락</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:85%;">시즌·이벤트·론칭 의도</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">IP별 성과 패턴</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:80%;">어떤 비주얼이 어떤 IP에서</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">승인 기준</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:75%;">넷마블 브랜드 가이드 내재화</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">연속성</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:90%;">과거→현재→미래 데이터 체인</div></div>
-        </div>
+        <div class="bar-row"><div class="bar-label">1st Party 소재</div><div class="bar-track"><div class="bar-fill blue" style="width:100%;">6,700개 · 직접 제작</div></div></div>
+        <div class="bar-row"><div class="bar-label">캠페인 맥락</div><div class="bar-track"><div class="bar-fill blue" style="width:85%;">시즌·이벤트·론칭 의도</div></div></div>
+        <div class="bar-row"><div class="bar-label">IP별 성과 패턴</div><div class="bar-track"><div class="bar-fill blue" style="width:80%;">어떤 비주얼이 어떤 IP에서</div></div></div>
+        <div class="bar-row"><div class="bar-label">승인 기준</div><div class="bar-track"><div class="bar-fill blue" style="width:75%;">넷마블 브랜드 가이드 내재화</div></div></div>
+        <div class="bar-row"><div class="bar-label">연속성</div><div class="bar-track"><div class="bar-fill blue" style="width:90%;">과거→현재→미래 데이터 체인</div></div></div>
       </div>
     </div>
     <div class="c c-blue">
-      <div class="c-label" style="color:rgba(255,255,255,0.7);">Taste Layer</div>
+      <div class="c-label" style="color:rgba(255,255,255,0.65);">Taste Layer</div>
       <div class="c-title" style="color:#FFF;font-size:18px;">AI가 대체할 수 없는 판단력</div>
       <div class="c-text" style="color:rgba(255,255,255,0.85);margin-top:12px;font-size:15px;line-height:1.8;">
         AI는 "클릭률 높은 이미지"는 찾습니다.<br><br>
@@ -500,81 +395,48 @@ td{padding:8px 12px;}
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 12. 성과 · 레퍼런스 — ROI (차트) -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="11">
-  <div class="page">12</div>
+<!-- 13. ROI 차트 (light) -->
+<div class="slide light" data-slide="12">
+  <div class="page">13</div>
   <div class="label" style="color:var(--accent);">성과 · 레퍼런스</div>
   <h2>AI 적용 시 <span class="accent">기대 효과</span></h2>
   <p class="sub">업계 벤치마크 기준 — 게임·디지털 광고 업계 실적 종합</p>
 
   <div class="g2 mt">
     <div>
-      <div class="c-label" style="color:var(--accent);margin-bottom:12px;">성과 개선</div>
+      <div class="c-label" style="color:var(--accent);margin-bottom:10px;">성과 개선</div>
       <div class="bar-chart">
-        <div class="bar-row">
-          <div class="bar-label">CTR</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:47%;">+47%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">ROAS</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:72%;">+72%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">전환율</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:15%;">+10–15%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">CPI</div>
-          <div class="bar-track"><div class="bar-fill green" style="width:40%;">–40%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">CPA</div>
-          <div class="bar-track"><div class="bar-fill green" style="width:66%;">최대 –66%</div></div>
-        </div>
+        <div class="bar-row"><div class="bar-label">CTR</div><div class="bar-track"><div class="bar-fill blue" style="width:47%;">+47%</div></div></div>
+        <div class="bar-row"><div class="bar-label">ROAS</div><div class="bar-track"><div class="bar-fill blue" style="width:72%;">+72%</div></div></div>
+        <div class="bar-row"><div class="bar-label">전환율</div><div class="bar-track"><div class="bar-fill blue" style="width:15%;">+10–15%</div></div></div>
+        <div class="bar-row"><div class="bar-label">CPI</div><div class="bar-track"><div class="bar-fill green" style="width:40%;">–40%</div></div></div>
+        <div class="bar-row"><div class="bar-label">CPA</div><div class="bar-track"><div class="bar-fill green" style="width:66%;">최대 –66%</div></div></div>
       </div>
     </div>
     <div>
-      <div class="c-label" style="color:var(--accent);margin-bottom:12px;">제작 효율</div>
+      <div class="c-label" style="color:var(--accent);margin-bottom:10px;">제작 효율</div>
       <div class="bar-chart">
-        <div class="bar-row">
-          <div class="bar-label">제작 기간</div>
-          <div class="bar-track"><div class="bar-fill green" style="width:85%;">–80~90%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">소재 단가</div>
-          <div class="bar-track"><div class="bar-fill green" style="width:88%;">–85~90%</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">산출량</div>
-          <div class="bar-track"><div class="bar-fill blue" style="width:75%;">3배 ↑</div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">수정 사이클</div>
-          <div class="bar-track"><div class="bar-fill green" style="width:65%;">–60~70%</div></div>
-        </div>
+        <div class="bar-row"><div class="bar-label">제작 기간</div><div class="bar-track"><div class="bar-fill green" style="width:85%;">–80~90%</div></div></div>
+        <div class="bar-row"><div class="bar-label">소재 단가</div><div class="bar-track"><div class="bar-fill green" style="width:88%;">–85~90%</div></div></div>
+        <div class="bar-row"><div class="bar-label">산출량</div><div class="bar-track"><div class="bar-fill blue" style="width:75%;">3배 ↑</div></div></div>
+        <div class="bar-row"><div class="bar-label">수정 사이클</div><div class="bar-track"><div class="bar-fill green" style="width:65%;">–60~70%</div></div></div>
       </div>
     </div>
   </div>
 
-  <div class="c-text" style="margin-top:12px;font-size:11px;">
-    출처: Influencer Marketing Hub · MixFlow 2025 · Segwise · Admiral Media · AppsFlyer × Ace Games
-  </div>
+  <div class="c-text" style="margin-top:12px;font-size:11px;">출처: Influencer Marketing Hub · MixFlow 2025 · Segwise · Admiral Media · AppsFlyer × Ace Games</div>
 </div>
 
-<!-- ================================================ -->
-<!-- 13. 성과 · 레퍼런스 — 실제 사례 -->
-<!-- ================================================ -->
-<div class="slide light" data-slide="12">
-  <div class="page">13</div>
+<!-- 14. 실적 사례 (light) -->
+<div class="slide light" data-slide="13">
+  <div class="page">14</div>
   <div class="label" style="color:var(--accent);">성과 · 레퍼런스</div>
   <h3>글로벌 · 한국 AI 광고 실적 사례</h3>
 
   <div class="g2 mt">
     <div>
       <div class="c-label" style="color:var(--muted-lt);">글로벌 게임사</div>
-      <table>
+      <table style="border-radius:var(--radius);overflow:hidden;">
         <thead><tr><th>기업</th><th>AI 활용</th><th>성과</th></tr></thead>
         <tbody>
           <tr><td><strong>Ace Games</strong></td><td>AppsFlyer + Layer AI</td><td>CTR <span class="hi">+52%</span>, 성공률 55→<span class="hi">80%</span></td></tr>
@@ -586,7 +448,7 @@ td{padding:8px 12px;}
     </div>
     <div>
       <div class="c-label" style="color:var(--muted-lt);">한국 사례 (Draph Art)</div>
-      <table>
+      <table style="border-radius:var(--radius);overflow:hidden;">
         <thead><tr><th>클라이언트</th><th>결과</th></tr></thead>
         <tbody>
           <tr><td>패션 브랜드</td><td>제작 7일→<span class="hi">1일</span> (85%↓)</td></tr>
@@ -599,156 +461,89 @@ td{padding:8px 12px;}
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 14. 비즈니스 모델 -->
-<!-- ================================================ -->
-<div class="slide blue" data-slide="13">
-  <div class="page">14</div>
+<!-- 15. 간지 — 비즈니스 모델 (blue) -->
+<div class="slide blue" data-slide="14">
+  <div class="page">15</div>
   <div class="label">비즈니스 모델</div>
   <h1>"시간을 파는 구조"에서<br>"결과를 파는 구조"로</h1>
   <p class="sub">AI가 시간을 줄이면, 시간 기반 과금은 매출이 자동으로 줄어듭니다.<br>구조를 바꿔야 합니다.</p>
 </div>
 
-<!-- ================================================ -->
-<!-- 15. 비즈니스 모델 — 상세 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="14">
-  <div class="page">15</div>
-  <div class="label" style="color:var(--accent);">비즈니스 모델</div>
+<!-- 16. 과금 모델 + 팀 (light) -->
+<div class="slide light" data-slide="15">
+  <div class="page">16</div>
+  <div class="label" style="color:var(--accent);">비즈니스 모델 · 팀</div>
   <h3>과금 모델 전환</h3>
 
   <div class="g3 mt">
-    <div class="c c-red" style="border-top:3px solid var(--red);">
+    <div class="c c-red">
       <div class="c-label" style="color:var(--red);">현재 (위험)</div>
-      <div class="c-title">시간 기반 과금</div>
-      <div class="c-text" style="margin-top:8px;">
-        "배너 10개 × 단가" 구조<br>
-        AI로 빨라지면 단가 인하 압력<br>
-        <strong style="color:var(--red);">매출 자동 하락</strong>
-      </div>
+      <div class="c-title" style="color:var(--text-dark);">시간 기반 과금</div>
+      <div class="c-text" style="margin-top:8px;">"배너 10개 × 단가" 구조<br>AI로 빨라지면 단가 인하 압력<br><strong style="color:var(--red);">매출 자동 하락</strong></div>
     </div>
-    <div class="c c-accent" style="border-top:3px solid var(--accent);">
+    <div class="c c-accent">
       <div class="c-label" style="color:var(--accent);">전환 1: 구독형</div>
-      <div class="c-title">월간 소재 팩 리테이너</div>
-      <div class="c-text" style="margin-top:8px;">
-        월 고정금액→소재 100개+인사이트<br>
-        예측 가능한 수익 구조<br>
-        <strong>Superside, Brandtech 모두 이 모델</strong>
-      </div>
+      <div class="c-title" style="color:var(--text-dark);">월간 소재 팩 리테이너</div>
+      <div class="c-text" style="margin-top:8px;">월 고정금액→소재 100개+인사이트<br>예측 가능한 수익 구조<br><strong style="color:var(--accent);">Superside, Brandtech 모두 이 모델</strong></div>
     </div>
-    <div class="c c-dark" style="border-top:3px solid var(--green);">
+    <div class="c c-green">
       <div class="c-label" style="color:var(--green);">전환 2: 성과 연동</div>
-      <div class="c-title">CTR/ROAS 기반 인센티브</div>
-      <div class="c-text" style="margin-top:8px;">
-        기본료 + 성과 초과분 수수료<br>
-        이해관계 일치 구조<br>
-        <strong style="color:var(--green);">데이터 플라이휠이 있어야 가능</strong>
-      </div>
+      <div class="c-title" style="color:var(--text-dark);">CTR/ROAS 기반 인센티브</div>
+      <div class="c-text" style="margin-top:8px;">기본료 + 성과 초과분 수수료<br>이해관계 일치 구조<br><strong style="color:var(--green);">데이터 플라이휠이 있어야 가능</strong></div>
     </div>
   </div>
 
-  <div style="margin-top:20px;padding:14px 20px;background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;font-size:15px;text-align:center;">
-    넷마블에 "가격을 깎아드립니다"가 아니라, <strong style="color:var(--accent);">"같은 비용으로 10배 더 받으실 수 있습니다"</strong>
+  <div class="quote" style="margin-top:16px;">
+    <strong style="color:var(--accent);">HIVELAB MAX LAB</strong> — 넷마블 소재 6,700개+ 직접 제작, 전 IP 커버리지, AI+크리에이티브 하이브리드 역량.
+    "AI 도구는 누구나 살 수 있지만, <strong>넷마블 IP에 대한 Taste Layer</strong>는 HIVELAB만 보유합니다."
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 16. 팀 소개 -->
-<!-- ================================================ -->
-<div class="slide light" data-slide="15">
-  <div class="page">16</div>
-  <div class="label" style="color:var(--accent);">팀 소개</div>
-  <h2>HIVELAB <span class="accent">MAX LAB</span></h2>
-  <p class="sub">넷마블 크리에이티브를 가장 오래, 가장 많이, 가장 잘 아는 팀</p>
-
-  <div class="g3 mt">
-    <div class="c c-surface" style="text-align:center;">
-      <div class="c-val" style="color:var(--accent);">6,700<span style="font-size:20px;">+</span></div>
-      <div class="c-title" style="color:var(--text-dark);margin-top:8px;">넷마블 소재 직접 제작</div>
-      <div class="c-text" style="color:var(--muted-lt);margin-top:4px;">다른 에이전시는 보유하지 못한<br>1st Party 크리에이티브 데이터</div>
-    </div>
-    <div class="c c-surface" style="text-align:center;">
-      <div class="c-val" style="color:var(--accent);">전 IP</div>
-      <div class="c-title" style="color:var(--text-dark);margin-top:8px;">넷마블 IP 커버리지</div>
-      <div class="c-text" style="color:var(--muted-lt);margin-top:4px;">세븐나이츠, RF 등<br>IP별 브랜드 가이드 내재화</div>
-    </div>
-    <div class="c c-surface" style="text-align:center;">
-      <div class="c-val" style="color:var(--accent);font-size:36px;">AI + 크리에이티브</div>
-      <div class="c-title" style="color:var(--text-dark);margin-top:8px;">하이브리드 역량</div>
-      <div class="c-text" style="color:var(--muted-lt);margin-top:4px;">AI 기술 + 디자인 감각<br>Taste Layer를 가진 유일한 팀</div>
-    </div>
-  </div>
-
-  <div class="quote">
-    "AI 도구는 누구나 살 수 있습니다. 하지만 <strong>넷마블 IP에 대한 Taste Layer</strong>는 수년간 협업한 HIVELAB만 보유합니다."
-  </div>
-</div>
-
-<!-- ================================================ -->
-<!-- 17. 로드맵 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="16">
+<!-- 17. 로드맵 (light) -->
+<div class="slide light" data-slide="16">
   <div class="page">17</div>
   <div class="label" style="color:var(--accent);">로드맵</div>
   <h2>실행 로드맵</h2>
   <p class="sub">지금 시작하면, 다음 납품물부터 달라집니다.</p>
 
   <div class="g4 mt">
-    <div class="c c-dark" style="border-top:3px solid var(--green);">
+    <div class="c c-green">
       <div class="c-label" style="color:var(--green);">지금</div>
-      <div class="c-title">다음 납품물부터</div>
-      <div class="c-text" style="margin-top:6px;">
-        기존 제작 + AI 소재 확장<br>
-        검색 시스템 + 인사이트 리포트<br><br>
-        <strong style="color:#FFF;">"추가 비용 없이 퀄리티 향상"</strong>
-      </div>
+      <div class="c-title" style="color:var(--text-dark);">다음 납품물부터</div>
+      <div class="c-text" style="margin-top:6px;">기존 제작 + AI 소재 확장<br>검색 시스템 + 인사이트 리포트<br><br><strong style="color:var(--text-dark);">"추가 비용 없이 퀄리티 향상"</strong></div>
     </div>
-    <div class="c c-dark" style="border-top:3px solid var(--accent);">
+    <div class="c c-accent">
       <div class="c-label" style="color:var(--accent);">1개월</div>
-      <div class="c-title">성과 확인</div>
-      <div class="c-text" style="margin-top:6px;">
-        IP 건강검진 대시보드<br>
-        캐릭터 지수 리포트 제안<br><br>
-        <strong style="color:#FFF;">"데이터로 예산 배분 가능"</strong>
-      </div>
+      <div class="c-title" style="color:var(--text-dark);">성과 확인</div>
+      <div class="c-text" style="margin-top:6px;">IP 건강검진 대시보드<br>캐릭터 지수 리포트 제안<br><br><strong style="color:var(--text-dark);">"데이터로 예산 배분 가능"</strong></div>
     </div>
-    <div class="c c-dark" style="border-top:3px solid rgba(255,255,255,0.2);">
-      <div class="c-label">2–3개월</div>
-      <div class="c-title">캠페인 확장</div>
-      <div class="c-text" style="margin-top:6px;">
-        바이럴 패키지 실행<br>
-        월간 소재팩 리테이너 전환<br><br>
-        <strong style="color:#FFF;">"제작부터 유통까지 원스톱"</strong>
-      </div>
+    <div class="c c-surface">
+      <div class="c-label" style="color:var(--muted-lt);">2–3개월</div>
+      <div class="c-title" style="color:var(--text-dark);">캠페인 확장</div>
+      <div class="c-text" style="margin-top:6px;">바이럴 패키지 실행<br>월간 소재팩 리테이너 전환<br><br><strong style="color:var(--text-dark);">"제작부터 유통까지 원스톱"</strong></div>
     </div>
-    <div class="c c-dark" style="background:var(--accent);border-top:3px solid rgba(255,255,255,0.3);">
-      <div class="c-label" style="color:rgba(255,255,255,0.7);">6개월+</div>
+    <div class="c c-blue">
+      <div class="c-label" style="color:rgba(255,255,255,0.6);">6개월+</div>
       <div class="c-title" style="color:#FFF;">멀티 IP 확장</div>
-      <div class="c-text" style="color:rgba(255,255,255,0.7);margin-top:6px;">
-        RF · Solo Leveling 추가<br>
-        데이터 파트너십 본격 가동<br><br>
-        <strong style="color:#FFF;">"IP별 성과 누적→의사결정 가속"</strong>
-      </div>
+      <div class="c-text" style="color:rgba(255,255,255,0.8);margin-top:6px;">RF · Solo Leveling 추가<br>데이터 파트너십 본격 가동<br><br><strong style="color:#FFF;">"IP별 성과 누적→의사결정 가속"</strong></div>
     </div>
   </div>
 
-  <div style="margin-top:20px;">
-    <div class="g2" style="gap:4px;">
-      <div style="padding:12px 20px;background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;text-align:center;font-size:14px;">
-        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">현재</span>
+  <div style="margin-top:16px;">
+    <div class="g2" style="gap:6px;">
+      <div class="c c-surface" style="text-align:center;font-size:14px;padding:12px 20px;">
+        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-lt);display:block;margin-bottom:4px;">현재</span>
         의뢰→제작→납품→<span style="color:var(--red);">끝</span>
       </div>
-      <div style="padding:12px 20px;background:var(--accent);border-radius:2px;text-align:center;font-size:14px;color:#FFF;">
-        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:block;margin-bottom:4px;">제안</span>
+      <div class="cta-box" style="padding:12px 20px;margin-top:0;">
+        <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;">제안</span>
         의뢰→제작→<strong>AI 확장</strong>→납품+인사이트→<strong>다음 의뢰 반영 ↻</strong>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 18. 제안 — 데이터 파트너십 -->
-<!-- ================================================ -->
+<!-- 18. 간지 — 데이터 파트너십 (blue) -->
 <div class="slide blue" data-slide="17">
   <div class="page">18</div>
   <div class="label">제안</div>
@@ -756,121 +551,98 @@ td{padding:8px 12px;}
   <p class="sub">"데이터를 달라"가 아닙니다.<br>"결과를 먼저 보여드린 후, 함께 더 정확하게 만들어 갑니다."</p>
 </div>
 
-<!-- ================================================ -->
-<!-- 19. 제안 — 3단계 모델 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="18">
+<!-- 19. 3단계 모델 (light) -->
+<div class="slide light" data-slide="18">
   <div class="page">19</div>
   <div class="label" style="color:var(--accent);">제안 · 3단계 신뢰 구축</div>
   <h3>넷마블 부담 제로에서 시작합니다</h3>
 
   <div class="g3 mt">
-    <div class="c c-dark" style="border-top:4px solid var(--green);position:relative;">
-      <div style="font-family:var(--sans);font-size:56px;font-weight:800;color:var(--green);opacity:0.08;position:absolute;top:8px;right:16px;">1</div>
+    <div class="c c-green" style="position:relative;">
+      <div style="font-family:var(--sans);font-size:48px;font-weight:800;color:var(--green);opacity:0.1;position:absolute;top:8px;right:16px;">1</div>
       <div class="c-label" style="color:var(--green);">PHASE 1 · 즉시</div>
-      <div class="c-title" style="font-size:18px;">HIVELAB 데이터만으로</div>
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">HIVELAB 데이터만으로</div>
       <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.9;">
         &bull; 6,700개 소재 기반 AI 시스템<br>
-        &bull; <strong style="color:#FFF;">넷마블 데이터 제공 불필요</strong><br>
+        &bull; <strong style="color:var(--text-dark);">넷마블 데이터 제공 불필요</strong><br>
         &bull; AI 검색 + 변형 + 인사이트<br>
         &bull; 기존 프로세스 변경 없음
       </div>
-      <div style="margin-top:16px;padding:8px 12px;background:rgba(16,185,129,0.1);border-radius:2px;font-size:14px;color:var(--green);font-weight:700;text-align:center;">
-        넷마블 부담: 제로
-      </div>
+      <div style="margin-top:14px;padding:8px 12px;background:rgba(16,185,129,0.15);border-radius:8px;font-size:14px;color:var(--green);font-weight:700;text-align:center;">넷마블 부담: 제로</div>
     </div>
-    <div class="c c-dark" style="border-top:4px solid var(--accent);position:relative;">
-      <div style="font-family:var(--sans);font-size:56px;font-weight:800;color:var(--accent);opacity:0.08;position:absolute;top:8px;right:16px;">2</div>
+    <div class="c c-accent" style="position:relative;">
+      <div style="font-family:var(--sans);font-size:48px;font-weight:800;color:var(--accent);opacity:0.08;position:absolute;top:8px;right:16px;">2</div>
       <div class="c-label" style="color:var(--accent);">PHASE 2 · 결과 확인 후</div>
-      <div class="c-title" style="font-size:18px;">성과 데이터 연동</div>
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">성과 데이터 연동</div>
       <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.9;">
         &bull; Phase 1 성과 확인된 후 제안<br>
         &bull; 캠페인 성과(CTR, ROAS) 연동<br>
-        &bull; AI 정밀도 <strong style="color:#FFF;">2–3배 향상</strong><br>
+        &bull; AI 정밀도 <strong style="color:var(--text-dark);">2–3배 향상</strong><br>
         &bull; "왜 잘 됐는지" 정량 분석
       </div>
-      <div style="margin-top:16px;padding:8px 12px;background:var(--accent-sub);border-radius:2px;font-size:14px;color:var(--accent);font-weight:700;text-align:center;">
-        정밀도: 비약적 향상
-      </div>
+      <div style="margin-top:14px;padding:8px 12px;background:var(--accent-dim);border-radius:8px;font-size:14px;color:var(--accent);font-weight:700;text-align:center;">정밀도: 비약적 향상</div>
     </div>
-    <div class="c c-dark" style="border-top:4px solid rgba(255,255,255,0.2);position:relative;">
-      <div style="font-family:var(--sans);font-size:56px;font-weight:800;color:rgba(255,255,255,0.08);position:absolute;top:8px;right:16px;">3</div>
-      <div class="c-label">PHASE 3 · 6개월+</div>
-      <div class="c-title" style="font-size:18px;">독점 데이터 파트너십</div>
+    <div class="c c-surface" style="position:relative;">
+      <div style="font-family:var(--sans);font-size:48px;font-weight:800;color:rgba(10,10,10,0.06);position:absolute;top:8px;right:16px;">3</div>
+      <div class="c-label" style="color:var(--muted-lt);">PHASE 3 · 6개월+</div>
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">독점 데이터 파트너십</div>
       <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.9;">
         &bull; NDA 기반 데이터 공유 계약<br>
         &bull; 넷마블 전용 AI 모델 구축<br>
         &bull; 월간 크리에이티브 인텔리전스<br>
         &bull; 경쟁사 복제 불가능 구조
       </div>
-      <div style="margin-top:16px;padding:8px 12px;background:rgba(255,255,255,0.08);border-radius:2px;font-size:14px;color:rgba(255,255,255,0.8);font-weight:700;text-align:center;">
-        완전한 데이터 해자
-      </div>
+      <div style="margin-top:14px;padding:8px 12px;background:rgba(10,10,10,0.05);border-radius:8px;font-size:14px;color:var(--muted-lt);font-weight:700;text-align:center;">완전한 데이터 해자</div>
     </div>
   </div>
 
-  <div style="margin-top:20px;padding:14px 20px;border:1px solid var(--divider);border-radius:2px;font-size:14px;text-align:center;color:var(--muted);">
-    <strong style="color:#FFF;">원칙:</strong> 넷마블이 불편하면 Phase 1만으로도 충분합니다. 데이터 공유는 <strong style="color:#FFF;">넷마블이 원할 때, 원하는 만큼만.</strong>
+  <div class="quote" style="margin-top:14px;font-size:14px;">
+    <strong style="color:var(--accent);">원칙:</strong> 넷마블이 불편하면 Phase 1만으로도 충분합니다. 데이터 공유는 <strong>넷마블이 원할 때, 원하는 만큼만.</strong>
   </div>
 </div>
 
-<!-- ================================================ -->
-<!-- 20. 마무리 -->
-<!-- ================================================ -->
-<div class="slide dark" data-slide="19">
+<!-- 20. 마무리 (light) -->
+<div class="slide light" data-slide="19">
   <div class="page">20</div>
   <div class="label" style="color:var(--accent);">NEXT STEP</div>
   <h2>다음 단계</h2>
 
   <div class="g3 mt">
-    <div class="c c-dark" style="border-top:3px solid var(--red);">
-      <div class="c-title" style="font-size:18px;">1. 안 하면 뺏긴다</div>
-      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">
-        넥슨은 이미 "한 달→하루" 공개 발표.<br>
-        CMO 39%가 에이전시 예산 삭감 계획.<br>
-        대응 없으면 의뢰량 감소는 불가피.
-      </div>
+    <div class="c c-red">
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">1. 안 하면 뺏긴다</div>
+      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">넥슨은 이미 "한 달→하루" 공개 발표.<br>CMO 39%가 에이전시 예산 삭감 계획.<br>대응 없으면 의뢰량 감소는 불가피.</div>
     </div>
-    <div class="c c-dark" style="border-top:3px solid var(--accent);">
-      <div class="c-title" style="font-size:18px;">2. 할 수 있는 근거가 있다</div>
-      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">
-        6,700개 넷마블 소재 = 다른 에이전시가<br>
-        복제할 수 없는 데이터 해자.<br>
-        AI의 성능은 데이터가 결정합니다.
-      </div>
+    <div class="c c-accent">
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">2. 할 수 있는 근거가 있다</div>
+      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">6,700개 넷마블 소재 = 다른 에이전시가<br>복제할 수 없는 데이터 해자.<br>AI의 성능은 데이터가 결정합니다.</div>
     </div>
-    <div class="c c-dark" style="border-top:3px solid var(--green);">
-      <div class="c-title" style="font-size:18px;">3. 넷마블이 바꿀 건 없다</div>
-      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">
-        시스템 구매·설치·학습 불필요.<br>
-        "다음 납품물부터 AI 적용해주세요."<br>
-        한 마디면 시작됩니다.
-      </div>
+    <div class="c c-green">
+      <div class="c-title" style="font-size:17px;color:var(--text-dark);">3. 넷마블이 바꿀 건 없다</div>
+      <div class="c-text" style="margin-top:10px;font-size:14px;line-height:1.8;">시스템 구매·설치·학습 불필요.<br>"다음 납품물부터 AI 적용해주세요."<br>한 마디면 시작됩니다.</div>
     </div>
   </div>
 
-  <div style="margin-top:28px;padding:24px 32px;background:var(--accent);border-radius:2px;text-align:center;">
-    <div style="font-size:20px;font-weight:700;color:#FFF;line-height:1.6;">
+  <div class="cta-box" style="margin-top:20px;padding:24px 32px;">
+    <div style="font-size:20px;font-weight:700;line-height:1.6;">
       "다음 납품물에 AI를 적용해서,<br>같은 예산으로 어떻게 달라지는지 보여드리겠습니다."
     </div>
-    <div style="margin-top:16px;font-size:14px;color:rgba(255,255,255,0.75);">
+    <div style="margin-top:12px;font-size:14px;color:rgba(255,255,255,0.75);">
       파일럿: 다음 캠페인 1건 &middot; 추가 비용 없음 &middot; 결과로 판단
     </div>
   </div>
 
-  <div style="margin-top:28px;text-align:center;font-size:14px;color:var(--muted);">
+  <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted-lt);">
     HIVELAB MAX LAB &middot; AI 배너 리서치 플랫폼 제안 &middot; 2026.06
   </div>
 </div>
 
-</div><!-- /deck -->
+</div>
 
 <script>
 (function(){
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  let current = 0;
-
+  const slides=document.querySelectorAll('.slide');
+  const total=slides.length;
+  let current=0;
   function go(n){
     if(n<0||n>=total)return;
     slides[current].classList.remove('active');
@@ -879,29 +651,24 @@ td{padding:8px 12px;}
     document.getElementById('counter').textContent=(current+1)+' / '+total;
     document.getElementById('progress').style.width=((current+1)/total*100)+'%';
   }
-
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();go(current+1);}
     else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(current-1);}
     else if(e.key==='Home'){e.preventDefault();go(0);}
     else if(e.key==='End'){e.preventDefault();go(total-1);}
   });
-
   document.addEventListener('click',function(e){
     if(e.target.closest('a'))return;
     if(e.clientX>window.innerWidth*0.5)go(current+1);else go(current-1);
   });
-
   let tx=0;
   document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;});
   document.addEventListener('touchend',function(e){
     const dx=e.changedTouches[0].clientX-tx;
     if(Math.abs(dx)>50){if(dx<0)go(current+1);else go(current-1);}
   });
-
   go(0);
 })();
 </script>
-
 </body>
 </html>
