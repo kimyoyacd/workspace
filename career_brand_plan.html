@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김효정 — 블루오션 커리어 브랜딩 플랜</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Sans:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0B0F17;
+    --surface: #131824;
+    --surface2: #1A2235;
+    --border: rgba(255,255,255,0.07);
+    --accent: #4F8EF7;
+    --accent2: #7C5CFC;
+    --green: #3ECFA0;
+    --orange: #F97316;
+    --yellow: #FBBF24;
+    --red: #F43F5E;
+    --text: #E8EDF5;
+    --muted: #8492A8;
+    --card: #161D2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 320px;
+    background: linear-gradient(135deg, #0B0F17 0%, #0F172A 40%, #1A0E35 100%);
+    padding: 64px 40px 52px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #94B4F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero h1 em {
+    background: linear-gradient(135deg, #4F8EF7, #7C5CFC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: normal;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+  }
+  .hero-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .pill strong { color: var(--text); }
+
+  /* ─── NAV ─── */
+  .nav {
+    background: rgba(11,15,23,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+  }
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 14px 16px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav a:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1000px; margin: 0 auto; padding: 48px 24px 100px; }
+
+  /* ─── SECTION ─── */
+  .sec { margin-bottom: 40px; }
+  .sec-label {
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .sec h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .sec .desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    max-width: 640px;
+    font-weight: 300;
+  }
+
+  /* ─── CARDS ─── */
+  .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(79,142,247,0.3); }
+  .card .icon { font-size: 24px; margin-bottom: 12px; }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+  .card .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .tag-blue  { background: rgba(79,142,247,0.15); color: var(--accent); }
+  .tag-green { background: rgba(62,207,160,0.15); color: var(--green); }
+  .tag-purple{ background: rgba(124,92,252,0.15); color: var(--accent2); }
+  .tag-orange{ background: rgba(249,115,22,0.15); color: var(--orange); }
+  .tag-red   { background: rgba(244,63,94,0.15);  color: var(--red); }
+  .tag-yellow{ background: rgba(251,191,36,0.15); color: var(--yellow); }
+
+  .card.accent-blue  { border-color: rgba(79,142,247,0.35); }
+  .card.accent-green { border-color: rgba(62,207,160,0.35); }
+  .card.accent-purple{ border-color: rgba(124,92,252,0.35); }
+
+  /* ─── PIVOT TABLE ─── */
+  .pivot-table { width: 100%; border-collapse: collapse; }
+  .pivot-table th {
+    padding: 12px 18px;
+    text-align: left;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .pivot-table th.red-col { color: var(--red); }
+  .pivot-table th.blue-col { color: var(--green); }
+  .pivot-table td {
+    padding: 14px 18px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .pivot-table td:first-child { color: var(--muted); font-size: 11px; font-family: 'DM Sans', sans-serif; letter-spacing: 1px; width: 140px; }
+  .pivot-table td.red { color: #FB7185; }
+  .pivot-table td.blue { color: #86EFAC; }
+  .pivot-table tr:last-child td { border-bottom: none; }
+
+  /* ─── POSITIONING STATEMENT ─── */
+  .position-box {
+    background: linear-gradient(135deg, #0F172A, #1A1035);
+    border: 1px solid rgba(124,92,252,0.4);
+    border-radius: 16px;
+    padding: 36px 40px;
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .position-box::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 300px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+  }
+  .position-box .kicker { font-size: 12px; color: var(--accent2); letter-spacing: 3px; margin-bottom: 16px; font-family: 'DM Sans', sans-serif; }
+  .position-box .statement {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    max-width: 680px;
+    margin: 0 auto 16px;
+  }
+  .position-box .statement em {
+    background: linear-gradient(135deg, #4F8EF7, #7C5CFC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: normal;
+  }
+  .position-box .note { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  /* ─── BLUE OCEAN MAP ─── */
+  .ocean-map {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .ocean-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .ocean-col-header {
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .oc-red    { background: rgba(244,63,94,0.08);  color: var(--red);    border-right: 1px solid var(--border); }
+  .oc-mid    { background: rgba(251,191,36,0.08); color: var(--yellow); border-right: 1px solid var(--border); }
+  .oc-blue   { background: rgba(62,207,160,0.08); color: var(--green); }
+  .ocean-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .ocean-row:last-child { border-bottom: none; }
+  .ocean-cell {
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 300;
+    border-right: 1px solid var(--border);
+  }
+  .ocean-cell:last-child { border-right: none; }
+  .ocean-cell.red-cell    { color: #FB7185; background: rgba(244,63,94,0.03); }
+  .ocean-cell.yellow-cell { color: var(--yellow); background: rgba(251,191,36,0.03); }
+  .ocean-cell.green-cell  { color: #86EFAC; background: rgba(62,207,160,0.03); }
+
+  /* ─── CONTENT STRATEGY ─── */
+  .content-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .content-row:last-child { border-bottom: none; }
+  .content-num {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .cn-blue   { background: rgba(79,142,247,0.15); color: var(--accent); }
+  .cn-green  { background: rgba(62,207,160,0.15); color: var(--green); }
+  .cn-purple { background: rgba(124,92,252,0.15); color: var(--accent2); }
+  .cn-orange { background: rgba(249,115,22,0.15); color: var(--orange); }
+  .content-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .content-body p  { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+  /* ─── REVENUE ─── */
+  .rev-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .rev-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .rev-stage {
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 2px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .rev-amount { font-size: 20px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+  .rev-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .rev-card p  { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+  /* ─── ROADMAP ─── */
+  .roadmap { display: flex; flex-direction: column; gap: 0; }
+  .rm-phase {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .rm-phase::before {
+    content: '';
+    position: absolute;
+    left: 59px; top: 44px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--border) 0%, transparent 100%);
+  }
+  .rm-phase:last-child::before { display: none; }
+  .rm-left {
+    width: 120px;
+    flex-shrink: 0;
+    padding: 20px 16px 20px 0;
+    text-align: right;
+  }
+  .rm-year {
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .rm-period { font-size: 11px; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+  .rm-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 22px;
+    position: relative;
+    z-index: 1;
+  }
+  .rm-right {
+    flex: 1;
+    padding: 14px 0 28px 24px;
+  }
+  .rm-right h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .rm-items { list-style: none; }
+  .rm-items li {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .rm-items li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+  }
+
+  /* ─── KPI ─── */
+  .kpi-box {
+    background: linear-gradient(135deg, rgba(79,142,247,0.08), rgba(124,92,252,0.08));
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .kpi-item { text-align: center; }
+  .kpi-num {
+    font-size: 32px;
+    font-weight: 900;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #4F8EF7, #7C5CFC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-label { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.4; }
+
+  /* ─── QUICK WINS ─── */
+  .qw-list { list-style: none; }
+  .qw-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .qw-item:last-child { border-bottom: none; }
+  .qw-week {
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 60px;
+  }
+  .qw-body h5 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .qw-body p  { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  /* ─── ALERT ─── */
+  .alert {
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 13px;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .alert-blue   { background: rgba(79,142,247,0.08);  border: 1px solid rgba(79,142,247,0.25);  color: #93C5FD; }
+  .alert-green  { background: rgba(62,207,160,0.08);  border: 1px solid rgba(62,207,160,0.25);  color: #6EE7B7; }
+  .alert-purple { background: rgba(124,92,252,0.08);  border: 1px solid rgba(124,92,252,0.25);  color: #C4B5FD; }
+  .alert strong { font-weight: 700; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 28px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2,1fr); }
+    .ocean-header, .ocean-row { grid-template-columns: 1fr; }
+    .ocean-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">BLUE OCEAN CAREER BRANDING</div>
+  <h1>디자이너를 넘어<br><em>비즈니스 전환 설계자</em>로</h1>
+  <p class="hero-sub">포트폴리오가 아닌 비즈니스 성과로 말하는 커리어 브랜딩 전략 — 2026–2035 로드맵</p>
+  <div class="hero-pills">
+    <div class="pill">현재 <strong>乙卯 대운</strong> 전성기 진입</div>
+    <div class="pill">만 <strong>42세</strong> · 최적의 독립 시점</div>
+    <div class="pill">용신 <strong>木 비겁</strong> — 독립 브랜딩 적기</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#problem">문제 진단</a>
+  <a href="#pivot">포지션 피벗</a>
+  <a href="#ocean">블루오션 좌표</a>
+  <a href="#brand">브랜드 아키텍처</a>
+  <a href="#content">콘텐츠 전략</a>
+  <a href="#revenue">수익화 경로</a>
+  <a href="#roadmap">로드맵</a>
+  <a href="#now">지금 당장</a>
+</nav>
+
+<div class="container">
+
+<!-- 1. 문제 진단 -->
+<div class="sec" id="problem">
+  <div class="sec-label">01 · Problem Diagnosis</div>
+  <h2>왜 일반적인 디자이너 브랜딩은 막히는가</h2>
+  <p class="desc">레드오션의 패턴을 정확히 인식해야 블루오션으로 이동할 수 있습니다.</p>
+
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="tag tag-red">레드오션 패턴 1</div>
+      <h3>포트폴리오 경쟁</h3>
+      <p>"더 예쁜 것", "더 세련된 것"으로 경쟁. 미적 기준은 주관적이고, 비교는 끝이 없습니다. 클라이언트는 여전히 가격으로 결정합니다.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-red">레드오션 패턴 2</div>
+      <h3>직함 사다리 오르기</h3>
+      <p>Designer → Senior → Lead → Director. 조직 안에서 인정받는 구조. 조직이 사라지면 브랜드도 사라집니다. 나는 언제나 누군가의 부속입니다.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-red">레드오션 패턴 3</div>
+      <h3>스킬셋 확장 경쟁</h3>
+      <p>Figma, Framer, AI 툴... 툴 학습으로 차별화하려 하지만, 툴은 모두가 씁니다. 실행 능력은 이제 진입 장벽이 아닙니다.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-purple">
+    <strong>핵심 통찰:</strong> 시장은 "좋은 디자인"을 원하는 게 아닙니다. 시장은 <strong>"매출이 오르는 것", "고객이 잔류하는 것", "B2B 딜이 클로징되는 것"</strong>을 원합니다. 디자인은 수단이고, 목적은 비즈니스 성과입니다. 이 언어를 먼저 말하는 디자이너가 이깁니다.
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 2. 포지션 피벗 -->
+<div class="sec" id="pivot">
+  <div class="sec-label">02 · The Pivot</div>
+  <h2>포지션 재정의 — "디자이너"를 버린다</h2>
+  <p class="desc">이름표를 바꾸는 게 아닙니다. 고객이 나를 부르는 이유를 바꾸는 것입니다.</p>
+
+  <div class="position-box" style="margin-bottom:28px;">
+    <div class="kicker">NEW POSITIONING STATEMENT</div>
+    <div class="statement">
+      나는 <em>B2B 기업의 사용자 전환율과 매출을 디자인으로 높이는</em><br>
+      비즈니스 전환 설계자입니다.
+    </div>
+    <div class="note">— "디자이너입니다"가 아니라, "당신 회사 전환율을 높여드립니다"로 대화를 시작합니다 —</div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <table class="pivot-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="red-col">기존 포지션 (레드오션)</th>
+          <th class="blue-col">새 포지션 (블루오션)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>자기소개</td>
+          <td class="red">"UI/UX 디자이너입니다"</td>
+          <td class="blue">"B2B 전환 설계 전문가입니다"</td>
+        </tr>
+        <tr>
+          <td>가치 제안</td>
+          <td class="red">"예쁘고 사용하기 쉬운 화면을 만듭니다"</td>
+          <td class="blue">"온보딩 전환율을 높여 MRR을 올립니다"</td>
+        </tr>
+        <tr>
+          <td>고객</td>
+          <td class="red">디자인팀 HM, 마케터</td>
+          <td class="blue">CEO, CRO, VP Sales, 투자사</td>
+        </tr>
+        <tr>
+          <td>경쟁 기준</td>
+          <td class="red">포트폴리오 퀄리티, 가격</td>
+          <td class="blue">비즈니스 임팩트 수치, 레퍼런스 사례</td>
+        </tr>
+        <tr>
+          <td>수익 모델</td>
+          <td class="red">프로젝트 단가, 연봉 협상</td>
+          <td class="blue">리테이너 + 퍼포먼스 피 + 컨설팅 + 강의</td>
+        </tr>
+        <tr>
+          <td>브랜드 자산</td>
+          <td class="red">포트폴리오 사이트</td>
+          <td class="blue">사례 연구(Case Study)의 ROI 수치</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 3. 블루오션 좌표 -->
+<div class="sec" id="ocean">
+  <div class="sec-label">03 · Blue Ocean Coordinates</div>
+  <h2>어느 영역에서 싸우지 않을 것인가</h2>
+  <p class="desc">블루오션 전략의 핵심은 경쟁하지 않는 것입니다. 비경쟁 공간을 골라냅니다.</p>
+
+  <div class="ocean-map">
+    <div class="ocean-header">
+      <div class="ocean-col-header oc-red">🔴 경쟁 포기 영역</div>
+      <div class="ocean-col-header oc-mid">🟡 선택적 유지</div>
+      <div class="ocean-col-header oc-blue">🟢 집중 영역 (블루오션)</div>
+    </div>
+    <div class="ocean-row">
+      <div class="ocean-cell red-cell">B2C 앱 디자인 경쟁<br><small style="font-size:11px;">모두가 하는 영역</small></div>
+      <div class="ocean-cell yellow-cell">UX 리서치 역량<br><small style="font-size:11px;">기반 스킬로 유지</small></div>
+      <div class="ocean-cell green-cell">B2B SaaS 온보딩·전환 최적화<br><small style="font-size:11px;">전문가 극히 드묾</small></div>
+    </div>
+    <div class="ocean-row">
+      <div class="ocean-cell red-cell">Figma 강의·튜토리얼<br><small style="font-size:11px;">포화 시장</small></div>
+      <div class="ocean-cell yellow-cell">디자인 시스템 구축<br><small style="font-size:11px;">진입점으로 활용</small></div>
+      <div class="ocean-cell green-cell">디자인 × 세일즈 파이프라인<br><small style="font-size:11px;">Sales-Driven Design</small></div>
+    </div>
+    <div class="ocean-row">
+      <div class="ocean-cell red-cell">일반 브랜딩 에이전시 역할<br><small style="font-size:11px;">단가 경쟁 필연</small></div>
+      <div class="ocean-cell yellow-cell">시각적 스토리텔링<br><small style="font-size:11px;">차별화 도구로 활용</small></div>
+      <div class="ocean-cell green-cell">IR 덱·데모 스크린 설계<br><small style="font-size:11px;">투자 유치에 직결</small></div>
+    </div>
+    <div class="ocean-row">
+      <div class="ocean-cell red-cell">트렌디한 UI 스타일 경쟁<br><small style="font-size:11px;">유행 따라 닳음</small></div>
+      <div class="ocean-cell yellow-cell">DesignOps 프로세스<br><small style="font-size:11px;">조직 효율화 도구</small></div>
+      <div class="ocean-cell green-cell">디자인 × 비즈니스 지식 콘텐츠<br><small style="font-size:11px;">사유 가능한 IP 자산화</small></div>
+    </div>
+  </div>
+
+  <div class="alert alert-blue" style="margin-top:16px;">
+    <strong>타깃 정의:</strong> B2B SaaS, 테크 스타트업, 전통 기업의 디지털 전환팀 — 이들의 공통 고통은 "좋은 제품인데 고객이 안 쓴다" 또는 "데모에서 계약이 안 된다"입니다. 이 지점이 당신의 블루오션입니다.
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 4. 브랜드 아키텍처 -->
+<div class="sec" id="brand">
+  <div class="sec-label">04 · Brand Architecture</div>
+  <h2>브랜드 구조 설계</h2>
+  <p class="desc">퍼스널 브랜드는 말이 아니라 구조입니다. 어디서, 어떻게 발견되는지를 설계합니다.</p>
+
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card accent-blue">
+      <div class="tag tag-blue">핵심 메시지</div>
+      <h3>말해야 할 단 하나의 문장</h3>
+      <p style="color:#93C5FD; font-size:14px; font-weight:500; line-height:1.6; margin-bottom:10px;">"B2B 제품의 사용자 온보딩과 구매 전환을 디자인으로 높입니다."</p>
+      <p>이 문장이 링크드인 헤드라인, 자기소개, 콘텐츠 첫 줄, 제안서 첫 페이지에 반복됩니다. 일관성이 신뢰를 만듭니다.</p>
+    </div>
+    <div class="card accent-green">
+      <div class="tag tag-green">증거 자산 (Evidence Assets)</div>
+      <h3>포트폴리오 대신 케이스 스터디</h3>
+      <p>예전: "이런 화면을 만들었습니다"<br>
+      지금: <span style="color:#86EFAC;">"온보딩 재설계 후 7일 활성화율 38% → 71%"</span><br>
+      숫자 없는 케이스는 장식입니다. ROI 중심의 3개 딥 케이스가 100개 예쁜 화면보다 강합니다.</p>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="tag tag-purple">채널 1</div>
+      <h3>링크드인 — 사고 리더십</h3>
+      <p>전략: 매주 1개 "디자인이 B2B 세일즈에 미치는 영향" 인사이트 글. 타깃: CEO, VP Sales, 투자자. 도달 목표: 팔로워보다 DM 수.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-purple">채널 2</div>
+      <h3>뉴스레터 — IP 자산화</h3>
+      <p>제목 예시: "전환하는 디자인" — B2B 전환율을 높이는 디자인 원칙 주 1회. 구독자 = 잠재 고객 리스트. 이메일은 알고리즘이 없습니다.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-purple">채널 3</div>
+      <h3>강연·세미나 — 신뢰 증폭</h3>
+      <p>테크 스타트업 컨퍼런스, B2B SaaS 행사, 투자사 포트폴리오 데이 세션 발표. 1번 발표가 100개 포스트보다 강한 신뢰를 만듭니다.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 5. 콘텐츠 전략 -->
+<div class="sec" id="content">
+  <div class="sec-label">05 · Content Strategy</div>
+  <h2>콘텐츠는 판매하지 않고 당기는 것</h2>
+  <p class="desc">4가지 콘텐츠 유형을 주기적으로 순환합니다.</p>
+
+  <div class="card">
+    <div class="content-row">
+      <div class="content-num cn-blue">01</div>
+      <div class="content-body">
+        <h4>인사이트 글 — "나는 이렇게 생각한다"</h4>
+        <p>예시: "B2B 데모 화면이 계약을 못 따내는 3가지 이유" / "SaaS 온보딩 3단계에서 유저가 이탈하는 디자인 패턴" — 독자에게 시각을 제공합니다. 리트윗·공유로 퍼집니다.</p>
+      </div>
+    </div>
+    <div class="content-row">
+      <div class="content-num cn-green">02</div>
+      <div class="content-body">
+        <h4>케이스 스터디 — "우리가 한 일과 그 결과"</h4>
+        <p>Before / After / 수치. 예시: "B2B 온보딩 플로우 재설계 → 첫 주 활성화율 +44%, 3개월 리텐션 +22%". 숫자가 없으면 케이스가 아닙니다.</p>
+      </div>
+    </div>
+    <div class="content-row">
+      <div class="content-num cn-purple">03</div>
+      <div class="content-body">
+        <h4>원칙 콘텐츠 — "내가 믿는 프레임워크"</h4>
+        <p>나만의 방법론 이름을 만드세요. 예시: "전환 설계 5원칙 (Conversion Design Principles)" — 이름이 붙으면 IP가 됩니다. 강의와 컨설팅의 기반이 됩니다.</p>
+      </div>
+    </div>
+    <div class="content-row">
+      <div class="content-num cn-orange">04</div>
+      <div class="content-body">
+        <h4>뒷이야기 — "일하면서 배운 것"</h4>
+        <p>클라이언트 미팅에서 있었던 인사이트, 실패 사례, 직관의 근거. 인간적 연결이 신뢰를 만들고, 신뢰가 레퍼럴을 만듭니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-green" style="margin-top:16px;">
+    <strong>콘텐츠 원칙:</strong> 디자인 커뮤니티가 아니라 <strong>비즈니스 의사결정자에게 읽히는 글</strong>을 씁니다. "예쁘다"는 댓글보다 "이 글을 보고 DM 드립니다"가 목표입니다.
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 6. 수익화 경로 -->
+<div class="sec" id="revenue">
+  <div class="sec-label">06 · Revenue Architecture</div>
+  <h2>수익화 3층 구조</h2>
+  <p class="desc">단일 수입원 의존에서 벗어나, 브랜드 자산이 스스로 돈을 벌게 합니다.</p>
+
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="rev-card">
+      <div class="rev-top">
+        <span class="rev-stage tag-blue" style="background:rgba(79,142,247,0.15); color:var(--accent); font-size:10px; font-family:'DM Sans'; letter-spacing:2px; padding:3px 8px; border-radius:4px;">LAYER 1 · 현금 흐름</span>
+        <span class="rev-amount" style="color:var(--accent);">월 300~</span>
+      </div>
+      <h4>프로젝트 컨설팅</h4>
+      <p>B2B SaaS 기업 대상 전환율 개선 컨설팅. 프로젝트당 고단가. 브랜딩이 쌓일수록 가격 협상 없이 진행됩니다.</p>
+    </div>
+    <div class="rev-card">
+      <div class="rev-top">
+        <span class="rev-stage" style="background:rgba(62,207,160,0.15); color:var(--green); font-size:10px; font-family:'DM Sans'; letter-spacing:2px; padding:3px 8px; border-radius:4px;">LAYER 2 · 안정 수입</span>
+        <span class="rev-amount" style="color:var(--green);">월 150~</span>
+      </div>
+      <h4>리테이너 어드바이저리</h4>
+      <p>2~3개 스타트업 월정 어드바이저. 매주 2시간 미팅, 디자인 방향 리뷰, 의사결정 지원. 예측 가능한 현금 흐름.</p>
+    </div>
+    <div class="rev-card">
+      <div class="rev-top">
+        <span class="rev-stage" style="background:rgba(124,92,252,0.15); color:var(--accent2); font-size:10px; font-family:'DM Sans'; letter-spacing:2px; padding:3px 8px; border-radius:4px;">LAYER 3 · 레버리지</span>
+        <span class="rev-amount" style="color:var(--accent2);">무제한</span>
+      </div>
+      <h4>지식 상품화</h4>
+      <p>B2B 전환 설계 온라인 코스, 워크숍, 템플릿 라이브러리. 만들면 잠을 자는 동안에도 팔립니다. 콘텐츠 자산이 쌓일수록 증폭.</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="tag tag-orange">추가 수익원 A</div>
+      <h3>강연 & 세미나 피</h3>
+      <p>전문 강연자로 포지셔닝 되면, 컨퍼런스 참가비 → 강연료로 전환됩니다. B2B SaaS, 스타트업 행사, 대기업 사내 교육 시장.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-orange">추가 수익원 B</div>
+      <h3>퍼포먼스 기반 계약</h3>
+      <p>전환율 개선 % × 추가 수익 쉐어. 성과 기반 계약은 신뢰의 증거이자, 수익 상한선이 없는 구조입니다.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 7. 로드맵 -->
+<div class="sec" id="roadmap">
+  <div class="sec-label">07 · Phased Roadmap</div>
+  <h2>2026–2035 단계별 로드맵</h2>
+  <p class="desc">乙卯 대운(2025~2035) 10년을 3단계로 씁니다.</p>
+
+  <div class="roadmap">
+
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-year" style="color:var(--accent);">2026</div>
+        <div class="rm-period">~2027</div>
+      </div>
+      <div class="rm-dot" style="background:var(--accent); box-shadow:0 0 12px rgba(79,142,247,0.5);"></div>
+      <div class="rm-right">
+        <h4 style="color:var(--accent);">Phase 1 — 포지셔닝 확립 & 증거 쌓기</h4>
+        <ul class="rm-items">
+          <li>기존 프로젝트 3개를 ROI 중심 케이스 스터디로 재작성</li>
+          <li>링크드인 헤드라인·소개 재작성 — "B2B 전환 설계자"로 변경</li>
+          <li>뉴스레터 런칭 (월 2회, "전환하는 디자인")</li>
+          <li>B2B SaaS 스타트업 1~2곳 저단가 또는 무료 파일럿 → 수치 확보</li>
+          <li>첫 강연 1회 — 소규모라도 "발표자"로 서는 경험</li>
+          <li>나만의 방법론 초안 작성 ("Conversion Design Framework")</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-year" style="color:var(--green);">2028</div>
+        <div class="rm-period">~2030</div>
+      </div>
+      <div class="rm-dot" style="background:var(--green); box-shadow:0 0 12px rgba(62,207,160,0.5);"></div>
+      <div class="rm-right">
+        <h4 style="color:var(--green);">Phase 2 — 전문성 레버리지 & 수익화 확장</h4>
+        <ul class="rm-items">
+          <li>리테이너 어드바이저리 클라이언트 3개 확보</li>
+          <li>뉴스레터 구독자 3,000+ 도달</li>
+          <li>온라인 코스 또는 워크숍 첫 출시 (B2B 온보딩 설계 마스터클래스)</li>
+          <li>주요 컨퍼런스 발표자로 등단 (로켓펀치, 비석세스, FAST 등)</li>
+          <li>케이스 스터디 5건 → ROI 수치 공개 포트폴리오</li>
+          <li>퍼포먼스 기반 계약 첫 시도</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-year" style="color:var(--accent2);">2031</div>
+        <div class="rm-period">~2035</div>
+      </div>
+      <div class="rm-dot" style="background:var(--accent2); box-shadow:0 0 12px rgba(124,92,252,0.5);"></div>
+      <div class="rm-right">
+        <h4 style="color:var(--accent2);">Phase 3 — 독립 브랜드 완성 & 리더십 확보</h4>
+        <ul class="rm-items">
+          <li>"B2B 전환 설계" 분야 국내 1위 포지셔닝 달성</li>
+          <li>지식 상품(코스·책·템플릿) 패시브 수익 월 100+ 안정화</li>
+          <li>강연 요청 인바운드 전환 (찾아가는 → 초청받는 구조)</li>
+          <li>소규모 코호트 프로그램 또는 커뮤니티 운영</li>
+          <li>책 출간 또는 아카이브 완성 — 지식의 결정화</li>
+          <li>후배 디자이너 멘토링 생태계 → 레거시 설계</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- KPI -->
+<div class="sec">
+  <div class="sec-label">SUCCESS METRICS</div>
+  <h2>측정 지표 — 2028년 목표</h2>
+  <p class="desc">아름다운 계획보다 측정 가능한 목표가 실행을 만듭니다.</p>
+
+  <div class="kpi-box">
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="kpi-num">3+</div>
+        <div class="kpi-label">ROI 수치 있는<br>케이스 스터디</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">3K+</div>
+        <div class="kpi-label">뉴스레터<br>구독자</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">3개</div>
+        <div class="kpi-label">리테이너<br>어드바이저리</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">1회+</div>
+        <div class="kpi-label">주요 컨퍼런스<br>발표</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 8. 지금 당장 -->
+<div class="sec" id="now">
+  <div class="sec-label">08 · Start Now</div>
+  <h2>지금 당장 시작할 7가지</h2>
+  <p class="desc">화뢰서합(火雷噬嗑) — 결단하면 대길. 오늘부터 순서대로 실행합니다.</p>
+
+  <div class="card">
+    <ul class="qw-list">
+      <li class="qw-item">
+        <div class="qw-week">WEEK 1</div>
+        <div class="qw-body">
+          <h5>링크드인 프로필 완전 재작성</h5>
+          <p>헤드라인: "B2B SaaS 전환율 높이는 디자인 전략가" → 기존 직함 삭제. 소개란 첫 줄이 포지셔닝 문장. 배너 이미지에 핵심 메시지.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">WEEK 2</div>
+        <div class="qw-body">
+          <h5>케이스 스터디 1개 ROI 버전으로 재작성</h5>
+          <p>기존 작업물 중 가장 임팩트 있는 것 1개 선택 → "Before / After / 수치" 구조로 2페이지 재작성. 수치 없으면 인터뷰 등으로 확보.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">WEEK 3</div>
+        <div class="qw-body">
+          <h5>첫 인사이트 글 발행</h5>
+          <p>주제: "B2B 제품 온보딩에서 사용자가 이탈하는 3가지 디자인 실수" — 1,000자 내외. 링크드인 + 개인 채널 동시 발행.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">WEEK 4</div>
+        <div class="qw-body">
+          <h5>뉴스레터 플랫폼 설정 & 1호 발송</h5>
+          <p>Stibee 또는 Substack 계정 개설. 1호 주제: "디자이너가 전환율을 말해야 하는 이유". 주변 50명에게 구독 요청으로 시작.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">MONTH 2</div>
+        <div class="qw-body">
+          <h5>파일럿 클라이언트 1곳 확보</h5>
+          <p>지인 네트워크 내 B2B SaaS 스타트업 창업자에게 제안 — "온보딩 전환율 개선 프로젝트, 3개월, 저단가 또는 무료 + 수치 공개 동의". 수치 확보가 목적.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">MONTH 3</div>
+        <div class="qw-body">
+          <h5>나만의 방법론 이름 짓기</h5>
+          <p>예시: "CDA Framework (Conversion Design Architecture)" — 이름이 붙으면 IP가 됩니다. 1페이지 비주얼 프레임워크 제작 → 콘텐츠의 중심축.</p>
+        </div>
+      </li>
+      <li class="qw-item">
+        <div class="qw-week">MONTH 4</div>
+        <div class="qw-body">
+          <h5>첫 강연 또는 소규모 세미나 기획</h5>
+          <p>본인 주최 무료 온라인 세미나 50명 → "B2B 디자인이 세일즈를 바꾸는 법". 발표자 경험 + 잠재 고객 리스트 확보 동시에.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="alert alert-purple" style="margin-top:16px;">
+    <strong>사주 연계 인사이트 —</strong> 乙卯 대운 × 丙午年(2026): 용신(木)이 천지 모두 활성화된 지금이 독립 브랜딩의 최적 시점입니다. 甲午 일주의 상관(표현력·설득력)과 癸亥 정인(지식·통찰)이 이 방향에서 가장 강하게 작동합니다. <strong>지금 시작하지 않으면 이 창(窓)은 좁아집니다.</strong>
+  </div>
+</div>
+
+<!-- 최종 -->
+<div class="position-box">
+  <div class="kicker">THE FINAL FRAME</div>
+  <div class="statement" style="font-size:18px;">
+    "디자이너"는 실행자입니다.<br>
+    <em>"전환 설계자"는 의사결정자의 파트너</em>입니다.<br>
+    같은 일을 다르게 포지셔닝하면 — 다른 게임이 시작됩니다.
+  </div>
+  <div class="note" style="margin-top:16px; font-size:12px;">2026년 乙卯 대운 · 甲午 일주 · 火雷噬嗑 — 결단하면 大吉</div>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
