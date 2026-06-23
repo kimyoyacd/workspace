@@ -230,25 +230,93 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
   <h2>TO가 줄었습니다</h2>
   <p class="sub">하지만 성과 목표는 그대로입니다.</p>
 
-  <div class="g3 mt2">
-    <div class="c cr" style="text-align:center;">
-      <div class="cl" style="color:var(--red);">영상</div>
-      <div class="cv" style="color:var(--red);">16 &rarr; 6</div>
-      <div class="cx" style="margin-top:8px;">62.5% 축소</div>
+  <!-- TO 계약 4개월 추이 차트 -->
+  <div class="mt2" style="position:relative;">
+    <div style="display:flex;align-items:flex-end;gap:0;height:220px;padding:0 20px;">
+      <!-- 세로축 가이드 -->
+      <div style="position:absolute;left:0;top:0;bottom:40px;width:50px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;padding-right:8px;">
+        <span style="font-size:10px;color:var(--muted2);">45</span>
+        <span style="font-size:10px;color:var(--muted2);">30</span>
+        <span style="font-size:10px;color:var(--muted2);">15</span>
+        <span style="font-size:10px;color:var(--muted2);">0</span>
+      </div>
+      <!-- 그리드 라인 -->
+      <div style="position:absolute;left:55px;right:20px;top:0;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:55px;right:20px;top:60px;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:55px;right:20px;top:120px;height:1px;background:var(--divider);"></div>
+      <!-- 바 그룹 -->
+      <div style="display:flex;align-items:flex-end;gap:16px;flex:1;margin-left:55px;height:180px;">
+        <!-- 3월 -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <div style="width:100%;display:flex;gap:3px;align-items:flex-end;justify-content:center;height:180px;">
+            <div style="width:28%;background:var(--accent);border-radius:4px 4px 0 0;height:92%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">23</span></div>
+            <div style="width:28%;background:var(--red);border-radius:4px 4px 0 0;height:64%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">16</span></div>
+            <div style="width:28%;background:rgba(10,10,10,0.2);border-radius:4px 4px 0 0;height:8%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:var(--text);">2</span></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text);">3월</div>
+          <div style="font-size:18px;font-weight:900;color:var(--text);">41</div>
+        </div>
+        <!-- 4월 -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <div style="width:100%;display:flex;gap:3px;align-items:flex-end;justify-content:center;height:180px;">
+            <div style="width:28%;background:var(--accent);border-radius:4px 4px 0 0;height:88%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">22</span></div>
+            <div style="width:28%;background:var(--red);border-radius:4px 4px 0 0;height:60%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">15</span></div>
+            <div style="width:28%;background:rgba(10,10,10,0.2);border-radius:4px 4px 0 0;height:4%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:var(--text);">1</span></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text);">4월</div>
+          <div style="font-size:18px;font-weight:900;color:var(--text);">38</div>
+        </div>
+        <!-- 5월 -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <div style="width:100%;display:flex;gap:3px;align-items:flex-end;justify-content:center;height:180px;">
+            <div style="width:28%;background:var(--accent);border-radius:4px 4px 0 0;height:80%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">20</span></div>
+            <div style="width:28%;background:var(--red);border-radius:4px 4px 0 0;height:52%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">13</span></div>
+            <div style="width:28%;background:rgba(10,10,10,0.2);border-radius:4px 4px 0 0;height:4%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:var(--text);">1</span></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text);">5월</div>
+          <div style="font-size:18px;font-weight:900;color:var(--text);">34</div>
+        </div>
+        <!-- 6월 (현재) -->
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <div style="width:100%;display:flex;gap:3px;align-items:flex-end;justify-content:center;height:180px;">
+            <div style="width:22%;background:var(--accent);border-radius:4px 4px 0 0;height:64%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">16</span></div>
+            <div style="width:22%;background:var(--red);border-radius:4px 4px 0 0;height:24%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:800;color:#FFF;">6</span></div>
+            <div style="width:22%;background:rgba(10,10,10,0.2);border-radius:4px 4px 0 0;height:8%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:var(--text);">2</span></div>
+            <div style="width:22%;background:var(--green);border-radius:4px 4px 0 0;height:4%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#FFF;">1</span></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--red);">6월</div>
+          <div style="font-size:18px;font-weight:900;color:var(--red);">25</div>
+        </div>
+      </div>
     </div>
-    <div class="c cr" style="text-align:center;">
-      <div class="cl" style="color:var(--red);">이미지</div>
-      <div class="cv" style="color:var(--red);">14 &rarr; 4</div>
-      <div class="cx" style="margin-top:8px;">71.4% 축소</div>
+    <!-- 범례 -->
+    <div style="display:flex;gap:20px;justify-content:center;margin-top:12px;font-size:11px;">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:var(--accent);border-radius:2px;display:inline-block;"></span>이미지</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:var(--red);border-radius:2px;display:inline-block;"></span>영상</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:rgba(10,10,10,0.2);border-radius:2px;display:inline-block;"></span>기획</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:var(--green);border-radius:2px;display:inline-block;"></span>AI TO (신규)</span>
     </div>
-    <div class="c cs" style="text-align:center;">
-      <div class="cl">성과 목표</div>
-      <div class="cv">그대로</div>
-      <div class="cx" style="margin-top:8px;">ROAS &middot; CPI &middot; 설치 수</div>
+    <!-- 감소율 강조 -->
+    <div style="display:flex;justify-content:center;margin-top:16px;gap:40px;">
+      <div style="text-align:center;">
+        <div style="font-size:11px;color:var(--muted);">총 TO</div>
+        <div style="font-size:20px;font-weight:900;color:var(--red);">41 &rarr; 25</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);">&minus;39%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:11px;color:var(--muted);">이미지</div>
+        <div style="font-size:20px;font-weight:900;color:var(--red);">23 &rarr; 16</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);">&minus;30%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:11px;color:var(--muted);">영상</div>
+        <div style="font-size:20px;font-weight:900;color:var(--red);">16 &rarr; 6</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);">&minus;62.5%</div>
+      </div>
     </div>
   </div>
 
-  <div class="g2 mt">
+  <div class="g2 mt2">
     <div class="c cs">
       <div class="ct">그런데 이미 월 7,255건을 만들고 있습니다</div>
       <div class="bar-chart">
@@ -271,12 +339,12 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;">
           <span style="color:var(--red);font-weight:700;flex-shrink:0;">&times;</span>
-          <span style="font-size:14px;line-height:1.6;">TO가 줄면 테스트 가능한 소재도 줄어듦<br><span style="color:var(--muted);font-size:13px;">4 TO &times; 승률 20% = 유효 소재 1개 이하</span></span>
+          <span style="font-size:14px;line-height:1.6;">TO가 줄면 테스트 가능한 소재도 줄어듦<br><span style="color:var(--muted);font-size:13px;">승률 20% 기준, 유효 소재 확보 어려움</span></span>
         </div>
       </div>
     </div>
   </div>
-  <div class="footnote">출처: HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트 (검수확인서 기준, 26년 3~5월)</div>
+  <div class="footnote">TO 계약 추이: 넷마블 &times; HIVELAB TO 계약 현황 (26년 3~6월) &middot; 제작 수량: HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트 (검수확인서 기준)</div>
 </div>
 
 <!-- ━━━ 06. 3개월 실측 데이터 상세 ━━━ -->
@@ -1194,9 +1262,127 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
   <div class="footnote">로드맵: HIVELAB MAX LAB 제안 기준 &middot; 실행 일정은 넷마블 캠페인 일정에 따라 조정</div>
 </div>
 
-<!-- ━━━ 25. 마무리 ━━━ -->
+<!-- ━━━ 25. 종합 현황 — TO 추이 + 제작 수량 ━━━ -->
 <div class="page">
   <div class="pn">25</div>
+  <div class="lbl" style="color:var(--red);">현황 종합</div>
+  <h2>4개월 종합 현황</h2>
+  <p class="sub">TO는 줄고, 제작 수량도 줄고 있습니다. 하지만 성과 목표는 그대로.</p>
+
+  <!-- TO 추이 라인 차트 (CSS) -->
+  <div class="mt2" style="background:var(--bg);border-radius:var(--R);padding:24px 28px;position:relative;">
+    <div class="cl" style="color:var(--red);margin-bottom:16px;">TO 계약 추이 (26년 3~6월)</div>
+    <div style="position:relative;height:160px;">
+      <!-- 가로 그리드 -->
+      <div style="position:absolute;left:0;right:0;top:0;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:0;right:0;top:40px;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:0;right:0;top:80px;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:0;right:0;top:120px;height:1px;background:var(--divider);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--divider);"></div>
+      <!-- 세로축 라벨 -->
+      <div style="position:absolute;left:-30px;top:-4px;font-size:9px;color:var(--muted2);">45</div>
+      <div style="position:absolute;left:-30px;top:76px;font-size:9px;color:var(--muted2);">20</div>
+      <div style="position:absolute;left:-30px;top:156px;font-size:9px;color:var(--muted2);">0</div>
+      <!-- SVG 라인 차트 -->
+      <svg viewBox="0 0 800 160" style="width:100%;height:100%;overflow:visible;" preserveAspectRatio="none">
+        <!-- 총 TO 라인 -->
+        <polyline points="100,26 300,42 500,60 700,107" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 이미지 라인 -->
+        <polyline points="100,64 300,68 500,76 700,93" fill="none" stroke="#000DFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 영상 라인 -->
+        <polyline points="100,95 300,98 500,104 700,138" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 총 TO 점 + 라벨 -->
+        <circle cx="100" cy="26" r="5" fill="#0A0A0A"/><text x="100" y="16" text-anchor="middle" font-size="12" font-weight="800" fill="#0A0A0A">41</text>
+        <circle cx="300" cy="42" r="5" fill="#0A0A0A"/><text x="300" y="32" text-anchor="middle" font-size="12" font-weight="800" fill="#0A0A0A">38</text>
+        <circle cx="500" cy="60" r="5" fill="#0A0A0A"/><text x="500" y="50" text-anchor="middle" font-size="12" font-weight="800" fill="#0A0A0A">34</text>
+        <circle cx="700" cy="107" r="6" fill="#EF4444"/><text x="700" y="97" text-anchor="middle" font-size="14" font-weight="900" fill="#EF4444">25</text>
+        <!-- 이미지 점 -->
+        <circle cx="100" cy="64" r="4" fill="#000DFF"/><text x="115" y="60" font-size="10" font-weight="700" fill="#000DFF">23</text>
+        <circle cx="300" cy="68" r="4" fill="#000DFF"/><text x="315" y="64" font-size="10" font-weight="700" fill="#000DFF">22</text>
+        <circle cx="500" cy="76" r="4" fill="#000DFF"/><text x="515" y="72" font-size="10" font-weight="700" fill="#000DFF">20</text>
+        <circle cx="700" cy="93" r="4" fill="#000DFF"/><text x="715" y="89" font-size="10" font-weight="700" fill="#000DFF">16</text>
+        <!-- 영상 점 -->
+        <circle cx="100" cy="95" r="4" fill="#EF4444"/><text x="115" y="91" font-size="10" font-weight="700" fill="#EF4444">16</text>
+        <circle cx="300" cy="98" r="4" fill="#EF4444"/><text x="315" y="94" font-size="10" font-weight="700" fill="#EF4444">15</text>
+        <circle cx="500" cy="104" r="4" fill="#EF4444"/><text x="515" y="100" font-size="10" font-weight="700" fill="#EF4444">13</text>
+        <circle cx="700" cy="138" r="4" fill="#EF4444"/><text x="715" y="134" font-size="10" font-weight="700" fill="#EF4444">6</text>
+        <!-- 월 라벨 -->
+        <text x="100" y="175" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">3월</text>
+        <text x="300" y="175" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">4월</text>
+        <text x="500" y="175" text-anchor="middle" font-size="12" font-weight="600" fill="#0A0A0A">5월</text>
+        <text x="700" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#EF4444">6월</text>
+      </svg>
+    </div>
+    <!-- 범례 -->
+    <div style="display:flex;gap:24px;margin-top:24px;font-size:11px;">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:16px;height:3px;background:#0A0A0A;border-radius:2px;display:inline-block;"></span><strong>총 TO</strong></span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:16px;height:3px;background:var(--accent);border-radius:2px;display:inline-block;"></span>이미지</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:16px;height:3px;background:var(--red);border-radius:2px;display:inline-block;"></span>영상</span>
+    </div>
+  </div>
+
+  <!-- 제작 수량 추이 -->
+  <div class="mt2" style="background:var(--bg);border-radius:var(--R);padding:24px 28px;">
+    <div class="cl" style="color:var(--accent);margin-bottom:16px;">월 제작 수량 추이 (26년 3~5월 실측)</div>
+    <div style="display:flex;gap:12px;align-items:flex-end;height:120px;">
+      <!-- 3월 -->
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:14px;font-weight:900;color:var(--accent);">8,684</div>
+        <div style="width:100%;background:var(--accent);border-radius:6px 6px 0 0;height:100px;"></div>
+        <div style="font-size:12px;font-weight:600;">3월</div>
+      </div>
+      <!-- 4월 -->
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:14px;font-weight:900;color:var(--accent);">7,042</div>
+        <div style="width:100%;background:var(--accent);border-radius:6px 6px 0 0;height:81px;opacity:0.8;"></div>
+        <div style="font-size:12px;font-weight:600;">4월</div>
+      </div>
+      <!-- 5월 -->
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:14px;font-weight:900;color:var(--accent);">6,040</div>
+        <div style="width:100%;background:var(--accent);border-radius:6px 6px 0 0;height:70px;opacity:0.6;"></div>
+        <div style="font-size:12px;font-weight:600;">5월</div>
+      </div>
+      <!-- 구분선 -->
+      <div style="width:2px;height:100px;background:var(--divider);margin:0 4px;align-self:flex-end;"></div>
+      <!-- 평균 -->
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:14px;font-weight:900;color:var(--text);">7,255</div>
+        <div style="width:100%;background:#0A0A0A;border-radius:6px 6px 0 0;height:84px;"></div>
+        <div style="font-size:12px;font-weight:700;">평균</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 수치 4개 -->
+  <div class="g4 mt2">
+    <div class="c cr" style="text-align:center;">
+      <div class="cl" style="color:var(--red);">TO 감소</div>
+      <div class="cv" style="font-size:26px;color:var(--red);">&minus;39%</div>
+      <div class="cx" style="font-size:11px;margin-top:4px;">41 &rarr; 25 (4개월)</div>
+    </div>
+    <div class="c ca" style="text-align:center;">
+      <div class="cl" style="color:var(--accent);">월 평균 제작</div>
+      <div class="cv" style="font-size:26px;color:var(--accent);">7,255건</div>
+      <div class="cx" style="font-size:11px;margin-top:4px;">검색 체계 없이 쌓이는 중</div>
+    </div>
+    <div class="c ca" style="text-align:center;">
+      <div class="cl" style="color:var(--accent);">이미지 배율</div>
+      <div class="cv" style="font-size:26px;color:var(--accent);">54.5배</div>
+      <div class="cx" style="font-size:11px;margin-top:4px;">신규 1 &rarr; 베리 54.5</div>
+    </div>
+    <div class="c cg" style="text-align:center;">
+      <div class="cl" style="color:var(--green);">AI 활용률</div>
+      <div class="cv" style="font-size:26px;color:var(--green);">29%</div>
+      <div class="cx" style="font-size:11px;margin-top:4px;">이미 현장 도입 완료</div>
+    </div>
+  </div>
+  <div class="footnote">TO 계약: 넷마블 &times; HIVELAB TO 계약 현황 (26년 3~6월) &middot; 제작 수량: 월간 제작완료 수량 관리 시트 (검수확인서 기준, 26년 3~5월) &middot; AI 활용률: 소재별 AI 사용 내역 시트 (신규 제작건 기준)</div>
+</div>
+
+<!-- ━━━ 26. 마무리 ━━━ -->
+<div class="page">
+  <div class="pn">26</div>
   <div class="lbl" style="color:var(--accent);">10 &middot; Next Step</div>
   <h2>정리</h2>
 
@@ -1204,7 +1390,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
     <div class="c cr">
       <div class="ct" style="font-size:15px;">상황</div>
       <div class="cx" style="margin-top:10px;font-size:14px;line-height:1.8;">
-        영상 16&rarr;6, 이미지 14&rarr;4 TO 축소.<br>
+        TO 41&rarr;25 (&minus;39%), 영상 16&rarr;6.<br>
         월 7,255건이 검색 불가로 쌓이는 중.<br>
         성과 목표는 그대로.
       </div>
@@ -1240,7 +1426,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
   <div style="margin-top:28px;text-align:center;font-size:13px;color:var(--muted);">
     HIVELAB MAX LAB &nbsp;&middot;&nbsp; AI 배너 리서치 플랫폼 제안 &nbsp;&middot;&nbsp; 2026.06
   </div>
-  <div class="footnote">본 제안서의 모든 실측 수치는 HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트(검수확인서 기준, 26년 3~5월) 기반 &middot; 업계 벤치마크는 출처 표기된 참고값</div>
+  <div class="footnote">본 제안서의 모든 실측 수치는 HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트(검수확인서 기준, 26년 3~5월) 및 TO 계약 현황(26년 3~6월) 기반 &middot; 업계 벤치마크는 출처 표기된 참고값</div>
 </div>
 
 </body>
