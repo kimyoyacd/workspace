@@ -162,6 +162,41 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
 .mock-item .mi-ctr{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#FFF;}
 .mock-item .mi-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
 
+/* Mock browser chrome */
+.mock{border-radius:var(--R);overflow:hidden;border:1px solid #333;}
+.mock-bar{background:#1a1a1a;padding:8px 14px;display:flex;align-items:center;gap:8px;}
+.mock-dot{width:8px;height:8px;border-radius:50%;}
+.mock-url{flex:1;background:#333;border-radius:4px;padding:4px 10px;font-size:11px;color:#999;font-family:'Space Mono',monospace;}
+.mock-body{background:#111;padding:20px;}
+.banner-card{background:#1a1a1a;border-radius:8px;overflow:hidden;}
+.banner-thumb{width:100%;height:72px;background:#333;display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;}
+.banner-meta{padding:8px;font-size:9px;color:#888;line-height:1.5;}
+.banner-meta strong{color:#ccc;font-size:10px;}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+.perf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px;}
+.perf-cell{background:#222;border-radius:4px;padding:5px 6px;text-align:center;}
+.perf-cell .perf-lbl{font-size:8px;color:#666;text-transform:uppercase;}
+.perf-cell .perf-val{font-size:11px;font-weight:700;color:#FFF;margin-top:1px;}
+
+/* Style cards (emoji) */
+.style-card{border-radius:12px;overflow:hidden;background:var(--bg);border:1px solid var(--divider);padding:16px;}
+.style-icon{font-size:28px;margin-bottom:10px;}
+.style-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;}
+.style-desc{font-size:11px;color:var(--ink2);line-height:1.5;}
+
+/* Flow row (numbered) */
+.flow-row{display:flex;align-items:center;gap:0;margin-top:20px;}
+.flow-row .flow-node{flex:1;padding:14px 16px;text-align:center;background:var(--bg);border:1px solid var(--divider);border-radius:var(--R);}
+.flow-row .flow-arrow{padding:0 10px;font-size:18px;color:var(--ink3);flex-shrink:0;}
+.flow-row .flow-node.active{background:var(--ink);color:#FFF;border-color:var(--ink);}
+.flow-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;color:var(--ink2);}
+.flow-row .flow-node.active .flow-label{color:rgba(255,255,255,0.5);}
+
+/* Genre cards */
+.genre-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
+.genre-card{border-radius:12px;padding:16px 14px;border:1px solid var(--divider);background:var(--bg);}
+.genre-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--ink);color:#FFF;margin-bottom:10px;}
+
 /* Misc */
 .spacer{height:32px;}
 .spacer-sm{height:20px;}
@@ -284,8 +319,8 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
 <div class="page" id="p03">
   <div class="pn">03 / 17</div>
   <div class="label" style="color:var(--orange);">업계 현실</div>
-  <h2 class="t2">분기마다 2,743개 소재가 필요합니다</h2>
-  <p class="sub">대형 게임앱 기준. 매년 8%씩 늘고 있습니다.</p>
+  <h2 class="t2">대형 게임앱, 분기 평균 2,743개 소재를 제작합니다</h2>
+  <p class="sub">연간 광고비 $7M 이상 대형 게임앱 기준. 매년 8%씩 늘고 있습니다.</p>
   <div class="g3 mt24">
     <div class="card cr">
       <div class="card-num" style="color:var(--orange);">2,743<span style="font-size:16px;">/분기</span></div>
@@ -303,7 +338,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
   <div class="qbox mt32" style="border-left-color:var(--orange);">
     소재를 더 많이, 더 빠르게 만들어야 합니다. 그런데 TO는 줄고 있습니다.
   </div>
-  <div class="footnote">출처 — AppsFlyer Creative Optimization Report 2025, XMP/Mobvista Global Mobile Gaming UA Report 2025</div>
+  <div class="footnote">출처 — AppsFlyer Creative Optimization Report 2025 (연간 광고비 $7M 이상 대형 게임앱 기준), XMP/Mobvista Global Mobile Gaming UA Report 2025</div>
 </div>
 
 <!-- ==================== P04 TO 감소 (orange, cream) ==================== -->
@@ -381,66 +416,83 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
 </div>
 
 <!-- ==================== P06 Banner Search (violet, white) ==================== -->
-<div class="page" id="p06">
+<div class="page" id="p06" style="padding:36px 40px;">
   <div class="pn">06 / 17</div>
   <div class="label"><span class="sb-now">NOW</span> <span style="color:var(--violet);">배너 검색 시스템</span></div>
-  <h2 class="t2">6,719개 소재, 5초 안에 찾습니다</h2>
-  <p class="sub">IP명·장르·비주얼 스타일·소재 유형·제작 시기를 조합해서 검색합니다.</p>
+  <h2 class="t2">10년치 소재가 5초 안에 나옵니다</h2>
+  <p class="sub" style="margin-bottom:16px;">6,719개 소재를 의미·게임·분위기로 검색. 연도·게임·매체·국가 필터.</p>
 
-  <!-- Search mock -->
-  <div class="search-box">
-    <span class="search-tag">나혼렙</span>
-    <span class="search-tag" style="background:var(--violet-dim);color:var(--violet);">비디오</span>
-    <input type="text" placeholder="키워드 또는 IP명 입력..." disabled>
-    <span style="font-size:13px;color:var(--ink3);">5초 이내</span>
+  <div class="mock">
+    <div class="mock-bar">
+      <div class="mock-dot" style="background:#FF5F57;"></div>
+      <div class="mock-dot" style="background:#FFBD2E;"></div>
+      <div class="mock-dot" style="background:#28CA41;"></div>
+      <div class="mock-url">127.0.0.1 &nbsp; Banner Search</div>
+      <span style="font-size:10px;color:#666;margin-left:auto;">6,719건</span>
+    </div>
+    <div class="mock-body" style="padding:16px 20px;">
+      <div style="display:flex;gap:16px;">
+        <div style="width:160px;flex-shrink:0;">
+          <div style="font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">필터</div>
+          <div style="font-size:10px;font-weight:700;color:#888;margin-top:10px;margin-bottom:4px;">연도</div>
+          <div style="font-size:11px;color:#aaa;line-height:2;">
+            <span style="color:#FFF;font-weight:600;">&#9745; 2017년</span> <span style="color:#555;">2,624건</span><br>
+            <span style="color:#888;">&#9744; 2018년</span> <span style="color:#555;">1,104건</span><br>
+            <span style="color:#888;">&#9744; 2019년</span> <span style="color:#555;">873건</span>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:#888;margin-top:10px;margin-bottom:4px;">게임</div>
+          <div style="font-size:11px;color:#aaa;line-height:2;">
+            <span style="color:#888;">&#9744; 세븐나이츠</span> <span style="color:#555;">3,076건</span><br>
+            <span style="color:#888;">&#9744; 레이븐</span> <span style="color:#555;">1,004건</span><br>
+            <span style="color:#888;">&#9744; 모두의마블</span> <span style="color:#555;">1,120건</span>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:#888;margin-top:10px;margin-bottom:4px;">매체</div>
+          <div style="font-size:11px;color:#aaa;line-height:2;">
+            <span style="color:#FFF;font-weight:600;">&#9745; 네이버</span> <span style="color:#555;">492건</span><br>
+            <span style="color:#888;">&#9744; 페이스북</span> <span style="color:#555;">768건</span>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <div style="background:#222;border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:8px;">
+            <span style="color:#666;">&#128269;</span>
+            <span style="font-size:12px;color:#aaa;">캐릭터 배경 묘사, 게임명, 분위기, 배너 속 문구 ...</span>
+          </div>
+          <div style="margin-top:8px;">
+            <span class="filter-chip active" style="background:var(--violet);color:#FFF;border-color:var(--violet);">연도 2017년 &times;</span>
+            <span class="filter-chip active" style="background:var(--violet);color:#FFF;border-color:var(--violet);">매체 네이버 &times;</span>
+          </div>
+          <div style="margin-top:8px;font-size:10px;color:#666;">49건</div>
+          <div class="card-grid" style="margin-top:8px;">
+            <div class="banner-card">
+              <div class="banner-thumb" style="background:linear-gradient(135deg,#2a1a4a,#4a2a6a);color:#c8a2f0;">&#9734; 세나 콜라보</div>
+              <div class="banner-meta"><strong>#5832</strong><br>모두의마블 &middot; 게임 광고
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">349K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,599</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.46%</div></div></div>
+              </div>
+            </div>
+            <div class="banner-card">
+              <div class="banner-thumb" style="background:linear-gradient(135deg,#4a1a2a,#8a3a4a);color:#f0a2b2;">&#9876; 대선배들</div>
+              <div class="banner-meta"><strong>#5831</strong><br>모두의마블 &middot; 게임 광고
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">237K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,713</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.72%</div></div></div>
+              </div>
+            </div>
+            <div class="banner-card">
+              <div class="banner-thumb" style="background:linear-gradient(135deg,#1a3a4a,#2a5a7a);color:#a2d0f0;">&#9733; DC 콜라보</div>
+              <div class="banner-meta"><strong>#5829</strong><br>모두의마블 &middot; 게임 광고
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">1.6M</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">11,471</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.82%</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="filter-row">
-    <span class="filter-chip active">전체 IP</span>
-    <span class="filter-chip">나혼렙</span>
-    <span class="filter-chip">일곱개의대죄</span>
-    <span class="filter-chip">쿵야</span>
-    <span class="filter-chip active">비디오</span>
-    <span class="filter-chip">배너</span>
-    <span class="filter-chip">리사이즈</span>
+  <div class="g3 mt16">
+    <div class="card ca" style="text-align:center;padding:20px;"><div class="card-num-sm" style="color:var(--violet);">5초 검색</div><div class="card-sub" style="margin-top:6px;">"세븐나이츠 겨울 이벤트"<br>자연어로 즉시</div></div>
+    <div class="card ca" style="text-align:center;padding:20px;"><div class="card-num-sm" style="color:var(--violet);">성과 지표 연동</div><div class="card-sub" style="margin-top:6px;">CTR &middot; CPC &middot; 전환율<br>소재별 성과 확인</div></div>
+    <div class="card ca" style="text-align:center;padding:20px;"><div class="card-num-sm" style="color:var(--violet);">다차원 필터</div><div class="card-sub" style="margin-top:6px;">연도 &middot; 게임 &middot; 매체 &middot; 국가<br>교차 필터링</div></div>
   </div>
-
-  <!-- Mock results -->
-  <div class="mock-result">
-    <div class="mock-item">
-      <div class="mi-ctr">3.42%</div>
-      <div class="mi-label">CTR · 나혼렙 배너 A</div>
-    </div>
-    <div class="mock-item">
-      <div class="mi-ctr">2.87%</div>
-      <div class="mi-label">CTR · 나혼렙 배너 B</div>
-    </div>
-    <div class="mock-item">
-      <div class="mi-ctr">4.11%</div>
-      <div class="mi-label">CTR · 나혼렙 영상 A</div>
-    </div>
-    <div class="mock-item">
-      <div class="mi-ctr">2.19%</div>
-      <div class="mi-label">CTR · 쿵야 배너 C</div>
-    </div>
-  </div>
-
-  <div class="spacer-lg"></div>
-
-  <div class="g3">
-    <div class="card ca">
-      <div class="card-title" style="color:var(--violet);">성과 지표 연동</div>
-      <div class="card-sub">CTR·전환율 데이터가 들어오면 소재별 순위 자동 정렬. STEP 2에서 활성화.</div>
-    </div>
-    <div class="card ca">
-      <div class="card-title" style="color:var(--violet);">다차원 필터</div>
-      <div class="card-sub">IP, 장르, 소재 유형, 비주얼 스타일, 제작 시기, 캠페인 단계별 조합 필터링.</div>
-    </div>
-    <div class="card ca">
-      <div class="card-title" style="color:var(--violet);">제작 히스토리</div>
-      <div class="card-sub">소재별 디자인 의도, 수정 이력, 제작자 코멘트까지 축적. 맥락이 남습니다.</div>
-    </div>
-  </div>
+  <div class="footnote">시스템 화면: HIVELAB MAX LAB 내부 개발 (PNGMETA Banner Search, 26.06 기준) &middot; 데이터: 넷마블 제작 소재 6,719건 &middot; 성과 지표는 공개 채널 수집 데이터 기반</div>
 </div>
 
 <!-- ==================== P07 AI 제작 (violet, cream) ==================== -->
@@ -475,9 +527,17 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
     <div class="flow-node active">HIVELAB 제작</div>
   </div>
 
+  <div class="genre-row">
+    <div class="genre-card"><div class="genre-tag" style="background:var(--violet);color:#FFF;">MMORPG</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">세계관 · 동료 · 전투</div><div style="font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--divider);padding-left:10px;">"전설 속의 전사들이 깨어났다.<br>세계는 당신의 선택을 기다린다."</div></div>
+    <div class="genre-card"><div class="genre-tag" style="background:var(--violet);color:#FFF;">CASUAL</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">친근함 · 일상 · 감성</div><div style="font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--divider);padding-left:10px;">"어쩌다 한 판이 멈추질 않아.<br>딱 5분만 더... 진짜 5분!"</div></div>
+    <div class="genre-card"><div class="genre-tag" style="background:var(--violet);color:#FFF;">FPS</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">긴장감 · 실력 · 팀플레이</div><div style="font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--divider);padding-left:10px;">"한 발의 차이.<br>생존자와 관전자를 나눈다."</div></div>
+    <div class="genre-card"><div class="genre-tag" style="background:var(--violet);color:#FFF;">OPEN WORLD</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">자유 · 탐험 · 몰입</div><div style="font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--divider);padding-left:10px;">"정해진 길은 없다.<br>지도는 당신이 직접 만든다."</div></div>
+  </div>
+
   <div class="qbox mt32" style="border-left-color:var(--violet);">
     하나의 키아트에서 8가지 변형 + 기획 AI. GPU 인프라 (RTX 4090 &times; 14대) 내부 운영 중.
   </div>
+  <div class="footnote">AI 스타일 베리에이션: HIVELAB GXD AI SOLUTION 내부 적용 중 (26년) &middot; GPU 인프라: HIVELAB 사내 RTX 4090 &times; 14, RTX 3080/3080ti 포함 &middot; 카피 예시: 장르별 실제 프롬프트 구조 기반</div>
 </div>
 
 <!-- ==================== P08 보장 + 파일럿 (lime, white) ==================== -->
@@ -704,8 +764,8 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
         <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">디자인 의도, IP 맥락, 제작 히스토리까지 축적된 데이터.</div>
       </div>
       <div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:6px;">3개월 실측 21,766건</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">26년 3~5월 제작 관리 시트 기준. 검증된 산출량.</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:6px;">26년 3~5월 산출량 합산 21,766건</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;">HIVELAB×넷마블 월간 제작완료 수량 관리 시트 (검수확인서 기준).</div>
       </div>
     </div>
   </div>
@@ -958,7 +1018,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
       <div class="card-title" style="font-size:13px;color:rgba(255,255,255,0.4);">상황</div>
       <div class="spacer-sm"></div>
       <div style="font-size:15px;line-height:1.7;color:rgba(255,255,255,0.8);">
-        캠페인은 4개국에서 10개국으로 커졌습니다. TO는 반년 만에 42% 줄었습니다. 분기마다 2,743개 소재가 필요합니다.
+        캠페인은 4개국에서 10개국으로 커졌습니다. TO는 반년 만에 42% 줄었습니다. 업계 대형 게임앱 평균 분기 2,743개 소재를 제작합니다.
       </div>
     </div>
     <div class="card cg" style="padding:28px;">
@@ -972,7 +1032,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
       <div class="card-title" style="font-size:13px;color:var(--lime-text);">근거</div>
       <div class="spacer-sm"></div>
       <div style="font-size:15px;line-height:1.7;">
-        넥슨 CTR 14배, Ace Games CTR +52%, PURE CPI −74%. 3개월 실측 21,766건 제작. GPU 14대 내부 운영.
+        넥슨 CTR 14배, Ace Games CTR +52%, PURE CPI −74%. 26년 3~5월 산출량 합산 21,766건. GPU 14대 내부 운영.
       </div>
     </div>
   </div>
