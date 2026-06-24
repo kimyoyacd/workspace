@@ -397,10 +397,35 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
     </div>
   </div>
 
+  <!-- Detailed production data table -->
+  <div style="margin-top:28px;font-size:12px;font-weight:600;color:var(--ink2);letter-spacing:0.03em;">넷마블 소재 제작 현황 (26년 3~5월)</div>
+  <table class="tbl" style="margin-top:8px;font-size:12px;">
+    <thead>
+      <tr>
+        <th style="width:24%;">항목</th>
+        <th style="width:15%;text-align:right;">3월</th>
+        <th style="width:15%;text-align:right;">4월</th>
+        <th style="width:15%;text-align:right;">5월</th>
+        <th style="width:15%;text-align:right;background:var(--orange);color:#FFF;border-radius:6px 6px 0 0;">3개월 평균</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>이미지 신규</strong></td><td style="text-align:right;">108건</td><td style="text-align:right;">142건</td><td style="text-align:right;">74건</td><td style="text-align:right;font-weight:700;">108건</td></tr>
+      <tr><td><strong>이미지 베리에이션</strong></td><td style="text-align:right;">7,047건</td><td style="text-align:right;">5,042건</td><td style="text-align:right;">4,650건</td><td style="text-align:right;font-weight:700;">5,580건</td></tr>
+      <tr style="background:var(--orange-sub);"><td><strong style="color:var(--orange);">이미지 배율 (신규 1 &rarr; 베리)</strong></td><td style="text-align:right;font-weight:700;color:var(--orange);">65.2배</td><td style="text-align:right;font-weight:700;color:var(--orange);">35.5배</td><td style="text-align:right;font-weight:700;color:var(--orange);">62.8배</td><td style="text-align:right;font-weight:800;color:var(--orange);">54.5배</td></tr>
+      <tr><td><strong>영상 신규</strong></td><td style="text-align:right;">43건</td><td style="text-align:right;">51건</td><td style="text-align:right;">36건</td><td style="text-align:right;font-weight:700;">43건</td></tr>
+      <tr><td><strong>영상 베리에이션</strong></td><td style="text-align:right;">1,323건</td><td style="text-align:right;">1,770건</td><td style="text-align:right;">1,208건</td><td style="text-align:right;font-weight:700;">1,434건</td></tr>
+      <tr style="background:var(--orange-sub);"><td><strong style="color:var(--orange);">영상 배율 (신규 1 &rarr; 베리)</strong></td><td style="text-align:right;font-weight:700;color:var(--orange);">30.8배</td><td style="text-align:right;font-weight:700;color:var(--orange);">34.7배</td><td style="text-align:right;font-weight:700;color:var(--orange);">33.6배</td><td style="text-align:right;font-weight:800;color:var(--orange);">33.0배</td></tr>
+      <tr><td><strong>OOH + OOH 베리</strong></td><td style="text-align:right;">145건</td><td style="text-align:right;">32건</td><td style="text-align:right;">64건</td><td style="text-align:right;font-weight:700;">80건</td></tr>
+      <tr><td><strong>기획</strong></td><td style="text-align:right;">18건</td><td style="text-align:right;">5건</td><td style="text-align:right;">8건</td><td style="text-align:right;font-weight:700;">10건</td></tr>
+      <tr style="background:var(--ink);color:#FFF;"><td><strong>월 총 제작량</strong></td><td style="text-align:right;font-weight:800;">8,684건</td><td style="text-align:right;font-weight:800;">7,042건</td><td style="text-align:right;font-weight:800;">6,040건</td><td style="text-align:right;font-weight:900;font-size:14px;">7,255건</td></tr>
+    </tbody>
+  </table>
+
   <div class="qbox mt28" style="border-left-color:var(--orange);">
     TO 1개 원본에서 AI 변형 포함 54.5건이 나옵니다. TO가 줄어도 산출량을 유지할 수 있는 구조가 이미 있습니다.
   </div>
-  <div class="footnote">출처 — TO 계약 넷마블×HIVELAB 26년 1~6월, 배율 54.5배 제작 관리 시트 26년 3~5월</div>
+  <div class="footnote">TO 계약: 넷마블 &times; HIVELAB 26년 1~6월 &middot; 제작량: HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트 (검수확인서 기준, 26년 3~5월) &middot; 배율 54.5배: 이미지 신규/베리 실측 평균</div>
 </div>
 
 <!-- ==================== P05 간지 (violet, acc) ==================== -->
@@ -534,10 +559,11 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
     <div class="genre-card"><div class="genre-tag">OPEN WORLD</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">자유 · 탐험 · 몰입</div><div style="font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--divider);padding-left:10px;">"정해진 길은 없다.<br>지도는 당신이 직접 만든다."</div></div>
   </div>
 
-  <div class="qbox mt32" style="border-left-color:var(--violet);">
-    하나의 키아트에서 8가지 변형 + 기획 AI. GPU 인프라 (RTX 4090 &times; 14대) 내부 운영 중.
+  <div style="margin-top:20px;background:var(--white);border-radius:var(--R);padding:16px 20px;font-size:13px;line-height:1.7;border:1px solid var(--divider);">
+    <strong>하나의 키아트</strong>에서 8가지 스타일 변형. 매체 &times; 시즌 &times; 국가별 맞춤 소재를 새로 그리지 않고 생성합니다.<br>
+    GPU 인프라 (RTX 4090 &times; 14대 이상) 내부 운영 중.
   </div>
-  <div class="footnote">AI 스타일 베리에이션: HIVELAB GXD AI SOLUTION 내부 적용 중 (26년) &middot; GPU 인프라: HIVELAB 사내 RTX 4090 &times; 14, RTX 3080/3080ti 포함 &middot; 카피 예시: 장르별 실제 프롬프트 구조 기반</div>
+  <div class="footnote">AI 스타일 베리에이션: HIVELAB GXD AI SOLUTION 내부 적용 중 (26년) &middot; GPU 인프라: HIVELAB 사내 RTX 4090 &times; 14, RTX 3080/3080ti 포함 &middot; 카피 예시는 장르별 실제 프롬프트 구조 기반</div>
 </div>
 
 <!-- ==================== P08 보장 + 파일럿 (lime, white) ==================== -->
@@ -778,6 +804,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Pretendard',sans-serif;}
       CTR + 전환율. 이 두 개만 넣어주시면 소재 검색이 성과 순위 시스템으로 확장됩니다.
     </div>
   </div>
+  <div class="footnote">6,719건: HIVELAB 내부 제작 이력 2014~2026 누적 &middot; 21,766건: HIVELAB &times; 넷마블 월간 제작완료 수량 관리 시트 (검수확인서 기준, 26년 3~5월 합산) &middot; 성과 필드: Banner Search 시스템 구현 기준</div>
 </div>
 
 <!-- ==================== P13 경쟁사 (violet, white) ==================== -->
