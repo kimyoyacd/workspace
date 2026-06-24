@@ -266,135 +266,171 @@
   .slide { animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* ===== Cover Specific ===== */
-  .cover-grid {
+  /* ===== Cover Specific (중앙 정렬, 최소 요소, 여백 극대화) ===== */
+  .cover-wrap {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-rows: 80px 1fr 60px;
-  }
-  .cover-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 80px;
+    justify-content: center;
+    position: relative;
+  }
+  .cover-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .cover-symbol {
+    width: 56px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 1px;
+    margin-bottom: 8px;
+  }
+  .cover-label {
     font-family: var(--font-en);
     font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.45);
   }
-  .cover-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 80px 48px;
-  }
-  .cover-subtitle {
-    font-family: var(--font-en);
-    font-size: 42px;
-    font-weight: 300;
-    line-height: 1.1;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 12px;
-  }
   .cover-title {
     font-family: var(--font-en);
-    font-size: 160px;
+    font-size: 80px;
     font-weight: 700;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     color: #FFFFFF;
+    text-align: center;
+  }
+  .cover-subtitle {
+    font-family: var(--font-kr);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+  }
+  .cover-date {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
   }
   .cover-footer {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 80px;
     font-size: 10px;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.2);
     letter-spacing: 0.04em;
   }
+  .cover-client {
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
 
-  /* ===== TOC Specific ===== */
-  .toc-grid {
+  /* ===== TOC Specific (좌정렬, 도트 리더, 페이지 번호 우정렬) ===== */
+  .toc-wrap {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-rows: 80px 1fr 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
   }
   .toc-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 80px;
     font-family: var(--font-en);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.35);
+    margin-bottom: 48px;
   }
-  .toc-body {
-    display: grid;
-    grid-template-columns: 3fr 9fr;
-    padding: 0 80px;
-    gap: 48px;
-    align-items: center;
-  }
-  .toc-left-title {
+  .toc-title {
     font-family: var(--font-en);
-    font-size: 110px;
+    font-size: 36px;
     font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
     color: #FFFFFF;
+    margin-bottom: 48px;
   }
-  .toc-sections {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 48px;
-    align-content: center;
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
   }
-  .toc-section-group h4 {
+  .toc-row {
+    display: flex;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .toc-row:first-child {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .toc-phase {
     font-family: var(--font-en);
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    margin-bottom: 10px;
+    color: var(--accent-light);
+    min-width: 120px;
   }
-  .toc-section-group .toc-item {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 4px 0;
-  }
-  .toc-section-group .toc-item .toc-num {
-    font-family: var(--font-en);
-    font-size: 11px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.4);
-    min-width: 20px;
-  }
-  .toc-section-group .toc-item .toc-label {
-    font-size: 14px;
+  .toc-name {
+    font-size: 16px;
     font-weight: 400;
     color: rgba(255,255,255,0.85);
+    flex: 1;
+  }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(255,255,255,0.15);
+    margin: 0 16px;
+    min-width: 40px;
+    align-self: center;
+    height: 0;
+    position: relative;
+    top: -4px;
+  }
+  .toc-page {
+    font-family: var(--font-en);
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    min-width: 32px;
+    text-align: right;
   }
   .toc-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 80px;
     font-family: var(--font-en);
     font-size: 11px;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.2);
     letter-spacing: 0.06em;
+    margin-top: auto;
+    padding-top: 24px;
   }
 
   /* Topbar for content slides */
@@ -465,53 +501,51 @@
 <div class="deck">
 
   <!-- ======================== SLIDE 01: COVER ======================== -->
-  <div class="slide active" style="padding:0; background: linear-gradient(160deg, #1A1A1A 0%, #4A4A4A 100%);">
-    <div class="cover-grid">
-      <div class="cover-header">
-        <span>고객사 X HIVELAB</span>
-        <span>PROPOSAL</span>
-        <span>2026</span>
-      </div>
-      <div class="cover-body">
-        <div class="cover-subtitle">Digital Transformation</div>
-        <div class="cover-title">DX STRATEGY</div>
+  <div class="slide active" style="padding:0; background: linear-gradient(160deg, #1A1A1A 0%, #3A3A3A 100%);">
+    <div class="cover-wrap">
+      <div class="cover-center">
+        <div class="cover-symbol"></div>
+        <div class="cover-label">HIVELAB — Proposal</div>
+        <div class="cover-title">DX STRATEGY<br>CONSULTING</div>
+        <div class="cover-subtitle">디지털 트랜스포메이션 전략 컨설팅 제안서</div>
+        <div class="cover-date">2026. 06</div>
       </div>
       <div class="cover-footer">
-        ⓒ 2026 HIVELAB Inc. All rights reserved. 본 문서는 제안 목적으로만 사용되며, 무단 복제 및 배포를 금합니다.
+        ⓒ 2026 HIVELAB Inc. All rights reserved.
       </div>
+      <div class="cover-client">Client Co.</div>
     </div>
   </div>
 
   <!-- ======================== SLIDE 02: TOC ======================== -->
   <div class="slide" style="padding:0; background: #111111;">
-    <div class="toc-grid">
-      <div class="toc-header">
-        <span>HIVELAB — DX Strategy</span>
-        <span>Table of Contents</span>
-      </div>
-      <div class="toc-body">
-        <div class="toc-left-title">TABLE<br>OF<br>CON&shy;TENTS</div>
-        <div class="toc-sections">
-          <div class="toc-section-group">
-            <h4>01 — Background</h4>
-            <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">프로젝트 배경</span></div>
-            <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">추진 목적</span></div>
-          </div>
-          <div class="toc-section-group">
-            <h4>02 — Market Insight</h4>
-            <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">시장 분석</span></div>
-            <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">사용자 인사이트</span></div>
-          </div>
-          <div class="toc-section-group">
-            <h4>03 — Strategy</h4>
-            <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">DX 전략 프레임워크</span></div>
-            <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">실행 로드맵</span></div>
-          </div>
-          <div class="toc-section-group">
-            <h4>04 — Capabilities</h4>
-            <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">HIVELAB 역량</span></div>
-            <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">유사 프로젝트 경험</span></div>
-          </div>
+    <div class="toc-wrap">
+      <div class="toc-header">HIVELAB — DX Strategy Proposal</div>
+      <div class="toc-title">Table of Contents</div>
+      <div class="toc-list">
+        <div class="toc-row">
+          <span class="toc-phase">Phase 1</span>
+          <span class="toc-name">Background & Purpose</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">03</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-phase">Phase 2</span>
+          <span class="toc-name">Market & User Insight</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">05</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-phase">Phase 3</span>
+          <span class="toc-name">DX Strategy Framework</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">06</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-phase">Phase 4</span>
+          <span class="toc-name">HIVELAB Capabilities</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">07</span>
         </div>
       </div>
       <div class="toc-footer">
@@ -760,32 +794,34 @@
   </div>
 
   <!-- ======================== SLIDE 08: CLOSING ======================== -->
-  <div class="slide light" style="justify-content:center; align-items:center; text-align:center;">
-    <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
-      <div class="neon-stripe" style="width:48px;"></div>
-      <div class="label-accent" style="font-size:13px;">HIVELAB</div>
-      <div style="font-family:var(--font-en); font-size:56px; font-weight:700; line-height:1.1; letter-spacing:-0.03em; color:#111;">
-        Let's Build<br>the Future Together.
+  <div class="slide" style="padding:0; background:#111111; justify-content:center; align-items:center; text-align:center;">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:28px;">
+      <div style="width:48px; height:3px; background:var(--accent); border-radius:1px;"></div>
+      <div style="font-family:var(--font-en); font-size:13px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);">HIVELAB</div>
+      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+        Thank You.
       </div>
-      <div class="body-text" style="margin-top:8px; text-align:center; color:var(--gray-300);">
-        감사합니다. 본 제안에 대한 문의사항은 아래로 연락 부탁드립니다.
+      <div style="font-size:15px; font-weight:400; line-height:1.7; color:rgba(255,255,255,0.45); max-width:480px;">
+        본 제안에 대한 문의사항은 아래로 연락 부탁드립니다.
       </div>
-      <div style="margin-top:16px; display:flex; gap:32px;">
-        <div class="caption" style="text-align:center;">
-          <div style="font-weight:600; color:#111; margin-bottom:4px;">Contact</div>
-          proposal@hivelab.co.kr
+      <div style="margin-top:24px; display:flex; gap:48px;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Contact</div>
+          <div style="font-size:14px; color:rgba(255,255,255,0.7);">proposal@hivelab.co.kr</div>
         </div>
-        <div class="caption" style="text-align:center;">
-          <div style="font-weight:600; color:#111; margin-bottom:4px;">Phone</div>
-          02-1234-5678
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Phone</div>
+          <div style="font-size:14px; color:rgba(255,255,255,0.7);">02-1234-5678</div>
         </div>
-        <div class="caption" style="text-align:center;">
-          <div style="font-weight:600; color:#111; margin-bottom:4px;">Website</div>
-          www.hivelab.co.kr
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Website</div>
+          <div style="font-size:14px; color:rgba(255,255,255,0.7);">www.hivelab.co.kr</div>
         </div>
       </div>
     </div>
-    <span class="page-num">08</span>
+    <div style="position:absolute; bottom:40px; left:0; right:0; text-align:center; font-size:10px; color:rgba(255,255,255,0.15); letter-spacing:0.04em;">
+      ⓒ 2026 HIVELAB Inc. All rights reserved.
+    </div>
   </div>
 
 </div>
