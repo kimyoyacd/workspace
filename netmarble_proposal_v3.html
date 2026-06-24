@@ -81,11 +81,11 @@ h3{font-family:var(--sans);font-size:25px;font-weight:700;line-height:1.2;letter
 .cx{font-size:13px;line-height:1.75;color:var(--ink2);}
 
 .sb{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:100px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.06em;}
-.sb-now{background:var(--lime);color:var(--ink);}
-.sb-soon{background:var(--violet-sub);color:var(--violet);border:1px solid var(--violet-dim);}
-.sb-future{background:var(--pink-sub);color:var(--pink);border:1px dashed var(--pink-dim);}
+.sb-now{background:var(--ink);color:#FFF;}
+.sb-soon{background:rgba(10,10,10,0.08);color:var(--ink);}
+.sb-future{background:rgba(10,10,10,0.05);color:var(--ink2);border:1px dashed var(--divider);}
 
-.qbox{background:var(--bg);border-radius:var(--R);padding:20px 24px;border-left:3px solid var(--pink);font-size:15px;line-height:1.75;margin-top:20px;}
+.qbox{background:var(--bg);border-radius:var(--R);padding:20px 24px;border-left:3px solid var(--ink3);font-size:15px;line-height:1.75;margin-top:20px;}
 
 .bar-chart{display:flex;flex-direction:column;gap:9px;margin-top:12px;}
 .bar-row{display:flex;align-items:center;gap:12px;}
@@ -101,9 +101,9 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
 .vs{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--R);overflow:hidden;font-size:13px;}
 .vs th{padding:9px 14px;font-size:11px;}
 .vs td{padding:10px 14px;border-bottom:1px solid var(--divider);}
-.vs .bf{background:rgba(255,87,20,0.04);}
+.vs .bf{background:rgba(10,10,10,0.03);}
 .vs .af{background:rgba(123,79,255,0.04);}
-.vs .gc{background:rgba(170,255,69,0.04);font-weight:700;}
+.vs .gc{background:rgba(123,79,255,0.07);font-weight:700;}
 
 .mock{border-radius:var(--R);overflow:hidden;border:1px solid #333;}
 .mock-bar{background:#1a1a1a;padding:8px 14px;display:flex;align-items:center;gap:8px;}
@@ -232,7 +232,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
     </div>
   </div>
 
-  <div class="qbox mt2">
+  <div class="qbox mt2" style="border-left-color:var(--orange);">
     TO 1개 원본에서 AI 변형 포함 <strong>54.5건</strong>이 나옵니다.<br>
     TO가 줄어도 산출량을 유지할 수 있는 구조가 이미 있습니다.
   </div>
@@ -285,11 +285,11 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
       <div class="ct">소재는 쌓이는데, 찾을 수 없다</div>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="color:var(--orange);font-weight:700;flex-shrink:0;">&times;</span>
+          <span style="color:var(--ink);font-weight:700;flex-shrink:0;">&times;</span>
           <span style="font-size:14px;line-height:1.6;">"저번에 잘 된 배너 어떤 거였지?"<br><span style="color:var(--ink2);font-size:13px;">3개월 전 소재도 폴더 뒤적거려야 함</span></span>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="color:var(--orange);font-weight:700;flex-shrink:0;">&times;</span>
+          <span style="color:var(--ink);font-weight:700;flex-shrink:0;">&times;</span>
           <span style="font-size:14px;line-height:1.6;">"왜 잘 됐는지"가 데이터로 안 남음<br><span style="color:var(--ink2);font-size:13px;">기획 방향이 경험과 감에 의존</span></span>
         </div>
       </div>
@@ -364,19 +364,19 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
             <div class="banner-card">
               <div class="banner-thumb" style="background:linear-gradient(135deg,#2a1a4a,#4a2a6a);color:#c8a2f0;">&#9734; 세나 콜라보</div>
               <div class="banner-meta"><strong>#5832</strong><br>모두의마블 &middot; 게임 광고
-                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">349K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,599</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.46%</div></div></div>
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">349K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,599</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:#FFF;">0.46%</div></div></div>
               </div>
             </div>
             <div class="banner-card">
               <div class="banner-thumb" style="background:linear-gradient(135deg,#4a1a2a,#8a3a4a);color:#f0a2b2;">&#9876; 대선배들</div>
               <div class="banner-meta"><strong>#5831</strong><br>모두의마블 &middot; 게임 광고
-                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">237K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,713</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.72%</div></div></div>
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">237K</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">1,713</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:#FFF;">0.72%</div></div></div>
               </div>
             </div>
             <div class="banner-card">
               <div class="banner-thumb" style="background:linear-gradient(135deg,#1a3a4a,#2a5a7a);color:#a2d0f0;">&#9733; DC 콜라보</div>
               <div class="banner-meta"><strong>#5829</strong><br>모두의마블 &middot; 게임 광고
-                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">1.6M</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">11,471</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:var(--lime);">0.82%</div></div></div>
+                <div class="perf-grid"><div class="perf-cell"><div class="perf-lbl">노출수</div><div class="perf-val">1.6M</div></div><div class="perf-cell"><div class="perf-lbl">클릭수</div><div class="perf-val">11,471</div></div><div class="perf-cell"><div class="perf-lbl">CTR</div><div class="perf-val" style="color:#FFF;">0.82%</div></div></div>
               </div>
             </div>
           </div>
@@ -386,9 +386,9 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
   </div>
 
   <div class="g3 mt">
-    <div class="c cg" style="text-align:center;"><div class="cv" style="color:var(--lime-text);font-size:28px;">5초 검색</div><div class="cx" style="margin-top:6px;">"세븐나이츠 겨울 이벤트"<br>자연어로 즉시</div></div>
-    <div class="c cg" style="text-align:center;"><div class="cv" style="color:var(--lime-text);font-size:28px;">성과 지표 연동</div><div class="cx" style="margin-top:6px;">CTR &middot; CPC &middot; 전환율<br>소재별 성과 확인</div></div>
-    <div class="c cg" style="text-align:center;"><div class="cv" style="color:var(--lime-text);font-size:28px;">다차원 필터</div><div class="cx" style="margin-top:6px;">연도 &middot; 게임 &middot; 매체 &middot; 국가<br>교차 필터링</div></div>
+    <div class="c ca" style="text-align:center;"><div class="cv" style="color:var(--violet);font-size:28px;">5초 검색</div><div class="cx" style="margin-top:6px;">"세븐나이츠 겨울 이벤트"<br>자연어로 즉시</div></div>
+    <div class="c ca" style="text-align:center;"><div class="cv" style="color:var(--violet);font-size:28px;">성과 지표 연동</div><div class="cx" style="margin-top:6px;">CTR &middot; CPC &middot; 전환율<br>소재별 성과 확인</div></div>
+    <div class="c ca" style="text-align:center;"><div class="cv" style="color:var(--violet);font-size:28px;">다차원 필터</div><div class="cx" style="margin-top:6px;">연도 &middot; 게임 &middot; 매체 &middot; 국가<br>교차 필터링</div></div>
   </div>
   <div class="footnote">시스템 화면: HIVELAB MAX LAB 내부 개발 (PNGMETA Banner Search, 26.06 기준) &middot; 데이터: 넷마블 제작 소재 6,719건 &middot; 성과 지표는 공개 채널 수집 데이터 기반</div>
 </div>
@@ -489,8 +489,8 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
         &bull; <strong>"툴은 바뀌어도 기준은 HIVELAB이 잡습니다"</strong>
       </div>
     </div>
-    <div class="c cp">
-      <div class="cl" style="color:var(--pink);">파일럿이 증명</div>
+    <div class="c cg">
+      <div class="cl" style="color:var(--lime-text);">파일럿이 증명</div>
       <div class="ct" style="font-size:18px;">적중률 개선 수치는 해봐야 압니다</div>
       <div class="cx" style="margin-top:10px;font-size:14px;line-height:1.85;color:var(--ink);">
         &bull; 적중률 개선은 넷마블 성과 데이터가 있어야 가능<br>
@@ -575,7 +575,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--divider);}
     </div>
   </div>
 
-  <div class="qbox" style="margin-top:20px;">
+  <div class="qbox" style="margin-top:20px;border-left-color:var(--violet);">
     이 리포트는 <strong>만든 사람이 직접 만들었기 때문에</strong> 가능합니다.<br>
     데이터만 봐서는 "왜 이 배색이 잘 됐는지" 알 수 없습니다. 제작 의도와 맥락을 아는 팀이 분석해야 합니다.
   </div>
