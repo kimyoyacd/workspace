@@ -42,14 +42,18 @@ HIVELAB의 제안서는 모노톤(Monotone) 기반의 전문적이고 절제된 
 - **Gray 50** (`#F5F5F5`): 카드 배경 (light)
 - **White** (`#FFFFFF`): Light slide 기본 배경
 
-### Point Color
-- **Accent** (`#0010EC`): 유일한 포인트 컬러 — 섹션 라벨, 강조, sparkline, 버블 등
-- **Accent Light** (`#7F87FF`): accent 밝은 변형 (최소 사용)
+### Point Colors — 페이지당 1개만 사용
+- **Lime** (`#AAFF45`): 긍정 CTA · 달성률 ↑ · 계약 완료 · 최고 수치 badge
+- **Violet** (`#7B4FFF`): User Journey · 플로우 단계 · 섹션 구분 포인트
+- **Pink** (`#FF57D8`): 주의 환기 · 분기점 · 중립적 눈길 끌기 (부정 의미 없음)
+- **Orange** (`#FF5714`): 리스크 · 달성 미달 · 부정 delta — 경고 맥락만
 
-### Data Visualization (Grayscale Gradient)
-- Primary: `#222222` (light) / `#FFFFFF` (dark)
-- Secondary: `#4D45A0` accent (light) / `#E0E0E0` (dark)
-- Tertiary–Quinary: `#555555` → `#777777` (light) / `#BBBBBB` → `#999999` (dark)
+**중요: 한 페이지에 포인트 컬러 2개 이상 절대 불가. 라인 대신 면(surface)으로 구분.**
+
+### Data Visualization
+- Primary: `#000000` (ink) — 가장 중요한 수치
+- Highlight: 해당 페이지의 포인트 컬러 1개만 — 최고값 바, 핵심 수치에만
+- Secondary~: 그레이스케일 `#888888` → `#D0D0D0` 순차
 
 ## 3. Typography Rules
 
@@ -75,80 +79,88 @@ HIVELAB의 제안서는 모노톤(Monotone) 기반의 전문적이고 절제된 
 ## 4. Component Stylings
 
 ### Card
-- Background: `#F0F0F0` (light) / `var(--gray-900)` (dark)
-- Radius: 14px
+- Background: `#ECECEC` (light) / `rgba(255,255,255,0.08)` (dark)
+- Radius: 8px
 - Padding: 28px 32px
-- Border: **none** (보더 없음)
+- Border: **none** (보더/라인 없음 — 면으로만 구분)
 
 ### Badge / Pill
-- Background: `rgba(62,90,108,0.12)` (accent 기반)
-- Radius: 100px
-- Padding: 4px 12px
+- Background: 해당 포인트 컬러의 12% opacity (예: `rgba(170,255,69,0.15)`)
+- Radius: 999px
+- Padding: 6px 14px
 - Font: 13px
 
 ### Chart Bar
-- 그레이스케일 그래디언트 (월별 점진적 진행)
-- 시작: `linear-gradient(180deg, #AAAAAA, #D0D0D0)` → 종료: `linear-gradient(180deg, #444444, #888888)`
-
-### Positioning Map
-- HIVELAB (자사): accent `#3E5A6C` — 유일한 컬러 버블
-- 경쟁사: 그레이 톤 (`#999`, `#777`, `#AAA`, `#666`)
+- 기본: 그레이스케일 단색 (`#D0D0D0` → `#666666` 순차)
+- 하이라이트: 해당 페이지 포인트 컬러 1개만 (최고값 바에만 적용)
 
 ## 5. Slide Types & Layout
 
 ### Cover (Slide 1)
-- 배경: 다크 그래디언트 (`#1A1A1A → #4A4A4A`, 160deg)
+- 배경: `#000000` (순흑)
 - Grid 3-row: Header 80px / Body / Footer 60px
-- Body 하단 정렬, 160px bold 타이틀
+- Header: 3열 그리드 — `[HIVELAB · 프로젝트명]` | `[PROPOSAL]` | `[2026]`
+- Body: 하단 정렬, greeting(52px light) + 대형 타이틀(180px bold)
+- Footer: 중앙 정렬, 저작권 + 면책 문구
 
 ### Table of Contents (Slide 2)
-- 배경: `#111111`
+- 배경: `#000000` (is-dark)
 - Grid 3-row, Body `3fr 9fr` 2열
-- 좌측 110px "TABLE OF CONTENTS", 우측 2열 섹션 그리드
+- 좌측: 대형 "TABLE OF CONTENTS" (110px bold white)
+- 우측: 2열 그리드, 섹션별 그룹핑 (번호 + 대문자 타이틀 + 항목 리스트)
+- 구분: 하단 면 (border-bottom `rgba(255,255,255,0.15)`)
 
-### Section Divider
-- 배경: `#2A2A2A`
-- 좌측 65% (번호 + 64px 타이틀), 우측 35% (하위 목차)
-- 280px 워터마크 숫자 (6% opacity)
+### Chapter (Section Divider)
+- 배경: `#000000` (is-dark)
+- Body: 3열 그리드 `2fr 7fr 3fr`
+- 좌: 대형 번호 (120px, 35% opacity)
+- 중: 대형 타이틀 (100px bold)
+- 우: 1줄 설명 (15px, 50% opacity)
 
 ### Content Slides
 - 배경: `#FFFFFF`
-- 64px 72px 패딩, flex-column
-- 카드 `#F0F0F0`, 라벨 accent `#3E5A6C`
+- 80px 마진, flex-column
+- content-headline: label(12px, 포인트 컬러 1개) + h1(36px)
+- 카드 `#ECECEC` 8px radius, 라인 없음
 
 ### Closing
-- 배경: `#FFFFFF`
-- 중앙 정렬, accent stripe + HIVELAB 라벨 + 메인 카피 + 연락처
+- 배경: `#000000` (is-dark)
+- 중앙 정렬, 대형 "THANK YOU" (140px bold white)
+- 연락처 (18px, 70% opacity)
+- Footer: 저작권 + 면책 (Cover와 동일 구조)
 
 ## 6. Layout Principles
 
 ### Spacing System
-- Slide: 1440×810px
-- Padding: 64px 72px (컨텐츠) / 80px (표지·목차)
+- Slide: 1920×1080px
+- Margin: 80px (전체 동일)
 - 요소 간 gap: 16~48px
 - 최소 내부 여백: 48px
 
 ### Slide Structure
-- 표지/목차: Grid 3-row (Header 80px / Body / Footer 60px)
-- 컨텐츠: Flex column, 충분한 여백
+- 모든 슬라이드: `display:grid; grid-template-rows: 80px 1fr 60px;`
+- Header(80px): 3열 그리드 `[좌] [중앙] [우]`
+- Body(1fr): 콘텐츠 영역
+- Footer(60px): `[좌 문서명] [우 버전/연도]`
 - 다크↔라이트 교차 배치
 
 ## 7. Do's and Don'ts
 
 ### Do
-- 블랙/화이트/그레이스케일만 사용
-- 포인트 컬러는 `#3E5A6C` 하나만 사용
-- 카드는 보더 없이 배경색 차이로 구분
+- 블랙/화이트/그레이스케일 기본 + 포인트 컬러 4종(lime/violet/pink/orange) 중 택 1
+- **한 페이지에 포인트 컬러 1개만** 사용 (라벨 + 관련 수치/바 등 동일 컬러)
+- 면(surface)으로 영역 구분 — 카드 배경, 배지 배경 등
 - 숫자/수치는 크고 굵게(800), 본문은 가볍게(400)
-- 표지·목차·간지는 다크, 컨텐츠는 라이트
+- 표지·목차·간지·클로징은 다크, 컨텐츠는 라이트
 - 여백 충분히 확보 (최소 48px)
+- 슬라이드 3-row 그리드 구조(Header/Body/Footer) 일관 유지
 
 ### Don't
-- 컬러풀한 색상 사용 금지 — 네온, 비비드 컬러 절대 불가
-- 카드/박스에 테두리(border) 사용 금지
-- accent 컬러를 장식 용도로 남용 금지 — 라벨·강조에만 사용
-- 좁은 여백으로 빽빽하게 채우지 않기
-- 다크 슬라이드에서 순백(#FFFFFF) 텍스트 대신 적절한 밝기 조절
+- **한 페이지에 포인트 컬러 2개 이상 사용 절대 금지**
+- 라인/테두리(border) 사용 금지 — 면(surface)으로만 구분
+- 포인트 컬러를 장식 용도로 남용 금지 — 라벨·핵심 수치에만 사용
+- 좁은 여백으로 빽빽하게 채우지 않기 (여백 30~40% 유지)
+- 동일 레이아웃 3회 이상 연속 금지 — 변주를 넣어 리듬감 유지
 
 ## 8. Navigation
 
@@ -160,31 +172,32 @@ HIVELAB의 제안서는 모노톤(Monotone) 기반의 전문적이고 절제된 
 ## 9. Agent Prompt Guide
 
 ### Quick Color Reference
-- Accent: `#3E5A6C`
-- Dark background: `#000000`, `#111111`, `#1A1A1A`, `#2A2A2A`
+- **Lime**: `#AAFF45` — 긍정 CTA · 달성 · 최고 수치
+- **Violet**: `#7B4FFF` — 플로우 · 단계 · 섹션 구분
+- **Pink**: `#FF57D8` — 주의 환기 · 분기점
+- **Orange**: `#FF5714` — 리스크 · 부정 delta · 경고
+- Dark background: `#000000`
 - Light background: `#FFFFFF`
-- Card (light): `#F0F0F0`
-- Card (dark): `var(--gray-900)` = `#111111`
-- Text (light slide): `#111111`
-- Text (dark slide): `#FFFFFF` / `rgba(255,255,255,0.85)`
-- Subtitle: `#999999`
-- Caption: `#666666`
+- Card (light): `#ECECEC`
+- Card (dark): `rgba(255,255,255,0.08)`
+- Text (light): `#000000` / `#525252` / `#A8A6A0`
+- Text (dark): `#FFFFFF` / `rgba(255,255,255,0.85)` / `rgba(255,255,255,0.55)`
 
 ### Example Component Prompts
-- "Create cover slide: dark gradient (#1A1A1A→#4A4A4A, 160deg). Grid 3-row. 160px bold title bottom-aligned. Footer centered copyright."
-- "Build TOC slide: #111111 background. Grid 3fr/9fr. Left: 110px bold 'TABLE OF CONTENTS'. Right: 2-column section grid with bottom borders."
-- "Build content slide: white background. 64px 72px padding. H1 36px 700 weight. Cards #F0F0F0 14px radius no border. Label accent #3E5A6C."
-- "Create section divider: #2A2A2A background. Left 65% with 64px title. Right 35% sub-items. 280px watermark number at 6% opacity."
-- "Build chart: grayscale bar gradients (#AAAAAA→#D0D0D0 light, #444444→#888888 dark). No colored bars."
+- "Create cover: #000000 background. Grid 3-row (80px/1fr/60px). 3-column header. 180px bold title bottom-aligned. Footer copyright+면책."
+- "Build TOC: #000000 is-dark. Body 3fr/9fr grid. Left: 110px 'TABLE OF CONTENTS'. Right: 2-column section grid."
+- "Build chapter divider: #000000. Body 3-column grid (2fr/7fr/3fr). Large faded number + 100px title + subtitle."
+- "Build content slide: white bg. 80px margin. Label in lime/violet/pink/orange (1개만). Cards #ECECEC 8px radius no border."
+- "Build chart: grayscale bars (#D0D0D0→#666666). 최고값 바 1개만 포인트 컬러. 페이지당 포인트 컬러 1종만."
 
 ---
 
 ## Instructions
 
 1. Apply the design system above faithfully to the requested component/page
-2. If you need additional detail, read `proposal_pb_brand_2026.html` for actual CSS variable definitions and working slide markup
-3. Maintain monotone principle — grayscale only + single accent `#3E5A6C`
-4. Use `Inter` (영문) + `Pretendard` (한글) font stack
-5. Cards must be borderless with background color differentiation
-6. Ensure 1440×810px slide dimensions
-7. Dark/light section alternation: cover·TOC·divider = dark, content = light
+2. If you need additional detail, read `sample_proposal.html` for actual CSS variable definitions and working slide markup
+3. **한 페이지에 포인트 컬러 1개만** — lime/violet/pink/orange 중 택 1
+4. 라인/테두리 금지 — 면(surface)으로만 영역 구분
+5. Use `Inter` (영문) + `Pretendard` (한글) font stack
+6. Ensure 1920×1080px slide dimensions, 3-row grid (Header 80px / Body / Footer 60px)
+7. Dark/light section alternation: cover·TOC·chapter·closing = dark, content = light

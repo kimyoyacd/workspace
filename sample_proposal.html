@@ -9,167 +9,320 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
   :root {
-    --black: #000000;
-    --white: #FFFFFF;
+    --slide-w: 1920px;
+    --slide-h: 1080px;
+    --slide-margin: 80px;
+
+    --bg: #FFFFFF;
+    --bg-dark: #000000;
+    --bg-off: #ECECEC;
+
+    --ink: #000000;
+    --ink-2: #0A0A0A;
+    --ink-3: #525252;
+    --ink-4: #A8A6A0;
+    --line-soft: #E2E2E2;
+
+    --lime: #AAFF45;
+    --violet: #7B4FFF;
+    --pink: #FF57D8;
+    --orange: #FF5714;
+
     --gray-900: #111111;
-    --gray-800: #1A1A1A;
     --gray-700: #333333;
     --gray-500: #666666;
-    --gray-400: #888888;
     --gray-300: #999999;
-    --gray-200: #BBBBBB;
     --gray-100: #E5E5E5;
     --gray-50: #F5F5F5;
-    --accent: #3E5A6C;
-    --accent-light: #6A8FA3;
-    --hl-bg: rgba(62,90,108,0.08);
-    --font-en: 'Inter', sans-serif;
-    --font-kr: 'Pretendard', sans-serif;
-    --slide-width: 1440px;
-    --slide-height: 810px;
+
+    --f-display: 'Inter', 'Pretendard', -apple-system, system-ui, sans-serif;
+    --f-en: 'Inter', 'Pretendard', -apple-system, system-ui, sans-serif;
+    --f-kr: 'Pretendard', 'Inter', -apple-system, system-ui, sans-serif;
+
+    --r-card: 8px;
+    --r-pill: 999px;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: #1a1a1a; }
   body {
-    background: #1A1A1A;
-    font-family: var(--font-kr);
-    overflow: hidden;
+    font-family: var(--f-kr);
+    color: var(--ink);
+    background: #1a1a1a;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    overflow: hidden;
   }
 
-  .deck {
-    position: relative;
-    width: var(--slide-width);
-    height: var(--slide-height);
-  }
+  .deck { position: relative; width: var(--slide-w); height: var(--slide-h); }
 
   .slide {
     position: absolute;
     inset: 0;
+    width: var(--slide-w);
+    height: var(--slide-h);
     display: none;
-    flex-direction: column;
-    background: var(--black);
-    color: var(--white);
     overflow: hidden;
+    background: var(--bg);
+    grid-template-rows: 80px 1fr 60px;
   }
-  .slide.active { display: flex; }
+  .slide.active { display: grid; }
+  .slide.is-dark { background: var(--bg-dark); color: #FFFFFF; }
 
-  .slide.light {
-    background: #FFFFFF;
-    color: #111111;
-    --gray-900: #F0F0F0;
-    --gray-700: #E0E0E0;
-    --gray-500: #909090;
-    --gray-300: #555555;
-    --gray-100: #CCCCCC;
-    --gray-50: #F8F8F8;
-    --hl-bg: rgba(62,90,108,0.10);
+  /* Header / Footer */
+  .slide-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 32px var(--slide-margin) 0;
+    font-family: var(--f-en);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--ink-4);
+    align-items: center;
+  }
+  .slide.is-dark .slide-header { color: rgba(255,255,255,0.55); }
+  .sh-left { text-align: left; }
+  .sh-center { text-align: center; }
+  .sh-right { text-align: right; }
+
+  .slide-footer {
+    padding: 0 var(--slide-margin) 24px;
+    font-family: var(--f-en);
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .slide.is-dark .slide-footer { color: rgba(255,255,255,0.35); }
+
+  .slide-body {
+    padding: 0 var(--slide-margin);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 64px;
   }
 
-  .slide.dark-accent {
-    background: #2A2A2A;
+  /* ===== COVER ===== */
+  .slide-cover .slide-body {
+    padding: 0 var(--slide-margin);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 64px;
+  }
+  .cover-greeting {
+    font-family: var(--f-display);
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 16px;
+  }
+  .cover-title {
+    font-family: var(--f-display);
+    font-size: 180px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
     color: #FFFFFF;
   }
+  .cover-footer-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 32px;
+  }
 
-  /* Typography */
-  .hero-stat { font-family: var(--font-en); font-weight: 800; font-size: 96px; line-height: 1; letter-spacing: -0.03em; }
-  .hero-stat-lg { font-family: var(--font-en); font-weight: 800; font-size: 120px; line-height: 1; letter-spacing: -0.03em; }
+  /* ===== CONTENTS (TOC) ===== */
+  .slide-contents .slide-body {
+    padding: 48px var(--slide-margin);
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    column-gap: 64px;
+  }
+  .contents-title {
+    font-family: var(--f-display);
+    font-size: 110px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: #FFFFFF;
+    align-self: center;
+  }
+  .contents-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    row-gap: 32px;
+    align-content: center;
+  }
+  .contents-col-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 10px;
+  }
+  .contents-col-num {
+    font-family: var(--f-en);
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+  }
+  .contents-col-title {
+    font-family: var(--f-en);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .contents-col-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+  }
+  .contents-col-item-num {
+    font-family: var(--f-en);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    min-width: 20px;
+  }
+  .contents-col-item-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ===== CHAPTER (DIVIDER) ===== */
+  .slide-chapter .slide-body {
+    padding: 48px var(--slide-margin);
+    display: grid;
+    grid-template-columns: 2fr 7fr 3fr;
+    column-gap: 48px;
+    align-items: center;
+  }
+  .chapter-num {
+    font-family: var(--f-display);
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .chapter-title {
+    font-family: var(--f-display);
+    font-size: 100px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: #FFFFFF;
+  }
+  .chapter-sub {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ===== CONTENT SLIDE ===== */
+  .slide-content .slide-body {
+    padding: 24px var(--slide-margin) 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .content-headline { display: flex; flex-direction: column; gap: 8px; }
+  .content-label {
+    font-family: var(--f-en);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .content-h1 {
+    font-family: var(--f-kr);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  .h-thin { font-weight: 300; }
+
+  /* ===== Components ===== */
+  .card {
+    background: var(--bg-off);
+    border-radius: var(--r-card);
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  .slide.is-dark .card { background: rgba(255,255,255,0.08); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    font-family: var(--f-en);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .hero-stat { font-family: var(--f-en); font-weight: 800; font-size: 96px; line-height: 1; letter-spacing: -0.03em; }
+  .hero-stat-lg { font-family: var(--f-en); font-weight: 800; font-size: 120px; line-height: 1; letter-spacing: -0.03em; }
   .h1 { font-weight: 700; font-size: 36px; line-height: 1.3; letter-spacing: -0.02em; }
   .h2 { font-weight: 600; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; }
-  .body-text { font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--gray-300); }
-  .caption { font-weight: 300; font-size: 12px; line-height: 1.6; color: var(--gray-500); }
-  .label { font-family: var(--font-en); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); }
-  .label-accent { font-family: var(--font-en); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-
-  /* Components */
-  .card { background: var(--gray-900); border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; border: none; }
-  .card-row { display: flex; gap: 16px; }
-  .card-row > .card { flex: 1; }
-  .badge { display: inline-block; padding: 4px 12px; border-radius: 100px; font-family: var(--font-en); font-weight: 600; font-size: 13px; background: rgba(62,90,108,0.12); }
-  .neon-stripe { height: 3px; background: var(--accent); border-radius: 1px; }
-  .split { display: flex; gap: 48px; flex: 1; }
-  .split-left { flex: 0 0 42%; display: flex; flex-direction: column; justify-content: center; }
-  .split-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+  .body-text { font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--ink-3); }
+  .caption { font-weight: 300; font-size: 12px; line-height: 1.6; color: var(--ink-4); }
 
   /* Bar chart */
-  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 200px; padding-top: 16px; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 240px; }
   .bar-chart .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
   .bar-chart .bar { width: 100%; border-radius: 3px 3px 0 0; }
-  .bar-chart .bar-label { font-family: var(--font-en); font-size: 10px; font-weight: 400; color: var(--gray-500); }
-  .bar-chart .bar-value { font-family: var(--font-en); font-size: 11px; font-weight: 600; color: var(--gray-300); }
+  .bar-chart .bar-label { font-family: var(--f-en); font-size: 11px; font-weight: 400; color: var(--ink-4); }
+  .bar-chart .bar-value { font-family: var(--f-en); font-size: 12px; font-weight: 600; color: var(--ink-3); }
 
-  /* Donut */
-  .donut-wrap { position: relative; width: 160px; height: 160px; }
-  .donut-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  /* Horizontal stack bar */
+  .hstack-bar { display: flex; height: 44px; border-radius: 4px; overflow: hidden; }
+  .hstack-bar > div { display: flex; align-items: center; justify-content: center; font-family: var(--f-en); font-size: 13px; font-weight: 600; color: #FFFFFF; }
 
-  /* Divider bg */
-  .divider-bg-num { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); font-family: var(--font-en); font-weight: 900; font-size: 280px; line-height: 1; letter-spacing: -0.06em; color: #FFFFFF; opacity: 0.06; pointer-events: none; user-select: none; }
+  /* Sparkline */
+  .sparkline { width: 80px; height: 32px; }
+  .sparkline polyline { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Page num */
-  .page-num { position: absolute; bottom: 32px; right: 72px; font-family: var(--font-en); font-size: 12px; font-weight: 300; color: var(--gray-500); letter-spacing: 0.05em; }
+  /* Dot matrix */
+  .dot-matrix { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+  .dot-matrix .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--bg-off); }
 
-  /* Progress */
-  .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; z-index: 9999; }
+  /* Progress bar */
+  .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--violet); transition: width 0.3s ease; z-index: 9999; }
 
   .slide { animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* ===== COVER ===== */
-  .cover-wrap {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    position: relative;
+  /* Page number */
+  .page-num {
+    position: absolute;
+    bottom: 28px;
+    right: var(--slide-margin);
+    font-family: var(--f-en);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink-4);
   }
-  .cover-center { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-  .cover-symbol { width: 56px; height: 3px; background: var(--accent); border-radius: 1px; margin-bottom: 8px; }
-  .cover-label { font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-  .cover-title { font-family: var(--font-en); font-size: 80px; font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; color: #FFFFFF; text-align: center; }
-  .cover-subtitle { font-family: var(--font-kr); font-size: 18px; font-weight: 400; line-height: 1.6; color: rgba(255,255,255,0.45); text-align: center; }
-  .cover-date { font-family: var(--font-en); font-size: 13px; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); margin-top: 12px; }
-  .cover-footer { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; }
-  .cover-client { position: absolute; bottom: 40px; right: 80px; font-family: var(--font-en); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-
-  /* ===== TOC ===== */
-  .toc-wrap { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 80px; }
-  .toc-header { font-family: var(--font-en); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 48px; }
-  .toc-title { font-family: var(--font-en); font-size: 36px; font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; color: #FFFFFF; margin-bottom: 48px; }
-  .toc-list { display: flex; flex-direction: column; gap: 0; flex: 1; justify-content: center; }
-  .toc-row { display: flex; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .toc-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
-  .toc-phase { font-family: var(--font-en); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-light); min-width: 120px; }
-  .toc-name { font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.85); flex: 1; }
-  .toc-dots { flex: 1; border-bottom: 1px dotted rgba(255,255,255,0.15); margin: 0 16px; min-width: 40px; align-self: center; height: 0; position: relative; top: -4px; }
-  .toc-page { font-family: var(--font-en); font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.4); min-width: 32px; text-align: right; }
-  .toc-footer { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-en); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; margin-top: auto; padding-top: 24px; }
-
-  /* Topbar */
-  .slide-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; font-family: var(--font-en); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
-  .slide.light .slide-topbar .topbar-left { color: var(--accent); opacity: 0.6; }
-  .slide.light .slide-topbar .topbar-center { color: var(--gray-500); }
-  .slide.light .slide-topbar .topbar-right { color: var(--gray-500); }
-  .slide.dark-accent .slide-topbar .topbar-left { color: rgba(255,255,255,0.5); }
-  .slide.dark-accent .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
-  .slide.dark-accent .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
-
-  /* Sparkline */
-  .sparkline-row { display: flex; align-items: center; gap: 12px; }
-  .sparkline { width: 80px; height: 32px; }
-  .sparkline polyline { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* Horizontal stack bar */
-  .hstack-bar { display: flex; height: 40px; border-radius: 0; overflow: hidden; }
-  .hstack-bar > div { display: flex; align-items: center; justify-content: center; font-family: var(--font-en); font-size: 13px; font-weight: 600; color: #FFFFFF; }
-
-  /* Dot matrix */
-  .dot-matrix { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
-  .dot-matrix .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gray-100); }
-  .dot-matrix .dot.active { background: var(--accent); }
+  .slide.is-dark .page-num { color: rgba(255,255,255,0.3); }
 </style>
 </head>
 <body>
@@ -179,529 +332,536 @@
 <div class="deck">
 
   <!-- ======================== SLIDE 01: COVER ======================== -->
-  <div class="slide active" style="padding:0; background: linear-gradient(160deg, #1A1A1A 0%, #3A3A3A 100%);">
-    <div class="cover-wrap">
-      <div class="cover-center">
-        <div class="cover-symbol"></div>
-        <div class="cover-label">HIVELAB — Proposal</div>
-        <div class="cover-title">DX STRATEGY<br>CONSULTING</div>
-        <div class="cover-subtitle">디지털 트랜스포메이션 전략 컨설팅 제안서</div>
-        <div class="cover-date">2026. 06</div>
-      </div>
-      <div class="cover-footer">ⓒ 2026 HIVELAB Inc. All rights reserved.</div>
-      <div class="cover-client">Client Co.</div>
+  <section class="slide slide-cover is-dark active" style="background:#000000;">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">2026</span>
     </div>
-  </div>
+    <div class="slide-body">
+      <p class="cover-greeting">Digital Transformation<br>Strategy & Consulting</p>
+      <h1 class="cover-title">DX<br>PROPOSAL</h1>
+    </div>
+    <div class="slide-footer cover-footer-wrap">
+      <span style="font-family:var(--f-en);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.05em">COPYRIGHT © ALL RIGHTS RESERVED · HIVELAB</span>
+      <span style="font-family:var(--f-kr);font-size:9px;color:rgba(255,255,255,0.25);line-height:1.5;text-align:center;max-width:680px;letter-spacing:0.01em">이 문서는 HIVELAB의 자산입니다. 외부 공유·복제·인용·2차 가공은 사전 서면 동의가 필요합니다.</span>
+    </div>
+  </section>
 
   <!-- ======================== SLIDE 02: TOC ======================== -->
-  <div class="slide" style="padding:0; background: #111111;">
-    <div class="toc-wrap">
-      <div class="toc-header">HIVELAB — DX Strategy Proposal</div>
-      <div class="toc-title">Table of Contents</div>
-      <div class="toc-list">
-        <div class="toc-row">
-          <span class="toc-phase">Phase 1</span>
-          <span class="toc-name">Background & Purpose</span>
-          <span class="toc-dots"></span>
-          <span class="toc-page">03</span>
+  <section class="slide slide-contents is-dark">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">2026</span>
+    </div>
+    <div class="slide-body">
+      <h2 class="contents-title">TABLE OF<br>CONTENTS</h2>
+      <div class="contents-cols">
+        <div class="contents-col-section">
+          <div class="contents-col-head">
+            <span class="contents-col-num">01</span>
+            <span class="contents-col-title">BACKGROUND</span>
+          </div>
+          <div class="contents-col-items">
+            <div class="contents-col-item"><span class="contents-col-item-num">01</span><span class="contents-col-item-label">프로젝트 배경</span></div>
+            <div class="contents-col-item"><span class="contents-col-item-num">02</span><span class="contents-col-item-label">고객사 현황 과제</span></div>
+          </div>
         </div>
-        <div class="toc-row">
-          <span class="toc-phase">Phase 2</span>
-          <span class="toc-name">Market & User Insight</span>
-          <span class="toc-dots"></span>
-          <span class="toc-page">06</span>
+        <div class="contents-col-section">
+          <div class="contents-col-head">
+            <span class="contents-col-num">02</span>
+            <span class="contents-col-title">MARKET INSIGHT</span>
+          </div>
+          <div class="contents-col-items">
+            <div class="contents-col-item"><span class="contents-col-item-num">03</span><span class="contents-col-item-label">DX 시장 투자 추이</span></div>
+            <div class="contents-col-item"><span class="contents-col-item-num">04</span><span class="contents-col-item-label">사용자 인사이트</span></div>
+          </div>
         </div>
-        <div class="toc-row">
-          <span class="toc-phase">Phase 3</span>
-          <span class="toc-name">DX Strategy & Roadmap</span>
-          <span class="toc-dots"></span>
-          <span class="toc-page">08</span>
+        <div class="contents-col-section">
+          <div class="contents-col-head">
+            <span class="contents-col-num">03</span>
+            <span class="contents-col-title">STRATEGY</span>
+          </div>
+          <div class="contents-col-items">
+            <div class="contents-col-item"><span class="contents-col-item-num">05</span><span class="contents-col-item-label">3단계 DX 전략 프레임워크</span></div>
+            <div class="contents-col-item"><span class="contents-col-item-num">06</span><span class="contents-col-item-label">실행 로드맵</span></div>
+          </div>
         </div>
-        <div class="toc-row">
-          <span class="toc-phase">Phase 4</span>
-          <span class="toc-name">Capabilities & References</span>
-          <span class="toc-dots"></span>
-          <span class="toc-page">10</span>
+        <div class="contents-col-section">
+          <div class="contents-col-head">
+            <span class="contents-col-num">04</span>
+            <span class="contents-col-title">CAPABILITIES</span>
+          </div>
+          <div class="contents-col-items">
+            <div class="contents-col-item"><span class="contents-col-item-num">07</span><span class="contents-col-item-label">HIVELAB 역량</span></div>
+            <div class="contents-col-item"><span class="contents-col-item-num">08</span><span class="contents-col-item-label">투자 비용 개요</span></div>
+          </div>
         </div>
-        <div class="toc-row">
-          <span class="toc-phase">Phase 5</span>
-          <span class="toc-name">Operation & Pricing</span>
-          <span class="toc-dots"></span>
-          <span class="toc-page">12</span>
-        </div>
-      </div>
-      <div class="toc-footer">
-        <span>DX Strategy Proposal</span>
-        <span>2026</span>
       </div>
     </div>
-  </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
-  <!-- ======================== SLIDE 03: DIVIDER §01 ======================== -->
-  <div class="slide dark-accent" style="padding:64px 72px; position:relative;">
-    <div class="divider-bg-num">01</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; max-width:65%;">
-      <div class="label" style="color:var(--accent-light);">Phase 01</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
-        Background<br>& Purpose
-      </div>
-      <div class="body-text" style="color:rgba(255,255,255,0.5); max-width:480px; margin-top:8px;">
-        프로젝트의 배경과 목적을 정의하고, 디지털 전환의 필요성을 진단합니다.
-      </div>
+  <!-- ======================== SLIDE 03: CHAPTER §01 ======================== -->
+  <section class="slide slide-chapter is-dark">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">BACKGROUND</span>
     </div>
-    <span class="page-num" style="color:rgba(255,255,255,0.3);">03</span>
-  </div>
+    <div class="slide-body">
+      <div class="chapter-num">01</div>
+      <h2 class="chapter-title">Back-<br>ground</h2>
+      <p class="chapter-sub">프로젝트의 배경과 목적을 정의하고,<br>디지털 전환의 필요성을 진단합니다.</p>
+    </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
   <!-- ======================== SLIDE 04: Hero Stat — 왜 DX인가 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Background</span>
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">BACKGROUND</span>
     </div>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--lime);">Background</span>
+        <h1 class="content-h1">글로벌 DX 투자 현황</h1>
+      </div>
 
-    <!-- 상단 1/3: 컨텍스트 -->
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Background</span>
-    </div>
-    <h2 class="h2" style="color:#555; margin-bottom:48px;">글로벌 DX 투자 현황</h2>
-
-    <!-- 중단 1/3: Hero Stat — 시각적 앵커 -->
-    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
-      <div style="display:flex; gap:80px; align-items:baseline;">
+      <div style="flex:1; display:flex; align-items:center; justify-content:center; gap:120px;">
         <div style="text-align:center;">
-          <div class="hero-stat-lg" style="color:#111;">87<span style="font-size:40px;">%</span></div>
-          <div class="body-text" style="margin-top:12px; text-align:center;">글로벌 기업 DX<br>최우선 경영과제 선정</div>
+          <div class="hero-stat-lg" style="color:var(--ink);">87<span style="font-size:40px;">%</span></div>
+          <div class="body-text" style="margin-top:12px;">글로벌 기업 DX<br>최우선 경영과제 선정</div>
         </div>
         <div style="text-align:center;">
-          <div class="hero-stat-lg" style="color:var(--accent);">34<span style="font-size:40px;">%</span></div>
-          <div class="body-text" style="margin-top:12px; text-align:center;">국내 DX 투자<br>전년 대비 성장률</div>
+          <div class="hero-stat-lg" style="color:var(--lime);">34<span style="font-size:40px;">%</span></div>
+          <div class="body-text" style="margin-top:12px;">국내 DX 투자<br>전년 대비 성장률</div>
         </div>
       </div>
-    </div>
 
-    <!-- 하단 1/3: 보조 설명 -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-      <div class="body-text" style="max-width:560px;">
-        레거시 시스템 현대화와 데이터 기반 의사결정 체계 구축을 통해 시장 경쟁력을 확보하는 것이 본 프로젝트의 핵심입니다.
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div class="body-text" style="max-width:640px;">
+          레거시 시스템 현대화와 데이터 기반 의사결정 체계 구축을 통해 시장 경쟁력을 확보하는 것이 본 프로젝트의 핵심입니다.
+        </div>
+        <div class="caption">출처: IDC Worldwide DX Spending Guide, 2025</div>
       </div>
-      <div class="caption">출처: IDC Worldwide DX Spending Guide, 2025</div>
     </div>
-    <span class="page-num">04</span>
-  </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
   <!-- ======================== SLIDE 05: Split — 현재 과제 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Purpose</span>
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">BACKGROUND</span>
     </div>
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Purpose</span>
-    </div>
-    <h1 class="h1" style="margin-bottom:32px;">고객사 디지털 전환 과제</h1>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--violet);">Purpose</span>
+        <h1 class="content-h1">고객사 디지털 전환 <span class="h-thin">3대 과제</span></h1>
+      </div>
 
-    <div class="split" style="flex:1;">
-      <div class="split-left" style="gap:20px;">
-        <p class="body-text">
-          현재 고객사는 <strong style="color:#111;">3가지 핵심 과제</strong>에 직면하고 있습니다.
-          레거시 시스템의 복잡성, 데이터 사일로, 그리고 고객 경험의 디지털 격차를 해결하기 위한
-          체계적인 DX 전략이 필요합니다.
-        </p>
-        <div style="margin-top:8px;">
-          <div class="dot-matrix" style="grid-template-columns:repeat(10,1fr); width:200px;">
-            <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div style="flex:1; display:flex; gap:48px; align-items:center;">
+        <div style="flex:0 0 40%; display:flex; flex-direction:column; gap:20px;">
+          <p class="body-text">
+            현재 고객사는 <strong style="color:var(--ink);">3가지 핵심 과제</strong>에 직면하고 있습니다.
+            레거시 시스템의 복잡성, 데이터 사일로, 그리고 고객 경험의 디지털 격차를 해결하기 위한
+            체계적인 DX 전략이 필요합니다.
+          </p>
+          <div>
+            <div class="dot-matrix" style="width:220px;">
+              <div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              <div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot" style="background:var(--violet);"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div class="caption" style="margin-top:8px;">기업의 70%가 DX 여정 초기 단계에 정체</div>
           </div>
-          <div class="caption" style="margin-top:8px;">기업의 70%가 DX 여정 초기 단계에 정체</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+          <div class="card" style="gap:8px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="badge" style="background:rgba(123,79,255,0.12); color:var(--violet);">Critical</span>
+              <div class="h2">레거시 시스템 복잡성</div>
+            </div>
+            <div class="body-text" style="font-size:14px;">평균 운영 연수 12년의 시스템 간 통합 난이도 증가</div>
+          </div>
+          <div class="card" style="gap:8px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="badge" style="background:rgba(123,79,255,0.08); color:var(--violet);">High</span>
+              <div class="h2">데이터 사일로</div>
+            </div>
+            <div class="body-text" style="font-size:14px;">부서 간 데이터 단절로 통합 분석 불가</div>
+          </div>
+          <div class="card" style="gap:8px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="badge" style="background:rgba(123,79,255,0.05); color:var(--ink-3);">Medium</span>
+              <div class="h2">고객 경험 격차</div>
+            </div>
+            <div class="body-text" style="font-size:14px;">디지털 접점 부재로 고객 이탈률 상승</div>
+          </div>
         </div>
       </div>
-      <div class="split-right" style="gap:12px;">
-        <div class="card" style="gap:8px;">
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <div class="h2" style="color:#111;">레거시 시스템 복잡성</div>
-            <span class="badge">Critical</span>
-          </div>
-          <div class="body-text" style="font-size:14px;">평균 운영 연수 12년의 시스템 간 통합 난이도 증가</div>
-        </div>
-        <div class="card" style="gap:8px;">
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <div class="h2" style="color:#111;">데이터 사일로</div>
-            <span class="badge">High</span>
-          </div>
-          <div class="body-text" style="font-size:14px;">부서 간 데이터 단절로 통합 분석 불가</div>
-        </div>
-        <div class="card" style="gap:8px;">
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <div class="h2" style="color:#111;">고객 경험 격차</div>
-            <span class="badge">Medium</span>
-          </div>
-          <div class="body-text" style="font-size:14px;">디지털 접점 부재로 고객 이탈률 상승</div>
-        </div>
-      </div>
     </div>
-    <span class="page-num">05</span>
-  </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
-  <!-- ======================== SLIDE 06: DIVIDER §02 ======================== -->
-  <div class="slide dark-accent" style="padding:64px 72px; position:relative;">
-    <div class="divider-bg-num">02</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; max-width:65%;">
-      <div class="label" style="color:var(--accent-light);">Phase 02</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
-        Market &<br>User Insight
-      </div>
-      <div class="body-text" style="color:rgba(255,255,255,0.5); max-width:480px; margin-top:8px;">
-        시장 데이터와 사용자 분석을 기반으로 DX 방향성을 도출합니다.
-      </div>
+  <!-- ======================== SLIDE 06: CHAPTER §02 ======================== -->
+  <section class="slide slide-chapter is-dark">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">MARKET INSIGHT</span>
     </div>
-    <span class="page-num" style="color:rgba(255,255,255,0.3);">06</span>
-  </div>
+    <div class="slide-body">
+      <div class="chapter-num">02</div>
+      <h2 class="chapter-title">Market<br>Insight</h2>
+      <p class="chapter-sub">시장 데이터와 사용자 분석을 기반으로<br>DX 방향성을 도출합니다.</p>
+    </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
-  <!-- ======================== SLIDE 07: Data — 시장 분석 차트 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Market</span>
+  <!-- ======================== SLIDE 07: Data — 시장 분석 ======================== -->
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">MARKET INSIGHT</span>
     </div>
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Market Analysis</span>
-    </div>
-    <h1 class="h1" style="margin-bottom:24px;">DX 시장 투자 추이</h1>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--pink);">Market Analysis</span>
+        <h1 class="content-h1">DX 시장 투자 추이</h1>
+      </div>
 
-    <div style="flex:1; display:flex; gap:24px;">
-      <!-- 좌측: KPI 카드 세로 스택 -->
-      <div style="flex:0 0 280px; display:flex; flex-direction:column; gap:12px; justify-content:center;">
-        <div class="card" style="gap:8px; padding:24px;">
-          <div class="caption" style="margin-bottom:4px;">2026 시장 규모</div>
-          <div style="display:flex; align-items:baseline; gap:8px;">
-            <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:#111;">42</div>
-            <div style="font-family:var(--font-en); font-weight:600; font-size:16px; color:var(--gray-300);">조원</div>
-          </div>
-          <div class="sparkline-row" style="margin-top:4px;">
-            <svg class="sparkline" viewBox="0 0 80 32">
-              <polyline points="0,28 16,24 32,20 48,14 64,8 80,2" stroke="var(--accent)" />
+      <div style="flex:1; display:flex; gap:24px; align-items:stretch;">
+        <div style="flex:0 0 300px; display:flex; flex-direction:column; gap:12px; justify-content:center;">
+          <div class="card" style="gap:8px; padding:24px;">
+            <div class="caption" style="margin-bottom:4px;">2026 시장 규모</div>
+            <div style="display:flex; align-items:baseline; gap:8px;">
+              <div style="font-family:var(--f-en); font-weight:800; font-size:44px; color:var(--ink);">42</div>
+              <div style="font-family:var(--f-en); font-weight:600; font-size:16px; color:var(--ink-3);">조원</div>
+            </div>
+            <svg class="sparkline" viewBox="0 0 80 32" style="margin-top:4px;">
+              <polyline points="0,28 16,24 32,20 48,14 64,8 80,2" stroke="var(--pink)" />
             </svg>
           </div>
-        </div>
-        <div class="card" style="gap:8px; padding:24px;">
-          <div class="caption" style="margin-bottom:4px;">연평균 성장률 (CAGR)</div>
-          <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:var(--accent);">18.5<span style="font-size:16px; font-weight:600;">%</span></div>
-        </div>
-        <div class="card" style="gap:8px; padding:24px;">
-          <div class="caption" style="margin-bottom:4px;">DX 선도 기업 비율</div>
-          <div style="display:flex; align-items:baseline; gap:8px;">
-            <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:#111;">23</div>
-            <div style="font-family:var(--font-en); font-weight:600; font-size:16px; color:var(--gray-300);">%</div>
+          <div class="card" style="gap:8px; padding:24px;">
+            <div class="caption" style="margin-bottom:4px;">연평균 성장률 (CAGR)</div>
+            <div style="font-family:var(--f-en); font-weight:800; font-size:44px; color:var(--pink);">18.5<span style="font-size:16px; font-weight:600;">%</span></div>
           </div>
-          <div style="font-size:12px; color:var(--accent); font-weight:600;">↑ 8.2%p YoY</div>
+          <div class="card" style="gap:8px; padding:24px;">
+            <div class="caption" style="margin-bottom:4px;">DX 선도 기업 비율</div>
+            <div style="display:flex; align-items:baseline; gap:8px;">
+              <div style="font-family:var(--f-en); font-weight:800; font-size:44px; color:var(--ink);">23<span style="font-size:16px; font-weight:600;">%</span></div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- 우측: 바 차트 -->
-      <div class="card" style="flex:1; gap:16px; padding:32px;">
-        <div class="h2" style="color:#111;">연도별 DX 투자 규모</div>
-        <div class="bar-chart" style="flex:1;">
-          <div class="bar-col">
-            <div class="bar-value">18</div>
-            <div class="bar" style="height:28%; background:linear-gradient(180deg,#AAAAAA,#D0D0D0);"></div>
-            <div class="bar-label">2021</div>
+        <div class="card" style="flex:1; gap:16px; padding:32px;">
+          <div class="h2">연도별 DX 투자 규모</div>
+          <div class="bar-chart" style="flex:1;">
+            <div class="bar-col">
+              <div class="bar-value">18</div>
+              <div class="bar" style="height:28%; background:#D0D0D0;"></div>
+              <div class="bar-label">2021</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">22</div>
+              <div class="bar" style="height:35%; background:#C0C0C0;"></div>
+              <div class="bar-label">2022</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">28</div>
+              <div class="bar" style="height:45%; background:#AAAAAA;"></div>
+              <div class="bar-label">2023</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">33</div>
+              <div class="bar" style="height:55%; background:#888888;"></div>
+              <div class="bar-label">2024</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value">38</div>
+              <div class="bar" style="height:68%; background:#666666;"></div>
+              <div class="bar-label">2025</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-value" style="font-weight:800; color:var(--pink);">42</div>
+              <div class="bar" style="height:82%; background:var(--pink);"></div>
+              <div class="bar-label" style="font-weight:600;">2026</div>
+            </div>
           </div>
-          <div class="bar-col">
-            <div class="bar-value">22</div>
-            <div class="bar" style="height:35%; background:linear-gradient(180deg,#999999,#C8C8C8);"></div>
-            <div class="bar-label">2022</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar-value">28</div>
-            <div class="bar" style="height:45%; background:linear-gradient(180deg,#888888,#B8B8B8);"></div>
-            <div class="bar-label">2023</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar-value">33</div>
-            <div class="bar" style="height:55%; background:linear-gradient(180deg,#777777,#A8A8A8);"></div>
-            <div class="bar-label">2024</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar-value">38</div>
-            <div class="bar" style="height:68%; background:linear-gradient(180deg,#666666,#999999);"></div>
-            <div class="bar-label">2025</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar-value" style="font-weight:800; color:var(--accent);">42</div>
-            <div class="bar" style="height:82%; background:linear-gradient(180deg,#555555,#888888);"></div>
-            <div class="bar-label" style="font-weight:600;">2026</div>
-          </div>
+          <div class="caption">단위: 조원 / 출처: 한국정보화진흥원</div>
         </div>
-        <div class="caption">단위: 조원 / 출처: 한국정보화진흥원 디지털전환 실태조사</div>
       </div>
     </div>
-    <span class="page-num">07</span>
-  </div>
-
-  <!-- ======================== SLIDE 08: DIVIDER §03 ======================== -->
-  <div class="slide dark-accent" style="padding:64px 72px; position:relative;">
-    <div class="divider-bg-num">03</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; max-width:65%;">
-      <div class="label" style="color:var(--accent-light);">Phase 03</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
-        DX Strategy<br>& Roadmap
-      </div>
-      <div class="body-text" style="color:rgba(255,255,255,0.5); max-width:480px; margin-top:8px;">
-        3단계 전략 프레임워크와 실행 로드맵을 제시합니다.
-      </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
     </div>
-    <span class="page-num" style="color:rgba(255,255,255,0.3);">08</span>
-  </div>
+  </section>
+
+  <!-- ======================== SLIDE 08: CHAPTER §03 ======================== -->
+  <section class="slide slide-chapter is-dark">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">STRATEGY</span>
+    </div>
+    <div class="slide-body">
+      <div class="chapter-num">03</div>
+      <h2 class="chapter-title">Strategy</h2>
+      <p class="chapter-sub">3단계 전략 프레임워크와<br>실행 로드맵을 제시합니다.</p>
+    </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
   <!-- ======================== SLIDE 09: 전략 프레임워크 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Strategy</span>
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">STRATEGY</span>
     </div>
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Strategy Framework</span>
-    </div>
-    <h1 class="h1" style="margin-bottom:32px;">3단계 DX 실행 전략</h1>
-
-    <!-- 상단: 타임라인 바 -->
-    <div style="display:flex; margin-bottom:24px; position:relative;">
-      <div style="position:absolute; top:4px; left:0; right:0; height:2px; background:var(--gray-100);"></div>
-      <div style="flex:2; position:relative; padding-right:16px;">
-        <div style="width:10px; height:10px; border-radius:50%; background:#CCCCCC; position:relative; z-index:1;"></div>
-        <div style="font-family:var(--font-en); font-size:11px; font-weight:600; color:var(--gray-300); margin-top:8px;">WEEK 1–4</div>
-      </div>
-      <div style="flex:3; position:relative; padding-right:16px;">
-        <div style="width:10px; height:10px; border-radius:50%; background:#888888; position:relative; z-index:1;"></div>
-        <div style="font-family:var(--font-en); font-size:11px; font-weight:600; color:var(--gray-300); margin-top:8px;">WEEK 5–10</div>
-      </div>
-      <div style="flex:5; position:relative;">
-        <div style="width:10px; height:10px; border-radius:50%; background:#444444; position:relative; z-index:1;"></div>
-        <div style="font-family:var(--font-en); font-size:11px; font-weight:600; color:var(--gray-300); margin-top:8px;">WEEK 11–20</div>
-      </div>
-    </div>
-
-    <!-- 하단: 3 카드 -->
-    <div style="display:flex; gap:16px; flex:1;">
-      <div class="card" style="flex:2; gap:16px;">
-        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 01</div>
-        <div class="h2" style="color:#111;">Discovery</div>
-        <div class="body-text" style="font-size:14px; line-height:1.8;">
-          현황 진단 · As-Is 분석<br>
-          사용자 리서치 · 인터뷰<br>
-          경쟁사 벤치마킹<br>
-          Pain Point 도출
-        </div>
-        <div style="margin-top:auto;"><span class="badge">4주</span></div>
-      </div>
-      <div class="card" style="flex:3; gap:16px;">
-        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 02</div>
-        <div class="h2" style="color:#111;">Design</div>
-        <div class="body-text" style="font-size:14px; line-height:1.8;">
-          To-Be 아키텍처 설계<br>
-          서비스 블루프린트 · IA 설계<br>
-          UI/UX 프로토타이핑<br>
-          기술 스택 선정
-        </div>
-        <div style="margin-top:auto;"><span class="badge">6주</span></div>
-      </div>
-      <div class="card" style="flex:5; gap:16px;">
-        <div style="font-family:var(--font-en); font-weight:700; font-size:14px; color:var(--accent);">PHASE 03</div>
-        <div class="h2" style="color:#111;">Delivery</div>
-        <div class="body-text" style="font-size:14px; line-height:1.8;">
-          MVP 개발 · QA · 성능 최적화<br>
-          데이터 파이프라인 구축<br>
-          운영 인수인계 · 교육<br>
-          KPI 설정 · 성과 모니터링
-        </div>
-        <div style="margin-top:auto;"><span class="badge">10주</span></div>
-      </div>
-    </div>
-    <span class="page-num">09</span>
-  </div>
-
-  <!-- ======================== SLIDE 10: DIVIDER §04 ======================== -->
-  <div class="slide dark-accent" style="padding:64px 72px; position:relative;">
-    <div class="divider-bg-num">04</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; max-width:65%;">
-      <div class="label" style="color:var(--accent-light);">Phase 04</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
-        Capabilities<br>& References
-      </div>
-      <div class="body-text" style="color:rgba(255,255,255,0.5); max-width:480px; margin-top:8px;">
-        HIVELAB의 역량과 유사 프로젝트 수행 실적을 소개합니다.
-      </div>
-    </div>
-    <span class="page-num" style="color:rgba(255,255,255,0.3);">10</span>
-  </div>
-
-  <!-- ======================== SLIDE 11: KPI Dashboard — HIVELAB 역량 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Capabilities</span>
-    </div>
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Why HIVELAB</span>
-    </div>
-    <h1 class="h1" style="margin-bottom:24px;">HIVELAB이 최적의 파트너인 이유</h1>
-
-    <!-- 상단: KPI 카드 행 -->
-    <div style="display:flex; gap:16px; margin-bottom:16px;">
-      <div class="card" style="flex:1; align-items:center; gap:8px; padding:20px;">
-        <div class="caption">프로젝트 경험</div>
-        <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:#111;">150<span style="font-size:16px;">+</span></div>
-        <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
-          <polyline points="0,28 16,24 32,18 48,14 64,8 80,4" stroke="#CCCCCC" />
-        </svg>
-      </div>
-      <div class="card" style="flex:1; align-items:center; gap:8px; padding:20px;">
-        <div class="caption">고객 만족도</div>
-        <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:var(--accent);">96<span style="font-size:16px;">%</span></div>
-        <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
-          <polyline points="0,20 16,16 32,12 48,10 64,6 80,4" stroke="var(--accent)" />
-        </svg>
-      </div>
-      <div class="card" style="flex:1; align-items:center; gap:8px; padding:20px;">
-        <div class="caption">전문 인력</div>
-        <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:#111;">80<span style="font-size:16px;">명</span></div>
-        <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
-          <polyline points="0,28 16,22 32,18 48,16 64,12 80,8" stroke="#CCCCCC" />
-        </svg>
-      </div>
-      <div class="card" style="flex:1; align-items:center; gap:8px; padding:20px;">
-        <div class="caption">업력</div>
-        <div style="font-family:var(--font-en); font-weight:800; font-size:40px; color:var(--accent);">12<span style="font-size:16px;">년</span></div>
-        <div style="font-size:12px; color:var(--accent); font-weight:600;">Since 2014</div>
-      </div>
-    </div>
-
-    <!-- 하단: 역량 구성 -->
-    <div class="card" style="flex:1; gap:16px; padding:32px;">
-      <div class="h2" style="color:#111;">팀 구성 비율</div>
-      <div class="hstack-bar" style="border-radius:4px;">
-        <div style="flex:35; background:#333;">UX Research 35%</div>
-        <div style="flex:30; background:var(--accent);">Design 30%</div>
-        <div style="flex:25; background:#777;">Development 25%</div>
-        <div style="flex:10; background:#AAA; color:#333;">PM 10%</div>
-      </div>
-      <div style="display:flex; gap:24px; margin-top:8px;">
-        <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:#333; border-radius:2px; vertical-align:middle; margin-right:4px;"></span> UX Research</div>
-        <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:var(--accent); border-radius:2px; vertical-align:middle; margin-right:4px;"></span> Design</div>
-        <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:#777; border-radius:2px; vertical-align:middle; margin-right:4px;"></span> Development</div>
-        <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:#AAA; border-radius:2px; vertical-align:middle; margin-right:4px;"></span> PM</div>
-      </div>
-    </div>
-    <span class="page-num">11</span>
-  </div>
-
-  <!-- ======================== SLIDE 12: DIVIDER §05 ======================== -->
-  <div class="slide dark-accent" style="padding:64px 72px; position:relative;">
-    <div class="divider-bg-num">05</div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; max-width:65%;">
-      <div class="label" style="color:var(--accent-light);">Phase 05</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em;">
-        Operation<br>& Pricing
-      </div>
-      <div class="body-text" style="color:rgba(255,255,255,0.5); max-width:480px; margin-top:8px;">
-        운영 방안과 투자 비용을 제시합니다.
-      </div>
-    </div>
-    <span class="page-num" style="color:rgba(255,255,255,0.3);">12</span>
-  </div>
-
-  <!-- ======================== SLIDE 13: 견적 ======================== -->
-  <div class="slide light" style="padding:64px 72px;">
-    <div class="slide-topbar">
-      <span class="topbar-left">HIVELAB</span>
-      <span class="topbar-center">DX Strategy Proposal</span>
-      <span class="topbar-right">Pricing</span>
-    </div>
-    <div style="margin-bottom:8px;">
-      <span class="label-accent">Investment</span>
-    </div>
-    <h1 class="h1" style="margin-bottom:32px;">투자 비용 개요</h1>
-
-    <div style="flex:1; display:flex; gap:48px;">
-      <!-- 좌측: 총 비용 앵커 -->
-      <div style="flex:0 0 320px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
-        <div>
-          <div class="caption" style="margin-bottom:8px;">총 프로젝트 비용</div>
-          <div style="font-family:var(--font-en); font-weight:800; font-size:56px; color:#111; line-height:1;">₩480<span style="font-size:24px; font-weight:600;">M</span></div>
-        </div>
-        <div class="neon-stripe" style="width:48px;"></div>
-        <div class="body-text">
-          20주 기간, 전담 팀 8인 투입 기준.<br>
-          VAT 별도, 분할 납부 가능.
-        </div>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--lime);">Strategy Framework</span>
+        <h1 class="content-h1">3단계 DX 실행 전략</h1>
       </div>
 
-      <!-- 우측: 단계별 비용 -->
-      <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center;">
-        <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:20px 28px;">
-          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--accent); min-width:80px;">PHASE 01</div>
-          <div style="flex:1;">
-            <div class="h2" style="color:#111; font-size:18px;">Discovery</div>
-            <div class="caption">4주 · 2인</div>
+      <div style="flex:1; display:flex; gap:16px; align-items:stretch;">
+        <div class="card" style="flex:2; gap:20px; position:relative;">
+          <div style="width:100%; height:6px; background:var(--lime); border-radius:3px; opacity:0.3;"></div>
+          <div style="font-family:var(--f-en); font-weight:700; font-size:14px; color:var(--lime);">PHASE 01</div>
+          <div class="h2">Discovery</div>
+          <div class="body-text" style="font-size:14px; line-height:1.8;">
+            현황 진단 · As-Is 분석<br>
+            사용자 리서치 · 인터뷰<br>
+            경쟁사 벤치마킹<br>
+            Pain Point 도출
           </div>
-          <div style="font-family:var(--font-en); font-weight:700; font-size:20px; color:#111;">₩80M</div>
-        </div>
-        <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:20px 28px;">
-          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--accent); min-width:80px;">PHASE 02</div>
-          <div style="flex:1;">
-            <div class="h2" style="color:#111; font-size:18px;">Design</div>
-            <div class="caption">6주 · 4인</div>
+          <div style="margin-top:auto;">
+            <span class="badge" style="background:rgba(170,255,69,0.15); color:var(--ink);">4주 · 2인</span>
           </div>
-          <div style="font-family:var(--font-en); font-weight:700; font-size:20px; color:#111;">₩160M</div>
         </div>
-        <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:20px 28px;">
-          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--accent); min-width:80px;">PHASE 03</div>
-          <div style="flex:1;">
-            <div class="h2" style="color:#111; font-size:18px;">Delivery</div>
-            <div class="caption">10주 · 8인</div>
+        <div class="card" style="flex:3; gap:20px;">
+          <div style="width:100%; height:6px; background:var(--lime); border-radius:3px; opacity:0.5;"></div>
+          <div style="font-family:var(--f-en); font-weight:700; font-size:14px; color:var(--lime);">PHASE 02</div>
+          <div class="h2">Design</div>
+          <div class="body-text" style="font-size:14px; line-height:1.8;">
+            To-Be 아키텍처 설계<br>
+            서비스 블루프린트 · IA 설계<br>
+            UI/UX 프로토타이핑<br>
+            기술 스택 선정
           </div>
-          <div style="font-family:var(--font-en); font-weight:700; font-size:20px; color:#111;">₩240M</div>
+          <div style="margin-top:auto;">
+            <span class="badge" style="background:rgba(170,255,69,0.15); color:var(--ink);">6주 · 4인</span>
+          </div>
+        </div>
+        <div class="card" style="flex:5; gap:20px;">
+          <div style="width:100%; height:6px; background:var(--lime); border-radius:3px;"></div>
+          <div style="font-family:var(--f-en); font-weight:700; font-size:14px; color:var(--lime);">PHASE 03</div>
+          <div class="h2">Delivery</div>
+          <div class="body-text" style="font-size:14px; line-height:1.8;">
+            MVP 개발 · QA · 성능 최적화<br>
+            데이터 파이프라인 구축<br>
+            운영 인수인계 · 교육<br>
+            KPI 설정 · 성과 모니터링
+          </div>
+          <div style="margin-top:auto;">
+            <span class="badge" style="background:rgba(170,255,69,0.15); color:var(--ink);">10주 · 8인</span>
+          </div>
         </div>
       </div>
     </div>
-    <span class="page-num">13</span>
-  </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
 
-  <!-- ======================== SLIDE 14: CLOSING ======================== -->
-  <div class="slide" style="padding:0; background:#111111; justify-content:center; align-items:center; text-align:center;">
-    <div style="display:flex; flex-direction:column; align-items:center; gap:28px;">
-      <div style="width:48px; height:3px; background:var(--accent); border-radius:1px;"></div>
-      <div style="font-family:var(--font-en); font-size:13px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);">HIVELAB</div>
-      <div style="font-family:var(--font-en); font-size:64px; font-weight:700; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
-        Thank You.
+  <!-- ======================== SLIDE 10: CHAPTER §04 ======================== -->
+  <section class="slide slide-chapter is-dark">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">CAPABILITIES</span>
+    </div>
+    <div class="slide-body">
+      <div class="chapter-num">04</div>
+      <h2 class="chapter-title">Capabi-<br>lities</h2>
+      <p class="chapter-sub">HIVELAB의 역량과<br>투자 비용을 제시합니다.</p>
+    </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
+
+  <!-- ======================== SLIDE 11: KPI Dashboard ======================== -->
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">CAPABILITIES</span>
+    </div>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--orange);">Why HIVELAB</span>
+        <h1 class="content-h1">HIVELAB이 최적의 파트너인 <span class="h-thin">이유</span></h1>
       </div>
-      <div style="font-size:15px; font-weight:400; line-height:1.7; color:rgba(255,255,255,0.45); max-width:480px;">
-        본 제안에 대한 문의사항은 아래로 연락 부탁드립니다.
+
+      <div style="display:flex; gap:16px; margin-bottom:16px;">
+        <div class="card" style="flex:1; align-items:center; gap:10px; padding:24px;">
+          <div class="caption">프로젝트 경험</div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink);">150<span style="font-size:18px;">+</span></div>
+          <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
+            <polyline points="0,28 16,24 32,18 48,14 64,8 80,4" stroke="#CCCCCC" />
+          </svg>
+        </div>
+        <div class="card" style="flex:1; align-items:center; gap:10px; padding:24px;">
+          <div class="caption">고객 만족도</div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--orange);">96<span style="font-size:18px;">%</span></div>
+          <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
+            <polyline points="0,20 16,16 32,12 48,10 64,6 80,4" stroke="var(--orange)" />
+          </svg>
+        </div>
+        <div class="card" style="flex:1; align-items:center; gap:10px; padding:24px;">
+          <div class="caption">전문 인력</div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink);">80<span style="font-size:18px;">명</span></div>
+          <svg class="sparkline" viewBox="0 0 80 32" style="width:64px; height:24px;">
+            <polyline points="0,28 16,22 32,18 48,16 64,12 80,8" stroke="#CCCCCC" />
+          </svg>
+        </div>
+        <div class="card" style="flex:1; align-items:center; gap:10px; padding:24px;">
+          <div class="caption">업력</div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink);">12<span style="font-size:18px;">년</span></div>
+          <div style="font-size:12px; color:var(--ink-3); font-weight:500;">Since 2014</div>
+        </div>
       </div>
-      <div style="margin-top:24px; display:flex; gap:48px;">
-        <div style="text-align:center;">
-          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Contact</div>
-          <div style="font-size:14px; color:rgba(255,255,255,0.7);">proposal@hivelab.co.kr</div>
+
+      <div class="card" style="flex:1; gap:16px; padding:32px;">
+        <div class="h2">팀 구성 비율</div>
+        <div class="hstack-bar" style="border-radius:6px;">
+          <div style="flex:35; background:var(--ink);">UX Research 35%</div>
+          <div style="flex:30; background:var(--orange);">Design 30%</div>
+          <div style="flex:25; background:var(--ink-3);">Dev 25%</div>
+          <div style="flex:10; background:var(--ink-4); color:var(--ink);">PM</div>
         </div>
-        <div style="text-align:center;">
-          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Phone</div>
-          <div style="font-size:14px; color:rgba(255,255,255,0.7);">02-1234-5678</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Website</div>
-          <div style="font-size:14px; color:rgba(255,255,255,0.7);">www.hivelab.co.kr</div>
+        <div style="display:flex; gap:24px; margin-top:4px;">
+          <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:var(--ink); border-radius:2px; vertical-align:middle; margin-right:4px;"></span> UX Research</div>
+          <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:var(--orange); border-radius:2px; vertical-align:middle; margin-right:4px;"></span> Design</div>
+          <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:var(--ink-3); border-radius:2px; vertical-align:middle; margin-right:4px;"></span> Development</div>
+          <div class="caption"><span style="display:inline-block; width:10px; height:10px; background:var(--ink-4); border-radius:2px; vertical-align:middle; margin-right:4px;"></span> PM</div>
         </div>
       </div>
     </div>
-    <div style="position:absolute; bottom:40px; left:0; right:0; text-align:center; font-size:10px; color:rgba(255,255,255,0.15); letter-spacing:0.04em;">
-      ⓒ 2026 HIVELAB Inc. All rights reserved.
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
     </div>
-  </div>
+  </section>
+
+  <!-- ======================== SLIDE 12: 견적 ======================== -->
+  <section class="slide slide-content">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">INVESTMENT</span>
+    </div>
+    <div class="slide-body">
+      <div class="content-headline">
+        <span class="content-label" style="color:var(--violet);">Investment</span>
+        <h1 class="content-h1">투자 비용 개요</h1>
+      </div>
+
+      <div style="flex:1; display:flex; gap:48px; align-items:center;">
+        <div style="flex:0 0 360px; display:flex; flex-direction:column; gap:24px;">
+          <div>
+            <div class="caption" style="margin-bottom:8px;">총 프로젝트 비용</div>
+            <div style="font-family:var(--f-en); font-weight:800; font-size:64px; color:var(--ink); line-height:1;">₩480<span style="font-size:24px; font-weight:600;">M</span></div>
+          </div>
+          <div style="width:48px; height:4px; background:var(--violet); border-radius:2px;"></div>
+          <div class="body-text">
+            20주 기간, 전담 팀 8인 투입 기준.<br>
+            VAT 별도, 분할 납부 가능.
+          </div>
+        </div>
+
+        <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+          <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:24px 32px;">
+            <div style="font-family:var(--f-en); font-weight:700; font-size:13px; color:var(--violet); min-width:80px;">PHASE 01</div>
+            <div style="flex:1;">
+              <div class="h2" style="font-size:18px;">Discovery</div>
+              <div class="caption">4주 · 2인</div>
+            </div>
+            <div style="font-family:var(--f-en); font-weight:700; font-size:22px;">₩80M</div>
+          </div>
+          <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:24px 32px;">
+            <div style="font-family:var(--f-en); font-weight:700; font-size:13px; color:var(--violet); min-width:80px;">PHASE 02</div>
+            <div style="flex:1;">
+              <div class="h2" style="font-size:18px;">Design</div>
+              <div class="caption">6주 · 4인</div>
+            </div>
+            <div style="font-family:var(--f-en); font-weight:700; font-size:22px;">₩160M</div>
+          </div>
+          <div class="card" style="flex-direction:row; align-items:center; gap:24px; padding:24px 32px;">
+            <div style="font-family:var(--f-en); font-weight:700; font-size:13px; color:var(--violet); min-width:80px;">PHASE 03</div>
+            <div style="flex:1;">
+              <div class="h2" style="font-size:18px;">Delivery</div>
+              <div class="caption">10주 · 8인</div>
+            </div>
+            <div style="font-family:var(--f-en); font-weight:700; font-size:22px;">₩240M</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>HIVELAB · DX STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
+
+  <!-- ======================== SLIDE 13: CLOSING ======================== -->
+  <section class="slide slide-cover is-dark" style="background:#000000;">
+    <div class="slide-header">
+      <span class="sh-left"><strong>HIVELAB</strong> · DX Consulting</span>
+      <span class="sh-center">PROPOSAL</span>
+      <span class="sh-right">2026</span>
+    </div>
+    <div class="slide-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:32px;">
+      <h1 class="cover-title" style="font-size:140px; margin:0;">THANK YOU</h1>
+      <p style="font-family:var(--f-en); font-size:18px; color:rgba(255,255,255,0.7); letter-spacing:0.05em; text-align:center; line-height:1.8;">
+        HIVELAB · DX STRATEGY TEAM<br>
+        proposal@hivelab.co.kr
+      </p>
+    </div>
+    <div class="slide-footer cover-footer-wrap">
+      <span style="font-family:var(--f-en);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.05em">COPYRIGHT © ALL RIGHTS RESERVED · HIVELAB</span>
+      <span style="font-family:var(--f-kr);font-size:9px;color:rgba(255,255,255,0.25);line-height:1.5;text-align:center;max-width:680px;letter-spacing:0.01em">이 문서는 HIVELAB의 자산입니다. 외부 공유·복제·인용·2차 가공은 사전 서면 동의가 필요합니다.</span>
+    </div>
+  </section>
 
 </div>
 
