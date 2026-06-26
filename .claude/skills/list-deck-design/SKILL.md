@@ -1,6 +1,6 @@
 ---
 name: list-deck-design
-description: Build a single-page Korean editorial report ("list deck") in the AI in Design Report 2026 (stateofaidesign.com) visual style — warm sand background (#EADFCF), vivid orange accent (#FF6B35), dusty lavender chart bars (#C5BBDD), dashed dividers, Pretendard typography, inline numbered section heads. Components: stat-strip, bar-chart, tool-grid, pull-quote, donut, dark-callout. Use when the user wants to turn a project, dataset, retrospective, or research summary into one polished HTML page with numbers and content organized in an editorial-report aesthetic. Triggers: "리포트로 정리", "list deck", "state of ~ 스타일", "stateofaidesign 처럼", "수치를 보기 좋게".
+description: Build a single-page Korean editorial report ("list deck") inspired by AI in Design Report 2026 (stateofaidesign.com). White background with warm off-white card surface, vivid orange accent (#FF6B35), dusty lavender chart bars (#C5BBDD), dashed dividers, Pretendard typography, inline numbered section heads. Components: stat-strip, bar-chart, tool-grid, pull-quote, donut, dark-callout. Use when the user wants to turn a project, dataset, retrospective, or research summary into one polished HTML page with numbers and content organized in an editorial-report aesthetic. Triggers: "리포트로 정리", "list deck", "state of ~ 스타일", "stateofaidesign 처럼", "수치를 보기 좋게".
 ---
 
 # List Deck Design — State of AI Design 스타일 한글 리포트
@@ -22,13 +22,13 @@ description: Build a single-page Korean editorial report ("list deck") in the AI
 
 ```css
 :root {
-  /* paper-and-ink palette */
-  --bg:        #EADFCF;   /* 따뜻한 모래색 — 메인 종이 톤 */
-  --bg-card:   #E0D3BE;   /* 살짝 더 깊은 카드 표면 */
+  /* paper-and-ink palette — white edition */
+  --bg:        #FFFFFF;   /* 메인 화이트 */
+  --bg-card:   #F5F1EA;   /* 따뜻한 오프-화이트 카드 */
   --ink:       #1A1A1A;
   --muted:     #6E665A;
-  --rule:      #C8BCA6;   /* 점선 디바이더 */
-  --chip:      #DFD3BE;
+  --rule:      #E4DED2;   /* 점선 디바이더 */
+  --chip:      #F2EDE3;
 
   /* signature accent — vivid orange (코랄 빨강 아님!) */
   --accent:        #FF6B35;
