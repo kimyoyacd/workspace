@@ -1,6 +1,6 @@
 ---
 name: list-deck-design
-description: Build a single-page Korean editorial report ("list deck") in the State of AI Design visual style — cream paper background, vivid coral accent, Pretendard typography, stat-strip + bar-chart + tool-grid + pull-quote + donut + dark-callout components. Use when the user wants to turn a project, dataset, retrospective, or research summary into one polished HTML page with numbers and content organized in an editorial-report aesthetic. Triggers: "리포트로 정리", "list deck", "state of ~ 스타일", "stateofaidesign 처럼", "수치를 보기 좋게".
+description: Build a single-page Korean editorial report ("list deck") in the AI in Design Report 2026 (stateofaidesign.com) visual style — warm sand background (#EADFCF), vivid orange accent (#FF6B35), dusty lavender chart bars (#C5BBDD), dashed dividers, Pretendard typography, inline numbered section heads. Components: stat-strip, bar-chart, tool-grid, pull-quote, donut, dark-callout. Use when the user wants to turn a project, dataset, retrospective, or research summary into one polished HTML page with numbers and content organized in an editorial-report aesthetic. Triggers: "리포트로 정리", "list deck", "state of ~ 스타일", "stateofaidesign 처럼", "수치를 보기 좋게".
 ---
 
 # List Deck Design — State of AI Design 스타일 한글 리포트
@@ -16,21 +16,27 @@ description: Build a single-page Korean editorial report ("list deck") in the St
 
 쓰지 말 것: 인터랙티브 대시보드(실시간 차트, 필터링), 마케팅 랜딩 페이지, 일반 블로그 글.
 
-## 디자인 토큰
+## 디자인 토큰 — AI in Design Report 2026 기준
+
+실제 사이트(stateofaidesign.com/chapters/tools) 스크린샷에서 추출.
 
 ```css
 :root {
-  /* paper-and-ink palette — State of AI Design 계열 */
-  --bg:     #F1ECDB;   /* warm paper */
-  --ink:    #111111;   /* near-black */
-  --muted:  #6B665C;   /* secondary text */
-  --rule:   #D8D2BF;   /* hairline divider */
-  --chip:   #E5DFCB;   /* neutral chip / track */
+  /* paper-and-ink palette */
+  --bg:        #EADFCF;   /* 따뜻한 모래색 — 메인 종이 톤 */
+  --bg-card:   #E0D3BE;   /* 살짝 더 깊은 카드 표면 */
+  --ink:       #1A1A1A;
+  --muted:     #6E665A;
+  --rule:      #C8BCA6;   /* 점선 디바이더 */
+  --chip:      #DFD3BE;
 
-  /* signature accent — coral red */
-  --accent:        #FF4E1B;
-  --accent-soft:   #FFE2D2;
-  --accent-ink:    #FFFFFF;  /* text on accent */
+  /* signature accent — vivid orange (코랄 빨강 아님!) */
+  --accent:        #FF6B35;
+  --accent-soft:   #FFD9C2;
+
+  /* secondary data color — dusty lavender (차트 기본값) */
+  --data:          #C5BBDD;
+  --data-strong:   #A89BC8;
 
   /* typography — Pretendard only */
   --sans: "Pretendard Variable", Pretendard, -apple-system,
@@ -42,6 +48,12 @@ description: Build a single-page Korean editorial report ("list deck") in the St
   --maxw: 1200px;
 }
 ```
+
+### 컬러 사용 룰 (사이트에서 관찰된 패턴)
+- **모든 분리선은 `1px dashed var(--rule)`** — solid 검정선 쓰지 말 것
+- **차트 막대의 기본 색은 라벨 `--data`** (라벤더). 강조하고 싶은 1~2개만 `--accent` (오렌지)
+- **오렌지는 페이지당 4~6번만** — 챕터 타이틀 한 단어 + 강조 막대 + 큰 콜아웃 숫자
+- 카드 배경은 `--bg-card` (더 어두운 베이지) — 흰색 카드는 안 어울림
 
 ## 필수 셋업
 
@@ -69,17 +81,18 @@ description: Build a single-page Korean editorial report ("list deck") in the St
 
 ## 액센트 색 사용 규칙
 
-코랄(`--accent`)은 **페이지당 4~6번만** 등장시킨다. 남용하면 잡지 톤이 아니라 광고지가 된다.
+오렌지(`--accent: #FF6B35`)는 **페이지당 4~6번만** 등장시킨다.
 
 쓰는 자리:
 1. 챕터 타이틀의 한 단어 강조 (`<em>`)
-2. CHAPTER 라벨 pill 배경
-3. 큰 콜아웃 박스의 거대 숫자
-4. 가장 상승률 높은 차트 막대 1~2개
-5. 도넛 차트의 채워진 부분
-6. 본문 강조 형광펜(`linear-gradient` 하단 55%)
+2. 섹션 헤드의 한 단어 강조 (`<em>`)
+3. CHAPTER 라벨 pill 배경
+4. 큰 콜아웃 박스의 거대 숫자
+5. 가장 강조하고 싶은 차트 막대 1~2개 (`.bar-fill.accent`)
+6. 도넛 차트의 채워진 부분
+7. 본문 강조 형광펜(`linear-gradient` 하단 55%)
 
-본문 링크·일반 텍스트에는 절대 쓰지 않는다.
+본문 링크·일반 텍스트·기본 차트 막대에는 절대 쓰지 않는다. 차트 기본은 라벤더(`--data`).
 
 ## 컴포넌트 레시피
 
@@ -98,23 +111,20 @@ description: Build a single-page Korean editorial report ("list deck") in the St
 </div>
 ```
 
-### 2. Section Head — 80px 번호 + 큰 제목 + deck
+### 2. Section Head — 번호 + 큰 제목 + deck (인라인)
 
-각 섹션은 위쪽 1px 검정 선 + 왼쪽에 `01 / 06` 같은 모노 번호, 오른쪽에 큰 제목과 deck(서브헤드).
+각 섹션은 위쪽 **점선** 1px + `1.` 번호가 제목과 같은 라인·같은 굵기로 인라인.
 
 ```html
 <div class="section-head">
-  <div class="no">01 / 06</div>
-  <div>
-    <h2>도입은 더 이상 이야기가 아니다.<br/>이제는 <em>조합</em>이다.</h2>
-    <p class="deck">올해 화두는 ‘쓰느냐 마느냐’가 아니라, 몇 개를 어떤 순서로 쌓느냐다.</p>
-  </div>
+  <h2><span class="no">1.</span>도입은 더 이상 이야기가 아니다. 이제는 <em>조합</em>이다.</h2>
+  <p class="deck">올해 화두는 ‘쓰느냐 마느냐’가 아니라, 몇 개를 어떤 순서로 쌓느냐다.</p>
 </div>
 ```
 
 ### 3. Bar Chart — CSS only
 
-`grid-template-columns: 140px 1fr 56px` (이름 · 막대 · 수치). 트랙은 `--chip`, 채움은 `--ink` 또는 `--accent`. 강조하고 싶은 1~2개만 액센트.
+`grid-template-columns: 140px 1fr 56px` (이름 · 막대 · 수치). 트랙은 `--chip`, **채움 기본은 `--data` (라벤더)**, 강조 1~2개만 `.accent` (오렌지). 차트 컨테이너는 `--bg-card` + 점선 보더.
 
 ### 4. Tool Grid — 랭킹된 카드
 

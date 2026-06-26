@@ -15,16 +15,21 @@
 
 <style>
   :root {
-    /* paper-and-ink palette */
-    --bg:     #F1ECDB;
-    --ink:    #111111;
-    --muted:  #6B665C;
-    --rule:   #D8D2BF;
-    --chip:   #E5DFCB;
+    /* paper-and-ink palette — AI in Design Report 2026 */
+    --bg:        #EADFCF;   /* warm sand */
+    --bg-card:   #E0D3BE;   /* deeper card surface */
+    --ink:       #1A1A1A;
+    --muted:     #6E665A;
+    --rule:      #C8BCA6;   /* hairline / dashed dividers */
+    --chip:      #DFD3BE;
 
-    /* signature accent — coral red */
-    --accent:        #FF4E1B;
-    --accent-soft:   #FFE2D2;
+    /* signature accent — vivid orange */
+    --accent:        #FF6B35;
+    --accent-soft:   #FFD9C2;
+
+    /* secondary data color — dusty lavender (charts) */
+    --data:          #C5BBDD;
+    --data-strong:   #A89BC8;
 
     --sans: "Pretendard Variable", Pretendard, -apple-system,
             BlinkMacSystemFont, system-ui, "Segoe UI",
@@ -35,7 +40,7 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; min-height: 100%; }
-  html { background-color: #F1ECDB; }
+  html { background-color: #EADFCF; }
   body {
     background-color: var(--bg);
     color: var(--ink);
@@ -53,7 +58,7 @@
   /* ---------- top nav ---------- */
   .topbar {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(241,236,219,0.92);
+    background: rgba(234,223,207,0.92);
     backdrop-filter: saturate(140%) blur(8px);
     border-bottom: 1px solid var(--rule);
   }
@@ -150,14 +155,14 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
     margin: 0 0 72px;
   }
   @media (max-width: 700px) { .stat-strip { grid-template-columns: repeat(2, 1fr); } }
   .stat {
     padding: 28px 24px 24px;
-    border-right: 1px solid var(--rule);
+    border-right: 1px dashed var(--rule);
   }
   .stat:last-child { border-right: 0; }
   .stat .num {
@@ -183,22 +188,19 @@
   /* ---------- sections ---------- */
   section { margin-bottom: 88px; scroll-margin-top: 96px; }
   .section-head {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 24px;
-    border-top: 1px solid var(--ink);
-    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+    padding-top: 24px;
     margin-bottom: 32px;
   }
-  .section-head .no {
-    font-family: var(--mono); font-size: 12px;
-    color: var(--muted); padding-top: 8px;
-  }
   .section-head h2 {
-    font-weight: 700;
+    font-weight: 800;
     font-size: clamp(28px, 3.4vw, 44px);
-    line-height: 1.05; letter-spacing: -0.025em;
+    line-height: 1.15; letter-spacing: -0.025em;
     margin: 0;
+  }
+  .section-head h2 .no {
+    color: var(--ink);
+    margin-right: 12px;
   }
   .section-head h2 em { font-style: normal; color: var(--accent); }
   .section-head .deck {
@@ -219,9 +221,9 @@
 
   /* ---------- bar chart ---------- */
   .chart {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    border-radius: 0;
     padding: 24px;
   }
   .chart .ch-title {
@@ -238,7 +240,8 @@
     align-items: center; gap: 12px; font-size: 13px;
   }
   .bar-track { background: var(--chip); border-radius: 3px; height: 14px; overflow: hidden; }
-  .bar-fill { height: 100%; background: var(--ink); border-radius: 3px; }
+  .bar-fill { height: 100%; background: var(--data); border-radius: 3px; }
+  .bar-fill.strong { background: var(--data-strong); }
   .bar-fill.accent { background: var(--accent); }
   .bar-row .val {
     font-family: var(--mono); font-size: 12px; text-align: right; color: var(--muted);
@@ -248,8 +251,8 @@
 
   /* ---------- pullquote ---------- */
   .pull {
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
     padding: 40px 0;
     margin: 56px 0;
     display: grid;
@@ -419,11 +422,8 @@
 
       <section id="adoption">
         <div class="section-head">
-          <div class="no">01 / 06</div>
-          <div>
-            <h2>도입은 더 이상 이야기가 아니다.<br/>이제는 <em>조합</em>이다.</h2>
-            <p class="deck">올해의 화두는 ‘쓰느냐 마느냐’가 아니라, 몇 개를 어떤 순서로 쌓아 누가 신뢰하느냐다.</p>
-          </div>
+          <h2><span class="no">1.</span>도입은 더 이상 이야기가 아니다. 이제는 <em>조합</em>이다.</h2>
+          <p class="deck">올해의 화두는 ‘쓰느냐 마느냐’가 아니라, 몇 개를 어떤 순서로 쌓아 누가 신뢰하느냐다.</p>
         </div>
 
         <div class="prose two">
@@ -452,11 +452,8 @@
 
       <section id="stack">
         <div class="section-head">
-          <div class="no">02 / 06</div>
-          <div>
-            <h2>숏리스트 — 사람들이 실제로 여는 것들.</h2>
-            <p class="deck">2,418명의 ‘주간 사용’ 자기 보고. 해당 도구가 최소 한 번 등장한 워크플로의 비율로 정렬.</p>
-          </div>
+          <h2><span class="no">2.</span>숏리스트 — 사람들이 실제로 <em>여는</em> 것들.</h2>
+          <p class="deck">2,418명의 ‘주간 사용’ 자기 보고. 해당 도구가 최소 한 번 등장한 워크플로의 비율로 정렬.</p>
         </div>
 
         <div class="tools">
@@ -509,11 +506,8 @@
 
       <section id="workflow">
         <div class="section-head">
-          <div class="no">03 / 06</div>
-          <div>
-            <h2>시간은 어디로 가는가.</h2>
-            <p class="deck">멀티툴 워크플로 도입 전후, 주간 시간 배분 자기 보고.</p>
-          </div>
+          <h2><span class="no">3.</span>시간은 <em>어디로</em> 가는가.</h2>
+          <p class="deck">멀티툴 워크플로 도입 전후, 주간 시간 배분 자기 보고.</p>
         </div>
 
         <div class="two">
@@ -547,11 +541,8 @@
 
       <section id="voices">
         <div class="section-head">
-          <div class="no">04 / 06</div>
-          <div>
-            <h2>현장이 묻지 않은 자리에서 말한 것들.</h2>
-            <p class="deck">자유응답에서 반복적으로 떠오른 세 주제. 셋 다 작년 리포트엔 없었다.</p>
-          </div>
+          <h2><span class="no">4.</span>현장이 <em>묻지 않은</em> 자리에서 말한 것들.</h2>
+          <p class="deck">자유응답에서 반복적으로 떠오른 세 주제. 셋 다 작년 리포트엔 없었다.</p>
         </div>
 
         <div class="tools">
@@ -583,11 +574,8 @@
 
       <section id="outlook">
         <div class="section-head">
-          <div class="no">05 / 06</div>
-          <div>
-            <h2>올해 추세가 유지되면 2027년은 어떨까.</h2>
-            <p class="deck">데이터에서 도출한 세 가지 방향성 — 예측이 아니라 외삽.</p>
-          </div>
+          <h2><span class="no">5.</span>올해 추세가 유지되면 <em>2027년</em>은 어떨까.</h2>
+          <p class="deck">데이터에서 도출한 세 가지 방향성 — 예측이 아니라 외삽.</p>
         </div>
 
         <div class="stat-strip">
