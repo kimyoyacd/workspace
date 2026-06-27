@@ -28,6 +28,8 @@
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
+├── library/       # 재사용 자산 (프롬프트 원형 등)
+│   └── prompts/   # wide-research, brand-brief-template …
 └── projects/      # 프로젝트별 노트
 ```
 
