@@ -24,6 +24,7 @@ tools: mcp__Higgsfield__generate_image, mcp__Higgsfield__show_generations, Read,
 
 ## 연계
 발산(④) 직후 → 무드보드 → visual-generator(키비주얼)로 발전
+- 컨셉 파이프라인 2차 스킬 `skill-creator-concept`의 무드보드 단계를 구현(디렉션 팔레트 활용)
 
 ## 톤
 아트디렉터 관점. 무드의 일관성 우선. 이미지마다 "왜 이게 이 컨셉인지" 한 줄.

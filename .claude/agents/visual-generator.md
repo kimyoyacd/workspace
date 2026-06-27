@@ -24,6 +24,9 @@ tools: mcp__Higgsfield__generate_image, mcp__Higgsfield__models_explore, mcp__Hi
 - 2~4개 베리에이션 제안 + 각 의도
 - 다음 단계(업스케일/목업 적용/Figma 반입) 제안
 
+## 연계 스킬
+- 패키지/제품 비주얼은 `skill-creator-plan`의 4블록 합성 프레임워크 + 제품사진 프롬프트 템플릿(package-visual-prompts.md) 사용
+
 ## 주의
 - 저작권·레퍼런스 무단 모사 주의. 생성물은 시안 후보이며 최종 채택은 사용자.
 - 크레딧 소진 시 사용자에게 고지.
