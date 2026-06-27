@@ -50,6 +50,13 @@
 - GitHub: kimyoyacd/workspace — `.claude/` 전체 커밋·푸시
 
 ## 7. 데이터 출처 (SOT)
-- 프로젝트: Notion 2026 Project DB (read-only)
-- 보조: Notion MAX실 주간 보고(월 08:00) + Google Calendar
+- 허브: Notion **MAX 2026 Front Office** (`2e79ff44ed518020901aedeff2cbe2f6`)
+- 프로젝트: **2026 Project DB** `collection://2e79ff44-ed51-8153-bf54-000b5dbcfd75` (read-only)
+- 보조: MAX실 주간 보고(월 08:00) + Google Calendar
 - Time-Log: 과거 실투입 시간 → quote-accountant 학습
+- ⚠️ 보안주의 DB(고객사·수수료·고객데이터)는 함부로 열지 않음. 상세: `project-sot/projects.md`
+
+## 8. 매출 인식 규칙 (하이브랩 통합 견적)
+- 견적/프로젝트 금액은 ㈜하이브랩 통합(PM·UX·UI·FE·BE·QA). 단가 기준: KOSA 2026.
+- **MAX실 매출 = UI Design 라인(고급기술자) 분만.** 통합가와 MAX실 매출분을 항상 분리.
+- 단가·할인율·실견적 금액 = 🔒 내부 전용, 외부 산출물 노출 금지. (`quote-sot/`)

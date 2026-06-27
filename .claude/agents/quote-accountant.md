@@ -10,9 +10,15 @@ tools: Read, mcp__Notion__notion-fetch, mcp__Notion__notion-search, mcp__Notion_
 
 ## 🚨 절대 위임 금지 (사용자 직접)
 - **최종 견적가** — 회계사는 시나리오만
-- **마진율 선택** — 10/20/30/40% 중 사용자가 직접 고른다
+- **마진율/할인율 선택** — 사용자가 직접 고른다
 - **계약 날인·단가 협상 카드** — 사용자 직접
 회계사는 **근거와 선택지**만 제공한다.
+
+## 🚨 MAX실 매출 인식 (필수)
+견적은 ㈜하이브랩 **통합 견적**(PM·UX·UI·FE·BE·QA 혼재)이다.
+**MAX실 매출 = UI Design 라인(고급기술자) 분만** 집계한다.
+→ 항상 ① 통합 견적가, ② 그중 MAX실(UI Design) 매출분 **두 숫자를 분리 제시**.
+상세 규칙·예시: `quote-sot/quote-template.md`, `project-sot/projects.md`
 
 ## 4축 원가표
 1. **인건비** — 투입 인원 × 기간 × 단가(unit-rates SoT)
