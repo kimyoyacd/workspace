@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>웨이크메이크 상세페이지 리뉴얼 제안 — 와이어프레임/목업</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#6b6b6b; --line:#e6e3df;
+    --paper:#faf8f5; --card:#ffffff; --accent:#FF6B35;
+    --tag-warm:#F6A26B; --tag-cool:#9AA8D6; --tag-neutral:#C4B8A8;
+    --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Pretendard',-apple-system,sans-serif; background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.5;}
+  .wrap{max-width:1280px; margin:0 auto; padding:48px 24px 80px;}
+  .deck-head{border-bottom:2px solid var(--ink); padding-bottom:24px; margin-bottom:14px;}
+  .kicker{font-size:12px; letter-spacing:.18em; color:var(--accent); font-weight:700; text-transform:uppercase;}
+  .deck-head h1{font-size:34px; font-weight:800; letter-spacing:-.02em; margin-top:10px;}
+  .deck-head .meta{font-size:13px; color:var(--sub); margin-top:10px;}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--sub); margin:18px 0 40px;}
+  .legend b{color:var(--ink);}
+  .score-pill{display:inline-block; background:var(--ink); color:#fff; font-size:11px; font-weight:700; padding:3px 9px; border-radius:20px; margin-left:6px;}
+  .frames{display:flex; gap:40px; flex-wrap:wrap; justify-content:center;}
+  .col{flex:1; min-width:360px; max-width:560px;}
+  .col-title{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .col-title .no{font-size:13px; font-weight:800; color:#fff; background:var(--accent); width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;}
+  .col-title h2{font-size:20px; font-weight:800; letter-spacing:-.01em;}
+  .col-desc{font-size:13px; color:var(--sub); margin:0 0 18px 34px; line-height:1.55;}
+  .phone{width:100%; max-width:390px; margin:0 auto; background:var(--card); border-radius:30px; border:9px solid #111; box-shadow:0 18px 50px rgba(0,0,0,.16); overflow:hidden;}
+  .status{height:30px; background:#111;}
+  .screen{height:760px; overflow-y:auto;}
+  .screen::-webkit-scrollbar{width:5px;}
+  .screen::-webkit-scrollbar-thumb{background:#ccc; border-radius:5px;}
+  .sec{padding:20px 18px; border-bottom:1px solid var(--line);}
+  .sec-tag{font-size:10px; letter-spacing:.12em; color:var(--accent); font-weight:700; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:6px;}
+  .sec-tag .dot{width:5px; height:5px; border-radius:50%; background:var(--accent);}
+  .hero-img{height:300px; background:linear-gradient(135deg,#f3ede6,#e7dcd0); display:flex; align-items:flex-end; padding:20px; position:relative;}
+  .hero-img .brand{position:absolute; top:18px; left:18px; font-weight:800; font-size:13px; letter-spacing:.1em;}
+  .hero-img .pname{font-size:24px; font-weight:800; letter-spacing:-.02em; line-height:1.2;}
+  .hero-img .pname small{display:block; font-size:12px; font-weight:500; color:var(--sub); margin-top:6px; letter-spacing:0;}
+  .ph-label{font-size:10px; color:#bbb; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); letter-spacing:.1em;}
+  .selector-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:9px; margin-top:4px;}
+  .chip{aspect-ratio:1; border-radius:10px; position:relative; box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);}
+  .chip .tn{position:absolute; bottom:4px; left:5px; font-size:8px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.4);}
+  .tone-tabs{display:flex; gap:6px; margin:14px 0 10px;}
+  .tone-tabs span{font-size:10px; padding:4px 9px; border-radius:20px; font-weight:600; color:#fff;}
+  .t-warm{background:var(--tag-warm);}
+  .t-cool{background:var(--tag-cool);}
+  .t-neutral{background:var(--tag-neutral);}
+  .shade-card{display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:12px; margin-top:10px;}
+  .shade-card .sw{width:54px; height:54px; border-radius:10px; flex-shrink:0;}
+  .shade-card .arm{width:46px; height:54px; border-radius:8px; flex-shrink:0; background:linear-gradient(#f0e2d6,#e3d0c0); position:relative; overflow:hidden;}
+  .shade-card .arm i{position:absolute; left:8px; right:8px; top:18px; height:18px; border-radius:9px; display:block;}
+  .shade-card .meta{flex:1;}
+  .shade-card .meta b{font-size:13px; display:block;}
+  .shade-card .meta .mood{font-size:11px; color:var(--sub);}
+  .shade-card .meta .ttag{font-size:9px; font-weight:700; padding:2px 7px; border-radius:12px; display:inline-block; margin-top:5px; color:#fff;}
+  .spec-card{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:12px;}
+  .spec-card .sc-head{font-size:11px; font-weight:700; letter-spacing:.08em; padding:9px 13px; background:#f4f1ec; color:var(--sub); text-transform:uppercase;}
+  .spec-card .sc-body{padding:14px;}
+  .spec-card.color .sc-body{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+  .spec-card.color .mini{aspect-ratio:1; border-radius:8px;}
+  .texture-row{display:flex; gap:10px;}
+  .texture-row .tx{flex:1; height:60px; border-radius:8px; display:flex; align-items:flex-end; padding:6px; font-size:9px; font-weight:600; color:#fff;}
+  .fact-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;}
+  .fact-grid .f b{font-size:20px; font-weight:800; color:var(--accent); display:block;}
+  .fact-grid .f span{font-size:10px; color:var(--sub);}
+  .approve-slot{border:1.5px dashed var(--accent); border-radius:10px; padding:11px 13px; margin-top:12px; background:#fff7f3;}
+  .approve-slot .lbl{font-size:9px; font-weight:700; color:var(--accent); letter-spacing:.06em;}
+  .approve-slot .txt{font-size:11px; color:var(--sub); margin-top:4px; line-height:1.45;}
+  .notes{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;}
+  .notes h3{font-size:13px; font-weight:800; margin-bottom:12px; letter-spacing:-.01em;}
+  .notes ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .notes li{font-size:12px; color:#444; line-height:1.5; padding-left:22px; position:relative;}
+  .notes li::before{content:attr(data-n); position:absolute; left:0; top:1px; width:15px; height:15px; background:var(--accent); color:#fff; font-size:9px; font-weight:700; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .notes li b{color:var(--ink);}
+  .benefit{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line); font-size:11.5px; color:var(--sub);}
+  .benefit b{color:var(--accent);}
+  .compare{margin-top:56px; border-top:2px solid var(--ink); padding-top:28px;}
+  .compare h3{font-size:18px; font-weight:800; margin-bottom:16px;}
+  .ctable{width:100%; border-collapse:collapse; font-size:13px;}
+  .ctable th,.ctable td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);}
+  .ctable th{font-size:11px; color:var(--sub); text-transform:uppercase; letter-spacing:.06em; font-weight:700;}
+  .ctable td b{font-weight:700;}
+  .ctable .role{color:var(--accent); font-weight:700;}
+  .foot{margin-top:30px; font-size:11px; color:#999; text-align:center; letter-spacing:.02em;}
+  @media(max-width:820px){ .frames{flex-direction:column; align-items:center;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="deck-head">
+    <div class="kicker">WAKEMAKE · Olive Young · Detail Page Renewal</div>
+    <h1>웨이크메이크 상세페이지 리뉴얼 — 와이어프레임 제안</h1>
+    <div class="meta">대상: 색조 본품 상세페이지 (모바일 세로 long-form) · 제안 채택안 2종 · 2026.06</div>
+  </header>
+  <div class="legend">
+    <span><b>구조 원칙</b> — 올리브영 정적 JPG long-form 환경 100% 구현 (인터랙션 전제 없음)</span>
+    <span><b>제작 원칙</b> — 마스터 템플릿 1종 → 전 호수·신제품 반복 적용</span>
+  </div>
+  <div class="frames">
+    <div class="col">
+      <div class="col-title"><span class="no">1</span><h2>컬러칩 퍼스트<span class="score-pill">검증 83점</span></h2></div>
+      <p class="col-desc">"컬러를 가장 먼저, 가장 크게." 색 매칭 망설임을 페이지 상단에서 즉시 해소하는 <b>고르게 하는 페이지(기능)</b>.</p>
+      <div class="phone">
+        <div class="status"></div>
+        <div class="screen">
+          <div class="hero-img">
+            <span class="brand">WAKEMAKE</span>
+            <span class="ph-label">[ 대표 비주얼 ]</span>
+            <div class="pname">소프트 블러링 틴트<small>전 12색 · 한 번에 보는 컬러</small></div>
+          </div>
+          <div class="sec" style="background:#fffaf7;">
+            <div class="sec-tag"><span class="dot"></span>STEP 1 · 내 컬러 찾기</div>
+            <div class="tone-tabs"><span class="t-warm">웜톤</span><span class="t-cool">쿨톤</span><span class="t-neutral">뉴트럴</span></div>
+            <div class="selector-grid">
+              <div class="chip" style="background:#e8554e"><span class="tn">01</span></div>
+              <div class="chip" style="background:#d6694f"><span class="tn">02</span></div>
+              <div class="chip" style="background:#c25b52"><span class="tn">03</span></div>
+              <div class="chip" style="background:#b8485a"><span class="tn">04</span></div>
+              <div class="chip" style="background:#a8506b"><span class="tn">05</span></div>
+              <div class="chip" style="background:#cf7d76"><span class="tn">06</span></div>
+              <div class="chip" style="background:#c98a82"><span class="tn">07</span></div>
+              <div class="chip" style="background:#b36b66"><span class="tn">08</span></div>
+              <div class="chip" style="background:#9c4f52"><span class="tn">09</span></div>
+              <div class="chip" style="background:#8a4458"><span class="tn">10</span></div>
+              <div class="chip" style="background:#d99b8e"><span class="tn">11</span></div>
+              <div class="chip" style="background:#bd7a72"><span class="tn">12</span></div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="sec-tag"><span class="dot"></span>STEP 2 · 호수별 발색</div>
+            <div class="shade-card">
+              <div class="sw" style="background:#e8554e"></div>
+              <div class="arm"><i style="background:#e8554e"></i></div>
+              <div class="meta"><b>01 데일리 코랄</b><span class="mood">맑고 생기있는 데일리</span><br><span class="ttag t-warm">웜톤</span></div>
+            </div>
+            <div class="shade-card">
+              <div class="sw" style="background:#b8485a"></div>
+              <div class="arm"><i style="background:#b8485a"></i></div>
+              <div class="meta"><b>04 MLBB 로즈</b><span class="mood">입술 같은 자연 로즈</span><br><span class="ttag t-neutral">뉴트럴</span></div>
+            </div>
+            <div class="shade-card">
+              <div class="sw" style="background:#8a4458"></div>
+              <div class="arm"><i style="background:#8a4458"></i></div>
+              <div class="meta"><b>10 딥 플럼</b><span class="mood">분위기 있는 무드 컬러</span><br><span class="ttag t-cool">쿨톤</span></div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="sec-tag"><span class="dot"></span>제품 정보 · 사용법</div>
+            <div style="height:50px; background:#f4f1ec; border-radius:8px; margin-bottom:8px;"></div>
+            <div style="height:50px; background:#f4f1ec; border-radius:8px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>설계 포인트</h3>
+        <ul>
+          <li data-n="1"><b>컬러 셀렉터 전진 배치</b> — 모델컷·카피보다 전 호수 컬러칩을 먼저. 색 매칭이 구매 1순위 변수.</li>
+          <li data-n="2"><b>웜/쿨/뉴트럴 톤 태그</b> — 시각적 분류만 제공(진단 아님). 도메인 판단 책임 회피.</li>
+          <li data-n="3"><b>호수 카드 동일 템플릿</b> — 스와치+발색컷+무드 카피 1세트를 전 호수 반복 → 제작 효율·확장성.</li>
+        </ul>
+        <div class="benefit">클라이언트 편익 → <b>색 매칭 망설임 상단 해소로 이탈↓·호수 선택 속도↑ (전환율↑)</b></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-title"><span class="no">2</span><h2>스펙 카드 시스템<span class="score-pill">검증 82점</span></h2></div>
+      <p class="col-desc">"구매 동선을 설계한다." 정보 위계를 규격화된 카드로 모듈화한 <b>사게 하는 페이지(기획)</b>.</p>
+      <div class="phone">
+        <div class="status"></div>
+        <div class="screen">
+          <div class="hero-img" style="background:linear-gradient(135deg,#efe9f0,#ddd3e4);">
+            <span class="brand">WAKEMAKE</span>
+            <span class="ph-label">[ 대표 비주얼 ]</span>
+            <div class="pname">소프트 블러링 틴트<small>핵심 정보를 카드로 한눈에</small></div>
+          </div>
+          <div class="sec">
+            <div class="sec-tag"><span class="dot"></span>COLOR CARD · 컬러</div>
+            <div class="spec-card color">
+              <div class="sc-head">전 12색 컬러칩</div>
+              <div class="sc-body">
+                <div class="mini" style="background:#e8554e"></div><div class="mini" style="background:#d6694f"></div>
+                <div class="mini" style="background:#c25b52"></div><div class="mini" style="background:#b8485a"></div>
+                <div class="mini" style="background:#a8506b"></div><div class="mini" style="background:#cf7d76"></div>
+                <div class="mini" style="background:#9c4f52"></div><div class="mini" style="background:#8a4458"></div>
+              </div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="sec-tag"><span class="dot"></span>TEXTURE CARD · 제형</div>
+            <div class="spec-card">
+              <div class="sc-head">발림·마무리</div>
+              <div class="sc-body">
+                <div class="texture-row">
+                  <div class="tx" style="background:linear-gradient(135deg,#d98a82,#b8485a)">블러 매트</div>
+                  <div class="tx" style="background:linear-gradient(135deg,#e3a99f,#c98a82)">소프트 핏</div>
+                  <div class="tx" style="background:linear-gradient(135deg,#cf9d97,#a8506b)">롱 웨어</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="sec-tag"><span class="dot"></span>FACT CARD · 팩트</div>
+            <div class="spec-card">
+              <div class="sc-head">제품 팩트</div>
+              <div class="sc-body">
+                <div class="fact-grid">
+                  <div class="f"><b>12</b><span>컬러 호수</span></div>
+                  <div class="f"><b>3.5g</b><span>용량</span></div>
+                  <div class="f"><b>4종</b><span>마무리 타입</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="approve-slot">
+              <div class="lbl">⌗ 클라이언트 승인 문구 입력란</div>
+              <div class="txt">성분·효능·지속력 카피는 클라이언트 법무 승인 최종본을 그대로 배치 (계약 부속서 명시)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>설계 포인트</h3>
+        <ul>
+          <li data-n="1"><b>정보 위계 설계</b> — 컬러→텍스처→팩트 순서로 구매 동선을 규격화. "문구를 쓴 게 아니라 보는 순서를 설계."</li>
+          <li data-n="2"><b>마스터 템플릿화</b> — 신제품·신호수는 색·텍스트만 교체. 페이지 통째 재제작 불필요.</li>
+          <li data-n="3"><b>승인 문구 입력란</b> — 효능 카피 책임을 구조적으로 클라이언트로 분리(계약 부속서 동봉).</li>
+        </ul>
+        <div class="benefit">클라이언트 편익 → <b>정보 즉시 인지로 전환율↑ · 출시 리드타임·재제작 관리비↓</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="compare">
+    <h3>두 페이지의 역할 분담 (패키지 제안 구조)</h3>
+    <table class="ctable">
+      <tr><th>구분</th><th>① 컬러칩 퍼스트</th><th>② 스펙 카드 시스템</th></tr>
+      <tr><td class="role">역할</td><td><b>고르게 하는 페이지</b> (기능)</td><td><b>사게 하는 페이지</b> (전환·운영)</td></tr>
+      <tr><td class="role">핵심 가치</td><td>색 매칭 즉시 해소</td><td>정보 위계 + 재제작 효율</td></tr>
+      <tr><td class="role">매출 기여</td><td>전환율 ↑ (이탈 감소)</td><td>전환율 ↑ · 출시 리드타임/관리비 ↓</td></tr>
+      <tr><td class="role">제작 자산</td><td>호수 카드 마스터 템플릿</td><td>스펙 카드(컬러·텍스처·팩트) 모듈 키트</td></tr>
+      <tr><td class="role">검증 점수</td><td><b>83 / 100</b></td><td><b>82 / 100</b></td></tr>
+    </table>
+  </div>
+  <div class="foot">브레인스토머 발산 → 냉정한 비평가 검증(3R) 통과안 · 와이어프레임은 레이아웃 설계 기준이며 실제 컬러값/촬영컷은 클라이언트 제공 자산으로 대체</div>
+</div>
+</body>
+</html>
