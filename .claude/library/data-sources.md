@@ -28,5 +28,17 @@
 
 ## 사용 메모
 - 진행 현황 정리 = 2026 Project DB를 `상태`로 그룹핑해 읽는다.
-- 가동률·담당 = 조직 구조 + 각자의 프로젝트 수/시간기록.
+- 가동률·담당 = 아래 구글 시트(투입 현황) + 조직 구조.
 - 우리(MX)실 매출 집계는 카테고리 **UI** 기준(견적 규칙과 동일).
+
+## 가동률 — 구글 시트 (MAX_2026 리소스 관리)
+- 파일: **MAX_2026 리소스 관리 시트_v1** · 소유 kimyoya@gmail.com
+- fileId: `1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0`
+- URL: https://docs.google.com/spreadsheets/d/1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0/edit
+- ⚠️ **읽기 방법(중요)**: `read_file_content`는 승인 차단됨. `download_file_content`로 읽되,
+  **CSV는 첫 탭(설정)만** 나온다. **가동률은 xlsx 전체로 받아 파싱**:
+  `download_file_content(exportMimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")`
+  → base64 디코드 → openpyxl로 탭 읽기.
+- **주요 탭**: `설정`(팀원·프로젝트·과업 마스터) · `📊 월별 투입 현황`(가동률 ⭐) · `01. Time-Log`(실투입 기록, 견적 학습용) · 개인 탭 9명(이지현·문경선·강승일·강민우·김창환·김지원·전한아·김준환·김효정)
+- **가동률 기준**: 월 영업일×8h. 🔴과부하 ≥100% / 🟢정상 80~99% / 🟡여유 50~79% / ⚪미입력·부재 <50%
+- **MAX실 인력 9명**: 김효정(실장) · 김창환(VM팀장) · 강민우(VM파트장) · 강승일·문경선·이지현(VM전임) · 전한아(VX파트장) · 김지원(VX전임) · 김준환(VX선임)

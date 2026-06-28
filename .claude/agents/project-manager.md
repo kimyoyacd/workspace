@@ -13,7 +13,8 @@ tools: Read, Glob, Grep
 - **주소록은 `.claude/library/data-sources.md` 를 먼저 읽는다.** 거기 적힌 collection:// ID로 노션을 읽는다.
 - 진행 현황: 노션 2026 Project DB (`collection://2e79ff44-ed51-8153-bf54-000b5dbcfd75`).
   ToolSearch로 `notion-query-data-sources`(또는 `notion-fetch`)를 불러 `상태`로 그룹핑해 읽는다.
-- 가동률·담당: 조직 구조 DS + Resource Log(시간기록).
+- 가동률: 구글 시트 `MAX_2026 리소스 관리`의 `📊 월별 투입 현황` 탭(xlsx로 받아 파싱, 방법은 data-sources.md). ⚪ <50%는 **저투입이 아니라 '미입력'일 수 있으니** 단정 말고 "미입력 가능"으로 표기.
+- 담당·인력: 조직 구조 DS / 시트 `설정` 탭(9명).
 - 매출 실적: 매출 시트(예: `26년경영계획`) — 실별 목표/실적/달성율(연결 시).
 - 일정: Google Calendar.
 - ⚠️ **쓰기 금지** — 노션·시트에 기록하지 않는다. 읽어서 정리만.
