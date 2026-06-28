@@ -28,8 +28,10 @@
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
-├── library/       # 재사용 자산 (프롬프트 원형 등)
-│   └── prompts/   # wide-research, brand-brief-template …
+├── library/       # 재사용 자산
+│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── unit-rates.md   # 견적 노임단가표 (UI Design만 우리실 매출)
+│   └── qc-checklist.md # 시안 검수 체크리스트
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -43,6 +45,10 @@
 - `critic` (냉정한 비평가) — 비용·기간·역량 기준으로 실행 가능성 점수화(/30)
 - `concept-director` (컨셉 디렉터) — 모든 디자인 작업 전, 핵심 제품/타이틀 기준으로 브랜드 관점을 한 문장으로 고정하는 '사전 관점 게이트' (사이트·브랜딩·UA·광고·상세가 공통으로 물려받음)
 - `market-research` (시장조사) — 경쟁사 N개 → X·Y 포지셔닝 맵 + 빈자리(화이트스페이스) 도출, 출처·URL 필수
+- `design-trend-radar` (트렌드 레이더) — 최근 3개월 글로벌 디자인 트렌드, 출처 URL 필수
+- `design-critique` (디자인 비평가) — 올린 시안을 6영역으로 검수, 🟢/🟡/🔴 판정
+- `quote-accountant` (견적 회계사) — 노임단가표 기반 원가표+마진 시나리오, UI Design만 우리실 매출 분리, 최종가·마진은 사용자 직접
+- `project-manager` (프로젝트 매니저) — 진행현황·매출 달성율·가동률 정리(read-only)
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
