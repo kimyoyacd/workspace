@@ -160,16 +160,27 @@
 - → **적용**: 웨이크메이크 제품컷·연출컷을 **신규 촬영 없이** 일관된 구도·조명으로 양산. 호수가 늘어도
   동일 프레임워크로 합성 → §5 제작 실무의 모델·소품 실비/촬영 부담을 구조적으로 절감.
 
-### 8-2. Manus 2차 — 에디토리얼 무드보드 톤 발산
+### 8-2. Manus 2차 — 브랜드 디자인 제안서 3단계 프로세스 (정정)
 
-**(1) Best Use / Core Direction 먼저 고정** 후 단계별 프롬프트(리서치 기반)로 무드를 발산.
+> ⚠️ 이전 판의 "무드보드 톤 7종"은 **오독**이었다. 고해상도 확인 결과 **서로 다른 두 세트**다.
+> 전체 프롬프트 원형은 `library/prompts/brand-design-proposal.md` + `persona-directives.md`.
 
-**(2) 비주얼 톤 컨셉 7종 (방향성 카드)** — 키비주얼 톤을 고를 때 후보군으로 사용:
-- **Curated Chaos** (정제된 혼돈) · **Immersive Worlds** (몰입 세계) · **Street Pulse** (스트리트 감각)
-- **Cycle of Scenes** (장면 순환) · **Raw Meets Refined** (날것×정제) · **Living Archive** (살아있는 아카이브)
-- **Brutalist Framework** (브루탈리스트 구조)
-- → **적용**: 웨이크메이크 키비주얼 톤을 위 7종 중 **2~3개로 압축 제시**해 클라이언트와 방향 합의.
-  '그릇 컨셉(케어×색)' 정서에는 *Raw Meets Refined* / *Living Archive* 계열이 1차 후보.
+**프로세스 = 0~3단계 '브랜드 디자인 제안서' 생성**
+- **0단계** 브랜드 기본 정보(빈칸 브리프, 5필드)
+- **1단계** Wide research(30개→8속성→**3그룹 분류**)
+- **2단계** 포지셔닝 지도(XY축 + 3 인사이트 기반 전략 도출)
+- **3단계** 브랜딩 전략 산출(전략명+정의+설명+REFERENCE+적용)
+
+**두 개의 3종 세트 (혼동 주의)**
+| 구분 | 정체 | 항목 |
+|---|---|---|
+| **1단계 분류 3그룹** (Category A/B/C) | 리서치 인사이트 묶음 | Curated Chaos · Immersive Worlds · Street Pulse |
+| **3단계 도출 전략 3개** (Strategy 1/2/3) | 적용 브랜딩 전략 | Cycle of Scenes · Raw Meets Refined · Living Archive |
+
+(+ 원문에 Brutalist Framework 등 추가 전략 존재, 본문 미확보)
+
+- → **적용**: 웨이크메이크 키비주얼 톤 후보는 **3단계 전략 포맷**(정의+REFERENCE+적용)으로 2~3개 압축 제시.
+  '그릇 컨셉(케어×색)' 정서에는 *Raw Meets Refined* 계열이 1차 후보.
 
 ### 8-3. Runable 3차 — 브랜드 시스템 풀 빌드 (에디토리얼 산출 구조)
 
