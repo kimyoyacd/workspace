@@ -28,6 +28,8 @@
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
+├── library/       # 재사용 자산 (프롬프트 원형 등)
+│   └── prompts/   # wide-research, brand-brief-template …
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -37,8 +39,10 @@
 - 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
 
 ## 현재 등록된 에이전트
-- `brainstormer` (브레인스토머) — 아이디어를 긍정적으로 폭넓게 발산
+- `brainstormer` (브레인스토머) — 아이디어를 긍정적으로 폭넓게 발산 + 방향별 키워드·약식 포지셔닝 축
 - `critic` (냉정한 비평가) — 비용·기간·역량 기준으로 실행 가능성 점수화(/30)
+- `concept-director` (컨셉 디렉터) — 모든 디자인 작업 전, 핵심 제품/타이틀 기준으로 브랜드 관점을 한 문장으로 고정하는 '사전 관점 게이트' (사이트·브랜딩·UA·광고·상세가 공통으로 물려받음)
+- `market-research` (시장조사) — 경쟁사 N개 → X·Y 포지셔닝 맵 + 빈자리(화이트스페이스) 도출, 출처·URL 필수
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
