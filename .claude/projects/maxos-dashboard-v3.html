@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>MAX실 OS Dashboard v3 — 실제 현황</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#FAFAF7; --card:#fff; --ink:#141414; --ink2:#4A4944; --ink3:#8A8780;
+  --line:#E8E5DE; --line2:#F1EEE7; --accent:#FF6B35; --sig:#2F3E5F; --sig-soft:#EEF1F7;
+  --ok:#2D7A4F; --ok-soft:#E5F2E9; --warn:#C77A0F; --warn-soft:#FFF6E5; --danger:#B23B3B;
+}
+html,body{background:#fff;margin:0;padding:0;}
+*{box-sizing:border-box;}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);font-size:13px;line-height:1.6;background:var(--bg);}
+.wrap{max-width:1180px;margin:0 auto;padding:0 0 70px;}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#161616 0%,#2A2A2A 60%,#1A1A2E 100%);color:#fff;padding:22px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.header h1{margin:0 0 3px;font-size:19px;font-weight:900;letter-spacing:-.4px;}
+.header h1 span{color:#9AA8C4;font-weight:500;}
+.header .sub{font-size:11px;color:rgba(255,255,255,.5);}
+.hstats{display:flex;gap:24px;align-items:center;}
+.hstat{text-align:center;}
+.hstat .n{font-size:23px;font-weight:900;line-height:1;}
+.hstat .l{font-size:10px;color:rgba(255,255,255,.45);margin-top:3px;letter-spacing:.3px;}
+.hdiv{width:1px;height:34px;background:rgba(255,255,255,.12);}
+
+/* NAV */
+.nav{background:var(--card);border-bottom:1px solid var(--line);padding:0 36px;display:flex;position:sticky;top:0;z-index:50;overflow-x:auto;box-shadow:0 1px 8px rgba(0,0,0,.05);}
+.tab{padding:13px 18px;font-size:12px;font-weight:600;color:var(--ink3);border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:all .2s;}
+.tab:hover{color:var(--ink);}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);}
+
+.main{padding:28px 36px 0;}
+.section{display:none;}
+.section.active{display:block;}
+.stitle{font-size:20px;font-weight:900;margin:0 0 4px;letter-spacing:-.5px;}
+.sdesc{font-size:12px;color:var(--ink3);margin:0 0 22px;}
+
+.alert{background:var(--ok-soft);border:1px solid #D4E5D9;border-left:3px solid var(--ok);border-radius:6px;padding:11px 15px;margin-bottom:22px;font-size:12px;color:var(--ink2);display:flex;gap:10px;}
+.alert.warn{background:var(--warn-soft);border-color:#F0DDB0;border-left-color:var(--warn);}
+
+/* HUB + GROUPS */
+.hub{background:linear-gradient(180deg,#161616,#2A2A2A);color:#fff;border-radius:10px;padding:15px 26px;text-align:center;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.18);margin:0 auto 4px;}
+.hub .lab{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);text-transform:uppercase;}
+.hub .nm{font-size:14px;font-weight:800;margin-top:2px;}
+.hub .sb{font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;}
+.hubwrap{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;}
+
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+.col{display:flex;flex-direction:column;}
+.colh{font-size:11px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;padding:9px 13px;border-radius:6px 6px 0 0;display:flex;justify-content:space-between;align-items:center;}
+.col-a .colh{background:#1E2A40;color:#9AA8C4;}
+.col-b .colh{background:#F2C9DF;color:#7A1F4A;}
+.col-c .colh{background:#BEDDC6;color:#1A5234;}
+.cnt{font-size:9px;font-weight:700;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.5);}
+.coltag{font-size:10px;color:var(--ink3);padding:5px 13px 9px;line-height:1.4;}
+.colbody{display:flex;flex-direction:column;gap:7px;}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:11px 12px;transition:box-shadow .15s,transform .15s;}
+.card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);transform:translateY(-1px);}
+.cnmrow{display:flex;align-items:center;gap:6px;margin-bottom:1px;flex-wrap:wrap;}
+.cnm{font-size:13px;font-weight:800;letter-spacing:-.2px;}
+.cslug{font-size:10px;color:var(--ink3);font-family:ui-monospace,monospace;margin-bottom:5px;}
+.crole{font-size:10.5px;color:var(--ink2);line-height:1.45;margin-bottom:5px;}
+.ctrig{font-size:10px;color:var(--ink3);}
+.ctrig b{color:var(--ink2);}
+.badge{font-size:8.5px;font-weight:800;padding:1px 6px;border-radius:3px;white-space:nowrap;}
+.b-ok{background:var(--ok-soft);color:var(--ok);}
+.b-run{background:#1E2A40;color:#9AA8C4;}
+.b-warn{background:var(--warn-soft);color:var(--warn);}
+.b-data{background:var(--sig-soft);color:var(--sig);}
+
+/* FLOW */
+.flow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px;}
+.flowrow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch;}
+.fstep{border-radius:7px;padding:11px 9px;text-align:center;border:1px solid var(--line2);background:var(--bg);position:relative;}
+.fstep .fn{font-size:9px;font-weight:800;color:var(--ink3);}
+.fstep .fw{font-size:11px;font-weight:800;margin:3px 0;}
+.fstep .fd{font-size:9.5px;color:var(--ink3);line-height:1.3;}
+.fstep.gate{background:#FFF7EF;border-color:#F2C9A0;}
+.fstep.user{background:#1A1A1A;color:#fff;}
+.fstep.user .fn,.fstep.user .fd{color:rgba(255,255,255,.55);}
+.arrowrow{display:flex;justify-content:space-around;color:var(--ink3);font-size:14px;margin:3px 0;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.tbl th{background:var(--bg);text-align:left;padding:9px 12px;font-size:10.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--line);}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--line2);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td b{font-weight:700;}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;}
+.d-run{background:#1E2A40;}.d-ok{background:var(--ok);}.d-warn{background:var(--warn);}
+
+/* DATA CARDS */
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:16px 18px;}
+.dcard.live{border-left:3px solid var(--ok);}
+.dcard h4{margin:0 0 6px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:7px;}
+.dcard .meta{font-size:11px;color:var(--ink3);line-height:1.6;}
+.dcard .meta code{font-size:10px;background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:3px;font-family:ui-monospace,monospace;}
+.pill{font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;}
+.pill-live{background:var(--ok-soft);color:var(--ok);}
+
+/* LIB */
+.libgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.libitem{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:10px 13px;font-size:11px;}
+.libitem b{font-family:ui-monospace,monospace;font-size:11px;}
+.libitem span{display:block;color:var(--ink3);margin-top:2px;}
+
+/* MANUAL */
+.scn{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:13px 17px;margin-bottom:9px;}
+.scn h4{margin:0 0 5px;font-size:12.5px;font-weight:800;}
+.scn p{margin:0;font-size:11.5px;color:var(--ink2);line-height:1.55;}
+.scn code{font-size:10.5px;background:var(--bg);border:1px solid var(--line);padding:1px 6px;border-radius:3px;font-family:ui-monospace,monospace;}
+
+.foot{margin-top:26px;padding:12px 16px;background:var(--sig-soft);border-left:3px solid var(--sig);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;}
+.foot b{color:var(--sig);}
+.people{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.person{font-size:10.5px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:3px 10px;}
+.person b{font-weight:700;}
+@media(max-width:900px){.groups,.dgrid,.libgrid{grid-template-columns:1fr;}.flowrow{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <h1>MAX실 OS Dashboard <span>· v3 (실제 현황)</span></h1>
+    <div class="sub">계획표(24개)가 아니라 지금 실제로 작동하는 구성 · 2026.06</div>
+  </div>
+  <div class="hstats">
+    <div class="hstat"><div class="n">8</div><div class="l">에이전트</div></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><div class="n">2</div><div class="l">데이터 연결</div></div>
+    <div class="hdiv"></div>
+    <div class="hstat"><div class="n">7</div><div class="l">라이브러리</div></div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="tab active" onclick="go('org',this)">조직도</div>
+  <div class="tab" onclick="go('flow',this)">워크플로</div>
+  <div class="tab" onclick="go('status',this)">작동 상태·데이터</div>
+  <div class="tab" onclick="go('manual',this)">사용법</div>
+</div>
+
+<div class="main">
+
+<!-- TAB 1: 조직도 -->
+<div id="s-org" class="section active">
+  <h2 class="stitle">에이전트 조직도 — 실제 8종</h2>
+  <p class="sdesc">메인 세션(허브) 아래 8개 에이전트 · 3개 그룹. v2 청사진의 24개는 계획이었고, 아래가 실제 작동 구성.</p>
+  <div class="alert"><span>✅</span><div><b>v3 = 현실 반영판.</b> 실제 파일이 있는 8개 에이전트 + 연결·검증된 데이터(노션·구글시트) 기준. 없는 박스는 그리지 않음.</div></div>
+
+  <div class="hubwrap">
+    <div class="hub"><div class="lab">MAIN SESSION</div><div class="nm">허브 (김효정 실장)</div><div class="sb">에이전트 호출·결과 종합 · 최종 결정은 실장님</div></div>
+  </div>
+
+  <div class="groups">
+    <!-- A: 제안 파이프라인 -->
+    <div class="col col-a">
+      <div class="colh">제안 파이프라인<span class="cnt">4</span></div>
+      <div class="coltag">시장조사 → 관점 → 발산 → 검증</div>
+      <div class="colbody">
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">시장조사</span><span class="badge b-ok">작동</span></div>
+          <div class="cslug">market-research</div>
+          <div class="crole">경쟁사 30개 → 8속성 → 3그룹 분류 → XY 포지셔닝 맵 + 빈자리. 출처 URL 필수.</div>
+          <div class="ctrig"><b>호출:</b> "시장조사" "포지셔닝 맵"</div>
+        </div>
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">컨셉 디렉터</span><span class="badge b-run">검증됨</span></div>
+          <div class="cslug">concept-director · ★관점 게이트</div>
+          <div class="crole">모든 디자인 전, 핵심 제품/타이틀 → 관점 한 문장 고정. 사이트·브랜딩·UA·광고·상세가 공통 상속.</div>
+          <div class="ctrig"><b>호출:</b> "관점 잡아줘" "컨셉 정의"</div>
+        </div>
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">브레인스토머</span><span class="badge b-run">검증됨</span></div>
+          <div class="cslug">brainstormer</div>
+          <div class="crole">아이디어 발산(8개+) → 3방향 + 방향별 키워드 + 약식 포지셔닝 축.</div>
+          <div class="ctrig"><b>호출:</b> "아이디어 줘" "발산해줘"</div>
+        </div>
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">냉정한 비평가</span><span class="badge b-run">검증됨</span></div>
+          <div class="cslug">critic</div>
+          <div class="crole">비용·기간·역량·실현·설득력으로 실행 가능성 점수화(/100). 결함 위주.</div>
+          <div class="ctrig"><b>호출:</b> "점수 매겨줘" "현실적이야?"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B: 디자인 실무 -->
+    <div class="col col-b">
+      <div class="colh">디자인 실무<span class="cnt">2</span></div>
+      <div class="coltag">트렌드 · 시안 검수</div>
+      <div class="colbody">
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">트렌드 레이더</span><span class="badge b-ok">작동</span></div>
+          <div class="cslug">design-trend-radar</div>
+          <div class="crole">최근 3개월 글로벌 디자인 트렌드 + 우리 적용 시사점. 출처 URL 필수.</div>
+          <div class="ctrig"><b>호출:</b> "트렌드 봐줘" "요즘 뭐가"</div>
+        </div>
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">디자인 비평가</span><span class="badge b-ok">작동</span></div>
+          <div class="cslug">design-critique</div>
+          <div class="crole">올린 시안을 6영역(UI·콘텐츠·GUI·UA·상세·브랜딩)으로 검수, 🟢/🟡/🔴.</div>
+          <div class="ctrig"><b>호출:</b> "시안 검수" (시안 첨부)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C: 운영·비즈니스 -->
+    <div class="col col-c">
+      <div class="colh">운영·비즈니스<span class="cnt">2</span></div>
+      <div class="coltag">견적 · 프로젝트·매출</div>
+      <div class="colbody">
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">견적 회계사</span><span class="badge b-ok">작동</span><span class="badge b-data">단가표</span></div>
+          <div class="cslug">quote-accountant</div>
+          <div class="crole">노임단가표 기반 원가표 + 마진 시나리오(10/20/30/40%). <b>UI Design만 우리실 매출</b> 분리.</div>
+          <div class="ctrig"><b>호출:</b> "견적 뽑자" · 🚨최종가·마진은 실장님</div>
+        </div>
+        <div class="card">
+          <div class="cnmrow"><span class="cnm">프로젝트 매니저</span><span class="badge b-warn">작동·단서</span><span class="badge b-data">노션+시트</span></div>
+          <div class="cslug">project-manager</div>
+          <div class="crole">진행현황·매출 달성율·가동률·데이터오류 정리(read-only). 노션·구글시트 연결됨.</div>
+          <div class="ctrig"><b>호출:</b> "이번 주 현황" "가동률"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>MAX실 인력 9명 (노션 조직구조 기준):</b>
+    <div class="people">
+      <span class="person"><b>김효정</b> 실장</span>
+      <span class="person"><b>김창환</b> VM팀장</span>
+      <span class="person"><b>강민우</b> VM파트장</span>
+      <span class="person"><b>강승일</b> VM전임</span>
+      <span class="person"><b>문경선</b> VM전임</span>
+      <span class="person"><b>이지현</b> VM전임</span>
+      <span class="person"><b>전한아</b> VX파트장</span>
+      <span class="person"><b>김지원</b> VX전임</span>
+      <span class="person"><b>김준환</b> VX선임</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: 워크플로 -->
+<div id="s-flow" class="section">
+  <h2 class="stitle">워크플로 — 제안 파이프라인</h2>
+  <p class="sdesc">한 줄 일 시키면 이 순서로 돕니다. 실장님은 ④셀렉과 최종 결정만.</p>
+
+  <div class="flow">
+    <div class="flowrow">
+      <div class="fstep"><div class="fn">①</div><div class="fw">시장조사</div><div class="fd">경쟁 XY맵·빈자리</div></div>
+      <div class="fstep gate"><div class="fn">②</div><div class="fw">컨셉 디렉터</div><div class="fd">관점 한 문장 ★</div></div>
+      <div class="fstep"><div class="fn">③</div><div class="fw">브레인스토머</div><div class="fd">3방향+키워드</div></div>
+      <div class="fstep"><div class="fn">④</div><div class="fw">냉정한 비평가</div><div class="fd">점수/100</div></div>
+      <div class="fstep user"><div class="fn">⑤</div><div class="fw">실장님</div><div class="fd">셀렉·결정</div></div>
+    </div>
+    <div style="margin-top:14px;font-size:11px;color:var(--ink3);line-height:1.7;">
+      <b style="color:var(--ink);">보조 투입:</b> 발산 직전 <code style="font-family:ui-monospace,monospace">design-trend-radar</code>로 최신 트렌드 확인 · 시안 나오면 <code style="font-family:ui-monospace,monospace">design-critique</code>로 검수 · 견적 단계 <code style="font-family:ui-monospace,monospace">quote-accountant</code> · 진행/매출은 언제든 <code style="font-family:ui-monospace,monospace">project-manager</code>.
+    </div>
+  </div>
+
+  <div class="alert"><span>🔑</span><div><b>관점 게이트가 핵심.</b> 사이트·브랜딩·UA·광고·상세가 다 달라 보여도 결국 같은 상품의 관점에서 갈라지므로, 발산·검증보다 <b>관점(②)을 먼저</b> 고정한다.</div></div>
+
+  <div class="alert warn"><span>🚨</span><div><b>절대 위임 금지(실장님 직접):</b> 최종 견적가 · 마진율 선택 · 계약 날인 · 외부 발송 OK. 에이전트는 표·시나리오까지만.</div></div>
+</div>
+
+<!-- TAB 3: 작동 상태·데이터 -->
+<div id="s-status" class="section">
+  <h2 class="stitle">작동 상태 · 데이터 연결</h2>
+  <p class="sdesc">2026.06 기준. 🔵 검증됨(이미 실행) · 🟢 작동 가능 · 🟡 작동(단서).</p>
+
+  <table class="tbl" style="margin-bottom:24px;">
+    <tr><th>에이전트</th><th>상태</th><th>쓰는 자료</th><th>비고</th></tr>
+    <tr><td><b>brainstormer</b></td><td><span class="dot d-run"></span>검증됨</td><td>—</td><td>웨이크메이크 3회 실행</td></tr>
+    <tr><td><b>critic</b></td><td><span class="dot d-run"></span>검증됨</td><td>—</td><td>점수화 여러 번 실행</td></tr>
+    <tr><td><b>concept-director</b></td><td><span class="dot d-run"></span>검증됨</td><td>brand-brief · persona-directives</td><td>"색은 깨우는 것" 관점 도출</td></tr>
+    <tr><td><b>market-research</b></td><td><span class="dot d-ok"></span>작동 가능</td><td>wide-research</td><td>웹검색 기반</td></tr>
+    <tr><td><b>design-trend-radar</b></td><td><span class="dot d-ok"></span>작동 가능</td><td>—</td><td>웹검색 기반</td></tr>
+    <tr><td><b>design-critique</b></td><td><span class="dot d-ok"></span>작동 가능</td><td>qc-checklist</td><td>시안 첨부 시</td></tr>
+    <tr><td><b>quote-accountant</b></td><td><span class="dot d-ok"></span>작동 가능</td><td>unit-rates</td><td>직군·M/M·참여율 입력 시</td></tr>
+    <tr><td><b>project-manager</b></td><td><span class="dot d-warn"></span>작동·단서</td><td>노션 DB · 구글시트</td><td>데이터 검증됨. 독립 실행 시 도구 보강 필요</td></tr>
+  </table>
+
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;">연결된 데이터 소스</h3>
+  <div class="dgrid">
+    <div class="dcard live">
+      <h4>📋 노션 2026 Project DB <span class="pill pill-live">LIVE</span></h4>
+      <div class="meta">
+        진행현황·달성율·데이터오류. 라이브 쿼리 14건 조회 확인.<br>
+        <code>collection://2e79ff44-…bf54</code><br>
+        상태: 진행중·진행예정·완료 등 11종 / 카테고리: UI·Motion·AI 등
+      </div>
+    </div>
+    <div class="dcard live">
+      <h4>📊 구글시트 가동률 <span class="pill pill-live">LIVE</span></h4>
+      <div class="meta">
+        MAX_2026 리소스 관리 시트_v1. xlsx 다운로드로 파싱.<br>
+        탭: 📊월별 투입 현황 · 01.Time-Log · 개인 9명<br>
+        🔴≥100% / 🟢80~99% / 🟡50~79% / ⚪&lt;50%
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:24px 0 12px;">라이브러리 (에이전트가 꺼내 쓰는 자료) · 7</h3>
+  <div class="libgrid">
+    <div class="libitem"><b>prompts/wide-research.md</b><span>경쟁 30개 리서치 프롬프트</span></div>
+    <div class="libitem"><b>prompts/brand-brief-template.md</b><span>브랜드 기본정보 5필드</span></div>
+    <div class="libitem"><b>prompts/brand-design-proposal.md</b><span>0~3단계 마스터 + 전략 3종</span></div>
+    <div class="libitem"><b>prompts/persona-directives.md</b><span>페르소나·말투·지침</span></div>
+    <div class="libitem"><b>unit-rates.md</b><span>견적 노임단가표 · UI Design 매출 규칙</span></div>
+    <div class="libitem"><b>qc-checklist.md</b><span>시안 검수 6영역 체크</span></div>
+    <div class="libitem"><b>data-sources.md</b><span>노션·구글시트 연결 주소록</span></div>
+  </div>
+</div>
+
+<!-- TAB 4: 사용법 -->
+<div id="s-manual" class="section">
+  <h2 class="stitle">사용법 — 이렇게 말하면 됩니다</h2>
+  <p class="sdesc">Claude Code(또는 이 채팅)에서 트리거를 말하면 알맞은 에이전트가 작동합니다.</p>
+
+  <div class="scn"><h4>① 제안 풀세트 → "○○ 제안 방향 잡아줘"</h4><p>시장조사 → 관점 → 발산 → 점수화가 순서대로. 실장님은 셀렉만.</p></div>
+  <div class="scn"><h4>② 관점부터 → "이 제품 관점 한 문장으로"</h4><p><code>concept-director</code>가 핵심 제품 기준 관점을 고정. 이후 모든 디자인이 상속.</p></div>
+  <div class="scn"><h4>③ 견적 → "코웨이 UI Design 고급1 3.5MM 100%, 견적 뽑아줘"</h4><p><code>quote-accountant</code>가 원가표 + 마진 시나리오 + <b>우리실 매출(UI Design분)</b> 분리. 최종가·마진은 실장님 선택.</p></div>
+  <div class="scn"><h4>④ 진행 현황 → "이번 주 현황" / "가동률"</h4><p><code>project-manager</code>가 노션·구글시트를 읽어 진행보드 + 매출 달성율 + 데이터오류 + 누가 몇% 투입을 정리.</p></div>
+  <div class="scn"><h4>⑤ 시안 검수 → "이 시안 봐줘" (첨부)</h4><p><code>design-critique</code>가 6영역으로 🟢/🟡/🔴. ⑥ "트렌드 봐줘" → <code>design-trend-radar</code>.</p></div>
+
+  <div class="foot"><b>핵심:</b> 말하기 → 에이전트가 일함 → 실장님이 최종 결정. 이 대시보드는 "무엇이 실제로 있는지" 보여주는 지도입니다.<br>경로: <code style="font-family:ui-monospace,monospace">.claude/projects/maxos-dashboard-v3.html</code></div>
+</div>
+
+</div><!-- main -->
+</div><!-- wrap -->
+
+<script>
+function go(t,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('s-'+t).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+</script>
+</body>
+</html>

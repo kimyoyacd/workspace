@@ -28,8 +28,12 @@
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
-├── library/       # 재사용 자산 (프롬프트 원형 등)
-│   └── prompts/   # wide-research, brand-brief-template …
+├── library/       # 재사용 자산
+│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
+│   ├── qc-checklist.md   # 시안 검수 체크리스트
+│   ├── data-sources.md   # 노션·구글시트 연결 주소록
+│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -38,11 +42,44 @@
 - 새 스킬: `.claude/skills/<스킬명>/SKILL.md` 형식으로 추가
 - 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
 
-## 현재 등록된 에이전트
-- `brainstormer` (브레인스토머) — 아이디어를 긍정적으로 폭넓게 발산 + 방향별 키워드·약식 포지셔닝 축
-- `critic` (냉정한 비평가) — 비용·기간·역량 기준으로 실행 가능성 점수화(/30)
-- `concept-director` (컨셉 디렉터) — 모든 디자인 작업 전, 핵심 제품/타이틀 기준으로 브랜드 관점을 한 문장으로 고정하는 '사전 관점 게이트' (사이트·브랜딩·UA·광고·상세가 공통으로 물려받음)
-- `market-research` (시장조사) — 경쟁사 N개 → X·Y 포지셔닝 맵 + 빈자리(화이트스페이스) 도출, 출처·URL 필수
+## 현재 등록된 에이전트 (24종 · 6그룹)
+**① 수주·전략**
+- `rfp-analyst` (RFP 분석가) — RFP→명시·숨은·미정의·위험 4분류 + 확인 질문
+- `market-research` (시장조사) — 경쟁사 N개 → XY 포지셔닝 맵 + 빈자리, 출처 필수
+- `concept-director` (컨셉 디렉터) — ★사전 관점 게이트: 핵심 제품/타이틀 → 관점 한 문장(전 매체 상속)
+- `brainstormer` (브레인스토머) — 발산 + 방향별 키워드·약식 포지셔닝 축
+- `critic` (냉정한 비평가) — 비용·기간·역량·실현·설득력 점수화
+
+**② 디자인 인텔리전스**
+- `design-trend-radar` (트렌드 레이더) — 최근 3개월 글로벌 트렌드, 출처 필수
+- `reference-curator` (레퍼런스 큐레이터) — 카테고리별 레퍼런스 큐레이션, 출처 필수
+- `design-system-guardian` (시스템 가디언) — 사내 디자인 시스템 준수 점검
+- `design-critique` (디자인 비평가) — 시안 6영역 검수 🟢🟡🔴
+
+**③ 디자인 생성**
+- `visual-generator` (비주얼 제너레이터) — 키비주얼·목업 이미지(Higgsfield)
+- `moodboard-builder` (무드보드 빌더) — 레퍼런스+생성 무드보드
+- `figma-bridge` (피그마 브릿지) — 코드↔Figma 양방향
+- `storyboard-maker` (스토리보드 메이커) — 영상·모션 콘티(Higgsfield)
+
+**④ 검수 게이트**
+- `fact-checker` (팩트 체커) — 사실·숫자·인용 반증 먼저
+- `review-panel` (5관점 패널) — 기획·크리에이터·사업·마케팅·B2B고객 병렬 검토
+- `delivery-gate` (딜리버리 게이트) — 라이트모드·PII·잘림 린트(발송 직전)
+- `tone-guardian` (톤 가디언) — 회신 톤·매너 교정(발송 전)
+
+**⑤ 운영·매출**
+- `project-manager` (프로젝트 매니저) — 진행현황·매출 달성율·가동률(노션·시트, read-only)
+- `quote-accountant` (견적 회계사) — 원가표+마진 시나리오, UI Design만 우리실 매출, 최종가·마진은 사용자
+- `account-radar` (어카운트 레이더) — 반복 클라 히스토리·리스크(미팅 브리핑)
+
+**⑥ 조직·채용·법무**
+- `creative-director` (크리에이티브 디렉터) — 시안 톤 최종·온보딩 팩
+- `hiring-radar` (채용 레이더) — 9→20 증원 파이프라인
+- `vendor-radar` (벤더 레이더) — 외주 풀·외주비
+- `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
+
+> 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
