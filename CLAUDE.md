@@ -91,17 +91,39 @@
 ### 트리거
 - "○○ 프로젝트 시작", "○○ 제안 준비", "○○ 상세페이지 시작" 등 신규 프로젝트 키워드
 
-### 파이프라인 A — 디자인 제안용 (상세페이지·배너·홈페이지·UI)
+### 파이프라인 A — 브랜드·디자인 제안용 (상세페이지·배너·홈페이지·UI·BX)
+
+Manus 3단계 구조를 따른다. 각 단계는 이전 단계 state(JSON)가 있어야 시작한다.
+
 ```
-1. rfp-analyst       → 과업 분해 (명시·숨은 니즈·위험)
-2. market-research   → 경쟁사 조사 + XY 포지셔닝 맵
-3. design-trend-radar → 최근 3개월 트렌드 (출처 포함)
-4. reference-curator → 카테고리별 레퍼런스 큐레이션
-5. concept-director  → 브랜드 관점 한 문장 확정
-6. brainstormer      → 방향 3안 발산
-7. critic            → 3안 점수화 (80점 기준 채택 판정)
-8. 프로젝트 노트 생성 → .claude/projects/YYYYMM_프로젝트명.md 자동 저장
+[사전]
+0. rfp-analyst       → 과업 분해 (명시·숨은 니즈·위험)
+
+[Manus 1 — 전략·리서치]
+1. market-research   → 경쟁 브랜드 30개 매트릭스 + 클러스터링
+2. concept-director  → 포지셔닝 맵 축 3안 → 추천 1안 + Strategic POV Gate
+3. brainstormer      → 시장 빈자리 + 포지셔닝 전략 초안 + 비주얼 프롬프트 팩
+                       → manus_1_state(JSON) 생성
+   ※ Gate 1 체크리스트 통과 후에만 Manus 2 진입
+
+[Manus 2 — 비주얼 아이덴티티]
+4. design-trend-radar → 비주얼 트렌드 태그(T1~T8) 클러스터 부착
+5. reference-curator → Lens Translation Gate → Visual Identity DNA 추출
+6. brainstormer      → 컨셉 6개 발산 → Client×Mood Matrix → 컨셉 쇼트리스트 2~3개
+                       → manus_2_state(JSON) 생성
+   ※ Gate 2·3 체크리스트 통과 후에만 Runable 3 진입
+
+[Runable 3 — 브랜드 시스템 + 슬라이드]
+7. concept-director  → Brand Board + Value Cards + Copy·Symbol 시스템
+8. critic            → Brand System Summary + slide_generation_ready 판단
+9. 슬라이드 덱 생성  → 35~45장 구조 + Director Final Check
+                       → 프로젝트 노트 자동 저장 (.claude/projects/YYYYMM_프로젝트명.md)
 ```
+
+> 라이브러리 파일 참조:
+> - Manus 1: `.claude/library/prompts/manus-1-brand-planning.md`
+> - Manus 2: `.claude/library/prompts/manus-2-visual-identity.md`
+> - Runable 3: `.claude/library/prompts/runable-3-brand-system.md`
 
 ### 파이프라인 B — 견적·수주용
 ```
