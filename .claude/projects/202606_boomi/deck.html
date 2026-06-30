@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Boomi — 던지면, 돌아온다</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --cream:#F7F3EA; --paper:#FBF8F1; --ink:#2E2A22; --ink2:#5E574A; --ink3:#938A78;
+  --sage:#7E9A6E; --sage-d:#5E7A52; --amber:#DD9B45; --amber-d:#C47E2C; --line:#E7E0D2;
+}
+html,body{margin:0;padding:0;background:var(--cream);}
+*{box-sizing:border-box;}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+a{color:inherit;}
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;}
+.logo .mark{width:24px;height:24px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:600;color:var(--ink2);}
+.nav-links a{text-decoration:none;}.nav-links a:hover{color:var(--amber-d);}
+@media(max-width:820px){.nav-links{display:none;}}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(160deg,#F7F3EA,#EFE8D7);}
+.hero-img{position:absolute;inset:0;}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.92;}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,243,234,.93) 0%,rgba(247,243,234,.55) 45%,rgba(247,243,234,0) 75%);}
+.hero-in{position:relative;z-index:2;}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--amber-d);text-transform:uppercase;}
+.hero h1{font-size:clamp(40px,8vw,86px);font-weight:900;letter-spacing:-.04em;line-height:.98;margin:14px 0 0;}
+.hero .tag{font-size:clamp(18px,2.4vw,26px);font-weight:700;color:var(--sage-d);margin-top:14px;letter-spacing:-.01em;}
+.hero .sub{font-size:15px;color:var(--ink2);margin-top:16px;max-width:460px;}
+.hero .meta{margin-top:26px;font-size:12px;color:var(--ink3);letter-spacing:.02em;}
+section{padding:84px 0;border-top:1px solid var(--line);}
+.sec-no{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--amber-d);text-transform:uppercase;}
+.sec-h{font-size:clamp(28px,4.5vw,46px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:10px 0 0;}
+.sec-lead{font-size:17px;color:var(--ink2);margin-top:16px;max-width:640px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:40px;}
+.grid2.rev{direction:rtl;}.grid2.rev>*{direction:ltr;}
+@media(max-width:820px){.grid2{grid-template-columns:1fr;gap:26px;}}
+.shot{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(80,60,30,.12);background:var(--paper);}
+.shot img{width:100%;height:100%;object-fit:cover;}
+.body p{margin:0 0 14px;color:var(--ink2);}.body p strong{color:var(--ink);}
+.kv{display:flex;flex-direction:column;gap:0;margin-top:18px;}
+.kv .row{display:grid;grid-template-columns:96px 1fr;gap:14px;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line);}
+.kv .row .k{font-weight:800;color:var(--ink3);font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+.rgroups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+@media(max-width:820px){.rgroups{grid-template-columns:1fr;}}
+.rcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;}
+.rcard .tagn{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--amber-d);text-transform:uppercase;}
+.rcard h4{margin:6px 0 8px;font-size:17px;font-weight:900;letter-spacing:-.01em;}
+.rcard p{margin:0;font-size:13px;color:var(--ink2);}
+.rcard .brands{margin-top:10px;font-size:11px;color:var(--ink3);}
+.map{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;}
+.map-grid{position:relative;height:300px;border-left:2px solid var(--line);border-bottom:2px solid var(--line);margin:24px 30px;}
+.map .axl{position:absolute;font-size:11px;font-weight:700;color:var(--ink3);}
+.dotb{position:absolute;transform:translate(-50%,50%);font-size:11px;font-weight:700;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 9px;white-space:nowrap;}
+.dotb.ws{background:var(--amber);color:#fff;border-color:var(--amber);font-weight:800;}
+.trap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+@media(max-width:760px){.trap{grid-template-columns:1fr;}}
+.trap .t{border-radius:14px;padding:18px;font-size:13px;line-height:1.6;}
+.trap .opp{background:#EAF1E4;border:1px solid #CFE0C2;}
+.trap .risk{background:#FBEFD9;border:1px solid #EED9B0;}
+.trap .t b{display:block;margin-bottom:6px;font-size:13px;}
+.idgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:36px;}
+@media(max-width:820px){.idgrid{grid-template-columns:1fr;}}
+.idcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;}
+.idcard h4{margin:0 0 12px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;}
+.sw{flex:1;min-width:70px;border-radius:11px;height:86px;display:flex;align-items:flex-end;padding:8px;font-size:10px;font-weight:700;color:#fff;}
+.type-spec{font-size:13px;color:var(--ink2);}
+.type-spec .big{font-size:38px;font-weight:900;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-bottom:6px;}
+.mark-demo{display:flex;align-items:center;justify-content:center;height:100px;}
+.ctx{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:36px;}
+@media(max-width:820px){.ctx{grid-template-columns:1fr;}}
+.ctx .big-shot{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(80,60,30,.12);}
+.ctx .stack{display:flex;flex-direction:column;gap:18px;}
+.ctx .note{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;font-size:14px;color:var(--ink2);}
+.ctx .note b{color:var(--ink);}
+.summary{text-align:center;padding:100px 0;background:linear-gradient(160deg,#EFE8D7,#F7F3EA);border-top:1px solid var(--line);}
+.summary h2{font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:-.03em;margin:0 0 18px;}
+.summary p{font-size:17px;color:var(--ink2);max-width:580px;margin:0 auto;}
+.foot{padding:34px 0;text-align:center;font-size:12px;color:var(--ink3);border-top:1px solid var(--line);}
+.foot code{background:var(--paper);border:1px solid var(--line);padding:1px 6px;border-radius:4px;font-family:ui-monospace,monospace;}
+.disc{margin-top:8px;font-size:11px;color:var(--ink3);}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <div class="logo">
+    <svg class="mark" viewBox="0 0 24 24" fill="none"><path d="M3 16C3 9 8 4 14 5c5 1 7 6 5 9-2 2.5-6 2-7-1" stroke="#DD9B45" stroke-width="2.4" stroke-linecap="round"/><circle cx="5" cy="18" r="2" fill="#7E9A6E"/></svg>
+    Boomi
+  </div>
+  <div class="nav-links">
+    <a href="#research">리서치</a><a href="#idea">아이디어</a><a href="#product">제품</a>
+    <a href="#identity">아이덴티티</a><a href="#mascot">캐릭터</a><a href="#store">스토어</a>
+  </div>
+</div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260630_124440_3b710bf8-1929-49a0-9040-33a53c026cac.png" alt="Boomi key visual"></div>
+  <div class="wrap hero-in">
+    <div class="eyebrow">Boomi · Premium Eco Boomerang for Kids</div>
+    <h1>던지면,<br>돌아온다.</h1>
+    <div class="tag">부메랑은 돌아온다 — 놀이도, 마음도.</div>
+    <p class="sub">전자가 들어가지 않는 순수한 야외 놀이. 바이오 소재 부메랑과 다정한 정령 친구가 함께하는 프리미엄 키즈 브랜드.</p>
+    <div class="meta">리서치 → 제품 → 아이덴티티 → 캐릭터 → 공간까지, 하나의 다정한 세계</div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<section id="research"><div class="wrap">
+  <div class="sec-no">00 — Research</div>
+  <h2 class="sec-h">시장엔 '디자인된 부메랑'이<br>없었다.</h2>
+  <p class="sec-lead">부메랑 시장은 <strong>장인 공방(투박·고성능)</strong>과 <strong>저가 노벨티(관광·기념품)</strong>로 양극화돼 있다. 그 사이, 친환경·디자인을 갖춘 <strong>프리미엄 라이프스타일 브랜드</strong>가 사실상 비어 있다. 그 빈자리가 Boomi의 출발점이다.</p>
+  <div class="rgroups">
+    <div class="rcard"><div class="tagn">Group A</div><h4>장인 공방</h4><p>진짜 돌아오는 비행 성능·수공·정통성이 가치. 그러나 브랜드 세계관·디자인이 없다.</p><div class="brands">Colorado · Rangs · 원주민 공예</div></div>
+    <div class="rcard"><div class="tagn">Group B</div><h4>저가 노벨티</h4><p>EVA폼·관광 기념품 — 싸고 흔하고, 브랜드 충성도가 없다.</p><div class="brands">노브랜드 · 기념품 부메랑</div></div>
+    <div class="rcard"><div class="tagn">Group C</div><h4>컨셔스 프리미엄 (인접)</h4><p>친환경·발달·디자인이 강하다. 그러나 '야외에서 날려 잡는 액티브 비행'은 영역 밖(실내·정적).</p><div class="brands">PlanToys · Grimm's · Lalo</div></div>
+  </div>
+
+  <div class="map">
+    <div style="font-size:12px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;">포지셔닝 맵</div>
+    <div class="map-grid">
+      <span class="axl" style="top:-22px;left:50%;transform:translateX(-50%);">디자인·세계관 ▲</span>
+      <span class="axl" style="bottom:-22px;left:50%;transform:translateX(-50%);">투박·전통</span>
+      <span class="axl" style="left:-18px;bottom:-34px;">◀ 기능·성능</span>
+      <span class="axl" style="right:-18px;bottom:-34px;">안심·정서 ▶</span>
+      <span class="dotb" style="left:78%;top:22%;">컨셔스 프리미엄(C)</span>
+      <span class="dotb" style="left:18%;bottom:14%;">장인 공방(A)</span>
+      <span class="dotb" style="left:60%;bottom:12%;">저가 노벨티(B)</span>
+      <span class="dotb ws" style="left:55%;top:50%;">◇ 빈자리 = Boomi</span>
+    </div>
+    <p style="font-size:13px;color:var(--ink2);margin:8px 4px 0;"><strong>빈자리</strong>: 비행 성능(A) × 프리미엄 디자인 세계관(C)을 한 몸에 가진 부메랑 브랜드가 없다.</p>
+  </div>
+
+  <div class="trap">
+    <div class="t opp"><b>🟢 기회</b>장인 진영은 디자인에 투자할 동기·역량이 없어 비웠다. 17년 디자인 역량으로 정확히 채울 자리.</div>
+    <div class="t risk"><b>🟡 함정(정직하게)</b>"프리미엄 부메랑"의 절대 수요는 미검증. 부메랑은 습득 난이도·안전 우려가 있어, <b>플라잉 토이(디스크·글라이더)로의 확장</b>을 함께 저울질한다.</div>
+  </div>
+</div></section>
+
+<!-- IDEA -->
+<section id="idea"><div class="wrap">
+  <div class="sec-no">01 — The Idea</div>
+  <h2 class="sec-h">'기능'이 아니라<br>'돌아옴'을 판다.</h2>
+  <p class="sec-lead">Boomi는 전자가 없는 부메랑이다. 부메랑의 단 하나뿐인 마법 — <strong>던진 만큼 돌아온다</strong> — 을 그대로 브랜드 코어로 삼았다. 멀어졌다 돌아오는 그 곡선이 곧 <strong>놀이의 기쁨, 아이와 부모의 시간이 되돌아오는</strong> 이야기다.</p>
+  <div class="kv" style="max-width:640px;">
+    <div class="row"><span class="k">Core</span><span>회귀(回歸) = 관계. 던진 만큼 돌아오는 놀이.</span></div>
+    <div class="row"><span class="k">Target</span><span>아이(손맛·성취) + 보호자(안심·스크린 탈피). 결정자는 보호자.</span></div>
+    <div class="row"><span class="k">차별</span><span>전자·화면 없는 순수 야외 놀이 + 디자인된 프리미엄 — 시장의 빈자리.</span></div>
+  </div>
+</div></section>
+
+<!-- PRODUCT -->
+<section id="product"><div class="wrap">
+  <div class="sec-no">02 — Product Design</div>
+  <h2 class="sec-h">전자 없는 부메랑.<br>순수한 던지기의 손맛.</h2>
+  <div class="grid2">
+    <div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260630_123748_52ce0fab-db61-4afd-bc4d-173520e6d906.png" alt="Boomi product"></div>
+    <div class="body">
+      <p>본체는 <strong>전기가 들어가지 않는다.</strong> 옥수수 전분계 바이오 소재로 가볍고 무르게 — 얼굴로 돌아와도 안전하게. 센서·배터리·전자폐기물이 없다.</p>
+      <p>부모가 야외 장난감을 사는 진짜 이유는 <strong>'스크린에서 벗어나기'</strong>. Boomi는 그 본능을 정면으로 끌어안는다. 화면도, 앱도, 충전도 없이 — 던지고 받는 신체 놀이 그 자체.</p>
+      <div class="kv">
+        <div class="row"><span class="k">소재</span><span>바이오 플라스틱 / 우드 그레인 · 무전원</span></div>
+        <div class="row"><span class="k">구조</span><span>3-blade 소프트 라운드 (어린이 안전 형상, 복귀 난이도↓)</span></div>
+        <div class="row"><span class="k">놀이</span><span>화면·앱·충전 없음 — 순수 야외 신체놀이</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- IDENTITY -->
+<section id="identity"><div class="wrap">
+  <div class="sec-no">03 — Visual Identity</div>
+  <h2 class="sec-h">회귀 궤적이 곧 로고다.</h2>
+  <p class="sec-lead">던졌다 돌아오는 부메랑의 곡선 — 이 <strong>회귀 궤적</strong>이 모든 매체를 관통하는 그래픽 DNA다. 끊기지 않고 손으로 되돌아오는 열린 곡선이 심볼이 된다.</p>
+  <div class="idgrid">
+    <div class="idcard">
+      <h4>Symbol — 회귀 궤적</h4>
+      <div class="mark-demo"><svg viewBox="0 0 120 80" width="150"><path d="M12 64C12 30 40 14 70 20c26 5 34 30 22 44-12 13-32 8-37-6" stroke="#DD9B45" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="16" cy="70" r="6" fill="#7E9A6E"/></svg></div>
+      <p class="type-spec">손 → 하늘 → 다시 손. 닫히는 루프 = 되돌아오는 관계.</p>
+    </div>
+    <div class="idcard">
+      <h4>Color</h4>
+      <div class="swatches">
+        <div class="sw" style="background:#7E9A6E">Sage<br>#7E9A6E</div>
+        <div class="sw" style="background:#DD9B45">Amber<br>#DD9B45</div>
+        <div class="sw" style="background:#EFE8D7;color:#5E574A">Cream<br>#EFE8D7</div>
+      </div>
+      <p class="type-spec" style="margin-top:14px;">햇빛(앰버)·자연(세이지)·종이결(크림). 자극적 네온을 피한 자연주의 프리미엄.</p>
+    </div>
+    <div class="idcard">
+      <h4>Typography</h4>
+      <div class="type-spec"><div class="big">Boomi</div>둥근 산세리프 — 아이 친화 + 보호자 가독. 부드러운 곡선이 부메랑 궤적과 공명.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- MASCOT -->
+<section id="mascot"><div class="wrap">
+  <div class="sec-no">04 — Character</div>
+  <h2 class="sec-h">씨앗에서 깨어난 정령.</h2>
+  <div class="grid2 rev">
+    <div class="shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260630_123750_0b8205b3-2703-44d0-a35c-1c3a0e4bea71.png" alt="Boomi mascot"></div>
+    <div class="body">
+      <p>로봇이 아니다. <strong>씨앗에서 트는 새싹 정령</strong>이다. 차가운 테크 대신 따뜻한 생명체 — 자연·야외와 교감하는 브랜드의 얼굴.</p>
+      <p>친환경 소재 서사를 캐릭터가 직접 품는다. 항상 <strong>긍정·격려</strong> 톤의 다정한 짝꿍으로, 굿즈·패키지·사인까지 일관되게 확장한다.</p>
+      <div class="kv">
+        <div class="row"><span class="k">톤</span><span>비(非)로봇 · 식물 생명체 · 둥글고 무해</span></div>
+        <div class="row"><span class="k">확장</span><span>마스코트 · 굿즈 · 패키지 · 시즌 컬렉션</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- STORE -->
+<section id="store"><div class="wrap">
+  <div class="sec-no">05 — In Context & Store</div>
+  <h2 class="sec-h">곡선이 공간이 된다.</h2>
+  <p class="sec-lead">회귀 궤적을 건축으로 번역한 팝업. 무전원·자연 소재의 가치를 공간 경험으로 — 아이는 던지고, 부모는 안심하는 곳.</p>
+  <div class="ctx">
+    <div class="big-shot"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260630_123751_c1fe617f-76e9-4bc4-8da7-2d77111df860.png" alt="Boomi pop-up store"></div>
+    <div class="stack">
+      <div class="note"><b>팝업 스토어</b><br>부메랑 회귀 곡선을 그대로 아치 구조로. 따뜻한 우드·크림, 둥근 진열대.</div>
+      <div class="note"><b>확장</b><br>"던져봐. 다시 돌아올게." — 야외 배너·SNS·시즌 정령 컬렉션으로 확장.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SUMMARY -->
+<div class="summary"><div class="wrap">
+  <h2>Boomi.<br>던진 만큼, 돌아온다.</h2>
+  <p>시장 리서치의 빈자리에서 출발해, 제품·아이덴티티·캐릭터·공간까지 — 작은 부메랑 하나가 하나의 다정한 세계가 되었다.</p>
+</div></div>
+
+<div class="foot"><div class="wrap">
+  Boomi — 어린이 프리미엄 부메랑 브랜드 컨셉 쇼케이스 · 2026<br>
+  <span class="disc">방법론: Research → 관점 → 발산 → 검증 → 비주얼 · 브랜드명 'Boomi'는 컨셉용(실출시 전 상표 서치 필요) · 콘텐츠·비주얼 100% 오리지널</span>
+</div></div>
+
+</body>
+</html>
