@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>MAX실 OS v2.0 — 구현 현황</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #F5F4F0;
+      --card: #FFFFFF;
+      --border: #E5E3DD;
+      --text: #1C1C1E;
+      --text-sub: #6B6B6B;
+      --done: #10B981;
+      --done-bg: #ECFDF5;
+      --wip: #F59E0B;
+      --wip-bg: #FFFBEB;
+      --todo: #9CA3AF;
+      --todo-bg: #F3F4F6;
+      --accent: #5B4FCF;
+      --accent-bg: #EEF2FF;
+      --danger: #EF4444;
+      --font: -apple-system, 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.6; }
+
+    /* Layout */
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* Header */
+    .header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+    .header-left h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .header-left p { color: var(--text-sub); font-size: 13px; margin-top: 4px; }
+    .header-right { text-align: right; }
+    .updated { font-size: 12px; color: var(--text-sub); }
+
+    /* Overall progress */
+    .progress-bar-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }
+    .progress-bar-wrap h2 { font-size: 13px; font-weight: 600; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .prog-row { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+    .prog-label { width: 140px; font-size: 12px; color: var(--text-sub); flex-shrink: 0; }
+    .prog-bar { flex: 1; height: 8px; background: #E5E3DD; border-radius: 4px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 4px; }
+    .prog-fill.done { background: var(--done); }
+    .prog-fill.wip { background: var(--wip); }
+    .prog-count { font-size: 12px; font-weight: 600; width: 60px; text-align: right; flex-shrink: 0; }
+
+    /* Section */
+    .section { margin-bottom: 32px; }
+    .section-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .section-title span.num { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 1px 7px; }
+
+    /* Grid */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 12px; }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+    /* Card */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .card.group-header { background: var(--bg); border: 1.5px solid var(--border); }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+    .card-title { font-size: 13px; font-weight: 700; }
+    .card-sub { font-size: 12px; color: var(--text-sub); margin-top: 2px; }
+
+    /* Status badge */
+    .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+    .badge.done { background: var(--done-bg); color: #059669; }
+    .badge.wip { background: var(--wip-bg); color: #D97706; }
+    .badge.todo { background: var(--todo-bg); color: var(--todo); }
+    .badge.hold { background: #FEF3C7; color: #92400E; }
+    .badge.lock { background: #FEE2E2; color: #B91C1C; }
+
+    /* Agent list in group card */
+    .agent-list { list-style: none; }
+    .agent-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border); }
+    .agent-item:first-child { border-top: none; padding-top: 0; }
+    .agent-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .agent-dot.done { background: var(--done); }
+    .agent-dot.wip { background: var(--wip); }
+    .agent-dot.todo { background: var(--todo); }
+    .agent-slug { font-size: 12px; font-weight: 600; font-family: 'SF Mono', monospace; color: var(--accent); width: 160px; flex-shrink: 0; }
+    .agent-desc { font-size: 12px; color: var(--text-sub); line-height: 1.4; }
+    .agent-note { font-size: 11px; color: var(--wip); margin-top: 2px; }
+
+    /* SoT table */
+    .sot-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .sot-table th { text-align: left; padding: 8px 12px; background: var(--bg); color: var(--text-sub); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); }
+    .sot-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .sot-table tr:last-child td { border-bottom: none; }
+    .sot-table .file { font-family: 'SF Mono', monospace; font-size: 11px; color: var(--accent); }
+    .sot-table .note { font-size: 11px; color: var(--text-sub); }
+    .sot-table .missing { font-size: 11px; color: var(--wip); }
+
+    /* Trigger card */
+    .trigger-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 12px; }
+    .trigger-row:first-child { border-top: none; padding-top: 0; }
+    .trigger-time { font-weight: 600; color: var(--accent); width: 110px; flex-shrink: 0; }
+    .trigger-desc { flex: 1; color: var(--text-sub); }
+
+    /* Legend */
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-sub); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* Footer */
+    .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-left { font-size: 12px; color: var(--text-sub); }
+    .footer-right { font-size: 12px; color: var(--text-sub); }
+    .count-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--accent-bg); color: var(--accent); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+
+    /* Rule callout */
+    .rule-callout { background: #FEF9F0; border: 1px solid #FDE68A; border-radius: 10px; padding: 14px 18px; font-size: 12px; }
+    .rule-callout h3 { font-size: 12px; font-weight: 700; color: #92400E; margin-bottom: 8px; }
+    .rule-callout ul { padding-left: 16px; color: var(--text); }
+    .rule-callout li { margin-bottom: 3px; }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .agent-slug { width: 120px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>MAX실 OS v2.0 — 구현 현황 대시보드</h1>
+      <p>대시보드 설계 → 실물 파일 구현 진행 현황 / kimyoyacd/workspace · .claude/</p>
+    </div>
+    <div class="header-right">
+      <div class="updated">마지막 업데이트: 2026-06-30</div>
+      <div style="margin-top:6px; display:flex; gap:6px; justify-content:flex-end; flex-wrap:wrap;">
+        <span class="count-badge">에이전트 24/25</span>
+        <span class="badge done">라우터 ✅</span>
+        <span class="badge wip">SoT 진행중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--done)"></div> 완료</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--wip)"></div> 진행중 / 부분완료</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--todo)"></div> 미시작</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#92400E"></div> 적용보류</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap">
+    <h2>전체 진행률</h2>
+    <div class="prog-row">
+      <div class="prog-label">에이전트 (24개)</div>
+      <div class="prog-bar"><div class="prog-fill done" style="width:100%"></div></div>
+      <div class="prog-count" style="color:var(--done)">24/24 ✅</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">CLAUDE.md 라우터</div>
+      <div class="prog-bar"><div class="prog-fill done" style="width:100%"></div></div>
+      <div class="prog-count" style="color:var(--done)">완료 ✅</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">SoT 라이브러리</div>
+      <div class="prog-bar"><div class="prog-fill wip" style="width:55%"></div></div>
+      <div class="prog-count" style="color:var(--wip)">6/11 🔄</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">스킬 등록</div>
+      <div class="prog-bar"><div class="prog-fill done" style="width:100%"></div></div>
+      <div class="prog-count" style="color:var(--done)">4/4 ✅</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">자동 트리거</div>
+      <div class="prog-bar"><div class="prog-fill done" style="width:60%"></div></div>
+      <div class="prog-count" style="color:#92400E">설계완료·보류</div>
+    </div>
+  </div>
+
+  <!-- Section 1: CLAUDE.md -->
+  <div class="section">
+    <div class="section-title"><span class="num">0</span> CLAUDE.md 허브 라우터</div>
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">MAX실 OS 허브 라우터 (83줄 / ≤100 캡)</div>
+          <div class="card-sub">사용자 프로필 · 3모드 · 24에이전트 라우팅맵 · 7개 위임금지 · DoD 티어 · 스킬 등록</div>
+        </div>
+        <span class="badge done">완료</span>
+      </div>
+      <div class="rule-callout">
+        <h3>🚨 안전 불변규칙 (operating-rules.md 상세)</h3>
+        <ul>
+          <li>자동 발송/게시 절대 금지 · HTML 라이트모드 3종 필수</li>
+          <li>미확인 사실·숫자 금지 · 민감정보 노출 금지 · 시트·DB 쓰기 금지</li>
+          <li>7개 절대 위임금지: 최종견적가·마진율·계약날인·단가협상·인사평가·채용해고·외부발송OK</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Agents -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 에이전트 24개 · 7그룹 <span style="font-weight:400;color:var(--text-sub);font-size:13px;">.claude/agents/</span></div>
+    <div class="grid-3">
+
+      <!-- Group 1 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">① CD·실운영</div>
+          <span class="badge done">4/4</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">creative-director</div>
+            <div class="agent-desc">시안 톤·퀄리티 가디언, 신규/외주 온보딩</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">max-pm</div>
+            <div class="agent-desc">MAX실 9명 가동률·운영 종합 (Notion read-only)</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">overhead-watcher</div>
+            <div class="agent-desc">CR·피드백·야근 KPI → FTE 환산·채용 근거</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">account-radar</div>
+            <div class="agent-desc">반복 클라(넷마블·코웨이·아모레·하이브) 레이더</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">② 디자인 인텔리전스</div>
+          <span class="badge done">4/4</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">design-trend-radar</div>
+            <div class="agent-desc">글로벌 트렌드 3개월 이내 강제·6영역 필터</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">reference-curator</div>
+            <div class="agent-desc">클라/카테고리별 레퍼런스 풀 SoT 큐레이션</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">design-system-guardian</div>
+            <div class="agent-desc">사내 디자인 시스템 표준 가디언·온보딩</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">design-critique</div>
+            <div class="agent-desc">6영역(UI·콘텐츠·GUI·UA·상세·브랜딩) 비평</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 3 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">③ 수주·견적</div>
+          <span class="badge done">3/3</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">rfp-analyst</div>
+            <div class="agent-desc">RFP → 명시·숨은·미정의·위험 4분류</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">market-research</div>
+            <div class="agent-desc">사업 관점 시장·경쟁사 조사 (출처+URL 필수)</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">quote-accountant</div>
+            <div class="agent-desc">KOSA 2026 원가표 + 할인율 시나리오. MAX실 = UI Design 라인만</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 4 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">④ 발산·기획</div>
+          <span class="badge done">2/2</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">brainstormer</div>
+            <div class="agent-desc">6관점 × 10개 후보 → 핵심 5안 발산</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">review-panel</div>
+            <div class="agent-desc">5렌즈(기획·크리에이터·사업·마케팅·B2B) 병렬 검토</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 5 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">⑤ 검수·게이트</div>
+          <span class="badge done">4/4</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">fact-checker</div>
+            <div class="agent-desc">사실·숫자·인용 refute-first 검증</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">cold-critic</div>
+            <div class="agent-desc">칭찬 없이 결함만. 🟢/🟡/🔴 판정</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">delivery-gate</div>
+            <div class="agent-desc">HTML 라이트모드·PII·텍스트잘림 결정론적 린트</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">tone-guardian</div>
+            <div class="agent-desc">회신 초안 톤·매너 컨펌·교정</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 6 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">⑥ 운영·채용·외주</div>
+          <span class="badge done">3/3</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">hiring-radar</div>
+            <div class="agent-desc">9→20 증원 파이프라인 (JD·소싱·면접·오퍼)</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">vendor-radar</div>
+            <div class="agent-desc">외주·프리랜서 풀 SoT·견적 외주비</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">legal-compliance</div>
+            <div class="agent-desc">계약·NDA 쟁점 플래그 (법무 자문 대체 아님)</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 7 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">⑦ 디자인 생성</div>
+          <span class="badge done">4/4</span>
+        </div>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">visual-generator</div>
+            <div class="agent-desc">키비주얼·스타일프레임·목업 (Higgsfield)</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">moodboard-builder</div>
+            <div class="agent-desc">컨셉별 무드보드 조합 (레퍼런스+생성)</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">figma-bridge</div>
+            <div class="agent-desc">코드 ↔ Figma 양방향·디자인 시스템 동기화</div>
+          </li>
+          <li class="agent-item">
+            <div class="agent-dot done"></div>
+            <div class="agent-slug">storyboard-maker</div>
+            <div class="agent-desc">영상·모션 스토리보드 (Higgsfield 비디오)</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 3: SoT Library -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> SoT 라이브러리 <span style="font-weight:400;color:var(--text-sub);font-size:13px;">.claude/library/</span></div>
+    <div class="card">
+      <table class="sot-table">
+        <thead>
+          <tr>
+            <th>파일</th>
+            <th>상태</th>
+            <th>내용</th>
+            <th>남은 작업</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="file">operating-rules.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">허브 3모드·안전규칙·위임금지·DoD·Notion ID·매출인식</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">automation.md</td>
+            <td><span class="badge hold">설계완료·보류</span></td>
+            <td class="note">5종 트리거 설계안 (settings.json 미적용)</td>
+            <td class="missing">실 일정 확정 후 settings.json 적용</td>
+          </tr>
+          <tr>
+            <td class="file">design-sot/brand-tone.md</td>
+            <td><span class="badge wip">진행중</span></td>
+            <td class="note">코웨이✅ 넷마블✅ 아모레🔄 하이브🔄 MAX실기본톤🔄</td>
+            <td class="missing">아모레·하이브 디자인 톤 / MAX실 회신 어조 입력 필요</td>
+          </tr>
+          <tr>
+            <td class="file">design-sot/design-philosophy.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">핵심 철학 + 3단계 파이프라인 정의 (1~3차 협업 기반)</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">design-sot/qc-checklist.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">6영역 QC 체크리스트 프레임워크</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">design-sot/design-system.md</td>
+            <td><span class="badge todo">미시작</span></td>
+            <td class="note">사내 컬러토큰·타이포·컴포넌트 표준 (placeholder)</td>
+            <td class="missing">Figma 파일 또는 직접 입력 필요</td>
+          </tr>
+          <tr>
+            <td class="file">design-sot/reference-pool.md</td>
+            <td><span class="badge todo">미시작</span></td>
+            <td class="note">클라/카테고리별 레퍼런스 풀 인덱스 (placeholder)</td>
+            <td class="missing">reference-curator 에이전트로 점진적 채우기</td>
+          </tr>
+          <tr>
+            <td class="file">quote-sot/unit-rates.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">KOSA 2026 등급별 단가 · 역할↔등급 매핑 · 제경비 110%·기술료 20%·할인율 66% (코웨이 기준) 🔒</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">quote-sot/quote-template.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">하이브랩 견적 구조 + 코웨이 BEREX 워크드 예시 (₩80M→₩23.1M) 🔒</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">project-sot/clients.md</td>
+            <td><span class="badge wip">진행중</span></td>
+            <td class="note">코웨이✅ 넷마블🔄 아모레🔄 하이브🔄 — Notion Project DB 연동</td>
+            <td class="missing">Notion 조회 또는 직접 입력 (넷마블·아모레·하이브)</td>
+          </tr>
+          <tr>
+            <td class="file">project-sot/projects.md</td>
+            <td><span class="badge done">완료</span></td>
+            <td class="note">Notion Front Office 허브 · 2026 Project DB collection:// ID · 스키마</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="file">project-sot/vendors.md</td>
+            <td><span class="badge todo">미시작</span></td>
+            <td class="note">외주·프리랜서 풀 (placeholder)</td>
+            <td class="missing">🔒 실장이 직접 입력 (이름·단가·연락처 민감정보)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 4: Skills -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 등록 스킬 <span style="font-weight:400;color:var(--text-sub);font-size:13px;">.claude/skills/</span></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">skill-creator-plan</div>
+            <div class="card-sub">1차: 브랜드 기획·리서치·포지셔닝 + 패키지 비주얼</div>
+          </div>
+          <span class="badge done">완료</span>
+        </div>
+        <div class="card-sub" style="margin-top:6px">출처: kyeongahko×Manus 1차 협업 · 트리거: "브랜드 기획서", "패키지 시안", "1차 컨셉"</div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">skill-creator-concept</div>
+            <div class="card-sub">2차: 비주얼 아이덴티티 + 컨셉/무드보드 발산</div>
+          </div>
+          <span class="badge done">완료</span>
+        </div>
+        <div class="card-sub" style="margin-top:6px">출처: kyeongahko×Manus 2차 협업 · 트리거: "컨셉 잡아줘", "무드보드 발산", "2차 컨셉"</div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">skill-creator-system</div>
+            <div class="card-sub">3차: 브랜드 시스템화·산출물 모듈 정리</div>
+          </div>
+          <span class="badge done">완료</span>
+        </div>
+        <div class="card-sub" style="margin-top:6px">출처: kyeongahko×Runable 3차 협업 · 트리거: "브랜드 시스템 정리", "가치 카드", "3차 정리"</div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">list-deck-design</div>
+            <div class="card-sub">한국어 에디토리얼 리포트 HTML (stateofaidesign.com 스타일)</div>
+          </div>
+          <span class="badge done">완료</span>
+        </div>
+        <div class="card-sub" style="margin-top:6px">트리거: "리포트로 정리", "list deck", "수치를 보기 좋게"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Triggers -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span> 자동 트리거 설계안 <span style="font-weight:400;color:var(--text-sub);font-size:13px;">보류 — library/automation.md</span></div>
+    <div class="card">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span class="badge hold">settings.json 미적용</span>
+        <span class="card-sub">설계 완료. 실 일정 확인 후 적용 필요.</span>
+      </div>
+      <div class="trigger-row">
+        <div class="trigger-time">매일 09:00</div>
+        <div class="trigger-desc">오늘보드 — max-pm → 오늘 마감·회의·결정 대기 요약</div>
+      </div>
+      <div class="trigger-row">
+        <div class="trigger-time">월요일 08:00</div>
+        <div class="trigger-desc">주간 컨닝페이퍼 — max-pm + overhead-watcher → 이번 주 가동률·이슈</div>
+      </div>
+      <div class="trigger-row">
+        <div class="trigger-time">분기 첫주 월</div>
+        <div class="trigger-desc">트렌드 스냅샷 — design-trend-radar → 6영역 최신 트렌드 요약</div>
+      </div>
+      <div class="trigger-row">
+        <div class="trigger-time">매일 18:00</div>
+        <div class="trigger-desc">결정 대기 알림 — account-radar → 클라 회신 대기·미결 항목</div>
+      </div>
+      <div class="trigger-row">
+        <div class="trigger-time">발송 직전</div>
+        <div class="trigger-desc">딜리버리 게이트 — delivery-gate → HTML 라이트모드·PII·마크업 린트</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Next -->
+  <div class="section">
+    <div class="section-title"><span class="num">5</span> 다음 작업</div>
+    <div class="grid-2">
+      <div class="card" style="border-left: 3px solid var(--wip);">
+        <div class="card-title" style="margin-bottom:8px;">🔄 SoT 실데이터 채우기</div>
+        <ul style="padding-left:16px; font-size:12px; color:var(--text-sub);">
+          <li style="margin-bottom:4px;"><strong>brand-tone.md</strong> — 아모레·하이브 디자인 톤 / MAX실 기본 어조</li>
+          <li style="margin-bottom:4px;"><strong>clients.md</strong> — 넷마블·아모레·하이브 카드 (Notion 조회 또는 직접 입력)</li>
+          <li style="margin-bottom:4px;"><strong>vendors.md</strong> — 외주·프리랜서 풀 (🔒 실장 직접 입력)</li>
+          <li style="margin-bottom:4px;"><strong>reference-pool.md</strong> — 클라/카테고리별 레퍼런스 큐레이션</li>
+          <li><strong>design-system.md</strong> — 사내 컬러토큰·타이포 (Figma 연동 또는 직접)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--todo);">
+        <div class="card-title" style="margin-bottom:8px;">⬜ 나중에 할 것</div>
+        <ul style="padding-left:16px; font-size:12px; color:var(--text-sub);">
+          <li style="margin-bottom:4px;"><strong>자동 트리거 적용</strong> — settings.json 실제 등록 (일정 확정 후)</li>
+          <li style="margin-bottom:4px;"><strong>에이전트 캡 여유</strong> — 현재 24/25, 추후 1개 추가 가능</li>
+          <li style="margin-bottom:4px;"><strong>Time-Log M/M 집계</strong> — Notion에서 작업유형별 평균 공수 자동 추출</li>
+          <li><strong>대시보드 갱신</strong> — SoT 채울 때마다 이 파일 업데이트</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">MAX실 OS v2.0 · kimyoyacd/workspace · .claude/ · GitHub branch: claude/html-agent-definitions-46vvrh</div>
+    <div class="footer-right">에이전트 캡 <strong>24/25</strong> · 신규 추가 전 캡 재점검</div>
+  </div>
+
+</div>
+</body>
+</html>
