@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Geist Sample Deck — Cloud Infra Report</title>
+<style>
+  /* ----- Geist Light tokens ----- */
+  :root {
+    --background-100: #ffffff;
+    --background-200: #fafafa;
+    --gray-100: #f2f2f2;
+    --gray-200: #ebebeb;
+    --gray-400: #eaeaea;
+    --gray-700: #8f8f8f;
+    --gray-900: #4d4d4d;
+    --gray-1000: #171717;
+    --gray-alpha-400: #00000014;
+    --blue-100: #f0f7ff;
+    --blue-700: #006bff;
+    --green-700: #28a948;
+    --red-700: #fc0035;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --ease: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    --shadow-card: 0 2px 2px rgba(0, 0, 0, 0.04);
+
+    --font-sans: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--background-200);
+    color: var(--gray-1000);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ----- Deck shell ----- */
+  .deck {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16 / 9;
+    background: var(--background-100);
+    border: 1px solid var(--gray-alpha-400);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 64px;
+    flex-direction: column;
+  }
+  .slide.active {
+    display: flex;
+    animation: rise 300ms var(--ease);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide.active { animation: none; }
+  }
+
+  /* ----- Type ----- */
+  .eyebrow {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--blue-700);
+    letter-spacing: 0;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .eyebrow .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 9999px;
+    background: var(--blue-700);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 600;
+    letter-spacing: -2.88px;
+    max-width: 18ch;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -1.28px;
+  }
+  .subtext {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: var(--gray-900);
+    max-width: 62ch;
+    margin-top: 24px;
+  }
+  .section-sub {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--gray-900);
+    margin-top: 8px;
+    max-width: 60ch;
+  }
+
+  .spacer { flex: 1; }
+
+  .meta {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--gray-700);
+    font-family: var(--font-mono);
+  }
+
+  /* ----- Stats row ----- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stat {
+    background: var(--background-200);
+    border: 1px solid var(--gray-alpha-400);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .stat .label {
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--gray-900);
+  }
+  .stat .value {
+    font-family: var(--font-mono);
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -2.4px;
+    margin-top: 8px;
+  }
+  .stat .delta { font-size: 13px; margin-top: 4px; }
+  .delta.up   { color: var(--green-700); }
+  .delta.down { color: var(--red-700); }
+
+  /* ----- Chart area ----- */
+  .chart-wrap {
+    flex: 1;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    min-height: 0;
+  }
+  .chart-card {
+    border: 1px solid var(--gray-alpha-400);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .chart-title {
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+  }
+  .chart-card svg { width: 100%; height: auto; flex: 1; }
+  text { font-family: var(--font-mono); fill: var(--gray-700); font-size: 11px; }
+  .bar-value { fill: var(--gray-1000); font-size: 12px; }
+
+  /* ----- Footer / controls ----- */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-alpha-400);
+    font-size: 12px;
+    color: var(--gray-700);
+    font-family: var(--font-mono);
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--background-100);
+    border: 1px solid var(--gray-alpha-400);
+    border-radius: 9999px;
+    padding: 6px;
+    box-shadow: var(--shadow-card);
+  }
+  .controls button {
+    height: 32px;
+    min-width: 32px;
+    padding: 0 6px;
+    border: none;
+    background: transparent;
+    border-radius: 9999px;
+    color: var(--gray-1000);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 150ms var(--ease);
+  }
+  .controls button:hover { background: var(--gray-100); }
+  .controls button:active { background: var(--gray-200); }
+  .controls button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--blue-700);
+  }
+  .controls .count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--gray-900);
+    padding: 0 8px;
+    min-width: 48px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <!-- Slide 1 — Title (title ~50 chars, subtext ~250 chars) -->
+    <section class="slide active">
+      <div class="eyebrow"><span class="dot"></span>2026 상반기 리포트</div>
+      <h1>2026 상반기 클라우드 인프라 성장 리포트: 핵심 지표 요약과 다음 분기 투자 전망 안내</h1>
+      <p class="subtext">
+        이번 반기 동안 멀티 리전 배포와 자동 확장, 엣지 캐시를 단계적으로 도입하며 인프라 전반을 재정비했습니다.
+        본 자료는 월별 프로덕션 배포 횟수, 평균 응답 시간, 서비스 가용성, 비용 효율 지표를 한눈에 정리하고,
+        다음 분기 투자 우선순위와 안정성 개선 과제, 그리고 팀별 실행 계획과 예상 리스크를 함께 제안합니다.
+        모든 수치는 운영 환경에서 수집한 실측 데이터를 기반으로 산출했으며 분기 종료 시점을 기준으로 합니다.
+      </p>
+      <div class="spacer"></div>
+      <div class="meta">
+        <span>Vercel · Geist</span>
+        <span>2026-06-21</span>
+        <span>Light Theme</span>
+      </div>
+    </section>
+
+    <!-- Slide 2 — Stats + bar chart -->
+    <section class="slide">
+      <div class="eyebrow"><span class="dot"></span>핵심 지표</div>
+      <h2>분기별 배포 추이</h2>
+      <p class="section-sub">2026년 1–6월, 월간 프로덕션 배포 횟수와 핵심 운영 지표.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">월 평균 배포</div>
+          <div class="value">1,284</div>
+          <div class="delta up">▲ 38% vs 직전 반기</div>
+        </div>
+        <div class="stat">
+          <div class="label">평균 응답 시간</div>
+          <div class="value">112<span style="font-size:20px">ms</span></div>
+          <div class="delta up">▲ 21% 단축</div>
+        </div>
+        <div class="stat">
+          <div class="label">가용성</div>
+          <div class="value">99.98<span style="font-size:20px">%</span></div>
+          <div class="delta down">▼ 0.01%p</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap" style="grid-template-columns: 1fr;">
+        <div class="chart-card">
+          <div class="chart-title">월별 프로덕션 배포 횟수 (건)</div>
+          <!-- Bar chart -->
+          <svg viewBox="0 0 720 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="월별 배포 막대 그래프">
+            <!-- gridlines -->
+            <g stroke="#ebebeb" stroke-width="1">
+              <line x1="48" y1="20"  x2="710" y2="20" />
+              <line x1="48" y1="70"  x2="710" y2="70" />
+              <line x1="48" y1="120" x2="710" y2="120" />
+              <line x1="48" y1="170" x2="710" y2="170" />
+            </g>
+            <!-- y axis labels -->
+            <g text-anchor="end">
+              <text x="40" y="24">1600</text>
+              <text x="40" y="74">1200</text>
+              <text x="40" y="124">800</text>
+              <text x="40" y="174">400</text>
+            </g>
+            <!-- bars: values 920,1040,1180,1330,1460,1580 ; scale 1600 -> 150px tall area (y 20..170) -->
+            <g fill="#171717">
+              <rect x="70"  y="84"  width="60" height="86"  rx="4" />
+              <rect x="180" y="70"  width="60" height="100" rx="4" />
+              <rect x="290" y="53"  width="60" height="117" rx="4" />
+              <rect x="400" y="34"  width="60" height="136" rx="4" />
+              <rect x="510" y="20"  width="60" height="150" rx="4" />
+              <rect x="620" y="22"  width="60" height="148" rx="4" />
+            </g>
+            <!-- value labels -->
+            <g class="bar-value" text-anchor="middle">
+              <text x="100" y="78">920</text>
+              <text x="210" y="64">1040</text>
+              <text x="320" y="47">1180</text>
+              <text x="430" y="28">1330</text>
+              <text x="540" y="14">1460</text>
+              <text x="650" y="16">1580</text>
+            </g>
+            <!-- x axis labels -->
+            <g text-anchor="middle">
+              <text x="100" y="195">1월</text>
+              <text x="210" y="195">2월</text>
+              <text x="320" y="195">3월</text>
+              <text x="430" y="195">4월</text>
+              <text x="540" y="195">5월</text>
+              <text x="650" y="195">6월</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>월별 프로덕션 배포 · 단위: 건</span>
+        <span>02 / 03</span>
+      </div>
+    </section>
+
+    <!-- Slide 3 — Line chart (latency) -->
+    <section class="slide">
+      <div class="eyebrow"><span class="dot"></span>성능 추이</div>
+      <h2>평균 응답 시간 개선</h2>
+      <p class="section-sub">자동 확장과 엣지 캐시 적용 후 p50 응답 시간이 꾸준히 감소했습니다.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-card">
+          <div class="chart-title">p50 응답 시간 (ms)</div>
+          <!-- Line chart -->
+          <svg viewBox="0 0 480 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="응답 시간 꺾은선 그래프">
+            <g stroke="#ebebeb" stroke-width="1">
+              <line x1="40" y1="30"  x2="460" y2="30" />
+              <line x1="40" y1="90"  x2="460" y2="90" />
+              <line x1="40" y1="150" x2="460" y2="150" />
+              <line x1="40" y1="200" x2="460" y2="200" />
+            </g>
+            <g text-anchor="end">
+              <text x="34" y="34">180</text>
+              <text x="34" y="94">150</text>
+              <text x="34" y="154">120</text>
+              <text x="34" y="204">90</text>
+            </g>
+            <!-- data: 178,165,150,138,124,112 ms -->
+            <polyline
+              fill="none" stroke="#006bff" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round"
+              points="60,34 140,60 220,90 300,114 380,142 440,166" />
+            <!-- area fill under line -->
+            <polygon fill="#f0f7ff"
+              points="60,34 140,60 220,90 300,114 380,142 440,166 440,200 60,200" opacity="0.9" />
+            <polyline
+              fill="none" stroke="#006bff" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round"
+              points="60,34 140,60 220,90 300,114 380,142 440,166" />
+            <g fill="#006bff">
+              <circle cx="60"  cy="34"  r="4" />
+              <circle cx="140" cy="60"  r="4" />
+              <circle cx="220" cy="90"  r="4" />
+              <circle cx="300" cy="114" r="4" />
+              <circle cx="380" cy="142" r="4" />
+              <circle cx="440" cy="166" r="4" />
+            </g>
+            <g text-anchor="middle">
+              <text x="60"  y="222">1월</text>
+              <text x="140" y="222">2월</text>
+              <text x="220" y="222">3월</text>
+              <text x="300" y="222">4월</text>
+              <text x="380" y="222">5월</text>
+              <text x="440" y="222">6월</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title">반기 요약</div>
+          <div style="display:flex; flex-direction:column; gap:16px; justify-content:center; flex:1;">
+            <div>
+              <div class="label" style="font-size:13px;color:var(--gray-900)">시작 응답 시간 (1월)</div>
+              <div class="value" style="font-family:var(--font-mono);font-size:32px;line-height:40px;letter-spacing:-1.28px;">178 ms</div>
+            </div>
+            <div>
+              <div class="label" style="font-size:13px;color:var(--gray-900)">최종 응답 시간 (6월)</div>
+              <div class="value" style="font-family:var(--font-mono);font-size:32px;line-height:40px;letter-spacing:-1.28px;color:var(--blue-700)">112 ms</div>
+            </div>
+            <div>
+              <div class="label" style="font-size:13px;color:var(--gray-900)">총 개선폭</div>
+              <div class="delta up" style="font-size:16px;">▲ 37% 단축 (-66 ms)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>p50 응답 시간 · 단위: ms</span>
+        <span>03 / 03</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Controls -->
+  <div class="controls" role="navigation" aria-label="슬라이드 이동">
+    <button id="prev" aria-label="이전 슬라이드">←</button>
+    <span class="count" id="count">1 / 3</span>
+    <button id="next" aria-label="다음 슬라이드">→</button>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const count = document.getElementById('count');
+    let i = 0;
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      count.textContent = (i + 1) + ' / ' + slides.length;
+    }
+    document.getElementById('prev').onclick = () => show(i - 1);
+    document.getElementById('next').onclick = () => show(i + 1);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+    });
+  </script>
+</body>
+</html>
