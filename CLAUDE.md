@@ -1,6 +1,6 @@
 # MAX실 OS — 워크스페이스 운영 규칙
 
-디자인센터 50명 CD 권한 + MAX실 9명 직속 운영(9→20 증원). 메인 세션(허브)이 24개
+디자인센터 50명 CD 권한 + MAX실 9명 직속 운영(9→20 증원). 메인 세션(허브)이 25개
 에이전트를 오케스트레이션한다. 사용자는 라우팅을 신경 쓰지 않는다.
 
 ## 허브 3모드
@@ -35,6 +35,7 @@
 | 무드보드 | `moodboard-builder` |
 | Figma 양방향 | `figma-bridge` |
 | 스토리보드·영상 | `storyboard-maker` |
+| 브랜드 제안 풀패키지 / RFP 수신 | `brand-strategist` |
 
 ## 안전 불변규칙 (예외 없음)
 1. **자동 발송/게시 절대 금지** — 모든 외부 산출물은 사용자 검토 후.
@@ -62,10 +63,11 @@
 - 패널 상충 시 더 엄격한 판정 우선.
 
 ## 메타룰 — 구조 관리
-- 에이전트 총수 **≤ 25개** (현재 24). 신규 추가 전 구조 점검.
+- 에이전트 총수 **≤ 25개** (현재 25 — 캡 도달, 잔여 0). 추가 시 반드시 구조 재편 먼저.
 - 이 파일 **≤ 100줄**, 에이전트 파일 각 **≤ 100줄** — 상세는 `library/`로.
 - 에이전트: `.claude/agents/[slug].md` (name/description/tools 프론트매터 필수).
 - SoT: `.claude/library/{quote-sot|design-sot|project-sot}/[파일].md`.
+- 브랜드 제안 파이프라인: `.claude/library/brand-pipeline/` (overview + stage1~3 + 디자이너렌즈게이트). `brand-strategist`가 구동.
 - 프로젝트: `.claude/projects/[클라명]/STATUS.md` (생성 전 중복 점검).
 - SoT 원본: Notion 2026 Project DB(프로젝트) · Google Sheets Time-Log(견적).
 - 대시보드(지도): `.claude/dashboard/maxos-dashboard-v5.html` — 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). 원본 v2.0/v2.1 보존.
