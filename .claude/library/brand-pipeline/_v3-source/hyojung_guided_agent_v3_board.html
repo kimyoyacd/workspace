@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Hyojung Guided Brand Proposal Agent v3</title>
+<style>
+:root{color-scheme:light;--bg:#FAFAF7;--card:#fff;--ink:#111;--muted:#7A7770;--line:#E6E1D8;--soft:#F2EFE8;--sig:#2F3E5F;--sig2:#EEF1F7;--ok:#2D7A4F;--warn:#C77A0F;--bad:#B23B3B;--pink:#FBE7F1;--blue:#E8F0FB;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Noto Sans KR',sans-serif;line-height:1.55;font-size:14px;}
+header{padding:28px 36px;background:linear-gradient(135deg,#161616,#2F3E5F);color:#fff} h1{margin:0;font-size:26px;letter-spacing:-.7px} .sub{margin-top:6px;color:rgba(255,255,255,.64);font-size:13px}.wrap{padding:30px 36px 60px;max-width:1480px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,.035)} h2{font-size:20px;margin:0 0 8px;letter-spacing:-.5px} h3{font-size:15px;margin:0 0 10px} .note{font-size:12px;color:var(--muted)}.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:18px;background:var(--sig2);color:var(--sig);font-weight:800;font-size:11px;margin:3px}.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:22px 0}.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:164px;position:relative}.step:after{content:'→';position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:#bbb;font-weight:900}.step:last-child:after{display:none}.n{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase}.t{font-weight:900;margin:6px 0;font-size:14px}.d{font-size:12px;color:var(--muted)}.q{margin-top:9px;padding:8px;border-radius:8px;background:var(--soft);font-size:11px;color:#4a4944}.gate{margin-top:9px;font-size:11px;font-weight:800}.green{color:var(--ok)}.yellow{color:var(--warn)}.red{color:var(--bad)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.wide{grid-column:span 2}.code{white-space:pre-wrap;background:#151515;color:#eee;border-radius:12px;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.55;overflow:auto}.btn{display:inline-block;background:#111;color:#fff;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer;margin-top:10px} table{width:100%;border-collapse:collapse;font-size:12px} th,td{border-bottom:1px solid var(--line);padding:9px;vertical-align:top;text-align:left} th{font-size:11px;color:var(--muted);background:var(--soft)}.lens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.lens .card{padding:14px}.tag{font-size:10px;font-weight:900;color:var(--sig);text-transform:uppercase;letter-spacing:.5px}@media(max-width:1100px){.hero,.grid{grid-template-columns:1fr}.flow,.lens{grid-template-columns:1fr 1fr}.wide{grid-column:auto}}@media(max-width:760px){.flow,.lens{grid-template-columns:1fr}header,.wrap{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<header>
+<h1>Hyojung Guided Brand Proposal Agent v3</h1>
+<div class="sub">Claude가 단계별로 질문하고, 답변을 검토하고, Gate를 통과해야 다음 단계로 넘어가는 브랜드 제안 오케스트레이터</div>
+</header>
+<div class="wrap">
+<section class="hero">
+<div class="card">
+<h2>핵심 설계</h2>
+<p>이 설계는 단순 프롬프트 묶음이 아닙니다. Claude가 <b>현재 단계 선언 → 질문 3개 → 답변 기반 산출물 → 자체 검토 → Gate 판정 → 다음 질문</b>의 루프로 움직이도록 만드는 상태 머신입니다.</p>
+<span class="pill">질문 3개 이하</span><span class="pill">Gate 통과 후 진행</span><span class="pill">Stage 3에서만 HTML 생성</span><span class="pill">Human Touch Layer 필수</span>
+</div>
+<div class="card">
+<h2>작동 원칙</h2>
+<p class="note">Claude Project에서는 Project Instructions + Knowledge로 작동합니다. Claude Code에서는 선택적으로 subagent 파일로 저장할 수 있습니다.</p>
+<div class="q">사용자가 “계속”이라고 하면 가정은 Assumptions로 표시하고 진행합니다. 단, 최종 발송/제출/확정은 자동으로 하지 않습니다.</div>
+</div>
+</section>
+
+<section class="flow">
+<div class="step"><div class="n">Stage 0</div><div class="t">Intake</div><div class="d">브랜드명, 카테고리, 타깃, 산출물 확인</div><div class="q">질문: 무엇을 만들고, 누구에게, 어떤 인상으로?</div><div class="gate green">Gate 0 · Brief</div></div>
+<div class="step"><div class="n">Stage 1</div><div class="t">Research & Positioning</div><div class="d">경쟁 30개, 포지셔닝 맵, 빈자리</div><div class="q">질문: 경쟁군을 제공할지, AI가 구성할지?</div><div class="gate green">Gate 1 · Gap</div></div>
+<div class="step"><div class="n">Stage 1.5</div><div class="t">Strategic POV</div><div class="d">비주얼 전 한 문장 관점과 3키워드 잠금</div><div class="q">질문: 기능/감정/문화/헤리티지 중 무엇이 중심?</div><div class="gate yellow">Gate 2 · POV</div></div>
+<div class="step"><div class="n">Stage 2</div><div class="t">Visual Identity</div><div class="d">시각 DNA, 컨셉 6개, 행동 시스템</div><div class="q">질문: 무엇을 보존하고 무엇을 파괴할까?</div><div class="gate yellow">Gate 3 · System</div></div>
+<div class="step"><div class="n">Stage 2.5</div><div class="t">Concept Selection</div><div class="d">A/B/Alt 또는 단일 방향 결정</div><div class="q">질문: 가장 설득력 있는 컨셉은?</div><div class="gate yellow">Gate 4 · Risk</div></div>
+<div class="step"><div class="n">Stage 3</div><div class="t">Brand System</div><div class="d">가치 카드, 카피, 기호, 이미지 프롬프트</div><div class="q">질문: 15/30/45장 중 어느 분량?</div><div class="gate green">Gate 5 · Deck</div></div>
+<div class="step"><div class="n">Final</div><div class="t">HTML Export</div><div class="d">AI Studio용 이미지 프롬프트 + 슬라이드 HTML</div><div class="q">최종 출력 전 사용자 OK</div><div class="gate red">No auto send</div></div>
+</section>
+
+<section class="grid">
+<div class="card wide">
+<h2>디자이너 관점 삽입 위치</h2>
+<table><tr><th>삽입 위치</th><th>무엇을 넣는가</th><th>검토 질문</th></tr>
+<tr><td>Stage 1 뒤</td><td>Strategic POV Gate</td><td>경쟁 리서치가 한 문장 관점으로 압축되는가?</td></tr>
+<tr><td>Stage 2 전</td><td>Core Value → Own Lens</td><td>브랜드만의 렌즈로 해석했는가?</td></tr>
+<tr><td>Stage 2 중</td><td>Behavior System</td><td>정적 로고가 아니라 모션·반응형 규칙으로 확장되는가?</td></tr>
+<tr><td>Stage 2.5</td><td>Risk Alignment / Preserve vs Destroy</td><td>과감함이 핵심가치와 정렬되는가?</td></tr>
+<tr><td>Stage 3</td><td>Human Touch Layer / Image Prompt Pack</td><td>AI 이미지에 인간의 흔적이 의도적으로 설계됐는가?</td></tr>
+</table>
+</div>
+<div class="card">
+<h2>첫 메시지</h2>
+<div class="code" id="copy1">Hyojung Guided Brand Proposal Agent로 시작합니다.
+먼저 Stage 0 Intake만 진행하세요.
+한 번에 많은 질문을 하지 말고, 지금 필요한 질문 3개만 해주세요.
+아직 리서치, 컨셉, 이미지 프롬프트, 슬라이드 HTML은 생성하지 마세요.</div>
+<button class="btn" onclick="copy('copy1')">복사</button>
+</div>
+</section>
+
+<section style="margin-top:16px" class="lens">
+<div class="card"><div class="tag">Lens 01</div><h3>Core Value</h3><p class="note">비주얼보다 먼저 브랜드 핵심가치를 잠급니다.</p></div>
+<div class="card"><div class="tag">Lens 02</div><h3>Own Lens</h3><p class="note">경쟁사의 언어가 아니라 자기 렌즈로 해석합니다.</p></div>
+<div class="card"><div class="tag">Lens 03</div><h3>Behavior</h3><p class="note">모션, 가변 타입, 반응형 규칙까지 확장합니다.</p></div>
+<div class="card"><div class="tag">Lens 04</div><h3>Human Touch</h3><p class="note">AI 생성물에 의도적 불완전성과 손맛을 설계합니다.</p></div>
+<div class="card"><div class="tag">Lens 05</div><h3>Risk</h3><p class="note">과감한 차별화가 고객 기대와 정렬되는지 봅니다.</p></div>
+<div class="card"><div class="tag">Lens 06</div><h3>Preserve / Destroy</h3><p class="note">보존할 것과 파괴할 것을 명확히 나눕니다.</p></div>
+</section>
+</div>
+<script>function copy(id){navigator.clipboard.writeText(document.getElementById(id).innerText);alert('복사했습니다');}</script>
+</body></html>

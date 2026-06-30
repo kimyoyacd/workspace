@@ -1,9 +1,27 @@
-# Manus 1 · Brand Planning & BX/Package Visual Prompt
+# 1차 · Brand Planning & BX/Package Visual Prompt
 
 **File role:** Claude Project Knowledge / Skill resource  
-**Stage:** 1차 Manus  
+**Stage:** 1차 Hyojung guide  
 **Primary function:** 브랜드 기획서 초안 생성 + BX/패키지 비주얼 프롬프트 생성  
-**Important rule:** 이 단계에서는 최종 슬라이드를 만들지 않는다. 다음 단계로 넘길 `manus_1_state`만 만든다.
+**Important rule:** 이 단계에서는 최종 슬라이드를 만들지 않는다. 다음 단계로 넘길 `stage1_state`만 만든다.
+
+## ★ 가이드 진행 (질문형 · 게이트)
+
+질문 3개 → 답변 → 산출 → 자체검토(4렌즈) → Gate 판정(🟢🟡🔴) → `project_state` 갱신 순으로 진행. 한 번에 질문 3개 이하, 미답 정보는 임의 확정 금지·`Assumptions`로 분리. 상세 산출 양식은 아래 본문 사용.
+
+### (선행) Stage 0 · Intake — Gate 0
+질문: ① 카테고리·최종 산출물? ② 주요 타깃·원하는 인상? ③ 피해야 할 인상·금지 스타일·민감 이슈?
+Gate 0: 브랜드/프로젝트명·카테고리·산출물·타깃·피할 방향 최소 정의 → 🟢
+
+### Stage 1 · Research & Positioning — Gate 1
+질문: ① 경쟁 브랜드를 알고 있나 / AI가 30개 구성? ② 시장 범위(국내·글로벌·지역)? ③ 포지셔닝 축(가격·감성·기능·문화·프리미엄)?
+Gate 1: 경쟁군이 좁지 않나 / 축이 전략적인가 / 빈자리가 고객 욕구와 연결되나 / 출처 없는 수치 단정 없나(→`fact-checker`)
+
+### Stage 1.5 · Strategic POV — Gate 2
+질문: ① 새롭게 주장할 한 문장 방향? ② 기능·감정·문화·헤리티지·미래성 중 중심? ③ 과감한 차별화 vs 안정적 설득?
+산출: POV 후보 5 → 최종 2 · 3 Core Keywords · THE ANSWER
+Gate 2: 한 문장으로 말 되나 / 경쟁사도 똑같이 말할 문장은 아닌가 / 키워드가 톤·컬러·카피·화면으로 확장되나
+자체검토 4렌즈: Strategy Fit · Visual Potential · System Expandability · Risk Alignment
 
 ---
 
@@ -16,7 +34,7 @@
 
 > 이 브랜드는 이미 점유된 시장 안에서 어디에 새롭게 자리 잡을 수 있는가?
 
-Manus 1은 슬라이드를 만드는 단계가 아니라, 슬라이드로 전환될 **전략 재료**를 만드는 단계입니다.
+1차은 슬라이드를 만드는 단계가 아니라, 슬라이드로 전환될 **전략 재료**를 만드는 단계입니다.
 
 ---
 
@@ -43,7 +61,7 @@ Manus 1은 슬라이드를 만드는 단계가 아니라, 슬라이드로 전환
 
 ## 2. Core Output
 
-Manus 1의 최종 산출물은 아래 7개입니다.
+1차의 최종 산출물은 아래 7개입니다.
 
 ```md
 1. 경쟁 브랜드 30개 리서치 매트릭스
@@ -54,7 +72,7 @@ Manus 1의 최종 산출물은 아래 7개입니다.
 6. 시장의 빈자리 / 진입 기회
 7. 포지셔닝 전략 초안
 8. BX/패키지 비주얼 프롬프트 팩
-9. manus_1_state
+9. stage1_state
 ```
 
 ---
@@ -579,13 +597,13 @@ Do not use [avoid list].
 
 ---
 
-## 6. Manus 1 State Schema
+## 6. 1차 State Schema
 
-Manus 1을 마칠 때 반드시 아래 형태로 정리합니다.
+1차을 마칠 때 반드시 아래 형태로 정리합니다.
 
 ```json
 {
-  "manus_1": {
+  "stage1": {
     "project_intake": {
       "brand_name": "",
       "category": "",
@@ -635,7 +653,7 @@ Manus 1을 마칠 때 반드시 아래 형태로 정리합니다.
 
 ## 7. Gate 1 Checklist
 
-Manus 1 종료 전 반드시 확인합니다.
+1차 종료 전 반드시 확인합니다.
 
 ```md
 [ ] 경쟁 브랜드가 30개 이상인가?
@@ -653,10 +671,10 @@ Manus 1 종료 전 반드시 확인합니다.
 
 ## 8. Next Step Prompt
 
-Manus 1이 완료되면 아래 프롬프트로 Manus 2를 실행합니다.
+1차이 완료되면 아래 프롬프트로 2차를 실행합니다.
 
 ```md
-Manus 1의 state를 기반으로 Manus 2 단계로 넘어갑니다.
+1차의 state를 기반으로 2차 단계로 넘어갑니다.
 아직 최종 슬라이드는 만들지 마세요.
 
 해야 할 일:
@@ -666,8 +684,8 @@ Manus 1의 state를 기반으로 Manus 2 단계로 넘어갑니다.
 4. Client×Mood matrix 작성
 5. Brutalist Framework 적용 여부 판단
 6. 추천 컨셉 2~3개 선정
-7. manus_2_state 생성
+7. stage2_state 생성
 
 입력:
-[manus_1_state 붙여넣기]
+[stage1_state 붙여넣기]
 ```

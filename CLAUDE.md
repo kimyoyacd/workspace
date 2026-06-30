@@ -35,7 +35,7 @@
 | 무드보드 | `moodboard-builder` |
 | Figma 양방향 | `figma-bridge` |
 | 스토리보드·영상 | `storyboard-maker` |
-| 브랜드 제안 풀패키지 / RFP 수신 | `brand-proposal` 스킬 (허브가 단계별 에이전트 호출) |
+| 브랜드 제안 / 와이드리서치~슬라이드 / 단계별 질문 / RFP 수신 | `brand-proposal` 스킬 (Hyojung Guided 질문형, 허브가 단계별 에이전트 호출) |
 
 ## 안전 불변규칙 (예외 없음)
 1. **자동 발송/게시 절대 금지** — 모든 외부 산출물은 사용자 검토 후.
@@ -67,7 +67,7 @@
 - 이 파일 **≤ 100줄**, 에이전트 파일 각 **≤ 100줄** — 상세는 `library/`로.
 - 에이전트: `.claude/agents/[slug].md` (name/description/tools 프론트매터 필수).
 - SoT: `.claude/library/{quote-sot|design-sot|project-sot}/[파일].md`.
-- 브랜드 제안 파이프라인: `.claude/skills/brand-proposal/`(오케스트레이터) + `.claude/library/brand-pipeline/`(overview + stage1~3 + 디자이너렌즈게이트 원문).
+- 브랜드 제안 파이프라인: `.claude/skills/brand-proposal/`(Hyojung Guided 질문형 오케스트레이터) + `.claude/library/brand-pipeline/`(overview + stage1~3 양식 + 디자이너렌즈게이트, v3 원본은 `_v3-source/` 아카이브). 외부 프로세스명 비노출.
 - 프로젝트: `.claude/projects/[클라명]/STATUS.md` (생성 전 중복 점검).
 - SoT 원본: Notion 2026 Project DB(프로젝트) · Google Sheets Time-Log(견적).
 - 대시보드(지도): `.claude/dashboard/maxos-dashboard-v5.html` — 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). 원본 v2.0/v2.1 보존.

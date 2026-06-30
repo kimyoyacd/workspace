@@ -188,4 +188,19 @@ T8 Game: Premium IP / Cinematic / Worldbuilding
 ## 5. 한 줄 결론
 
 디자이너 관점은 “트렌드 참고”가 아니라 **관점 → 렌즈 → 시스템 → 검증 게이트**로 들어가야 합니다.  
-그래야 AI Studio가 단순 자료 요약이 아니라, 효정님식 전략 디자인 프로세스로 작동합니다.
+그래야 단순 자료 요약이 아니라, 효정님식 전략 디자인 프로세스로 작동합니다.
+
+---
+
+## 6. Designer Lens 6원칙 (모든 단계 공통 반영)
+
+1. **Core Value First** — 비주얼보다 먼저 핵심가치 + 전략 한 문장을 정한다.
+2. **Own Lens** — 경쟁사 스타일을 그대로 쓰지 않고 브랜드만의 관찰 렌즈로 재해석.
+3. **Behavior System** — 로고·컬러·타입을 정적 산출로 끝내지 않고 모션·반응형·생성 규칙까지 확장.
+4. **Human Touch Layer** — AI 이미지 사용 시 반드시 사람의 흔적 설계(그레인·손그림·스캔 텍스처·의도적 비대칭).
+5. **Risk Alignment** — 과감한 스타일은 핵심가치·고객 기대·헤리티지와 정렬될 때만 채택.
+6. **Preserve vs Destroy** — 무엇을 보존하고 무엇을 파괴할지 명시.
+
+## 7. 단계별 자체검토 4렌즈
+각 단계 산출 후 다음 4렌즈로 자가 점검 → Gate 판정(🟢/🟡/🔴):
+- **Strategy Fit** · **Visual Potential** · **System Expandability** · **Risk Alignment**
