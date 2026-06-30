@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>MAX실 OS Dashboard v5</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --ink: #111111;
+  --ink2: #4A4944;
+  --ink3: #8A8780;
+  --ink4: #B5B2AB;
+  --border: #E8E5DE;
+  --border-soft: #F1EEE7;
+  --sig: #2F3E5F;
+  --sig-soft: #EEF1F7;
+  --ok: #2D7A4F;
+  --warn: #C77A0F;
+  --danger: #B23B3B;
+}
+html, body { background: var(--bg); margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+  color: var(--ink); font-size: 13px; line-height: 1.6;
+  letter-spacing: -0.1px; font-feature-settings: 'tnum' 1;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #161616 0%, #2A2A2A 60%, #1A1A2E 100%);
+  color: #fff; padding: 20px 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.header-left h1 { margin: 0 0 3px; font-size: 18px; font-weight: 900; letter-spacing: -0.4px; }
+.header-left h1 span { color: #9AA8C4; font-weight: 500; }
+.header-left .sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+.header-right { display: flex; gap: 28px; align-items: center; }
+.head-stat { text-align: center; }
+.head-stat .n { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+.head-stat .l { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.4px; }
+.head-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.12); }
+.head-badge {
+  background: rgba(47,62,95,0.6); border: 1px solid rgba(154,168,196,0.3);
+  color: #9AA8C4; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;
+}
+
+/* NAV */
+.nav {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 0 36px; display: flex; position: sticky; top: 0; z-index: 50;
+  overflow-x: auto; box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+.tab {
+  padding: 13px 16px; font-size: 12px; font-weight: 600;
+  color: var(--ink3); border-bottom: 2px solid transparent;
+  white-space: nowrap; cursor: pointer; transition: all .2s;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* MAIN */
+.main { padding: 28px 36px 60px; max-width: 1800px; }
+.section { display: none; }
+.section.active { display: block; }
+.section-title { font-size: 20px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px; }
+.section-desc { font-size: 12px; color: var(--ink3); margin: 0 0 20px; }
+
+/* ALERT */
+.alert {
+  background: #F4F9F5; border: 1px solid #D4E5D9; border-left: 3px solid var(--ok);
+  border-radius: 6px; padding: 11px 15px; margin-bottom: 20px;
+  display: flex; gap: 10px; align-items: flex-start; font-size: 12px; color: var(--ink2);
+}
+.alert .ic { font-size: 15px; margin-top: 1px; }
+
+/* ═══ ORG TREE ═══ */
+.hub-node {
+  background: linear-gradient(180deg, #161616, #2A2A2A);
+  color: #fff; border-radius: 10px; padding: 14px 28px;
+  text-align: center; display: inline-block;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.hub-node .label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 3px; }
+.hub-node .name { font-size: 14px; font-weight: 800; margin-bottom: 1px; }
+.hub-node .sub { font-size: 10px; color: rgba(255,255,255,0.5); }
+.tree-wrap { display: flex; flex-direction: column; align-items: center; }
+.org-row {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 12px; width: 100%; margin-top: 24px;
+  padding-top: 16px; border-top: 2px solid var(--border);
+}
+.col { display: flex; flex-direction: column; }
+.col-head {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.3px;
+  text-transform: uppercase; padding: 8px 12px; border-radius: 6px 6px 0 0;
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px;
+}
+.count { font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 10px; background: rgba(255,255,255,0.5); }
+.col-tagline { font-size: 10px; color: var(--ink3); padding: 4px 12px 8px; line-height: 1.4; }
+.col-body { display: flex; flex-direction: column; gap: 6px; }
+.col-1 .col-head { background: #1E2A40; color: #9AA8C4; }
+.col-2 .col-head { background: #F2C9DF; color: #7A1F4A; }
+.col-3 .col-head { background: #FAF1DC; color: #7A5010; }
+.col-4 .col-head { background: #BEDDC6; color: #1A5234; }
+.col-5 .col-head { background: #E2D5F0; color: #4A2080; }
+.col-6 .col-head { background: #C6DCEF; color: #1B4F6D; }
+.col-7 .col-head { background: #F2CDB0; color: #A0552D; }
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 7px; padding: 10px 11px;
+  transition: box-shadow .15s, transform .15s;
+}
+.card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); transform: translateY(-1px); }
+.card-name-row { display: flex; align-items: center; gap: 5px; margin-bottom: 2px; flex-wrap: wrap; }
+.card-name { font-size: 12px; font-weight: 800; letter-spacing: -0.2px; }
+.card-slug { font-size: 10px; color: var(--ink3); font-family: ui-monospace, monospace; margin-bottom: 4px; }
+.card-role { font-size: 10.5px; color: var(--ink2); line-height: 1.45; margin-bottom: 3px; }
+.card-trig { font-size: 10px; color: var(--ink3); }
+.badge { font-size: 8.5px; font-weight: 800; padding: 1px 5px; border-radius: 3px; white-space: nowrap; }
+.badge-core { background: #1E2A40; color: #9AA8C4; }
+.badge-new  { background: #E5F2E9; color: #1F5A38; }
+.badge-gate { background: #FDECEC; color: var(--danger); }
+
+/* HUB PANEL */
+.hub-panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 280px 1fr 1fr; }
+.hub-core { background: linear-gradient(180deg, #161616 0%, #2A2A2A 100%); color: #fff; padding: 22px; }
+.hub-core .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 8px; }
+.hub-core .name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+.hub-core .role { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.55; margin-bottom: 20px; }
+.hub-modes { display: flex; flex-direction: column; gap: 8px; }
+.hub-mode { display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; border-radius: 5px; background: rgba(255,255,255,0.06); border-left: 2px solid; }
+.hub-mode.m1 { border-color: #6DCC8E; } .hub-mode.m2 { border-color: #6DA8E3; } .hub-mode.m3 { border-color: #E3B86D; }
+.hub-mode .pct { font-size: 13px; font-weight: 800; color: #fff; min-width: 28px; }
+.hub-mode .mname { font-size: 11px; font-weight: 700; color: #fff; }
+.hub-mode .mdesc { font-size: 10px; color: rgba(255,255,255,0.5); }
+.hub-triggers { padding: 20px 22px; border-right: 1px solid var(--border); }
+.hub-nodelegate { padding: 20px 22px; background: #FDFCF9; }
+.hub-section-h { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--ink3); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.hub-section-h::before { content: ''; width: 14px; height: 1px; background: var(--ink3); }
+.trigger { display: grid; grid-template-columns: 80px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); align-items: baseline; }
+.trigger:last-child { border-bottom: none; }
+.trigger .when { font-size: 10px; font-weight: 700; color: var(--sig); font-family: ui-monospace, monospace; }
+.trigger .what strong { font-size: 11px; font-weight: 700; display: block; margin-bottom: 1px; }
+.trigger .what span { font-size: 10px; color: var(--ink3); }
+.nodelegate-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin-top: 4px; }
+.nodelegate-item { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; font-size: 11px; color: var(--ink2); border-bottom: 1px dashed var(--border-soft); }
+.nodelegate-item .num { font-size: 9px; font-weight: 800; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #FDECEC; color: var(--danger); }
+.nodelegate-item strong { font-weight: 700; color: var(--ink); }
+.footnote { margin-top: 24px; padding: 13px 17px; background: var(--sig-soft); border-left: 3px solid var(--sig); border-radius: 4px; font-size: 11px; color: var(--ink2); line-height: 1.6; }
+
+/* ═══ PIPELINE TAB ═══ */
+.pipe-flow { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding-bottom: 12px; margin-bottom: 24px; }
+.pipe-step {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 12px 10px; min-width: 130px; max-width: 145px; flex-shrink: 0;
+}
+.pipe-step.highlight { border-color: var(--sig); background: var(--sig-soft); }
+.pipe-step.user-gate { border-color: var(--danger); background: #FDECEC; }
+.pipe-arrow { display: flex; align-items: center; padding: 0 3px; color: var(--ink4); font-size: 16px; flex-shrink: 0; margin-top: 32px; }
+.pipe-num { font-size: 9px; font-weight: 800; color: var(--ink4); margin-bottom: 4px; letter-spacing: 0.5px; }
+.pipe-agent { font-size: 10px; font-weight: 800; color: var(--sig); font-family: ui-monospace, monospace; margin-bottom: 3px; }
+.pipe-step.user-gate .pipe-agent { color: var(--danger); }
+.pipe-title { font-size: 11.5px; font-weight: 800; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.pipe-desc { font-size: 9.5px; color: var(--ink3); line-height: 1.4; }
+.pipe-out { font-size: 9.5px; color: var(--ok); margin-top: 4px; background: #E5F2E9; padding: 2px 6px; border-radius: 3px; }
+.pipe-step.user-gate .pipe-out { color: var(--danger); background: transparent; padding: 0; margin-top: 2px; }
+.pipe-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.pipe-detail-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 16px; }
+.pipe-detail-num { font-size: 32px; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 6px; }
+.pipe-detail-title { font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+.pipe-detail-agent { font-size: 10px; font-family: ui-monospace, monospace; color: var(--sig); background: var(--sig-soft); padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.pipe-detail-body { font-size: 11px; color: var(--ink2); line-height: 1.55; }
+.pipe-io { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+.pipe-io-box { padding: 7px 9px; border-radius: 5px; font-size: 10px; line-height: 1.4; }
+.pipe-io-box.in { background: #F1EEE7; }
+.pipe-io-box.out { background: #E5F2E9; }
+.pipe-io-label { font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; color: var(--ink3); }
+.gate-box { background: #FDECEC; border: 1.5px solid var(--danger); border-radius: 10px; padding: 14px 18px; margin: 16px 0; display: flex; align-items: center; gap: 14px; }
+.gate-icon { font-size: 22px; flex-shrink: 0; }
+.gate-text strong { font-size: 13px; font-weight: 800; color: var(--danger); display: block; margin-bottom: 2px; }
+.gate-text span { font-size: 11px; color: #7A2020; }
+.parallel-panel { background: #E5F2E9; border: 1.5px solid #BEDDC6; border-radius: 10px; padding: 14px 16px; margin: 16px 0; }
+.parallel-label { font-size: 10px; font-weight: 800; color: var(--ok); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.parallel-agents { display: flex; gap: 6px; flex-wrap: wrap; }
+.parallel-agent { background: var(--card); border: 1px solid #BEDDC6; border-radius: 6px; padding: 7px 10px; font-size: 10px; }
+.parallel-agent .pa-name { font-weight: 800; color: var(--ink); }
+.parallel-agent .pa-role { color: var(--ink3); margin-top: 1px; }
+.seq-gate { background: #FAF1DC; border: 1.5px solid #ECD9B0; border-radius: 10px; padding: 12px 16px; margin: 14px 0; }
+.seq-label { font-size: 10px; font-weight: 800; color: var(--warn); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
+.seq-chain { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.seq-agent { background: var(--card); border: 1px solid #ECD9B0; border-radius: 5px; padding: 5px 9px; font-size: 10px; font-weight: 700; color: var(--ink); font-family: ui-monospace, monospace; }
+.seq-arrow { color: var(--ink4); font-size: 12px; }
+
+/* ═══ DESIGN PERSPECTIVE TAB ═══ */
+.principle-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+.principle-card { border-radius: 10px; padding: 16px; }
+.principle-card.p1 { background: #1E2A40; color: #fff; }
+.principle-card.p2 { background: #F2C9DF; }
+.principle-card.p3 { background: #BEDDC6; }
+.principle-card.p4 { background: #E2D5F0; }
+.principle-num { font-size: 28px; font-weight: 900; opacity: 0.25; line-height: 1; margin-bottom: 6px; }
+.principle-title { font-size: 13px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
+.principle-card.p1 .principle-title { color: #fff; }
+.principle-card.p2 .principle-title { color: #7A1F4A; }
+.principle-card.p3 .principle-title { color: #1A5234; }
+.principle-card.p4 .principle-title { color: #4A2080; }
+.principle-desc { font-size: 10.5px; line-height: 1.55; }
+.principle-card.p1 .principle-desc { color: rgba(255,255,255,0.65); }
+.principle-card.p2 .principle-desc { color: #5C1535; }
+.principle-card.p3 .principle-desc { color: #1A5234; }
+.principle-card.p4 .principle-desc { color: #3D1870; }
+.principle-guard { font-size: 9.5px; margin-top: 8px; padding: 4px 7px; border-radius: 4px; }
+.principle-card.p1 .principle-guard { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.55); }
+.principle-card.p2 .principle-guard { background: rgba(122,31,74,0.1); color: #7A1F4A; }
+.principle-card.p3 .principle-guard { background: rgba(26,82,52,0.1); color: #1A5234; }
+.principle-card.p4 .principle-guard { background: rgba(74,32,128,0.1); color: #4A2080; }
+
+.stage-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+.stage-col { padding: 16px; border-right: 1px solid var(--border); }
+.stage-col:last-child { border-right: none; }
+.stage-num { font-size: 9px; font-weight: 800; color: var(--ink4); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+.stage-title { font-size: 12px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.stage-agent { font-size: 9.5px; font-family: ui-monospace, monospace; color: var(--sig); background: var(--sig-soft); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 8px; }
+.stage-items { list-style: none; margin: 0; padding: 0; }
+.stage-items li { font-size: 10.5px; color: var(--ink2); padding: 3px 0; border-bottom: 1px dotted var(--border-soft); line-height: 1.4; }
+.stage-items li:last-child { border-bottom: none; }
+.stage-items li::before { content: '→ '; color: var(--ink4); }
+
+.score-table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 28px; }
+.score-row { display: grid; grid-template-columns: 90px 1fr 60px 120px; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+.score-row:last-child { border-bottom: none; }
+.score-row.header { font-size: 10px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.3px; padding-bottom: 8px; }
+.score-axis { font-size: 11.5px; font-weight: 700; color: var(--ink); }
+.score-bar-wrap { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.score-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--sig), #5B78B0); }
+.score-pts { font-size: 12px; font-weight: 800; color: var(--ink); text-align: right; }
+.score-note { font-size: 10px; color: var(--ink3); line-height: 1.35; }
+.score-criteria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.score-crit-box { padding: 10px 12px; border-radius: 7px; }
+.score-crit-box.pass { background: #E5F2E9; }
+.score-crit-box.review { background: #FFF6E5; }
+.score-crit-box.fail { background: #FDECEC; }
+.score-crit-range { font-size: 16px; font-weight: 900; line-height: 1; margin-bottom: 3px; }
+.score-crit-box.pass .score-crit-range { color: var(--ok); }
+.score-crit-box.review .score-crit-range { color: var(--warn); }
+.score-crit-box.fail .score-crit-range { color: var(--danger); }
+.score-crit-label { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.score-crit-desc { font-size: 10px; color: var(--ink3); }
+
+.region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.region-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 14px; }
+.region-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 10px; font-weight: 800; color: #fff; margin-bottom: 7px; }
+.region-title { font-size: 12.5px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.region-checks { display: flex; flex-direction: column; gap: 3px; }
+.region-check { display: flex; align-items: baseline; gap: 6px; font-size: 10.5px; color: var(--ink2); padding: 2px 0; }
+.region-check::before { content: '□'; color: var(--ink4); flex-shrink: 0; font-size: 11px; }
+
+/* ═══ PROJECTS TAB ═══ */
+.today-board { background: #fff7f7; border: 1.5px solid #fecaca; border-radius: 12px; padding: 16px 20px; margin-bottom: 32px; }
+.today-board-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.today-board-head h3 { margin: 0; font-size: 14px; font-weight: 900; color: #b91c1c; }
+.today-note { font-size: 11px; color: var(--ink3); }
+.today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.today-col-h { font-size: 11px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.today-col.overdue .today-col-h { color: #dc2626; }
+.today-col.duetoday .today-col-h { color: #ea580c; }
+.today-col-h .cnt { margin-left: auto; background: rgba(0,0,0,0.05); border-radius: 9px; padding: 0 7px; font-size: 10px; color: var(--ink3); font-weight: 700; }
+.today-item { display: flex; gap: 9px; background: #fff; border: 1px solid #f1d4d4; border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; align-items: flex-start; }
+.today-col.duetoday .today-item { border-color: #fde4cf; }
+.ti-area { flex-shrink: 0; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-top: 1px; }
+.ti-body { flex: 1; min-width: 0; }
+.ti-title { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.ti-meta { font-size: 10.5px; color: var(--ink3); margin-top: 3px; }
+.ti-type { font-weight: 700; padding: 1px 5px; border-radius: 4px; font-size: 10px; }
+.type-do { background: #fee2e2; color: #b91c1c; }
+.type-remind { background: #fef3c7; color: #b45309; }
+.type-check { background: #e0e7ff; color: #4338ca; }
+.sep { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+.project-section { margin-bottom: 40px; }
+.project-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 2px solid var(--border); }
+.project-section-header h3 { font-size: 15px; font-weight: 900; color: var(--ink); margin: 0; }
+.section-badge { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.badge-design { background: #FBE7F1; color: #7A1F4A; }
+.badge-ops { background: var(--sig-soft); color: var(--sig); }
+.kanban { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.kanban-col { background: var(--bg); border-radius: 10px; padding: 14px; }
+.kanban-col-header { font-size: 12px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+.col-dot { width: 9px; height: 9px; border-radius: 50%; }
+.col-count { margin-left: auto; background: rgba(0,0,0,0.05); border-radius: 10px; padding: 1px 8px; font-size: 10.5px; color: var(--ink3); }
+.project-item { background: var(--card); border: 1px solid var(--border); border-radius: 7px; padding: 11px 13px; margin-bottom: 7px; transition: box-shadow .2s, transform .15s; }
+.project-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+.project-item-title { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.project-item-desc { font-size: 10.5px; color: var(--ink3); line-height: 1.4; }
+.project-item-tag { display: inline-block; margin-top: 5px; padding: 2px 8px; border-radius: 4px; font-size: 9.5px; font-weight: 600; }
+.tag-hot  { background: #fee2e2; color: #b91c1c; }
+.tag-qa   { background: #fef3c7; color: #b45309; }
+.tag-new  { background: #dcfce7; color: #15803d; }
+.tag-hold { background: #f1f5f9; color: var(--ink3); }
+.tag-live { background: #dbeafe; color: #1d4ed8; }
+
+/* GANTT */
+.gantt-wrap { margin-top: 20px; }
+.gantt-legend { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.gantt-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ink3); }
+.gantt-legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+.gantt-container { overflow-x: auto; }
+.gantt-inner { min-width: 700px; }
+.gantt-header-row { display: flex; margin-left: 160px; margin-bottom: 4px; position: relative; height: 20px; }
+.gantt-header-label { position: absolute; font-size: 10px; color: var(--ink4); white-space: nowrap; transform: translateX(-50%); }
+.gantt-row { display: flex; align-items: center; height: 28px; margin-bottom: 2px; }
+.gantt-row-label { width: 156px; min-width: 156px; font-size: 10.5px; color: var(--ink3); padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gantt-track { flex: 1; height: 28px; position: relative; background: #f8fafc; border-radius: 4px; }
+.gantt-bar { position: absolute; height: 16px; top: 6px; border-radius: 4px; }
+.gantt-bar-wip  { background: #3b82f6; }
+.gantt-bar-hold { background: repeating-linear-gradient(45deg, #f59e0b, #f59e0b 4px, #fde68a 4px, #fde68a 8px); }
+.gantt-bar-done { background: #22c55e; opacity: 0.5; }
+.gantt-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #ef4444; opacity: 0.7; pointer-events: none; }
+
+/* ═══ TREND TAB ═══ */
+.trend-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.trend-meta .src-badge { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 12px; background: #F1EEE7; color: var(--ink2); }
+.trend-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
+.trend-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 14px; position: relative; overflow: hidden; }
+.trend-card::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; bottom: 0; }
+.trend-card.cat-ui::after { background: #3B82F6; }
+.trend-card.cat-motion::after { background: #8B5CF6; }
+.trend-card.cat-brand::after { background: #F59E0B; }
+.trend-card.cat-ai::after { background: #10B981; }
+.trend-card.cat-ua::after { background: #EF4444; }
+.trend-num { font-size: 9px; font-weight: 800; color: var(--ink4); margin-bottom: 5px; letter-spacing: 0.5px; }
+.trend-title { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 5px; letter-spacing: -0.3px; }
+.trend-desc { font-size: 11px; color: var(--ink2); line-height: 1.55; margin-bottom: 8px; }
+.trend-apply { font-size: 10.5px; color: var(--sig); background: var(--sig-soft); padding: 5px 8px; border-radius: 4px; line-height: 1.4; }
+.trend-tags { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+.trend-tag { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; background: var(--bg); color: var(--ink3); border: 1px solid var(--border-soft); }
+.trend-top5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+.trend-top-card { background: linear-gradient(160deg, #1E2A40, #2F3E5F); color: #fff; border-radius: 10px; padding: 14px; }
+.trend-top-card .n { font-size: 22px; font-weight: 900; opacity: 0.3; line-height: 1; margin-bottom: 6px; }
+.trend-top-card .t { font-size: 12px; font-weight: 800; line-height: 1.3; margin-bottom: 5px; }
+.trend-top-card .d { font-size: 10px; color: rgba(255,255,255,0.55); line-height: 1.45; }
+
+/* ═══ OVERHEAD TAB ═══ */
+.overhead-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.overhead-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 16px; }
+.overhead-card .oh-label { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; color: var(--ink3); text-transform: uppercase; margin-bottom: 12px; }
+.util-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.util-name { font-size: 11px; color: var(--ink2); width: 80px; flex-shrink: 0; }
+.util-bar { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.util-fill { height: 100%; border-radius: 4px; }
+.util-fill.ok { background: var(--ok); }
+.util-fill.warn { background: var(--warn); }
+.util-fill.danger { background: var(--danger); }
+.util-pct { font-size: 11px; font-weight: 700; width: 32px; text-align: right; flex-shrink: 0; }
+.fte-table { width: 100%; border-collapse: collapse; }
+.fte-table th { font-size: 9.5px; font-weight: 700; color: var(--ink3); text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); text-transform: uppercase; }
+.fte-table td { font-size: 11px; color: var(--ink2); padding: 6px 8px; border-bottom: 1px solid var(--border-soft); }
+.fte-table td:last-child { font-weight: 700; }
+.risk-flag { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+.risk-flag:last-child { border-bottom: none; }
+.risk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.risk-dot.high { background: var(--danger); } .risk-dot.mid { background: var(--warn); } .risk-dot.low { background: var(--ok); }
+.risk-text { font-size: 11px; color: var(--ink2); line-height: 1.45; }
+.risk-text strong { color: var(--ink); }
+
+/* ═══ CLIENTS TAB ═══ */
+.client-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.client-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.client-header { padding: 13px 15px 10px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: flex-start; gap: 10px; }
+.client-logo { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.client-name { font-size: 14px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+.client-type { font-size: 10px; color: var(--ink3); margin-top: 2px; }
+.client-status { margin-left: auto; font-size: 9.5px; font-weight: 800; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
+.cs-active { background: #E5F2E9; color: var(--ok); }
+.cs-wait { background: #FFF6E5; color: var(--warn); }
+.cs-new { background: var(--sig-soft); color: var(--sig); }
+.client-body { padding: 11px 15px; }
+.client-row { display: grid; grid-template-columns: 52px 1fr; gap: 6px; padding: 4px 0; border-bottom: 1px dotted var(--border-soft); font-size: 10.5px; }
+.client-row:last-child { border-bottom: none; }
+.client-row .cl { font-size: 9px; font-weight: 800; color: var(--ink3); text-transform: uppercase; }
+.client-row .cv { color: var(--ink2); line-height: 1.4; }
+.client-risk { margin-top: 8px; padding: 6px 8px; border-radius: 5px; font-size: 10px; line-height: 1.45; }
+.client-risk.r-high { background: #FDECEC; color: #B23B3B; }
+.client-risk.r-mid  { background: #FFF6E5; color: var(--warn); }
+.client-risk.r-low  { background: #E5F2E9; color: var(--ok); }
+.client-stars { color: #F59E0B; font-size: 11px; letter-spacing: -1px; }
+.relation-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 4px; overflow: hidden; }
+.relation-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--sig), #5B78B0); }
+
+/* ═══ TEAM TAB ═══ */
+.team-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.team-stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 16px; text-align: center; }
+.team-stat-n { font-size: 32px; font-weight: 900; color: var(--ink); line-height: 1; }
+.team-stat-n .unit { font-size: 14px; color: var(--ink3); font-weight: 500; }
+.team-stat-l { font-size: 11px; color: var(--ink3); margin-top: 4px; }
+.team-stat-sub { font-size: 10px; color: var(--ink4); margin-top: 2px; }
+.member-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.member-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 14px; }
+.member-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.member-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; flex-shrink: 0; color: #fff; }
+.av-vm { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+.av-vx { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+.av-cd { background: linear-gradient(135deg, #1E2A40, #2F3E5F); }
+.member-name { font-size: 13px; font-weight: 800; color: var(--ink); }
+.member-role { font-size: 10px; color: var(--ink3); margin-top: 1px; }
+.member-util { margin-bottom: 8px; }
+.member-util-label { font-size: 10px; color: var(--ink3); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.member-util-bar { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.member-util-fill { height: 100%; border-radius: 3px; }
+.member-projects { font-size: 10.5px; color: var(--ink2); }
+.member-project { display: flex; align-items: center; gap: 5px; padding: 3px 0; border-bottom: 1px dotted var(--border-soft); }
+.member-project:last-child { border-bottom: none; }
+.member-project .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sig); flex-shrink: 0; }
+.member-skills { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 8px; }
+.skill-tag { font-size: 9px; padding: 2px 6px; border-radius: 3px; background: var(--bg); color: var(--ink3); border: 1px solid var(--border-soft); }
+.group-label { font-size: 12px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+.group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ═══ HIRING TAB ═══ */
+.hiring-roadmap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 20px; }
+.roadmap-bar { display: flex; gap: 2px; margin: 14px 0 8px; height: 28px; border-radius: 6px; overflow: hidden; }
+.roadmap-seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; }
+.roadmap-seg.now { background: var(--sig); }
+.roadmap-seg.q3  { background: #5B78B0; }
+.roadmap-seg.q4  { background: #8BA3C7; }
+.roadmap-seg.y27 { background: #B5C8E0; }
+.pipeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.pipeline-col { background: var(--bg); border-radius: 9px; padding: 12px; }
+.pipeline-col-h { font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.pipeline-item { background: var(--card); border: 1px solid var(--border); border-radius: 7px; padding: 10px; margin-bottom: 7px; }
+.pipeline-pos { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.pipeline-meta { font-size: 10px; color: var(--ink3); line-height: 1.4; }
+.pipeline-urgent { font-size: 9.5px; color: var(--danger); background: #FDECEC; padding: 2px 6px; border-radius: 3px; margin-top: 5px; display: inline-block; }
+.vendor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.vendor-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 13px; }
+.vendor-cat { font-size: 10px; font-weight: 800; color: var(--sig); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+.vendor-item { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px dotted var(--border-soft); font-size: 11px; color: var(--ink2); }
+.vendor-item:last-child { border-bottom: none; }
+.vendor-item .v-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); flex-shrink: 0; }
+.vendor-item .v-dot.absent { background: var(--ink4); }
+.vendor-stars { font-size: 10px; color: #F59E0B; margin-left: auto; }
+
+/* RESPONSIVE */
+@media (max-width: 1700px) { .org-row { grid-template-columns: repeat(4, 1fr); } .principle-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1300px) { .org-row { grid-template-columns: repeat(3, 1fr); } .stage-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1100px) { .hub-panel { grid-template-columns: 1fr; } .org-row { grid-template-columns: repeat(2, 1fr); } .today-grid { grid-template-columns: 1fr; } .pipe-detail-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .org-row { grid-template-columns: 1fr; } .kanban { grid-template-columns: 1fr; } .region-grid { grid-template-columns: 1fr 1fr; } .pipe-detail-grid { grid-template-columns: 1fr; } .principle-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>MAX실 OS <span>· Dashboard v5</span></h1>
+    <div class="sub">디자인 센터 CD 권한 + MAX실 9명 직속 운영 · 30개 에이전트 · 7개 그룹 재구조화</div>
+  </div>
+  <div class="header-right">
+    <div class="head-stat"><div class="n">30</div><div class="l">에이전트</div></div>
+    <div class="head-divider"></div>
+    <div class="head-stat"><div class="n">7</div><div class="l">그룹</div></div>
+    <div class="head-divider"></div>
+    <div class="head-stat"><div class="n">6</div><div class="l">진행 프로젝트</div></div>
+    <div class="head-divider"></div>
+    <div class="head-badge">2026-06-30</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="tab active" onclick="go('org',this)">에이전트 조직도</div>
+  <div class="tab" onclick="go('pipeline',this)">제안 파이프라인</div>
+  <div class="tab" onclick="go('design',this)">디자인 관점</div>
+  <div class="tab" onclick="go('projects',this)">프로젝트 현황</div>
+  <div class="tab" onclick="go('trend',this)">디자인 트렌드</div>
+  <div class="tab" onclick="go('overhead',this)">추가투입 위험</div>
+  <div class="tab" onclick="go('clients',this)">클라이언트 레이더</div>
+  <div class="tab" onclick="go('team',this)">MAX실 9명</div>
+  <div class="tab" onclick="go('hiring',this)">채용·외주</div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════ TAB 1: 조직도 ══════════════ -->
+<div id="sect-org" class="section active">
+  <h2 class="section-title">에이전트 조직도 v5</h2>
+  <p class="section-desc">30개 에이전트 · 7개 그룹 재구조화. 제안 파이프라인 흐름 순서로 정렬. 키워드 → 자동 라우팅.</p>
+
+  <div class="alert">
+    <span class="ic">🔄</span>
+    <div><strong>v5 재구조화.</strong> concept-director(★관점 게이트) · critic(실행검증) · market-research(30개→XY맵) 신규 추가. 제안 파이프라인 그룹이 허브의 핵심 흐름을 담습니다.</div>
+  </div>
+
+  <div class="tree-wrap">
+    <div class="hub-node">
+      <div class="label">MAIN SESSION · 허브</div>
+      <div class="name">MAX실 OS (김효정)</div>
+      <div class="sub">키워드 자동 매칭 → 30개 에이전트 오케스트레이터</div>
+    </div>
+
+    <div class="org-row">
+      <!-- 그룹1: 제안 파이프라인 -->
+      <div class="col col-1">
+        <div class="col-head">① 제안 파이프라인<span class="count">6</span></div>
+        <div class="col-tagline">RFP → 조사 → 관점 → 발산 → 검증 → 견적</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">RFP 분석가</span></div>
+            <div class="card-slug">rfp-analyst</div>
+            <div class="card-role">명시·숨은·미정의·위험 4분류</div>
+            <div class="card-trig"><strong>호출:</strong> RFP / 제안 메일 / 의뢰</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">시장 조사원</span><span class="badge badge-new">업그레이드</span></div>
+            <div class="card-slug">market-research</div>
+            <div class="card-role">경쟁 30개 → 8속성 → 3그룹 → XY포지셔닝맵 → 화이트스페이스</div>
+            <div class="card-trig"><strong>호출:</strong> 시장조사 / 경쟁사 / XY맵</div>
+          </div>
+          <div class="card" style="border-color:var(--sig);background:var(--sig-soft);">
+            <div class="card-name-row"><span class="card-name">컨셉 디렉터</span><span class="badge badge-gate">★필수 게이트</span></div>
+            <div class="card-slug">concept-director</div>
+            <div class="card-role">발산 전 관점 한 문장 확정. 4원칙: 관점먼저·자기렌즈·헤리티지결정·행동시스템</div>
+            <div class="card-trig"><strong>호출:</strong> 관점 / 방향 잡아줘 / 컨셉 정의</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">브레인스토머</span><span class="badge badge-new">업그레이드</span></div>
+            <div class="card-slug">brainstormer</div>
+            <div class="card-role">6관점×10안=60안 → 핵심 5안 + 약식 포지셔닝맵</div>
+            <div class="card-trig"><strong>호출:</strong> 발산 / 아이디어 / 후보 / 6관점</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">크리틱</span><span class="badge badge-new">신규</span></div>
+            <div class="card-slug">critic</div>
+            <div class="card-role">5축 /100 실행가능성 점수화. 80점 미만 → 재발산 권고</div>
+            <div class="card-trig"><strong>호출:</strong> 점수 / 검증해줘 / 현실적 / 약점</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">견적 회계사</span><span class="badge badge-core">코어</span></div>
+            <div class="card-slug">quote-accountant</div>
+            <div class="card-role">4축 원가표 + 마진 10/20/30/40% 4시나리오</div>
+            <div class="card-trig"><strong>호출:</strong> 견적 / 단가 / 원가 / 마진</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹2: 디자인 실무 -->
+      <div class="col col-2">
+        <div class="col-head">② 디자인 실무<span class="count">5</span></div>
+        <div class="col-tagline">시안 퀄리티 · 트렌드 · 시스템 · 레퍼런스</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">크리에이티브 디렉터</span><span class="badge badge-core">코어</span></div>
+            <div class="card-slug">creative-director</div>
+            <div class="card-role">시안 톤·퀄리티 가디언. 신규/외주 온보딩 표준 전수</div>
+            <div class="card-trig"><strong>호출:</strong> 검수 / 시안 봐 / 톤</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">설계 비평가</span></div>
+            <div class="card-slug">design-critique</div>
+            <div class="card-role">UI·콘텐츠·GUI·UA·상세·브랜딩 6영역 체크리스트</div>
+            <div class="card-trig"><strong>호출:</strong> 비평 / 6영역 / UI/콘텐츠/GUI</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">디자인 트렌드 레이더</span></div>
+            <div class="card-slug">design-trend-radar</div>
+            <div class="card-role">글로벌 트렌드 3개월 강제 반영. Awwwards·Behance·D&AD</div>
+            <div class="card-trig"><strong>호출:</strong> 트렌드 / 글로벌 / 3개월</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">설계 시스템 가디언</span></div>
+            <div class="card-slug">design-system-guardian</div>
+            <div class="card-role">표준 가이드 수호·배포. 신규 온보딩 기준</div>
+            <div class="card-trig"><strong>호출:</strong> 시스템 / 가이드 / 온보딩</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">레퍼런스 큐레이터</span></div>
+            <div class="card-slug">reference-curator</div>
+            <div class="card-role">클라/카테고리별 레퍼런스 풀 관리</div>
+            <div class="card-trig"><strong>호출:</strong> 레퍼 / 레퍼런스 / 찾자</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹3: 검수 게이트 -->
+      <div class="col col-3">
+        <div class="col-head">③ 검수 게이트<span class="count">4</span></div>
+        <div class="col-tagline">외부 발송 전 자동 순차 실행</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">팩트 체커</span></div>
+            <div class="card-slug">fact-checker</div>
+            <div class="card-role">사실·숫자 refute-first 검증</div>
+            <div class="card-trig"><strong>자동:</strong> 시장조사·견적 후</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">콜드 크리틱</span></div>
+            <div class="card-slug">cold-critic</div>
+            <div class="card-role">결함만, 칭찬 없음. 냉정한 최종 비평</div>
+            <div class="card-trig"><strong>자동:</strong> 제안 보고 전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">딜리버리 게이트</span></div>
+            <div class="card-slug">delivery-gate</div>
+            <div class="card-role">라이트모드·PII·브랜드 마크 린트</div>
+            <div class="card-trig"><strong>자동:</strong> 외부 발송 직전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">톤 가디언</span></div>
+            <div class="card-slug">tone-guardian</div>
+            <div class="card-role">외부 메일·제안서 톤·매너 컨펌</div>
+            <div class="card-trig"><strong>자동:</strong> 회신 메일 발송 전</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹4: 실 운영 -->
+      <div class="col col-4">
+        <div class="col-head">④ 실 운영<span class="count">3</span></div>
+        <div class="col-tagline">9명 운영 · 리소스 · 클라 관계</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">MAX실 PM</span><span class="badge badge-core">코어</span></div>
+            <div class="card-slug">max-pm</div>
+            <div class="card-role">MAX실 9명 운영 종합. 시트 read-only. 주간 가동률 집계</div>
+            <div class="card-trig"><strong>호출:</strong> 가동률 / 이번 주 / 상태</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">추가투입 워처</span></div>
+            <div class="card-slug">overhead-watcher</div>
+            <div class="card-role">CR·피드백·야근 KPI → FTE 환산 → 채용 근거</div>
+            <div class="card-trig"><strong>호출:</strong> 갭 / 야근 / CR / 추가투입</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">어카운트 레이더</span></div>
+            <div class="card-slug">account-radar</div>
+            <div class="card-role">반복 클라이언트 히스토리·리스크·관계 레이더</div>
+            <div class="card-trig"><strong>호출:</strong> 코웨이 / 넷마블 / 아모레 / 클라 상황</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹5: 콘텐츠 생성 -->
+      <div class="col col-5">
+        <div class="col-head">⑤ 콘텐츠 생성<span class="count">4</span></div>
+        <div class="col-tagline">카피·이미지·모션·PPT 즉시 생성</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">카피 생성</span></div>
+            <div class="card-slug">copy-gen</div>
+            <div class="card-role">UI·마케팅·브랜드 카피 생성</div>
+            <div class="card-trig"><strong>호출:</strong> 카피 / 문구 / 텍스트 만들자</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">이미지 생성</span></div>
+            <div class="card-slug">image-gen</div>
+            <div class="card-role">MJ·SD 프롬프트 생성. 한국어 → 영문 키워드 변환</div>
+            <div class="card-trig"><strong>호출:</strong> 이미지 생성 / 비주얼 만들자</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">모션 생성</span></div>
+            <div class="card-slug">motion-gen</div>
+            <div class="card-role">AI 모션·영상 생성 프롬프트</div>
+            <div class="card-trig"><strong>호출:</strong> 모션 만들자 / 애니메이션</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">PPT 생성</span></div>
+            <div class="card-slug">ppt-gen</div>
+            <div class="card-role">제안서·보고서 PPT 구성 설계</div>
+            <div class="card-trig"><strong>호출:</strong> PPT / 제안서 / 발표자료</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹6: 5관점 패널 -->
+      <div class="col col-6">
+        <div class="col-head">⑥ 5관점 패널<span class="count">5</span></div>
+        <div class="col-tagline">실장님 셀렉 후 자동 병렬 실행</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">계획 검토자</span></div>
+            <div class="card-slug">review-plan</div>
+            <div class="card-role">목적-수단 정합·일정 현실성</div>
+            <div class="card-trig"><strong>자동:</strong> 안 선택 후 병렬</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">크리에이터 검토자</span></div>
+            <div class="card-slug">review-creator</div>
+            <div class="card-role">VM/VX 실현가능성·기술 난이도</div>
+            <div class="card-trig"><strong>자동:</strong> 안 선택 후 병렬</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">비즈니스 검토자</span></div>
+            <div class="card-slug">review-business</div>
+            <div class="card-role">BM·수익성·재계약 가능성</div>
+            <div class="card-trig"><strong>자동:</strong> 안 선택 후 병렬</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">마케팅 검토자</span></div>
+            <div class="card-slug">review-marketing</div>
+            <div class="card-role">도달·전환·KPI 검토</div>
+            <div class="card-trig"><strong>자동:</strong> 안 선택 후 병렬</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">B2B 클라이언트 검토자</span></div>
+            <div class="card-slug">review-b2b-client</div>
+            <div class="card-role">구매자 입장·결재·예산 관점</div>
+            <div class="card-trig"><strong>자동:</strong> 안 선택 후 병렬</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 그룹7: 채용·법무 -->
+      <div class="col col-7">
+        <div class="col-head">⑦ 채용·법무<span class="count">3</span></div>
+        <div class="col-tagline">9→20 증원 · 외주 풀 · 계약 검토</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">채용 레이더</span></div>
+            <div class="card-slug">hiring-radar</div>
+            <div class="card-role">9→20 증원 파이프라인. JD 생성·소싱 전략</div>
+            <div class="card-trig"><strong>호출:</strong> 채용 / JD / 소싱</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">벤더 레이더</span></div>
+            <div class="card-slug">vendor-radar</div>
+            <div class="card-role">외주·프리랜서·벤더 풀 SoT</div>
+            <div class="card-trig"><strong>호출:</strong> 외주 / 프리랜서 / 벤더</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">법무 컴플라이언스</span></div>
+            <div class="card-slug">legal-compliance</div>
+            <div class="card-role">계약·NDA 검토·쟁점 플래그</div>
+            <div class="card-trig"><strong>호출:</strong> 계약 / NDA / 법무</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /org-row -->
+
+  </div><!-- /tree-wrap -->
+
+  <!-- 허브 운영 패널 -->
+  <div style="margin-top:32px;">
+  <div class="hub-panel">
+    <div class="hub-core">
+      <div class="label">Main Session · Hub</div>
+      <div class="name">MAX실 OS 허브</div>
+      <div class="role">사용자 입력 → 키워드 자동 매칭 → 에이전트 호출 → 결과 1장 정리. 7개 결정은 사용자가 직접.</div>
+      <div class="hub-modes">
+        <div class="hub-mode m1"><span class="pct">60%</span><span class="mname">즉답</span><span class="mdesc">위임 없이 허브 직접 답</span></div>
+        <div class="hub-mode m2"><span class="pct">30%</span><span class="mname">라우팅</span><span class="mdesc">키워드 → 에이전트 1~2명</span></div>
+        <div class="hub-mode m3"><span class="pct">10%</span><span class="mname">종합</span><span class="mdesc">복합 → 병렬 다중 → 1장</span></div>
+      </div>
+    </div>
+    <div class="hub-triggers">
+      <div class="hub-section-h">자동 트리거</div>
+      <div class="trigger"><div class="when">매일 09:00</div><div class="what"><strong>오늘 보드 갱신</strong><span>꼭 할 것 / 기일초과 / 회신대기</span></div></div>
+      <div class="trigger"><div class="when">월 08:00</div><div class="what"><strong>주간 컨닝페이퍼</strong><span>max-pm + overhead + account-radar 병렬</span></div></div>
+      <div class="trigger"><div class="when">분기 첫주</div><div class="what"><strong>트렌드 리프레시</strong><span>design-trend-radar → 30카드 → reference-curator</span></div></div>
+      <div class="trigger"><div class="when">매일 18:00</div><div class="what"><strong>결정대기 알림</strong><span>오늘 모인 "사용자 결정 필요" 항목</span></div></div>
+      <div class="trigger"><div class="when">발송 직전</div><div class="what"><strong>외부 발송 게이트</strong><span>fact-checker → delivery-gate → tone-guardian</span></div></div>
+    </div>
+    <div class="hub-nodelegate">
+      <div class="hub-section-h">절대 위임 안 함 (7개)</div>
+      <div class="nodelegate-list">
+        <div class="nodelegate-item"><div class="num">1</div><div><strong>최종 견적가</strong> (4시나리오만 제시)</div></div>
+        <div class="nodelegate-item"><div class="num">2</div><div><strong>마진율</strong> (10/20/30/40% 선택)</div></div>
+        <div class="nodelegate-item"><div class="num">3</div><div><strong>계약 날인</strong></div></div>
+        <div class="nodelegate-item"><div class="num">4</div><div><strong>단가 협상 카드</strong></div></div>
+        <div class="nodelegate-item"><div class="num">5</div><div><strong>인사 평가·재계약</strong></div></div>
+        <div class="nodelegate-item"><div class="num">6</div><div><strong>신규 채용·해고</strong></div></div>
+        <div class="nodelegate-item"><div class="num">7</div><div><strong>외부 발송 최종 OK</strong></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div><!-- /sect-org -->
+
+
+<!-- ══════════════ TAB 2: 제안 파이프라인 ══════════════ -->
+<div id="sect-pipeline" class="section">
+  <h2 class="section-title">제안 파이프라인</h2>
+  <p class="section-desc">RFP 접수 → 시장조사 → 관점고정★ → 발산 → 검증 → 셀렉 → 견적 → 5관점패널 → 검수게이트 → 외부발송 OK</p>
+
+  <!-- FLOW -->
+  <div class="pipe-flow">
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 01</div>
+      <div class="pipe-agent">rfp-analyst</div>
+      <div class="pipe-title">RFP 분석</div>
+      <div class="pipe-desc">명시·숨은·미정의·위험 4분류</div>
+      <div class="pipe-out">→ 브리핑 1장</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 02</div>
+      <div class="pipe-agent">market-research</div>
+      <div class="pipe-title">시장조사·포지셔닝</div>
+      <div class="pipe-desc">경쟁 30개 → XY맵 → 화이트스페이스</div>
+      <div class="pipe-out">→ XY맵 + 3그룹</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step highlight">
+      <div class="pipe-num">★ STEP 03 · 필수</div>
+      <div class="pipe-agent">concept-director</div>
+      <div class="pipe-title">관점 고정</div>
+      <div class="pipe-desc">발산 전 필수. 관점 한 문장 확정</div>
+      <div class="pipe-out">→ 관점 1문장</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 04</div>
+      <div class="pipe-agent">brainstormer</div>
+      <div class="pipe-title">아이디어 발산</div>
+      <div class="pipe-desc">6관점×10안=60안 → 핵심 5안</div>
+      <div class="pipe-out">→ 5안 + 포지셔닝맵</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 05</div>
+      <div class="pipe-agent">critic</div>
+      <div class="pipe-title">실행 검증</div>
+      <div class="pipe-desc">5축 /100 점수화. 80+ 채택</div>
+      <div class="pipe-out">→ 점수표</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step user-gate">
+      <div class="pipe-num">⚑ USER</div>
+      <div class="pipe-agent">직접 결정</div>
+      <div class="pipe-title">안 셀렉</div>
+      <div class="pipe-desc">5안 중 채택안 확정</div>
+      <div class="pipe-out">위임 불가</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 06</div>
+      <div class="pipe-agent">quote-accountant</div>
+      <div class="pipe-title">견적 산정</div>
+      <div class="pipe-desc">4축 원가표 + 마진 4시나리오</div>
+      <div class="pipe-out">→ 원가표</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step user-gate">
+      <div class="pipe-num">⚑ USER</div>
+      <div class="pipe-agent">직접 결정</div>
+      <div class="pipe-title">마진율·견적가</div>
+      <div class="pipe-desc">10/20/30/40% 선택</div>
+      <div class="pipe-out">위임 불가</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 07</div>
+      <div class="pipe-agent">5관점 패널</div>
+      <div class="pipe-title">사전검토 (병렬)</div>
+      <div class="pipe-desc">5명 동시. 계획·제작·BM·마케팅·B2B</div>
+      <div class="pipe-out">→ 5장 리포트</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step">
+      <div class="pipe-num">STEP 08</div>
+      <div class="pipe-agent">검수 게이트</div>
+      <div class="pipe-title">순차 게이트</div>
+      <div class="pipe-desc">fact-checker → cold-critic → delivery-gate → tone-guardian</div>
+      <div class="pipe-out">→ 린트 완료</div>
+    </div>
+    <div class="pipe-arrow">›</div>
+    <div class="pipe-step user-gate">
+      <div class="pipe-num">⚑ USER</div>
+      <div class="pipe-agent">직접 결정</div>
+      <div class="pipe-title">발송 OK</div>
+      <div class="pipe-desc">최종 확인 후 발송</div>
+      <div class="pipe-out">위임 불가</div>
+    </div>
+  </div>
+
+  <!-- STEP별 상세 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 14px;">각 단계 상세</h3>
+  <div class="pipe-detail-grid">
+
+    <div class="pipe-detail-card">
+      <div class="pipe-detail-num">01</div>
+      <div class="pipe-detail-title">RFP 분석</div>
+      <div class="pipe-detail-agent">rfp-analyst</div>
+      <div class="pipe-detail-body">클라이언트 요청을 4개 영역으로 해부.<br><strong>명시 요건</strong> (확실한 것) · <strong>숨은 요건</strong> (말하지 않은 기대) · <strong>미정의 요건</strong> (아직 결정 안 된 것) · <strong>위험 요인</strong> (계약·납기·범위 리스크)</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>RFP 문서 / 제안 메일 / 구두 의뢰 내용</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>4분류 브리핑 1장 + 리스크 플래그</div>
+      </div>
+    </div>
+
+    <div class="pipe-detail-card">
+      <div class="pipe-detail-num">02</div>
+      <div class="pipe-detail-title">시장조사 · 포지셔닝</div>
+      <div class="pipe-detail-agent">market-research</div>
+      <div class="pipe-detail-body">Manus 방법론 적용. 경쟁 30개 브랜드를 8속성(이름·로고·소재지·오픈·스토리·타겟·기능·목적)으로 분석 → 3개 그룹 분류 → XY 포지셔닝맵 → 화이트스페이스 도출.</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>산업/제품군 키워드</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>XY맵 + 3그룹 = brainstormer 3방향 후보</div>
+      </div>
+    </div>
+
+    <div class="pipe-detail-card" style="border-color:var(--sig);">
+      <div class="pipe-detail-num" style="color:var(--sig);opacity:0.3;">03</div>
+      <div class="pipe-detail-title">★ 관점 고정 <span style="font-size:10px;background:var(--sig-soft);color:var(--sig);padding:2px 6px;border-radius:3px;">발산 전 필수</span></div>
+      <div class="pipe-detail-agent">concept-director</div>
+      <div class="pipe-detail-body">발산(brainstormer) 전에 반드시 실행. 아이디어 1000개보다 방향 1개가 먼저. 4원칙 적용 후 "관점 한 문장"으로 응축. 이 문장이 이후 모든 발산의 필터.</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>brand-brief-template 5필드</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>관점 1문장 + 헤리티지결정 + 시스템행동</div>
+      </div>
+    </div>
+
+    <div class="pipe-detail-card">
+      <div class="pipe-detail-num">04</div>
+      <div class="pipe-detail-title">아이디어 발산</div>
+      <div class="pipe-detail-agent">brainstormer</div>
+      <div class="pipe-detail-body">6개 관점(기능·감성·반전·미학·사회적가치·경제성) × 10안 = 60안 발산. 관점 한 문장을 필터로 3방향 핵심 후보 도출. 약식 포지셔닝맵으로 시각화.</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>관점 한 문장 + XY맵 3그룹</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>핵심 5안 + 약식 포지셔닝맵</div>
+      </div>
+    </div>
+
+    <div class="pipe-detail-card">
+      <div class="pipe-detail-num">05</div>
+      <div class="pipe-detail-title">실행 검증</div>
+      <div class="pipe-detail-agent">critic</div>
+      <div class="pipe-detail-body">5축 각 /20, 총 /100 점수화. 비용·기간·역량·실현가능성·설득력. 결함 위주 보고. 80점 이상 = 채택, 70~79 = 보완, 69 이하 = 재발산 권고.</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>brainstormer 5안</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>5축 점수표 + 결함 목록</div>
+      </div>
+    </div>
+
+    <div class="pipe-detail-card">
+      <div class="pipe-detail-num">06</div>
+      <div class="pipe-detail-title">견적 산정</div>
+      <div class="pipe-detail-agent">quote-accountant</div>
+      <div class="pipe-detail-body">인건비·재료비·외주비·간접비 4축 원가표. 마진 10/20/30/40% 4가지 시나리오 제시. 견적가 최종 확정은 사용자 직접.</div>
+      <div class="pipe-io">
+        <div class="pipe-io-box in"><div class="pipe-io-label">Input</div>채택안 + 산출물 범위 + 기간</div>
+        <div class="pipe-io-box out"><div class="pipe-io-label">Output</div>4축 원가표 + 마진 4시나리오</div>
+      </div>
+    </div>
+
+  </div><!-- /pipe-detail-grid -->
+
+  <!-- 5관점 패널 -->
+  <div class="parallel-panel">
+    <div class="parallel-label">⑦ STEP 07 — 5관점 사전검토 패널 (병렬 자동 실행)</div>
+    <div class="parallel-agents">
+      <div class="parallel-agent"><div class="pa-name">review-plan</div><div class="pa-role">목적-수단 정합·일정 현실성</div></div>
+      <div class="parallel-agent"><div class="pa-name">review-creator</div><div class="pa-role">VM/VX 실현가능성·기술 난이도</div></div>
+      <div class="parallel-agent"><div class="pa-name">review-business</div><div class="pa-role">BM·수익성·재계약 가능성</div></div>
+      <div class="parallel-agent"><div class="pa-name">review-marketing</div><div class="pa-role">도달·전환·KPI 검토</div></div>
+      <div class="parallel-agent"><div class="pa-name">review-b2b-client</div><div class="pa-role">구매자·결재·예산 관점</div></div>
+    </div>
+  </div>
+
+  <!-- 검수 게이트 -->
+  <div class="seq-gate">
+    <div class="seq-label">⑧ STEP 08 — 검수 게이트 (순차 자동 실행)</div>
+    <div class="seq-chain">
+      <div class="seq-agent">fact-checker</div><div class="seq-arrow">→</div>
+      <div class="seq-agent">cold-critic</div><div class="seq-arrow">→</div>
+      <div class="seq-agent">delivery-gate</div><div class="seq-arrow">→</div>
+      <div class="seq-agent">tone-guardian</div>
+    </div>
+  </div>
+
+  <!-- 발송 게이트 -->
+  <div class="gate-box">
+    <div class="gate-icon">⚑</div>
+    <div class="gate-text">
+      <strong>외부 발송 최종 OK — 사용자 직접 결정</strong>
+      <span>모든 게이트 통과 후에도 실제 발송은 사용자 최종 승인 필수. 에이전트는 "발송 준비 완료" 보고까지만.</span>
+    </div>
+  </div>
+</div><!-- /sect-pipeline -->
+
+
+
+<!-- ══════════════ TAB 3: 디자인 관점 ══════════════ -->
+<div id="sect-design" class="section">
+  <h2 class="section-title">디자인 관점</h2>
+  <p class="section-desc">concept-director 4원칙 · 브랜드 제안서 0~3단계 · design-critique 6영역 · critic 5축 점수표</p>
+
+  <!-- concept-director 4원칙 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">★ concept-director — 관점 게이트 4원칙</h3>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:14px;">발산(brainstormer) 전 반드시 통과. "아이디어 1000개보다 방향 1개가 먼저."</div>
+  <div class="principle-grid">
+    <div class="principle-card p1">
+      <div class="principle-num">1</div>
+      <div class="principle-title">관점먼저</div>
+      <div class="principle-desc">첫 출력은 반드시 관점 한 문장. 그 다음에 발산. 관점 없는 발산은 인정하지 않는다.</div>
+      <div class="principle-guard">출력 형식: "이 브랜드는 [관점]이다."</div>
+    </div>
+    <div class="principle-card p2">
+      <div class="principle-num">2</div>
+      <div class="principle-title">자기렌즈</div>
+      <div class="principle-desc">브랜드가 가진 고유한 필터로만 판단. 경쟁사 기준, 트렌드 기준, 클라 취향이 아니라 이 브랜드만의 맥락.</div>
+      <div class="principle-guard">질문: "이 브랜드만이 이렇게 할 수 있는가?"</div>
+    </div>
+    <div class="principle-card p3">
+      <div class="principle-num">3</div>
+      <div class="principle-title">헤리티지결정</div>
+      <div class="principle-desc">무엇을 쓸지보다 무엇을 버릴지를 먼저 결정. 버리는 것이 명확해야 관점이 선명해진다.</div>
+      <div class="principle-guard">출력: 버릴 것 목록 명시 필수</div>
+    </div>
+    <div class="principle-card p4">
+      <div class="principle-num">4</div>
+      <div class="principle-title">행동하는시스템</div>
+      <div class="principle-desc">비주얼이 아닌 규칙. "어떻게 보일지"가 아니라 "어떻게 행동할지" 기준. 시스템이 스스로 결정을 내려야 한다.</div>
+      <div class="principle-guard">출력: 시스템 행동 정의 (if-then 형식)</div>
+    </div>
+  </div>
+
+  <!-- Jaguar 가드 -->
+  <div class="footnote" style="margin-bottom:28px;">
+    <strong>Jaguar 가드:</strong> "우리도 저렇게 하자"는 발언이 나오면 즉시 멈춘다. 경쟁사 모방은 관점이 아니다. 경쟁사가 하지 않는 것을 찾는 것이 출발점.
+  </div>
+
+  <!-- 브랜드 제안서 0~3단계 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">브랜드 디자인 제안서 — 0~3단계 플로우</h3>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:14px;">Manus 방법론 기반. 0단계 브리프 → 1단계 Wide Research → 2단계 포지셔닝 → 3단계 전략 산출.</div>
+  <div class="stage-row">
+    <div class="stage-col" style="background:#F9F7F4;">
+      <div class="stage-num">0단계</div>
+      <div class="stage-title">브랜드 기본 정보</div>
+      <div class="stage-agent">brand-brief-template → concept-director</div>
+      <ul class="stage-items">
+        <li>브랜딩 프로젝트 목표</li>
+        <li>타겟층 + 행동/소비 특성</li>
+        <li>브랜드 핵심 기능 + 모티브</li>
+        <li>브랜드 이름의 의미</li>
+        <li>브랜드 스토리 (내러티브)</li>
+      </ul>
+    </div>
+    <div class="stage-col">
+      <div class="stage-num">1단계</div>
+      <div class="stage-title">Wide Research</div>
+      <div class="stage-agent">market-research (wide-research.md)</div>
+      <ul class="stage-items">
+        <li>경쟁/유사 브랜드 30개 선정</li>
+        <li>8속성 분석 (이름·로고·소재지 등)</li>
+        <li>3개 그룹 분류 (A/B/C)</li>
+        <li>각 그룹 공통 인사이트 도출</li>
+        <li>3그룹 = brainstormer 3방향 씨드</li>
+      </ul>
+    </div>
+    <div class="stage-col">
+      <div class="stage-num">2단계</div>
+      <div class="stage-title">포지셔닝 지도</div>
+      <div class="stage-agent">market-research (XY맵)</div>
+      <ul class="stage-items">
+        <li>30개 브랜드 X·Y축 배치</li>
+        <li>X축: 기능적 ↔ 감성적</li>
+        <li>Y축: 대중적 ↔ 프리미엄</li>
+        <li>화이트스페이스 (빈 사분면)</li>
+        <li>우리 포지셔닝 목표 지점 확정</li>
+      </ul>
+    </div>
+    <div class="stage-col" style="background:#F9F7F4;">
+      <div class="stage-num">3단계</div>
+      <div class="stage-title">브랜딩 전략 산출</div>
+      <div class="stage-agent">brainstormer + concept-director</div>
+      <ul class="stage-items">
+        <li>전략명 + 한 줄 정의</li>
+        <li>전략 설명 (2~3줄)</li>
+        <li>REFERENCE BRANDS 3개+</li>
+        <li>MAX실 적용 방향 (2줄)</li>
+        <li>예) Cycle of Scenes / Raw Meets Refined</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- critic 5축 점수표 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">critic — 실행가능성 5축 /100 점수표</h3>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:14px;">5개 축 각 /20, 합계 /100. 외과의사의 언어로 — 감정 없이 정확하게. 결함 위주 보고.</div>
+  <div class="score-table-wrap">
+    <div class="score-row header">
+      <div>축</div><div>평가 기준</div><div>배점</div><div>판정 기준</div>
+    </div>
+    <div class="score-row">
+      <div class="score-axis">비용</div>
+      <div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:linear-gradient(90deg,#3B82F6,#6DA8E3);"></div></div>
+      </div>
+      <div class="score-pts">/20</div>
+      <div class="score-note">예산 내 실행 가능? 추가 비용 리스크?</div>
+    </div>
+    <div class="score-row">
+      <div class="score-axis">기간</div>
+      <div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:linear-gradient(90deg,#8B5CF6,#A78BFA);"></div></div>
+      </div>
+      <div class="score-pts">/20</div>
+      <div class="score-note">납기 내 완성 가능? 병목 구간?</div>
+    </div>
+    <div class="score-row">
+      <div class="score-axis">역량</div>
+      <div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:linear-gradient(90deg,#10B981,#34D399);"></div></div>
+      </div>
+      <div class="score-pts">/20</div>
+      <div class="score-note">MAX실 9명 기술 스택으로 커버 가능?</div>
+    </div>
+    <div class="score-row">
+      <div class="score-axis">실현</div>
+      <div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:linear-gradient(90deg,#F59E0B,#FCD34D);"></div></div>
+      </div>
+      <div class="score-pts">/20</div>
+      <div class="score-note">아이디어가 실제 산출물로 구현 가능?</div>
+    </div>
+    <div class="score-row">
+      <div class="score-axis">설득력</div>
+      <div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:linear-gradient(90deg,var(--danger),#F87171);"></div></div>
+      </div>
+      <div class="score-pts">/20</div>
+      <div class="score-note">클라이언트가 납득하고 수주로 이어질 것인가?</div>
+    </div>
+    <div class="score-criteria">
+      <div class="score-crit-box pass">
+        <div class="score-crit-range">80~100</div>
+        <div class="score-crit-label">채택 가능</div>
+        <div class="score-crit-desc">5축 전부 기준 이상. 실장님 셀렉 단계 진입.</div>
+      </div>
+      <div class="score-crit-box review">
+        <div class="score-crit-range">70~79</div>
+        <div class="score-crit-label">보완 후 재검토</div>
+        <div class="score-crit-desc">약점 1~2개. 해결 방안 명시 후 재점수.</div>
+      </div>
+      <div class="score-crit-box fail">
+        <div class="score-crit-range">~69</div>
+        <div class="score-crit-label">재발산 권고</div>
+        <div class="score-crit-desc">구조적 결함. brainstormer 단계 재시작.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- design-critique 6영역 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">design-critique — 6영역 체크리스트</h3>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:14px;">외부 산출물 발송 전 또는 creative-director 검수 시 자동 협조. 결함만 보고, 칭찬 없음.</div>
+  <div class="region-grid">
+    <div class="region-card">
+      <div class="region-num" style="background:#3B82F6;">①</div>
+      <div class="region-title">UI (유저 인터페이스)</div>
+      <div class="region-checks">
+        <div class="region-check">버튼·링크 명확성</div>
+        <div class="region-check">여백·그리드 일관성</div>
+        <div class="region-check">반응형 대응 (모바일/태블릿)</div>
+        <div class="region-check">접근성 (명도 대비 4.5:1 이상)</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-num" style="background:#8B5CF6;">②</div>
+      <div class="region-title">콘텐츠 (텍스트·카피)</div>
+      <div class="region-checks">
+        <div class="region-check">오탈자·문법 오류</div>
+        <div class="region-check">브랜드 보이스 일관성</div>
+        <div class="region-check">가독성 (폰트 크기·줄간격)</div>
+        <div class="region-check">CTA 명확성</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-num" style="background:#F59E0B;">③</div>
+      <div class="region-title">GUI (그래픽 유저 인터페이스)</div>
+      <div class="region-checks">
+        <div class="region-check">아이콘 스타일 통일</div>
+        <div class="region-check">색상 시스템 준수</div>
+        <div class="region-check">일러스트·이미지 품질</div>
+        <div class="region-check">모션·트랜지션 일관성</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-num" style="background:#10B981;">④</div>
+      <div class="region-title">UA (유저 어피어런스)</div>
+      <div class="region-checks">
+        <div class="region-check">시각 위계 (F·Z 패턴)</div>
+        <div class="region-check">포커스 영역 명확성</div>
+        <div class="region-check">정보 밀도 (과부하 여부)</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-num" style="background:var(--warn);">⑤</div>
+      <div class="region-title">상세페이지</div>
+      <div class="region-checks">
+        <div class="region-check">헤더·제품 정보·CTA 순서</div>
+        <div class="region-check">이미지 품질·비율</div>
+        <div class="region-check">리뷰·신뢰 요소</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-num" style="background:var(--sig);">⑥</div>
+      <div class="region-title">브랜딩</div>
+      <div class="region-checks">
+        <div class="region-check">로고 사용 규칙 준수</div>
+        <div class="region-check">컬러 팔레트 준수</div>
+        <div class="region-check">폰트 패밀리 준수</div>
+        <div class="region-check">브랜드 톤 일치</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /sect-design -->
+
+
+<!-- ══════════════ TAB 4: 프로젝트 현황 ══════════════ -->
+<div id="sect-projects" class="section">
+  <h2 class="section-title">프로젝트 현황</h2>
+  <p class="section-desc">Notion DB 연동 · 기준일 2026-06-30. Gantt: 6/1~9/30 (122일)</p>
+
+  <div class="today-board">
+    <div class="today-board-head">
+      <h3>⚡ 오늘 꼭 (2026-06-30)</h3>
+      <span class="today-note">기준: 오늘 마감 + 기일 초과 + 회신 대기</span>
+    </div>
+    <div class="today-grid">
+      <div class="today-col overdue">
+        <div class="today-col-h">🔴 기일 초과<div class="cnt">3</div></div>
+        <div class="today-item">
+          <div class="ti-area type-do">Action</div>
+          <div class="ti-body">
+            <div class="ti-title">코웨이 GUI 컨설팅 및 구축</div>
+            <div class="ti-meta">마감 6/26 초과 · 상태 확인 및 종료 처리 필요</div>
+          </div>
+        </div>
+        <div class="today-item">
+          <div class="ti-area type-do">Action</div>
+          <div class="ti-body">
+            <div class="ti-title">넷마블 AI 업세일즈 제안</div>
+            <div class="ti-meta">마감 6/26 초과 · 제안 발송 완료 여부 확인</div>
+          </div>
+        </div>
+        <div class="today-item">
+          <div class="ti-area type-do">Action</div>
+          <div class="ti-body">
+            <div class="ti-title">현대 수소 홈페이지 구축</div>
+            <div class="ti-meta">마감 6/27 초과 · 납품 처리 필요</div>
+          </div>
+        </div>
+      </div>
+      <div class="today-col duetoday">
+        <div class="today-col-h">🟡 확인 필요<div class="cnt">2</div></div>
+        <div class="today-item">
+          <div class="ti-area type-check">Check</div>
+          <div class="ti-body">
+            <div class="ti-title">크래프톤 박연옥 님 메일 발송</div>
+            <div class="ti-meta">6/29 예정 → 발송 여부 확인. tone-guardian 거친 후 사용자 OK</div>
+          </div>
+        </div>
+        <div class="today-item">
+          <div class="ti-area type-remind">Remind</div>
+          <div class="ti-body">
+            <div class="ti-title">아모레퍼시픽 Notion 상태 업데이트</div>
+            <div class="ti-meta">완료 처리 누락 · 다음 수주 기회 모니터링</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <div class="project-section-header">
+      <h3>MAX실 디자인 프로젝트</h3>
+      <span class="section-badge badge-design">Design</span>
+    </div>
+    <div class="kanban">
+      <div class="kanban-col">
+        <div class="kanban-col-header"><div class="col-dot" style="background:#3b82f6;"></div>진행중<div class="col-count">4</div></div>
+        <div class="project-item"><div class="project-item-title">코웨이 GUI 컨설팅 및 구축</div><div class="project-item-desc">3/24~6/26 · UI+Motion [H] · VM시니어①+VX시니어①</div><span class="project-item-tag tag-hot">마감초과</span></div>
+        <div class="project-item"><div class="project-item-title">현대 수소 홈페이지 구축</div><div class="project-item-desc">6/22~6/27 · Motion+Web [H] · VM시니어②+VX미드②</div><span class="project-item-tag tag-hot">마감초과</span></div>
+        <div class="project-item"><div class="project-item-title">넷마블 AI 업세일즈 제안</div><div class="project-item-desc">6/5~6/26 · AI 제안서 [H] · 실장님 주도</div><span class="project-item-tag tag-qa">확인 필요</span></div>
+        <div class="project-item"><div class="project-item-title">[고정운영] 넷마블 4TO</div><div class="project-item-desc">~12/31 · 고정운영 · VM미드③+주니어④</div><span class="project-item-tag tag-live">상시</span></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header"><div class="col-dot" style="background:#f59e0b;"></div>예정·대기<div class="col-count">3</div></div>
+        <div class="project-item"><div class="project-item-title">가디언 메이든 사전 런칭 준비</div><div class="project-item-desc">5/1~미정 · Motion [H] · 일정 재조정 필요</div><span class="project-item-tag tag-hold">홀드</span></div>
+        <div class="project-item"><div class="project-item-title">MX 센터 SNS</div><div class="project-item-desc">9/4~10/1 · Motion [M] · 9월 리소스 예약 필요</div><span class="project-item-tag tag-new">신규</span></div>
+        <div class="project-item"><div class="project-item-title">웨이크메이크 올리브영 상세페이지</div><div class="project-item-desc">2026.06 제안 단계 · UI [견적 미확정]</div><span class="project-item-tag tag-new">제안중</span></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header"><div class="col-dot" style="background:#22c55e;"></div>완료<div class="col-count">3</div></div>
+        <div class="project-item"><div class="project-item-title">회사 소개서 업데이트 PPT</div><div class="project-item-desc">6/1~6/12 · 내부 자료</div><span class="project-item-tag tag-hold">완료</span></div>
+        <div class="project-item"><div class="project-item-title">올리브영 PB 상세페이지 제안</div><div class="project-item-desc">6/15~6/19 · 제안 제출 완료 · 수주 결과 대기</div><span class="project-item-tag tag-hold">완료</span></div>
+        <div class="project-item"><div class="project-item-title">아모레퍼시픽 WWD 행사 디자인</div><div class="project-item-desc">4/9~5/8 · 완료 처리 누락 → Notion 상태 업데이트 필요</div><span class="project-item-tag tag-qa">처리 필요</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gantt-wrap">
+    <div class="gantt-legend">
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#3b82f6;"></div>진행중</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#f59e0b;"></div>예정·대기</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#22c55e;opacity:0.5;"></div>완료</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#ef4444;width:4px;border-radius:2px;"></div>오늘(6/30)</div>
+    </div>
+    <div class="gantt-container"><div class="gantt-inner" id="gantt-max"></div></div>
+  </div>
+</div><!-- /sect-projects -->
+
+
+<!-- ══════════════ TAB 5: 트렌드 ══════════════ -->
+<div id="sect-trend" class="section">
+  <h2 class="section-title">디자인 트렌드 보드</h2>
+  <p class="section-desc">design-trend-radar 에이전트 연동. 분기별 자동 갱신. 2026 Q2 기준 · 18장.</p>
+
+  <div class="trend-meta">
+    <span class="src-badge">Awwwards</span><span class="src-badge">Behance</span><span class="src-badge">Brand New</span>
+    <span class="src-badge">FWA</span><span class="src-badge">D&AD</span><span class="src-badge">Cannes Lions</span><span class="src-badge">Dribbble</span>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;">🏆 2026 Q2 글로벌 키 트렌드 TOP 5</h3>
+  <div class="trend-top5">
+    <div class="trend-top-card"><div class="n">01</div><div class="t">AI 네이티브 UX</div><div class="d">생성형 AI가 UI 인터랙션 레이어에 직접 통합. 빈 상태·로딩·에러 UX가 대화형으로 전환.</div></div>
+    <div class="trend-top-card"><div class="n">02</div><div class="t">절제된 모션 (Quiet Motion)</div><div class="d">과도한 애니메이션 지양. 1~2개 핵심 모션에 집중. 목적 없는 움직임 = 노이즈.</div></div>
+    <div class="trend-top-card"><div class="n">03</div><div class="t">타이포 퍼스트 레이아웃</div><div class="d">이미지보다 타이포그래피가 시각 위계 주도. 대형 헤드라인 + 절제된 여백.</div></div>
+    <div class="trend-top-card"><div class="n">04</div><div class="t">다크·라이트 이중 설계</div><div class="d">처음부터 다크·라이트 동시 설계. 시스템 모드 추종이 아닌 브랜드 기반 전환.</div></div>
+    <div class="trend-top-card"><div class="n">05</div><div class="t">물리적 소재 디지털화</div><div class="d">유리·금속·패브릭 질감을 디지털 인터페이스에 적용. 촉감형 비주얼 경험.</div></div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;">📚 트렌드 카드 (2026 Q2 · 총 18장)</h3>
+  <div class="trend-cards">
+    <div class="trend-card cat-ai"><div class="trend-num">T-001 · AI/UX</div><div class="trend-title">프롬프트 인터페이스 디자인</div><div class="trend-desc">검색창이 아닌 대화창 UI. 입력 → 즉시 생성 → 수정 루프. ChatGPT Canvas, Figma Make 참고.</div><div class="trend-apply"><strong>MAX 적용:</strong> UI 프로젝트에서 '검색' 컴포넌트를 AI 인터랙션으로 재설계 제안</div><div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">UX</span><span class="trend-tag">UI</span></div></div>
+    <div class="trend-card cat-motion"><div class="trend-num">T-002 · Motion</div><div class="trend-title">마이크로 스크롤 트리거</div><div class="trend-desc">스크롤 1픽셀 = 모션 1프레임. 스크롤 진행률에 정확히 연동된 애니메이션. Apple 스타일.</div><div class="trend-apply"><strong>MAX 적용:</strong> 홈페이지·랜딩 제안 시 스크롤 연동 모션 디폴트로 제안</div><div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Web</span></div></div>
+    <div class="trend-card cat-ui"><div class="trend-num">T-003 · UI</div><div class="trend-title">Bento Box 레이아웃</div><div class="trend-desc">다양한 크기의 카드 그리드. 정보 밀도 높지만 시각적으로 정돈. 대시보드·앱스토어 트렌드.</div><div class="trend-apply"><strong>MAX 적용:</strong> 정보형 UI 제안 시 Bento 레이아웃 먼저 제시</div><div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Layout</span></div></div>
+    <div class="trend-card cat-brand"><div class="trend-num">T-004 · Branding</div><div class="trend-title">모노클로매틱 브랜딩</div><div class="trend-desc">단색 + 명도 변화만으로 시스템 구축. 로고·타이포·컬러 전부 1색 기반. Chanel, 르메르 방향.</div><div class="trend-apply"><strong>MAX 적용:</strong> 프리미엄 브랜드 BI 제안 시 1색 시스템 우선 제안</div><div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Premium</span></div></div>
+    <div class="trend-card cat-ui"><div class="trend-num">T-005 · UI</div><div class="trend-title">Glassmorphism 2.0</div><div class="trend-desc">1세대 뿌연 글래스 → 2세대: 얇은 테두리 + 매우 미세한 블러 + 하이라이트. iOS 18 스타일.</div><div class="trend-apply"><strong>MAX 적용:</strong> 앱 UI에서 모달·팝업 컴포넌트에 적용 제안</div><div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Mobile</span></div></div>
+    <div class="trend-card cat-motion"><div class="trend-num">T-006 · Motion</div><div class="trend-title">3D 타이포그래피 모션</div><div class="trend-desc">평면 텍스트에 3D 회전·변형 적용. 짧은 루프 영상. SNS 광고·KV 트렌드.</div><div class="trend-apply"><strong>MAX 적용:</strong> 게임·엔터 클라 KV 제안 시 3D 타이포 모션 기본 옵션</div><div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">3D</span><span class="trend-tag">SNS</span></div></div>
+    <div class="trend-card cat-ua"><div class="trend-num">T-007 · UA</div><div class="trend-title">감성형 에러 UX</div><div class="trend-desc">에러·빈 상태·404를 브랜드 개성 표현 기회로. 단순 경고 대신 일러스트+카피로 전환.</div><div class="trend-apply"><strong>MAX 적용:</strong> UI 프로젝트에서 에러 케이스 자동으로 제안</div><div class="trend-tags"><span class="trend-tag">UX</span><span class="trend-tag">UA</span></div></div>
+    <div class="trend-card cat-brand"><div class="trend-num">T-008 · Branding</div><div class="trend-title">로고 키네틱 (Kinetic Logo)</div><div class="trend-desc">움직이는 로고. 정적 심볼 → 맥락별 변형. 디지털 환경 전용 로고 모션 시스템.</div><div class="trend-apply"><strong>MAX 적용:</strong> BI 프로젝트에서 모션 로고 가이드 포함 제안</div><div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Motion</span></div></div>
+    <div class="trend-card cat-ai"><div class="trend-num">T-009 · AI</div><div class="trend-title">AI 생성 + 인간 큐레이션</div><div class="trend-desc">AI 100% 생성이 아닌, AI가 만든 것을 디자이너가 선별·편집하는 하이브리드 워크플로.</div><div class="trend-apply"><strong>MAX 적용:</strong> 이미지 생성 에이전트 결과물은 CD가 필터링 후 사용</div><div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">Workflow</span></div></div>
+    <div class="trend-card cat-ui"><div class="trend-num">T-010 · UI</div><div class="trend-title">가변 폰트 (Variable Font) 활용</div><div class="trend-desc">하나의 폰트 파일로 굵기·기울기·폭을 실시간 조정. 반응형 타이포 구현에 최적.</div><div class="trend-apply"><strong>MAX 적용:</strong> 웹 프로젝트에서 variable font 적용 디폴트 제안</div><div class="trend-tags"><span class="trend-tag">Typography</span><span class="trend-tag">Web</span></div></div>
+    <div class="trend-card cat-motion"><div class="trend-num">T-011 · Motion</div><div class="trend-title">Lottie 경량 모션</div><div class="trend-desc">JSON 기반 초경량 애니메이션. 영상 대비 1/50 용량. 모바일 앱 마이크로 인터랙션 표준.</div><div class="trend-apply"><strong>MAX 적용:</strong> 앱·웹 UI에서 아이콘 애니메이션 Lottie로 납품 제안</div><div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Mobile</span></div></div>
+    <div class="trend-card cat-ua"><div class="trend-num">T-012 · UA</div><div class="trend-title">다크 패턴 탈피 디자인</div><div class="trend-desc">숨겨진 취소·강제 구독 등 다크패턴 역이용 → 투명하고 명확한 UX로 신뢰도 차별화.</div><div class="trend-apply"><strong>MAX 적용:</strong> 구독·이커머스 UX에서 다크패턴 제거 포인트 반드시 지적</div><div class="trend-tags"><span class="trend-tag">UX</span><span class="trend-tag">Ethics</span></div></div>
+    <div class="trend-card cat-brand"><div class="trend-num">T-013 · Branding</div><div class="trend-title">로컬리티 + 글로벌 퓨전</div><div class="trend-desc">한국 전통 요소를 글로벌 감성으로 재해석. K-브랜드 해외 진출 레퍼런스 급증.</div><div class="trend-apply"><strong>MAX 적용:</strong> 글로벌 타깃 클라 제안 시 '한국적 감성 글로벌화' 방향 옵션</div><div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">K-Brand</span></div></div>
+    <div class="trend-card cat-ai"><div class="trend-num">T-014 · AI</div><div class="trend-title">퍼소나 기반 개인화 UI</div><div class="trend-desc">사용자 행동 데이터 → 실시간 레이아웃·컬러·콘텐츠 개인화. Netflix 홈 수준의 적응형 UI.</div><div class="trend-apply"><strong>MAX 적용:</strong> 이커머스·앱 제안 시 AI 개인화 레이어 추가 제안</div><div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">Personalization</span></div></div>
+    <div class="trend-card cat-ui"><div class="trend-num">T-015 · UI</div><div class="trend-title">스켈레톤 스크린 고도화</div><div class="trend-desc">로딩 중 골격 UI → 실제 콘텐츠와 1:1 매핑. 레이아웃 시프트 0%가 기준.</div><div class="trend-apply"><strong>MAX 적용:</strong> 앱·웹 UI 산출물에 스켈레톤 화면 자동 포함</div><div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Performance</span></div></div>
+    <div class="trend-card cat-motion"><div class="trend-num">T-016 · Motion</div><div class="trend-title">사운드 디자인 연동 모션</div><div class="trend-desc">영상 모션과 사운드를 처음부터 동시 설계. 음소거 상태에서도 완결된 비주얼 전달 필수.</div><div class="trend-apply"><strong>MAX 적용:</strong> 영상 제안 시 사운드 ON/OFF 양쪽 버전 납품 제안</div><div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Sound</span></div></div>
+    <div class="trend-card cat-brand"><div class="trend-num">T-017 · Branding</div><div class="trend-title">컬러 마케팅 = 시그니처 색</div><div class="trend-desc">팬톤 1가지 시그니처 컬러로 브랜드 점유. 에르메스 오렌지, 코카콜라 레드처럼.</div><div class="trend-apply"><strong>MAX 적용:</strong> BI 제안 시 '시그니처 컬러 1개' 확정을 목표로 설계</div><div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Color</span></div></div>
+    <div class="trend-card cat-ua"><div class="trend-num">T-018 · UA</div><div class="trend-title">접근성 = 표준 (WCAG AA 기본)</div><div class="trend-desc">장애인 접근성이 '옵션'에서 '기본 요건'으로 전환. 색대비·폰트크기·대체텍스트 기본 충족 필수.</div><div class="trend-apply"><strong>MAX 적용:</strong> 모든 UI 산출물 WCAG AA 충족 여부 QC에 포함</div><div class="trend-tags"><span class="trend-tag">A11y</span><span class="trend-tag">UA</span></div></div>
+  </div>
+  <div class="footnote"><strong>사용법:</strong> "트렌드 찾아줘" → design-trend-radar 호출 → 실시간 웹 스캔 후 트렌드 카드 갱신. 이 보드는 마지막 분기 갱신 캐시. <strong>채택 여부는 CD 직접 결정.</strong></div>
+</div><!-- /sect-trend -->
+
+
+<!-- ══════════════ TAB 6: 추가투입 위험 ══════════════ -->
+<div id="sect-overhead" class="section">
+  <h2 class="section-title">추가투입 위험 (Overhead Watcher)</h2>
+  <p class="section-desc">CR·피드백·야근 KPI 분석 → FTE 환산 → 채용 근거. overhead-watcher 에이전트 시각화. 기준일 2026-06-30.</p>
+
+  <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
+    <span class="ic">⚠️</span>
+    <div><strong>현재 팀 오버로드 감지.</strong> VX 3명 + VM 5명 전원 100% 이상 할당. 2건 오늘 동시 마감. 즉시 재배치 또는 외주 투입 검토 필요.</div>
+  </div>
+
+  <div class="overhead-grid">
+    <div class="overhead-card">
+      <div class="oh-label">팀 가동률 (2026 W27)</div>
+      <div class="util-bar-wrap"><div class="util-name">VM 시니어①</div><div class="util-bar"><div class="util-fill danger" style="width:100%;"></div></div><div class="util-pct" style="color:var(--danger);">120%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VM 시니어②</div><div class="util-bar"><div class="util-fill warn" style="width:100%;"></div></div><div class="util-pct" style="color:var(--warn);">100%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VM 미드③</div><div class="util-bar"><div class="util-fill warn" style="width:90%;"></div></div><div class="util-pct" style="color:var(--warn);">90%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VM 주니어④</div><div class="util-bar"><div class="util-fill ok" style="width:80%;"></div></div><div class="util-pct" style="color:var(--ok);">80%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VM 주니어⑤</div><div class="util-bar"><div class="util-fill ok" style="width:75%;"></div></div><div class="util-pct" style="color:var(--ok);">75%</div></div>
+      <div style="border-top:1px solid var(--border-soft);margin-top:10px;padding-top:10px;">
+      <div class="util-bar-wrap"><div class="util-name">VX 시니어①</div><div class="util-bar"><div class="util-fill danger" style="width:100%;"></div></div><div class="util-pct" style="color:var(--danger);">110%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VX 미드②</div><div class="util-bar"><div class="util-fill warn" style="width:95%;"></div></div><div class="util-pct" style="color:var(--warn);">95%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">VX 주니어③</div><div class="util-bar"><div class="util-fill ok" style="width:70%;"></div></div><div class="util-pct" style="color:var(--ok);">70%</div></div>
+      <div class="util-bar-wrap"><div class="util-name">실장 (CD)</div><div class="util-bar"><div class="util-fill warn" style="width:100%;"></div></div><div class="util-pct" style="color:var(--warn);">100%</div></div>
+      </div>
+    </div>
+    <div class="overhead-card">
+      <div class="oh-label">FTE 갭 환산</div>
+      <table class="fte-table">
+        <tr><th>항목</th><th>현황</th><th>필요 FTE</th></tr>
+        <tr><td>현재 팀원</td><td>9명</td><td>—</td></tr>
+        <tr><td>평균 가동률 초과</td><td>+10%</td><td>+0.9 FTE</td></tr>
+        <tr><td>고정운영 전담 (넷마블)</td><td>VM 0.5명 상시</td><td>+0.5 FTE</td></tr>
+        <tr><td>피드백·CR 추가시간</td><td>주 평균 12h</td><td>+0.3 FTE</td></tr>
+        <tr><td>휴가·병가 여유분</td><td>0% (없음)</td><td>+0.5 FTE</td></tr>
+        <tr><td style="font-weight:700;color:var(--ink);">총 갭</td><td>—</td><td style="color:var(--danger);">+2.2 FTE</td></tr>
+      </table>
+      <div style="margin-top:12px;padding:8px;background:var(--sig-soft);border-radius:5px;font-size:11px;color:var(--sig);line-height:1.5;"><strong>권장:</strong> 즉시 VM 1명 충원 or 고정 외주 1명 (vendor-radar 확인) → hiring-radar 에스컬레이션</div>
+    </div>
+    <div class="overhead-card">
+      <div class="oh-label">위험 플래그 (이번 주)</div>
+      <div class="risk-flag"><div class="risk-dot high"></div><div class="risk-text"><strong>동시 마감 초과</strong> — 코웨이·넷마블 AI·현대수소 3건 마감 초과. VM 시니어① 이중 투입 상태.</div></div>
+      <div class="risk-flag"><div class="risk-dot high"></div><div class="risk-text"><strong>코웨이 GUI 기일 초과</strong> — 6/26 마감. 종료 처리 및 납품 확인 필요.</div></div>
+      <div class="risk-flag"><div class="risk-dot mid"></div><div class="risk-text"><strong>코웨이 GUI 장기 진행</strong> — 3/24~6/26 (13주). CR 피드백 누적 우려.</div></div>
+      <div class="risk-flag"><div class="risk-dot mid"></div><div class="risk-text"><strong>VX 시니어 110% 초과</strong> — 다음 주 신규 투입 전 재배치 필요.</div></div>
+      <div class="risk-flag"><div class="risk-dot low"></div><div class="risk-text"><strong>MX 센터 SNS 9월 착수</strong> — 9월 리소스 예약 사전 계획 권장.</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;">
+    <div class="hub-section-h">권장 액션 (사용자 결정 필요)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+      <div style="padding:12px;background:#FDECEC;border-radius:7px;"><div style="font-size:10px;font-weight:800;color:var(--danger);text-transform:uppercase;margin-bottom:6px;">즉시 (이번 주)</div><div style="font-size:11px;color:var(--ink2);line-height:1.55;">마감 초과 3건 종료 처리<br>VM 시니어① 프로젝트 재조정<br>→ <strong>사용자 결정 필요</strong></div></div>
+      <div style="padding:12px;background:#FFF6E5;border-radius:7px;"><div style="font-size:10px;font-weight:800;color:var(--warn);text-transform:uppercase;margin-bottom:6px;">단기 (1개월)</div><div style="font-size:11px;color:var(--ink2);line-height:1.55;">모션 외주 1명 단기 투입 검토<br>vendor-radar → 가용 외주 확인<br>→ <strong>사용자 결정 후 발주</strong></div></div>
+      <div style="padding:12px;background:var(--sig-soft);border-radius:7px;"><div style="font-size:10px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:6px;">중기 (3개월)</div><div style="font-size:11px;color:var(--ink2);line-height:1.55;">VM 정규직 1명 채용<br>JD 작성 → hiring-radar 에스컬레이션<br>→ <strong>채용 의사결정: 사용자 직접</strong></div></div>
+    </div>
+  </div>
+</div><!-- /sect-overhead -->
+
+
+<!-- ══════════════ TAB 7: 클라이언트 레이더 ══════════════ -->
+<div id="sect-clients" class="section">
+  <h2 class="section-title">클라이언트 레이더</h2>
+  <p class="section-desc">반복 클라이언트 관계·리스크·히스토리. account-radar 에이전트 연동. 기준일 2026-06-30.</p>
+
+  <div class="client-grid">
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#0A0D1A;color:#4B8BEF;font-size:10px;font-weight:900;">NMB</div>
+        <div><div class="client-name">넷마블</div><div class="client-type">게임 · 고정운영 + 단건</div></div>
+        <div class="client-status cs-active">진행중</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★★</span> 장기 파트너 · 고정운영 계약</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">고정운영 4TO (~12/31) + AI 업세일즈 제안 (마감 초과)</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">고정운영 연간 + 단건 추가 방식</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">피드백 빠름 · 수정 요청 잦은 편 · CR 사전 협의 필수</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:92%;"></div></div>
+        <div class="client-risk r-mid">⚠️ AI 업세일즈 제안 발송 완료 여부 확인 필요</div>
+      </div>
+    </div>
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#005BAA;color:#fff;font-size:10px;font-weight:900;">CWY</div>
+        <div><div class="client-name">코웨이</div><div class="client-type">생활가전 · UI+Motion</div></div>
+        <div class="client-status cs-wait">완료 처리 필요</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★☆</span> 지속 협업 · Preferred 등급</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">GUI 컨설팅 및 구축 (3/24~6/26, H) — 마감 초과</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가 95%</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">감수 꼼꼼함 · 피드백 사이클 3~4일</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:80%;"></div></div>
+        <div class="client-risk r-high">🔴 6/26 마감 초과 · 납품·종료 처리 즉시 필요</div>
+      </div>
+    </div>
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#002C5F;color:#fff;font-size:10px;font-weight:900;">HMC</div>
+        <div><div class="client-name">현대자동차 (현대 수소)</div><div class="client-type">자동차 · Motion · 홈페이지</div></div>
+        <div class="client-status cs-wait">완료 처리 필요</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★☆☆</span> Standard · 신규에 가까움</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">수소 홈페이지 구축 (6/22~6/27, H) — 마감 초과</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가 100%</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">홈페이지 H 난이도 · 납품 확인 필요</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:50%;"></div></div>
+        <div class="client-risk r-high">🔴 6/27 마감 초과. 납품 처리 최우선</div>
+      </div>
+    </div>
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#1A1A1A;color:#C8A96A;font-size:10px;font-weight:900;">APC</div>
+        <div><div class="client-name">아모레퍼시픽</div><div class="client-type">뷰티 · PPT · 브랜딩</div></div>
+        <div class="client-status cs-wait">완료 대기</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★☆</span> Standard · 반복 수주 기대</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">WWD 행사 발표 디자인 (4/9~5/8) — 완료 처리 누락</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">글로벌 감각 요구 · 영문 병행 필수</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:68%;"></div></div>
+        <div class="client-risk r-mid">⚠️ Notion 상태 '진행중' → 완료 처리 후 다음 기회 모니터링</div>
+      </div>
+    </div>
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#FFD600;color:#000;font-size:10px;font-weight:900;">KFT</div>
+        <div><div class="client-name">크래프톤</div><div class="client-type">게임 · 신규 기회</div></div>
+        <div class="client-status cs-new">신규 검토</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★☆☆☆</span> Standard · 첫 접촉 단계</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">박연옥 님 메일 6/29 예정 → 발송 여부 확인</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">미정 · 협의 단계</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">위메이드 → 크래프톤 이동 건. 관계 재구축 필요</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:25%;"></div></div>
+        <div class="client-risk r-low">✅ 메일 발송 예정. 톤 가디언 → 사용자 OK 후 발송</div>
+      </div>
+    </div>
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#00A651;color:#fff;font-size:10px;font-weight:900;">OLV</div>
+        <div><div class="client-name">올리브영 / 웨이크메이크</div><div class="client-type">H&B · UI · 상세페이지</div></div>
+        <div class="client-status cs-new">제안 진행중</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★☆☆</span> Standard · 제안 후 수주 대기</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">웨이크메이크 상세페이지 리뉴얼 제안 (2026.06)</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">미정 · 수주 시 단건</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">MZ 감성 · 컬러칩 퍼스트 + 스펙카드 2안 채택</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:45%;"></div></div>
+        <div class="client-risk r-low">✅ 채택안 2종 (83점·82점). 견적 확정 후 제안 발송 예정</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:12px 16px;background:var(--sig-soft);border-left:3px solid var(--sig);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;">
+    <strong>"코웨이 상황 어때?"</strong> 처럼 클라 이름을 언급하면 account-radar 에이전트가 자동 호출됩니다.
+  </div>
+</div><!-- /sect-clients -->
+
+
+<!-- ══════════════ TAB 8: MAX실 9명 ══════════════ -->
+<div id="sect-team" class="section">
+  <h2 class="section-title">MAX실 9명</h2>
+  <p class="section-desc">VM 5 + VX 3 + 실장 1. max-pm 에이전트 연동 (시트 read-only).</p>
+
+  <div class="team-overview">
+    <div class="team-stat-card"><div class="team-stat-n">9<span class="unit">명</span></div><div class="team-stat-l">현재 팀 규모</div><div class="team-stat-sub">VM 5 · VX 3 · 실장 1</div></div>
+    <div class="team-stat-card"><div class="team-stat-n" style="color:var(--danger);">20<span class="unit">명</span></div><div class="team-stat-l">목표 팀 규모</div><div class="team-stat-sub">갭 11명 · hiring-radar 추적 중</div></div>
+    <div class="team-stat-card"><div class="team-stat-n" style="color:var(--warn);">93<span class="unit">%</span></div><div class="team-stat-l">평균 가동률 (W27)</div><div class="team-stat-sub">목표: 80~90% · 현재 초과 상태</div></div>
+  </div>
+
+  <div class="group-label">VM (VirtualMax) · 5명 — 비주얼·모션·영상</div>
+  <div class="member-grid">
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vm">VM</div><div><div class="member-name">VM 시니어 ①</div><div class="member-role">Senior · 팀 리드</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--danger);font-weight:700;">120%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:100%;background:var(--danger);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>코웨이 GUI (H) — 마감 초과</div><div class="member-project"><div class="dot" style="background:var(--danger);"></div>넷마블 AI 업세일즈 (H)</div></div>
+      <div class="member-skills"><span class="skill-tag">Motion</span><span class="skill-tag">UI</span><span class="skill-tag">AE</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vm">VM</div><div><div class="member-name">VM 시니어 ②</div><div class="member-role">Senior · 브랜딩</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--warn);font-weight:700;">100%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:100%;background:var(--warn);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>현대 수소 홈페이지 (H) — 마감 초과</div><div class="member-project"><div class="dot"></div>YBM KV 모션 (M)</div></div>
+      <div class="member-skills"><span class="skill-tag">Motion</span><span class="skill-tag">Branding</span><span class="skill-tag">3D</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vm">VM</div><div><div class="member-name">VM 미드 ③</div><div class="member-role">Mid · 모션·일러스트</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--warn);font-weight:700;">90%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:90%;background:var(--warn);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>[고정운영] 넷마블 4TO</div></div>
+      <div class="member-skills"><span class="skill-tag">Motion</span><span class="skill-tag">Illustration</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vm">VM</div><div><div class="member-name">VM 주니어 ④</div><div class="member-role">Junior · 디자인 보조</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--ok);font-weight:700;">80%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:80%;background:var(--ok);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>[고정운영] 넷마블 4TO 보조</div></div>
+      <div class="member-skills"><span class="skill-tag">Design</span><span class="skill-tag">Photoshop</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vm">VM</div><div><div class="member-name">VM 주니어 ⑤</div><div class="member-role">Junior · 디자인</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--ok);font-weight:700;">75%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:75%;background:var(--ok);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>대기 (가용 가능)</div></div>
+      <div class="member-skills"><span class="skill-tag">Design</span><span class="skill-tag">Figma</span></div>
+    </div>
+  </div>
+
+  <div class="group-label">VX (VirtualX) · 3명 — UX·개발·인터랙션</div>
+  <div class="member-grid">
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vx">VX</div><div><div class="member-name">VX 시니어 ①</div><div class="member-role">Senior · UX 리드</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--danger);font-weight:700;">110%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:100%;background:var(--danger);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>코웨이 GUI UX (H)</div><div class="member-project"><div class="dot" style="background:var(--danger);"></div>초과 할당 — 재배치 검토 필요</div></div>
+      <div class="member-skills"><span class="skill-tag">UX</span><span class="skill-tag">Interaction</span><span class="skill-tag">Prototyping</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vx">VX</div><div><div class="member-name">VX 미드 ②</div><div class="member-role">Mid · UI 개발</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--warn);font-weight:700;">95%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:95%;background:var(--warn);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>현대 수소 홈페이지 프로토</div></div>
+      <div class="member-skills"><span class="skill-tag">Front-End</span><span class="skill-tag">React</span><span class="skill-tag">Figma</span></div>
+    </div>
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-vx">VX</div><div><div class="member-name">VX 주니어 ③</div><div class="member-role">Junior · UX 보조</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--ok);font-weight:700;">70%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:70%;background:var(--ok);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>QA 보조 · 다음 투입 대기</div></div>
+      <div class="member-skills"><span class="skill-tag">UX</span><span class="skill-tag">Figma</span></div>
+    </div>
+  </div>
+
+  <div class="group-label">실장 · 1명 — CD + 운영 관리</div>
+  <div class="member-grid">
+    <div class="member-card">
+      <div class="member-header"><div class="member-avatar av-cd">CD</div><div><div class="member-name">실장 / CD</div><div class="member-role">크리에이티브 디렉터 + 운영 관리</div></div></div>
+      <div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:var(--warn);font-weight:700;">100%</span></div><div class="member-util-bar"><div class="member-util-fill" style="width:100%;background:var(--warn);"></div></div></div>
+      <div class="member-projects"><div class="member-project"><div class="dot"></div>전체 프로젝트 CD 권한</div><div class="member-project"><div class="dot"></div>클라 미팅 · 제안 전략</div><div class="member-project"><div class="dot"></div>채용 · 조직 운영</div></div>
+      <div class="member-skills"><span class="skill-tag">CD</span><span class="skill-tag">PM</span><span class="skill-tag">Strategy</span><span class="skill-tag">Business</span></div>
+    </div>
+  </div>
+</div><!-- /sect-team -->
+
+
+<!-- ══════════════ TAB 9: 채용·외주 ══════════════ -->
+<div id="sect-hiring" class="section">
+  <h2 class="section-title">채용·외주</h2>
+  <p class="section-desc">9→20 증원 파이프라인 + 외주·벤더 풀. hiring-radar + vendor-radar 연동. 최종 채용 결정: 사용자 직접.</p>
+
+  <div class="hiring-roadmap">
+    <h3 style="font-size:14px;font-weight:800;margin:0 0 4px;">9 → 20명 증원 로드맵</h3>
+    <div style="font-size:11px;color:var(--ink3);">2026 Q3~2027 상반기 목표 · 최종 채용 결정: 사용자 직접</div>
+    <div class="roadmap-bar" style="margin:14px 0 6px;">
+      <div class="roadmap-seg now" style="flex:9;">현재 9명</div>
+      <div class="roadmap-seg q3" style="flex:3;">+3</div>
+      <div class="roadmap-seg q4" style="flex:3;">+3</div>
+      <div class="roadmap-seg y27" style="flex:5;">+5 (2027)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);"><div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">Q3 2026 목표</div>VM 시니어 1명 채용<br>VM 미드 1명 채용<br>VX 주니어 1명 채용</div>
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);"><div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">Q4 2026 목표</div>PM 1명 채용<br>VM 주니어 1명<br>VX 미드 1명</div>
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);"><div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">2027 목표</div>각 직군 균형 충원<br>총 20명 완성<br>팀 구조 재편</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;">📋 채용 파이프라인</h3>
+  <div class="pipeline-grid">
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="col-dot" style="background:#94A3B8;"></div>소싱 중</div>
+      <div class="pipeline-item"><div class="pipeline-pos">VM 시니어 (모션 리드)</div><div class="pipeline-meta">자격: AE 5년+ · 모션 리드 경험<br>채널: 원티드 · 추천</div><div class="pipeline-urgent">⚡ 즉시 충원 필요 — 리소스 갭</div></div>
+      <div class="pipeline-item"><div class="pipeline-pos">VX 주니어 (UX 보조)</div><div class="pipeline-meta">자격: Figma 능숙 · UX 1년+<br>채널: 원티드 · 링크드인</div></div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="col-dot" style="background:#F59E0B;"></div>JD 작성 필요</div>
+      <div class="pipeline-item"><div class="pipeline-pos">VM 미드 (브랜딩)</div><div class="pipeline-meta">아직 JD 미작성<br>"VM 미드 JD 뽑아줘" → hiring-radar</div></div>
+      <div class="pipeline-item"><div class="pipeline-pos">PM (프로젝트 매니저)</div><div class="pipeline-meta">Q4 타깃<br>JD 작성: 9월 예정</div></div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="col-dot" style="background:#3B82F6;"></div>면접 진행 중</div>
+      <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 진행 중인 면접 없음<br><br>소싱 완료 후 업데이트</div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="col-dot" style="background:#22C55E;"></div>오퍼 · 입사 예정</div>
+      <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 오퍼 없음<br><br>⚠️ 최종 채용 결정: 사용자 직접</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:800;margin:20px 0 12px;">🔗 외주·벤더 풀</h3>
+  <div class="vendor-grid">
+    <div class="vendor-card"><div class="vendor-cat">모션 · 2D/3D</div><div class="vendor-item"><div class="v-dot"></div><div>모션 외주 A (프리랜서)<br><span style="font-size:9.5px;color:var(--ink3);">2D AE · 시니어급</span></div><div class="vendor-stars">★★★★★</div></div><div class="vendor-item"><div class="v-dot"></div><div>3D 외주 B<br><span style="font-size:9.5px;color:var(--ink3);">Cinema 4D · 중급</span></div><div class="vendor-stars">★★★★☆</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">추가 발굴 필요 · "모션 외주 찾자" → vendor-radar</div></div></div>
+    <div class="vendor-card"><div class="vendor-cat">영상 편집</div><div class="vendor-item"><div class="v-dot"></div><div>영상 편집 A<br><span style="font-size:9.5px;color:var(--ink3);">광고영상 전문</span></div><div class="vendor-stars">★★★★☆</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">스튜디오 벤더 미확보 · "영상 벤더 찾자" → vendor-radar</div></div></div>
+    <div class="vendor-card"><div class="vendor-cat">UI 개발 · 프론트엔드</div><div class="vendor-item"><div class="v-dot"></div><div>프론트엔드 외주 A<br><span style="font-size:9.5px;color:var(--ink3);">React · Next.js</span></div><div class="vendor-stars">★★★★☆</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">추가 개발 외주 필요 · 홈페이지 수주 급증 시 대비</div></div></div>
+    <div class="vendor-card"><div class="vendor-cat">번역 · 현지화</div><div class="vendor-item"><div class="v-dot"></div><div>번역 에이전시 A<br><span style="font-size:9.5px;color:var(--ink3);">EN/KO</span></div><div class="vendor-stars">★★★☆☆</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">JP 번역 미확보 · 글로벌 클라 수주 시 필요</div></div></div>
+    <div class="vendor-card"><div class="vendor-cat">사운드 디자인</div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">사운드 디자이너 미확보 · 영상 수주 증가 시 필수</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">음원 라이선스 풀 미정 · legal-compliance 확인 후 계약</div></div></div>
+    <div class="vendor-card"><div class="vendor-cat">사진 · 스튜디오</div><div class="vendor-item"><div class="v-dot"></div><div>스튜디오 A (제품촬영)<br><span style="font-size:9.5px;color:var(--ink3);">이커머스·제품</span></div><div class="vendor-stars">★★★★☆</div></div><div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">라이프스타일 사진작가 미확보</div></div></div>
+  </div>
+
+  <div style="margin-top:20px;padding:12px 16px;background:#FDECEC;border-left:3px solid var(--danger);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;">
+    <strong>⚠️ 절대 위임 안 함:</strong> 채용 최종 결정 (합격·불합격·연봉 협의)과 외주 발주 최종 OK는 사용자 직접 결정. 에이전트는 JD 작성, 소싱 전략, 벤더 단가 비교까지만 합니다.
+  </div>
+</div><!-- /sect-hiring -->
+
+</div><!-- /main -->
+
+<script>
+function go(tab, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sect-' + tab).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/* GANTT */
+const TOTAL = 122;
+const TODAY = 30; // June 30 = day 30
+function pct(d) { return ((d - 1) / TOTAL * 100).toFixed(3) + '%'; }
+function wpct(dur) { return (dur / TOTAL * 100).toFixed(3) + '%'; }
+function buildGantt(id, rows) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const labels = [1, 15, 31, 46, 61, 76, 92, 107, 122];
+  const ltext  = ['6/1','6/15','7/1','7/15','8/1','8/15','9/1','9/15','9/30'];
+  let html = '<div style="display:flex;margin-left:160px;margin-bottom:4px;position:relative;height:20px;">';
+  labels.forEach((d,i) => { html += `<span style="position:absolute;font-size:10px;color:#B5B2AB;white-space:nowrap;transform:translateX(-50%);left:${pct(d)}">${ltext[i]}</span>`; });
+  html += '</div>';
+  rows.forEach(r => {
+    const cls = r.type === 'wip' ? 'gantt-bar-wip' : r.type === 'hold' ? 'gantt-bar-hold' : 'gantt-bar-done';
+    html += `<div class="gantt-row">
+      <div class="gantt-row-label" title="${r.name}">${r.name}</div>
+      <div class="gantt-track">
+        <div class="gantt-bar ${cls}" style="left:${pct(r.start)};width:${wpct(r.dur)}"></div>
+        <div class="gantt-today-line" style="left:${pct(TODAY)}"></div>
+      </div></div>`;
+  });
+  el.innerHTML = html;
+}
+buildGantt('gantt-max', [
+  { name: '코웨이 GUI 컨설팅 및 구축 (3/24~6/26)',    start: 1,  dur: 26,  type: 'done' },
+  { name: '[고정운영] 넷마블 4TO (~12/31)',            start: 1,  dur: 122, type: 'wip'  },
+  { name: '가디언 메이든 사전 런칭 준비 (5/1~)',       start: 1,  dur: 40,  type: 'hold' },
+  { name: '회사 소개서 업데이트 PPT (6/1~6/12)',      start: 1,  dur: 12,  type: 'done' },
+  { name: '넷마블 AI 업세일즈 제안 (6/5~6/26)',       start: 5,  dur: 22,  type: 'done' },
+  { name: '올리브영 PB 상세 페이지 제안 (6/15~6/19)', start: 15, dur: 5,   type: 'done' },
+  { name: '현대 수소 홈페이지 구축 (6/22~6/27)',      start: 22, dur: 6,   type: 'done' },
+  { name: 'YBM 브릿지 KV 모션 (6/24~6/26)',          start: 24, dur: 3,   type: 'done' },
+  { name: '웨이크메이크 상세페이지 리뉴얼 (6월 제안)', start: 30, dur: 20,  type: 'wip'  },
+  { name: 'MX 센터 SNS (9/4~10/1)',                  start: 96, dur: 27,  type: 'wip'  },
+]);
+</script>
+</body>
+</html>
