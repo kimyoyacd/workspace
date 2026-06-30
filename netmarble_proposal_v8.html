@@ -124,15 +124,26 @@
   }
   h1.chapter-title {
     font-weight: 800;
-    font-size: clamp(48px, 7vw, 84px);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-size: clamp(34px, 6vw, 76px);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
     margin: 0 0 32px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   h1.chapter-title em {
     font-style: normal;
     font-weight: 800;
     color: var(--accent);
+  }
+  .chapter-intro {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    font-weight: 700;
   }
   .lede {
     font-weight: 500;
@@ -436,7 +447,8 @@
         <span>11년 파트너의 고민을 정리해봤습니다 · HIVELAB MAX LAB × NETMARBLE · 2026.06</span>
       </div>
 
-      <h1 class="chapter-title">11년 파트너로 함께해주신 넷마블,<br>어떻게 <em>더 도울 수 있을지</em><br>고민하고 또 고민했습니다.</h1>
+      <p class="chapter-intro">11년 파트너로 함께해주신 넷마블께</p>
+      <h1 class="chapter-title">어떻게 <em>더 도울 수 있을지,</em><br>고민하고 또 고민했습니다.</h1>
 
       <p style="font-weight:500;font-size:18px;line-height:1.45;letter-spacing:-0.01em;color:var(--muted);max-width:60ch;margin:0 0 24px;">
         함께 그려볼 가능성들 — 미팅을 위한 자료입니다.
