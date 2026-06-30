@@ -439,7 +439,7 @@
       <h1 class="chapter-title">같은 단가로,<br>소재 수량과 <em>퍼포먼스</em>를<br>동시에 올리는 방법.</h1>
 
       <p class="lede">
-        마케팅비 효율화 압박은 그대로인데, 하반기 신작 5종과 라이브 업데이트로 소재 수요는 늘고 있습니다. 발주 단가는 그대로 두고, 원본 1건을 평균 47건의 베리에이션으로 확장해 산출물 단가를 자연스럽게 낮추는 구조를 제안합니다.
+        마케팅비 효율화 압박은 그대로인데, 하반기 신작 5종과 라이브 업데이트로 소재 수요는 늘고 있습니다. 같은 발주 안에서 테스트 가능한 소재 수를 47배로 늘려, 이기는 소재를 찾을 확률을 끌어올리는 구조를 제안합니다.
       </p>
 
       <!-- ===== HERO STAT STRIP ===== -->
@@ -550,8 +550,8 @@
           <tbody>
             <tr>
               <td><strong>단가</strong></td>
-              <td>발주 단가 변화 없음. 원본 1건 단가 그대로.</td>
-              <td class="accent">같은 예산으로 산출량 47배. 결과적으로 산출물 1건당 단가는 1/47 수준.</td>
+              <td>발주 단가 변화 없음. 그 안에 시스템·DB·평균 47건 베리에이션 포함.</td>
+              <td class="accent">"원본 1건 가격"이 아니라 "확장 산출물 포함 패키지 가격"으로 작동합니다.</td>
             </tr>
             <tr>
               <td><strong>효율</strong></td>
@@ -602,7 +602,7 @@
         <div class="callout" style="margin-top:32px;">
           <div>
             <h3>원본 1건 발주, 47건 회수</h3>
-            <p>넷마블은 평소대로 원본 TO 발주. HIVELAB이 베리에이션 평균 47건을 함께 산출. 발주 단가 변화 없음, 산출물 1건당 단가는 자연히 낮아집니다.</p>
+            <p>발주 단가 안에는 원본 1건만이 아니라 시스템·DB·평균 47건의 베리에이션이 함께 포함됩니다. 단가는 "원본 1건 가격"이 아니라 "확장 산출물 포함 패키지 가격"으로 봐주십시오.</p>
           </div>
           <div class="big">×47</div>
         </div>
@@ -769,6 +769,81 @@
         <p style="font-size:12px;color:var(--muted);margin-top:16px;font-family:var(--mono);">
           출처 — 배너 검색: HIVELAB MAX LAB PNGMETA Banner Search 26.06 운영 기준 · AI 베리에이션: GXD AI SOLUTION 사내 구축 · GPU: RTX 4090 × 14
         </p>
+
+        <!-- B. 활용 시나리오 -->
+        <div style="margin-top:48px;">
+          <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:0 0 16px;">툴은 열려 있습니다. 활용은 미팅에서.</h3>
+
+          <div class="prose">
+            <p>배너 검색과 AI 베리에이션은 도구로 열려 있습니다. <span class="hl">어떻게 활용할지는 넷마블의 캠페인 운영 흐름에 맞춰 미팅에서 함께 정의</span>합니다. 예를 들어 가능한 활용 시나리오는 이렇습니다.</p>
+          </div>
+
+          <table class="dtbl" style="margin-top:16px;">
+            <thead>
+              <tr>
+                <th style="width:28%;">활용 시점</th>
+                <th style="width:36%;">DB 호출</th>
+                <th style="width:36%;">베리에이션 확장</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1주년·N주년 이벤트</strong></td>
+                <td>작년 동일 시점 배너 호출</td>
+                <td class="accent">톤·구도 유지, 메시지만 교체</td>
+              </tr>
+              <tr>
+                <td><strong>신규 헌터·캐릭터 출시</strong></td>
+                <td>과거 동일 클래스/등급 출시 배너 호출</td>
+                <td class="accent">검증된 레이아웃 재사용</td>
+              </tr>
+              <tr style="border-bottom:2px solid var(--ink);">
+                <td><strong>콜라보·시즌 캠페인</strong></td>
+                <td>과거 콜라보 시안 패턴 호출</td>
+                <td class="accent">컨텍스트만 교체해 즉시 확장</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;">기획 단계를 건너뛰고 DB에서 검증된 시안을 호출해 즉시 확장하는 흐름이 가능합니다. 어느 캠페인에 어떤 깊이로 적용할지, 신규 기획 트랙과 DB 호출 트랙을 어떻게 나눌지는 미팅에서 그립니다.</p>
+        </div>
+
+        <!-- D. 이미 일상 운영 중 -->
+        <div style="margin-top:48px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <span class="badge badge-now">NOW · 사내 운영 사이클</span>
+            <span style="font-weight:700;font-size:18px;">이미 일상 작업에서 검증 중</span>
+          </div>
+
+          <div class="prose">
+            <p>위 시나리오들은 가설이 아닙니다. HIVELAB은 일상 작업에서 이미 <span class="hl">AI 테스트와 베리에이션 테스트를 반복</span>하며 결과를 다음 작업에 반영하는 사이클을 운영 중입니다.</p>
+          </div>
+
+          <table class="dtbl" style="margin-top:16px;">
+            <thead>
+              <tr>
+                <th style="width:30%;">운영 사이클</th>
+                <th style="width:70%;">내용</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AI 베리에이션 테스트</strong></td>
+                <td>매 캠페인 단위로 사내 테스트 실행, 결과를 다음 작업에 반영하는 사이클 운영 중</td>
+              </tr>
+              <tr>
+                <td><strong>다중 변수 학습</strong></td>
+                <td>톤 · 스타일 · 해상도 · 매체별 포맷 · 국가별 변형 — 어떤 조합이 통하는지 누적 학습</td>
+              </tr>
+              <tr style="border-bottom:2px solid var(--ink);">
+                <td><strong>수량 대응</strong></td>
+                <td class="accent">26년 3~5월 월 평균 7,255건 산출. 단순 인력 투입이 아니라 AI 테스트·베리에이션 사이클 기반으로 수량을 받아내는 중</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;">시스템 도입 시 처음부터 시작하지 않습니다. 이미 사내에서 검증된 운영 노하우 위에 넷마블 캠페인이 그대로 이어집니다.</p>
+        </div>
 
         <div class="card-row" style="margin-top:32px;">
           <div class="card-item">
@@ -951,7 +1026,7 @@
       <section id="why">
         <div class="section-head">
           <h2><span class="no">6.</span>이걸 할 수 있는 회사는 <em>한 곳</em>입니다.</h2>
-          <p class="deck">자기 자랑이 아니라 적격성. 넷마블 데이터를 가장 잘 아는 회사가, 그 데이터로 단가를 내립니다.</p>
+          <p class="deck">자기 자랑이 아니라 적격성. 넷마블 데이터를 가장 잘 아는 회사가, 그 데이터로 산출량과 적중률을 끌어올립니다.</p>
         </div>
 
         <table class="dtbl">
@@ -977,6 +1052,11 @@
               <td><strong>AI 인프라 사내 구축</strong></td>
               <td>외부 API 의존 시 단가·납기 협상 불가</td>
               <td class="accent">GPU RTX 4090 × 14 사내 운영</td>
+            </tr>
+            <tr>
+              <td><strong>운영 사이클 검증</strong></td>
+              <td>도구만 있고 운영 노하우가 없으면 도입 후 학습 비용 발생</td>
+              <td class="accent">AI 테스트·베리에이션 사이클 일상 작업에서 운영 중</td>
             </tr>
             <tr style="border-bottom:2px solid var(--ink);">
               <td><strong>단가·납기·품질 단일 창구</strong></td>
