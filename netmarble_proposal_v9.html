@@ -72,17 +72,20 @@
   .nav span { font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
 
   /* ---------- layout ---------- */
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; width: 100%; }
   .grid {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 220px minmax(0, 1fr);
     gap: 56px;
     padding: 56px 0 120px;
+    width: 100%;
   }
-  @media (max-width: 900px) {
-    .grid { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-top: 24px; }
     .sidenav { position: static !important; }
   }
+  article { min-width: 0; }
+  .crumb { flex-wrap: wrap; }
 
   /* ---------- side nav ---------- */
   .sidenav {
