@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김효정의 CD 정의 & 역할 가이드</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@300;400;600;700;900&display=swap');
+
+  :root {
+    --black: #0a0a0f;
+    --deep: #0f0f1a;
+    --card: #141420;
+    --border: #1e1e32;
+    --accent1: #7c5cfc;
+    --accent2: #fc5c7d;
+    --accent3: #56d8a4;
+    --accent4: #fca85c;
+    --text: #e8e8f0;
+    --muted: #7878a0;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+
+  .hero-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(48px, 10vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--accent1) 60%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 3vw, 20px);
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: var(--text);
+    max-width: 680px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-tagline strong {
+    color: var(--accent3);
+    font-weight: 700;
+  }
+
+  .scroll-hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 48px;
+    color: var(--white);
+  }
+
+  /* DEFINITION BLOCK */
+  .definition-block {
+    background: linear-gradient(135deg, rgba(124,92,252,0.08) 0%, rgba(252,92,125,0.05) 100%);
+    border: 1px solid rgba(124,92,252,0.25);
+    border-radius: 24px;
+    padding: 48px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .definition-block::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 32px;
+    font-size: 200px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: rgba(124,92,252,0.06);
+    line-height: 1;
+  }
+
+  .definition-text {
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 500;
+    line-height: 1.8;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+  }
+
+  .definition-text .highlight {
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .compare-col {
+    background: var(--card);
+    padding: 32px 24px;
+  }
+
+  .compare-col.center {
+    background: linear-gradient(180deg, rgba(124,92,252,0.15) 0%, rgba(124,92,252,0.05) 100%);
+    border-top: 2px solid var(--accent1);
+  }
+
+  .compare-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .compare-header.purple { color: var(--accent1); }
+  .compare-header.muted { color: var(--muted); }
+
+  .compare-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .compare-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .dot-purple { background: var(--accent1); }
+  .dot-muted { background: var(--muted); }
+  .dot-red { background: var(--accent2); }
+
+  /* ROLE CARDS */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .role-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .role-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(124,92,252,0.4);
+  }
+
+  .role-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .role-card.c1::after { background: var(--accent1); }
+  .role-card.c2::after { background: var(--accent2); }
+  .role-card.c3::after { background: var(--accent3); }
+  .role-card.c4::after { background: var(--accent4); }
+
+  .role-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .role-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .role-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .c1 .role-subtitle { color: var(--accent1); }
+  .c2 .role-subtitle { color: var(--accent2); }
+  .c3 .role-subtitle { color: var(--accent3); }
+  .c4 .role-subtitle { color: var(--accent4); }
+
+  .role-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .role-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .role-action {
+    font-size: 13px;
+    color: var(--text);
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border-left: 2px solid var(--accent1);
+  }
+
+  .c2 .role-action { border-left-color: var(--accent2); }
+  .c3 .role-action { border-left-color: var(--accent3); }
+  .c4 .role-action { border-left-color: var(--accent4); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 80px 0;
+  }
+
+  /* STRENGTH MAP */
+  .strength-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .strength-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .strength-icon {
+    font-size: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .strength-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .strength-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .strength-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CD MANIFESTO */
+  .manifesto {
+    background: linear-gradient(135deg, var(--deep) 0%, #0f0820 100%);
+    border: 1px solid rgba(124,92,252,0.2);
+    border-radius: 24px;
+    padding: 64px;
+    margin-bottom: 64px;
+    text-align: center;
+  }
+
+  .manifesto-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 32px;
+  }
+
+  .manifesto-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .manifesto-line {
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .manifesto-line strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .manifesto-line .accent {
+    color: var(--accent1);
+  }
+
+  /* DAILY GUIDE */
+  .day-guide {
+    margin-bottom: 64px;
+  }
+
+  .time-block {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .time-block:last-child {
+    border-bottom: none;
+  }
+
+  .time-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent1);
+    padding-top: 4px;
+  }
+
+  .time-content-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .time-content-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .time-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-purple { background: rgba(124,92,252,0.15); color: var(--accent1); }
+  .tag-pink { background: rgba(252,92,125,0.15); color: var(--accent2); }
+  .tag-green { background: rgba(86,216,164,0.15); color: var(--accent3); }
+  .tag-orange { background: rgba(252,168,92,0.15); color: var(--accent4); }
+
+  /* PHRASE CARDS */
+  .phrase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .phrase-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .phrase-context {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .phrase-text {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .phrase-text em {
+    color: var(--accent3);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* NOW/NEXT/FUTURE */
+  .timeline-phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+
+  .phase-col {
+    background: var(--card);
+    padding: 40px 28px;
+  }
+
+  .phase-col.active {
+    background: linear-gradient(180deg, rgba(124,92,252,0.12) 0%, var(--card) 100%);
+    border-top: 3px solid var(--accent1);
+  }
+
+  .phase-period {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .phase-period.now { color: var(--accent1); }
+
+  .phase-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .phase-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .phase-items li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .phase-items li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent1);
+    font-size: 12px;
+  }
+
+  /* SAJU INSIGHT */
+  .saju-insight {
+    background: linear-gradient(135deg, rgba(252,168,92,0.06) 0%, rgba(124,92,252,0.06) 100%);
+    border: 1px solid rgba(252,168,92,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 64px;
+  }
+
+  .saju-insight-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent4);
+    margin-bottom: 20px;
+  }
+
+  .saju-insight-text {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .saju-insight-text .gold {
+    color: var(--accent4);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 80px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .footer-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .footer-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--border);
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .compare-grid,
+    .timeline-phases { grid-template-columns: 1fr; }
+    .strength-map { grid-template-columns: 1fr; }
+    .time-block { grid-template-columns: 1fr; gap: 8px; }
+    .definition-block { padding: 32px 24px; }
+    .manifesto { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Creative Director · Definition & Role Guide</div>
+  <div class="hero-name">김효정</div>
+  <div class="hero-title">Game IP Visual Creative Director</div>
+  <div class="hero-tagline">
+    디자인을 만드는 사람이 아니라<br>
+    <strong>게임의 비주얼 언어를 설계하고, 클라이언트가 스스로 결정하도록 이끄는 사람.</strong><br>
+    그것이 당신이 이미 해온 일이고, 앞으로 그 이름으로 불려야 할 일이다.
+  </div>
+  <div class="scroll-hint">↓ scroll to explore</div>
+</div>
+
+<!-- SECTION 1: DEFINITION -->
+<div class="section">
+  <div class="section-label">01 · Definition</div>
+  <div class="section-title">CD란 무엇인가,<br>당신에게 있어서</div>
+
+  <div class="definition-block">
+    <div class="definition-text">
+      CD는 <span class="highlight">결정을 디자인하는 사람</span>이다.<br><br>
+      직접 픽셀을 찍는 사람이 아니라,
+      어떤 방향으로 픽셀이 쌓여야 하는지를 정하는 사람.<br><br>
+      클라이언트가 "이게 맞는 방향인가?"라고 막막해할 때,
+      <span class="highlight">선택지를 좁혀주고, 확신을 주는 사람.</span><br><br>
+      김효정 CD는 특히 — 게임 IP가 세상에 처음 얼굴을 내밀 때,
+      그 첫인상의 언어를 함께 만드는 사람이다.
+    </div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-header muted">디자이너 (Designer)</div>
+      <div class="compare-item"><div class="compare-dot dot-muted"></div><span>시안을 만든다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-muted"></div><span>수정 피드백을 받는다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-muted"></div><span>클라이언트가 정한 방향에서 실행</span></div>
+      <div class="compare-item"><div class="compare-dot dot-muted"></div><span>스킬셋으로 평가받는다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-muted"></div><span>한 프로젝트의 일부를 담당</span></div>
+    </div>
+    <div class="compare-col center">
+      <div class="compare-header purple">CD · 당신의 위치</div>
+      <div class="compare-item"><div class="compare-dot dot-purple"></div><span>비주얼 방향을 제안하고 확정한다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-purple"></div><span>클라이언트의 판단을 리드한다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-purple"></div><span>방향 자체를 함께 설계한다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-purple"></div><span>관점과 판단력으로 평가받는다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-purple"></div><span>프로젝트 전체의 비주얼 언어 책임</span></div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-header muted">실장 (Manager)</div>
+      <div class="compare-item"><div class="compare-dot dot-red"></div><span>팀을 관리하고 일정을 조율한다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-red"></div><span>리소스와 납기를 책임진다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-red"></div><span>조직 안에 묶여 있다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-red"></div><span>내부 효율로 평가받는다</span></div>
+      <div class="compare-item"><div class="compare-dot dot-red"></div><span>외부 영향력이 보이지 않는다</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: ROLES -->
+<div style="background: var(--deep); padding: 2px 0;">
+<div class="section">
+  <div class="section-label">02 · Core Roles</div>
+  <div class="section-title">CD로서<br>해야 할 4가지 역할</div>
+
+  <div class="roles-grid">
+
+    <div class="role-card c1">
+      <div class="role-number">01</div>
+      <div class="role-subtitle">Visual Strategist</div>
+      <div class="role-title">비주얼 전략 설계</div>
+      <div class="role-desc">
+        클라이언트가 "어떤 방향으로 가야 할지 모르겠다"고 올 때, 시장·경쟁작·IP 정체성을 분석해서 비주얼 포지셔닝을 먼저 제시한다. 제안서가 아닌 전략서로.
+      </div>
+      <div class="role-actions">
+        <div class="role-action">게임 출시 전 비주얼 아이덴티티 워크숍 주도</div>
+        <div class="role-action">경쟁 IP 비주얼 분석 & 차별화 방향 제안</div>
+        <div class="role-action">무드보드 + 방향 3안 + 추천안 구조로 제안</div>
+      </div>
+    </div>
+
+    <div class="role-card c2">
+      <div class="role-number">02</div>
+      <div class="role-subtitle">Creative Gatekeeper</div>
+      <div class="role-title">크리에이티브 품질 관문</div>
+      <div class="role-desc">
+        팀이 만든 결과물이 "좋은 방향"에 있는지를 판단하는 최종 관문. 수정 지시가 아니라 "왜 이 방향이 틀렸는지"를 설명하는 언어를 가져야 한다.
+      </div>
+      <div class="role-actions">
+        <div class="role-action">"이 UI가 게임의 세계관에서 튀는 이유" 설명</div>
+        <div class="role-action">트렌드 vs. IP 정체성 균형점 판단</div>
+        <div class="role-action">클라이언트 피드백을 창작적으로 소화해 전달</div>
+      </div>
+    </div>
+
+    <div class="role-card c3">
+      <div class="role-number">03</div>
+      <div class="role-subtitle">Client Translator</div>
+      <div class="role-title">클라이언트 언어 번역</div>
+      <div class="role-desc">
+        "뭔가 더 게임스럽게", "좀 더 힙하게" 같은 모호한 요청을 구체적인 비주얼 언어로 번역한다. 당신의 영업력과 인간관계 능력이 가장 빛나는 역할.
+      </div>
+      <div class="role-actions">
+        <div class="role-action">클라이언트 요구 → 레퍼런스 + 방향 언어로 정리</div>
+        <div class="role-action">결정하기 어려운 선택지를 2개로 좁혀 제시</div>
+        <div class="role-action">팀 작업물을 클라이언트 언어로 프레젠테이션</div>
+      </div>
+    </div>
+
+    <div class="role-card c4">
+      <div class="role-number">04</div>
+      <div class="role-subtitle">Trend Curator</div>
+      <div class="role-title">트렌드 & 인사이트 큐레이션</div>
+      <div class="role-desc">
+        게임 비주얼 시장 흐름, AI 그래픽 기술 변화, 글로벌 IP 사례를 지속 큐레이션하여 클라이언트에게 "모르고 있던 것"을 알려주는 사람. 관계가 아니라 가치로 불린다.
+      </div>
+      <div class="role-actions">
+        <div class="role-action">월간 게임 비주얼 트렌드 리포트 (소수 공유)</div>
+        <div class="role-action">신규 AI 그래픽 기술 → 게임 적용 가능성 제안</div>
+        <div class="role-action">해외 IP 출시 비주얼 분석 → 레퍼런스로 활용</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- SECTION 3: YOUR STRENGTHS AS CD -->
+<div class="section">
+  <div class="section-label">03 · Your Edge</div>
+  <div class="section-title">당신만의 CD가<br>강력한 이유</div>
+
+  <div class="strength-map">
+    <div class="strength-item">
+      <div class="strength-icon">💡</div>
+      <div>
+        <div class="strength-label">Creative Instinct</div>
+        <div class="strength-title">아이디어가 샘솟는다</div>
+        <div class="strength-desc">게임 GUI 방향, 콘텐츠 룩 앤 필 제안 시 아이디어가 자연스럽게 나온다. 이것은 훈련보다 타고난 크리에이티브 감각이다. CD의 핵심 자산.</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">🤝</div>
+      <div>
+        <div class="strength-label">Rare Combination</div>
+        <div class="strength-title">크리에이티브 + 영업</div>
+        <div class="strength-desc">디자이너 중 영업을 잘하는 사람은 드물다. 크래프톤·NC·라이온하트 같은 클라이언트와 "친근한" 관계를 유지한다는 것 자체가 이미 CD급 신뢰 자산.</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">🎮</div>
+      <div>
+        <div class="strength-label">Domain Depth</div>
+        <div class="strength-title">게임 산업 전문성</div>
+        <div class="strength-desc">게임 GUI, IP 비주얼, AI 그래픽 생성까지 다룬다. 다분야 경험이 있으면서도 게임에 집중된 깊이. 제너럴리스트의 넓이 + 스페셜리스트의 깊이.</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">🔥</div>
+      <div>
+        <div class="strength-label">Energy & Passion</div>
+        <div class="strength-title">남다른 열정</div>
+        <div class="strength-desc">열정은 스킬보다 전염성이 강하다. 클라이언트가 "하이브랩을 찾는다"는 것은 이미 당신의 에너지가 차별점이 되고 있다는 증거.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: MANIFESTO -->
+<div style="background: var(--deep); padding: 2px 0;">
+<div class="section">
+  <div class="section-label">04 · CD Manifesto</div>
+  <div class="section-title">나는 이런 CD다</div>
+
+  <div class="manifesto">
+    <div class="manifesto-title">김효정 CD · 선언문</div>
+    <div class="manifesto-lines">
+      <div class="manifesto-line">
+        나는 <strong>게임이 세상에 처음 얼굴을 드러낼 때</strong>의 비주얼 언어를 설계한다.
+      </div>
+      <div class="manifesto-line">
+        픽셀 하나보다 <strong>방향 하나</strong>에 더 집중한다.
+      </div>
+      <div class="manifesto-line">
+        클라이언트가 막막할 때 <span class="accent">선택지를 3개에서 1개로 좁혀주고</span>, 그 이유를 설명한다.
+      </div>
+      <div class="manifesto-line">
+        트렌드를 따라가는 것이 아니라, <strong>IP가 가진 본질적인 언어</strong>에서 방향을 끌어낸다.
+      </div>
+      <div class="manifesto-line">
+        나의 영업력은 '팔기 위함'이 아니라, <span class="accent">클라이언트가 좋은 결정을 내리도록 돕기 위함</span>이다.
+      </div>
+      <div class="manifesto-line">
+        나는 <strong>게임 IP 비주얼 크리에이티브 디렉터</strong>다.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 5: HOW TO OPERATE AS CD -->
+<div class="section">
+  <div class="section-label">05 · How to Operate</div>
+  <div class="section-title">CD로서<br>어떻게 행동할 것인가</div>
+
+  <div class="day-guide">
+
+    <div class="time-block">
+      <div class="time-label">언어 바꾸기</div>
+      <div>
+        <div class="time-content-title">스스로를 소개하는 방식을 바꾼다</div>
+        <div class="time-content-desc">
+          "에이전시 실장이에요" → "게임 IP 비주얼 방향을 잡아드리는 크리에이티브 디렉터입니다"<br>
+          직함은 나중에 바뀌더라도, 자기소개 언어부터 CD로 전환한다. 사람들은 당신이 정의하는 대로 당신을 기억한다.
+        </div>
+        <div class="time-tags">
+          <span class="tag tag-purple">즉시 적용</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">미팅 방식</div>
+      <div>
+        <div class="time-content-title">제안이 아닌 방향 설정으로 들어간다</div>
+        <div class="time-content-desc">
+          클라이언트 미팅 시작 전: "이번 프로젝트의 비주얼 목표가 무엇인지" 먼저 질문한다.<br>
+          제안서를 들고 가는 대신, <strong>3가지 방향 프레임</strong>을 가지고 가서 함께 선택하는 구조로.<br>
+          실행은 팀에게, 당신은 방향과 판단에 집중.
+        </div>
+        <div class="time-tags">
+          <span class="tag tag-purple">역할 전환</span>
+          <span class="tag tag-green">다음 미팅부터</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">결과물 방식</div>
+      <div>
+        <div class="time-content-title">산출물을 "방향 문서"로 남긴다</div>
+        <div class="time-content-desc">
+          단순 시안이 아닌: 비주얼 방향 명세서 (Why 이 방향인지 / 경쟁 IP 대비 포지셔닝 / 적용 범위)<br>
+          이 문서가 쌓이면 → 포트폴리오가 되고 → 케이스 스터디가 된다.<br>
+          수치 없이도, 방향 판단의 언어가 쌓이면 CD의 증거가 된다.
+        </div>
+        <div class="time-tags">
+          <span class="tag tag-orange">포트폴리오 전략</span>
+          <span class="tag tag-green">케이스 스터디 시드</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">관계 방식</div>
+      <div>
+        <div class="time-content-title">친근함을 "가치 제공"으로 전환한다</div>
+        <div class="time-content-desc">
+          크래프톤·NC·라이온하트와의 친근한 관계 → 월 1회 "요즘 눈에 띄는 게임 비주얼 트렌드" 공유로 관계를 업그레이드.<br>
+          가볍게 카톡으로 트렌드 링크 하나 + 한 줄 코멘트. 부담 없이, 하지만 꾸준히.<br>
+          이것이 "아는 사람"에서 "찾게 되는 사람"으로 바뀌는 경로.
+        </div>
+        <div class="time-tags">
+          <span class="tag tag-pink">관계 자산화</span>
+          <span class="tag tag-purple">월 1회 루틴</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="time-block">
+      <div class="time-label">거절하는 방식</div>
+      <div>
+        <div class="time-content-title">CD답게 거절하고 방향을 제시한다</div>
+        <div class="time-content-desc">
+          클라이언트가 "이렇게 해주세요"라고 방향을 지정해도, CD는 수용 전에 판단한다.<br>
+          "이 방향도 좋지만, IP 장기 가치 측면에서 이런 리스크가 있어요. 대신 이 방향을 추천드립니다."<br>
+          이 한 마디가 디자이너와 CD를 가른다.
+        </div>
+        <div class="time-tags">
+          <span class="tag tag-purple">CD 언어</span>
+          <span class="tag tag-pink">신뢰 구축</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 6: WHAT CD SAYS -->
+<div style="background: var(--deep); padding: 2px 0;">
+<div class="section">
+  <div class="section-label">06 · CD Language</div>
+  <div class="section-title">CD는 이렇게 말한다</div>
+
+  <div class="phrase-grid">
+    <div class="phrase-card">
+      <div class="phrase-context">비주얼 방향 논의 시</div>
+      <div class="phrase-text">"이 게임의 비주얼이 말해야 하는 <em>첫 마디</em>가 뭔지부터 정하고 가죠."</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-context">클라이언트 요청이 모호할 때</div>
+      <div class="phrase-text">"말씀하신 방향을 제가 세 가지로 해석해봤는데, 가장 가까운 게 어느 쪽인지 봐주세요."</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-context">결과물 피드백 시</div>
+      <div class="phrase-text">"이 방향이 IP 세계관에서 왜 <em>작동하고 / 작동하지 않는지</em> 제가 설명드릴게요."</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-context">자기소개 시</div>
+      <div class="phrase-text">"게임 IP가 처음 세상에 얼굴을 낼 때, <em>비주얼 방향을 함께 잡아드리는</em> 일을 합니다."</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-context">클라이언트가 방향을 고집할 때</div>
+      <div class="phrase-text">"그 방향도 충분히 유효합니다. 다만 이 리스크를 알고 선택하시면 더 좋겠어요."</div>
+    </div>
+    <div class="phrase-card">
+      <div class="phrase-context">프로젝트 마무리 시</div>
+      <div class="phrase-text">"이번에 정한 비주얼 언어를 <em>가이드 문서</em>로 남겨드릴게요. 다음 시즌에도 일관성 유지하실 수 있게요."</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 7: TIMELINE -->
+<div class="section">
+  <div class="section-label">07 · Roadmap</div>
+  <div class="section-title">Now · Next · Future</div>
+
+  <div class="timeline-phases">
+    <div class="phase-col active">
+      <div class="phase-period now">NOW · 2025-2026</div>
+      <div class="phase-title">CD 언어 장착</div>
+      <ul class="phase-items">
+        <li>자기소개 언어 전환</li>
+        <li>미팅 방식 변경 (방향 설정형)</li>
+        <li>비주얼 방향 문서 쌓기 시작</li>
+        <li>크래프톤·NC·라이온하트에 트렌드 공유 루틴</li>
+        <li>하이브랩 인스타/링크드인 CD 관점 콘텐츠</li>
+      </ul>
+    </div>
+    <div class="phase-col">
+      <div class="phase-period">NEXT · 2026-2027</div>
+      <div class="phase-title">CD 포지션 확립</div>
+      <ul class="phase-items">
+        <li>게임 IP 비주얼 케이스 스터디 3개 정리</li>
+        <li>"게임 비주얼 디렉션" 외부 강의/세션 1회</li>
+        <li>게임사 1곳과 어드바이저 계약 구조 시도</li>
+        <li>AI 그래픽 → 게임 비주얼 적용 방법론 문서화</li>
+        <li>링크드인 팔로워 기반 업계 인지도 확장</li>
+      </ul>
+    </div>
+    <div class="phase-col">
+      <div class="phase-period">FUTURE · 2027+</div>
+      <div class="phase-title">독립 CD 브랜드</div>
+      <ul class="phase-items">
+        <li>에이전시 종속 → 김효정 CD 브랜드 독립</li>
+        <li>게임사 다수와 어드바이저/리테이너 계약</li>
+        <li>"게임 IP 비주얼 CD" 국내 1위 포지셔닝</li>
+        <li>해외 게임사 (텐센트, 글로벌) 확장</li>
+        <li>사주 甲木: 乙卯 대운 수확 극대화</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SAJU INSIGHT -->
+  <div class="saju-insight">
+    <div class="saju-insight-title">사주 관점 · 타이밍 인사이트</div>
+    <div class="saju-insight-text">
+      현재 <span class="gold">乙卯 대운 (2025~2035)</span>은 甲木 일간에게 비견·겁재 운이다.
+      이는 경쟁이 아니라 <span class="gold">같은 에너지가 더 커지는 시기</span>를 의미한다 — 내 본질이 가장 강하게 드러나는 10년.
+      甲木은 크고 곧은 나무다. 실장이라는 구조 안에 갇혀 있으면 뿌리만 내리고 자라지 못한다.
+      <span class="gold">이 10년 안에 CD로 이름을 세워두어야</span>, 다음 甲寅 대운에서 진짜 독립과 확장이 가능하다.
+      지금이 씨앗이 아니라 <span class="gold">줄기를 올리는 시기</span>다.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-title">You Are Already a CD.</div>
+  <div class="footer-sub">
+    지금까지 해온 일이 CD의 일이었다.<br>
+    남은 것은 그 이름으로 불리는 것뿐이다.
+  </div>
+  <div class="footer-date">김효정 · Creative Director Guide · 2025</div>
+</div>
+
+</body>
+</html>

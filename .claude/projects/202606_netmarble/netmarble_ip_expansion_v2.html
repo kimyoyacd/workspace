@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>HIVELAB MAX LAB x 넷마블 — IP 콘텐츠 확장 전략</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --el-black:#000000;
+  --el-white:#ffffff;
+  --el-cool:rgba(235,240,249,0.8);
+  --el-bg:#f5f6f8;
+  --el-muted:#6b7280;
+  --el-dark-gray:#4b5563;
+  --el-border:#e5e5e5;
+  --el-border-subtle:rgba(0,0,0,0.05);
+  --font-en:'Inter','Helvetica Neue',sans-serif;
+  --font-kr:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --font-mono:'Geist Mono','ui-monospace','SFMono-Regular','Menlo',monospace;
+  --radius-card:16px;
+  --gap-card:12px;
+  --shadow-card:rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px, rgba(0,0,0,0.04) 0px 2px 4px;
+  --shadow-button:rgba(0,0,0,0.4) 0px 0px 1px, rgba(0,0,0,0.04) 0px 4px 4px;
+  --shadow-cool:rgba(15,23,42,0.06) 0px 6px 16px;
+  --shadow-inset:rgba(0,0,0,0.075) 0px 0px 0px 0.5px inset;
+}
+
+body{background:#111;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 0;font-family:var(--font-kr);letter-spacing:0.16px;}
+
+.slide{
+  width:1280px;height:720px;box-sizing:border-box;
+  padding:48px 72px;display:flex;flex-direction:column;
+  justify-content:space-between;overflow:hidden;flex-shrink:0;
+}
+
+.eyebrow{font-family:var(--font-en);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+.mono{font-family:var(--font-mono);}
+.num{font-family:var(--font-en);}
+.pill-primary{background:var(--el-black);color:var(--el-white);border-radius:9999px;padding:6px 16px;font-family:var(--font-en);font-size:11px;font-weight:500;letter-spacing:.04em;display:inline-block;}
+.pill-secondary{background:var(--el-white);color:var(--el-black);border-radius:9999px;padding:6px 16px;font-family:var(--font-en);font-size:11px;font-weight:500;letter-spacing:.04em;display:inline-block;box-shadow:var(--shadow-card);}
+.pill-cool{background:var(--el-cool);border-radius:30px;padding:6px 16px;font-family:var(--font-en);font-size:11px;font-weight:500;letter-spacing:.04em;display:inline-block;box-shadow:var(--shadow-cool);}
+</style>
+</head>
+<body>
+
+<!-- S01 COVER -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-black);">넷마블 IP 콘텐츠 확장 전략</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">01 커버</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow" style="color:var(--el-muted);margin-bottom:16px;">HIVELAB MAX LAB x NETMARBLE</div>
+    <div style="font-family:var(--font-en);font-size:80px;font-weight:300;color:var(--el-black);line-height:.95;letter-spacing:-.03em;">
+      게임은<br>게임 얘기만<br><span style="color:var(--el-muted);">한다</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:18px;color:var(--el-muted);margin-top:32px;line-height:1.65;">
+      캐릭터가 먼저 유명해져야 게임이 성공한다<br>
+      <span style="font-size:16px;color:var(--el-muted);">-- AI 배너 검색 시스템 &middot; AI 콘텐츠 제작 &middot; IP 확장 전략</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>HIVELAB MAX LAB 제안</span>
+    <span>01 / 25</span>
+  </div>
+</div>
+
+<!-- S02 TOC -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.4);">TABLE OF CONTENTS</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">02 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:28px;align-items:start;">
+    <!-- Col 1 -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12);">
+        <span style="font-family:var(--font-en);font-size:13px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:.04em;">01</span>
+        <span style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#fff;letter-spacing:-.02em;">핵심 논제</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.25);min-width:20px;">04</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.5);">패러다임 전환</span>
+      </div>
+    </div>
+    <!-- Col 2 -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(235,240,249,.2);">
+        <span style="font-family:var(--font-en);font-size:13px;font-weight:400;color:#dbe4f0;letter-spacing:.04em;">02</span>
+        <span style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#dbe4f0;letter-spacing:-.02em;">AI 배너 검색</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(235,240,249,.4);min-width:20px;">06</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.6);">아카이브 구축</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(235,240,249,.4);min-width:20px;">07</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.6);">자연어 검색 & 가이드</span>
+      </div>
+    </div>
+    <!-- Col 3 -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(235,240,249,.2);">
+        <span style="font-family:var(--font-en);font-size:13px;font-weight:400;color:#dbe4f0;letter-spacing:.04em;">03</span>
+        <span style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#dbe4f0;letter-spacing:-.02em;">AI 콘텐츠 제작</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(235,240,249,.4);min-width:20px;">09</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.6);">제작 플로우</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(235,240,249,.4);min-width:20px;">10</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.6);">아토믹 콘텐츠</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(235,240,249,.4);min-width:20px;">11</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.6);">승인 워크플로우</span>
+      </div>
+    </div>
+    <!-- Col 4 -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12);">
+        <span style="font-family:var(--font-en);font-size:13px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:.04em;">04</span>
+        <span style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#fff;letter-spacing:-.02em;">IP & 바이럴</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.25);min-width:20px;">14</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.5);">IP 확장 아이디어</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.25);min-width:20px;">17</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.5);">바이럴 브레인스토밍</span>
+      </div>
+    </div>
+    <!-- Col 5 -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12);">
+        <span style="font-family:var(--font-en);font-size:13px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:.04em;">05</span>
+        <span style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#fff;letter-spacing:-.02em;">비즈니스</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.25);min-width:20px;">20</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.5);">3단계 모델</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <span style="font-family:var(--font-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.25);min-width:20px;">22</span>
+        <span style="font-family:var(--font-kr);font-size:12px;font-weight:400;color:rgba(255,255,255,.5);">매출 시뮬레이션</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>HIVELAB MAX LAB</span>
+    <span>02 / 25</span>
+  </div>
+</div>
+
+<!-- S03 SECTION DIVIDER -- Core Thesis -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 01</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">03 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">01</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">PARADIGM SHIFT</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      캐릭터가 먼저 유명해져야<br><span style="color:rgba(255,255,255,.4);">게임이 성공한다</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>핵심 논제</span>
+    <span>03 / 25</span>
+  </div>
+</div>
+
+<!-- S04 Paradigm Comparison -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">CORE THESIS</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">04 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:40px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      게임 마케팅의 공식을 뒤집는다
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <!-- Old -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;opacity:.55;">
+      <span class="eyebrow" style="color:var(--el-muted);">기존 공식</span>
+      <div style="font-family:var(--font-kr);font-size:22px;font-weight:700;color:var(--el-muted);text-decoration:line-through;line-height:1.3;">
+        게임이 먼저 성공해야 &rarr; 캐릭터가 유명해진다
+      </div>
+      <div style="font-family:var(--font-kr);font-size:14px;color:var(--el-muted);line-height:1.6;margin-top:auto;">
+        스킬 영상 / 전투 장면 / 이벤트 배너<br>
+        뱀피르 유저만 아는 캐릭터 -- 외부 팬덤 제로<br>
+        RF 온라인 종족전 -- 게임 안에만 머문다
+      </div>
+    </div>
+    <!-- New -->
+    <div style="background:var(--el-cool);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-cool);">
+      <span class="eyebrow" style="color:var(--el-black);">HIVELAB 새 공식</span>
+      <div style="font-family:var(--font-kr);font-size:22px;font-weight:700;color:var(--el-black);line-height:1.3;">
+        캐릭터가 먼저 유명해져야<br>게임이 성공한다
+      </div>
+      <div style="font-family:var(--font-kr);font-size:14px;color:var(--el-dark-gray);line-height:1.6;margin-top:auto;">
+        뱀피르 바이퍼 패션이 무신사에 노출 &rarr;<br>
+        비게이머가 먼저 캐릭터를 알게 된다<br>
+        RF 온라인 OST가 스포티파이 플레이리스트에 &rarr;<br>
+        비게이머가 음악으로 세계관을 체험한다
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>패러다임 전환</span>
+    <span>04 / 25</span>
+  </div>
+</div>
+
+<!-- S05 SECTION DIVIDER -- AI Banner Search -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 02</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">05 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">02</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">AI AD BANNER SEARCH SYSTEM</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      넷마블 AI<br><span style="color:rgba(255,255,255,.4);">광고 배너 검색 시스템</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>6,700+ 배너 아카이브 &middot; AI 자연어 검색</span>
+    <span>05 / 25</span>
+  </div>
+</div>
+
+<!-- S06 AI Banner Archive -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">AI BANNER ARCHIVE</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">06 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      방대한 아카이브 구축 -- <span style="font-weight:700;">6,700개 이상의 배너</span> 데이터 자산화
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+    <!-- Year -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">연도별 분류</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">2011~2020년+</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-muted);line-height:1.6;flex:1;">
+        10년간 축적된 넷마블 광고 배너 자산<br>
+        연도별 &middot; 월별 세분화 정리<br>
+        시즌 이벤트 &middot; 업데이트 &middot; 런칭 캠페인별 태깅<br>
+        시계열 트렌드 분석 기반 마련
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-cool">TIMELINE</span>
+      </div>
+    </div>
+    <!-- Media -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">매체별 분류</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">네이버 &middot; 페이스북 &middot; 구글 등</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-muted);line-height:1.6;flex:1;">
+        네이버 DA &middot; 페이스북 &middot; 인스타그램<br>
+        구글 UAC &middot; 유튜브 프리롤<br>
+        TikTok &middot; 트위터(X) &middot; 카카오<br>
+        매체별 사이즈 &middot; 포맷 &middot; 성과 비교
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-cool">CHANNEL</span>
+      </div>
+    </div>
+    <!-- Game -->
+    <div style="background:var(--el-cool);box-shadow:var(--shadow-cool);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">게임별 분류</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">세븐나이츠 &middot; 모두의마블 &middot; 레이븐 등</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-dark-gray);line-height:1.6;flex:1;">
+        게임별 캐릭터 &middot; 이벤트 유형 태깅<br>
+        세븐나이츠 / 모두의마블 / 레이븐<br>
+        뱀피르 / RF 온라인 넥스트<br>
+        IP별 디자인 패턴 &middot; 색감 &middot; 레이아웃 분석
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-primary">6,700+</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 배너 검색 시스템</span>
+    <span>06 / 25</span>
+  </div>
+</div>
+
+<!-- S07 AI NL Search & Data Guide -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">AI SEARCH & DATA GUIDE</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">07 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      AI 기반 자연어 검색 & 데이터 기반 UI/UX 가이드
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <!-- NL Search -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">자연어 & 조건 검색</span>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">구체적인 키워드로 즉시 탐색</div>
+      <div style="font-family:var(--font-kr);font-size:14px;color:var(--el-muted);line-height:1.7;flex:1;">
+        <span style="background:var(--el-cool);border-radius:30px;padding:3px 12px;font-size:12px;">"레버넌스 콜라보 이벤트"</span><br>
+        <span style="background:var(--el-cool);border-radius:30px;padding:3px 12px;font-size:12px;">"붉은 머리 남성 전사 캐릭터"</span><br><br>
+        태그 &middot; 캐릭터 속성 &middot; 이벤트 유형별 맞춤형 조건 검색<br>
+        색감 &middot; 구도 &middot; CTA 위치 등 비주얼 속성 필터<br>
+        자연어로 원하는 배너를 즉시 찾아낸다
+      </div>
+    </div>
+    <!-- Data Guide -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">데이터 기반 UI/UX 가이드</span>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">성공 가능성 높은 디자인 포맷 제안</div>
+      <div style="font-family:var(--font-kr);font-size:14px;color:var(--el-muted);line-height:1.7;flex:1;">
+        과거 배너의 노출수 &middot; 클릭률(CTR) 모니터링<br>
+        노출 대비 효과 등 성과 지표 직관적 대시보드<br>
+        추정치 및 통계 데이터 기반 분석<br>
+        "이 포맷이 과거 2배 더 효과적" 인사이트 제공
+      </div>
+      <div style="background:var(--el-black);border-radius:16px;padding:14px 18px;margin-top:auto;">
+        <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;">
+          성과 지표 분석으로 <b style="color:#fff;">"성공 가능성이 높은 디자인 포맷"</b>을 선제적으로 제안할 수 있는 기반 마련
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 배너 검색 시스템</span>
+    <span>07 / 25</span>
+  </div>
+</div>
+
+<!-- S08 SECTION DIVIDER -- AI Content Production -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 03</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">08 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">03</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">AI CONTENT PRODUCTION</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      넷마블 AI<br><span style="color:rgba(255,255,255,.4);">콘텐츠 제작</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>생성형 AI 기반 크리에이티브 확장</span>
+    <span>08 / 25</span>
+  </div>
+</div>
+
+<!-- S09 AI Content Production Flow -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">AI PRODUCTION FLOW</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">09 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      단일 원본에서 <span style="font-weight:700;">무한한 스타일 확장</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+    <!-- Step 1 -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">STEP 01 &middot; 기획</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">기획 제작 플로우</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-muted);line-height:1.65;flex:1;">
+        원작 IP의 핵심 비주얼 아이덴티티 정의<br>
+        캐릭터 &middot; 세계관 &middot; 색감 &middot; 무드 가이드 설정<br>
+        단일 원본 리소스를 기반으로 제작 플로우 설계<br>
+        AI 생성 파이프라인과 수작업 터치 균형 설계
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-secondary">PLANNING</span>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">STEP 02 &middot; 생성</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">생성형 AI 기술 활용</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-muted);line-height:1.65;flex:1;">
+        단일 원본 리소스로부터<br>
+        다채로운 스타일의 그래픽 에셋 확장<br>
+        수묵화 &middot; 3D 렌더 &middot; 빈티지 포스터 &middot; 팝아트<br>
+        하나의 캐릭터에서 수십 가지 비주얼 변주
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-primary">GEN AI</span>
+      </div>
+    </div>
+    <!-- Step 3 -->
+    <div style="background:var(--el-cool);box-shadow:var(--shadow-cool);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">STEP 03 &middot; 확장</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">크리에이티브 다양성 극대화</div>
+      <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-dark-gray);line-height:1.65;flex:1;">
+        원작 고유의 정체성을 유지하면서<br>
+        시각적 스펙트럼을 무한히 확장<br>
+        플랫폼별 &middot; 타겟별 &middot; 시즌별 맞춤 소재 자동 생성<br>
+        크리에이티브의 다양성을 극대화하는 밑바탕
+      </div>
+      <div style="display:flex;gap:6px;">
+        <span class="pill-primary">SCALE</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 콘텐츠 제작</span>
+    <span>09 / 25</span>
+  </div>
+</div>
+
+<!-- S10 Atomic Content -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">ATOMIC CONTENT</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">10 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      원자로 쪼개면 -- 조합이 <span style="font-weight:700;">무한해진다</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1.4fr;gap:16px;">
+    <!-- 4 atoms -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;">
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+        <span class="eyebrow" style="color:var(--el-black);">IMAGE</span>
+        <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:var(--el-black);">시그니처 컷 1장</div>
+        <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;">플랫폼별 자동 비율 변환<br>이 1장의 이미지에서 모든 소재 파생</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+        <span class="eyebrow" style="color:var(--el-black);">6S VIDEO</span>
+        <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:var(--el-black);">훅 클립 1개</div>
+        <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;">15초/30초/60초로 자동 확장<br>숏폼 알고리즘 최적화</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+        <span class="eyebrow" style="color:var(--el-black);">COPY</span>
+        <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:var(--el-black);">문장 1개</div>
+        <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;">AI가 100가지 변형 생성<br>지역/언어/타겟별 자동 적응</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+        <span class="eyebrow" style="color:var(--el-black);">CTA</span>
+        <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:var(--el-black);">액션 1개</div>
+        <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;">"지금 클래스를 선택하라"<br>명확하게. 단 하나만.</div>
+      </div>
+    </div>
+    <!-- Results -->
+    <div style="background:var(--el-black);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;">
+      <span class="eyebrow" style="color:#dbe4f0;">조합으로 x40 효율</span>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:8px;">
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:#dbe4f0;letter-spacing:.08em;">VIPER IMG</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">6S HOOK</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">COPY x3</span>
+          <span style="color:rgba(255,255,255,.3);">=</span>
+          <span style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">TikTok 소재 3개</span>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:8px;">
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:#dbe4f0;letter-spacing:.08em;">RF BELLATO</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">OST CLIP</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">JP COPY</span>
+          <span style="color:rgba(255,255,255,.3);">=</span>
+          <span style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">일본 인스타 소재 5개</span>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:8px;">
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:#dbe4f0;letter-spacing:.08em;">CAIN ASMR</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">VOICE</span>
+          <span style="color:rgba(255,255,255,.3);">+</span>
+          <span style="font-family:var(--font-mono);font-size:10px;font-weight:500;color:rgba(255,255,255,.6);letter-spacing:.08em;">EN COPY</span>
+          <span style="color:rgba(255,255,255,.3);">=</span>
+          <span style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">북미 유튜브 소재 3개</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en);font-size:48px;font-weight:300;color:#dbe4f0;letter-spacing:-.03em;line-height:1;">x40</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">소재 확장</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en);font-size:48px;font-weight:300;color:#fff;letter-spacing:-.03em;line-height:1;">70<span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">%</span></div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">비용 절감</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-en);font-size:48px;font-weight:300;color:#fff;letter-spacing:-.03em;line-height:1;">4<span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">H</span></div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">풀 세트 완성</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 콘텐츠 제작</span>
+    <span>10 / 25</span>
+  </div>
+</div>
+
+<!-- S11 Approval Workflow -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">APPROVAL WORKFLOW</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">11 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      한 번에 전부 제출 -- 승인 <span style="font-weight:700;">8일에서 1일로</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <!-- Old -->
+    <div style="background:var(--el-bg);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;opacity:.6;">
+      <span class="eyebrow" style="color:var(--el-muted);">기존 프로세스</span>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:1;">
+        <div style="display:flex;gap:12px;align-items:center;text-decoration:line-through;color:var(--el-muted);">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-muted);flex-shrink:0;">1</div>
+          <span style="font-family:var(--font-kr);font-size:13px;">기획안만 &rarr; 피드백 3일 대기</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;text-decoration:line-through;color:var(--el-muted);">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-muted);flex-shrink:0;">2</div>
+          <span style="font-family:var(--font-kr);font-size:13px;">스토리보드 &rarr; 수정 요청 2일</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;text-decoration:line-through;color:var(--el-muted);">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-muted);flex-shrink:0;">3</div>
+          <span style="font-family:var(--font-kr);font-size:13px;">썸네일 확인 &rarr; 1일</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;text-decoration:line-through;color:var(--el-muted);">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-muted);flex-shrink:0;">4</div>
+          <span style="font-family:var(--font-kr);font-size:13px;">영상 초안 &rarr; 재수정 2일</span>
+        </div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--el-muted);text-align:right;">합계: 8~10일</div>
+    </div>
+    <!-- New -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:var(--el-black);">HIVELAB 새 워크플로우</span>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:1;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-white);flex-shrink:0;font-weight:500;">1</div>
+          <span style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>동시 제출</b> -- 기획안 + 스토리보드 3개 + 썸네일 A/B/C + 영상 초안 한 번에</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-white);flex-shrink:0;font-weight:500;">2</div>
+          <span style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>하나만 고르면 됨</b> -- 넷마블은 A/B/C 확인, HIVELAB이 나머지 처리</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--el-white);flex-shrink:0;font-weight:500;">3</div>
+          <span style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>성과 리포트 포함</b> -- 납품 + 다음 달 인사이트 번들</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:16px;border-top:1px solid var(--el-border);">
+        <span style="font-family:var(--font-en);font-size:48px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">1</span>
+        <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">일</span>
+        <span style="font-family:var(--font-kr);font-size:13px;color:var(--el-muted);margin-left:12px;">승인 처리 시간</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 콘텐츠 제작</span>
+    <span>11 / 25</span>
+  </div>
+</div>
+
+<!-- S12 Integrated Packages -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">INTEGRATED PACKAGES</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">12 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      제작과 성과 리포트를 <span style="font-weight:700;">한 세트</span>로 묶는다
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <span class="eyebrow" style="color:var(--el-black);">PACKAGE 01</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">월간 소재 팩</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;flex:1;">
+        AI 소재 100개 생성 &middot; 선별 &middot; 납품<br>
+        캐릭터별 A/B 테스트 결과 리포트<br>
+        배너 검색 시스템 주간 인사이트 포함<br>
+        다음 달 "어떤 소재에 집중할지" 추천<br>
+        임원 보고용 1장 요약 자동 생성
+      </div>
+      <div style="display:flex;gap:6px;margin-top:auto;padding-top:12px;border-top:1px solid var(--el-border-subtle);">
+        <span class="pill-secondary">MONTHLY</span>
+        <span class="pill-secondary">RETAINER</span>
+      </div>
+    </div>
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <span class="eyebrow" style="color:var(--el-black);">PACKAGE 02</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">런칭 캠페인 팩</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;flex:1;">
+        세계관 예고편 시리즈 4주 기획 &middot; 제작<br>
+        캐릭터 x 지역별 멀티버전 소재 자동 생성<br>
+        TikTok &middot; Shorts &middot; YouTube 포맷 동시 납품<br>
+        사전등록 &rarr; 출시 당일 버즈 피크 설계<br>
+        출시 후 2주 성과 리포트 포함
+      </div>
+      <div style="display:flex;gap:6px;margin-top:auto;padding-top:12px;border-top:1px solid var(--el-border-subtle);">
+        <span class="pill-secondary">PROJECT</span>
+        <span class="pill-secondary">LAUNCH</span>
+      </div>
+    </div>
+    <div style="background:var(--el-black);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <span class="eyebrow" style="color:#dbe4f0;">PACKAGE 03</span>
+      <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:#fff;">AI 데이터 구독</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.6);line-height:1.65;flex:1;">
+        배너 아카이브 검색 &middot; 분석 시스템 상시 이용<br>
+        성과 지표 기반 디자인 가이드 월간 리포트<br>
+        팬아트 &middot; 언급량 &middot; 2차창작 수치 통합 대시보드<br>
+        "이번 달 성과 높은 포맷" 콘텐츠 추천<br>
+        <b style="color:#dbe4f0;">해지하면 이 데이터가 사라지는 구조</b>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);">
+        <span style="background:rgba(235,240,249,.15);border-radius:9999px;padding:4px 10px;font-family:var(--font-mono);font-size:10px;font-weight:500;color:#dbe4f0;letter-spacing:.08em;">SUBSCRIPTION</span>
+        <span style="background:rgba(235,240,249,.15);border-radius:9999px;padding:4px 10px;font-family:var(--font-mono);font-size:10px;font-weight:500;color:#dbe4f0;letter-spacing:.08em;">LOCK-IN</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 콘텐츠 제작</span>
+    <span>12 / 25</span>
+  </div>
+</div>
+
+<!-- S13 SECTION DIVIDER -- IP Content Expansion -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 04</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">13 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">04</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">IP CONTENT EXPANSION</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      게임 밖에서<br><span style="color:rgba(255,255,255,.4);">캐릭터를 꺼낸다</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>IP 확장 아이디어</span>
+    <span>13 / 25</span>
+  </div>
+</div>
+
+<!-- S14 IP Expansion Ideas Overview -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">IP EXPANSION IDEAS</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">14 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:32px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      IP 확장 아이디어 총정리 -- 게임 밖에서 캐릭터가 살아 움직인다
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:24px 0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">MUSIC</span>
+      <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);line-height:1.3;">게임 OST<br>스트리밍</div>
+      <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;flex:1;">
+        뱀피르 고딕 앰비언트<br>
+        RF 3종족 사운드트랙<br>
+        Spotify &middot; YouTube 출시<br>
+        "게임 안 해도 OST는 듣는다"
+      </div>
+    </div>
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">VOICE ASMR</span>
+      <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);line-height:1.3;">캐릭터가<br>직접 말한다</div>
+      <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;flex:1;">
+        성우 ASMR 시리즈<br>
+        카인의 독백 / 지휘관 교신<br>
+        팬 투표로 다음 에피소드 결정<br>
+        AI 보이스 x 원판 성우 협업
+      </div>
+    </div>
+    <div style="background:var(--el-cool);box-shadow:var(--shadow-cool);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">FASHION</span>
+      <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);line-height:1.3;">패션 &<br>라이프스타일</div>
+      <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-dark-gray);line-height:1.6;flex:1;">
+        캐릭터 패션 분석 &middot; 무신사 협업<br>
+        세계관 컬러 &middot; 팬톤 코드 굿즈<br>
+        캐릭터의 커피 &middot; 방 인테리어<br>
+        오늘의집 &middot; 카페 시그니처 음료
+      </div>
+    </div>
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">EXPERIMENT</span>
+      <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);line-height:1.3;">매달 5가지<br>시도</div>
+      <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;flex:1;">
+        AI 광고 소재 100개 생성<br>
+        숏폼 포맷 테스트<br>
+        팬 UGC 챌린지<br>
+        TikTok 글로벌 &middot; VR 준비
+      </div>
+    </div>
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">DATA</span>
+      <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);line-height:1.3;">캐릭터<br>주가 지수</div>
+      <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;flex:1;">
+        주간 캐릭터 성장 추적<br>
+        언급량 &middot; 팬아트 &middot; 2차창작<br>
+        마케팅 예산 배분 근거<br>
+        경쟁사 팬덤 전략 비교
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>IP 콘텐츠 확장</span>
+    <span>14 / 25</span>
+  </div>
+</div>
+
+<!-- S15 Character Stock Exchange -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">CHARACTER STOCK INDEX</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">15 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      주간 <span style="font-weight:700;">'가장 빠르게 성장하는 캐릭터'</span> 추적
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <!-- Stock table -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-muted);">주간 캐릭터 지수</span>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:0;overflow:hidden;flex:1;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--el-black);">
+              <th style="padding:16px;text-align:left;font-family:var(--font-mono);font-size:12px;font-weight:500;text-transform:uppercase;color:var(--el-muted);">캐릭터</th>
+              <th style="padding:16px;text-align:left;font-family:var(--font-mono);font-size:12px;font-weight:500;text-transform:uppercase;color:var(--el-muted);">지표</th>
+              <th style="padding:16px;text-align:right;font-family:var(--font-mono);font-size:12px;font-weight:500;text-transform:uppercase;color:var(--el-muted);">변화</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:rgba(235,240,249,.5);border-bottom:1px solid var(--el-border);">
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-weight:700;color:var(--el-black);font-size:14px;">Vampir &middot; Viper</td>
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:13px;color:var(--el-black);">언급 +34% &middot; 팬아트 47건/주</td>
+              <td style="padding:18px 16px;text-align:right;font-family:var(--font-mono);font-size:16px;font-weight:700;color:#1a56db;">&darr;34</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--el-border);">
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:14px;color:var(--el-black);">Vampir &middot; Cain</td>
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:13px;color:var(--el-black);">2차창작 +21% &middot; 스토리 댓글 증가</td>
+              <td style="padding:18px 16px;text-align:right;font-family:var(--font-mono);font-size:16px;font-weight:700;color:#1a56db;">&darr;21</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--el-border);">
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:14px;color:var(--el-black);">RF &middot; Bellato Commander</td>
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:13px;color:var(--el-black);">코스프레 언급 +12% &middot; 종족 투표 1위</td>
+              <td style="padding:18px 16px;text-align:right;font-family:var(--font-mono);font-size:16px;font-weight:700;color:#1a56db;">&darr;12</td>
+            </tr>
+            <tr>
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:14px;color:var(--el-black);">RF &middot; Accretia Healer</td>
+              <td style="padding:18px 16px;font-family:var(--font-kr);font-size:13px;color:var(--el-black);">커뮤니티 언급 -8% &middot; 회복 필요</td>
+              <td style="padding:18px 16px;text-align:right;font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--el-muted);">&uarr;8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Usage -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-muted);">넷마블 내부 활용</span>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;flex:1;">
+        <div style="font-family:var(--font-kr);font-size:16px;font-weight:700;color:var(--el-black);">이 리포트가 마케팅 예산 배분을 바꾼다</div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+          <div style="background:var(--el-bg);border-radius:12px;padding:12px 16px;">
+            <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>언급량</b> -- DC/루리웹/인벤/레딧/5ch 실시간 크롤링</div>
+          </div>
+          <div style="background:var(--el-bg);border-radius:12px;padding:12px 16px;">
+            <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>팬아트</b> -- 트위터/픽시브/인스타그램 좋아요&공유 수치화</div>
+          </div>
+          <div style="background:var(--el-bg);border-radius:12px;padding:12px 16px;">
+            <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>예측</b> -- 다음 주 콘텐츠 추천 캐릭터</div>
+          </div>
+          <div style="background:var(--el-bg);border-radius:12px;padding:12px 16px;">
+            <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);line-height:1.6;"><b>경쟁사</b> -- 이번 주 미호요/크래프톤의 팬덤 전략</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>IP 콘텐츠 확장</span>
+    <span>15 / 25</span>
+  </div>
+</div>
+
+<!-- S16 SECTION DIVIDER -- Viral Brainstorming -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 05</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">16 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">05</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">VIRAL BRAINSTORMING</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      광고처럼 보이지 않는<br><span style="color:rgba(255,255,255,.4);">콘텐츠만 바이럴된다</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>14개 아이디어 발산 &rarr; 필터 &rarr; TOP 3 실행</span>
+    <span>16 / 25</span>
+  </div>
+</div>
+
+<!-- S17 Viral 14 Ideas -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">VIRAL &middot; 14 IDEAS</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">17 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:32px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      게임 광고처럼 보이지 않는 콘텐츠만 바이럴된다 -- <span style="font-weight:700;">14가지</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:24px 0;display:flex;flex-direction:column;gap:8px;">
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;flex:1;">
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-black);">01</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">비게이머 리액션 시리즈</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">고딕 패션 유튜버가 뱀피르를 처음 플레이하는 순수 반응</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-black);">02</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">릴레이 지목 챌린지</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">크리에이터 A&rarr;B 지목 연쇄 확산. 10명 릴레이</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-black);">03</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">숏폼&rarr;롱폼 깔때기</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">6초 쇼츠가 호기심 자극 &rarr; 롱폼에서 구독 전환</div>
+      </div>
+      <div style="background:var(--el-cool);box-shadow:var(--shadow-cool);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-black);">04</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">나노 100명 동시 시딩</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-dark-gray);line-height:1.5;flex:1;">같은 날 100명 업로드 &rarr; 알고리즘 트렌드 인식</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-muted);">05</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">개발자 직출연 시리즈</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">"왜 힐러 없는 시스템?" 만드는 사람의 고민이 더 퍼진다</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-black);">06</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">논쟁 유발 콘텐츠</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">"RF 3종족 최강은?" 정답 없는 질문 &rarr; 댓글 폭발</div>
+      </div>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;">
+        <span class="eyebrow" style="color:var(--el-muted);">07</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">저장형 아카이빙</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">클래스 완전 분석 &middot; 세계관 총정리 &rarr; 6개월 장기 유입</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;flex:1;">
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">08</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">장르 밖 크리에이터</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">SF &middot; 밀리터리 &middot; 패션 채널에 세계관 노출</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">09</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">오해 & 진실 포맷</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">"뱀피르에 대한 오해 5가지" 부정 인식 반박 구조</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-black);">10</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">실시간 이슈 연결</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">트렌드 터지면 24시간 내 밈 소재 즉시 제작</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">11</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">유저 사연 공식 채택</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">팬 사연 &middot; 팬아트를 공식 채널에서 소개</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">12</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">비교 포맷</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">"뱀피르 vs 뱀파이어 게임" 장르 역사 접근</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">13</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">클리어 불가 도전</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">최고 난이도 보스 맨손 클리어 -- 실패도 조회수</div>
+      </div>
+      <div style="background:var(--el-bg);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-inset);">
+        <span class="eyebrow" style="color:var(--el-muted);">14</span>
+        <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:var(--el-black);line-height:1.3;">게임 속 현실 재현</div>
+        <div style="font-family:var(--font-kr);font-size:10px;color:var(--el-muted);line-height:1.5;flex:1;">종족 복장 현실 코스프레 룩북 -- 비게이머도 공유</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>먼저 발산, 판단은 나중에</span>
+    <span>17 / 25</span>
+  </div>
+</div>
+
+<!-- S18 Viral Filtering & TOP 3 -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">VIRAL &middot; FILTER & TOP 3</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">18 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:32px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      비용 낮고 &middot; 속도 빠르고 &middot; 확산 구조가 있는 것 <span style="font-weight:700;">TOP 3</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:24px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+    <!-- TOP 1 -->
+    <div style="background:var(--el-cool);box-shadow:var(--shadow-cool);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:var(--el-black);">TOP 1</span>
+        <span class="pill-primary" style="font-size:9px;padding:4px 10px;">이번 주</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">나노 크리에이터 100명 동시 시딩</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-dark-gray);line-height:1.65;flex:1;">
+        고딕 &middot; SF &middot; 판타지 &middot; MBTI &middot; 일상 채널 100명<br>
+        같은 날 같은 키워드 업로드 &rarr; 트렌드 인식<br>
+        HIVELAB이 섭외 &middot; 브리핑 &middot; 날짜 세팅 전담
+      </div>
+      <div style="border-top:1px solid rgba(0,0,0,.1);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:var(--el-dark-gray);">예상 도달</span>
+        <span style="font-family:var(--font-en);font-size:28px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;">100만+</span>
+      </div>
+    </div>
+    <!-- TOP 2 -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:var(--el-black);">TOP 2</span>
+        <span class="pill-secondary" style="font-size:9px;padding:4px 10px;">1~2주</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">숏폼 깔때기 구조 설계</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;flex:1;">
+        기존 영상 재편집 &rarr; 쇼츠 자동 생성<br>
+        "RF 3종족 중 당신은?" 6초 훅 &rarr; 롱폼 링크<br>
+        Shorts 조회수가 채널 구독자로 전환되는 구조
+      </div>
+      <div style="border-top:1px solid var(--el-border-subtle);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);">전환 효과</span>
+        <span style="font-family:var(--font-en);font-size:20px;font-weight:700;color:var(--el-black);letter-spacing:-.03em;">Shorts&rarr;Sub</span>
+      </div>
+    </div>
+    <!-- TOP 3 -->
+    <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:var(--el-black);">TOP 3</span>
+        <span class="pill-secondary" style="font-size:9px;padding:4px 10px;">매주</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">논쟁 유발 콘텐츠 설계</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;flex:1;">
+        "RF 3종족 중 진짜 최강은?" 질문 하나<br>
+        커뮤니티 &middot; 유튜브 &middot; TikTok 동시 투척<br>
+        댓글 폭발 &rarr; 알고리즘 자동 부스트<br>
+        HIVELAB 주 1회 주제 선정 &middot; 배포 담당
+      </div>
+      <div style="border-top:1px solid var(--el-border-subtle);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);">비용</span>
+        <span style="font-family:var(--font-en);font-size:28px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;">0</span>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--el-black);border-radius:16px;padding:14px 24px;">
+    <div style="font-family:var(--font-kr);font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;">
+      3개 모두 <b style="color:#fff;">넷마블 결재 없이</b> HIVELAB이 먼저 파일럿으로 돌릴 수 있다 -- <b style="color:#dbe4f0;">성과 데이터를 가져가면 계약이 된다</b>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;margin-top:8px;">
+    <span>바이럴 브레인스토밍</span>
+    <span>18 / 25</span>
+  </div>
+</div>
+
+<!-- S19 SECTION DIVIDER -- Business -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">SECTION 06</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">19 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:120px;font-weight:300;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.04em;margin-bottom:24px;">06</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-bottom:16px;">BUSINESS DEAL STRUCTURE</div>
+    <div style="font-family:var(--font-kr);font-size:52px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      에이전시가 아닌<br><span style="color:rgba(255,255,255,.4);">구조로 들어간다</span>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>3단계 진입 &rarr; 계약 &rarr; 매출 &rarr; 록인</span>
+    <span>19 / 25</span>
+  </div>
+</div>
+
+<!-- S20 3-Stage Business Model -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">BUSINESS &middot; 3-STAGE MODEL</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">20 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:40px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      에이전시가 아닌 구조로 들어간다
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+    <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:#dbe4f0;">STAGE 1 &middot; 0-3M</span>
+        <span class="mono" style="font-size:10px;color:rgba(255,255,255,.3);">파일럿</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:#fff;">파일럿 진입</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.6);line-height:1.65;flex:1;">
+        단일 IP 프로젝트 (뱀피르 또는 RF)<br>
+        나노 시딩 + 숏폼 깔때기 + 논쟁 콘텐츠 패키지<br>
+        <b style="color:#fff;">핵심: 데이터 소유권 조항</b><br>
+        KPI: 저장, 댓글, 전환 -- 조회수 아님
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.4);">월 매출</span>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:var(--font-en);font-size:28px;font-weight:300;color:#fff;letter-spacing:-.03em;line-height:1;">750</span>
+          <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-muted);">M KRW</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:#dbe4f0;">STAGE 2 &middot; 3-6M</span>
+        <span class="mono" style="font-size:10px;color:rgba(255,255,255,.3);">운영</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:#fff;">리테이너 계약</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.6);line-height:1.65;flex:1;">
+        <b style="color:#fff;">파트 A:</b> 고정 리테이너 -- AI 배너 검색 시스템 + AI 소재 50개/월<br>
+        <b style="color:#fff;">파트 B:</b> 성과 수수료 -- 광고비의 10~15% + 다운로드 어트리뷰션<br>
+        인력: HIVELAB 전담 1~2인 또는 넷마블 상주
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.4);">월 매출</span>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:var(--font-en);font-size:28px;font-weight:300;color:#fff;letter-spacing:-.03em;line-height:1;">3,000</span>
+          <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-muted);">M KRW</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--el-cool);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-cool);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <span class="eyebrow" style="color:var(--el-black);">STAGE 3 &middot; 6M+</span>
+        <span class="mono" style="font-size:10px;color:var(--el-dark-gray);">파트너십</span>
+      </div>
+      <div style="font-family:var(--font-kr);font-size:18px;font-weight:700;color:var(--el-black);">IP 공동 투자</div>
+      <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-dark-gray);line-height:1.65;flex:1;">
+        HIVELAB이 팬덤 이벤트 투자 -- 매출 7:3 배분<br>
+        연간 계약 x 멀티 IP 확장<br>
+        Vampir &rarr; RF Online &rarr; Solo Leveling Karma<br>
+        <b style="color:var(--el-black);">넷마블 크리에이터 파트너스</b> -- HIVELAB 운영, 넷마블 브랜딩
+      </div>
+      <div style="border-top:1px solid rgba(0,0,0,.1);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--font-kr);font-size:11px;color:var(--el-dark-gray);">월 매출</span>
+        <div style="display:flex;align-items:baseline;gap:6px;">
+          <span style="font-family:var(--font-en);font-size:28px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">5,000+</span>
+          <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-dark-gray);">M KRW</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>비즈니스 딜 구조</span>
+    <span>20 / 25</span>
+  </div>
+</div>
+
+<!-- S21 Contract Negotiation -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">CONTRACT NEGOTIATION</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">21 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      양보하면 안 되는 것 3가지 -- <span style="font-weight:700;">HIVELAB의 자산</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <!-- Non-negotiables -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <span class="eyebrow" style="color:var(--el-muted);margin-bottom:8px;">HIVELAB 양보 불가 조건</span>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;overflow:hidden;flex:1;">
+        <div style="padding:18px 20px;border-bottom:1px solid var(--el-border-subtle);display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:12px;font-weight:500;color:var(--el-white);flex-shrink:0;">1</div>
+          <div>
+            <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);margin-bottom:4px;">데이터 소유권</div>
+            <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;">크리에이터 성과 데이터 &middot; 콘텐츠 반응 &middot; IP별 팬덤 맵은 HIVELAB 소유. 넷마블에는 리포트 형태로만 제공. <b style="color:var(--el-black);">계약 종료 시 데이터 이전 불가.</b></div>
+          </div>
+        </div>
+        <div style="padding:18px 20px;border-bottom:1px solid var(--el-border-subtle);display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:12px;font-weight:500;color:var(--el-white);flex-shrink:0;">2</div>
+          <div>
+            <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);margin-bottom:4px;">크리에이터 네트워크 명의</div>
+            <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;">HIVELAB이 직접 섭외 &middot; 계약한 크리에이터는 HIVELAB 자산. <b style="color:var(--el-black);">계약 종료 후에도 관계는 HIVELAB에 남는다.</b></div>
+          </div>
+        </div>
+        <div style="padding:18px 20px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:12px;font-weight:500;color:var(--el-white);flex-shrink:0;">3</div>
+          <div>
+            <div style="font-family:var(--font-kr);font-size:14px;font-weight:700;color:var(--el-black);margin-bottom:4px;">KPI 기준 선정권</div>
+            <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-muted);line-height:1.65;">KPI를 조회수가 아닌 <b style="color:var(--el-black);">저장률 &middot; 댓글 수 &middot; 전환율로 설정할 권리.</b> 더 의미 있는 지표이고, HIVELAB에게도 유리하다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Counter-responses -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <span class="eyebrow" style="color:var(--el-muted);margin-bottom:8px;">넷마블 예상 요구 &rarr; 대응</span>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="background:var(--el-bg);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px;flex:1;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;font-weight:500;color:var(--el-muted);">요구 1</div>
+          <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);">"소재 독점 사용권 요구"</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;margin-top:4px;"><b style="color:var(--el-black);">대응:</b> 6개월 독점 후 HIVELAB 포트폴리오 활용 허용으로 협상</div>
+        </div>
+        <div style="background:var(--el-bg);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px;flex:1;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;font-weight:500;color:var(--el-muted);">요구 2</div>
+          <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);">"전담 인력 상주 요구"</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;margin-top:4px;"><b style="color:var(--el-black);">대응:</b> 성과 연동 수수료 구조를 대안 제안. "잘 되면 더 내는 구조"가 합리적</div>
+        </div>
+        <div style="background:var(--el-bg);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px;flex:1;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;font-weight:500;color:var(--el-muted);">요구 3</div>
+          <div style="font-family:var(--font-kr);font-size:13px;color:var(--el-black);">"RAW 데이터 전수 요구"</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;margin-top:4px;"><b style="color:var(--el-black);">대응:</b> 리포트 형태 제공 가능, RAW 이전 불가. 데이터 포기 시 계약 단가 인상 조건</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>비즈니스 딜 구조</span>
+    <span>21 / 25</span>
+  </div>
+</div>
+
+<!-- S22 Revenue Simulation -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">REVENUE SIMULATION</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">22 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      게임 1개로 시작해 -- IP 추가될수록 <span style="font-weight:700;">자동으로 성장한다</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;">
+      <div style="display:inline-flex;min-width:0;min-height:0;padding:28px 24px;flex-direction:column;justify-content:space-between;align-items:flex-start;border-radius:20px;background:#fff;box-shadow:var(--shadow-card);">
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-black);letter-spacing:.04em;">Stage 1</span>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:auto;">
+          <span style="font-family:var(--font-en);font-size:48px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">750</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">M</span>
+        </div>
+      </div>
+      <div style="display:inline-flex;min-width:0;min-height:0;padding:28px 24px;flex-direction:column;justify-content:space-between;align-items:flex-start;border-radius:20px;background:#fff;box-shadow:var(--shadow-card);">
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-black);letter-spacing:.04em;">Stage 2</span>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:auto;">
+          <span style="font-family:var(--font-en);font-size:48px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">3,000</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">M</span>
+        </div>
+      </div>
+      <div style="display:inline-flex;min-width:0;min-height:0;padding:28px 24px;flex-direction:column;justify-content:space-between;align-items:flex-start;border-radius:20px;background:#fff;box-shadow:var(--shadow-card);">
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-black);letter-spacing:.04em;">Stage 3 x1 IP</span>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:auto;">
+          <span style="font-family:var(--font-en);font-size:48px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">5,000</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-muted);">M</span>
+        </div>
+      </div>
+      <div style="display:inline-flex;min-width:0;min-height:0;padding:28px 24px;flex-direction:column;justify-content:space-between;align-items:flex-start;border-radius:20px;background:var(--el-cool);box-shadow:var(--shadow-cool);">
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--el-black);letter-spacing:.04em;">Stage 3 x3 IP</span>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:auto;">
+          <span style="font-family:var(--font-en);font-size:48px;font-weight:300;color:var(--el-black);letter-spacing:-.03em;line-height:1;">1</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--el-black);">B+ KRW</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--el-black);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;">
+      <span class="eyebrow" style="color:#dbe4f0;">IP 복리 성장</span>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border-radius:12px;padding:14px 16px;">
+          <span style="font-family:var(--font-kr);font-size:13px;color:rgba(255,255,255,.7);">뱀피르만</span>
+          <span style="font-family:var(--font-en);font-size:18px;font-weight:700;color:#fff;">5,000M</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border-radius:12px;padding:14px 16px;">
+          <span style="font-family:var(--font-kr);font-size:13px;color:rgba(255,255,255,.7);">+ RF 온라인 추가</span>
+          <span style="font-family:var(--font-en);font-size:18px;font-weight:700;color:#dbe4f0;">7,500M</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border-radius:12px;padding:14px 16px;">
+          <span style="font-family:var(--font-kr);font-size:13px;color:rgba(255,255,255,.7);">+ Solo Leveling Karma</span>
+          <span style="font-family:var(--font-en);font-size:18px;font-weight:700;color:#dbe4f0;">1B+</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(235,240,249,.08);box-shadow:rgba(235,240,249,.15) 0px 0px 0px 1px;border-radius:12px;padding:14px 16px;">
+          <span style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:#fff;">넷마블 전체 IP (7개+)</span>
+          <span style="font-family:var(--font-en);font-size:18px;font-weight:700;color:#dbe4f0;">구조 확보</span>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:12px;">
+        <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;">
+          핵심 레버: IP당 월 15억 x 게임 수<br>
+          <b style="color:#fff;">선형이 아닌 복리 성장</b> -- 1단계 설계에 이것을 반영
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>비즈니스 딜 구조</span>
+    <span>22 / 25</span>
+  </div>
+</div>
+
+<!-- S23 AI Platform Reality & Sales -->
+<div class="slide" style="background:var(--el-white);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:var(--el-muted);">AI PLATFORM &middot; SALES APPROACH</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:var(--el-muted);">23 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:36px;font-weight:300;color:var(--el-black);line-height:1.05;letter-spacing:-.025em;">
+      <span style="font-weight:700;">데이터를 주게 만드는 것</span>이 먼저다
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+    <!-- Reality check -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-muted);">가능한 것 vs 불가능한 것</span>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="background:var(--el-bg);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;"><b style="color:var(--el-black);">CANNOT</b> -- 경쟁사 내부 데이터 수집 불가</div>
+        </div>
+        <div style="background:var(--el-bg);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;"><b style="color:var(--el-black);">CANNOT</b> -- 넷마블 동의 없이 광고 데이터 접근 불가</div>
+        </div>
+        <div style="background:var(--el-bg);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;"><b style="color:var(--el-black);">CAN</b> -- HIVELAB이 직접 만든 소재 전체 (분석 시작점)</div>
+        </div>
+        <div style="background:var(--el-bg);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-inset);">
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-muted);line-height:1.6;"><b style="color:var(--el-black);">CAN</b> -- 공개 채널 소재 수집 (YouTube &middot; SNS &middot; App Store)</div>
+        </div>
+      </div>
+    </div>
+    <!-- How to get data -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">데이터를 얻는 방법</span>
+      <div style="background:var(--el-white);box-shadow:var(--shadow-card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:11px;font-weight:500;color:var(--el-white);flex-shrink:0;">1</div>
+          <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-black);line-height:1.6;"><b>먼저 가치를 보여준다</b><br><span style="color:var(--el-muted);">HIVELAB 소재 한정으로 분석 데모 &rarr; "우리 전체 데이터도 넣고 싶다"</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:11px;font-weight:500;color:var(--el-white);flex-shrink:0;">2</div>
+          <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-black);line-height:1.6;"><b>담당자의 고통을 해결한다</b><br><span style="color:var(--el-muted);">"과거 소재 찾기가 너무 힘들다" 이 문제 하나 해결 &rarr; 데이터를 열 이유 생김</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--el-black);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-size:11px;font-weight:500;color:var(--el-white);flex-shrink:0;">3</div>
+          <div style="font-family:var(--font-kr);font-size:12px;color:var(--el-black);line-height:1.6;"><b>데이터 주는 만큼 기능이 커진다</b><br><span style="color:var(--el-muted);">소재 파일 &rarr; 자동 정리. 성과 데이터 &rarr; 패턴 분석. 넣을수록 강해짐</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Sales scenario -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:var(--el-black);">현실적 세일즈 시나리오</span>
+      <div style="background:var(--el-black);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;">
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div class="eyebrow" style="color:#dbe4f0;margin-bottom:4px;">STEP 1 &middot; NOW</div>
+          <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">소재 납품 + 자동 정리 포함</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;line-height:1.5;">추가 비용 없이 "덤"처럼 시작</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div class="eyebrow" style="color:#dbe4f0;margin-bottom:4px;">STEP 2 &middot; DATA SHARE</div>
+          <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">성과 데이터 연결 &rarr; 패턴 분석</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;line-height:1.5;">CTR &middot; 설치 데이터 공유 &rarr; 월정액 협의 시작</div>
+        </div>
+        <div style="background:rgba(235,240,249,.08);border-radius:12px;padding:12px 14px;">
+          <div class="eyebrow" style="color:#dbe4f0;margin-bottom:4px;">STEP 3 &middot; LOCK-IN</div>
+          <div style="font-family:var(--font-kr);font-size:12px;font-weight:700;color:#fff;">히스토리가 쌓이면 이탈 불가</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;line-height:1.5;">2~3년치 데이터 &rarr; 다른 에이전시 = 처음부터 다시</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--el-muted);letter-spacing:.05em;">
+    <span>AI 마케팅 플랫폼</span>
+    <span>23 / 25</span>
+  </div>
+</div>
+
+<!-- S24 AI Platform Lock-in & Structural Advantage -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">AI PLATFORM &middot; LOCK-IN</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">24 / 25</span>
+    </div>
+    <div style="font-family:var(--font-kr);font-size:40px;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.025em;">
+      납품하는 소재 하나하나가 <span style="color:#dbe4f0;font-weight:700;">데이터 해자를 만든다</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <!-- Timeline -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.4);">록인 타임라인</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;flex:1;">
+        <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+          <span class="eyebrow" style="color:#dbe4f0;">지금</span>
+          <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:#fff;">납품 소재 자동 분류</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">모든 배너 자동 태깅</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+          <span class="eyebrow" style="color:#dbe4f0;">1~2개월</span>
+          <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:#fff;">파일럿 데모</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">전체 데이터를 넣고 싶어진다</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;">
+          <span class="eyebrow" style="color:#dbe4f0;">3개월</span>
+          <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:#fff;">성과 데이터 연결</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">인사이트 잠금 해제</div>
+        </div>
+        <div style="background:var(--el-cool);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow-cool);">
+          <span class="eyebrow" style="color:var(--el-black);">6개월+</span>
+          <div style="font-family:var(--font-kr);font-size:13px;font-weight:700;color:var(--el-black);">록인 완료</div>
+          <div style="font-family:var(--font-kr);font-size:11px;color:var(--el-dark-gray);line-height:1.5;">이전 = 처음부터 다시</div>
+        </div>
+      </div>
+    </div>
+    <!-- Structural advantage -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span class="eyebrow" style="color:#dbe4f0;">HIVELAB 구조적 우위</span>
+      <div style="background:rgba(255,255,255,.06);box-shadow:rgba(255,255,255,.08) 0px 0px 0px 1px;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;">납품 소재는 <b style="color:#fff;">전부 플랫폼에 자동 축적</b>. 1년 후엔 소재 수천 개의 히스토리</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;"><b style="color:#fff;">계약 종료해도 데이터는 플랫폼에 남음</b>. 다른 에이전시 &rarr; 히스토리 통째로 소실</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;">넷마블 IP 문법을 AI가 학습 &rarr; <b style="color:#dbe4f0;">뱀피르 &middot; RF온라인에 특화된 유일한 도구</b></div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;">
+          <div style="font-family:var(--font-kr);font-size:12px;color:rgba(255,255,255,.8);line-height:1.6;">다른 게임사도 쓰게 되면 <b style="color:#dbe4f0;">업계 전체 소재 트렌드를 HIVELAB이 먼저 본다</b></div>
+        </div>
+      </div>
+      <div style="background:rgba(235,240,249,.08);box-shadow:rgba(235,240,249,.15) 0px 0px 0px 1px;border-radius:16px;padding:14px 20px;">
+        <div style="font-family:var(--font-kr);font-size:13px;color:#fff;line-height:1.6;">
+          이 플랫폼의 목적은 <b style="color:#dbe4f0;">툴을 파는 것이 아니다</b>.<br>
+          소재를 납품하면서 자연스럽게 HIVELAB을 <b style="color:#dbe4f0;">교체 불가능한 구조</b>로 만드는 것이다.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>AI 마케팅 플랫폼</span>
+    <span>24 / 25</span>
+  </div>
+</div>
+
+<!-- S25 CLOSING -->
+<div class="slide" style="background:var(--el-black);">
+  <div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;">
+      <span class="eyebrow" style="color:rgba(255,255,255,.3);">HIVELAB MAX LAB x NETMARBLE</span>
+      <span class="mono" style="font-size:11px;font-weight:400;color:rgba(255,255,255,.3);">25 / 25</span>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;margin:32px 0;display:flex;flex-direction:column;justify-content:flex-end;">
+    <div style="font-family:var(--font-en);font-size:96px;font-weight:300;color:rgba(255,255,255,.04);line-height:.88;letter-spacing:-.04em;margin-bottom:40px;">NEXT<br>STEP</div>
+    <div style="font-family:var(--font-kr);font-size:24px;font-weight:300;color:#fff;line-height:1.6;margin-bottom:40px;">
+      "6,700개의 배너 아카이브 위에<br>
+      <span style="color:rgba(255,255,255,.4);">AI가 다음 성공 포맷을 예측한다면</span><br>
+      그것이 이미 시작이다"
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);">
+      <div>
+        <div style="font-family:var(--font-en);font-size:36px;font-weight:300;color:#fff;letter-spacing:-.03em;">6,700+</div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-top:4px;">배너 아카이브</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:36px;font-weight:300;color:rgba(255,255,255,.6);letter-spacing:-.03em;">3</div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-top:4px;">핵심 필라</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:36px;font-weight:300;color:rgba(255,255,255,.4);letter-spacing:-.03em;">x40</div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-top:4px;">소재 확장</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:36px;font-weight:300;color:rgba(255,255,255,.3);letter-spacing:-.03em;">1d</div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-top:4px;">승인</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:36px;font-weight:300;color:#dbe4f0;letter-spacing:-.03em;">1B+</div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.3);margin-top:4px;">매출 잠재력</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.05em;">
+    <span>HIVELAB MAX LAB 제안 &middot; 2026.06</span>
+    <span>25 / 25</span>
+  </div>
+</div>
+
+</body>
+</html>
