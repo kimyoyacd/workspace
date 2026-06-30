@@ -1,80 +1,208 @@
-# 프롬프트 원형 — 브랜드 디자인 제안서 (0~3단계 마스터)
+# 브랜드 디자인 제안서 — 마스터 오케스트레이션 가이드
 
-> 출처: Manus 협업 자료. 지시문 끝: "위 내용을 최대한 반영하여 아래 항목을 포함한 '브랜드 디자인
-> 제안서'를 작성해줘. 아래 3가지 단계를 순서대로 진행한 후 모든 내용을 포함해야 해."
-> 시스템 프롬프트(페르소나·지침)는 `persona-directives.md`. 하위 컴포넌트는 각 파일 참조.
+> 초기 제안이 들어오면 이 파일이 기준이 된다. Manus 1 → 2 → Runable 3 + 4개 Designer Lens Gate를 누락 없이 진행한다.
+> 하위 상세 지침: `manus-1-brand-planning.md` / `manus-2-visual-identity.md` / `runable-3-brand-system.md` / `designer-lens-gates.md`
+
+---
 
 ## ★ 실행 원칙 (Materialize) — "글로만 끝내지 말 것"
+
 **서브에이전트는 텍스트만 낸다. 이미지 생성과 파일 저장은 오케스트레이터(메인 세션)가 한다.**
-- 서브에이전트(market-research·brainstormer·concept-director·critic·visual-generator)는 도구가 Read/Glob/Grep뿐 → **분석·전략·프롬프트까지만** 산출. 이미지·실제 파일은 못 만든다.
+- 서브에이전트(market-research·brainstormer·concept-director 등)는 도구가 Read/Glob/Grep뿐 → **분석·전략·프롬프트까지만** 산출.
 - **메인 세션이 반드시 다음을 실행한다:**
   1. 각 단계 결과를 **실제 파일로 저장** (아래 경로 표대로).
-  2. **이미지는 Higgsfield로 직접 생성**(`generate_image` → `job_display`로 URL 회수, get_cost로 비용 확인). visual-generator의 [Image Prompt]를 그대로 실행.
+  2. **이미지는 Higgsfield로 직접 생성** → `images/` 폴더에 저장.
   3. 마지막에 **HTML 덱**으로 조립(이미지 URL 임베드) + 커밋·PR.
-- 즉 "에이전트 띄움 → 글 받음 → **메인이 파일·이미지로 굳힘**"이 한 세트다. 글만 받고 끝내면 미완성.
+
+---
+
+## ★ 전체 파이프라인 (3단계 + 4게이트)
+
+```
+[브랜드 제안 인입]
+       │
+       ▼
+[00 브리프] → 00-brief.md
+       │
+       ▼
+┌─────────────────────────────────────────────┐
+│  MANUS 1 — 리서치·포지셔닝                   │
+│  경쟁 30개 → 클러스터 → XY맵 → 선호도 → 전략  │
+└───────────────────┬─────────────────────────┘
+                    │
+              [GATE 1: Strategic POV Gate]
+              "관점 한 문장" 통과 필수
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│  MANUS 2 — 비주얼 아이덴티티·컨셉 발산        │
+│  [GATE 2: Lens Translation Gate] 선행        │
+│  Visual DNA → 6컨셉 → 매트릭스 → Client×Mood │
+│  [GATE 3: Living System Gate] 컨셉 직후       │
+└───────────────────┬─────────────────────────┘
+                    │
+              [GATE 4: Human Touch & Risk Gate]
+              AI 매끈함 탈출 + 가치 정렬 확인
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│  RUNABLE 3 — 브랜드 시스템 + 최종 슬라이드    │
+│  Brand Board → Value Cards → Copy → 덱 35~45p│
+└───────────────────┬─────────────────────────┘
+                    │
+                    ▼
+           [커밋·PR] deck.html 완성
+```
+
+---
 
 ## 산출물 경로 규약
-프로젝트별 폴더: `.claude/projects/<YYYYMM_프로젝트명>/`
+
+프로젝트 폴더: `.claude/projects/<YYYYMM_프로젝트명>/`
+
 | 단계 | 산출 파일 | 실행 주체 |
 |---|---|---|
-| 0 브리프 | `00-brief.md` | 메인 (brand-brief-template 채움) |
-| 1 Wide Research | `01-research.md` (30/8/3 테이블) | market-research(글) → 메인 저장 |
-| 2 포지셔닝 | `02-positioning.md` + `images/positioning-map.png`(선택) | market-research(글) → 메인 저장/생성 |
-| 3 전략 | `03-strategy.md` (전략 3종 + 관점) | brainstormer·concept-director·critic(글) → 메인 저장 |
-| 4 비주얼 | `images/*.png` + `04-visuals.md`(프롬프트 기록) | visual-generator(프롬프트) → **메인이 Higgsfield 생성** |
-| 5 덱 | `deck.html` (이미지 임베드) | 메인 조립 → 커밋·PR |
-(단일 파일로 갈 땐 `<프로젝트명>.html` 한 장에 전부 임베드도 가능. 단 이미지는 반드시 실제 생성·임베드.)
+| 00 브리프 | `00-brief.md` | 메인 (brand-brief-template 채움) |
+| Manus 1 — 경쟁 매트릭스 | `01-competitor-matrix.md` | market-research(글) → 메인 저장 |
+| Manus 1 — 클러스터링 | `02-clustering.md` | market-research(글) → 메인 저장 |
+| Manus 1 — 포지셔닝 맵 | `03-positioning-map.md` | market-research(글) → 메인 저장 |
+| Manus 1 — 선호도·전략 | `04-preference-strategy.md` | market-research+concept-director(글) → 메인 저장 |
+| Manus 1 State | `manus-1-state.json` | 메인 저장 |
+| Manus 2 — Visual DNA | `05-visual-dna.md` | visual-generator+brainstormer(글) → 메인 저장 |
+| Manus 2 — 컨셉 6개 | `06-concept-territories.md` | brainstormer(글) → 메인 저장 |
+| Manus 2 — Client×Mood | `07-client-mood-matrix.md` | critic(글) → 메인 저장 |
+| Manus 2 State | `manus-2-state.json` | 메인 저장 |
+| Runable 3 — Brand Board | `08-brand-board.md` | concept-director(글) → 메인 저장 |
+| Runable 3 — Value·Copy·Symbol | `09-brand-system.md` | brainstormer+critic(글) → 메인 저장 |
+| Runable 3 — CI/BI Audit | `10-competitor-cibi.md` | market-research(글) → 메인 저장 |
+| Runable 3 State | `runable-3-state.json` | 메인 저장 |
+| 이미지 | `images/*.png` | visual-generator(프롬프트) → **메인이 Higgsfield 생성** |
+| 최종 덱 | `deck.html` | 메인 조립 → 커밋·PR |
 
-## 0단계 — 브랜드 기본 정보 (빈칸 브리프)
-→ `brand-brief-template.md` 사용. (공간/목적/타겟/이름 + 목표·타겟층·기능·이름의미·스토리 5필드)
-※ 채워진 예시는 이해용일 뿐, 항목별로 연결되는 내용이 아님.
+---
 
-## 1단계 — Wide research
-→ `wide-research.md` 사용.
-- 최근 1년 이내 활동 중인 국내/해외 (산업/제품군) 브랜딩 사례 **30개** 선정
-- **8속성** 분석: 이름 · 공식 로고 이미지 · 소재지 · 오픈 시기 · 브랜드 스토리 · 타겟층 · 브랜드/제품의 기능 · 목적
-- 인사이트 공통점에 따라 **3개 그룹(Category A/B/C)으로 분류**
-- 예시 30 브랜드(일부 판독): Dover Street Market · 10 Corso Como · Colette · Opening Ceremony · BEAMS · UNITED ARROWS · Isetan Shinjuku · Lane Crawford · Joyce · I.T · SKP-S Beijing · The Skateroom/Ace Hotel · Gentle Monster · Ader Error …
-- **3그룹 예시**:
-  - **Category A — Curated Chaos**: 편집의 철학으로 공간을 재정의 / 큐레이션 = 브랜드 정체성. (ref: Dover Street Market, 10 Corso Como, Colette, BEAMS JAPAN, HIGHSNOBIETY)
-  - **Category B — Immersive Worlds** *(본문 미확보)*
-  - **Category C — Street Pulse** *(본문 미확보)*
+## 에이전트 매핑 (Manus 단계별)
 
-## 2단계 — 포지셔닝 지도로 방향성 확인
-1. 30개 브랜드를 분류한 **X·Y축 브랜드 포지셔닝 지도**
-   - ※ 가격대·역사·기능·지역성 등 X·Y축을 구분할 설정값을 직접 입력하면 더 좋음.
-2. [1단계]에서 분류한 **3가지 인사이트를 바탕으로 적용 가능한 브랜딩 전략을 도출**
-
-## 3단계 — 브랜딩 전략 산출
-각 전략 포맷: **[전략명] + 한 줄 정의 + 설명 + REFERENCE BRANDS(3개+, 각 한 줄) + 적용(2줄)**
-
-### Strategy 1 — Cycle of Scenes
-**장면의 순환: 공간 안에서 순환하는 서울의 다양한 장면들.**
-과거의 잔심(오래된 골목·빈티지)과 현재의 감각(최신 플래그십·디지털)이 예측 불가능하게 교차하도록 브랜드를 배치. 방문할 때마다 새로운 서울을 발견하는 큐레이션 시스템을 구축.
-- **REFERENCE**: Dover Street Market(매 시즌 완전히 다른 공간으로 재정의하는 'Beautiful Chaos', 럭셔리×서브컬처 경계를 허무는 편집력) / Colette(아트·상업 경계 없는 큐레이션, 2017 폐점 후에도 상징적 레퍼런스) / 10 Corso Como(갤러리·리스토랑이 하나의 서사로 연결, 공간 자체가 편집자 세계관)
-- **적용**: 시즌마다 순환하는 입점 브랜드 구성 / 서울의 특정 골목·장면을 테마로 한 팝업 큐레이션 운영.
-
-### Strategy 2 — Raw Meets Refined
-**날 것과 정제의 충돌: 서울의 도시적 이중성을 공간 언어로 번역.**
-정제되지 않은 날것의 소재(노출 콘크리트·녹슨 철)와 극도로 정제된 소재(아크릴·거울·미디어 월)를 의도적으로 충돌. 본능적으로 반응하고 기록하고 싶어 하는 강렬한 몰입형 공간 서사를 창조.
-- **REFERENCE**: Gentle Monster(매 시즌 교체되는 대형 설치 미술이 공간을 콘텐츠로, 아이웨어를 위해 공간을 예술 설치로 재정의) / SKP-S(화성 테마+로봇 설치로 백화점 개념 해체, 베이징 Gen Z 필수 방문지·SNS 콘텐츠 생산지) / Ader Error(오류(Error)를 정체성으로, 불완전함의 미학)
-- **적용**: 콘크리트 바닥+미러 천장, 녹슨 철제 선반+아크릴 디스플레이 / 공간의 서사가 되는 소재의 충돌.
-
-### Strategy 3 — Living Archive
-**살아있는 아카이브: 스트리트 문화의 에너지가 박동하는 커뮤니티 허브.**
-단순한 트렌드 소비를 넘어 서울 로스터리 카페 문화를 F&B 존에 이식, 한정판 드롭·로컬 DJ 팝업을 통해… *(원문 일부 잘림 — 이후 본문 미확보)*
-
-> ⚠️ 원문에 **Brutalist Framework** 등 추가 전략/프레임워크가 더 존재하나 본문 미확보. 확보 시 보강.
-
-## 에이전트 매핑 + 실행(누가 글/누가 이미지·파일)
-| 단계 | 에이전트(글 산출) | 메인 세션 실행(굳히기) |
+| Manus 단계 | 에이전트 (글 산출) | 메인 세션 실행 |
 |---|---|---|
-| 0 브리프 | (brand-brief-template) | `00-brief.md` 저장 |
-| 1 Wide research (30/8/3) | `market-research` | `01-research.md` 저장 |
-| 2 포지셔닝 (XY·화이트스페이스) | `market-research` | `02-positioning.md` (+ 맵 이미지 선택) 저장 |
-| 3 전략·관점 | `concept-director`+`brainstormer`+`critic` | `03-strategy.md` 저장 |
-| 4 비주얼 프롬프트 | `visual-generator` | **Higgsfield로 이미지 생성** → `images/` 저장 |
-| 5 덱 조립 | — | `deck.html`(이미지 임베드) → 커밋·PR |
+| Manus 1 · 경쟁 30개 리서치 | `market-research` | `01-competitor-matrix.md` 저장 |
+| Manus 1 · 클러스터링+XY맵 | `market-research` | `02-clustering.md`, `03-positioning-map.md` 저장 |
+| Manus 1 · 선호도+전략 (Gate 1 포함) | `market-research` + `concept-director` | `04-preference-strategy.md` + `manus-1-state.json` 저장 |
+| Manus 2 · Visual DNA (Gate 2 선행) | `visual-generator` + `brainstormer` | `05-visual-dna.md` 저장 |
+| Manus 2 · 6컨셉+매트릭스 (Gate 3 포함) | `brainstormer` | `06-concept-territories.md` 저장 |
+| Manus 2 · Client×Mood | `critic` + `review-panel` | `07-client-mood-matrix.md` + `manus-2-state.json` 저장 |
+| Runable 3 · Brand Board (Gate 4 포함) | `concept-director` | `08-brand-board.md` 저장 |
+| Runable 3 · Value·Copy·Symbol | `brainstormer` + `critic` | `09-brand-system.md` 저장 |
+| Runable 3 · CI/BI Audit | `market-research` | `10-competitor-cibi.md` + `runable-3-state.json` 저장 |
+| 이미지 프롬프트 | `visual-generator` | **메인이 Higgsfield로 생성** → `images/` 저장 |
+| 덱 조립 | — | `deck.html`(이미지 임베드) → 커밋·PR |
 
-> 한 줄: **에이전트는 글, 메인은 이미지·파일.** 글만 받고 끝내면 절반만 한 것이다.
-> 예: Boomi 프로젝트가 이 방식으로 실제 이미지 4컷 + 쇼케이스 HTML까지 굳혔다(`.claude/projects/boomi-showcase.html`).
+---
+
+## 4개 Designer Lens Gate — 체크리스트
+
+> 상세 지침: `designer-lens-gates.md`
+
+### Gate 1 — Strategic POV Gate
+**위치:** Manus 1 포지셔닝 전략 직후 (04-preference-strategy.md에 포함)
+
+```md
+✅ 관점 한 문장이 나왔는가?
+✅ 경쟁사와 다른 믿음이 표현되었는가?
+✅ 타깃이 반응할 감정이 정의되었는가?
+```
+
+### Gate 2 — Lens Translation Gate
+**위치:** Manus 2 Visual DNA 추출 직전 (05-visual-dna.md 첫머리)
+
+```md
+✅ 핵심가치가 디자이너 렌즈로 번역되었는가?
+✅ 색·타입·소재·움직임 증거가 있는가?
+✅ Human Touch Proof가 있는가?
+```
+
+### Gate 3 — Living System Gate
+**위치:** Manus 2 Concept Territories 직후 (06-concept-territories.md 말미)
+
+```md
+✅ 각 컨셉이 정적 이미지로만 끝나지 않는가?
+✅ 모션·가변폰트·반응형·생성 규칙이 정의되었는가?
+```
+
+### Gate 4 — Human Touch & Risk Gate
+**위치:** Runable 3 Brand Board 전 (08-brand-board.md 첫머리)
+
+```md
+✅ AI 생성 범위가 정의되었는가?
+✅ 인간 흔적 레이어가 설계되었는가?
+✅ 과감한 방향이 핵심가치와 정렬되었는가?
+```
+
+---
+
+## Manus 1 Gate Checklist (종료 전 확인)
+
+```md
+[ ] 경쟁 브랜드가 30개 이상인가?
+[ ] 직접·간접·감성 경쟁이 모두 포함되었는가?
+[ ] 비주얼 트렌드 태그(T1~T8)가 클러스터에 붙었는가?
+[ ] 포지셔닝 맵 축이 임의적이지 않은가?
+[ ] Strategic POV Gate(Gate 1)가 통과되었는가? ← 필수
+[ ] 비주얼 프롬프트에 Human Touch Layer가 있는가?
+[ ] 출처 없는 수치를 단정하지 않았는가?
+[ ] manus-1-state.json이 저장되었는가? ← 파일 확인
+```
+
+## Manus 2 Gate Checklist (종료 전 확인)
+
+```md
+[ ] manus-1-state.json이 존재하는가? ← 없으면 시작 불가
+[ ] Lens Translation Gate(Gate 2)가 DNA 전에 완료되었는가? ← 필수
+[ ] 6개 컨셉이 서로 다른 감각인가?
+[ ] 각 컨셉이 포지셔닝 전략으로 회수되는가?
+[ ] 각 컨셉에 모션·가변 규칙이 있는가?
+[ ] Living System Gate(Gate 3)가 완료되었는가? ← 필수
+[ ] Client×Mood Matrix 점수 근거가 명확한가?
+[ ] Brutalist Framework 적용 여부가 판단되었는가?
+[ ] manus-2-state.json이 저장되었는가? ← 파일 확인
+```
+
+## Runable 3 Gate Checklist (종료 전 확인)
+
+```md
+[ ] manus-1-state.json + manus-2-state.json 둘 다 존재하는가? ← 없으면 시작 불가
+[ ] Human Touch & Risk Gate(Gate 4)가 통과되었는가? ← 필수
+[ ] Brand Board에 Behavior System + Human Touch System이 있는가?
+[ ] Value Cards에 시각 증거가 있는가?
+[ ] Brand System Summary가 한 문장으로 말 되는가?
+[ ] slide_generation_ready가 true인가?
+[ ] Final Deck이 35~45장 기준인가?
+[ ] 슬라이드당 Key Message가 1개인가?
+[ ] 이미지가 Higgsfield로 실제 생성되었는가? ← 파일 확인
+[ ] deck.html이 이미지 URL 임베드로 완성되었는가? ← 파일 확인
+[ ] 커밋·PR이 완료되었는가? ← 파일 확인
+```
+
+---
+
+## 인입 즉시 확인 항목 (첫 메시지에서)
+
+브랜드 제안이 들어오면 메인 세션이 먼저 확인한다:
+
+```md
+1. 브랜드명 / 카테고리 / 제품·서비스 / 시장·국가
+2. 목표 고객
+3. 원하는 인상 vs 피해야 할 인상
+4. 주요 경쟁사 (있으면)
+5. 최종 산출물 (컨셉 덱 / 슬라이드 / HTML 쇼케이스 등)
+```
+
+정보 부족 시 → 00-brief.md 형식으로 확인 질문 발송 후 Manus 1 시작.
+
+---
+
+## 한 줄 요약
+
+> **에이전트는 글, 메인은 이미지·파일.  
+> Manus 1(자리) → Gate 1 → Manus 2(감각) → Gate 2·3 → Gate 4 → Runable 3(시스템+슬라이드).  
+> 글만 받고 끝내면 절반만 한 것이다.**
