@@ -68,7 +68,7 @@
 - 에이전트: `.claude/agents/[slug].md` (name/description/tools 프론트매터 필수).
 - SoT: `.claude/library/{quote-sot|design-sot|project-sot}/[파일].md`.
 - 브랜드 제안 파이프라인: `.claude/skills/brand-proposal/`(Hyojung Guided 질문형 오케스트레이터) + `.claude/library/brand-pipeline/`(overview + stage1~3 양식 + 디자이너렌즈게이트, v3 원본은 `_v3-source/` 아카이브). 외부 프로세스명 비노출.
-- 프로젝트: `.claude/projects/[클라명]/STATUS.md` (생성 전 중복 점검).
+- 프로젝트: `.claude/projects/[클라슬러그]_[프로젝트슬러그]/STATUS.md` (프로젝트 단위, 생성 전 `projects/INDEX.md`로 중복 점검 후 행 추가).
 - SoT 원본: Notion 2026 Project DB(프로젝트) · Google Sheets Time-Log(견적).
 - 대시보드(지도): `.claude/dashboard/maxos-dashboard-v5.html` — 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). 원본 v2.0/v2.1 보존.
 - `.claude/` 전체 커밋·푸시 필수. 새 에이전트 추가/구조 변경 후 대시보드 갱신.
