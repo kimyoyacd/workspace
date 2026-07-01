@@ -110,7 +110,7 @@ body {
 }
 
 .org-row {
-  display: grid; grid-template-columns: repeat(6, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 12px; width: 100%; margin-top: 24px;
   padding-top: 16px;
   border-top: 2px solid var(--border);
@@ -506,7 +506,7 @@ body {
 .vendor-stars { font-size: 10px; color: #F59E0B; margin-left: auto; }
 
 /* RESPONSIVE */
-@media (max-width: 1700px) { .org-row { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1700px) { .org-row { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 1300px) { .org-row { grid-template-columns: repeat(3, 1fr); } .directives-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 1100px) { .hub-panel { grid-template-columns: 1fr; } .org-row { grid-template-columns: repeat(2, 1fr); } .today-grid { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .org-row { grid-template-columns: 1fr; } .kanban { grid-template-columns: 1fr; } .manual-grid { grid-template-columns: 1fr; } .guidelines-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr; } }
@@ -531,7 +531,7 @@ body {
     <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · <span id="sync-sub">노션/구글시트 실시간 연동 초기화 중...</span></div>
   </div>
   <div class="header-right">
-    <div class="head-stat"><div class="n">24</div><div class="l">에이전트</div></div>
+    <div class="head-stat"><div class="n">26</div><div class="l">에이전트</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n">2</div><div class="l">스킬</div></div>
     <div class="head-divider"></div>
@@ -561,7 +561,7 @@ body {
 <!-- ══════════════ TAB 1: 조직도 ══════════════ -->
 <div id="sect-org" class="section active">
   <h2 class="section-title">에이전트 조직도</h2>
-  <p class="section-desc">메인 세션(허브) 아래 24개 에이전트 · 7개 그룹 + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design 스킬. 아래 섹션은 클릭해서 펼치기.</p>
+  <p class="section-desc">메인 세션(허브) 아래 26개 에이전트 · 7그룹 (2 대기) + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design 스킬. 아래 섹션은 클릭해서 펼치기.</p>
 
   <div class="alert">
     <span class="ic">✅</span>
@@ -576,7 +576,7 @@ body {
     <div class="hub-node">
       <div class="label">MAIN SESSION</div>
       <div class="name">허브 (김효정)</div>
-      <div class="sub">오케스트레이터 · 24명 에이전트 + hyo-manus·list-deck-design 스킬 호출 허브</div>
+      <div class="sub">오케스트레이터 · 26명 에이전트 + hyo-manus·list-deck-design 스킬 호출 허브</div>
     </div>
 
     <div class="org-row">
@@ -680,7 +680,7 @@ body {
 
       <!-- ④ 검수 게이트 -->
       <div class="col col-4">
-        <div class="col-head">④ 검수 게이트<span class="count">5</span></div>
+        <div class="col-head">④ 검수 게이트<span class="count">3</span></div>
         <div class="col-tagline" style="color:#B23B3B;font-weight:700;">상황에 맞게 발동 — 어느 단계에서든 호출 가능</div>
         <div class="col-body">
           <div class="card">
@@ -701,18 +701,6 @@ body {
             <div class="card-role">기획·크리에이터·사업·마케팅·B2B 5관점 병렬 검토.</div>
             <div class="card-trig"><strong>호출:</strong> 발산 후 / 제안 셀렉 전</div>
             <div style="margin-top:6px;padding:5px 7px;background:#E5F2E9;border-radius:4px;font-size:9px;line-height:1.5;color:#1F5A38;">① 기획 · ② 크리에이터 · ③ 사업 · ④ 마케팅 · ⑤ B2B고객</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">딜리버리 게이트</span></div>
-            <div class="card-slug">delivery-gate</div>
-            <div class="card-role">라이트모드·PII·텍스트잘림·링크 린트.</div>
-            <div class="card-trig"><strong>자동:</strong> 외부 발송 직전</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">톤 가디언</span></div>
-            <div class="card-slug">tone-guardian</div>
-            <div class="card-role">회신·메일 초안 톤·매너 교정.</div>
-            <div class="card-trig"><strong>자동:</strong> 외부 발송 전</div>
           </div>
         </div>
       </div>
@@ -746,8 +734,8 @@ body {
 
       <!-- ⑥ 조직관리 -->
       <div class="col col-6">
-        <div class="col-head">⑥ 조직관리<span class="count">4</span></div>
-        <div class="col-tagline">CD · 채용 · 외주 · 법무</div>
+        <div class="col-head">⑥ 조직관리<span class="count">2</span></div>
+        <div class="col-tagline">CD · 법무 (채용·외주 대기)</div>
         <div class="col-body">
           <div class="card">
             <div class="card-name-row"><span class="card-name">크리에이티브 디렉터</span><span class="badge badge-core">코어</span></div>
@@ -756,23 +744,55 @@ body {
             <div class="card-trig"><strong>호출:</strong> "CD 검수" / "온보딩 만들어줘"</div>
           </div>
           <div class="card">
-            <div class="card-name-row"><span class="card-name">채용 레이더</span></div>
-            <div class="card-slug">hiring-radar</div>
-            <div class="card-role">9→20 증원 파이프라인. JD·소싱·면접·오퍼.</div>
-            <div class="card-trig"><strong>호출:</strong> "채용 상황" / "JD 써줘"</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">벤더 레이더</span></div>
-            <div class="card-slug">vendor-radar</div>
-            <div class="card-role">외주·프리랜서 풀 관리. 외주비 산정.</div>
-            <div class="card-trig"><strong>호출:</strong> "외주 찾자" / 견적 시</div>
-          </div>
-          <div class="card">
             <div class="card-name-row"><span class="card-name">법무·컴플라이언스</span></div>
             <div class="card-slug">legal-compliance</div>
             <div class="card-role">계약·NDA 쟁점·리스크 플래그.</div>
             <div class="card-trig"><strong>호출:</strong> "계약서 검토" / 계약서 첨부</div>
             <div class="card-warn">🚨 법무 자문 대체 아님</div>
+          </div>
+          <div class="card" style="opacity:0.45;border-style:dashed;">
+            <div class="card-name-row"><span class="card-name">채용 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-slug">hiring-radar</div>
+            <div class="card-role">증원 파이프라인. JD·소싱·면접·오퍼.</div>
+            <div class="card-trig" style="color:#9ca3af;">현재 비활성 — 필요 시 활성화</div>
+          </div>
+          <div class="card" style="opacity:0.45;border-style:dashed;">
+            <div class="card-name-row"><span class="card-name">벤더 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-slug">vendor-radar</div>
+            <div class="card-role">외주·프리랜서 풀 관리. 외주비 산정.</div>
+            <div class="card-trig" style="color:#9ca3af;">현재 비활성 — 필요 시 활성화</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑦ 커뮤니케이션 -->
+      <div class="col col-7">
+        <div class="col-head" style="background:linear-gradient(135deg,#1e40af,#3b82f6);">⑦ 커뮤니케이션<span class="count">4</span></div>
+        <div class="col-tagline">메일 · 회의록 · 발송 QC</div>
+        <div class="col-body">
+          <div class="card" style="border-left-color:#3b82f6;">
+            <div class="card-name-row"><span class="card-name">메일 초안 작성</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">✉ 신규</span></div>
+            <div class="card-slug">mail-drafter</div>
+            <div class="card-role">외부 메일·회신·제안 메시지 초안 생성. 수신자·목적·톤 기반.</div>
+            <div class="card-trig"><strong>호출:</strong> "메일 써줘" / "회신 초안" / "제안 메일"</div>
+          </div>
+          <div class="card" style="border-left-color:#3b82f6;">
+            <div class="card-name-row"><span class="card-name">회의록 작성</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">📋 신규</span></div>
+            <div class="card-slug">meeting-logger</div>
+            <div class="card-role">메모·녹취→구조화 회의록. 액션 아이템·담당자·기한 추출.</div>
+            <div class="card-trig"><strong>호출:</strong> "회의록 써줘" / "미팅 정리" / "회의 요약"</div>
+          </div>
+          <div class="card" style="border-left-color:#3b82f6;">
+            <div class="card-name-row"><span class="card-name">톤 가디언</span></div>
+            <div class="card-slug">tone-guardian</div>
+            <div class="card-role">회신·메일 초안 톤·매너 교정.</div>
+            <div class="card-trig"><strong>자동:</strong> mail-drafter 완료 후 / 외부 발송 전</div>
+          </div>
+          <div class="card" style="border-left-color:#3b82f6;">
+            <div class="card-name-row"><span class="card-name">딜리버리 게이트</span></div>
+            <div class="card-slug">delivery-gate</div>
+            <div class="card-role">라이트모드·PII·텍스트잘림·링크 린트.</div>
+            <div class="card-trig"><strong>자동:</strong> 외부 발송 직전 최종 린트</div>
           </div>
         </div>
       </div>
@@ -980,7 +1000,7 @@ body {
 
   <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
     <span class="ic">⚠️</span>
-    <div><strong>에이전트 수</strong> — 현재 <strong>24/25개 (잔여 1)</strong>. 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬: <code>hyo-manus</code>(브랜드 제안 자동화) · <code>list-deck-design</code>(리포트 HTML).</div>
+    <div><strong>에이전트 수</strong> — 현재 <strong>26/30개 (잔여 4)</strong>. 2개 대기(hiring-radar·vendor-radar). 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬: <code>hyo-manus</code>(브랜드 제안 자동화) · <code>list-deck-design</code>(리포트 HTML).</div>
   </div>
 
   <div class="guidelines-grid">
