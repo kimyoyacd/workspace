@@ -164,9 +164,11 @@
 ├── 02-manus2-identity.md            # 시각 아이덴티티 DNA
 ├── 03-manus1-state.json             # Manus 1 상태 데이터
 ├── 04-manus2-state.json             # Manus 2 상태 데이터
-├── 05-design-report.html            # 전략 리포트 (웹)
+├── 05-design-report.html            # 전략 리포트 (웹, list-deck-design)
 ├── 06-product-design-brief.md       # P1 제품 설계 기획
 ├── 07-moodboard-strategy.md         # 무드보드 전략 + 이미지 프롬프트
+├── 08-visual-moodboard.html         # 시각 참고자료 (Unsplash 이미지)
+├── 09-manus2-visual-system.html     # Manus 2 완전 가이드 (전략프레임워크)
 └── 99-project-status.md             # 이 파일
 ```
 
@@ -260,6 +262,8 @@
 ## 💾 Git Commit History (이번 세션)
 
 ```
+c5f6ddc Add comprehensive Manus 2 Visual Identity System: 8 DNA lenses, 6 concepts, matrices, and final 2-concept shortlist
+8201cb1 Add visual mood board with Unsplash reference images for Ritual Moment & Gravity Well concepts
 09657c4 Add P1 Product Design Brief: hourglass specifications + visual direction for 2 concepts
 41aedad Add mood board strategy for Ritual Moment & Gravity Well concepts
 ```
