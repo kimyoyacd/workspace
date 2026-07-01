@@ -38,6 +38,17 @@
   .tier-4 { background: #B23B3B; }
   @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .brand-grid { grid-template-columns: 1fr; } }
+
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .concept-card { background: var(--card); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+  .concept-rank { font-size: 11px; font-weight: 700; color: #fff; background: var(--ink); border-radius: 20px; padding: 3px 10px; display: inline-block; width: fit-content; }
+  .concept-score { position: absolute; top: 20px; right: 20px; font-size: 20px; font-weight: 900; }
+  .concept-title { font-size: 22px; font-weight: 800; margin-top: 4px; }
+  .concept-mood { font-size: 11.5px; color: var(--ink3); font-style: italic; }
+  .concept-field { font-size: 11px; line-height: 1.5; color: var(--ink2); }
+  .concept-field b { color: var(--ink); }
+  .concept-risk { font-size: 10.5px; color: #B23B3B; margin-top: 4px; }
+  @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -261,6 +272,79 @@
       </tr>
     </table>
     <p style="font-size:13px; color:var(--ink2); margin-top:16px;"><strong>GRAIN의 화이트스페이스 = A와 B의 교집합</strong>(럭셔리 소재+실제 작동 기능), C의 리추얼 언어는 가져오되 생산성 클리셰는 배제.</p>
+  </div>
+
+  <!-- ============ Gate 1 POV ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Gate 1 · Strategic POV</div>
+    <h1 class="cat-title" style="font-size:36px;">"Gravity is Proof"</h1>
+    <p style="font-size:15px; color:var(--ink2); max-width:640px;">중력이 증거다 — 럭셔리 소재(소재=가치)와 정밀 기능(작동=가치)을 하나의 물리 현상으로 통합. 브랜드가 아니라 물리학이 신뢰를 보증한다는 믿음. (내부 철학으로만 유지, 표면 카피엔 노출 안 함)</p>
+  </div>
+
+  <!-- ============ 6개 Concept Territories ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Manus 2 · Step 3-4</div>
+    <h1 class="cat-title">6개 Concept Territories</h1>
+    <div class="cat-bullets">
+      <div>모두 "Gravity is Proof" 철학으로 회수되지만, 서로 다른 감각 온도를 가짐</div>
+      <div>계측기 미학(Instrument Aesthetic) 방향 하에서 발산</div>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border:2px solid #2D7A4F;">
+        <span class="concept-score" style="color:#2D7A4F;">9/10</span>
+        <div class="concept-rank">① Instrument Grade ⭐</div>
+        <div class="concept-title">캘리브레이션된 도구</div>
+        <div class="concept-mood">냉철 · 신뢰 · 클리니컬한 럭셔리</div>
+        <div class="concept-field"><b>컬러</b> 스틸그레이+스모크글라스, 랩 배경</div>
+        <div class="concept-field"><b>포토</b> 랩 라이트박스, 캘리퍼스와 측정 순간</div>
+        <div class="concept-field"><b>모션</b> Grip(장갑) → Flip(180°분해) → Fall(슬로우모션) → Settle(레벨측정)</div>
+        <div class="concept-risk">Risk: 정서적 매력 저하 가능</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-score">7/10</span>
+        <div class="concept-rank">② Gravity Cut</div>
+        <div class="concept-title">찰나의 증거 샷</div>
+        <div class="concept-mood">긴장감 · 다이내믹 · 정밀 속도감</div>
+        <div class="concept-field"><b>컬러</b> 브라스 하이라이트 + 다크차콜</div>
+        <div class="concept-field"><b>포토</b> 하이스피드 크롭, 화면 절반 여백</div>
+        <div class="concept-field"><b>모션</b> 스트로보 편집(블러+정지 교차), Settle서 타이머 정지</div>
+        <div class="concept-risk">Risk: 가벼운 챌린지 콘텐츠로 소비될 위험</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-score">7/10</span>
+        <div class="concept-rank">③ Field Notes</div>
+        <div class="concept-title">검증된 기록물</div>
+        <div class="concept-mood">탐사적 · 기록적 · 조용한 권위</div>
+        <div class="concept-field"><b>컬러</b> 스모크글라스+브라스+크림톤</div>
+        <div class="concept-field"><b>포토</b> 필드 다큐멘터리, 로우앵글</div>
+        <div class="concept-field"><b>모션</b> 절차적 의식 → 손글씨 인증서 기입(개체별 실측값)</div>
+        <div class="concept-risk">Risk: 빈티지/박물관으로 오독 위험</div>
+      </div>
+      <div class="concept-card" style="opacity:0.7;">
+        <span class="concept-score">5/10</span>
+        <div class="concept-rank">④ Zero Point</div>
+        <div class="concept-title">리셋 기준점</div>
+        <div class="concept-mood">미니멀 · 절제</div>
+        <div class="concept-field">데스크 리듬의 리셋 지점, 웰니스 클리셰와 가장 인접</div>
+        <div class="concept-risk">Risk: 차별성 희석 위험 최대</div>
+      </div>
+      <div class="concept-card" style="opacity:0.7;">
+        <span class="concept-score">6/10</span>
+        <div class="concept-rank">⑤ Suspended Load</div>
+        <div class="concept-title">중력을 담는 장치</div>
+        <div class="concept-mood">사변적 · 극적 · 설치미술급</div>
+        <div class="concept-field">롱익스포저 암전, 갤러리 전시대형 박스</div>
+        <div class="concept-risk">Risk: 실행 난도 최상, 한정 매체만 적합</div>
+      </div>
+      <div class="concept-card" style="opacity:0.7;">
+        <span class="concept-score">4/10</span>
+        <div class="concept-rank">⑥ Tolerance Mark</div>
+        <div class="concept-title">공차 기호의 그래픽화</div>
+        <div class="concept-mood">대담 · 컬렉터블 · 스트리트</div>
+        <div class="concept-field">공차 기호를 스트리트웨어 그래픽으로 확장</div>
+        <div class="concept-risk">Risk: 럭셔리 톤 훼손 위험 가장 큼</div>
+      </div>
+    </div>
   </div>
 
 </div>
