@@ -11,7 +11,7 @@
 // 4. 배포 URL 복사 → maxos-dashboard-v6.html 상단 APPS_SCRIPT_URL 에 붙여넣기
 // ──────────────────────────────────────────────────────────
 
-const DB_PROJECTS = '2e79ff44-ed51-8153-bf54-000b5dbcfd75';  // 2026 Project DB (메인)
+const DB_PROJECTS = '2e79ff44-ed51-817a-9138-eac149de9f21';  // 2026 Project DB (메인)
 const SHEETS_ID   = '1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0';
 const UTIL_TAB    = '📊 월별 투입 현황';
 
