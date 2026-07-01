@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAIN v2 — Time Lies About What It's Made Of</title>
+<style>
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, sans-serif; background: var(--bg); margin: 0; color: var(--ink); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .cat-card { background: var(--bg); border-radius: 16px; padding: 40px 44px 48px; margin-bottom: 40px; position: relative; }
+  .cat-label { font-size: 13px; font-weight: 700; color: var(--ink2); margin-bottom: 8px; }
+  .cat-title { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 16px; }
+  .cat-bullets { margin-bottom: 28px; }
+  .cat-bullets div { font-size: 14px; color: var(--ink2); margin-bottom: 4px; }
+  .cat-bullets div::before { content: "· "; }
+  .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .brand-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; position: relative; }
+  .brand-mark { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; padding-right: 40px; }
+  .brand-meta { font-size: 10.5px; color: var(--ink3); line-height: 1.5; }
+  .brand-meta b { color: var(--ink2); font-weight: 700; }
+  .brand-desc { font-size: 11px; color: var(--ink2); line-height: 1.45; margin-top: 2px; }
+  .brand-source { font-size: 10px; margin-top: 6px; }
+  .brand-source a { color: #2454C7; text-decoration: none; }
+  .tier-badge { font-size: 8.5px; font-weight: 700; color: #fff; background: #999; border-radius: 8px; padding: 2px 7px; position: absolute; top: 16px; right: 16px; }
+  .tier-1 { background: #2D7A4F; } .tier-2 { background: #C77A0F; } .tier-3 { background: #999; } .tier-4 { background: #B23B3B; }
+  @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ===== Strategy Slide (full-bleed mood) ===== */
+  .strategy-slide { position: relative; min-height: 620px; color: #fff; margin-bottom: 40px; border-radius: 16px; overflow: hidden; display: flex; align-items: center; }
+  .strategy-slide::before { content: ""; position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.55); }
+  .strategy-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 55%, transparent 75%); }
+  .strategy-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 340px 1fr; gap: 40px; width: 100%; padding: 56px; }
+  .strategy-label { font-size: 13px; font-weight: 700; opacity: 0.7; margin-bottom: 6px; }
+  .strategy-title { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 28px; line-height: 1.05; }
+  .strategy-field { margin-bottom: 18px; }
+  .strategy-field .fk { font-size: 10px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .strategy-field .fv { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .strategy-field .fd { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+  .strategy-swatches { display: flex; gap: 6px; margin-top: 6px; }
+  .strategy-swatches div { width: 32px; height: 32px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
+  .strategy-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-self: center; }
+  .strategy-visual img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; }
+  .strategy-visual img:first-child { grid-row: span 2; height: 452px; }
+  @media (max-width: 900px) { .strategy-inner { grid-template-columns: 1fr; } .strategy-visual img:first-child { height: 220px; grid-row: auto; } }
+
+  /* ===== 16:9 White Slide System ===== */
+  .slide16 { background:#fff; aspect-ratio:16/9; width:100%; margin-bottom:24px; border-radius:8px; padding:44px 52px; position:relative; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; flex-direction:column; }
+  .slide16-head { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #E5E5E5; padding-bottom:12px; margin-bottom:20px; }
+  .slide16-label { font-size:15px; font-weight:800; }
+  .slide16-note { font-size:11px; color:#999; }
+
+  .story-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; }
+  .story-brand { font-size:34px; font-weight:800; letter-spacing:-0.02em; }
+  .story-sub { font-size:13px; color:#555; margin-top:4px; line-height:1.4; max-width:320px; }
+  .story-tags { display:flex; gap:6px; margin-top:10px; }
+  .story-tags span { font-size:10px; font-weight:700; border:1px solid #ccc; border-radius:20px; padding:3px 10px; }
+  .story-grid { display:grid; grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap:10px; flex:1; margin-bottom:14px; }
+  .story-grid img { width:100%; height:100%; object-fit:cover; border-radius:4px; }
+  .story-grid .ph1 { grid-column:1; grid-row:1; } .story-grid .ph2 { grid-column:2; grid-row:1 / span 2; }
+  .story-grid .ph3 { grid-column:3; grid-row:1 / span 2; } .story-grid .ph4 { grid-column:1; grid-row:2; }
+  .story-body { display:flex; gap:24px; font-size:10.5px; color:#555; line-height:1.5; }
+  .story-body div { flex:1; }
+
+  .vk-row { display:grid; grid-template-columns:repeat(3,1fr); gap:0; flex:1; }
+  .vk-card { padding: 0 24px; border-left:1px solid #eee; display:flex; flex-direction:column; }
+  .vk-card:first-child { border-left:none; padding-left:0; }
+  .vk-letter { font-size:13px; font-weight:800; margin-bottom:6px; }
+  .vk-title { font-size:26px; font-weight:800; line-height:1.15; margin-bottom:14px; }
+  .vk-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .vk-tags span { font-size:9.5px; border:1px solid; border-radius:20px; padding:3px 10px; }
+  .vk-body { font-size:11.5px; color:#555; line-height:1.55; flex:1; }
+  .vk-motif-label { font-size:9.5px; color:#999; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px; margin-top:16px; }
+  .vk-motif { font-size:13px; font-weight:700; }
+
+  .mindmap { position:relative; flex:1; }
+  .mm-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#111; color:#fff; border-radius:50%; width:150px; height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:3; }
+  .mm-center .n { font-size:20px; font-weight:900; } .mm-center .s { font-size:9px; opacity:0.7; margin-top:4px; padding:0 10px; line-height:1.3; }
+  .mm-line { position:absolute; height:1px; background:#ddd; transform-origin:left center; z-index:1; }
+  .mm-node { position:absolute; border-radius:50%; width:108px; height:108px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:2; border:2px solid; background:#fff; }
+  .mm-node .cat { font-size:11.5px; font-weight:800; } .mm-node .catkr { font-size:10px; margin-top:2px; }
+  .mm-kw { position:absolute; font-size:9.5px; color:#555; background:#F2F2F2; border-radius:5px; padding:4px 9px; z-index:2; }
+
+  .bd-axis { display:grid; grid-template-columns: 34px 130px 1fr 130px; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid #f0f0f0; }
+  .bd-axis:last-child { border-bottom:none; }
+  .bd-idx { font-size:14px; font-weight:800; color:#999; }
+  .bd-label { font-size:12.5px; font-weight:700; }
+  .bd-label small { display:block; font-size:9.5px; color:#999; font-weight:400; margin-top:2px; }
+  .bd-line { position:relative; height:1px; background:#ccc; display:flex; justify-content:space-between; }
+  .bd-line div { width:10px; height:10px; border-radius:50%; border:1.5px solid #999; background:#fff; margin-top:-5px; }
+  .bd-line div.active { background:#111; border-color:#111; }
+  .bd-label.right { text-align:right; }
+
+  .motif-row { display:grid; grid-template-columns:repeat(3,1fr); gap:0; flex:1; }
+  .motif-col { padding:0 20px; border-left:1px solid #eee; }
+  .motif-col:first-child { border-left:none; padding-left:0; }
+  .motif-label { font-size:12px; font-weight:800; margin-bottom:10px; }
+  .motif-imgs { display:grid; grid-template-columns:repeat(2,1fr); gap:3px; }
+  .motif-imgs img { width:100%; aspect-ratio:1; object-fit:cover; filter:grayscale(1) contrast(1.15); }
+
+  .cr-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:1fr; gap:0; flex:1; }
+  .cr-card { border-left:1px solid #eee; border-top:1px solid #eee; padding:12px 12px; display:flex; flex-direction:column; }
+  .cr-card:nth-child(4n+1) { border-left:none; }
+  .cr-logo { font-weight:900; font-size:14px; margin-bottom:6px; letter-spacing:-0.01em; }
+  .cr-cat { font-size:9px; color:#999; margin-bottom:6px; }
+  .cr-desc { font-size:9.5px; color:#666; line-height:1.4; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ Cover ============ -->
+  <div class="cat-card" style="background:#1A1414; color:#fff;">
+    <div class="cat-label" style="color:#FDB833;">GRAIN · v2</div>
+    <h1 class="cat-title" style="color:#fff; font-size:56px;">Time Lies About<br>What It's Made Of</h1>
+    <p style="font-size:16px; color:#cfc4b3; max-width:600px;">시간은 자신이 무엇으로 이루어졌는지 거짓말한다 — 모래시계라는 오브젝트가 초현실적 물성 변환을 통해 "시간의 물성은 우리가 아는 것과 다르다"는 경이를 만드는 브랜드.</p>
+  </div>
+
+  <!-- ============ Gate 1 ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Gate 1 · Strategic POV</div>
+    <h1 class="cat-title" style="font-size:36px;">"Time Lies About What It's Made Of"</h1>
+    <p style="font-size:15px; color:var(--ink2); max-width:640px; margin-bottom:20px;">럭셔리 소재 시장(소재=가치)과 정밀 기능 시장(작동=가치) 문법 전부를 폐기하고, "물질이 스스로의 정체성을 배반하는 순간의 경이"로 완전히 새로 시작.</p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <div style="background:#fff; border-radius:10px; padding:20px;"><div style="font-weight:800; color:#B8860B; margin-bottom:4px;">변형 Transmutation</div><div style="font-size:12px; color:var(--ink2);">모래인데 액체금속처럼 흐르고, 유리인데 젤리처럼 흔들림</div></div>
+      <div style="background:#fff; border-radius:10px; padding:20px;"><div style="font-weight:800; color:#B8860B; margin-bottom:4px;">불신 Uncanny Doubt</div><div style="font-size:12px; color:var(--ink2);">"내가 보고 있는 게 맞나?"라는 인지적 정지</div></div>
+      <div style="background:#fff; border-radius:10px; padding:20px;"><div style="font-weight:800; color:#B8860B; margin-bottom:4px;">경이 Wonder</div><div style="font-size:12px; color:var(--ink2);">불안이 매혹으로 착지하는 지점 — 그로테스크와의 경계선</div></div>
+    </div>
+  </div>
+
+  <!-- ============ Design Strategy Slides ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Design Strategy · 무드보드</div>
+    <h1 class="cat-title">3가지 라인 — 각기 다른 배신의 방식</h1>
+  </div>
+
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143443_bd09afc7-142b-4d51-8ddb-2fa4678ec892.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Line 1 — Slow</div>
+        <h2 class="strategy-title">Jelly Wobble</h2>
+        <div class="strategy-field"><div class="fk">Sound</div><div class="fv">말랑한 저음 ASMR</div><div class="fd">시간이 액체처럼 머뭇거리는 웨블링 소리</div></div>
+        <div class="strategy-field"><div class="fk">Material</div><div class="fv">반투명 젤리 + 번트케이크 리브 텍스처</div></div>
+        <div class="strategy-swatches"><div style="background:#B8860B;"></div><div style="background:#E8C88A;"></div><div style="background:#F5EFE4;"></div></div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140322_4c741ee4-45a5-4222-99af-42815c4c71a4.png">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140324_7bb4bc9d-ab94-46ae-b018-05174d3a56be.png">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143453_8e719eca-60fb-4115-b78f-f35a51e8f51f.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143444_4bc8f400-dade-410c-b0a5-5ee6a3d65ec8.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Line 2 — Fast</div>
+        <h2 class="strategy-title">Liquid Chrome</h2>
+        <div class="strategy-field"><div class="fk">Sound</div><div class="fv">챠르르 금속성 고음</div><div class="fd">거울처럼 반사하는 수은 흐름의 소리</div></div>
+        <div class="strategy-field"><div class="fk">Material</div><div class="fv">리퀴드 메탈, 크롬·건메탈 톤</div></div>
+        <div class="strategy-swatches"><div style="background:#8C8C8C;"></div><div style="background:#B8B8B0;"></div><div style="background:#1A1A1A;"></div></div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140323_3f636db2-87fc-4ea8-b995-c391d2ca35fd.png">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140327_0169ab56-c416-40b8-8b0c-093d4463df9b.png">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143445_4c3284c7-17b8-4c4a-9cdb-5f1aa3be5bd6.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143446_4c24369c-09b9-4605-b875-5da4ab1cf8d3.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Line 3 — Heavy</div>
+        <h2 class="strategy-title">Ferrofluid Spike</h2>
+        <div class="strategy-field"><div class="fk">Sound</div><div class="fv">낮고 두꺼운 유체음</div><div class="fd">중력을 거스르며 솟아오르는 돌기의 저음</div></div>
+        <div class="strategy-field"><div class="fk">Material</div><div class="fv">블랙 페로플루이드, 오일 시트 톤</div></div>
+        <div class="strategy-swatches"><div style="background:#1A1A1A;"></div><div style="background:#2B2A28;"></div><div style="background:#4A4844;"></div></div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140326_e48dd5bf-5c24-45f0-8f60-5706275c2442.png">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143447_9f98b080-54d3-44d4-9f54-fb9188fd4423.png">
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Reference Connection & Positioning ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Reference Connection & Positioning</div>
+    <h1 class="cat-title" style="font-size:32px;">전략별 레퍼런스 & 포지셔닝</h1>
+    <div class="cat-bullets"><div>리미티드 아트토이·조형 콜렉터블 시장 비교군</div></div>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:32px;">
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px; color:#B8860B;">Slow — Jelly Wobble</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: Objects of Common Interest</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">유기적 실리콘·글라스 조형의 "말랑함"만 계승, 갤러리 톤은 배제.</div>
+      </div>
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px; color:#8C8C8C;">Fast — Liquid Chrome</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: MSCHF</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">예측 불가능한 소재 드롭 화제성 문법에서 "리퀴드 메탈 반사" 시각충격 차용.</div>
+      </div>
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px; color:#1A1A1A;">Heavy — Ferrofluid Spike</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: Daniel Arsham, KAWS</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">"침식된 미래 유물"·리미티드 피규어의 조형적 권위 차용.</div>
+      </div>
+    </div>
+    <div style="background:#fff; border-radius:12px; padding:32px; position:relative; height:440px;">
+      <div style="font-weight:800; font-size:15px; margin-bottom:16px;">Brand Positioning Map</div>
+      <div style="position:absolute; top:44px; left:32px; right:32px; bottom:60px; border-left:1px solid #ddd; border-bottom:1px solid #ddd;">
+        <span style="position:absolute; top:-20px; left:calc(50% - 30px); font-size:10px; color:var(--ink3);">배신하는 물성(초현실)</span>
+        <span style="position:absolute; bottom:-24px; left:calc(50% - 30px); font-size:10px; color:var(--ink3);">예측가능한 물성</span>
+        <span style="position:absolute; top:calc(50% - 8px); left:-58px; font-size:10px; color:var(--ink3); writing-mode:vertical-rl;">기능적 도구</span>
+        <span style="position:absolute; top:calc(50% - 8px); right:-64px; font-size:10px; color:var(--ink3); writing-mode:vertical-rl;">조형 예술작품</span>
+        <div style="position:absolute; top:8%; right:8%; text-align:center;">
+          <div style="width:70px; height:70px; border:2px solid #FDB833; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; color:#B8860B; background:#FFF9EC;">GRAIN<br>Goal</div>
+        </div>
+        <div style="position:absolute; top:24%; right:24%; font-size:11px; font-weight:700;">Daniel Arsham</div>
+        <div style="position:absolute; top:14%; right:40%; font-size:11px; font-weight:700;">MSCHF</div>
+        <div style="position:absolute; top:15%; left:10%; font-size:11px; font-weight:700;">KAWS</div>
+        <div style="position:absolute; top:28%; left:22%; font-size:11px; font-weight:700;">Takashi Murakami</div>
+        <div style="position:absolute; top:40%; left:8%; font-size:11px; font-weight:700;">Superplastic</div>
+        <div style="position:absolute; bottom:15%; left:10%; font-size:11px; font-weight:700;">Craighill</div>
+        <div style="position:absolute; bottom:26%; left:24%; font-size:11px; font-weight:700;">Assouline</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--ink2); margin-top:16px;"><strong>화이트스페이스</strong>: "조형 예술작품 × 배신하는 물성" 사분면 — 아트토이는 예측 가능한 소재로 조형성 추구, 서리얼 CGI 아트는 실물 소장 불가. GRAIN은 이 둘의 교집합.</p>
+  </div>
+
+  <!-- ============ Runable 3 Slides ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Runable 3 · Final Slide Deck</div>
+    <h1 class="cat-title" style="font-size:32px;">브랜드 시스템 슬라이드</h1>
+  </div>
+
+  <!-- Slide 1: Brand Story -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Brand Story</span><span class="slide16-note">이 브랜드가 만드는 순간을 확인해주세요</span></div>
+    <div class="story-top">
+      <div>
+        <div class="story-brand">GRAIN</div>
+        <div class="story-sub">시간은 자신이 무엇으로 이루어졌는지<br>거짓말한다 — 변형하는 시간의 조형물</div>
+        <div class="story-tags"><span>Surreal Matter</span><span>Collectible Art Object</span></div>
+      </div>
+    </div>
+    <div class="story-grid">
+      <img class="ph1" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140322_4c741ee4-45a5-4222-99af-42815c4c71a4.png">
+      <img class="ph2" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140323_3f636db2-87fc-4ea8-b995-c391d2ca35fd.png">
+      <img class="ph3" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140326_e48dd5bf-5c24-45f0-8f60-5706275c2442.png">
+      <img class="ph4" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140327_0169ab56-c416-40b8-8b0c-093d4463df9b.png">
+    </div>
+    <div class="story-body">
+      <div>모래시계는 시간의 물성을 눈으로 보여주는 유일한 오브젝트다. GRAIN은 그 물성이 우리가 아는 물리 법칙을 배신하는 순간을 만든다.</div>
+      <div>젤리처럼 흔들리고, 수은처럼 흐르고, 페로플루이드처럼 솟아오른다. 표면이 무엇으로 이루어졌는지는 매번 다르게 거짓말한다.</div>
+      <div>우리는 확신을 팔지 않는다. "이게 뭘로 만들어진 거지?"라는 경이의 순간, 그 정지된 인지가 곧 소유욕이 된다.</div>
+      <div>Gen Z와 예술적 감성을 지닌 성인 콜렉터. 기능이 아니라 조형 작품으로서 인테리어에 두고 싶은 사람들을 위한 오브제.</div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Brand Value Keywords -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Brand Value Keywords</span><span class="slide16-note">이 브랜드의 핵심에 가장 가까운 방향을 선택해주세요</span></div>
+    <div class="vk-row">
+      <div class="vk-card">
+        <div class="vk-letter" style="color:#B8860B;">A</div>
+        <div class="vk-title" style="color:#B8860B;">SLOW —<br>JELLY WOBBLE</div>
+        <div class="vk-tags"><span style="color:#B8860B; border-color:#B8860B;">웨블링</span><span style="color:#B8860B; border-color:#B8860B;">머뭇거림</span><span style="color:#B8860B; border-color:#B8860B;">말랑함</span></div>
+        <div class="vk-body">시간이 액체처럼 머뭇거린다. 반투명 젤리 챔버가 살아있는 듯 흔들리며, 정확함이 아니라 망설임을 보여준다.</div>
+        <div class="vk-motif-label">그래픽 모티프 · 사운드</div>
+        <div class="vk-motif">번트케이크 리브 텍스처 · 말랑한 저음 ASMR</div>
+      </div>
+      <div class="vk-card">
+        <div class="vk-letter" style="color:#8C8C8C;">B</div>
+        <div class="vk-title" style="color:#8C8C8C;">FAST —<br>LIQUID CHROME</div>
+        <div class="vk-tags"><span style="color:#8C8C8C; border-color:#8C8C8C;">반사</span><span style="color:#8C8C8C; border-color:#8C8C8C;">유동성</span><span style="color:#8C8C8C; border-color:#8C8C8C;">착시</span></div>
+        <div class="vk-body">모래가 수은처럼 흐른다. 형태 없는 것이 거울처럼 반사하며 형태를 가진 듯 움직인다 — 가장 빠르게 불신을 만든다.</div>
+        <div class="vk-motif-label">그래픽 모티프 · 사운드</div>
+        <div class="vk-motif">드리핑 리퀴드 메탈 · 챠르르 금속성 고음</div>
+      </div>
+      <div class="vk-card">
+        <div class="vk-letter" style="color:#1A1A1A;">C</div>
+        <div class="vk-title" style="color:#1A1A1A;">HEAVY —<br>FERROFLUID SPIKE</div>
+        <div class="vk-tags"><span style="color:#1A1A1A; border-color:#1A1A1A;">중력거스름</span><span style="color:#1A1A1A; border-color:#1A1A1A;">돌기</span><span style="color:#1A1A1A; border-color:#1A1A1A;">경이</span></div>
+        <div class="vk-body">단단해 보이는 챔버 안에서 검은 유체가 뾰족한 돌기로 솟아오르며 떨어진다. 중력마저 배신하는 흐름.</div>
+        <div class="vk-motif-label">그래픽 모티프 · 사운드</div>
+        <div class="vk-motif">스파이크 패턴 자성유체 · 낮고 두꺼운 유체음</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Brand Mind Map -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Brand Mind Map</span><span class="slide16-note">GRAIN의 핵심 가치와 연결되는 키워드를 확인해주세요</span></div>
+    <div class="mindmap">
+      <div class="mm-line" style="width:130px; top:26%; left:calc(50% - 4px); transform:rotate(-64deg);"></div>
+      <div class="mm-line" style="width:150px; top:38%; left:calc(50% + 60px); transform:rotate(-8deg);"></div>
+      <div class="mm-line" style="width:150px; top:62%; left:calc(50% + 60px); transform:rotate(8deg);"></div>
+      <div class="mm-line" style="width:130px; top:74%; left:calc(50% - 4px); transform:rotate(64deg) scaleX(-1);"></div>
+      <div class="mm-line" style="width:150px; top:62%; left:calc(50% - 210px); transform:rotate(-8deg) scaleX(-1);"></div>
+      <div class="mm-line" style="width:150px; top:38%; left:calc(50% - 210px); transform:rotate(8deg) scaleX(-1);"></div>
+      <div class="mm-center"><div class="n">GRAIN</div><div class="s">Time Lies About What It's Made Of</div></div>
+      <div class="mm-node" style="top:2%; left:calc(50% - 54px); border-color:#B8860B;"><div class="cat" style="color:#B8860B;">TRANSMUTATION</div><div class="catkr">변형</div></div>
+      <div class="mm-kw" style="top:-2%; left:8%;">소재 배신</div>
+      <div class="mm-kw" style="top:10%; left:6%;">액체금속</div>
+      <div class="mm-kw" style="top:-2%; right:8%;">젤리</div>
+      <div class="mm-node" style="top:26%; right:1%; border-color:#B23B3B;"><div class="cat" style="color:#B23B3B;">UNCANNY<br>DOUBT</div><div class="catkr">불신</div></div>
+      <div class="mm-kw" style="top:18%; right:22%;">인지정지</div>
+      <div class="mm-kw" style="top:40%; right:0%;">착시</div>
+      <div class="mm-node" style="bottom:26%; right:1%; border-color:#2454C7;"><div class="cat" style="color:#2454C7;">WONDER</div><div class="catkr">경이</div></div>
+      <div class="mm-kw" style="bottom:18%; right:22%;">매혹</div>
+      <div class="mm-kw" style="bottom:40%; right:0%;">소유욕</div>
+      <div class="mm-node" style="bottom:2%; left:calc(50% - 54px); border-color:#1A1A1A;"><div class="cat" style="color:#1A1A1A;">SOUND<br>(ASMR)</div><div class="catkr">청각</div></div>
+      <div class="mm-kw" style="bottom:-2%; left:8%;">유체음</div>
+      <div class="mm-kw" style="bottom:-2%; right:8%;">매낙하다름</div>
+      <div class="mm-node" style="bottom:26%; left:1%; border-color:#8C8C8C;"><div class="cat" style="color:#8C8C8C;">ART OBJECT</div><div class="catkr">조형작품</div></div>
+      <div class="mm-kw" style="bottom:18%; left:22%;">소장욕구</div>
+      <div class="mm-kw" style="bottom:40%; left:0%;">리미티드</div>
+      <div class="mm-node" style="top:26%; left:1%; border-color:#FDB833;"><div class="cat" style="color:#FDB833;">GEN Z ×<br>ARTISTIC</div><div class="catkr">타깃</div></div>
+      <div class="mm-kw" style="top:18%; left:22%;">예술감성</div>
+      <div class="mm-kw" style="top:40%; left:0%;">인테리어</div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Brand Direction -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Brand Direction</span><span class="slide16-note">각 축에서 GRAIN이 위치해야 한다고 생각하는 지점을 확인해주세요</span></div>
+    <div>
+      <div class="bd-axis"><div class="bd-idx">01</div><div class="bd-label">확신을 주는<small>단정문 카피</small></div><div class="bd-line"><div></div><div></div><div></div><div></div><div></div><div class="active"></div><div></div></div><div class="bd-label right">의문을 남기는<small>역설·질문형 카피</small></div></div>
+      <div class="bd-axis"><div class="bd-idx">02</div><div class="bd-label">기능하는 도구</div><div class="bd-line"><div class="active"></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="bd-label right">소장하는 조형작품</div></div>
+      <div class="bd-axis"><div class="bd-idx">03</div><div class="bd-label">예측 가능한 물성</div><div class="bd-line"><div></div><div></div><div></div><div></div><div></div><div></div><div class="active"></div></div><div class="bd-label right">배신하는 물성</div></div>
+      <div class="bd-axis"><div class="bd-idx">04</div><div class="bd-label">시각 중심<small>사진·모션</small></div><div class="bd-line"><div></div><div></div><div class="active"></div><div></div><div></div><div></div><div></div></div><div class="bd-label right">청각 통합<small>ASMR 사운드 우선</small></div></div>
+      <div class="bd-axis"><div class="bd-idx">05</div><div class="bd-label">그로테스크·공포</div><div class="bd-line"><div></div><div></div><div></div><div class="active"></div><div></div><div></div><div></div></div><div class="bd-label right">경이·매혹</div></div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Graphic Motif (corrected — all unique images) -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Graphic motif</span><span class="slide16-note">이 브랜드의 핵심에 가장 가까운 방향을 선택해주세요</span></div>
+    <div class="motif-row">
+      <div class="motif-col">
+        <div class="motif-label" style="color:#B8860B;">A · Slow (Jelly)</div>
+        <div class="motif-imgs">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140322_4c741ee4-45a5-4222-99af-42815c4c71a4.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140324_7bb4bc9d-ab94-46ae-b018-05174d3a56be.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143443_bd09afc7-142b-4d51-8ddb-2fa4678ec892.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143453_8e719eca-60fb-4115-b78f-f35a51e8f51f.png">
+        </div>
+      </div>
+      <div class="motif-col">
+        <div class="motif-label" style="color:#8C8C8C;">B · Fast (Liquid Chrome)</div>
+        <div class="motif-imgs">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140323_3f636db2-87fc-4ea8-b995-c391d2ca35fd.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140327_0169ab56-c416-40b8-8b0c-093d4463df9b.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143444_4bc8f400-dade-410c-b0a5-5ee6a3d65ec8.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143445_4c3284c7-17b8-4c4a-9cdb-5f1aa3be5bd6.png">
+        </div>
+      </div>
+      <div class="motif-col">
+        <div class="motif-label" style="color:#1A1A1A;">C · Heavy (Ferrofluid)</div>
+        <div class="motif-imgs">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140326_e48dd5bf-5c24-45f0-8f60-5706275c2442.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143446_4c24369c-09b9-4605-b875-5da4ab1cf8d3.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_143447_9f98b080-54d3-44d4-9f54-fb9188fd4423.png">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_140327_0169ab56-c416-40b8-8b0c-093d4463df9b.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Competitor Research (art/collectible market) -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">Competitor Research</span><span class="slide16-note">리미티드 아트토이·조형 콜렉터블 시장</span></div>
+    <div class="cr-grid">
+      <div class="cr-card"><div class="cr-logo">KAWS</div><div class="cr-cat">아트토이 콜렉터블</div><div class="cr-desc">리미티드 피규어, 갤러리+스트리트 교차 소장 시장</div></div>
+      <div class="cr-card"><div class="cr-logo" style="font-family:cursive;">Takashi Murakami</div><div class="cr-cat">아트 오브제</div><div class="cr-desc">팝아트 조형물, 컬렉터블 피규어화</div></div>
+      <div class="cr-card"><div class="cr-logo">Daniel Arsham</div><div class="cr-cat">조형 오브제</div><div class="cr-desc">"침식된 미래 유물" 컨셉의 캐스팅 조형 작품</div></div>
+      <div class="cr-card"><div class="cr-logo">MSCHF</div><div class="cr-cat">컨셉추얼 드롭</div><div class="cr-desc">예측 불가능한 소재/컨셉 드롭으로 화제성 창출</div></div>
+      <div class="cr-card"><div class="cr-logo" style="letter-spacing:0.05em;">Superplastic</div><div class="cr-cat">디지털+피지컬 아트토이</div><div class="cr-desc">Gen Z 타깃 리미티드 피규어 드롭 문화</div></div>
+      <div class="cr-card"><div class="cr-logo">Objects of Common Interest</div><div class="cr-cat">조형 오브제 디자인</div><div class="cr-desc">유기적 실리콘/글라스 조형, 갤러리+리테일 교차</div></div>
+    </div>
+    <p style="font-size:10.5px; color:#999; margin-top:10px;">※ 추가 리서치 필요 — 이 6곳은 방향성 참고용, 출처 상세 검증은 다음 라운드</p>
+  </div>
+
+</div>
+</body>
+</html>
