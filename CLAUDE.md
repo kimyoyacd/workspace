@@ -28,13 +28,19 @@
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   ├── list-deck-design/
-│   └── hyo-manus/         # HYO MANUS 브랜드 제안 자동화 (SKILL.md + html-template.md)
+│   ├── hyo-manus/         # HYO MANUS 브랜드 제안 자동화 (SKILL.md + html-template.md)
+│   ├── dumbify/           # 콘텐츠 쉽게 쓰기 (인지 부담 절감)
+│   ├── storytelling/      # 내러티브·릴스 대본 구조화
+│   ├── viral-hooks/       # 첫 문장·훅 작성
+│   ├── anti-ai-writing/   # AI 티 제거·구체성 강화 필터
+│   └── voice-dna/         # 개인 보이스 프로필 생성
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
-│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   ├── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   └── ux-writing.md     # UX 라이팅 레퍼런스 (토스·refeeel·타이포 위계)
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -43,7 +49,7 @@
 - 새 스킬: `.claude/skills/<스킬명>/SKILL.md` 형식으로 추가
 - 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
 
-## 현재 등록된 에이전트 (26종 · 7그룹 / 2 대기)
+## 현재 등록된 에이전트 (27종 · 7그룹 / 2 대기)
 > 그룹은 카테고리 분류. 실행은 컨텍스트 기반 — 특히 ④ 검수 게이트는 어느 단계에서든 상황에 맞게 발동.
 
 **① 리서치** — 정보 수집·검증 (전략 진입 전 필수 게이트)
@@ -80,7 +86,8 @@
 - `hiring-radar` (채용 레이더) — 🔘 대기 — 증원 파이프라인
 - `vendor-radar` (벤더 레이더) — 🔘 대기 — 외주 풀·외주비
 
-**⑦ 커뮤니케이션** — 메일·회의록·발송 QC
+**⑦ 커뮤니케이션** — 카피·메일·회의록·발송 QC
+- `copy-writer` (카피라이터) — 카테고리·톤별 카피 작성(핀테크·게임·B2B·감성). viral-hooks·storytelling·anti-ai-writing 내장
 - `mail-drafter` (메일 초안 작성) — 외부 메일·회신·제안 메시지 초안 생성. tone-guardian 자동 연계
 - `meeting-logger` (회의록 작성) — 메모·녹취→구조화 회의록. 액션아이템·담당자·기한 추출
 - `tone-guardian` (톤 가디언) — 회신·메일 초안 톤·매너 교정(발송 전 자동)
@@ -91,3 +98,12 @@
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
 - `hyo-manus` — HYO MANUS 브랜드 제안 자동화 (1차→Gate1→2차→Gate2→3차→Final Deck, HTML 체크포인트 생성)
+- `dumbify` — 콘텐츠 읽기 난도 절감 (중2 수준 목표, 전문용어·복잡문 제거)
+- `storytelling` — 릴스·영상 대본·내러티브 구조화 (but/therefore 루프, 라스트 댑)
+- `viral-hooks` — 모든 콘텐츠 첫 문장 최적화 (주제 명료성 + 정확한 호기심)
+- `anti-ai-writing` — AI 티 제거·구체성 강화 최종 필터 (부정 병렬·금지 어휘 검출)
+- `voice-dna` — 개인 보이스 프로필 생성 (글 20개 → voice-dna.md 저장)
+
+## HTML 산출물 생성 원칙
+- 타이포·레이아웃 위계: `.claude/library/ux-writing.md` 섹션 6 참조
+- 기준: Display(Waldenburg 300) + Body(Inter), Warm Stone 배경, pill 버튼, 다층 shadow

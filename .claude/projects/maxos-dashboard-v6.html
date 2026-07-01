@@ -531,15 +531,15 @@ body {
     <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · <span id="sync-sub">노션/구글시트 실시간 연동 초기화 중...</span></div>
   </div>
   <div class="header-right">
-    <div class="head-stat"><div class="n">26</div><div class="l">에이전트</div></div>
+    <div class="head-stat"><div class="n">27</div><div class="l">에이전트</div></div>
     <div class="head-divider"></div>
-    <div class="head-stat"><div class="n">2</div><div class="l">스킬</div></div>
+    <div class="head-stat"><div class="n">7</div><div class="l">스킬</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n" id="stat-projects">—</div><div class="l">진행 프로젝트</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n" id="stat-util">—</div><div class="l">평균 가동률</div></div>
     <div class="head-divider"></div>
-    <div class="head-badge" id="sync-badge">● 연결 중... · v7</div>
+    <div class="head-badge" id="sync-badge">● 연결 중... · v8</div>
   </div>
 </div>
 
@@ -547,10 +547,10 @@ body {
 <div class="nav">
   <div class="tab active" onclick="go('org',this)">조직도</div>
   <div class="tab" onclick="go('projects',this)">프로젝트 현황</div>
-  <div class="tab" onclick="go('trend',this)">디자인 트렌드 보드</div>
+  <div class="tab" onclick="go('team',this)">MAX실 9명</div>
   <div class="tab" onclick="go('overhead',this)">추가투입 위험</div>
   <div class="tab" onclick="go('clients',this)">클라이언트 레이더</div>
-  <div class="tab" onclick="go('team',this)">MAX실 9명</div>
+  <div class="tab" onclick="go('trend',this)">디자인 트렌드 보드</div>
   <div class="tab" onclick="go('brand',this)">브랜드 제안</div>
   <div class="tab" onclick="go('guidelines',this)">CLAUDE.md 지침</div>
   <div class="tab" onclick="go('manual',this)">사용설명서</div>
@@ -561,11 +561,11 @@ body {
 <!-- ══════════════ TAB 1: 조직도 ══════════════ -->
 <div id="sect-org" class="section active">
   <h2 class="section-title">에이전트 조직도</h2>
-  <p class="section-desc">메인 세션(허브) 아래 26개 에이전트 · 7그룹 (2 대기) + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design 스킬. 아래 섹션은 클릭해서 펼치기.</p>
+  <p class="section-desc">메인 세션(허브) 아래 27개 에이전트 · 7그룹 (2 대기) + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design + AI 라이팅 스킬 5종(dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna). 아래 섹션은 클릭해서 펼치기.</p>
 
   <div class="alert">
     <span class="ic">✅</span>
-    <div><strong>v7 — 에이전트 그룹 7개로 확장 + ⑦ 커뮤니케이션 신설.</strong> <code>mail-drafter</code>(메일 초안) · <code>meeting-logger</code>(회의록) 신규 추가. <code>tone-guardian</code> · <code>delivery-gate</code> → ⑦로 이동. <code>hiring-radar</code> · <code>vendor-radar</code> 🔘 대기 전환. 에이전트 총 26종 · 7그룹(2 대기). 조직도 그리드 4+3 배치. GitHub PR #26 업데이트.</div>
+    <div><strong>v8 — copy-writer 에이전트 신규 추가 + AI 라이팅 스킬 5종 통합.</strong> <code>copy-writer</code>(카테고리별 카피라이팅, viral-hooks·storytelling·anti-ai-writing 내장) 신규. <code>dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna</code> 스킬 설치. <code>ux-writing.md</code> 라이브러리 생성(토스·refeeel 참조). 에이전트 총 27종 · 7그룹(2 대기). 탭 순서 정렬: 조직도→프로젝트현황→MAX실9명→추가투입위험→클라이언트레이더→트렌드→브랜드제안→지침→사용설명서.</div>
   </div>
   <div class="alert" style="background:#F0F9FF;border-color:#BAE6FD;border-left-color:#0284C7;margin-top:8px;">
     <span class="ic">✅</span>
@@ -580,7 +580,7 @@ body {
     <div class="hub-node">
       <div class="label">MAIN SESSION</div>
       <div class="name">허브 (김효정)</div>
-      <div class="sub">오케스트레이터 · 26명 에이전트 + hyo-manus·list-deck-design 스킬 호출 허브</div>
+      <div class="sub">오케스트레이터 · 27명 에이전트 + 스킬 7종(hyo-manus·list-deck-design·dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna) 호출 허브</div>
     </div>
 
     <div class="org-row">
@@ -771,9 +771,15 @@ body {
 
       <!-- ⑦ 커뮤니케이션 -->
       <div class="col col-7">
-        <div class="col-head" style="background:linear-gradient(135deg,#1e40af,#3b82f6);">⑦ 커뮤니케이션<span class="count">4</span></div>
-        <div class="col-tagline">메일 · 회의록 · 발송 QC</div>
+        <div class="col-head" style="background:linear-gradient(135deg,#1e40af,#3b82f6);">⑦ 커뮤니케이션<span class="count">5</span></div>
+        <div class="col-tagline">카피 · 메일 · 회의록 · 발송 QC</div>
         <div class="col-body">
+          <div class="card" style="border-left-color:#3b82f6;">
+            <div class="card-name-row"><span class="card-name">카피라이터</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">✍ 신규</span></div>
+            <div class="card-slug">copy-writer</div>
+            <div class="card-role">카테고리·톤별 카피 작성. 핀테크·게임·B2B·감성 4종. viral-hooks·storytelling·anti-ai-writing 내장.</div>
+            <div class="card-trig"><strong>호출:</strong> "카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구"</div>
+          </div>
           <div class="card" style="border-left-color:#3b82f6;">
             <div class="card-name-row"><span class="card-name">메일 초안 작성</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">✉ 신규</span></div>
             <div class="card-slug">mail-drafter</div>
@@ -1000,11 +1006,11 @@ body {
 <!-- ══════════════ TAB 3: CLAUDE.md 지침 ══════════════ -->
 <div id="sect-guidelines" class="section">
   <h2 class="section-title">CLAUDE.md 주요 지침 현황</h2>
-  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 26/30개 활성 (2 대기 포함) + <strong>hyo-manus</strong> · <strong>list-deck-design</strong> 스킬 2개. ✅ CLAUDE.md 실제 생성 완료.</p>
+  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 27/30개 활성 (2 대기 포함) + 스킬 7종. ✅ CLAUDE.md 실제 생성 완료.</p>
 
   <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
     <span class="ic">⚠️</span>
-    <div><strong>에이전트 수</strong> — 현재 <strong>26/30개 (잔여 4)</strong>. 2개 대기(hiring-radar·vendor-radar). 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬: <code>hyo-manus</code>(브랜드 제안 자동화) · <code>list-deck-design</code>(리포트 HTML).</div>
+    <div><strong>에이전트 수</strong> — 현재 <strong>27/30개 (잔여 3)</strong>. 2개 대기(hiring-radar·vendor-radar). 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬 7종: <code>hyo-manus</code> · <code>list-deck-design</code> · <code>dumbify</code> · <code>storytelling</code> · <code>viral-hooks</code> · <code>anti-ai-writing</code> · <code>voice-dna</code>.</div>
   </div>
 
   <div class="guidelines-grid">
@@ -1044,7 +1050,7 @@ body {
     <div class="guide-card">
       <div class="guide-card-title">운영 핵심 룰</div>
       <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>시트 쓰기 금지</strong> — 에이전트는 read-only. 쓰기는 사용자 직접</div></div>
-      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>에이전트 총수 ≤ 30개</strong> — 현재 26개(활성 24·대기 2). 잔여 4. 오케스트레이션은 스킬로(서브에이전트는 서브에이전트 호출 불가)</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>에이전트 총수 ≤ 30개</strong> — 현재 27개(활성 25·대기 2). 잔여 3. 오케스트레이션은 스킬로(서브에이전트는 서브에이전트 호출 불가)</div></div>
       <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>CLAUDE.md ≤ 100줄</strong> — 초과 시 library/로 분산</div></div>
       <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>에이전트 파일 각 ≤ 100줄</strong> — 상세 내용은 library/로. 라우팅만 유지</div></div>
       <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>새 프로젝트 폴더 생성 전</strong> — projects/ 유사 폴더 중복 점검 필수</div></div>
@@ -1174,6 +1180,7 @@ body {
         <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
         <!-- ⑦ 커뮤니케이션 (신규) -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">copy-writer ✦</td><td style="padding:7px 12px;color:var(--ink2);">"카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구" / "말투 맞춰 써줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:#B45309;">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
@@ -2209,10 +2216,10 @@ function setSyncStatus(state, info) {
   const now   = info || '';
   if (!badge) return;
   badge.className = 'head-badge ' + (state === 'ok' ? 'sync-ok' : state === 'error' ? 'sync-err' : state === 'offline' ? 'sync-warn' : '');
-  if (state === 'ok')      { badge.textContent = '● 실시간 · 갱신 ' + now + ' · v6'; if (sub) sub.textContent = '노션/구글시트 실시간 연동 · ' + now + ' 기준'; }
-  else if (state === 'error')   { badge.textContent = '● 연결 오류 · v6'; if (sub) sub.textContent = '연결 실패: ' + now + ' — 캐시 데이터 표시 중'; }
-  else if (state === 'offline') { badge.textContent = '● 오프라인 모드 · v6'; if (sub) sub.textContent = 'APPS_SCRIPT_URL 미설정 — apps-script-backend.gs 배포 후 URL 입력 필요'; }
-  else                          { badge.textContent = '● 연결 중... · v6'; }
+  if (state === 'ok')      { badge.textContent = '● 실시간 · 갱신 ' + now + ' · v7'; if (sub) sub.textContent = '노션/구글시트 실시간 연동 · ' + now + ' 기준'; }
+  else if (state === 'error')   { badge.textContent = '● 연결 오류 · v7'; if (sub) sub.textContent = '연결 실패: ' + now + ' — 캐시 데이터 표시 중'; }
+  else if (state === 'offline') { badge.textContent = '● 오프라인 모드 · v7'; if (sub) sub.textContent = 'APPS_SCRIPT_URL 미설정 — apps-script-backend.gs 배포 후 URL 입력 필요'; }
+  else                          { badge.textContent = '● 연결 중... · v7'; }
 }
 
 // ── 헤더 통계 업데이트 ────────────────────────────────────
@@ -2363,6 +2370,12 @@ async function fetchLiveData() {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_')) {
     setSyncStatus('offline');
     renderTeam([]);
+    const kanbanEl = document.getElementById('projects-kanban-live');
+    if (kanbanEl) kanbanEl.innerHTML = '<div class="live-loading" style="height:80px;color:var(--ink3);">📡 오프라인 모드 — APPS_SCRIPT_URL을 설정하면 Notion 프로젝트 데이터가 실시간으로 표시됩니다<br><span style="font-size:10px;margin-top:6px;display:block;">apps-script-backend.gs를 배포 후 APPS_SCRIPT_URL 상수에 URL을 입력하세요</span></div>';
+    const lastUpdEl = document.getElementById('last-updated');
+    if (lastUpdEl) lastUpdEl.textContent = '⚠️ APPS_SCRIPT_URL 미설정 — 실시간 데이터 비활성화';
+    const summaryEl = document.getElementById('projects-summary');
+    if (summaryEl) summaryEl.textContent = '오프라인';
     return;
   }
   setSyncStatus('loading');
