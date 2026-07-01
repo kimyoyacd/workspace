@@ -91,7 +91,7 @@ function getProjects() {
     '홀딩':'hold', '관심':'interest'
   };
 
-  const filter = { or: ACTIVE.map(function(s) { return { property:'상태', status:{ equals:s } }; }) };
+  const filter = { or: ACTIVE.map(function(s) { return { property:'상태', select:{ equals:s } }; }) };
   const sorts  = [
     { property:'상태',  direction:'ascending'  },
     { property:'날짜',  direction:'descending' }
@@ -104,7 +104,7 @@ function getProjects() {
 
     var titleArr = ((p['업무 명'] || p['이름'] || {}).title || []);
     var title    = titleArr.length ? titleArr[0].plain_text : '(제목 없음)';
-    var status   = (p['상태']    || {}).status    ? p['상태'].status.name    : '';
+    var status   = (p['상태']    || {}).select    ? p['상태'].select.name    : '';
     var diff     = (p['난이도']   || {}).select    ? p['난이도'].select.name   : '';
     var cats     = ((p['카테고리'] || {}).multi_select || []).map(function(c) { return c.name; });
     var start    = p['날짜']       && p['날짜'].date       ? p['날짜'].date.start       : '';
