@@ -533,6 +533,8 @@ body {
   <div class="header-right">
     <div class="head-stat"><div class="n">24</div><div class="l">에이전트</div></div>
     <div class="head-divider"></div>
+    <div class="head-stat"><div class="n">2</div><div class="l">스킬</div></div>
+    <div class="head-divider"></div>
     <div class="head-stat"><div class="n" id="stat-projects">—</div><div class="l">진행 프로젝트</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n" id="stat-util">—</div><div class="l">평균 가동률</div></div>
@@ -559,18 +561,22 @@ body {
 <!-- ══════════════ TAB 1: 조직도 ══════════════ -->
 <div id="sect-org" class="section active">
   <h2 class="section-title">에이전트 조직도</h2>
-  <p class="section-desc">메인 세션(허브) 아래 24개 에이전트 · 7개 그룹 + brand-proposal 스킬(제안 파이프라인). 아래 섹션은 클릭해서 펼치기.</p>
+  <p class="section-desc">메인 세션(허브) 아래 24개 에이전트 · 7개 그룹 + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design 스킬. 아래 섹션은 클릭해서 펼치기.</p>
 
   <div class="alert">
     <span class="ic">✅</span>
-    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + 브랜드 제안 파이프라인(brand-proposal <strong>스킬</strong>) + 트리거 스텁. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트 · 잔여 1)</div>
+    <div><strong>v6 — HYO MANUS 브랜드 제안 자동화 시스템 구축.</strong> <code>hyo-manus</code> 스킬 신규 등록 + HYO MANUS 1차/2차/3차 라이브러리 정비 + HTML 체크포인트 파이프라인. LUNE 브랜드 샘플 완성 (36슬라이드). GitHub <strong>PR #26</strong>(draft).</div>
+  </div>
+  <div class="alert" style="background:#F4F9F5;border-color:#D4E5D9;border-left-color:#2D7A4F;margin-top:0;">
+    <span class="ic">✅</span>
+    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + brand-proposal 스킬. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트)</div>
   </div>
 
   <div class="tree-wrap">
     <div class="hub-node">
       <div class="label">MAIN SESSION</div>
       <div class="name">허브 (김효정)</div>
-      <div class="sub">오케스트레이터 · 24명 에이전트 + 스킬 호출 허브</div>
+      <div class="sub">오케스트레이터 · 24명 에이전트 + hyo-manus·list-deck-design 스킬 호출 허브</div>
     </div>
 
     <div class="org-row">
@@ -868,7 +874,8 @@ body {
   </div>
 
   <div class="footnote">
-    <strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong>&nbsp; 24개 에이전트 실제 생성 + 라우터 + SoT + 브랜드 제안 파이프라인(스킬) + 트리거 스텁. 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). GitHub PR #11(draft). 캡 24/25(잔여 1).
+    <strong>v6 — HYO MANUS 자동화 시스템 추가.</strong>&nbsp; hyo-manus 스킬(1차→Gate→2차→Gate→3차→Final Deck) + HTML 체크포인트 자동 생성. list-deck-design 스킬 기존 유지. 스킬 총 2개. 등록 에이전트 24개(캡 25, 잔여 1). GitHub PR #26(draft). ·&nbsp;
+    <strong>v5 — 9탭 통합 OS.</strong>&nbsp; 24개 에이전트 + 라우터 + SoT + brand-proposal(구버전 스킬). GitHub PR #11(draft).
   </div>
 </div><!-- /sect-org -->
 
@@ -977,11 +984,11 @@ body {
 <!-- ══════════════ TAB 3: CLAUDE.md 지침 ══════════════ -->
 <div id="sect-guidelines" class="section">
   <h2 class="section-title">CLAUDE.md 주요 지침 현황</h2>
-  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 24/25개 (잔여 1) + brand-proposal 스킬. ✅ CLAUDE.md 실제 생성 완료 — repo 루트(브랜치 claude/awesome-planck-kya29w).</p>
+  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 24/25개 (잔여 1) + <strong>hyo-manus</strong> · <strong>list-deck-design</strong> 스킬 2개. ✅ CLAUDE.md 실제 생성 완료.</p>
 
   <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
     <span class="ic">⚠️</span>
-    <div><strong>에이전트 수</strong> — 현재 <strong>24/25개 (잔여 1)</strong>. 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 제안 파이프라인 = brand-proposal 스킬.</div>
+    <div><strong>에이전트 수</strong> — 현재 <strong>24/25개 (잔여 1)</strong>. 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬: <code>hyo-manus</code>(브랜드 제안 자동화) · <code>list-deck-design</code>(리포트 HTML).</div>
   </div>
 
   <div class="guidelines-grid">
@@ -1861,51 +1868,113 @@ tools: Read, Glob, Grep, WebSearch
 
 <!-- ══════════════ TAB 9: 브랜드 제안 ══════════════ -->
 <div id="sect-brand" class="section">
-  <h2 class="section-title">브랜드 제안 — Hyojung Guided</h2>
-  <p class="section-desc">RFP·아이디어만 와도 단계별 질문(단계당 3개 이하)으로 진행하는 질문형 오케스트레이터. <code>brand-proposal</code> 스킬 + <code>.claude/library/brand-pipeline/</code>. 최종 HTML 슬라이드·이미지 프롬프트는 Stage 3 게이트 통과 후에만 생성.</p>
+  <h2 class="section-title">HYO MANUS 브랜드 제안 자동화</h2>
+  <p class="section-desc"><code>hyo-manus</code> 스킬 · <code>.claude/library/brand-proposal/</code> · HTML 체크포인트 자동 생성. 인테이크만 입력하면 1차→Gate1→2차→Gate2→3차→Final Deck 자동 진행. Final Deck은 <code>slide_generation_ready: true</code> 확인 후에만 생성.</p>
 
   <div class="alert">
-    <span class="ic">🧭</span>
-    <div><strong>작동:</strong> 현재 단계 선언 → 질문 3개 → 답변 → 산출 → 4렌즈 자체검토 → Gate(🟢🟡🔴) → <code>project_state</code> 갱신 → 🟢이면 다음 단계. <strong>Gate 🔴이면 진행 차단(누락 0).</strong></div>
+    <span class="ic">🚀</span>
+    <div><strong>트리거:</strong> <code>"hyo manus 시작"</code> 또는 <code>"/hyo-manus"</code> — 브랜드명·카테고리·타겟·가격대·목표만 있으면 자동 진행. Gate 통과 시 <code>.claude/projects/YYYYMM_브랜드명_hyo-manus.html</code> 체크포인트 자동 저장.</div>
   </div>
 
-  <!-- STAGE FLOW -->
-  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">단계 흐름 · 게이트 0~5</h3>
-  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:28px;">
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 0</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Intake</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">카테고리·타깃·산출물·금지 인상</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#E5F2E9;color:#1F5A38;">Gate 0 · Brief</div></div>
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 1</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Research</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">경쟁 30·포지셔닝 맵·빈자리</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#E5F2E9;color:#1F5A38;">Gate 1 · Gap</div></div>
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 1.5</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Strategic POV</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">한 문장 관점 + 3 키워드 잠금</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#FFF6E5;color:#7A5010;">Gate 2 · POV</div></div>
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 2</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Visual Identity</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">시각 DNA·컨셉 6·행동 시스템</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#FFF6E5;color:#7A5010;">Gate 3 · System</div></div>
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 2.5</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Concept Select</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">A/B/Alt 또는 단일 압축</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#FFF6E5;color:#7A5010;">Gate 4 · Risk</div></div>
-    <div class="card"><div style="font-size:9px;font-weight:800;color:var(--ink3);">STAGE 3</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">Brand System</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">가치·카피·기호·이미지 프롬프트</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#E5F2E9;color:#1F5A38;">Gate 5 · Deck</div></div>
-    <div class="card" style="border-color:#1A1A1A;"><div style="font-size:9px;font-weight:800;color:var(--ink3);">FINAL</div><div style="font-size:12px;font-weight:800;margin:2px 0 4px;">HTML Export</div><div style="font-size:10px;color:var(--ink3);line-height:1.4;">이미지 프롬프트 + 슬라이드 HTML</div><div style="margin-top:6px;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;background:#FDECEC;color:#B23B3B;">사용자 OK 후 발송</div></div>
+  <!-- HYO MANUS PIPELINE -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">HYO MANUS 자동화 파이프라인</h3>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:28px;">
+    <div class="card" style="border-left:3px solid var(--sig);">
+      <div style="font-size:9px;font-weight:800;color:var(--sig);letter-spacing:1px;">HYO MANUS 1차</div>
+      <div style="font-size:12px;font-weight:800;margin:2px 0 4px;">리서치 &amp; 포지셔닝</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.5;">경쟁사 30개 매트릭스<br>클러스터링 5그룹<br>포지셔닝 맵 3안→1안<br>화이트스페이스<br>BX 프롬프트 팩</div>
+      <div style="margin-top:8px;font-size:9px;font-weight:800;padding:2px 8px;border-radius:3px;background:#E5F2E9;color:#1F5A38;display:inline-block;">Gate 1 통과 → 2차</div>
+    </div>
+    <div class="card" style="border-left:3px solid #B0B0B0;display:flex;align-items:center;justify-content:center;min-height:140px;">
+      <div style="text-align:center;">
+        <div style="font-size:18px;margin-bottom:4px;">📄</div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink3);">HTML 체크포인트 1<br>자동 저장</div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--sig);">
+      <div style="font-size:9px;font-weight:800;color:var(--sig);letter-spacing:1px;">HYO MANUS 2차</div>
+      <div style="font-size:12px;font-weight:800;margin:2px 0 4px;">비주얼 아이덴티티</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.5;">Visual Identity DNA<br>경쟁 비주얼 코드 맵<br>컨셉 테리토리 6개<br>Client×Mood Matrix<br>컨셉 숏리스트 2~3개</div>
+      <div style="margin-top:8px;font-size:9px;font-weight:800;padding:2px 8px;border-radius:3px;background:#E5F2E9;color:#1F5A38;display:inline-block;">Gate 2 통과 → 3차</div>
+    </div>
+    <div class="card" style="border-left:3px solid #B0B0B0;display:flex;align-items:center;justify-content:center;min-height:140px;">
+      <div style="text-align:center;">
+        <div style="font-size:18px;margin-bottom:4px;">📄</div>
+        <div style="font-size:9px;font-weight:700;color:var(--ink3);">HTML 체크포인트 2<br>자동 저장</div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #1A1A1A;">
+      <div style="font-size:9px;font-weight:800;color:#1A1A1A;letter-spacing:1px;">HYO MANUS 3차</div>
+      <div style="font-size:12px;font-weight:800;margin:2px 0 4px;">브랜드 시스템</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.5;">Brand Board<br>Value Cards 3~5개<br>Copy Headline System<br>Symbol Association Map<br>CI/BI Audit</div>
+      <div style="margin-top:8px;font-size:9px;font-weight:800;padding:2px 8px;border-radius:3px;background:#1A1A1A;color:#fff;display:inline-block;">slide_generation_ready → Final Deck</div>
+    </div>
   </div>
 
-  <!-- DESIGNER LENS -->
-  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">디자이너 렌즈 6원칙 (전 단계 공통)</h3>
+  <!-- GATE 자동 체크 예시 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">Gate 자동 체크 (인라인 표시)</h3>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
-    <div class="card"><div class="card-name">01 · Core Value First</div><div class="card-role">비주얼보다 먼저 핵심가치 + 전략 한 문장을 잠근다.</div></div>
-    <div class="card"><div class="card-name">02 · Own Lens</div><div class="card-role">경쟁사 언어가 아니라 브랜드만의 관찰 렌즈로 재해석.</div></div>
-    <div class="card"><div class="card-name">03 · Behavior System</div><div class="card-role">모션·가변 타입·반응형·생성 규칙까지 확장.</div></div>
-    <div class="card"><div class="card-name">04 · Human Touch</div><div class="card-role">AI 생성물에 의도적 불완전성·손맛을 설계.</div></div>
-    <div class="card"><div class="card-name">05 · Risk Alignment</div><div class="card-role">과감한 차별화가 고객 기대·헤리티지와 정렬될 때만 채택.</div></div>
-    <div class="card"><div class="card-name">06 · Preserve / Destroy</div><div class="card-role">보존할 것과 파괴할 것을 명확히 나눈다.</div></div>
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 1 자동 체크]</strong><br>
+      ✅ 경쟁 브랜드 30개 이상<br>
+      ✅ 직접·간접·감성 경쟁 포함<br>
+      ✅ 포지셔닝 맵 축 임의 아님<br>
+      ✅ 빈자리 설명 가능<br>
+      ✅ 포지셔닝 전략 한 문장<br>
+      ✅ 비주얼 프롬프트 연결<br>
+      ✅ 출처 없는 수치 없음<br>
+      <strong>→ Gate 1 통과 · 2차 자동 진입</strong>
+    </div>
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 2 자동 체크]</strong><br>
+      ✅ Visual DNA 6렌즈 완성<br>
+      ✅ 컨셉 테리토리 6개 정의<br>
+      ✅ Client×Mood Matrix 채움<br>
+      ✅ Brutalist 적용 판단 완료<br>
+      ✅ 숏리스트 2~3개 선정<br>
+      ✅ 경쟁 비주얼 코드 맵 완성<br>
+      ✅ stage_2_state JSON 생성<br>
+      <strong>→ Gate 2 통과 · 3차 자동 진입</strong>
+    </div>
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 3 자동 체크]</strong><br>
+      ✅ Brand Board 전항목 채움<br>
+      ✅ Value Cards 3~5개 완성<br>
+      ✅ Copy Headline 6유형<br>
+      ✅ Symbol Association Map<br>
+      ✅ CI/BI Audit 6개 이상<br>
+      ✅ slide_generation_ready: true<br>
+      ✅ Director Final Check 완료<br>
+      <strong>→ Gate 3 통과 · Final Deck 생성</strong>
+    </div>
   </div>
 
   <!-- 단계별 호출 에이전트 -->
-  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">단계 ↔ 호출 에이전트 (신규 0, 재사용)</h3>
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">단계 ↔ 호출 에이전트</h3>
   <table class="tier-table" style="margin-bottom:24px;">
-    <tr><th>단계</th><th>호출 에이전트</th></tr>
-    <tr><td>S1 Research</td><td>rfp-analyst · market-research · fact-checker</td></tr>
-    <tr><td>S1.5 POV</td><td>cold-critic · creative-director</td></tr>
-    <tr><td>S2 Visual</td><td>brainstormer · reference-curator · moodboard-builder · design-trend-radar</td></tr>
-    <tr><td>S2.5 Select</td><td>review-panel · design-critique</td></tr>
-    <tr><td>S3 System / 덱</td><td>design-system-guardian · creative-director · visual-generator · list-deck-design(스킬)</td></tr>
-    <tr><td>출구 검수</td><td>fact-checker → cold-critic → delivery-gate → 사용자 OK</td></tr>
+    <tr><th>단계</th><th>호출 에이전트</th><th>산출물 키</th></tr>
+    <tr><td>HYO MANUS 1차</td><td>rfp-analyst · market-research · fact-checker · concept-director</td><td>stage_1_state JSON</td></tr>
+    <tr><td>HYO MANUS 2차</td><td>brainstormer · reference-curator · moodboard-builder · design-trend-radar · design-critique</td><td>stage_2_state JSON</td></tr>
+    <tr><td>HYO MANUS 3차</td><td>design-system-guardian · creative-director · visual-generator · review-panel · delivery-gate</td><td>stage_3_state + Final Deck HTML</td></tr>
+    <tr><td>HTML 체크포인트</td><td>(자동) hyo-manus 스킬 내장</td><td>YYYYMM_브랜드명_hyo-manus.html</td></tr>
   </table>
 
+  <!-- 샘플 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">완성 샘플 — LUNE 브랜드 (2026.07)</h3>
+  <div class="card" style="display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;">
+    <div style="flex:1;">
+      <div style="font-size:11px;font-weight:800;margin-bottom:4px;">LUNE · 젠더뉴트럴 라이프스타일 패션 · 서울</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.6;">타겟: 20–40대 감각적 남녀 · 프리미엄 가격대<br>포지셔닝: Quiet Luxury × Premium (Quiet↔Expressive / Mass↔Premium)<br>선택 컨셉: Lunar Stillness + Material Truth (2 finalist)<br>Final Deck: 36슬라이드 완성 · slide_generation_ready: true</div>
+    </div>
+    <div style="text-align:right;font-size:10px;color:var(--ink4);">
+      <div style="font-weight:800;color:var(--ok);margin-bottom:4px;">✅ 전 단계 완료</div>
+      <div>Gate 1 ✅ Gate 2 ✅ Gate 3 ✅</div>
+      <div style="margin-top:4px;"><code style="font-size:9px;">202607_LUNE_hyo-manus.html</code></div>
+    </div>
+  </div>
+
   <div class="footnote">
-    <strong>예시 탭입니다.</strong>&nbsp; 실제 진행은 Claude Code에서 "브랜드 제안 시작" / "와이드리서치부터 슬라이드까지"라고 말하면 <code>brand-proposal</code> 스킬이 Stage 0부터 질문형으로 구동합니다. 외부 프로세스명 비노출 · 자동 발송 금지 · 최종 HTML은 Stage 3 통과 후에만.
+    <strong>© 효정 브랜드 제안 프로세스 · 외부 배포 금지.</strong>&nbsp; <code>hyo-manus</code> 스킬 트리거: "hyo manus 시작" / "브랜드 제안 자동화" / "/hyo-manus". 1차·2차에서는 절대 Final Deck 미생성 — <code>slide_generation_ready: true</code> 이후에만.
   </div>
 </div><!-- /sect-brand -->
 
