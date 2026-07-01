@@ -49,6 +49,42 @@
   .concept-field b { color: var(--ink); }
   .concept-risk { font-size: 10.5px; color: #B23B3B; margin-top: 4px; }
   @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr; } }
+
+  /* ===== Strategy Slide (full-bleed mood) ===== */
+  .strategy-slide {
+    position: relative;
+    min-height: 620px;
+    color: #fff;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .strategy-slide::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    filter: brightness(0.55);
+  }
+  .strategy-slide::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 55%, transparent 75%);
+  }
+  .strategy-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 340px 1fr; gap: 40px; width: 100%; padding: 56px; }
+  .strategy-label { font-size: 13px; font-weight: 700; opacity: 0.7; margin-bottom: 6px; }
+  .strategy-title { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 28px; line-height: 1.05; }
+  .strategy-field { margin-bottom: 18px; }
+  .strategy-field .fk { font-size: 10px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .strategy-field .fv { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .strategy-field .fd { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+  .strategy-swatches { display: flex; gap: 6px; margin-top: 6px; }
+  .strategy-swatches div { width: 32px; height: 32px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
+  .strategy-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-self: center; }
+  .strategy-visual img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; }
+  .strategy-visual img:first-child { grid-row: span 2; height: 452px; }
+  @media (max-width: 900px) { .strategy-inner { grid-template-columns: 1fr; } .strategy-visual { grid-template-columns: 1fr 1fr; } .strategy-visual img:first-child { height: 220px; grid-row: auto; } }
 </style>
 </head>
 <body>
@@ -343,6 +379,170 @@
         <div class="concept-mood">대담 · 컬렉터블 · 스트리트</div>
         <div class="concept-field">공차 기호를 스트리트웨어 그래픽으로 확장</div>
         <div class="concept-risk">Risk: 럭셔리 톤 훼손 위험 가장 큼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Design Strategy Slides (3방향) ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Design Strategy · 무드보드</div>
+    <h1 class="cat-title">3가지 디자인 전략</h1>
+    <div class="cat-bullets">
+      <div>확정된 브랜딩 전략(안전/차별화/실험적 대안) 각각에 대응하는 그래픽모티프·형태·타이포·컬러&질감</div>
+    </div>
+  </div>
+
+  <!-- Strategy 1: Instrument Grade -->
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105326_a9061e2f-3d19-4b77-81ea-5903ba930038.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Strategy 1 — 안전(메인) · 웹·제품샷</div>
+        <h2 class="strategy-title">Instrument Grade</h2>
+
+        <div class="strategy-field">
+          <div class="fk">Logotype</div>
+          <div class="fv">Suisse Mono Wordmark</div>
+          <div class="fd">공차 표기(±0.02mm)처럼 조판된 모노스페이스 로고타입. 계측 인증서를 연상.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Graphic Motif · Form</div>
+          <div class="fv">Tolerance Grid</div>
+          <div class="fd">±, ⌀, mm 기호에서 파생된 정렬선 그리드. 원형 실루엣+기계 조인트 관절.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Texture · Color</div>
+          <div class="fv">Brushed Steel + Smoke Glass</div>
+          <div class="fd">브러시드 스테인리스 무광 질감과 스모크글라스의 감쇠색.</div>
+          <div class="strategy-swatches">
+            <div style="background:#8C8C8C;"></div><div style="background:#B8B8B0;"></div><div style="background:#2B2A28;"></div><div style="background:#141312;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105348_970a7666-69f9-4802-ae8a-6b32ac2436a6.png" alt="Instrument Grade 제품샷">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065833_7ade4e93-248f-4338-ab51-b004ffdd6291.png" alt="손">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_071652_f315813d-c45a-48d8-bc74-2a874fc0b462.png" alt="브라스 각인 매크로">
+      </div>
+    </div>
+  </div>
+
+  <!-- Strategy 2: Gravity Cut -->
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105333_935f4d1c-8408-4f95-8991-8bc078da4de3.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Strategy 2 — 차별화(보조) · SNS 숏폼</div>
+        <h2 class="strategy-title">Gravity Cut</h2>
+
+        <div class="strategy-field">
+          <div class="fk">Logotype</div>
+          <div class="fv">Grotesk Countdown Mark</div>
+          <div class="fd">스톱워치 타이머 형식의 초대형 넘버링, 낙하 타이머처럼 카운트되는 워드마크.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Graphic Motif · Form</div>
+          <div class="fv">Freeze-Frame Crop</div>
+          <div class="fd">낙하 순간을 초고속 크롭한 파편화 구도. 여백:피사체 6:4 이상의 과감한 크롭.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Texture · Color</div>
+          <div class="fv">Aged Brass + Dark Charcoal</div>
+          <div class="fd">비도금 브라스의 산화 흔적, 스크래치를 의도적으로 노출.</div>
+          <div class="strategy-swatches">
+            <div style="background:#8A6E3F;"></div><div style="background:#C4A25A;"></div><div style="background:#1A1A1A;"></div><div style="background:#EDEAE2;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105354_6f3365a2-bf8a-43b8-8004-f7e929fb3fa0.png" alt="Gravity Cut 낙하순간">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065856_f9a45733-bbf9-4773-b5e9-390548995f15.png" alt="모래 낙하">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065840_ac7a9d9c-3b85-4900-b012-3c5f98b1fc05.png" alt="손 회전">
+      </div>
+    </div>
+  </div>
+
+  <!-- Strategy 3: Field Notes -->
+  <div class="strategy-slide" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105341_63bd9220-0e36-4e37-a1b5-2beecc3c7559.png');">
+    <div class="strategy-inner">
+      <div>
+        <div class="strategy-label">Strategy 3 — 실험적 대안(3순위·보류)</div>
+        <h2 class="strategy-title">Field Notes</h2>
+
+        <div class="strategy-field">
+          <div class="fk">Logotype</div>
+          <div class="fv">Serial Ledger Mark</div>
+          <div class="fd">개체별 고유 시리얼 넘버링 시스템, 항해일지 각주 스타일 모노타입.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Graphic Motif · Form</div>
+          <div class="fv">Logbook Layout</div>
+          <div class="fd">항해일지형 여백 구조, 손글씨 각주가 들어갈 자리를 항상 확보.</div>
+        </div>
+        <div class="strategy-field">
+          <div class="fk">Texture · Color</div>
+          <div class="fv">Brass + Leather + Cream Paper</div>
+          <div class="fd">황동 각인과 가죽 파우치, 문서 느낌의 크림톤 종이질감.</div>
+          <div class="strategy-swatches">
+            <div style="background:#8A6E3F;"></div><div style="background:#2B2A28;"></div><div style="background:#EDEAE2;"></div><div style="background:#C4A25A;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="strategy-visual">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_105403_64eebaec-c773-465b-af41-1b14881ffa7e.png" alt="Field Notes 인증서">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065902_ec5269c2-b65c-4b4e-9371-3718ede3617f.png" alt="모래 매크로">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065913_eb11ac43-0847-4ac5-8cb3-30352eb8cd07.png" alt="황동 텍스처">
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Reference Brand Strategy 연결 ============ -->
+  <div class="cat-card">
+    <div class="cat-label">Reference Connection</div>
+    <h1 class="cat-title" style="font-size:32px;">전략별 레퍼런스 브랜드 & 포지셔닝</h1>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:32px;">
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px;">Strategy 1 — Instrument Grade</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: Craighill · MetaEDC · Studio Neat류</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">정밀 머시닝, 계측 문법. B그룹(기능·정밀 메커니즘)에서 촬영 언어만 계승하고 리추얼 언어는 배제.</div>
+      </div>
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px;">Strategy 2 — Gravity Cut</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: Tom Dixon · Wanwu/Lautie</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">금속 광택의 극적 연출, 협업형 드롭 마케팅에서 SNS 확산 문법만 차용.</div>
+      </div>
+      <div style="background:#fff; border-radius:10px; padding:20px;">
+        <div style="font-weight:800; font-size:16px; margin-bottom:4px;">Strategy 3 — Field Notes</div>
+        <div style="font-size:11px; color:var(--ink3); margin-bottom:12px;">레퍼런스: Assouline · Georg Jensen</div>
+        <div style="font-size:12px; color:var(--ink2); line-height:1.5;">A그룹(장인·소재 럭셔리)의 헤리티지 서사에서 "기록/인증" 요소만 차용, 출판사 소품 톤은 배제.</div>
+      </div>
+    </div>
+
+    <!-- Positioning Map -->
+    <div style="background:#fff; border-radius:12px; padding:32px; position:relative; height:440px;">
+      <div style="font-weight:800; font-size:15px; margin-bottom:16px;">Brand Positioning Map</div>
+      <div style="position:absolute; top:44px; left:32px; right:32px; bottom:60px; border-left:1px solid #ddd; border-bottom:1px solid #ddd;">
+        <span style="position:absolute; top:-20px; left:calc(50% - 20px); font-size:10px; color:var(--ink3);">리추얼소재</span>
+        <span style="position:absolute; bottom:-24px; left:calc(50% - 20px); font-size:10px; color:var(--ink3);">일상소재</span>
+        <span style="position:absolute; top:calc(50% - 8px); left:-58px; font-size:10px; color:var(--ink3); writing-mode:vertical-rl;">장식적</span>
+        <span style="position:absolute; top:calc(50% - 8px); right:-64px; font-size:10px; color:var(--ink3); writing-mode:vertical-rl;">기능적</span>
+
+        <!-- GRAIN goal (empty quadrant, top-right) -->
+        <div style="position:absolute; top:8%; right:8%; text-align:center;">
+          <div style="width:70px; height:70px; border:2px solid #2D7A4F; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; color:#2D7A4F;">GRAIN<br>Goal</div>
+        </div>
+        <!-- Assouline near-fit -->
+        <div style="position:absolute; top:22%; right:22%; font-size:11px; font-weight:700;">Assouline</div>
+        <!-- Hermes -->
+        <div style="position:absolute; top:12%; right:38%; font-size:11px; font-weight:700;">Hermès</div>
+        <!-- bottom right: functional x everyday -->
+        <div style="position:absolute; bottom:15%; right:10%; font-size:11px; font-weight:700;">MetaEDC</div>
+        <div style="position:absolute; bottom:22%; right:26%; font-size:11px; font-weight:700;">Craighill</div>
+        <!-- top left: decorative x ritual -->
+        <div style="position:absolute; top:15%; left:10%; font-size:11px; font-weight:700;">L'Objet</div>
+        <div style="position:absolute; top:28%; left:22%; font-size:11px; font-weight:700;">Georg Jensen</div>
+        <!-- bottom left: decorative x everyday -->
+        <div style="position:absolute; bottom:15%; left:10%; font-size:11px; font-weight:700;">Poketo</div>
+        <div style="position:absolute; bottom:26%; left:24%; font-size:11px; font-weight:700;">Nomess</div>
+        <div style="position:absolute; bottom:36%; left:14%; font-size:11px; font-weight:700;">헤이딘</div>
       </div>
     </div>
   </div>
