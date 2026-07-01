@@ -1,0 +1,58 @@
+{
+  "manus_1": {
+    "project_intake": {
+      "brand_name": "GRAIN",
+      "category": "프리미엄 데스크 오브젝트 (모래시계)",
+      "target": "30-45세 도시 거주 얼리어답터/기어 수집형 소비자",
+      "market": "글로벌 D2C 우선, 국내 병행",
+      "brand_goal": "AI 100% 생성 가상 브랜드로 럭셔리+실용 기능 화이트스페이스 점유",
+      "core_challenge": "장식품 인식(에디토리얼 럭셔리)과 기능 오브젝트 인식(정밀 EDC)의 교차 지점 선점"
+    },
+    "competitor_30_matrix_file": "01-competitor-matrix.md",
+    "competitor_clusters_file": "02-clustering.md",
+    "three_column_flow": [
+      {"cluster": "A. 장인·소재가 말하는 럭셔리", "brand_strategy": "소재·공정 자체가 가격을 정당화", "design_mood": "에디토리얼 럭셔리, 절제된 소재 조합"},
+      {"cluster": "B. 기능이 곧 즐거움인 정밀 오브젝트", "brand_strategy": "작동하는 순간이 브랜드 경험의 핵심", "design_mood": "정밀 머시닝 클로즈업, 촉각 시연"},
+      {"cluster": "C. 감성 리추얼의 접근 가능한 웰니스", "brand_strategy": "작은 의식을 일상에 심는 톤 (생산성 클리셰 배제 필요)", "design_mood": "내추럴 소재 질감, 라이프스타일 화보"}
+    ],
+    "positioning_map_axes": {
+      "option_1": {"x_axis": "Functional↔Emotional", "y_axis": "Premium↔Accessible", "reason": "핵심 차별점을 직접 검증하나 Functional이 효율 언어로 오독될 위험"},
+      "option_2": {"x_axis": "Minimal↔Expressive", "y_axis": "Natural↔Artificial", "reason": "소재축은 명확하나 실용 기능 여부가 드러나지 않음"},
+      "option_3": {"x_axis": "Refined↔Raw", "y_axis": "Product-led↔Lifestyle-led", "reason": "국내외 클러스터 분포는 잘 보여주나 기능 vs 장식 주장이 약함"},
+      "recommended": {"x_axis": "장식적(Decorative)↔기능적(Functioning)", "y_axis": "일상소재(Everyday Material)↔리추얼소재(Ritual-grade Material)", "reason": "우상단(기능적×리추얼소재) 빈 사분면이 GRAIN의 목표 지점"}
+    },
+    "preference_analysis": {
+      "target_definition": "30-45세 가처분소득 상위 도시 거주자, 정밀 기능 오브젝트에 이미 지갑을 연 경험 보유",
+      "choice_drivers": ["실제 작동 정밀도(캘리브레이션 증거)", "소재의 진위성", "손에 쥐었을 때 무게·촉감"],
+      "avoidance_drivers": ["순수 장식적 포지셔닝", "생산성/자기계발 클리셰 언어", "출판사·에디토리얼 소품 인상"],
+      "visual_preference": "정밀 머시닝 클로즈업 + 절제된 소재 표현, 소재 고유색 중심",
+      "message_preference": "증거 제시형 (낙하시간·공차·소재 스펙), 행위(뒤집는 손) 1인칭 서술",
+      "purchase_trigger": "실측 데모 영상, 소재 원산지·공정 스펙 공개, 한정 소재(에이징·시리얼넘버)",
+      "social_signal": "뒤집는 순간 슬로우모션 클립, 책상 세팅 사진, 3종 비교 언박싱"
+    },
+    "heritage_spectrum": {
+      "position": "보존 65 : 파괴 35",
+      "preserve": ["모래시계 원형 실루엣 + 중력에 의한 시간 측정의 물리적 진실성", "장인 소재 럭셔리의 절제된 표현 언어"],
+      "transform": ["출판사 오브제 인식 파괴 → 기능 전면화", "정지된 정물 프레젠테이션 → 행위 중심 모션", "웰니스 의식화 강박 제거 → 도구성만 남김"]
+    },
+    "market_gap": "기능적×리추얼소재(럭셔리 금속·유리) 사분면 — Assouline이 절반만 점유, 완전히 채운 브랜드 없음",
+    "positioning_strategy": {
+      "one_line_positioning": "GRAIN은 장식이 아니라 검증된 정밀 도구로서, 럭셔리 소재 안에 실제 작동하는 시간을 가둔 모래시계다.",
+      "brand_promise": "우리는 당신에게 '의식을 가지라'고 말하지 않는다. 정확히 작동하는 도구를 만들 뿐이며, 습관은 그 정확함이 스스로 만든다.",
+      "keyword_candidates_10": ["정밀(Precision)", "증거(Evidence)", "중력(Gravity)", "소재진위(Material Truth)", "행위(Gesture)", "촉각(Tactility)", "도구성(Instrumentality)", "절제(Restraint)", "캘리브레이션(Calibration)", "소유욕(Collectability)"],
+      "shortlisted_keywords_5": ["정밀(Precision)", "증거(Evidence)", "중력(Gravity)", "행위(Gesture)", "소재진위(Material Truth)"],
+      "final_keyword_candidates_3": ["정밀(Precision)", "중력(Gravity)", "행위(Gesture)"]
+    },
+    "strategic_pov_gate": {
+      "pov_sentence": "Gravity is Proof — 중력이 증거다.",
+      "reason": "럭셔리 소재 시장(소재=가치)과 기능 시장(작동=가치)을 '중력'이라는 하나의 물리 현상으로 통합. 모래가 정확히 떨어지는 것 자체가 정밀함과 장인정신의 증거.",
+      "different_belief": "브랜드가 아니라 물리학이 신뢰를 보증한다는 믿음. Assouline(아름다움이 증명), Craighill(메커니즘 재치가 증명)과 다름.",
+      "target_emotion": "안도 섞인 확신 — 과장 광고가 아니라 실제로 정확하다는 검증된 신뢰감 + 뒤집는 순간의 제어감"
+    },
+    "director_decision_needed": [
+      "'Gravity'를 시리즈명/카피 등 표면 언어로 노출할지 내부 철학으로만 둘지",
+      "3종 라인(Slow/Fast/Heavy)에 3키워드(Precision/Gravity/Gesture) 배분 확정",
+      "헤리티지 스펙트럼(보존65:파괴35) 배분 동의 여부"
+    ]
+  }
+}
