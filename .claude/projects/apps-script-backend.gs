@@ -18,16 +18,25 @@ const UTIL_TAB    = '📊 월별 투입 현황';
 // ── 진입점 ──────────────────────────────────────────────────
 function doGet(e) {
   const section = (e && e.parameter && e.parameter.section) || 'all';
-  const result  = { ok: false };
+  const result  = { ok: true };
 
-  try {
-    if (section === 'projects' || section === 'all') result.projects  = getProjects();
-    if (section === 'resources' || section === 'all') result.resources = getResources();
-    result.fetchedAt = Utilities.formatDate(new Date(), 'Asia/Seoul', "yyyy-MM-dd'T'HH:mm:ss'+09:00'");
-    result.ok = true;
-  } catch (err) {
-    result.error = String(err.message || err);
+  if (section === 'projects' || section === 'all') {
+    try {
+      result.projects = getProjects();
+    } catch (err) {
+      result.projectsError = String(err.message || err);
+    }
   }
+
+  if (section === 'resources' || section === 'all') {
+    try {
+      result.resources = getResources();
+    } catch (err) {
+      result.resourcesError = String(err.message || err);
+    }
+  }
+
+  result.fetchedAt = Utilities.formatDate(new Date(), 'Asia/Seoul', "yyyy-MM-dd'T'HH:mm:ss'+09:00'");
 
   return ContentService
     .createTextOutput(JSON.stringify(result))
