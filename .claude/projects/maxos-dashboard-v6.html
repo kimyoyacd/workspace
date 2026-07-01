@@ -1952,229 +1952,355 @@ tools: Read, Glob, Grep, WebSearch
     <div><strong>트리거:</strong> <code>"hyo manus 시작"</code> 또는 <code>"/hyo-manus"</code> — 브랜드명·카테고리·타겟·가격대·목표만 있으면 자동 진행. Gate 통과 시 <code>.claude/projects/YYYYMM_브랜드명_hyo-manus.html</code> 체크포인트 자동 저장.</div>
   </div>
 
-  <!-- HYO MANUS PIPELINE — 수직 순서형 -->
-  <h3 style="font-size:14px;font-weight:800;margin:0 0 16px;letter-spacing:-0.3px;">HYO MANUS 자동화 파이프라인 — 실행 순서 · MD · 에이전트</h3>
+  <!-- HYO MANUS PIPELINE — 가로 흐름 카드형 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 4px;letter-spacing:-0.3px;">HYO MANUS 자동화 파이프라인 — 실행 순서 · MD · 에이전트</h3>
+  <p style="font-size:10px;color:var(--ink3);margin:0 0 20px;">각 Phase가 왼쪽에서 오른쪽으로 진행됩니다. Gate 통과 후 다음 Phase로 자동 진입.</p>
 
   <style>
-  .pipe-row { display:grid; grid-template-columns:180px 1fr; gap:0; position:relative; }
-  .pipe-spine { display:flex; flex-direction:column; align-items:center; padding-top:4px; }
-  .pipe-dot { width:14px; height:14px; border-radius:50%; background:var(--sig); flex-shrink:0; z-index:1; }
-  .pipe-dot-gate { background:#22c55e; }
-  .pipe-dot-cp { background:#B0B0B0; border:2px dashed #888; background:white; }
-  .pipe-dot-final { background:#1A1A1A; }
-  .pipe-dot-intake { background:#6366f1; }
-  .pipe-line { flex:1; width:2px; background:var(--border); margin:2px 0; }
-  .pipe-label { font-size:9px; font-weight:800; letter-spacing:1px; padding-top:2px; text-align:center; color:var(--ink3); line-height:1.4; }
-  .pipe-body { padding:0 0 28px 20px; }
-  .pipe-stage-title { font-size:13px; font-weight:800; margin:0 0 6px; letter-spacing:-0.3px; }
-  .pipe-md { display:inline-flex; align-items:center; gap:5px; background:#F0EEF9; border-radius:4px; padding:3px 9px; font-size:9.5px; font-weight:700; color:#4A3080; margin:0 0 10px; font-family:ui-monospace,monospace; }
-  .pipe-agents { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
-  .pipe-agent { font-size:9px; font-weight:700; padding:2px 8px; border-radius:3px; background:#EEF1F7; color:var(--sig); font-family:ui-monospace,monospace; }
-  .pipe-out { font-size:10px; color:var(--ink3); line-height:1.6; padding-left:8px; border-left:2px solid var(--border-soft); }
-  .pipe-gate-badge { display:inline-flex; align-items:center; gap:4px; font-size:9px; font-weight:800; padding:3px 10px; border-radius:3px; }
-  .pipe-gate-pass { background:#E5F2E9; color:#1F5A38; }
-  .pipe-gate-cp { background:#F0F0EE; color:#666; border:1px dashed #ccc; }
-  .pipe-gate-final { background:#1A1A1A; color:#fff; }
-  .pipe-gate-intake { background:#EEF0FF; color:#3730a3; }
+  /* ── 가로 파이프라인 ── */
+  .hm-wrap { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+
+  /* 인테이크 — 풀 폭 */
+  .hm-intake-card {
+    background:#EEF0FF; border:1.5px solid #c7d2fe; border-radius:10px;
+    padding:14px 20px; display:flex; align-items:flex-start; gap:20px;
+  }
+  .hm-intake-badge {
+    font-size:8px; font-weight:900; letter-spacing:1.5px; color:#4338ca;
+    background:#c7d2fe; border-radius:4px; padding:3px 8px; white-space:nowrap; margin-top:2px;
+  }
+  .hm-intake-title { font-size:13px; font-weight:800; color:#3730a3; margin:0 0 4px; }
+  .hm-intake-md { font-size:9px; font-family:ui-monospace,monospace; color:#4338ca; margin:0 0 6px; }
+  .hm-intake-items { font-size:10px; color:#3730a3; line-height:1.7; margin:0; }
+
+  /* Phase row */
+  .hm-phase-row { display:flex; align-items:stretch; gap:0; }
+  .hm-phase-label-col {
+    writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg);
+    font-size:8px; font-weight:900; letter-spacing:2px; color:var(--ink3);
+    padding:8px 6px; border-right:2px solid var(--border); margin-right:12px;
+    min-width:28px; display:flex; align-items:center; justify-content:center;
+  }
+  .hm-cards-flow { display:flex; align-items:flex-start; gap:0; flex:1; overflow-x:auto; padding-bottom:4px; }
+
+  /* 카드 공통 */
+  .hm-card {
+    min-width:200px; max-width:220px; flex-shrink:0;
+    border-radius:10px; border:1.5px solid var(--border);
+    background:#fff; display:flex; flex-direction:column; overflow:hidden;
+  }
+  .hm-card-head {
+    padding:10px 14px 8px; border-bottom:1px solid var(--border-soft);
+  }
+  .hm-card-badge {
+    font-size:7.5px; font-weight:900; letter-spacing:1.2px;
+    border-radius:3px; padding:2px 7px; display:inline-block; margin-bottom:5px;
+  }
+  .hm-card-title { font-size:12px; font-weight:800; letter-spacing:-0.3px; line-height:1.3; margin:0; }
+  .hm-card-body { padding:10px 14px; flex:1; }
+  .hm-card-md {
+    font-size:8.5px; font-family:ui-monospace,monospace; font-weight:700;
+    color:#4A3080; background:#F0EEF9; border-radius:3px;
+    padding:2px 7px; display:block; margin-bottom:8px; line-height:1.5;
+    word-break:break-all;
+  }
+  .hm-card-agents { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+  .hm-card-agent {
+    font-size:8px; font-weight:700; padding:2px 6px; border-radius:3px;
+    background:#EEF1F7; color:var(--sig); font-family:ui-monospace,monospace;
+  }
+  .hm-card-agent-warn { background:#FEF3C7; color:#92400E; }
+  .hm-card-out { font-size:9.5px; color:var(--ink3); line-height:1.65; }
+  .hm-card-out strong { color:var(--ink2); }
+
+  /* Gate 카드 */
+  .hm-card-gate { background:#F0FAF3; border-color:#86efac; min-width:170px; max-width:190px; }
+  .hm-card-gate .hm-card-head { border-bottom-color:#bbf7d0; }
+  .hm-card-gate .hm-card-title { color:#15803d; }
+  .hm-card-gate .hm-card-out { font-family:ui-monospace,monospace; font-size:8.5px; color:#166534; line-height:1.8; }
+
+  /* 체크포인트 카드 */
+  .hm-card-cp { background:#FAFAF8; border-color:#d4d4d4; border-style:dashed; min-width:160px; max-width:180px; }
+  .hm-card-cp .hm-card-title { color:#555; }
+
+  /* Final 카드 */
+  .hm-card-final { background:#1A1A1A; border-color:#1A1A1A; min-width:200px; max-width:220px; }
+  .hm-card-final .hm-card-head { border-bottom-color:#333; }
+  .hm-card-final .hm-card-title { color:#fff; }
+  .hm-card-final .hm-card-badge { background:#fff; color:#1A1A1A; }
+  .hm-card-final .hm-card-md { background:#2a2a2a; color:#aaa; }
+  .hm-card-final .hm-card-out { color:#aaa; }
+  .hm-card-final .hm-card-out strong { color:#fff; }
+
+  /* 화살표 */
+  .hm-arrow {
+    display:flex; align-items:center; padding:0 6px; color:var(--ink3);
+    font-size:16px; flex-shrink:0; align-self:center; margin-top:-20px;
+  }
+
+  /* Phase 연결 꺾임 화살표 */
+  .hm-down-arrow {
+    text-align:center; color:var(--ink3); font-size:14px; padding:6px 0;
+    margin-left:40px;
+  }
+
+  /* 배지 색상별 */
+  .badge-intake { background:#c7d2fe; color:#3730a3; }
+  .badge-stage  { background:#FCE8E8; color:var(--sig); }
+  .badge-gate   { background:#bbf7d0; color:#15803d; }
+  .badge-cp     { background:#e5e5e5; color:#555; }
   </style>
 
-  <!-- INTAKE -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-intake"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">인테이크</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#4338ca;">인테이크 확인</div>
-      <div class="pipe-md">📋 .claude/skills/hyo-manus/SKILL.md</div>
-      <div class="pipe-out">브랜드명 · 카테고리 · 목표 고객 · 시장 · 가격대 · 브랜드 목표 — 6개 항목 확인 후 자동 진입</div>
-    </div>
-  </div>
+  <div class="hm-wrap">
 
-  <!-- 1차 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">HYO MANUS<br>1차</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title">리서치 &amp; 포지셔닝</div>
-      <div class="pipe-md">📄 library/brand-proposal/Stage1_Research_Positioning.md</div>
-      <div class="pipe-agents">
-        <span class="pipe-agent">rfp-analyst</span>
-        <span class="pipe-agent">market-research</span>
-        <span class="pipe-agent">fact-checker</span>
-        <span class="pipe-agent">concept-director</span>
-        <span class="pipe-agent">reference-curator</span>
+    <!-- ── 인테이크 ── -->
+    <div class="hm-intake-card">
+      <div>
+        <div class="hm-intake-badge">INTAKE</div>
       </div>
-      <div class="pipe-out">
-        경쟁사 30개 매트릭스 (직접·간접·감성)<br>
-        클러스터링 → 카테고리 3개 도출 · 카테고리별 레퍼런스 8개+<br>
-        포지셔닝 맵 3안 → 1안 선정 · 화이트스페이스 특정<br>
-        <strong style="color:var(--ink);">브랜드 인상키워드 5~7개 (포지셔닝 갭 기반)</strong><br>
-        카테고리 인사이트 축 정의 · 포지셔닝 전략 한 문장 · BX 프롬프트 팩<br>
-        → <strong>stage_1_state JSON</strong> 저장
+      <div style="flex:1;">
+        <div class="hm-intake-title">인테이크 확인</div>
+        <div class="hm-intake-md">📋 .claude/skills/hyo-manus/SKILL.md</div>
+        <div class="hm-intake-items">브랜드명 &nbsp;·&nbsp; 카테고리 &nbsp;·&nbsp; 목표 고객 &nbsp;·&nbsp; 시장 &nbsp;·&nbsp; 가격대 &nbsp;·&nbsp; 브랜드 목표 — 6개 항목 확인 후 자동 진입</div>
       </div>
     </div>
-  </div>
 
-  <!-- Gate 1 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-gate"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">Gate 1</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#15803d;">Gate 1 자동 체크</div>
-      <div class="pipe-out" style="font-family:ui-monospace,monospace;font-size:9.5px;">
-        ✅ 경쟁 브랜드 30개 이상 &nbsp;✅ 카테고리 3개 + 레퍼런스 8개+<br>
-        ✅ 인사이트 축 정의 &nbsp;✅ 인상키워드 5~7개 &nbsp;✅ 포지셔닝 맵 축 임의 아님<br>
-        ✅ 빈자리 설명 가능 &nbsp;✅ 포지셔닝 전략 한 문장 &nbsp;✅ 출처 없는 수치 없음
+    <div class="hm-down-arrow">↓</div>
+
+    <!-- ── Phase 1 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 1</div>
+      <div class="hm-cards-flow">
+
+        <!-- 1차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 1차</div>
+            <div class="hm-card-title">리서치 &amp; 포지셔닝</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage1_Research_Positioning.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">rfp-analyst</span>
+              <span class="hm-card-agent">market-research</span>
+              <span class="hm-card-agent">fact-checker</span>
+              <span class="hm-card-agent">concept-director</span>
+              <span class="hm-card-agent">reference-curator</span>
+            </div>
+            <div class="hm-card-out">
+              경쟁사 30개 매트릭스<br>
+              클러스터링 → 카테고리 3개<br>
+              카테고리별 레퍼런스 8개+<br>
+              포지셔닝 맵 3안 → 1안 선정<br>
+              <strong>인상키워드 5~7개</strong><br>
+              BX 프롬프트 팩<br>
+              → stage_1_state JSON
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Gate 1 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 1</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ 경쟁 브랜드 30개+<br>
+              ✅ 카테고리 3개 · 레퍼런스 8개+<br>
+              ✅ 인사이트 축 정의<br>
+              ✅ 인상키워드 5~7개<br>
+              ✅ 포지셔닝 맵 축 임의 아님<br>
+              ✅ 빈자리 설명 가능<br>
+              ✅ 전략 한 문장<br>
+              ✅ 출처 없는 수치 없음
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- 체크포인트 1 -->
+        <div class="hm-card hm-card-cp">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">CHECKPOINT 1</div>
+            <div class="hm-card-title">HTML 자동 저장</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              Stage 1 섹션 채움<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_hyo-manus.html</code>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- HTML 체크포인트 1 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-cp"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">체크포인트 1</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#666;">HTML 체크포인트 1 자동 저장</div>
-      <div class="pipe-md">🗂 .claude/skills/hyo-manus/html-template.md 구조 사용</div>
-      <div class="pipe-out">저장 경로: <code>.claude/projects/YYYYMM_[브랜드명]_hyo-manus.html</code> · Stage 1 섹션 채움</div>
-    </div>
-  </div>
+    <div class="hm-down-arrow">↓</div>
 
-  <!-- 2차 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">HYO MANUS<br>2차</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title">브랜드 전략 &amp; 비주얼 아이덴티티</div>
-      <div class="pipe-md">📄 library/brand-proposal/Stage2_Visual_Identity_Moodboard.md</div>
-      <div class="pipe-agents">
-        <span class="pipe-agent">brainstormer</span>
-        <span class="pipe-agent">reference-curator</span>
-        <span class="pipe-agent">moodboard-builder</span>
-        <span class="pipe-agent" style="background:#FEF3C7;color:#92400E;">design-trend-radar ★</span>
-        <span class="pipe-agent">design-critique</span>
-        <span class="pipe-agent">visual-generator</span>
-      </div>
-      <div style="font-size:9px;color:#92400E;background:#FEF3C7;border-radius:4px;padding:4px 10px;margin:-4px 0 10px;line-height:1.5;">
-        ★ design-trend-radar: 이 브랜드의 비주얼 방향에 맞는 <strong>현재 글로벌 트렌드를 신규 웹 스캔</strong>. 디자인 트렌드 보드 탭의 분기 캐시에서 가져오는 게 아닙니다.
-      </div>
-      <div class="pipe-out">
-        <strong style="color:var(--ink);">브랜드 방향성 3열 흐름표</strong> (카테고리→전략명→디자인 무드명)<br>
-        <strong style="color:var(--ink);">브랜드 스토리 구조</strong> (서사 아크: 기원·갈등·해소·약속)<br>
-        디자인 전략 3안 — 각 전략별: 그래픽 모티프·타이포그래피·컬러 팔레트·질감<br>
-        이미지 무드보드 (전략당 1장) · Visual Identity DNA (6렌즈)<br>
-        경쟁 비주얼 코드 맵 · Client×Mood Matrix · 컨셉 숏리스트 2~3개<br>
-        → <strong>stage_2_state JSON</strong> 저장
-      </div>
-    </div>
-  </div>
+    <!-- ── Phase 2 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 2</div>
+      <div class="hm-cards-flow">
 
-  <!-- Gate 2 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-gate"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">Gate 2</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#15803d;">Gate 2 자동 체크</div>
-      <div class="pipe-out" style="font-family:ui-monospace,monospace;font-size:9.5px;">
-        ✅ 브랜드 방향성 3열 흐름표 완성 &nbsp;✅ 브랜드 스토리 구조 작성<br>
-        ✅ 디자인 전략 3안 (모티프·타이포·컬러·질감) &nbsp;✅ 전략당 무드보드 1장<br>
-        ✅ Visual DNA 6렌즈 &nbsp;✅ Client×Mood Matrix &nbsp;✅ 숏리스트 2~3개 &nbsp;✅ stage_2_state JSON
-      </div>
-    </div>
-  </div>
+        <!-- 2차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 2차</div>
+            <div class="hm-card-title">브랜드 전략 &amp; 비주얼 아이덴티티</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage2_Visual_Identity_Moodboard.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">brainstormer</span>
+              <span class="hm-card-agent">reference-curator</span>
+              <span class="hm-card-agent">moodboard-builder</span>
+              <span class="hm-card-agent hm-card-agent-warn">design-trend-radar ★</span>
+              <span class="hm-card-agent">design-critique</span>
+              <span class="hm-card-agent">visual-generator</span>
+            </div>
+            <div style="font-size:8.5px;color:#92400E;background:#FEF3C7;border-radius:3px;padding:3px 8px;margin:-2px 0 8px;line-height:1.5;">★ 분기 캐시 아님 — 브랜드 맞춤 신규 웹 스캔</div>
+            <div class="hm-card-out">
+              <strong>3열 흐름표</strong> (카테고리→전략→무드)<br>
+              <strong>브랜드 스토리 구조</strong> (서사 아크)<br>
+              디자인 전략 3안<br>
+              무드보드 · Visual DNA 6렌즈<br>
+              컨셉 숏리스트 2~3개<br>
+              → stage_2_state JSON
+            </div>
+          </div>
+        </div>
 
-  <!-- HTML 체크포인트 2 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-cp"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">체크포인트 2</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#666;">HTML 체크포인트 2 자동 저장</div>
-      <div class="pipe-md">🗂 .claude/skills/hyo-manus/html-template.md 구조 사용</div>
-      <div class="pipe-out">Stage 1 + Stage 2 섹션 채워진 HTML 갱신 저장</div>
-    </div>
-  </div>
+        <div class="hm-arrow">→</div>
 
-  <!-- 3차 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">HYO MANUS<br>3차</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title">브랜드 시스템 완성</div>
-      <div class="pipe-md">📄 library/brand-proposal/Stage3_Brand_System_Final_Deck.md</div>
-      <div class="pipe-agents">
-        <span class="pipe-agent">design-system-guardian</span>
-        <span class="pipe-agent">creative-director</span>
-        <span class="pipe-agent">visual-generator</span>
-        <span class="pipe-agent">review-panel</span>
-        <span class="pipe-agent">delivery-gate</span>
-      </div>
-      <div class="pipe-out">
-        Brand Board · Value Cards (3~5개) · Value Metrics · Value Keyword Map<br>
-        Copy Headline System · Symbol Association Map · Competitor CI/BI Audit<br>
-        Brand System Summary → <strong>slide_generation_ready: true 확인</strong>
+        <!-- Gate 2 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 2</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ 3열 흐름표 완성<br>
+              ✅ 브랜드 스토리 작성<br>
+              ✅ 디자인 전략 3안<br>
+              ✅ 전략당 무드보드 1장<br>
+              ✅ Visual DNA 6렌즈<br>
+              ✅ Client×Mood Matrix<br>
+              ✅ 숏리스트 2~3개<br>
+              ✅ stage_2_state JSON
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- 체크포인트 2 -->
+        <div class="hm-card hm-card-cp">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">CHECKPOINT 2</div>
+            <div class="hm-card-title">HTML 갱신 저장</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              Stage 1 + Stage 2<br>
+              섹션 채워진 HTML 갱신
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- Gate 3 -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-gate"></div>
-      <div class="pipe-line"></div>
-      <div class="pipe-label">Gate 3</div>
-    </div>
-    <div class="pipe-body">
-      <div class="pipe-stage-title" style="color:#15803d;">Gate 3 자동 체크</div>
-      <div class="pipe-out" style="font-family:ui-monospace,monospace;font-size:9.5px;">
-        ✅ Brand Board 전항목 &nbsp;✅ Value Cards 3~5개 &nbsp;✅ Copy Headline 6유형<br>
-        ✅ Symbol Association Map &nbsp;✅ CI/BI Audit 6개+ &nbsp;✅ slide_generation_ready: true &nbsp;✅ Director Final Check
+    <div class="hm-down-arrow">↓</div>
+
+    <!-- ── Phase 3 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 3</div>
+      <div class="hm-cards-flow">
+
+        <!-- 3차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 3차</div>
+            <div class="hm-card-title">브랜드 시스템 완성</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage3_Brand_System_Final_Deck.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">design-system-guardian</span>
+              <span class="hm-card-agent">creative-director</span>
+              <span class="hm-card-agent">visual-generator</span>
+              <span class="hm-card-agent">review-panel</span>
+              <span class="hm-card-agent">delivery-gate</span>
+            </div>
+            <div class="hm-card-out">
+              Brand Board<br>
+              Value Cards (3~5개)<br>
+              Copy Headline System<br>
+              Symbol Association Map<br>
+              CI/BI Audit<br>
+              <strong>slide_generation_ready: true 확인</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Gate 3 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 3</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ Brand Board 전항목<br>
+              ✅ Value Cards 3~5개<br>
+              ✅ Copy Headline 6유형<br>
+              ✅ Symbol Association Map<br>
+              ✅ CI/BI Audit 6개+<br>
+              ✅ slide_generation_ready: true<br>
+              ✅ Director Final Check
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Final Deck -->
+        <div class="hm-card hm-card-final">
+          <div class="hm-card-head">
+            <div class="hm-card-badge">FINAL DECK</div>
+            <div class="hm-card-title">슬라이드 덱 HTML 생성 (35~45장)</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md + ux-writing.md</span>
+            <div class="hm-card-out">
+              전체 3 스테이지 + 슬라이드 완성 HTML 최종 저장<br><br>
+              <strong style="color:#f87171;">⛔ 1차·2차에서는 절대 생성 안 함<br>slide_generation_ready: true 이후에만</strong>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- Final Deck -->
-  <div class="pipe-row">
-    <div class="pipe-spine">
-      <div class="pipe-dot pipe-dot-final"></div>
-    </div>
-    <div class="pipe-body" style="padding-bottom:32px;">
-      <div class="pipe-stage-title" style="color:#1A1A1A;">Final Slide Deck HTML 생성 (35~45장)</div>
-      <div class="pipe-md">🗂 .claude/skills/hyo-manus/html-template.md + library/ux-writing.md</div>
-      <div class="pipe-out">전체 3 스테이지 + 슬라이드 덱 완성 HTML 최종 저장. <strong style="color:#d00;">1차·2차에서는 절대 생성 안 함 — slide_generation_ready: true 이후에만.</strong></div>
-    </div>
-  </div>
+  </div><!-- /hm-wrap -->
 
-  <hr style="margin:0 0 28px;border:none;border-top:1px solid var(--border-soft);">
   <div style="font-size:10px;background:#F4F2EE;border-radius:8px;padding:10px 16px;color:var(--ink3);margin-bottom:28px;line-height:1.7;">
     <strong style="color:var(--ink);">MD 파일 역할 요약</strong><br>
-    <code>SKILL.md</code> — 전체 자동화 흐름 정의(인테이크·Gate 기준·HTML 생성 규칙)<br>
+    <code>SKILL.md</code> — 전체 자동화 흐름 정의 (인테이크·Gate 기준·HTML 생성 규칙)<br>
     <code>Stage1_Research_Positioning.md</code> — 경쟁사 매트릭스·포지셔닝 맵 상세 방법론<br>
     <code>Stage2_Visual_Identity_Moodboard.md</code> — 비주얼 DNA·무드보드·디자인 전략 기준<br>
     <code>Stage3_Brand_System_Final_Deck.md</code> — Brand Board·Value Cards·덱 슬라이드 구성<br>
-    <code>html-template.md</code> — 체크포인트 HTML 공통 구조(파이프라인 바·섹션 레이아웃)
+    <code>html-template.md</code> — 체크포인트 HTML 공통 구조 (파이프라인 바·섹션 레이아웃)
   </div>
 
   <!-- 브랜드 전략 흐름 3열 시각화 -->
