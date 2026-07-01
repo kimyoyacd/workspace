@@ -25,6 +25,7 @@
 ## 브랜드 디자인 프로젝트 운영 (Manus/Runable 파이프라인)
 - 신규 브랜드 기획/디자인 제안 요청이 들어오면 **반드시 `.claude/library/prompts/brand-design-proposal.md`(마스터 오케스트레이션 가이드)를 먼저 확인**하고 그 순서를 따른다.
 - 파이프라인: **Manus 1(자리·리서치) → Gate 1 → Manus 2(감각·비주얼) → Gate 2·3 → Gate 4 → Runable 3(시스템+슬라이드)**. 4개 Designer Lens Gate 상세는 `designer-lens-gates.md` 참조.
+- **Runable 3 최종 슬라이드는 `runable-3-slide-templates.md`의 6종 슬라이드 타입(Brand Story/Brand Value Keywords/Brand Mind Map/Brand Direction/Graphic Motif/Competitor Research)을 그대로 재사용**한다. 디자인 시스템(16:9, 서체, 컬러, 그리드)은 프로젝트마다 통일하고 내용만 교체한다.
 - **게이트 통과 시 자동 진행 금지**: Gate 1(관점 한 문장), Gate 2(Lens Translation), 형태/톤 확정 등 방향이 갈리는 지점에서는 반드시 사용자 확인을 받은 뒤에만 다음 단계로 넘어간다. 선택지는 추상적으로 묻지 말고 구체적 예시(카피·이미지 톤 비교)로 보여줘서 판단을 돕는다.
 - **경쟁사·레퍼런스 브랜드 카드는 항상 전체 필드를 채운다**: 브랜드명/국가/가격대/타깃/핵심메시지/강점·약점 + **클릭 가능한 출처 링크**(새 탭). 정보 미확인 시 "확인 안됨"으로 정직하게 표기하고 Source Tier(1~4)를 남긴다. 이름과 한줄설명만 있는 카드는 불충분.
 - **산출물은 개별 파일로 흩어 보여주지 않고 프로젝트 폴더의 `deck.html` 한 파일에 섹션으로 계속 누적**한다. 중간 확인이 필요한 지점 외에는 완성된 덩어리 단위로 보여준다.

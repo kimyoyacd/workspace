@@ -1,7 +1,7 @@
 # 브랜드 디자인 제안서 — 마스터 오케스트레이션 가이드
 
 > 초기 제안이 들어오면 이 파일이 기준이 된다. Manus 1 → 2 → Runable 3 + 4개 Designer Lens Gate를 누락 없이 진행한다.
-> 하위 상세 지침: `manus-1-brand-planning.md` / `manus-2-visual-identity.md` / `runable-3-brand-system.md` / `designer-lens-gates.md`
+> 하위 상세 지침: `manus-1-brand-planning.md` / `manus-2-visual-identity.md` / `runable-3-brand-system.md` / `designer-lens-gates.md` / `runable-3-slide-templates.md`(최종 슬라이드 타입 카탈로그)
 
 ---
 
