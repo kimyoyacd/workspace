@@ -107,6 +107,7 @@
 
 세 컨셉 모두 "Gravity is Proof"로 정확히 회수되며 감각 온도가 명확히 다름: **Instrument Grade(차가운 신뢰)** vs **Gravity Cut(뜨거운 속도)** vs **Field Notes(따뜻한 기록)**. Strategy Fit Score와 헤리티지 50:50 원칙(행위 중심 모션) 부합도로 볼 때 **Instrument Grade가 1순위**, 보완 확장으로 Gravity Cut(SNS/모션) 또는 Field Notes(패키지/헤리티지 인증) 유력.
 
-## Director Decision Needed
-1. Instrument Grade를 메인 축으로 확정, Gravity Cut/Field Notes 중 하나(또는 둘 다) 보조 컨셉 채택 여부
-2. Brutalist Framework 적용 판단 전 — 공차 타이포(Suisse Mono)가 주는 "노출된 구조" 느낌을 전면 적용 vs 부분 적용 중 어느 강도로 밀지
+## Director Decision 확정
+1. ✅ **Instrument Grade = 메인** (웹·제품샷) / **Gravity Cut = 보조** (SNS 숏폼) 투트랙 확정
+   - Field Notes는 3순위 대안으로 보류 (연 1-2회 헤리티지 캠페인용으로 재고려 가능)
+2. Brutalist Framework 적용 강도는 다음 단계에서 critic 에이전트가 판단
