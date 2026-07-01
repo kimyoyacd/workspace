@@ -1,5 +1,9 @@
 # Claude 운영 지침
 
+## 대시보드 바로가기
+- **MAX실 OS Dashboard**: https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/main/.claude/projects/maxos-dashboard-v6.html
+- **GAS 백엔드 URL**: https://script.google.com/macros/s/AKfycbzHf-hI-QHWBhjyqEOp_1PnSvkAm_B5dRAh56eaBcxjE56RX18Xzi5MIdFOIGFBdfCG/exec
+
 ## 사용자 프로필
 - **직책**: 디자인 외주 업체 실장 (업력 17년차, 베테랑 디자이너)
 - **주력 역량**: 평면 중심 홈페이지·배너·게임 UI 디자인
