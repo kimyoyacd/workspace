@@ -1,7 +1,7 @@
-# 1차 · 리서치 & 포지셔닝 전략
+# HYO MANUS 1차 · 리서치 & 포지셔닝 전략
 
 **File role:** Claude Project Knowledge / Skill resource  
-**Stage:** 1차  
+**Stage:** HYO MANUS 1차  
 **Primary function:** 브랜드 기획서 초안 생성 + BX/패키지 비주얼 프롬프트 생성  
 **Important rule:** 이 단계에서는 최종 슬라이드를 만들지 않는다. 다음 단계로 넘길 `stage_1_state`만 만든다.
 
@@ -653,10 +653,10 @@ Do not use [avoid list].
 
 ## 8. Next Step Prompt
 
-1차가 완료되면 아래 프롬프트로 2차를 실행합니다.
+HYO MANUS 1차가 완료되면 아래 프롬프트로 2차를 실행합니다.
 
 ```md
-1차 state를 기반으로 2차 단계로 넘어갑니다.
+HYO MANUS 1차 state를 기반으로 HYO MANUS 2차 단계로 넘어갑니다.
 아직 최종 슬라이드는 만들지 마세요.
 
 해야 할 일:

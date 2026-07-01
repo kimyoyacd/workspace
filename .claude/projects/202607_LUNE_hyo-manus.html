@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYO MANUS · LUNE 브랜드 제안서</title>
+<style>
+  :root {
+    --bg: #F9F8F6;
+    --card: #FFFFFF;
+    --accent: #1A1A1A;
+    --accent2: #C8A96E;
+    --muted: #6B6B6B;
+    --border: #E5E3DF;
+    --gate-pass: #2D6A4F;
+    --stage-done: #1A1A1A;
+    --stage-active: #C8A96E;
+    --stage-pending: #D4D4D4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Pretendard', sans-serif; background: var(--bg); color: var(--accent); line-height: 1.6; }
+
+  .header { background: var(--accent); color: white; padding: 40px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .header-brand { font-size: 11px; letter-spacing: 4px; color: var(--accent2); margin-bottom: 8px; }
+  .header-title { font-size: 32px; font-weight: 700; letter-spacing: 6px; }
+  .header-sub { font-size: 13px; color: #999; margin-top: 6px; }
+  .header-meta { text-align: right; font-size: 12px; color: #999; }
+  .header-meta strong { color: var(--accent2); font-size: 14px; display: block; margin-bottom: 4px; }
+
+  .pipeline { background: white; border-bottom: 1px solid var(--border); padding: 24px 60px; display: flex; align-items: center; overflow-x: auto; }
+  .pip-step { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 110px; }
+  .pip-dot { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .pip-dot.done { background: var(--stage-done); color: white; }
+  .pip-dot.active { background: var(--stage-active); color: white; }
+  .pip-label { font-size: 10px; color: var(--muted); text-align: center; white-space: nowrap; }
+  .pip-line { flex: 1; height: 2px; min-width: 30px; background: var(--stage-done); margin-bottom: 24px; }
+
+  .gate-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+  .gate-pass { background: #D8EFE3; color: var(--gate-pass); }
+
+  .main { max-width: 1200px; margin: 0 auto; padding: 48px 60px; }
+
+  .stage-section { margin-bottom: 72px; }
+  .stage-header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 32px; }
+  .stage-number { font-size: 10px; letter-spacing: 3px; color: var(--muted); margin-bottom: 4px; }
+  .stage-title { font-size: 24px; font-weight: 700; }
+  .stage-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; }
+  .card-label { font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; }
+  .card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .card-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  h3.sec { font-size: 13px; letter-spacing: 2px; color: var(--muted); margin-bottom: 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+  .data-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; margin-bottom: 32px; font-size: 12px; }
+  .data-table th { background: var(--accent); color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 10px; letter-spacing: 1px; }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: #F5F4F2; }
+
+  .cluster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; margin-bottom: 32px; }
+  .cluster-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; border-left: 3px solid var(--accent2); }
+  .cluster-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .cluster-brands { font-size: 11px; color: var(--muted); margin-bottom: 8px; line-height: 1.6; }
+  .cluster-weak { font-size: 11px; color: #C87942; }
+
+  .positioning-map { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 28px; font-family: monospace; font-size: 12px; white-space: pre; overflow-x: auto; margin-bottom: 32px; line-height: 1.6; color: #333; }
+
+  .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px; }
+  .persona-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; border-top: 4px solid var(--accent2); }
+  .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .persona-role { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+  .persona-item { font-size: 12px; margin-bottom: 7px; }
+  .persona-item strong { color: var(--accent); }
+
+  .pov-block { background: var(--accent); color: white; border-radius: 10px; padding: 36px; margin-bottom: 32px; }
+  .pov-label { font-size: 10px; letter-spacing: 3px; color: var(--accent2); margin-bottom: 12px; }
+  .pov-text { font-size: 17px; font-weight: 500; line-height: 1.7; font-style: italic; }
+  .pov-author { font-size: 11px; color: #999; margin-top: 16px; }
+
+  .gate-checklist { background: #F0F8F4; border: 1px solid #B7DFCB; border-radius: 8px; padding: 20px 24px; margin: 20px 0 32px; }
+  .gate-checklist-title { font-size: 11px; font-weight: 700; color: var(--gate-pass); letter-spacing: 2px; margin-bottom: 12px; }
+  .gate-check-item { font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .gate-check-item::before { content: "✅"; font-size: 12px; }
+
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .concept-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .concept-header { background: var(--accent); color: white; padding: 14px 18px; font-size: 13px; font-weight: 700; }
+  .concept-header.finalist { background: var(--accent2); }
+  .concept-body { padding: 18px; }
+  .concept-mood { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .concept-keywords { font-size: 11px; color: var(--muted); margin-bottom: 10px; line-height: 1.8; }
+  .concept-score { display: inline-block; background: var(--accent); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .concept-score.gold { background: var(--accent2); }
+  .concept-risk { font-size: 11px; color: #C87942; margin-top: 8px; }
+
+  .color-palette { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; align-items: flex-start; }
+  .color-chip { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .color-swatch { width: 72px; height: 72px; border-radius: 10px; border: 1px solid var(--border); }
+  .color-name { font-size: 10px; color: var(--muted); text-align: center; }
+  .color-hex { font-size: 11px; font-weight: 700; font-family: monospace; }
+
+  .value-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .value-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; border-left: 4px solid var(--accent); }
+  .value-num { font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-bottom: 6px; }
+  .value-name { font-size: 18px; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; }
+  .value-def { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+  .value-principle { font-size: 12px; line-height: 1.8; }
+  .value-principle strong { color: var(--accent); display: block; margin-bottom: 2px; font-size: 10px; letter-spacing: 1px; }
+
+  .copy-list { list-style: none; margin-bottom: 32px; }
+  .copy-list li { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 14px 20px; margin-bottom: 8px; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px; }
+  .copy-list li .quote { font-size: 22px; color: var(--accent2); font-weight: 700; line-height: 1; }
+  .copy-tag { font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-left: auto; }
+
+  .brand-board { background: var(--accent); color: white; border-radius: 12px; padding: 40px; margin-bottom: 32px; }
+  .brand-board-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
+  .bb-label { font-size: 10px; letter-spacing: 3px; color: var(--accent2); margin-bottom: 8px; }
+  .bb-value { font-size: 13px; line-height: 1.7; }
+  .bb-divider { border: none; border-top: 1px solid #333; margin: 24px 0; }
+
+  .slide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-bottom: 32px; }
+  .slide-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; }
+  .slide-num { position: absolute; top: 12px; right: 14px; font-size: 11px; color: var(--muted); font-family: monospace; font-weight: 700; }
+  .slide-section { font-size: 9px; letter-spacing: 2px; color: var(--accent2); margin-bottom: 5px; }
+  .slide-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .slide-msg { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  .bx-prompt { background: #1A1A2E; color: #E0E0FF; border-radius: 8px; padding: 24px; font-family: monospace; font-size: 12px; line-height: 1.8; margin-bottom: 32px; white-space: pre-wrap; }
+  .bx-prompt-label { font-size: 10px; letter-spacing: 3px; color: #888; margin-bottom: 12px; }
+
+  .footer { border-top: 1px solid var(--border); padding: 24px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+  .footer-brand { font-weight: 700; color: var(--accent); letter-spacing: 3px; }
+
+  .ws-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+  .ws-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .ws-card.filled { border-left: 3px solid #C87942; }
+  .ws-card.empty { border-left: 3px solid var(--gate-pass); }
+  .ws-label { font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; }
+  .ws-body { font-size: 13px; line-height: 1.7; }
+
+  @media(max-width:768px){ .persona-grid,.concept-grid,.brand-board-grid{grid-template-columns:1fr;} .header,.pipeline,.main,.footer{padding-left:20px;padding-right:20px;} }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div>
+    <div class="header-brand">HYO MANUS · 브랜드 제안 프로세스</div>
+    <div class="header-title">LUNE</div>
+    <div class="header-sub">젠더뉴트럴 라이프스타일 패션 · 한국 (서울) + 글로벌 온라인 · 2026 신규 론칭</div>
+  </div>
+  <div class="header-meta">
+    <strong>Gate 3 완료 · Final Deck 생성</strong>
+    2026.07 · HYO MANUS 전체 완료
+  </div>
+</header>
+
+<!-- ══ PIPELINE ══ -->
+<div class="pipeline">
+  <div class="pip-step">
+    <div class="pip-dot done">1</div>
+    <div class="pip-label">HYO MANUS 1차<br>리서치·포지셔닝</div>
+  </div>
+  <div class="pip-line"></div>
+  <div class="pip-step">
+    <div class="pip-dot done">G1</div>
+    <div class="pip-label">Gate 1 ✓</div>
+  </div>
+  <div class="pip-line"></div>
+  <div class="pip-step">
+    <div class="pip-dot done">2</div>
+    <div class="pip-label">HYO MANUS 2차<br>비주얼·컨셉</div>
+  </div>
+  <div class="pip-line"></div>
+  <div class="pip-step">
+    <div class="pip-dot done">G2</div>
+    <div class="pip-label">Gate 2 ✓</div>
+  </div>
+  <div class="pip-line"></div>
+  <div class="pip-step">
+    <div class="pip-dot done">3</div>
+    <div class="pip-label">HYO MANUS 3차<br>브랜드 시스템</div>
+  </div>
+  <div class="pip-line"></div>
+  <div class="pip-step">
+    <div class="pip-dot done">★</div>
+    <div class="pip-label">Final Deck<br>35슬라이드</div>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- ══════════════════════════════════════
+     HYO MANUS 1차 · 리서치 & 포지셔닝
+══════════════════════════════════════ -->
+<section class="stage-section">
+  <div class="stage-header">
+    <div>
+      <div class="stage-number">HYO MANUS 1차 · RESEARCH &amp; POSITIONING</div>
+      <div class="stage-title">리서치 &amp; 포지셔닝 전략</div>
+      <div class="stage-desc">경쟁 브랜드 30개 분석 → 클러스터링 → 포지셔닝 맵 → 선호도 분석 → 화이트스페이스 → BX 프롬프트</div>
+    </div>
+    <span class="gate-badge gate-pass">✓ Gate 1 통과</span>
+  </div>
+
+  <!-- 1.1 프로젝트 브리프 -->
+  <h3 class="sec">PROJECT BRIEF</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">Brand</div>
+      <div class="card-title">LUNE</div>
+      <div class="card-body">젠더뉴트럴 라이프스타일 패션<br>티셔츠 9–15만 · 아우터 30–60만 · 프리미엄 포지션</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Market</div>
+      <div class="card-title">한국 (서울) + 글로벌 온라인</div>
+      <div class="card-body">2026년 하반기 신규 론칭<br>국내 선점 → 글로벌 확장 로드맵</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Target</div>
+      <div class="card-title">20–40대 트렌드 감각 남녀</div>
+      <div class="card-body">도시 기반 문화 소비층<br>조용한 취향 / 감각적 커리어 / 문화 큐레이터</div>
+    </div>
+    <div class="card">
+      <div class="card-label">원하는 인상</div>
+      <div class="card-title">조용한 자신감 · 시대 초월</div>
+      <div class="card-body">피해야 할 인상: 트렌드 추종, 로고 과시, 스트리트 클리셰</div>
+    </div>
+  </div>
+
+  <!-- 1.2 경쟁사 30개 -->
+  <h3 class="sec">경쟁사 30개 리서치 매트릭스</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>브랜드</th><th>국가</th><th>가격대</th><th>스타일 코드</th><th>젠더</th><th>강점</th><th>약점</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td><strong>Ader Error</strong></td><td>KR</td><td>프리미엄</td><td>팝아트·개념·유머</td><td>N</td><td>세계관 명확, 팬덤</td><td>트렌드 의존성</td></tr>
+      <tr><td>02</td><td><strong>IISE</strong></td><td>KR</td><td>프리미엄</td><td>한국문화·컨템포러리</td><td>N</td><td>한국 정체성 최강</td><td>가격 장벽 높음</td></tr>
+      <tr><td>03</td><td><strong>Marhagrid</strong></td><td>KR</td><td>프리미엄</td><td>스트리트·볼드</td><td>M</td><td>젊은 남성 충성도</td><td>여성 접근성 낮음</td></tr>
+      <tr><td>04</td><td><strong>Covernat</strong></td><td>KR</td><td>중가</td><td>헤리티지 워크웨어</td><td>M</td><td>헤리티지 서사</td><td>감도 제한적</td></tr>
+      <tr><td>05</td><td><strong>Insilence</strong></td><td>KR</td><td>하이프리미엄</td><td>미니멀·콰이어트</td><td>N</td><td>조용한 프리미엄</td><td>세계관 약함</td></tr>
+      <tr><td>06</td><td><strong>Pottery</strong></td><td>KR</td><td>프리미엄</td><td>아르티장·미니멀</td><td>N</td><td>소재 프리미엄</td><td>스토리 약함</td></tr>
+      <tr><td>07</td><td><strong>General Idea</strong></td><td>KR</td><td>중가</td><td>팝·컬러풀</td><td>N</td><td>대중 인지도</td><td>고급감 부족</td></tr>
+      <tr><td>08</td><td><strong>PeaceMinus One</strong></td><td>KR</td><td>프리미엄</td><td>팝·스타파워</td><td>M</td><td>셀럽 파워</td><td>셀럽 의존</td></tr>
+      <tr><td>09</td><td><strong>Nonlocal</strong></td><td>KR</td><td>프리미엄</td><td>아웃도어·미니멀</td><td>M</td><td>아웃도어 감도</td><td>남성 편향</td></tr>
+      <tr><td>10</td><td><strong>8seconds</strong></td><td>KR</td><td>대중</td><td>SPA·패스트</td><td>N</td><td>유통망</td><td>감도 낮음</td></tr>
+      <tr><td>11</td><td><strong>Acne Studios</strong></td><td>SE</td><td>하이프리미엄</td><td>스칸디·모던</td><td>N</td><td>실루엣 파워</td><td>한국성 없음</td></tr>
+      <tr><td>12</td><td><strong>A.P.C.</strong></td><td>FR</td><td>프리미엄</td><td>프렌치·클래식</td><td>N</td><td>클래식 내구성</td><td>20대 접근성 낮음</td></tr>
+      <tr><td>13</td><td><strong>COS</strong></td><td>SE</td><td>중가</td><td>미니멀·아키텍처럴</td><td>N</td><td>가성비 미니멀</td><td>개성 부족</td></tr>
+      <tr><td>14</td><td><strong>Our Legacy</strong></td><td>SE</td><td>프리미엄</td><td>스칸디·에디토리얼</td><td>M</td><td>에디토리얼 감도</td><td>여성 약함</td></tr>
+      <tr><td>15</td><td><strong>Lemaire</strong></td><td>FR</td><td>럭셔리</td><td>파리지엥·콰이어트</td><td>N</td><td>여백미 최강</td><td>가격 장벽</td></tr>
+      <tr><td>16</td><td><strong>Toteme</strong></td><td>SE</td><td>하이프리미엄</td><td>미니멀·프리미엄</td><td>F</td><td>여성 미니멀</td><td>남성 접근성 없음</td></tr>
+      <tr><td>17</td><td><strong>MM6 Margiela</strong></td><td>IT</td><td>하이프리미엄</td><td>해체주의·개념</td><td>N</td><td>개념적 차별화</td><td>대중성 낮음</td></tr>
+      <tr><td>18</td><td><strong>Jacquemus</strong></td><td>FR</td><td>프리미엄</td><td>남프랑스·감각</td><td>N</td><td>감각적 SNS</td><td>한국 감도 맞춤 미흡</td></tr>
+      <tr><td>19</td><td><strong>Carhartt WIP</strong></td><td>US</td><td>중가</td><td>워크웨어·스트리트</td><td>M</td><td>헤리티지 스트리트</td><td>남성 편향</td></tr>
+      <tr><td>20</td><td><strong>Stüssy</strong></td><td>US</td><td>중가</td><td>서프·스케이트</td><td>M</td><td>레전드 크레딧</td><td>트렌드 피로</td></tr>
+      <tr><td>21</td><td><strong>Stone Island</strong></td><td>IT</td><td>하이프리미엄</td><td>테크니컬·이탈리안</td><td>M</td><td>기능성 프리미엄</td><td>여성 접근성 없음</td></tr>
+      <tr><td>22</td><td><strong>Represent</strong></td><td>UK</td><td>프리미엄</td><td>프리미엄 스트리트</td><td>M</td><td>영국 프리미엄 스트리트</td><td>젠더 제한</td></tr>
+      <tr><td>23</td><td><strong>Arte Antwerp</strong></td><td>BE</td><td>프리미엄</td><td>팝·일러스트</td><td>N</td><td>일러스트 개성</td><td>오래 입기 어려움</td></tr>
+      <tr><td>24</td><td><strong>Wood Wood</strong></td><td>DK</td><td>프리미엄</td><td>덴마크·컬러</td><td>N</td><td>덴마크 감도</td><td>한국 인지도 낮음</td></tr>
+      <tr><td>25</td><td><strong>NF Purple Label</strong></td><td>JP</td><td>하이프리미엄</td><td>일본 큐레이션</td><td>M</td><td>헤리티지 큐레이션</td><td>남성 편향</td></tr>
+      <tr><td>26</td><td><strong>Arc'teryx</strong></td><td>CA</td><td>하이프리미엄</td><td>퍼포먼스·미니멀</td><td>N</td><td>기능 프리미엄</td><td>라이프스타일 약함</td></tr>
+      <tr><td>27</td><td><strong>Ksubi</strong></td><td>AU</td><td>프리미엄</td><td>데님·록·에지</td><td>N</td><td>데님 에지</td><td>특정 서브컬처 한계</td></tr>
+      <tr><td>28</td><td><strong>Ambush</strong></td><td>JP</td><td>하이프리미엄</td><td>보석·팝·아방가르드</td><td>N</td><td>아방가르드 개성</td><td>가격 장벽</td></tr>
+      <tr><td>29</td><td><strong>Sacai</strong></td><td>JP</td><td>럭셔리</td><td>하이브리드·디컨</td><td>N</td><td>하이브리드 독창성</td><td>럭셔리 장벽</td></tr>
+      <tr><td>30</td><td><strong>Maison Kitsuné</strong></td><td>FR/JP</td><td>프리미엄</td><td>파리+도쿄 라이프</td><td>N</td><td>라이프스타일 확장</td><td>세계관 분산</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 1.3 클러스터링 -->
+  <h3 class="sec">경쟁사 클러스터링 (5그룹)</h3>
+  <div class="cluster-grid">
+    <div class="cluster-card">
+      <div class="cluster-name">Group A · 조용한 감각파</div>
+      <div class="cluster-brands">Lemaire / Toteme / A.P.C. / Insilence / Pottery / COS</div>
+      <div class="cluster-weak">↳ 약점: 개성 약함, 20대 접근성 낮음</div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name">Group B · 개념·유머파</div>
+      <div class="cluster-brands">Ader Error / MM6 / Arte Antwerp / Wood Wood / General Idea</div>
+      <div class="cluster-weak">↳ 약점: 트렌드 의존성, 장기 착용 피로</div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name">Group C · 헤리티지·남성 중심</div>
+      <div class="cluster-brands">Marhagrid / Covernat / Carhartt WIP / Stüssy / Represent / Ksubi</div>
+      <div class="cluster-weak">↳ 약점: 여성 20-40대 접근성 낮음</div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name">Group D · 스칸디·글로벌 미니멀</div>
+      <div class="cluster-brands">Acne Studios / Our Legacy / Nonlocal / Arc'teryx</div>
+      <div class="cluster-weak">↳ 약점: 한국 문화 정체성 없음</div>
+    </div>
+    <div class="cluster-card">
+      <div class="cluster-name">Group E · 하이브리드·라이프스타일</div>
+      <div class="cluster-brands">IISE / Maison Kitsuné / Ambush / Sacai / NF Purple Label</div>
+      <div class="cluster-weak">↳ 약점: 가격 장벽 높음</div>
+    </div>
+  </div>
+
+  <!-- 1.4 포지셔닝 맵 -->
+  <h3 class="sec">XY 포지셔닝 맵</h3>
+  <div class="positioning-map">                       ┃ PREMIUM / LUXURY
+                       ┃
+   Lemaire             ┃         Sacai
+   Acne Studios        ┃              MM6
+   Toteme    A.P.C.    ┃                   Ambush
+                       ┃
+──────── QUIET ─────────╋─────────────────────────── EXPRESSIVE ────
+                       ┃
+   Pottery   COS       ┃         Ader Error
+   Insilence           ┃              Arte Antwerp
+                       ┃
+        ✦ LUNE         ┃    PeaceMinus One
+   [TARGET ZONE]       ┃
+                       ┃
+                       ┃ MASS MARKET
+
+X축: 표현 강도 — Quiet ←→ Expressive
+Y축: 가격·포지션 — Mass ←→ Premium/Luxury
+
+→ LUNE: Quiet × Premium 상단 · 한국 브랜드 중 해당 포지션 선점 브랜드 부재</div>
+
+  <!-- 1.5 퍼소나 -->
+  <h3 class="sec">타겟 퍼소나 분석</h3>
+  <div class="persona-grid">
+    <div class="persona-card">
+      <div class="persona-name">조용한 취향러</div>
+      <div class="persona-role">28세 여성 · 마케터</div>
+      <div class="persona-item"><strong>구매 채널</strong> 인스타그램 탐색 → 브랜드 웹사이트 직구매</div>
+      <div class="persona-item"><strong>선호 신호</strong> 오버사이즈, 중성적 색감, 소재 중심</div>
+      <div class="persona-item"><strong>회피 신호</strong> 스트리트 로고, 빠른 트렌드 교체</div>
+      <div class="persona-item"><strong>지출 패턴</strong> 시즌 3–4개, 개당 15–30만원</div>
+      <div class="persona-item"><strong>영향 채널</strong> 미니멀 계정, 에디터 스타일링</div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-name">감각적 커리어맨</div>
+      <div class="persona-role">35세 남성 · 스타트업 마케팅 리드</div>
+      <div class="persona-item"><strong>구매 채널</strong> 무신사 탐색 → 공식 채널</div>
+      <div class="persona-item"><strong>선호 신호</strong> 클린 라인, 유니섹스, 스타일링 폭</div>
+      <div class="persona-item"><strong>회피 신호</strong> 오버 브랜딩, 스트리트 코드 과강</div>
+      <div class="persona-item"><strong>지출 패턴</strong> 분기 2–3개 투자 아이템</div>
+      <div class="persona-item"><strong>영향 채널</strong> Highsnobiety KR, 브랜드 룩북</div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-name">문화 소비 중년</div>
+      <div class="persona-role">42세 여성 · 갤러리 큐레이터</div>
+      <div class="persona-item"><strong>구매 채널</strong> 플래그십 스토어, 편집샵</div>
+      <div class="persona-item"><strong>선호 신호</strong> 입는 순간 완성되는 실루엣, 희소성</div>
+      <div class="persona-item"><strong>회피 신호</strong> 10년 뒤 촌스러울 트렌드</div>
+      <div class="persona-item"><strong>지출 패턴</strong> 시즌 2개 이내, 개당 30–60만원</div>
+      <div class="persona-item"><strong>영향 채널</strong> 입소문, 갤러리·문화 행사</div>
+    </div>
+  </div>
+
+  <!-- 1.6 화이트스페이스 -->
+  <h3 class="sec">시장 화이트스페이스 (Market White Space)</h3>
+  <div class="ws-grid">
+    <div class="ws-card filled">
+      <div class="ws-label">이미 점령된 자리</div>
+      <div class="ws-body">Insilence·Pottery: 조용한 프리미엄 (세계관 약함) · IISE: 한국 정체성 (가격 장벽) · Lemaire류: Quiet Luxury (30대 후반+)</div>
+    </div>
+    <div class="ws-card empty">
+      <div class="ws-label">비어 있는 자리 → LUNE</div>
+      <div class="ws-body"><strong>젠더뉴트럴 × 프리미엄 × 한국 감수성 × 20대 접근성</strong> — 이 네 조건을 동시에 충족하는 브랜드 현재 없음</div>
+    </div>
+    <div class="ws-card filled">
+      <div class="ws-label">타겟 미충족 욕구</div>
+      <div class="ws-body">소재 중심 스토리텔링 / 조용한 존재감 + 젊은 타겟 / 한국 도시 감수성 기반 세계관</div>
+    </div>
+    <div class="ws-card empty">
+      <div class="ws-label">포지셔닝 전략 한 문장</div>
+      <div class="ws-body" style="font-weight:700;font-size:15px;">"LUNE은 주장하지 않아도 기억되는 브랜드다."</div>
+    </div>
+  </div>
+
+  <!-- 1.7 포지셔닝 전략 3축 -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">전략축 ①</div>
+      <div class="card-title">Quiet Statement</div>
+      <div class="card-body">로고·그래픽보다 실루엣과 소재가 말한다. 입고 있는 사람이 먼저 보이고, 브랜드는 그 다음.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">전략축 ②</div>
+      <div class="card-title">Cultural Fluidity</div>
+      <div class="card-body">한국 감수성 기반, 글로벌 언어로 번역. '달'의 메타포 — 어느 나라 밤하늘에도 같은 달이 뜬다.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">전략축 ③</div>
+      <div class="card-title">Living Archive</div>
+      <div class="card-body">시즌 트렌드 아닌 '살아있는 아카이브'. 드롭 방식 + 리이슈 시스템, 커뮤니티 일상 아카이브.</div>
+    </div>
+  </div>
+
+  <!-- 1.8 BX 프롬프트 팩 -->
+  <h3 class="sec">BX / 패키지 비주얼 프롬프트 팩 (Higgsfield)</h3>
+  <div class="bx-prompt">
+<div class="bx-prompt-label">IMAGE PROMPT PACK · 5 SHOTS</div>
+Prompt 01 — Seoul Dawn
+"Seoul alleyway at 4am, moonlight reflecting on wet pavement,
+soft mist, empty street, cinematic film grain,
+cool blue-gray palette, desaturated, 8mm photography"
+
+Prompt 02 — Fabric in Wind
+"Minimalist linen oversized shirt, oatmeal white,
+natural light from window, slow fabric movement,
+person's back only, neutral background,
+ultra high quality textile photography"
+
+Prompt 03 — Gallery Object
+"White gallery interior, single garment as art object,
+architectural minimalism, Korean contemporary space,
+soft ambient light, no people, editorial fashion"
+
+Prompt 04 — Material Close
+"Close-up of cashmere fabric texture, natural afternoon light,
+warm shadow detail, luxury material photography,
+no text, highly detailed, macro lens feel"
+
+Prompt 05 — Rooftop Silhouette
+"Seoul rooftop, lone silhouette against early morning sky,
+full moon barely visible, city lights below,
+cinematic wide shot, quiet melancholic atmosphere"</div>
+
+  <!-- Gate 1 체크리스트 -->
+  <div class="gate-checklist">
+    <div class="gate-checklist-title">GATE 1 CHECKLIST · 자동 확인 완료</div>
+    <div class="gate-check-item">경쟁 브랜드 30개 이상 (30개 완료)</div>
+    <div class="gate-check-item">직접·간접·감성 경쟁 모두 포함</div>
+    <div class="gate-check-item">포지셔닝 맵 축 임의적이지 않음 (Quiet↔Expressive / Mass↔Premium)</div>
+    <div class="gate-check-item">추천 축이 브랜드 빈자리를 설명함</div>
+    <div class="gate-check-item">선호도 분석이 타겟 기준으로 작성됨</div>
+    <div class="gate-check-item">포지셔닝 전략 한 문장 확정</div>
+    <div class="gate-check-item">비주얼 프롬프트 전략과 연결됨</div>
+    <div class="gate-check-item">출처 없는 수치 단정 없음</div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HYO MANUS 2차 · 비주얼 아이덴티티
+══════════════════════════════════════ -->
+<section class="stage-section">
+  <div class="stage-header">
+    <div>
+      <div class="stage-number">HYO MANUS 2차 · VISUAL IDENTITY &amp; CONCEPT</div>
+      <div class="stage-title">비주얼 아이덴티티 &amp; 컨셉 발산</div>
+      <div class="stage-desc">Visual DNA 추출 → 경쟁 비주얼 코드 → 6개 컨셉 테리토리 → Client × Mood Matrix → Brutalist Framework → 숏리스트</div>
+    </div>
+    <span class="gate-badge gate-pass">✓ Gate 2 통과</span>
+  </div>
+
+  <!-- 2.1 Visual DNA -->
+  <h3 class="sec">VISUAL IDENTITY DNA</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">Form</div>
+      <div class="card-title">의도적 비대칭 · 여백</div>
+      <div class="card-body">공백을 콘텐츠로 사용. 과잉 요소 제거. 동양적 여백(間) 의도적 활용.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Color</div>
+      <div class="card-title">달빛 화이트 + 음영 그레이</div>
+      <div class="card-body">오트밀 · 쿨 그레이 · 딥 차콜 · 슬레이트 블루 포인트. 채도 낮은 자연 팔레트.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Material</div>
+      <div class="card-title">린넨 · 캐시미어 · 울</div>
+      <div class="card-body">소재 질감 클로즈업 중심. 원단 텍스처가 첫 번째 시각 신호.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Typography</div>
+      <div class="card-title">세리프 + 산세리프 이중체계</div>
+      <div class="card-body">세리프(감성·세계관) + 산세리프(정보·기능). Garamond/을지로체 + Aktiv Grotesk.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Photography</div>
+      <div class="card-title">서울 새벽 · 자연광</div>
+      <div class="card-body">새벽 블루 하늘, 달빛 반사, 자연광 소재 클로즈업. 강한 인물 단독컷.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Symbol</div>
+      <div class="card-title">달(Moon) · 세로선 · 빈 원</div>
+      <div class="card-body">보름달·초승달 보조 사용. 동양 필선. 반복 가능한 기호 시스템.</div>
+    </div>
+  </div>
+
+  <!-- 2.2 경쟁 비주얼 코드 맵 -->
+  <h3 class="sec">COMPETITIVE VISUAL CODE MAP</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>브랜드</th><th>컬러 코드</th><th>타입</th><th>이미지 톤</th><th>차별 신호</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lemaire</td><td>어스톤 중심</td><td>세리프·섬세</td><td>자연광·파리 정물</td><td>파리지엥 절제</td></tr>
+      <tr><td>Acne Studios</td><td>핑크 시그니처</td><td>현대적 산세리프</td><td>강한 인물</td><td>북유럽 개성</td></tr>
+      <tr><td>Ader Error</td><td>팝·비비드</td><td>디스플레이·개성</td><td>팝아트·연출</td><td>유머 코드</td></tr>
+      <tr><td>COS</td><td>모노톤</td><td>미니멀 산세리프</td><td>아키텍처럴</td><td>기능적 미학</td></tr>
+      <tr><td>IISE</td><td>네이비+화이트</td><td>한글+로마자</td><td>한국 도시</td><td>한국 정체성</td></tr>
+      <tr style="background:#F9F6EE;"><td><strong>LUNE (차별점)</strong></td><td><strong>달빛·음영·차콜</strong></td><td><strong>세리프+산세리프 이중</strong></td><td><strong>서울 새벽·소재</strong></td><td><strong>한국 여백미</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 2.3 6개 컨셉 테리토리 -->
+  <h3 class="sec">6개 컨셉 테리토리</h3>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="concept-header finalist">★ Territory 1 · Lunar Stillness (선정)</div>
+      <div class="concept-body">
+        <div class="concept-mood">달의 고요</div>
+        <div class="concept-keywords">정적 · 달빛 · 서울 새벽 3시 · 아무도 없는 거리</div>
+        <div>컬러: 오트밀 화이트 · 쿨 그레이 · 딥 차콜</div>
+        <div style="margin-top:10px;"><span class="concept-score gold">Strategy Fit ★★★★★</span></div>
+        <div class="concept-risk">⚠ 너무 차가울 수 있음 → Material Truth 결합으로 보완</div>
+      </div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-header">Territory 2 · Living Archive</div>
+      <div class="concept-body">
+        <div class="concept-mood">살아있는 기록</div>
+        <div class="concept-keywords">기억 · 오래된 사진 · 린넨 · 빛바랜 페이지</div>
+        <div>컬러: 따뜻한 크림 · 아이보리 · 세피아 · 세이지 그린</div>
+        <div style="margin-top:10px;"><span class="concept-score">Strategy Fit ★★★★</span></div>
+        <div class="concept-risk">⚠ 레트로 코드 과강 위험</div>
+      </div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-header">Territory 3 · Seoul Silence</div>
+      <div class="concept-body">
+        <div class="concept-mood">서울의 침묵</div>
+        <div class="concept-keywords">도시 건축 · 그림자 · 콘크리트 미학 · 한국 골목</div>
+        <div>컬러: 콘크리트 그레이 · 블랙 · 셰도우 블루</div>
+        <div style="margin-top:10px;"><span class="concept-score">Strategy Fit ★★★★</span></div>
+        <div class="concept-risk">⚠ 남성·도시 코드 쏠림</div>
+      </div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-header finalist">★ Territory 4 · Material Truth (선정)</div>
+      <div class="concept-body">
+        <div class="concept-mood">소재의 진실</div>
+        <div class="concept-keywords">텍스처 · 촉감 · 손으로 만진 흔적 · 장인 정신</div>
+        <div>컬러: 워시드 블루 · 내추럴 베이지 · 번트 오렌지</div>
+        <div style="margin-top:10px;"><span class="concept-score gold">Strategy Fit ★★★★★</span></div>
+        <div class="concept-risk">⚠ 세계관 서사 약함 → Lunar Stillness와 결합</div>
+      </div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-header">Territory 5 · Between</div>
+      <div class="concept-body">
+        <div class="concept-mood">사이의 감각</div>
+        <div class="concept-keywords">경계 · 남과 여 · 낮과 밤 · 한국과 세계</div>
+        <div>컬러: 듀얼 팔레트 (라이트/다크)</div>
+        <div style="margin-top:10px;"><span class="concept-score">Strategy Fit ★★★</span></div>
+        <div class="concept-risk">⚠ 메타포 과도 → 글로벌 MZ 타겟 한정</div>
+      </div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-header">Territory 6 · Quiet Power</div>
+      <div class="concept-body">
+        <div class="concept-mood">조용한 힘</div>
+        <div class="concept-keywords">차분한 카리스마 · 배우 뒷모습 · 기다림</div>
+        <div>컬러: 딥 인디고 · 크림 · 골드 스트로크</div>
+        <div style="margin-top:10px;"><span class="concept-score">Strategy Fit ★★★★</span></div>
+        <div class="concept-risk">⚠ 럭셔리 클리셰 유사 위험</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.4 Client × Mood Matrix -->
+  <h3 class="sec">CLIENT × MOOD MATRIX</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>컨셉</th><th>취향러 28F</th><th>커리어맨 35M</th><th>큐레이터 42F</th><th>글로벌 MZ 23N</th><th>종합</th></tr>
+    </thead>
+    <tbody>
+      <tr style="background:#FFF9EE;"><td><strong>★ Lunar Stillness</strong></td><td>★★★★★</td><td>★★★★</td><td>★★★★</td><td>★★★★</td><td><strong>최고</strong></td></tr>
+      <tr><td>Living Archive</td><td>★★★★</td><td>★★★</td><td>★★★★★</td><td>★★★</td><td>상</td></tr>
+      <tr><td>Seoul Silence</td><td>★★★</td><td>★★★★★</td><td>★★★</td><td>★★★</td><td>중상</td></tr>
+      <tr style="background:#FFF9EE;"><td><strong>★ Material Truth</strong></td><td>★★★★</td><td>★★★★</td><td>★★★★★</td><td>★★★</td><td><strong>최고</strong></td></tr>
+      <tr><td>Between</td><td>★★★★</td><td>★★★</td><td>★★★</td><td>★★★★★</td><td>중상</td></tr>
+      <tr><td>Quiet Power</td><td>★★★</td><td>★★★★</td><td>★★★★★</td><td>★★★</td><td>중상</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 2.5 Brutalist Framework 판단 -->
+  <div class="card" style="margin-bottom:32px;">
+    <div class="card-label">Brutalist Framework 적용 판단</div>
+    <div class="card-title">부분 적용 — 타이포그래픽 구조 요소만</div>
+    <div class="card-body" style="margin-top:10px;">
+      LUNE의 조용한 프리미엄 포지션상 전면 브루탈리스트 적용은 고급감을 저해할 수 있음.<br>
+      단, 에디토리얼 레이아웃의 <strong>정보 구조 노출</strong>과 <strong>타이포그래픽 긴장감</strong>은 차별점으로 활용 가능.<br>
+      결론: 룩북·에디토리얼 콘텐츠에서만 구조 노출 허용. 제품 샷·패키지에서는 미적용.
+    </div>
+  </div>
+
+  <!-- 2.6 컨셉 숏리스트 -->
+  <h3 class="sec">컨셉 숏리스트 (최종 선정)</h3>
+  <div class="card-grid">
+    <div class="card" style="border-top:4px solid var(--accent2);">
+      <div class="card-label">Finalist A · 권장</div>
+      <div class="card-title">Lunar Stillness × Material Truth</div>
+      <div class="card-body">"달빛이 소재 위에 내려앉는 순간"<br><br>세계관: 빛과 소재의 접점. 전 타겟 커버, 두 축 장점 결합.<br>룩북: 텍스처 클로즈업 + 새벽 공간 샷 혼용.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Finalist B · 대안</div>
+      <div class="card-title">Seoul Silence × Quiet Power</div>
+      <div class="card-body">"서울의 새벽, 침묵 속의 존재감"<br><br>한국 정체성 명확. 20–30대 남성 강함.<br>시즌별 서울 촬영지 아카이브화.</div>
+    </div>
+  </div>
+
+  <!-- Gate 2 체크리스트 -->
+  <div class="gate-checklist">
+    <div class="gate-checklist-title">GATE 2 CHECKLIST · 자동 확인 완료</div>
+    <div class="gate-check-item">Visual Identity DNA가 1차 포지셔닝 전략과 연결됨</div>
+    <div class="gate-check-item">경쟁사 이미 쓰는 시각 코드 피함</div>
+    <div class="gate-check-item">6개 컨셉이 서로 다른 감각</div>
+    <div class="gate-check-item">각 컨셉이 동일 전략으로 회수됨</div>
+    <div class="gate-check-item">Client × Mood Matrix 점수 근거 명확</div>
+    <div class="gate-check-item">Brutalist Framework 스타일이 아닌 전략으로 판단됨</div>
+    <div class="gate-check-item">최종 추천 컨셉 2개 선정됨</div>
+    <div class="gate-check-item">제외 컨셉 이유 명확</div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HYO MANUS 3차 · 브랜드 시스템
+══════════════════════════════════════ -->
+<section class="stage-section">
+  <div class="stage-header">
+    <div>
+      <div class="stage-number">HYO MANUS 3차 · BRAND SYSTEM</div>
+      <div class="stage-title">브랜드 시스템화</div>
+      <div class="stage-desc">Brand Board → Value Cards → Value Metrics → Value Keyword Map → Copy Headline → Symbol Map → CI/BI Audit</div>
+    </div>
+    <span class="gate-badge gate-pass">✓ Gate 3 통과</span>
+  </div>
+
+  <!-- 3.1 Brand Board -->
+  <h3 class="sec">BRAND BOARD</h3>
+  <div class="brand-board">
+    <div style="font-size:11px;letter-spacing:4px;color:var(--accent2);">HYO MANUS · BRAND BOARD</div>
+    <div style="font-size:28px;font-weight:800;letter-spacing:8px;margin:12px 0 4px;">LUNE</div>
+    <div style="font-size:13px;color:#999;">Gender-Neutral Lifestyle Fashion · Seoul · 2026</div>
+    <hr class="bb-divider">
+    <div class="brand-board-grid">
+      <div>
+        <div class="bb-label">Brand Essence</div>
+        <div class="bb-value">"주장하지 않아도 기억되는"</div>
+      </div>
+      <div>
+        <div class="bb-label">Brand Promise</div>
+        <div class="bb-value">입는 사람을 더 선명하게 만드는 옷</div>
+      </div>
+      <div>
+        <div class="bb-label">Core Values</div>
+        <div class="bb-value">Stillness · Endurance · Clarity · Fluidity · Korean</div>
+      </div>
+      <div>
+        <div class="bb-label">Strategic Keywords</div>
+        <div class="bb-value">조용한 자신감 · 달빛 소재 · 서울 새벽</div>
+      </div>
+      <div>
+        <div class="bb-label">Color System</div>
+        <div class="bb-value">LUNE WHITE #F5F3EE · LUNE SHADOW #8C8C8A · LUNE NIGHT #1C1C1A · LUNE SLATE #6B7B8D · LUNE DUSK #C4A882</div>
+      </div>
+      <div>
+        <div class="bb-label">Typography</div>
+        <div class="bb-value">Garamond / 을지로체 (세리프·헤드라인) + Aktiv Grotesk / Noto Sans KR (산세리프·본문)</div>
+      </div>
+      <div>
+        <div class="bb-label">Logo Direction</div>
+        <div class="bb-value">Wordmark "LUNE" — 가로 세리프, 낮은 자간. 로고는 안감. 달 심볼 보조 사용만.</div>
+      </div>
+      <div>
+        <div class="bb-label">Do / Don't</div>
+        <div class="bb-value">✓ 여백 = 콘텐츠 ✓ 소재 텍스처 ✓ 서울 새벽<br>✗ 로고 과시 ✗ 스트리트 클리셰 ✗ 시즌 트렌드 추종</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.2 컬러 팔레트 -->
+  <h3 class="sec">COLOR SYSTEM</h3>
+  <div class="color-palette">
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#F5F3EE;"></div>
+      <div class="color-hex">#F5F3EE</div>
+      <div class="color-name">LUNE WHITE<br>달빛 (메인)</div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#8C8C8A;"></div>
+      <div class="color-hex">#8C8C8A</div>
+      <div class="color-name">LUNE SHADOW<br>그림자 (서브)</div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#1C1C1A;"></div>
+      <div class="color-hex">#1C1C1A</div>
+      <div class="color-name">LUNE NIGHT<br>딥 차콜 (포인트)</div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#6B7B8D;"></div>
+      <div class="color-hex">#6B7B8D</div>
+      <div class="color-name">LUNE SLATE<br>슬레이트 (액센트)</div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#C4A882;border:1px solid #E5E3DF;"></div>
+      <div class="color-hex">#C4A882</div>
+      <div class="color-name">LUNE DUSK<br>황혼 (시즌)</div>
+    </div>
+  </div>
+
+  <!-- 3.3 Value Cards -->
+  <h3 class="sec">VALUE CARDS</h3>
+  <div class="value-cards">
+    <div class="value-card">
+      <div class="value-num">VALUE 01</div>
+      <div class="value-name">STILLNESS</div>
+      <div class="value-def">"아무것도 외치지 않는 것이 가장 강한 말이다."</div>
+      <div class="value-principle">
+        <strong>VISUAL</strong> 빈 방, 달빛, 정적인 공간
+        <strong>DESIGN</strong> 여백 > 요소, 침묵이 콘텐츠
+        <strong>PRODUCT</strong> 로고는 안감, 표면은 소재만
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">VALUE 02</div>
+      <div class="value-name">ENDURANCE</div>
+      <div class="value-def">"10년 뒤에도 입을 수 있는 것만 만든다."</div>
+      <div class="value-principle">
+        <strong>VISUAL</strong> 세월 흔적이 있는 소재, 손때
+        <strong>DESIGN</strong> 트렌드 아닌 원형에 집중
+        <strong>PRODUCT</strong> 드롭 방식 + 리이슈 (단종 없음)
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">VALUE 03</div>
+      <div class="value-name">CLARITY</div>
+      <div class="value-def">"옷이 아니라 입은 사람이 기억된다."</div>
+      <div class="value-principle">
+        <strong>VISUAL</strong> 인물이 주인공, 옷은 그림자
+        <strong>DESIGN</strong> 제품보다 인물·순간·감정 중심
+        <strong>PRODUCT</strong> 실루엣이 먼저, 디테일은 발견
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">VALUE 04</div>
+      <div class="value-name">FLUIDITY</div>
+      <div class="value-def">"성별도, 계절도, 시간도 가두지 않는다."</div>
+      <div class="value-principle">
+        <strong>VISUAL</strong> 경계가 흐린 것들 — 새벽/낮, 남/여
+        <strong>DESIGN</strong> 젠더뉴트럴 사이징, 시즌리스 소재
+        <strong>PRODUCT</strong> S-L 유니사이즈 + 오버사이즈 기본
+      </div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">VALUE 05</div>
+      <div class="value-name">KOREAN</div>
+      <div class="value-def">"세계 어디서도 달은 같은 달이다. 우리는 서울에서 뜬다."</div>
+      <div class="value-principle">
+        <strong>VISUAL</strong> 서울 공간, 한글 요소 (숨겨진)
+        <strong>DESIGN</strong> 동양적 여백(間) 의도적 활용
+        <strong>PRODUCT</strong> 생산 기반 한국·일본, 출처 투명
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.4 Value Metrics -->
+  <h3 class="sec">VALUE METRICS</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>가치</th><th>측정 지표</th><th>목표 신호</th><th>리스크 신호</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Stillness</strong></td><td>로고 노출 빈도, 디자인 여백 비율</td><td>로고 안감 전용 유지</td><td>이벤트성 로고 제품 출시</td></tr>
+      <tr><td><strong>Endurance</strong></td><td>리이슈 아이템 수, 시즌별 단종률</td><td>단종률 0% 유지</td><td>시즌 클리어런스 할인</td></tr>
+      <tr><td><strong>Clarity</strong></td><td>룩북 인물 중심 비율, SNS 저장률</td><td>저장 > 좋아요 비율</td><td>제품 단독샷 80% 이상</td></tr>
+      <tr><td><strong>Fluidity</strong></td><td>젠더 혼합 구매 비율</td><td>남:여 = 45:55~50:50</td><td>특정 성별 편중 > 70%</td></tr>
+      <tr><td><strong>Korean</strong></td><td>한국 생산 비율, 서울 기반 촬영 비율</td><td>생산 한국·일본 100%</td><td>외주 생산지 다변화 무기준</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.5 Value Keyword Map -->
+  <h3 class="sec">VALUE KEYWORD MAP</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>핵심 가치</th><th>전략 키워드</th><th>감정 키워드</th><th>시각 키워드</th><th>소재 키워드</th><th>카피 키워드</th><th>기호</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Stillness</td><td>조용한 자신감</td><td>평온, 여백</td><td>빈 공간, 새벽</td><td>린넨, 울</td><td>"말하지 않아도"</td><td>빈 원 ○</td></tr>
+      <tr><td>Endurance</td><td>시대 초월</td><td>신뢰, 안도</td><td>세월의 흔적</td><td>캐시미어, 가죽</td><td>"10년 뒤에도"</td><td>실 Thread ╌</td></tr>
+      <tr><td>Clarity</td><td>존재 선명화</td><td>자신감, 주인공</td><td>인물 뒷모습</td><td>실루엣 중심</td><td>"당신이 보인다"</td><td>달빛 조도 ☾</td></tr>
+      <tr><td>Fluidity</td><td>경계 해체</td><td>자유, 유연함</td><td>그라디언트</td><td>시즌리스</td><td>"가두지 않는다"</td><td>흐름 ∿</td></tr>
+      <tr><td>Korean</td><td>서울 기원</td><td>자긍심, 뿌리</td><td>서울 새벽 골목</td><td>한국·일본 생산</td><td>"서울에서 뜬다"</td><td>세로선 ｜</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.6 Copy Headline System -->
+  <h3 class="sec">COPY HEADLINE SYSTEM</h3>
+  <ul class="copy-list">
+    <li><span class="quote">"</span>달빛 아래, 당신이 보인다<span class="copy-tag">POSITIONING</span></li>
+    <li><span class="quote">"</span>보이지 않아도, 거기 있다<span class="copy-tag">VALUE</span></li>
+    <li><span class="quote">"</span>아무것도 말하지 않아도 된다<span class="copy-tag">POSITIONING</span></li>
+    <li><span class="quote">"</span>10년 뒤에도 지금처럼<span class="copy-tag">ENDURANCE</span></li>
+    <li><span class="quote">"</span>조용한 것이 오래 남는다<span class="copy-tag">VALUE</span></li>
+    <li><span class="quote">"</span>Made in Seoul. Meant for everywhere.<span class="copy-tag">KOREAN</span></li>
+    <li><span class="quote">"</span>Fabric first. Everything else follows.<span class="copy-tag">MATERIAL</span></li>
+    <li><span class="quote">"</span>No season. No logo. Just LUNE.<span class="copy-tag">BRAND</span></li>
+  </ul>
+
+  <!-- 3.7 Symbol Association Map -->
+  <h3 class="sec">SYMBOL ASSOCIATION MAP</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>브랜드 가치</th><th>기호</th><th>연상</th><th>시각 사용처</th><th>패키지</th><th>카피 연결</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Stillness</td><td>빈 원 ○</td><td>여백, 가능성</td><td>그래픽 배경 요소</td><td>박스 바닥 엠보</td><td>"아무것도 말하지 않아도"</td></tr>
+      <tr><td>Endurance</td><td>실 ╌</td><td>연결, 장인, 지속</td><td>태그 디자인</td><td>봉제실 색상 포인트</td><td>"10년 뒤에도"</td></tr>
+      <tr><td>Clarity</td><td>달빛 ☾</td><td>조도, 선명함</td><td>로고 보조 심볼</td><td>포장지 워터마크</td><td>"달빛 아래, 당신이"</td></tr>
+      <tr><td>Fluidity</td><td>흐름 ∿</td><td>경계 없음, 자유</td><td>그라디언트 배경</td><td>리본 패턴</td><td>"가두지 않는다"</td></tr>
+      <tr><td>Korean</td><td>세로선 ｜</td><td>한국 필선, 고요</td><td>에디토리얼 구분선</td><td>라벨 사이드 라인</td><td>"서울에서 뜬다"</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.8 CI/BI Audit -->
+  <h3 class="sec">COMPETITOR CI/BI AUDIT</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>브랜드</th><th>로고 노출도</th><th>컬러 시그니처</th><th>타입 시스템</th><th>이미지 코드</th><th>젠더뉴트럴</th><th>한국성</th><th>LUNE과 차이</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lemaire</td><td>최소</td><td>어스톤</td><td>세리프 단일</td><td>파리 정물</td><td>★★★★</td><td>✗</td><td>한국성 없음, 가격 장벽</td></tr>
+      <tr><td>Acne Studios</td><td>중간</td><td>핑크 시그니처</td><td>커스텀 산세리프</td><td>강한 인물</td><td>★★★★</td><td>✗</td><td>북유럽 코드, 한국성 없음</td></tr>
+      <tr><td>Insilence</td><td>최소</td><td>모노</td><td>산세리프</td><td>화이트 스튜디오</td><td>★★★★</td><td>★★★</td><td>세계관 서사 약함</td></tr>
+      <tr><td>IISE</td><td>중간</td><td>네이비+화이트</td><td>로마+한글</td><td>한국 도시</td><td>★★★</td><td>★★★★★</td><td>가격 장벽 높음</td></tr>
+      <tr><td>Pottery</td><td>최소</td><td>내추럴</td><td>미니멀</td><td>소재 클로즈업</td><td>★★★★</td><td>★★★</td><td>스토리텔링 약함</td></tr>
+      <tr style="background:#F9F6EE;"><td><strong>LUNE</strong></td><td><strong>최소 (안감)</strong></td><td><strong>달빛+차콜</strong></td><td><strong>이중체계</strong></td><td><strong>서울 새벽·소재</strong></td><td><strong>★★★★★</strong></td><td><strong>★★★★★</strong></td><td><strong>유일한 교집합 포지션</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.9 Brand System Summary -->
+  <div class="card" style="margin-bottom:32px;border:2px solid var(--accent);">
+    <div class="card-label">BRAND SYSTEM SUMMARY · YAML</div>
+    <pre style="font-size:12px;font-family:monospace;margin-top:12px;line-height:1.8;color:var(--accent);white-space:pre-wrap;">brand_name: LUNE
+positioning: "주장하지 않아도 기억되는 젠더뉴트럴 프리미엄 라이프스타일"
+essence: "달빛이 소재 위에 내려앉는 순간"
+target: "20-40대 트렌드 감각 남녀, 도시 기반 문화 소비층"
+price_tier: Premium (티셔츠 9-15만 / 아우터 30-60만)
+market: "한국 서울 → 글로벌 온라인"
+color_palette:
+  LUNE WHITE:  "#F5F3EE"
+  LUNE SHADOW: "#8C8C8A"
+  LUNE NIGHT:  "#1C1C1A"
+  LUNE SLATE:  "#6B7B8D"
+  LUNE DUSK:   "#C4A882"
+typography:
+  headline: "Garamond / 을지로체"
+  body:     "Aktiv Grotesk / Noto Sans KR"
+core_values: [Stillness, Endurance, Clarity, Fluidity, Korean]
+brand_voice: "짧고 여백이 있는 / 명사 중심 / 설명 아닌 환기"
+concept: "Lunar Stillness × Material Truth"
+image_code: "서울 새벽 달빛 + 소재 텍스처 클로즈업"
+<strong>slide_generation_ready: true</strong></pre>
+  </div>
+
+  <!-- 3.10 Gate 3 체크리스트 -->
+  <div class="gate-checklist">
+    <div class="gate-checklist-title">GATE 3 CHECKLIST · 자동 확인 완료</div>
+    <div class="gate-check-item">Brand Board가 1·2차를 모두 반영함</div>
+    <div class="gate-check-item">Value Cards가 행동·시각·카피·패키지로 확장됨</div>
+    <div class="gate-check-item">Value Metrics가 실제 운영 기준으로 사용 가능</div>
+    <div class="gate-check-item">Value Keyword Map이 가치와 시각 언어를 연결함</div>
+    <div class="gate-check-item">Copy Headline System이 브랜드 약속과 연결됨</div>
+    <div class="gate-check-item">Symbol Association Map이 반복 사용 가능한 기호 제공</div>
+    <div class="gate-check-item">Competitor CI/BI Audit이 차별점을 증명함</div>
+    <div class="gate-check-item">Brand System Summary 한 문장으로 말 됨</div>
+    <div class="gate-check-item">slide_generation_ready: true 확정</div>
+  </div>
+
+  <!-- Director Final Check -->
+  <div class="pov-block">
+    <div class="pov-label">HYO · DIRECTOR FINAL CHECK</div>
+    <div class="pov-text">"LUNE은 '보이지 않는 중력'으로 설계되었다. 시장에 아무것도 주장하지 않으면서 20-40대 감각 소비자의 선택을 '당연하게' 만드는 포지셔닝. 달이 스스로 빛나지 않아도 바다가 따라 움직이듯, LUNE은 옷이 아니라 입는 사람의 존재 방식을 브랜딩한다."</div>
+    <div class="pov-author">— HYO MANUS 3차 Director Final Check · 2026.07</div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FINAL SLIDE DECK · 35 SLIDES
+══════════════════════════════════════ -->
+<section class="stage-section">
+  <div class="stage-header">
+    <div>
+      <div class="stage-number">FINAL SLIDE DECK · slide_generation_ready: true</div>
+      <div class="stage-title">최종 슬라이드 덱 (35 슬라이드)</div>
+      <div class="stage-desc">HYO MANUS 1차·2차·3차 전체 내용 → 클라이언트 보고용 최종 덱</div>
+    </div>
+    <span class="gate-badge gate-pass">✓ 덱 완성 35슬라이드</span>
+  </div>
+
+  <div class="slide-grid">
+    <div class="slide-card"><div class="slide-num">00</div><div class="slide-section">COVER</div><div class="slide-title">LUNE 브랜드 제안서</div><div class="slide-msg">"주장하지 않아도 기억되는" · HYO MANUS 제안</div></div>
+    <div class="slide-card"><div class="slide-num">01</div><div class="slide-section">EXECUTIVE SUMMARY</div><div class="slide-title">전략 요약</div><div class="slide-msg">포지셔닝 한 문장 + 3축 전략 + 핵심 차별점</div></div>
+    <div class="slide-card"><div class="slide-num">02</div><div class="slide-section">EXECUTIVE SUMMARY</div><div class="slide-title">제안 전체 구성</div><div class="slide-msg">1차→2차→3차 파이프라인 시각화</div></div>
+    <div class="slide-card"><div class="slide-num">03</div><div class="slide-section">PROJECT BRIEF</div><div class="slide-title">프로젝트 인테이크</div><div class="slide-msg">브랜드명·카테고리·가격대·시장·목표 요약표</div></div>
+    <div class="slide-card"><div class="slide-num">04</div><div class="slide-section">MARKET OVERVIEW</div><div class="slide-title">한국 프리미엄 패션 시장</div><div class="slide-msg">시장 규모·5대 트렌드·기회 포인트</div></div>
+    <div class="slide-card"><div class="slide-num">05</div><div class="slide-section">COMPETITOR SCAN</div><div class="slide-title">경쟁사 30개 매핑</div><div class="slide-msg">국가·가격대·스타일코드·젠더 분류 전체 매트릭스</div></div>
+    <div class="slide-card"><div class="slide-num">06</div><div class="slide-section">COMPETITOR SCAN</div><div class="slide-title">경쟁사 클러스터링</div><div class="slide-msg">5개 그룹 분류 · 각 그룹 강점·약점</div></div>
+    <div class="slide-card"><div class="slide-num">07</div><div class="slide-section">POSITIONING MAP</div><div class="slide-title">XY 포지셔닝 맵</div><div class="slide-msg">Quiet↔Expressive × Mass↔Premium 맵 시각화</div></div>
+    <div class="slide-card"><div class="slide-num">08</div><div class="slide-section">POSITIONING MAP</div><div class="slide-title">LUNE의 위치</div><div class="slide-msg">Quiet×Premium 선점 · 한국 브랜드 공백 강조</div></div>
+    <div class="slide-card"><div class="slide-num">09</div><div class="slide-section">MARKET WHITE SPACE</div><div class="slide-title">시장 빈자리 정의</div><div class="slide-msg">점령된 자리 vs 비어있는 자리 비교</div></div>
+    <div class="slide-card"><div class="slide-num">10</div><div class="slide-section">PREFERENCE ANALYSIS</div><div class="slide-title">퍼소나 A · 조용한 취향러</div><div class="slide-msg">28세 여성 마케터 · 구매 패턴·채널·선호/회피</div></div>
+    <div class="slide-card"><div class="slide-num">11</div><div class="slide-section">PREFERENCE ANALYSIS</div><div class="slide-title">퍼소나 B · 감각적 커리어맨</div><div class="slide-msg">35세 남성 스타트업 · 구매 패턴·채널·선호/회피</div></div>
+    <div class="slide-card"><div class="slide-num">12</div><div class="slide-section">PREFERENCE ANALYSIS</div><div class="slide-title">퍼소나 C · 문화 소비 중년</div><div class="slide-msg">42세 여성 큐레이터 · 구매 패턴·채널·선호/회피</div></div>
+    <div class="slide-card"><div class="slide-num">13</div><div class="slide-section">POSITIONING STRATEGY</div><div class="slide-title">포지셔닝 한 문장</div><div class="slide-msg">"LUNE은 주장하지 않아도 기억되는 브랜드다."</div></div>
+    <div class="slide-card"><div class="slide-num">14</div><div class="slide-section">POSITIONING STRATEGY</div><div class="slide-title">전략 3축</div><div class="slide-msg">Quiet Statement · Cultural Fluidity · Living Archive</div></div>
+    <div class="slide-card"><div class="slide-num">15</div><div class="slide-section">VISUAL DNA</div><div class="slide-title">Visual Identity DNA 추출</div><div class="slide-msg">Form·Color·Material·Typography·Photography·Symbol 6축</div></div>
+    <div class="slide-card"><div class="slide-num">16</div><div class="slide-section">VISUAL DNA</div><div class="slide-title">경쟁 비주얼 코드 맵</div><div class="slide-msg">이미 과밀한 코드 vs LUNE이 차지할 코드</div></div>
+    <div class="slide-card"><div class="slide-num">17</div><div class="slide-section">CONCEPT TERRITORIES</div><div class="slide-title">6개 컨셉 테리토리 개요</div><div class="slide-msg">발산 방향 6개 한 눈에 비교</div></div>
+    <div class="slide-card"><div class="slide-num">18</div><div class="slide-section">CONCEPT TERRITORIES</div><div class="slide-title">Territory 1 · Lunar Stillness</div><div class="slide-msg">달의 고요 · 컬러·무드·리스크 상세</div></div>
+    <div class="slide-card"><div class="slide-num">19</div><div class="slide-section">CONCEPT TERRITORIES</div><div class="slide-title">Territory 4 · Material Truth</div><div class="slide-msg">소재의 진실 · 컬러·무드·리스크 상세</div></div>
+    <div class="slide-card"><div class="slide-num">20</div><div class="slide-section">CLIENT × MOOD</div><div class="slide-title">Client × Mood Matrix</div><div class="slide-msg">6개 컨셉 × 4개 퍼소나 점수 매트릭스</div></div>
+    <div class="slide-card"><div class="slide-num">21</div><div class="slide-section">CONCEPT SHORTLIST</div><div class="slide-title">컨셉 숏리스트 선정</div><div class="slide-msg">Lunar Stillness × Material Truth 혼합 권장 이유</div></div>
+    <div class="slide-card"><div class="slide-num">22</div><div class="slide-section">MOODBOARD</div><div class="slide-title">무드보드 · 9컷 구성</div><div class="slide-msg">서울 새벽·소재 텍스처·갤러리 공간 9컷</div></div>
+    <div class="slide-card"><div class="slide-num">23</div><div class="slide-section">BX PROMPT PACK</div><div class="slide-title">이미지 생성 프롬프트 팩</div><div class="slide-msg">Higgsfield 5개 프롬프트 · 촬영 가이드라인</div></div>
+    <div class="slide-card"><div class="slide-num">24</div><div class="slide-section">BRAND BOARD</div><div class="slide-title">Brand Board 종합</div><div class="slide-msg">에센스·포지셔닝·가치·시각·카피 원페이지 기준판</div></div>
+    <div class="slide-card"><div class="slide-num">25</div><div class="slide-section">COLOR SYSTEM</div><div class="slide-title">컬러 시스템</div><div class="slide-msg">5컬러 팔레트 · 사용 원칙 · 금지 조합</div></div>
+    <div class="slide-card"><div class="slide-num">26</div><div class="slide-section">TYPOGRAPHY</div><div class="slide-title">타이포그래피 이중체계</div><div class="slide-msg">세리프(감성) + 산세리프(정보) · 사용 룰</div></div>
+    <div class="slide-card"><div class="slide-num">27</div><div class="slide-section">LOGO DIRECTION</div><div class="slide-title">로고 방향</div><div class="slide-msg">Wordmark "LUNE" · 달 심볼 보조 · 금지 사용법</div></div>
+    <div class="slide-card"><div class="slide-num">28</div><div class="slide-section">VALUE CARDS</div><div class="slide-title">Value Cards 01–02</div><div class="slide-msg">Stillness + Endurance · 행동·시각·카피·패키지 원칙</div></div>
+    <div class="slide-card"><div class="slide-num">29</div><div class="slide-section">VALUE CARDS</div><div class="slide-title">Value Cards 03–05</div><div class="slide-msg">Clarity + Fluidity + Korean · 행동·시각·카피·패키지 원칙</div></div>
+    <div class="slide-card"><div class="slide-num">30</div><div class="slide-section">COPY SYSTEM</div><div class="slide-title">Copy Headline System</div><div class="slide-msg">포지셔닝·가치·텐션·비주얼·패키지·액션 헤드라인 8개</div></div>
+    <div class="slide-card"><div class="slide-num">31</div><div class="slide-section">SYMBOL MAP</div><div class="slide-title">Symbol Association Map</div><div class="slide-msg">빈 원·실·달빛·흐름·세로선 · 사용처·연상·카피 연결</div></div>
+    <div class="slide-card"><div class="slide-num">32</div><div class="slide-section">CI/BI AUDIT</div><div class="slide-title">Competitor CI/BI Audit</div><div class="slide-msg">Lemaire·Acne·Insilence·IISE·Pottery vs LUNE 비교</div></div>
+    <div class="slide-card"><div class="slide-num">33</div><div class="slide-section">BRAND SUMMARY</div><div class="slide-title">Brand System Summary</div><div class="slide-msg">전체 YAML 요약 · slide_generation_ready: true</div></div>
+    <div class="slide-card"><div class="slide-num">34</div><div class="slide-section">DIRECTOR CHECK</div><div class="slide-title">Director Final Check</div><div class="slide-msg">효정 렌즈 최종 코멘트 · 보강 권고·리스크 항목</div></div>
+    <div class="slide-card"><div class="slide-num">35</div><div class="slide-section">NEXT STEPS</div><div class="slide-title">론칭 로드맵</div><div class="slide-msg">2026 H2 론칭 일정 · 플래그십·온라인·커뮤니티 전략</div></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div>
+    <div class="footer-brand">HYO MANUS</div>
+    <div>© 효정 브랜드 제안 프로세스 · 외부 배포 금지</div>
+  </div>
+  <div>LUNE 브랜드 제안서 · 2026.07 · 전체 완료</div>
+</footer>
+
+</body>
+</html>

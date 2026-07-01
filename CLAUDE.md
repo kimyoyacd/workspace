@@ -27,7 +27,8 @@
 .claude/
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── hyo-manus/         # HYO MANUS 브랜드 제안 자동화 (SKILL.md + html-template.md)
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
@@ -83,3 +84,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `hyo-manus` — HYO MANUS 브랜드 제안 자동화 (1차→Gate1→2차→Gate2→3차→Final Deck, HTML 체크포인트 생성)

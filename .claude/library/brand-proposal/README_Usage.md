@@ -1,6 +1,6 @@
-# 효정 브랜드 제안 프로세스 · 사용 가이드
+# HYO MANUS · 브랜드 제안 프로세스 사용 가이드
 
-> 1차 리서치 → 2차 비주얼 → 3차 브랜드 시스템 → Final Deck
+> HYO MANUS 1차 리서치 → HYO MANUS 2차 비주얼 → HYO MANUS 3차 브랜드 시스템 → Final Deck
 > 슬라이드는 3차 완료 후에만 생성한다.
 
 ---
@@ -9,9 +9,9 @@
 
 ```
 .claude/library/brand-proposal/
-├── Stage1_Research_Positioning.md      1차: 경쟁사 30개 리서치 → 포지셔닝 전략
-├── Stage2_Visual_Identity_Moodboard.md 2차: 비주얼 DNA → 6개 컨셉 → 무드보드
-├── Stage3_Brand_System_Final_Deck.md   3차: 브랜드 시스템화 → 최종 슬라이드 덱
+├── Stage1_Research_Positioning.md      HYO MANUS 1차: 경쟁사 30개 리서치 → 포지셔닝 전략
+├── Stage2_Visual_Identity_Moodboard.md HYO MANUS 2차: 비주얼 DNA → 6개 컨셉 → 무드보드
+├── Stage3_Brand_System_Final_Deck.md   HYO MANUS 3차: 브랜드 시스템화 → 최종 슬라이드 덱
 └── README_Usage.md                     이 파일
 ```
 
@@ -42,7 +42,7 @@
 
 ---
 
-### Step 2 · 1차 실행 (리서치 & 포지셔닝)
+### Step 2 · HYO MANUS 1차 실행 (리서치 & 포지셔닝)
 
 ```
 1차 브랜드 리서치를 시작합니다.
@@ -64,7 +64,7 @@
 
 ---
 
-### Step 3 · 2차 실행 (비주얼 아이덴티티 & 컨셉 발산)
+### Step 3 · HYO MANUS 2차 실행 (비주얼 아이덴티티 & 컨셉 발산)
 
 ```
 2차 단계로 넘어갑니다.
@@ -86,7 +86,7 @@
 
 ---
 
-### Step 4 · 3차 실행 (브랜드 시스템 + 최종 슬라이드)
+### Step 4 · HYO MANUS 3차 실행 (브랜드 시스템 + 최종 슬라이드)
 
 ```
 3차 단계로 넘어갑니다.
