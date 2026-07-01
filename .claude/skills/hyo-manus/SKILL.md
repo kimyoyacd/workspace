@@ -17,9 +17,8 @@
    브랜드명 / 카테고리 / 목표 고객 / 시장 / 가격대 / 브랜드 목표
    ```
 2. **단계별 자동 진행** — 사용자가 "계속"하지 않아도 Gate 통과 시 다음 단계로 자동 진입.
-3. **HTML 체크포인트** — 각 Gate 완료 시 HTML 파일을 `.claude/projects/` 에 저장.
+3. **HTML 체크포인트** — 각 Gate 완료 시 단계별 HTML 파일을 `.claude/projects/` 에 저장.
 4. **State 저장** — stage_1_state, stage_2_state JSON을 프로젝트 노트에 저장.
-5. **슬라이드 금지 라인** — 1차·2차에서는 절대 Final Deck 생성 안 함.
 
 ---
 
@@ -96,17 +95,21 @@ HTML 최종본 저장
 
 ## HTML 체크포인트 생성 규칙
 
-각 Gate 통과 후 아래 경로에 HTML을 생성한다:
+각 Gate 통과 후 단계별 HTML 파일을 아래 경로에 생성한다:
 
 ```
-.claude/projects/YYYYMM_[브랜드명]_hyo-manus.html
+.claude/projects/YYYYMM_[브랜드명]_hyo-manus_research.html    ← CP1
+.claude/projects/YYYYMM_[브랜드명]_hyo-manus_strategy.html    ← CP2
+.claude/projects/YYYYMM_[브랜드명]_hyo-manus_system.html      ← Final A
+.claude/projects/YYYYMM_[브랜드명]_hyo-manus_proposal.html    ← Final B
 ```
 
 HTML은 이 스킬 폴더의 `html-template.md`에 정의된 구조를 따른다.
 
-체크포인트 1 완료 후: Stage 1 섹션 채워진 HTML 저장
-체크포인트 2 완료 후: Stage 1 + Stage 2 섹션 채워진 HTML 저장
-최종본: 전체 3개 스테이지 + Final Deck 포함 HTML 저장
+- **CP1** (Gate 1 통과 후): **리서치 파트 HTML** — 경쟁사 매트릭스, 포지셔닝 맵, 인상키워드, 전략 한 문장
+- **CP2** (Gate 2 통과 후): **브랜드 전략 HTML** — 3열 흐름표, 브랜드 스토리, 디자인 전략 3안, Visual DNA
+- **Final A** (Gate 3 통과 후): **전체 브랜드 시스템 HTML** — Brand Board, Value Cards, Copy Headline, CI/BI Audit
+- **Final B** (Gate 3 통과 후): **제안 전체 HTML** — 3개 스테이지 통합 + 슬라이드 덱 (35~45장)
 
 ---
 

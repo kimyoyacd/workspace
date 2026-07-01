@@ -1945,7 +1945,7 @@ tools: Read, Glob, Grep, WebSearch
 <!-- ══════════════ TAB 9: 브랜드 제안 ══════════════ -->
 <div id="sect-brand" class="section">
   <h2 class="section-title">HYO MANUS 브랜드 제안 자동화</h2>
-  <p class="section-desc"><code>hyo-manus</code> 스킬 · <code>.claude/library/brand-proposal/</code> · HTML 체크포인트 자동 생성. 인테이크만 입력하면 1차→Gate1→2차→Gate2→3차→Final Deck 자동 진행. Final Deck은 <code>slide_generation_ready: true</code> 확인 후에만 생성.</p>
+  <p class="section-desc"><code>hyo-manus</code> 스킬 · <code>.claude/library/brand-proposal/</code> · 단계별 HTML 자동 생성. 인테이크만 입력하면 1차→Gate1→2차→Gate2→3차→Final 자동 진행. 각 Gate 통과 시 단계별 HTML 파일 저장.</p>
 
   <div class="alert">
     <span class="ic">🚀</span>
@@ -2127,13 +2127,14 @@ tools: Read, Glob, Grep, WebSearch
         <div class="hm-card hm-card-cp">
           <div class="hm-card-head">
             <div class="hm-card-badge badge-cp">CHECKPOINT 1</div>
-            <div class="hm-card-title">HTML 자동 저장</div>
+            <div class="hm-card-title">리서치 파트 HTML 생성</div>
           </div>
           <div class="hm-card-body">
             <span class="hm-card-md">🗂 html-template.md</span>
             <div class="hm-card-out">
-              Stage 1 섹션 채움<br>
-              <code style="font-size:8px;">YYYYMM_브랜드_hyo-manus.html</code>
+              경쟁사 매트릭스 · 포지셔닝 맵<br>
+              인상키워드 · 전략 한 문장<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_hyo-manus_research.html</code>
             </div>
           </div>
         </div>
@@ -2204,13 +2205,14 @@ tools: Read, Glob, Grep, WebSearch
         <div class="hm-card hm-card-cp">
           <div class="hm-card-head">
             <div class="hm-card-badge badge-cp">CHECKPOINT 2</div>
-            <div class="hm-card-title">HTML 갱신 저장</div>
+            <div class="hm-card-title">브랜드 전략 HTML 생성</div>
           </div>
           <div class="hm-card-body">
             <span class="hm-card-md">🗂 html-template.md</span>
             <div class="hm-card-out">
-              Stage 1 + Stage 2<br>
-              섹션 채워진 HTML 갱신
+              3열 흐름표 · 브랜드 스토리<br>
+              디자인 전략 3안 · Visual DNA<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_hyo-manus_strategy.html</code>
             </div>
           </div>
         </div>
@@ -2274,17 +2276,36 @@ tools: Read, Glob, Grep, WebSearch
 
         <div class="hm-arrow">→</div>
 
-        <!-- Final Deck -->
+        <!-- Final A: 브랜드 시스템 -->
+        <div class="hm-card hm-card-cp" style="min-width:190px;max-width:210px;">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">FINAL A</div>
+            <div class="hm-card-title">전체 브랜드 시스템 HTML</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              Brand Board · Value Cards<br>
+              Copy Headline · CI/BI Audit<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_hyo-manus_system.html</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Final B: 제안 전체 -->
         <div class="hm-card hm-card-final">
           <div class="hm-card-head">
-            <div class="hm-card-badge">FINAL DECK</div>
-            <div class="hm-card-title">슬라이드 덱 HTML 생성 (35~45장)</div>
+            <div class="hm-card-badge">FINAL B</div>
+            <div class="hm-card-title">제안 전체 HTML (35~45장)</div>
           </div>
           <div class="hm-card-body">
             <span class="hm-card-md">🗂 html-template.md + ux-writing.md</span>
             <div class="hm-card-out">
-              전체 3 스테이지 + 슬라이드 완성 HTML 최종 저장<br><br>
-              <strong style="color:#f87171;">⛔ 1차·2차에서는 절대 생성 안 함<br>slide_generation_ready: true 이후에만</strong>
+              3개 스테이지 통합<br>
+              슬라이드 덱 완성본<br>
+              <code style="font-size:8px;color:#aaa;">YYYYMM_브랜드_hyo-manus_proposal.html</code>
             </div>
           </div>
         </div>
