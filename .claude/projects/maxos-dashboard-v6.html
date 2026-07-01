@@ -565,6 +565,10 @@ body {
 
   <div class="alert">
     <span class="ic">✅</span>
+    <div><strong>v7 — 에이전트 그룹 7개로 확장 + ⑦ 커뮤니케이션 신설.</strong> <code>mail-drafter</code>(메일 초안) · <code>meeting-logger</code>(회의록) 신규 추가. <code>tone-guardian</code> · <code>delivery-gate</code> → ⑦로 이동. <code>hiring-radar</code> · <code>vendor-radar</code> 🔘 대기 전환. 에이전트 총 26종 · 7그룹(2 대기). 조직도 그리드 4+3 배치. GitHub PR #26 업데이트.</div>
+  </div>
+  <div class="alert" style="background:#F0F9FF;border-color:#BAE6FD;border-left-color:#0284C7;margin-top:8px;">
+    <span class="ic">✅</span>
     <div><strong>v6 — HYO MANUS 브랜드 제안 자동화 시스템 구축.</strong> <code>hyo-manus</code> 스킬 신규 등록 + HYO MANUS 1차/2차/3차 라이브러리 정비 + HTML 체크포인트 파이프라인. LUNE 브랜드 샘플 완성 (36슬라이드). GitHub <strong>PR #26</strong>(draft).</div>
   </div>
   <div class="alert" style="background:#F4F9F5;border-color:#D4E5D9;border-left-color:#2D7A4F;margin-top:0;">
@@ -996,7 +1000,7 @@ body {
 <!-- ══════════════ TAB 3: CLAUDE.md 지침 ══════════════ -->
 <div id="sect-guidelines" class="section">
   <h2 class="section-title">CLAUDE.md 주요 지침 현황</h2>
-  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 24/25개 (잔여 1) + <strong>hyo-manus</strong> · <strong>list-deck-design</strong> 스킬 2개. ✅ CLAUDE.md 실제 생성 완료.</p>
+  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 26/30개 활성 (2 대기 포함) + <strong>hyo-manus</strong> · <strong>list-deck-design</strong> 스킬 2개. ✅ CLAUDE.md 실제 생성 완료.</p>
 
   <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
     <span class="ic">⚠️</span>
@@ -1040,7 +1044,7 @@ body {
     <div class="guide-card">
       <div class="guide-card-title">운영 핵심 룰</div>
       <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>시트 쓰기 금지</strong> — 에이전트는 read-only. 쓰기는 사용자 직접</div></div>
-      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>에이전트 총수 ≤ 25개</strong> — 현재 24개. 잔여 1. 오케스트레이션은 스킬로(서브에이전트는 서브에이전트 호출 불가)</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>에이전트 총수 ≤ 30개</strong> — 현재 26개(활성 24·대기 2). 잔여 4. 오케스트레이션은 스킬로(서브에이전트는 서브에이전트 호출 불가)</div></div>
       <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>CLAUDE.md ≤ 100줄</strong> — 초과 시 library/로 분산</div></div>
       <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>에이전트 파일 각 ≤ 100줄</strong> — 상세 내용은 library/로. 라우팅만 유지</div></div>
       <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>새 프로젝트 폴더 생성 전</strong> — projects/ 유사 폴더 중복 점검 필수</div></div>
@@ -1101,8 +1105,37 @@ body {
   </div>
 
   <!-- ── 에이전트 트리거 전체표 ── -->
+  <!-- 자동 실행 설명 -->
+  <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:16px 20px;margin:24px 0;">
+    <div style="font-size:13px;font-weight:800;color:#1D4ED8;margin-bottom:10px;">⚡ 에이전트 자동 실행 — 맞아, 자동으로 돌아가</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11px;line-height:1.7;">
+      <div>
+        <div style="font-weight:700;color:#1D4ED8;margin-bottom:4px;">🤖 자동(Auto) 에이전트</div>
+        <div style="color:#1e40af;">Claude가 상황을 인식해 자동 호출. 별도 명령 불필요.</div>
+        <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;">
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>fact-checker</code> — 리서치·수치 산출 후 자동</span>
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>tone-guardian</code> — 메일 초안 작성 후 자동</span>
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>delivery-gate</code> — 외부 발송 직전 자동</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#374151;margin-bottom:4px;">💬 호출(Manual) 에이전트</div>
+        <div style="color:#374151;">키워드를 입력하거나 에이전트 이름을 직접 불러야 작동.</div>
+        <div style="margin-top:6px;font-size:10px;color:#6B7280;line-height:1.8;">
+          "메일 써줘" → <code>mail-drafter</code><br>
+          "시안 검수해줘" → <code>design-critique</code><br>
+          "RFP 분석해줘" → <code>rfp-analyst</code><br>
+          "회의록 써줘" → <code>meeting-logger</code>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #BFDBFE;font-size:10.5px;color:#374151;">
+      🚫 <strong>자동 발송은 절대 없음</strong> — 초안·결과물은 항상 사용자 확인 후 진행. 에이전트가 "발송"을 트리거하는 경우는 없음.
+    </div>
+  </div>
+
   <h3 style="font-size:16px;font-weight:800;margin:28px 0 12px;">🔑 에이전트 호출 키워드 — 전체표</h3>
-  <p style="font-size:11px;color:var(--ink3);margin:0 0 14px;">자동 에이전트는 호출 키워드를 입력해야 작동합니다. 에이전트 이름을 직접 명시해도 됩니다 (예: "rfp-analyst 써서 분석해줘").</p>
+  <p style="font-size:11px;color:var(--ink3);margin:0 0 14px;">키워드로 말하면 해당 에이전트가 자동 호출됩니다. 에이전트 이름을 직접 명시해도 됩니다 (예: "rfp-analyst 써서 분석해줘"). <strong>굵게 표시된 그룹</strong>은 자동 발동 에이전트 포함.</p>
 
   <div style="overflow-x:auto;margin-bottom:32px;">
     <table style="width:100%;border-collapse:collapse;font-size:11px;">
@@ -1114,22 +1147,37 @@ body {
         </tr>
       </thead>
       <tbody>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">rfp-analyst</td><td style="padding:7px 12px;color:var(--ink2);">"RFP 분석해줘" / "과업지시서 봐줘" / "이 제안요청서 분석"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">수주·전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">market-research</td><td style="padding:7px 12px;color:var(--ink2);">"경쟁사 분석해줘" / "포지셔닝 맵 그려줘" / "시장조사"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">수주·전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">수주·전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">수주·전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">수주·전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-trend-radar</td><td style="padding:7px 12px;color:var(--ink2);">"요즘 트렌드 뭐야" / "디자인 트렌드 봐줘" / "분기 트렌드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">디자인</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">reference-curator</td><td style="padding:7px 12px;color:var(--ink2);">"레퍼런스 찾아줘" / "참고 사례 모아줘" / "벤치마크"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">디자인</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">디자인</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">디자인</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" / "출처 확인해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" / "발송 전 확인"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율" / "클라 상황"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">운영</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">운영</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">운영</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">hiring-radar</td><td style="padding:7px 12px;color:var(--ink2);">"채용 상황" / "JD 써줘" / "채용 현황 어때"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">조직</span></td></tr>
-        <tr><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">조직</span></td></tr>
+        <!-- ① 리서치 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">rfp-analyst</td><td style="padding:7px 12px;color:var(--ink2);">"RFP 분석해줘" / "과업지시서 봐줘" / "이 제안요청서 분석"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">market-research</td><td style="padding:7px 12px;color:var(--ink2);">"경쟁사 분석해줘" / "포지셔닝 맵 그려줘" / "시장조사"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-trend-radar</td><td style="padding:7px 12px;color:var(--ink2);">"요즘 트렌드 뭐야" / "디자인 트렌드 봐줘" / "분기 트렌드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">reference-curator</td><td style="padding:7px 12px;color:var(--ink2);">"레퍼런스 찾아줘" / "참고 사례 모아줘" / "벤치마크"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" · <strong style="color:#B45309;">자동: 리서치 결과 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <!-- ② 전략·발산 -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <!-- ③ 비주얼 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">moodboard-builder</td><td style="padding:7px 12px;color:var(--ink2);">"무드보드 만들어줘" / "분위기 잡아줘" / "톤 보드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">figma-bridge</td><td style="padding:7px 12px;color:var(--ink2);">"Figma 보내줘" / "Figma 가져와" / "피그마 동기화"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">storyboard-maker</td><td style="padding:7px 12px;color:var(--ink2);">"스토리보드 짜줘" / "영상 콘티" / "모션 기획"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <!-- ④ 검수 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-system-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"시스템 점검" / "가이드 맞나" · <strong style="color:#B45309;">자동: 시안 완성 시</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">review-panel</td><td style="padding:7px 12px;color:var(--ink2);">"5관점 검토해줘" / "다각도로 봐줘" / 발산 후 셀렉 전</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <!-- ⑤ 수주·재무 -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <!-- ⑥ 조직관리 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
+        <!-- ⑦ 커뮤니케이션 (신규) -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:#B45309;">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">delivery-gate</td><td style="padding:7px 12px;color:var(--ink2);">"발송 전 점검" / "딜리버리 체크" · <strong style="color:#B45309;">자동: 외부 발송 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -1227,16 +1275,25 @@ tools: Read, Glob, Grep, WebSearch
     <p><code>creative-director</code>가 브랜드 톤·매너, 클라별 주의사항, 디자인 시스템, QC 체크리스트가 담긴 1장 HTML 온보딩 팩을 만들어 줍니다.</p>
   </div>
   <div class="manual-scenario">
-    <h4>⑪ 채용 현황 → "VM 채용 지금 어디까지야?"</h4>
-    <p><code>hiring-radar</code>가 9→20 파이프라인 현황, JD 상태, 소싱 후보, 면접 일정을 요약해서 보여줍니다.</p>
+    <h4>⑪ 채용 현황 → "VM 채용 지금 어디까지야?" <span style="font-size:10px;font-weight:400;color:#9CA3AF;">(🔘 대기 상태 — 활성화 필요 시 사용)</span></h4>
+    <p><code>hiring-radar</code>가 파이프라인 현황, JD 상태, 소싱 후보, 면접 일정을 요약해서 보여줍니다. 현재 비활성 — 필요 시 바로 호출 가능.</p>
   </div>
   <div class="manual-scenario">
     <h4>⑫ 계약서 검토 → "하이브 NDA 계약서 검토해줘"</h4>
     <p><code>legal-compliance</code>가 계약서 첨부를 받아 쟁점·리스크를 플래그. 단, 법무 자문을 대체하지 않습니다.</p>
   </div>
+  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
+    <h4>⑬ 메일 작성 → "코웨이 담당자한테 2차 시안 전달 메일 써줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+    <p><code>mail-drafter</code>가 수신자·목적·톤에 맞는 메일 초안을 생성 → <code>tone-guardian</code>이 자동으로 톤 체크 → 사용자가 최종 OK 후 발송. <strong>자동 발송은 절대 없음.</strong></p>
+  </div>
+  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
+    <h4>⑭ 회의록 정리 → "오늘 넷마블 미팅 내용 회의록으로 정리해줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+    <p><code>meeting-logger</code>가 메모·구두 설명을 받아 날짜·참석자·논의내용·결정사항·액션아이템(담당자+기한) 구조화 회의록 생성. 노션 저장은 사용자 확인 후.</p>
+  </div>
 
   <div class="footnote">
     <strong>핵심 정리:</strong> Claude Code 열기 → 말하기 → 에이전트가 일함 → 사용자가 최종 결정.<br>
+    자동 실행 에이전트(fact-checker·tone-guardian·delivery-gate)는 상황 인식 시 자동 개입. 초안·산출물 발송은 항상 사용자 OK 필요.<br>
     이 대시보드는 "어떤 에이전트가 있는지" 보여주는 지도입니다. 실제 대화는 Claude Code에서 하세요.
   </div>
 </div><!-- /sect-manual -->
