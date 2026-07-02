@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKEMAKE × OliveYoung — 프로젝트 인덱스</title>
+<style>
+  :root {
+    --bg: #111111;
+    --card: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --coral: #E8502A;
+    --brass: #B8860B;
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.45);
+    --sans: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Mono', monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--sans);
+    min-height: 100vh;
+  }
+
+  /* ── STICKY NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 52px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--coral);
+    white-space: nowrap;
+    margin-right: 28px;
+    flex-shrink: 0;
+  }
+
+  .nav-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+    margin-right: 28px;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .nav-link:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.06);
+    border-color: var(--border);
+  }
+  .nav-link.active {
+    color: var(--coral);
+    background: rgba(232,80,42,0.10);
+    border-color: rgba(232,80,42,0.25);
+  }
+  .nav-link .badge {
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    background: var(--coral);
+    color: white;
+    font-weight: 700;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 40px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--mono);
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .hero-title span { color: var(--coral); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .hero-meta-item strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .section-count {
+    font-size: 11px;
+    color: var(--brass);
+    font-family: var(--mono);
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .card-grid.wide {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+
+  .deck-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.18s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .deck-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent, transparent);
+    transition: opacity 0.18s;
+    opacity: 0;
+  }
+  .deck-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .deck-card:hover::before { opacity: 1; }
+
+  .deck-card.coral { --accent: var(--coral); }
+  .deck-card.brass { --accent: var(--brass); }
+  .deck-card.blue  { --accent: #7EB3FF; }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-type {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .card-arrow {
+    font-size: 13px;
+    color: var(--muted);
+    transition: transform 0.15s, color 0.15s;
+  }
+  .deck-card:hover .card-arrow {
+    transform: translateX(3px);
+    color: var(--white);
+  }
+
+  /* ── PILOT BANNER ── */
+  .pilot-banner {
+    background: linear-gradient(135deg, rgba(232,80,42,0.12) 0%, rgba(184,134,11,0.08) 100%);
+    border: 1px solid rgba(232,80,42,0.25);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.18s;
+  }
+  .pilot-banner:hover {
+    border-color: rgba(232,80,42,0.45);
+    box-shadow: 0 4px 20px rgba(232,80,42,0.12);
+  }
+  .pilot-text { flex: 1; }
+  .pilot-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--coral);
+    text-transform: uppercase;
+    font-family: var(--mono);
+    margin-bottom: 6px;
+  }
+  .pilot-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .pilot-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .pilot-cta {
+    padding: 10px 20px;
+    background: var(--coral);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-left {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .footer-right {
+    font-size: 11px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav">
+  <div class="nav-logo">WAKEMAKE × OY</div>
+  <div class="nav-divider"></div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#strategy">전략·시장</a>
+    <a class="nav-link" href="#concept">컨셉 PDP</a>
+    <a class="nav-link" href="#brand">브랜드 시스템</a>
+    <a class="nav-link" href="#deliverable">덱·제안서</a>
+    <a class="nav-link" href="#dashboard">대시보드</a>
+    <a class="nav-link" href="#archive">아카이브</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Project Index · 2026.07</div>
+  <h1 class="hero-title">WAKEMAKE <span>×</span> OliveYoung<br>상세페이지 리뉴얼 제안</h1>
+  <p class="hero-sub">올리브영 색조 상세페이지 리뉴얼 — 전략 리서치부터 컨셉 PDP, 브랜드 시스템, 제안 덱까지 전체 산출물 인덱스</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>클라이언트</strong> · WAKEMAKE</div>
+    <div class="hero-meta-item"><strong>채널</strong> · 올리브영 온라인</div>
+    <div class="hero-meta-item"><strong>포맷</strong> · 정적 JPG 모바일 롱폼</div>
+    <div class="hero-meta-item"><strong>산출물</strong> · 11종</div>
+  </div>
+</div>
+
+<!-- SECTION 1: 전략·시장 -->
+<section class="section" id="strategy">
+  <div class="section-header">
+    <span class="section-title">전략 · 시장조사</span>
+    <span class="section-count">2 FILES</span>
+  </div>
+
+  <a class="pilot-banner" href="wakemake-state-of-deck.html" target="_blank">
+    <div class="pilot-text">
+      <div class="pilot-eyebrow">★ CORE RESEARCH</div>
+      <div class="pilot-title">State of Market 2026</div>
+      <div class="pilot-sub">올리브영 시장 현황 · H&B 점유율 · 색조 트렌드 데이터 · 출처 인라인</div>
+    </div>
+    <div class="pilot-cta">열기 ↗</div>
+  </a>
+
+  <div class="card-grid">
+    <a class="deck-card coral" href="wakemake-proposal-2026.html" target="_blank">
+      <div class="card-tag">제안서</div>
+      <div class="card-title">WAKEMAKE 2026<br>제안 개요</div>
+      <div class="card-desc">프로젝트 배경·목표·전략 방향 총괄 제안서. 클라이언트 제출용.</div>
+      <div class="card-footer">
+        <span class="card-type">proposal · A4 landscape</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card brass" href="wakemake-moodboard.html" target="_blank">
+      <div class="card-tag">무드보드</div>
+      <div class="card-title">비주얼 무드보드</div>
+      <div class="card-desc">컨셉 방향별 컬러·질감·레퍼런스 무드 컬렉션.</div>
+      <div class="card-footer">
+        <span class="card-type">moodboard · visual</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 2: 컨셉 PDP -->
+<section class="section" id="concept">
+  <div class="section-header">
+    <span class="section-title">컨셉 PDP 시안</span>
+    <span class="section-count">3 FILES</span>
+  </div>
+
+  <div class="card-grid">
+    <a class="deck-card coral" href="wakemake-concept-c01.html" target="_blank">
+      <div class="card-tag">C01 · 전략 적합도 9/10</div>
+      <div class="card-title">오늘의 선택</div>
+      <div class="card-desc">"바빠도 완성되는 메이크업" — 데일리 루틴 포지셔닝. Attention Hook + Benefit 레이어드 구조.</div>
+      <div class="card-footer">
+        <span class="card-type">PDP concept · mobile longform</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card brass" href="wakemake-concept-c04.html" target="_blank">
+      <div class="card-tag">C04 · 계절 감각</div>
+      <div class="card-title">계절의 색</div>
+      <div class="card-desc">시즌 컬러 내러티브 — 봄·여름·가을·겨울 컬러 팔레트 스토리텔링 PDP.</div>
+      <div class="card-footer">
+        <span class="card-type">PDP concept · seasonal</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card blue" href="wakemake-concept-c05.html" target="_blank">
+      <div class="card-tag">C05 · 색×기술</div>
+      <div class="card-title">내 피부톤의 색</div>
+      <div class="card-desc">퍼스널 컬러 매칭 강조 — 피부톤별 추천 컬러 시스템 PDP. 기술적 신뢰감 소구.</div>
+      <div class="card-footer">
+        <span class="card-type">PDP concept · tech/skin tone</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 3: 브랜드 시스템 -->
+<section class="section" id="brand">
+  <div class="section-header">
+    <span class="section-title">브랜드 시스템</span>
+    <span class="section-count">2 FILES</span>
+  </div>
+
+  <div class="card-grid wide">
+    <a class="deck-card coral" href="wakemake-brand-board.html" target="_blank">
+      <div class="card-tag">Brand Board</div>
+      <div class="card-title">브랜드 보드 +<br>밸류 카드 VC01–VC04</div>
+      <div class="card-desc">전략적 관점(POV) · 핵심가치 4종 · 컬러 토큰 · 타이포 시스템 · 응용 가이드.</div>
+      <div class="card-footer">
+        <span class="card-type">brand system · design tokens</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card brass" href="wakemake-detail-mockup.html" target="_blank">
+      <div class="card-tag">UI Mockup</div>
+      <div class="card-title">상세페이지 목업</div>
+      <div class="card-desc">모바일 실제 렌더 목업 — 컨셉이 실제 화면에서 어떻게 보이는지 확인용.</div>
+      <div class="card-footer">
+        <span class="card-type">mockup · mobile frame</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 4: 덱·제안서 -->
+<section class="section" id="deliverable">
+  <div class="section-header">
+    <span class="section-title">덱 · 제안서 최종본</span>
+    <span class="section-count">2 FILES</span>
+  </div>
+
+  <div class="card-grid wide">
+    <a class="deck-card coral" href="wakemake-slide-deck.html" target="_blank">
+      <div class="card-tag">Final Deck · 41 slides</div>
+      <div class="card-title">WAKEMAKE 제안 슬라이드 덱</div>
+      <div class="card-desc">8파트 구성 — 시장 분석 · 전략 방향 · 컨셉 3종 · 브랜드 시스템 · 실행 계획 · 기대 효과.</div>
+      <div class="card-footer">
+        <span class="card-type">presentation · 41 slides</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card blue" href="wakemake-deck.html" target="_blank">
+      <div class="card-tag">Deck v1</div>
+      <div class="card-title">WAKEMAKE 덱 (초안)</div>
+      <div class="card-desc">슬라이드 덱 이전 버전. 구조 참고용.</div>
+      <div class="card-footer">
+        <span class="card-type">deck · draft</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 5: 대시보드 -->
+<section class="section" id="dashboard">
+  <div class="section-header">
+    <span class="section-title">운영 대시보드</span>
+    <span class="section-count">1 FILE</span>
+  </div>
+
+  <div class="card-grid">
+    <a class="deck-card coral" href="maxos-dashboard-v5.html" target="_blank">
+      <div class="card-tag">Dashboard · v5 Latest</div>
+      <div class="card-title">맥스OS 운영 대시보드<br>v5</div>
+      <div class="card-desc">에이전트 현황 · HTML 산출물 규칙 · WAKEMAKE 9종 완성 현황 · 에이전트 24종 상태.</div>
+      <div class="card-footer">
+        <span class="card-type">dashboard · ops</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 6: 아카이브 -->
+<section class="section" id="archive">
+  <div class="section-header">
+    <span class="section-title">아카이브</span>
+    <span class="section-count">2 FILES</span>
+  </div>
+
+  <div class="card-grid">
+    <a class="deck-card" href="wakemake-detail-structure.html" target="_blank">
+      <div class="card-tag">Structure</div>
+      <div class="card-title">상세페이지 구조 분석</div>
+      <div class="card-desc">섹션별 스크롤 구조·정보 위계 분석 초안.</div>
+      <div class="card-footer">
+        <span class="card-type">analysis · structure</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="deck-card" href="maxos-dashboard-v4.html" target="_blank">
+      <div class="card-tag">Dashboard · v4</div>
+      <div class="card-title">대시보드 v4</div>
+      <div class="card-desc">이전 버전 대시보드. 참고용 아카이브.</div>
+      <div class="card-footer">
+        <span class="card-type">dashboard · archived</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">WAKEMAKE × OliveYoung · 2026.07 · 상세페이지 리뉴얼 제안 · 총 11종 산출물</div>
+  <div class="footer-right">MX Design Studio</div>
+</div>
+
+<!-- Smooth scroll for nav links -->
+<script>
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
