@@ -84,6 +84,25 @@
   .mm5-col:first-child { border-left:none; padding-left:0; }
   .mm5-axis { font-size:11px; font-weight:800; margin-bottom:4px; }
   .mm5-kw { font-size:10.5px; color:#555; background:#F5F5F5; border-radius:5px; padding:5px 8px; line-height:1.35; }
+
+  /* ===== 경쟁사 카드(전체 필드 원칙) — deck-v2.html과 동일 규격 재사용 ===== */
+  .cat-card { background: var(--bg); border-radius: 16px; padding: 40px 44px 48px; margin-bottom: 24px; position: relative; }
+  .cat-label { font-size: 13px; font-weight: 700; color: var(--ink2); margin-bottom: 8px; }
+  .cat-title { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 16px; }
+  .cat-bullets { margin-bottom: 28px; }
+  .cat-bullets div { font-size: 14px; color: var(--ink2); margin-bottom: 4px; }
+  .cat-bullets div::before { content: "· "; }
+  .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .brand-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; position: relative; }
+  .brand-mark { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; padding-right: 40px; }
+  .brand-meta { font-size: 10.5px; color: var(--ink3); line-height: 1.5; }
+  .brand-meta b { color: var(--ink2); font-weight: 700; }
+  .brand-desc { font-size: 11px; color: var(--ink2); line-height: 1.45; margin-top: 2px; }
+  .brand-source { font-size: 10px; margin-top: 6px; }
+  .brand-source a { color: #2454C7; text-decoration: none; }
+  .tier-badge { font-size: 8.5px; font-weight: 700; color: #fff; background: #999; border-radius: 8px; padding: 2px 7px; position: absolute; top: 16px; right: 16px; }
+  .tier-1 { background: #2D7A4F; } .tier-2 { background: #C77A0F; } .tier-3 { background: #999; } .tier-4 { background: #B23B3B; }
+  @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
@@ -259,13 +278,127 @@
     <div class="pov-kr">위 5축 슬라이더의 "업계평균/Safe/Wild Card" 위치가 실제로 어떤 근거에서 나왔는지 — 세 갈래로 검증</div>
   </div>
 
-  <!-- Research ① 경쟁/포지셔닝 (기존 자산 재확인) -->
+  <!-- Research ① 경쟁/포지셔닝 — 전체 필드 카드 원칙 준수 (deck-v2.html과 동일 카드를 재수록, 요약 텍스트로 대체하지 않음) -->
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁/포지셔닝 리서치 — Category A</div>
+    <h1 class="cat-title">장인·소재가 말하는 럭셔리</h1>
+    <div class="cat-bullets">
+      <div>카피보다 소재·공정 자체가 가격을 정당화한다</div>
+      <div>"장인정신 서사"가 프리미엄가의 근거</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Assouline — Mirage Hourglass</div>
+        <div class="brand-meta"><b>국가</b> 미국/프랑스 · <b>가격대</b> $375–475<br><b>타깃</b> 40-60대 상위소득, 서재 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 기술적 정교함과 공예미의 결합. 가장 직접적인 경쟁(가죽+유리 모래시계)</div>
+        <div class="brand-source"><a href="https://www.assouline.com/products/mirage-hourglass-brown-pebbled-leather" target="_blank">assouline.com ↗</a> · <a href="https://www.harrods.com/en-us/p/assouline-mirage-hourglass-000000000007773188" target="_blank">harrods.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Hermès Home</div>
+        <div class="brand-meta"><b>국가</b> 프랑스 · <b>가격대</b> $500–5000+<br><b>타깃</b> 최상위 소득층, 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 메종의 장인정신을 오브제로 확장. 부티크 전용 유통(GRAIN D2C엔 적용 불가)</div>
+        <div class="brand-source"><a href="https://www.hermes.com/us/en/category/home/objects/" target="_blank">hermes.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">L'Objet</div>
+        <div class="brand-meta"><b>국가</b> 미국(뉴욕) · <b>가격대</b> $100–1000+<br><b>타깃</b> 40-60대 하이엔드 인테리어 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> 장인정신과 신화적 모티프의 결합, 금박·에나멜. 장식성 강해 실용 기능 부재</div>
+        <div class="brand-source">공식 URL 미확보 — 추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Georg Jensen</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $150–2000+<br><b>타깃</b> 40-60대 전통 럭셔리 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 100년 이상 은세공 헤리티지. 올드머니 이미지</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">놋담 (NOTDAM)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 추정 $50-300<br><b>타깃</b> 30-50대 전통공예·혼수 시장</div>
+        <div class="brand-desc"><b>핵심메시지</b> 전통 방짜유기의 현대적 리빙화. 홈쇼핑/혼수 이미지로 올드함</div>
+        <div class="brand-source"><a href="https://notdam.com/" target="_blank">notdam.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">광명유기공방</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨<br><b>타깃</b> 40-60대 전통공예 애호가</div>
+        <div class="brand-desc"><b>핵심메시지</b> 전통 방짜유기 제작 기법 계승. 이커머스형 사이트로 세련도 낮음</div>
+        <div class="brand-source"><a href="https://www.gmykmall.com/" target="_blank">gmykmall.com ↗</a></div></div>
+    </div>
+  </div>
+
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁/포지셔닝 리서치 — Category B</div>
+    <h1 class="cat-title">기능이 곧 즐거움인 정밀 오브젝트</h1>
+    <div class="cat-bullets">
+      <div>오브젝트가 '작동'하는 순간(회전·잠금·촉각)이 브랜드 경험의 핵심</div>
+      <div>장식이 아니라 메커니즘이 매력</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Craighill</div>
+        <div class="brand-meta"><b>국가</b> 미국(브루클린) · <b>가격대</b> $35–120<br><b>타깃</b> 30-40대 도시 남성 미니멀리스트</div>
+        <div class="brand-desc"><b>핵심메시지</b> "일상의 사소한 짜증을 해결하는 정교한 도구". 소재(브라스 패티나)가 스토리 주인공</div>
+        <div class="brand-source"><a href="https://craighill.co/" target="_blank">craighill.co ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">MetaEDC</div>
+        <div class="brand-meta"><b>국가</b> 미국 · <b>가격대</b> $50–300+<br><b>타깃</b> 20-40대 남성 콜렉터, EDC 커뮤니티</div>
+        <div class="brand-desc"><b>핵심메시지</b> "가보가 될 만한 아이템". 촉각+수집 감성 이미 검증, 웰니스 언어는 없음</div>
+        <div class="brand-source"><a href="https://meta-edc.com/" target="_blank">meta-edc.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">Wanwu / Lautie</div>
+        <div class="brand-meta"><b>국가</b> 중국(글로벌 온라인) · <b>가격대</b> $60–250<br><b>타깃</b> 20-30대 남성 얼리어답터 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 정밀 기계식 잠금·회전 메커니즘의 만족감. 드롭 상품 중심, 브랜드 서사 약함</div>
+        <div class="brand-source"><a href="https://lautie.com/product-tag/haptic-coin/" target="_blank">lautie.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Tom Dixon</div>
+        <div class="brand-meta"><b>국가</b> 영국 · <b>가격대</b> $80–500<br><b>타깃</b> 30-50대 하이엔드 인테리어 애호가</div>
+        <div class="brand-desc"><b>핵심메시지</b> 대담한 금속 조형과 인더스트리얼 미학</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Studio Neat류</div>
+        <div class="brand-meta"><b>국가</b> 미국 · <b>가격대</b> $40–150<br><b>타깃</b> 30-45대 기능·엔지니어링 감성</div>
+        <div class="brand-desc"><b>핵심메시지</b> 정밀 엔지니어링 미학. "효율" 언어에 가까움 — GRAIN이 피해야 할 축</div>
+        <div class="brand-source">Hypothesis, 재검증 권장</div></div>
+    </div>
+  </div>
+
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁/포지셔닝 리서치 — Category C</div>
+    <h1 class="cat-title">감성 리추얼의 접근 가능한 웰니스</h1>
+    <div class="cat-bullets">
+      <div>가격 접근성을 유지하며 '작은 의식'을 일상에 심는 톤</div>
+      <div>대부분 생산성/미니멀 언어에 갇혀 있음 — GRAIN이 피할 지점</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Ferm Living</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $40–400<br><b>타깃</b> 30-50대 스칸디 미학 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 중세기 미학의 현대적 재해석. 가구/데코 중심 — 리추얼 오브젝트 없음. <b style="color:#B23B3B;">18번 트렌드 파일에서 원목×메탈 믹스 사례로 재인용됨</b></div>
+        <div class="brand-source"><a href="https://fermliving.us/products/sector-desk-oakbrass" target="_blank">fermliving.us ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">챕터원 (CHAPTER1)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨(추정 $30-80)<br><b>타깃</b> 30-40대 인테리어 감도 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> "공예와 산업 사회 라이프스타일의 접점". 소모품 중심 비즈니스</div>
+        <div class="brand-source"><a href="https://chapterone.kr/" target="_blank">chapterone.kr ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">헤이딘 (HEJDIN)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 추정 $20-60<br><b>타깃</b> 20-40대 지속가능성 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> "자연에 한 걸음 더 가까운 일상". 제주 화산석, 향 확산 목적(GRAIN과 소재축 다름)</div>
+        <div class="brand-source"><a href="https://hejdin.com/" target="_blank">hejdin.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">힐홉</div>
+        <div class="brand-meta"><b>국가</b> 한국(2022 론칭) · <b>가격대</b> 확인 안됨<br><b>타깃</b> 20-40대 웰니스·명상 관심층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 명상을 중심에 둔 라이프스타일</div>
+        <div class="brand-source"><a href="https://design.co.kr/article/43510" target="_blank">design.co.kr ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Menu (Audo Copenhagen)</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $30–300<br><b>타깃</b> 30-45대 미니멀 디자인 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 협업 기반 시대를 초월한 디자인. '리추얼 오브젝트' 카테고리 자체 없음</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">위켄드랩 (Weekend Lab)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨<br><b>타깃</b> 20-30대 감성 리빙 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> 인센스 홀더, 독특한 로컬 소재(자개) 활용</div>
+        <div class="brand-source"><a href="https://seoulbund.com/" target="_blank">seoulbund.com(판매처) ↗</a></div></div>
+    </div>
+  </div>
+
   <div class="slide16 note-slide">
-    <div class="slide16-head"><span class="slide16-label">① 경쟁/포지셔닝 리서치</span><span class="slide16-note">01-competitor-matrix.md · 03-positioning-map.md · deck-v2.html에 이미 구축됨</span></div>
+    <div class="slide16-head"><span class="slide16-label">① 경쟁/포지셔닝 — 5축 화이트스페이스 재확인</span><span class="slide16-note">30개 전체 매트릭스는 01-competitor-matrix.md·deck-v2.html에 원본 보관</span></div>
     <div class="note-body">
-      <p>경쟁 브랜드 30개 전체 매트릭스(브랜드명/국가/가격대/타깃/핵심메시지/강점·약점/출처)는 이미 `01-competitor-matrix.md`와 `deck-v2.html`의 Market Research 섹션에 전체 필드로 구축되어 있다 — 여기서 다시 만들지 않고, v3 방향 결정에 쓰인 <b>핵심 화이트스페이스만 재인용</b>한다.</p>
-      <p><b>재확인된 화이트스페이스</b>: (1) 카테고리 전체가 메탈 단일 소재 언어에 편중(축1 근거) (2) 전원 투명 글라스가 표준(축2 근거) (3) 전원 단정형 카피 문법(축3 근거) (4) 전원 좌우대칭 실루엣(축4 근거) (5) 소리를 브랜드 자산으로 쓰는 사례 전무(축5 근거). 다섯 축 모두 "업계 평균" 위치가 이 매트릭스에서 직접 산출됨.</p>
-      <p><b>주의</b>: `03-positioning-map.md`의 X/Y축(장식적↔기능적 × 일상소재↔리추얼소재)은 v1 전용이라 그대로 못 쓴다 — v3에서는 위 5축이 v1 포지셔닝 맵을 대체하는 역할.</p>
+      <p>위 Category A/B/C 카드가 이번 v3 슬라이더 5축의 "업계 평균" 위치 산출 근거다. <b>재확인된 화이트스페이스</b>: (1) 카테고리 전체가 메탈 단일 소재 언어에 편중(축1 근거) (2) 전원 투명 글라스가 표준(축2 근거) (3) 전원 단정형 카피 문법(축3 근거) (4) 전원 좌우대칭 실루엣(축4 근거) (5) 소리를 브랜드 자산으로 쓰는 사례 전무(축5 근거).</p>
+      <p><b>주의</b>: `03-positioning-map.md`의 X/Y축(장식적↔기능적 × 일상소재↔리추얼소재)은 v1 전용이라 그대로 못 쓴다 — v3에서는 위 5축이 v1 포지셔닝 맵을 대체하는 역할. 나머지 카테고리(기타·추가조사 대상, 30개 전체)는 지면상 여기 다 옮기지 않고 원본 파일 그대로 유지 — 필요시 `deck-v2.html`에서 바로 확인.</p>
     </div>
   </div>
 
