@@ -26,8 +26,13 @@
     font-size:14px;
     font-weight:600;
     color:#6b6862;
+    transition:.2s;
   }
+  .tab:hover{border-color:#d8d5cd;}
   .tab.active{background:#1f1d1a;color:#fff;border-color:#1f1d1a;}
+
+  .view{display:none;}
+  .view.active{display:block;}
 
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:30px;}
   .stat-card{
@@ -62,11 +67,17 @@
 
   .chart{background:#fff;border:1px solid #eceae4;border-radius:12px;padding:20px;margin-top:20px;}
   .chart-title{font-size:16px;font-weight:800;margin-bottom:16px;}
-  .bar-row{display:grid;grid-template-columns:80px 1fr 60px;align-items:center;gap:12px;margin-bottom:12px;}
+  .bar-row{display:grid;grid-template-columns:100px 1fr 60px;align-items:center;gap:12px;margin-bottom:12px;}
   .bar-name{font-size:13px;text-align:right;color:#1f1d1a;}
   .bar-track{background:#f4f2ec;border-radius:6px;height:24px;position:relative;}
   .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:11px;font-weight:700;}
   .bar-pct{font-size:12px;color:#6b6862;}
+
+  .months{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px;}
+  .month-card{background:#f9f8f7;border:1px solid #eceae4;border-radius:8px;padding:12px;text-align:center;}
+  .month-name{font-size:13px;font-weight:700;margin-bottom:8px;}
+  .month-stat{font-size:18px;font-weight:700;color:#2f6fed;}
+  .month-detail{font-size:11px;color:#a29e96;margin-top:4px;}
 
   .footer{margin-top:20px;padding:12px;background:#f9f8f7;border-radius:8px;font-size:12px;color:#a29e96;}
 </style>
@@ -79,126 +90,307 @@
 </div>
 
 <div class="tabs">
-  <div class="tab active">W27 (6/29~7/5)</div>
+  <div class="tab active" onclick="showView('week')">주간</div>
+  <div class="tab" onclick="showView('month')">월간</div>
+  <div class="tab" onclick="showView('quarter')">분기</div>
+  <div class="tab" onclick="showView('year')">연간</div>
 </div>
 
-<div class="stats">
-  <div class="stat-card">
-    <div class="stat-label">기록된 시간</div>
-    <div class="stat-value">12h</div>
+<!-- 주간 뷰 -->
+<div id="week" class="view active">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">기록된 시간</div>
+      <div class="stat-value">12h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">세일즈/BD</div>
+      <div class="stat-value">8h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">미팅</div>
+      <div class="stat-value">2h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">문서</div>
+      <div class="stat-value">2h</div>
+    </div>
   </div>
-  <div class="stat-card">
-    <div class="stat-label">세일즈/BD</div>
-    <div class="stat-value">8h</div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#9FE1CB;border:1px solid #4fbf9a"></span>세일즈/BD</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#FAC775;border:1px solid #e0a23d"></span>미팅</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#B5D4F4;border:1px solid #5f9ce0"></span>문서</div>
   </div>
-  <div class="stat-card">
-    <div class="stat-label">미팅</div>
-    <div class="stat-value">2h</div>
+
+  <div class="grid-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>월<span class="day">6/29</span></th>
+          <th>화<span class="day">6/30</span></th>
+          <th>수<span class="day">7/1</span></th>
+          <th>목<span class="day">7/2</span></th>
+          <th>금<span class="day">7/3</span></th>
+          <th>토<span class="day">7/4</span></th>
+          <th>일<span class="day">7/5</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time">10–12</td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell filled" style="background:#FAC775;color:#633806">미팅</div></td>
+          <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+        </tr>
+        <tr>
+          <td class="time">12–14</td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+        </tr>
+        <tr>
+          <td class="time">14–16</td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+        </tr>
+        <tr>
+          <td class="time">16–18</td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell filled" style="background:#B5D4F4;color:#0C447C">문서</div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+        </tr>
+        <tr>
+          <td class="time">18–20</td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell filled" style="background:#B5D4F4;color:#0C447C">문서</div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+          <td><div class="cell"></div></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="stat-card">
-    <div class="stat-label">문서</div>
-    <div class="stat-value">2h</div>
+
+  <div class="chart">
+    <div class="chart-title">카테고리별 시간 (W27)</div>
+    <div class="bar-row">
+      <div class="bar-name">세일즈/BD</div>
+      <div class="bar-track"><div class="bar-fill" style="width:67%;background:#9FE1CB;color:#085041">8h</div></div>
+      <div class="bar-pct">67%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">문서</div>
+      <div class="bar-track"><div class="bar-fill" style="width:17%;background:#B5D4F4;color:#0C447C">2h</div></div>
+      <div class="bar-pct">17%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">미팅</div>
+      <div class="bar-track"><div class="bar-fill" style="width:17%;background:#FAC775;color:#633806">2h</div></div>
+      <div class="bar-pct">17%</div>
+    </div>
   </div>
 </div>
 
-<div class="legend">
-  <div class="legend-item"><span class="legend-dot" style="background:#9FE1CB;border:1px solid #4fbf9a"></span>세일즈/BD</div>
-  <div class="legend-item"><span class="legend-dot" style="background:#FAC775;border:1px solid #e0a23d"></span>미팅</div>
-  <div class="legend-item"><span class="legend-dot" style="background:#B5D4F4;border:1px solid #5f9ce0"></span>문서/리포트</div>
-  <div class="legend-item"><span class="legend-dot" style="background:#CECBF6;border:1px solid #7d74d6"></span>AI작업</div>
+<!-- 월간 뷰 -->
+<div id="month" class="view">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">7월 기록</div>
+      <div class="stat-value">12h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">최다 카테고리</div>
+      <div class="stat-value" style="font-size:18px">세일즈</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">주요 프로젝트</div>
+      <div class="stat-value" style="font-size:14px">넷마블</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">야간 블록</div>
+      <div class="stat-value">0</div>
+    </div>
+  </div>
+
+  <div class="chart">
+    <div class="chart-title">7월 카테고리별</div>
+    <div class="bar-row">
+      <div class="bar-name">세일즈/BD</div>
+      <div class="bar-track"><div class="bar-fill" style="width:67%;background:#9FE1CB;color:#085041">8h</div></div>
+      <div class="bar-pct">67%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">미팅</div>
+      <div class="bar-track"><div class="bar-fill" style="width:17%;background:#FAC775;color:#633806">2h</div></div>
+      <div class="bar-pct">17%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">문서</div>
+      <div class="bar-track"><div class="bar-fill" style="width:17%;background:#B5D4F4;color:#0C447C">2h</div></div>
+      <div class="bar-pct">17%</div>
+    </div>
+  </div>
 </div>
 
-<div class="grid-container">
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>월<span class="day">6/29</span></th>
-        <th>화<span class="day">6/30</span></th>
-        <th>수<span class="day">7/1</span></th>
-        <th>목<span class="day">7/2</span></th>
-        <th>금<span class="day">7/3</span></th>
-        <th>토<span class="day">7/4</span></th>
-        <th>일<span class="day">7/5</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="time">10–12</td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell filled" style="background:#FAC775;color:#633806">미팅</div></td>
-        <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-      </tr>
-      <tr>
-        <td class="time">12–14</td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-      </tr>
-      <tr>
-        <td class="time">14–16</td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell filled" style="background:#9FE1CB;color:#085041">세일즈</div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-      </tr>
-      <tr>
-        <td class="time">16–18</td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell filled" style="background:#B5D4F4;color:#0C447C">문서</div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-      </tr>
-      <tr>
-        <td class="time">18–20</td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell filled" style="background:#B5D4F4;color:#0C447C">문서</div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-        <td><div class="cell"></div></td>
-      </tr>
-    </tbody>
-  </table>
+<!-- 분기 뷰 -->
+<div id="quarter" class="view">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">상반기 기록</div>
+      <div class="stat-value">322.5h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">5월</div>
+      <div class="stat-value">139.5h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">6월</div>
+      <div class="stat-value">183h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">평균 월</div>
+      <div class="stat-value">161h</div>
+    </div>
+  </div>
+
+  <div class="chart">
+    <div class="chart-title">상반기 월별 추이</div>
+    <div class="months">
+      <div class="month-card">
+        <div class="month-name">5월</div>
+        <div class="month-stat">139.5h</div>
+        <div class="month-detail">AI·세일즈</div>
+      </div>
+      <div class="month-card">
+        <div class="month-name">6월</div>
+        <div class="month-stat">183h</div>
+        <div class="month-detail">넷마블·올리브영</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart" style="margin-top:20px">
+    <div class="chart-title">상반기 카테고리별</div>
+    <div class="bar-row">
+      <div class="bar-name">세일즈/BD</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%;background:#9FE1CB;color:#085041">113h</div></div>
+      <div class="bar-pct">35%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">미팅</div>
+      <div class="bar-track"><div class="bar-fill" style="width:25%;background:#FAC775;color:#633806">81h</div></div>
+      <div class="bar-pct">25%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">문서</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%;background:#B5D4F4;color:#0C447C">65h</div></div>
+      <div class="bar-pct">20%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">기타</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%;background:#C0DD97;color:#27500A">63.5h</div></div>
+      <div class="bar-pct">20%</div>
+    </div>
+  </div>
 </div>
 
-<div class="chart">
-  <div class="chart-title">카테고리별 시간</div>
-  <div class="bar-row">
-    <div class="bar-name">세일즈/BD</div>
-    <div class="bar-track"><div class="bar-fill" style="width:67%;background:#9FE1CB;color:#085041">8h</div></div>
-    <div class="bar-pct">67%</div>
+<!-- 연간 뷰 -->
+<div id="year" class="view">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">2026년 기록</div>
+      <div class="stat-value">322.5h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">상반기</div>
+      <div class="stat-value">322.5h</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">하반기</div>
+      <div class="stat-value">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">예상 연간</div>
+      <div class="stat-value">645h</div>
+    </div>
   </div>
-  <div class="bar-row">
-    <div class="bar-name">문서</div>
-    <div class="bar-track"><div class="bar-fill" style="width:17%;background:#B5D4F4;color:#0C447C">2h</div></div>
-    <div class="bar-pct">17%</div>
+
+  <div class="chart">
+    <div class="chart-title">월별 기록 (1–12월)</div>
+    <div class="months">
+      <div class="month-card">
+        <div class="month-name">5월</div>
+        <div class="month-stat">139.5h</div>
+      </div>
+      <div class="month-card">
+        <div class="month-name">6월</div>
+        <div class="month-stat">183h</div>
+      </div>
+      <div class="month-card">
+        <div class="month-name">7월~12월</div>
+        <div class="month-stat">—</div>
+        <div class="month-detail">예정</div>
+      </div>
+    </div>
   </div>
-  <div class="bar-row">
-    <div class="bar-name">미팅</div>
-    <div class="bar-track"><div class="bar-fill" style="width:17%;background:#FAC775;color:#633806">2h</div></div>
-    <div class="bar-pct">17%</div>
+
+  <div class="chart" style="margin-top:20px">
+    <div class="chart-title">상반기 카테고리별</div>
+    <div class="bar-row">
+      <div class="bar-name">세일즈/BD</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%;background:#9FE1CB;color:#085041">113h</div></div>
+      <div class="bar-pct">35%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">미팅</div>
+      <div class="bar-track"><div class="bar-fill" style="width:25%;background:#FAC775;color:#633806">81h</div></div>
+      <div class="bar-pct">25%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-name">문서</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%;background:#B5D4F4;color:#0C447C">65h</div></div>
+      <div class="bar-pct">20%</div>
+    </div>
   </div>
 </div>
 
 <div class="footer">
-  업무 블록: 각 셀은 2시간 기준 · 계획 항목은 미표기 · 실제 완료 후 데이터 업데이트
+  업무 블록: 각 2시간 기준 · 5월~6월 실제 기록 누적 · 7월~12월 로그 누적 예정
 </div>
+
+<script>
+function showView(viewId) {
+  // 모든 뷰 숨기기
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  // 모든 탭 비활성화
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  // 선택된 뷰 표시
+  document.getElementById(viewId).classList.add('active');
+  // 선택된 탭 활성화
+  event.target.classList.add('active');
+}
+</script>
 
 </body>
 </html>
