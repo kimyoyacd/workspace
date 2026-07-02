@@ -282,9 +282,9 @@ function monthlySnapshot(){
 function readKimHyojungLog(){
   var SHEET_ID='1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0';
   var ss=SpreadsheetApp.openById(SHEET_ID);
-  var sh=ss.getSheetByName('김효정');
+  var sh=ss.getSheetByName('김효정_업무로그');
   if(!sh){
-    Logger.log('김효정 탭을 찾을 수 없습니다.');
+    Logger.log('김효정_업무로그 탭을 찾을 수 없습니다.');
     return [];
   }
   var last=sh.getLastRow(); if(last<2) return [];
@@ -297,25 +297,35 @@ function readKimHyojungLog(){
   // 데이터 읽기
   var data=sh.getRange(2,1,last-1,sh.getLastColumn()).getValues();
   var log=[];
+  var TIMES=['10–12','12–14','14–16','16–18','18–20'];
+
   for(var i=0;i<data.length;i++){
     var r=data[i];
     var date=r[colMap['날짜']]; if(!date) continue;
     if(typeof date==='object') date=Utilities.formatDate(date,TZ,'yyyy-MM-dd');
-    var timeSlot=(r[colMap['시간']]||'').toString();
-    if(timeSlot) timeSlot=timeSlot.replace(/\-/g,'–');
+
+    var hours=parseFloat(r[colMap['시간(h)']])||0;
+    var blocks=Math.ceil(hours/2); // 2시간 블록 개수
+
     var cat=r[colMap['카테고리']]||'';
     var proj=r[colMap['프로젝트']]||'';
     var memo=r[colMap['메모']]||'';
     var actualFlag=(r[colMap['실제여부']]||'').toString().trim();
     var actual=!actualFlag || actualFlag==='';
-    log.push({
-      date:date,
-      s:timeSlot,
-      cat:cat,
-      proj:proj,
-      memo:memo,
-      actual:actual
-    });
+
+    // 시간대별 로그 항목 생성
+    for(var j=0;j<blocks;j++){
+      if(j<TIMES.length){
+        log.push({
+          date:date,
+          s:TIMES[j],
+          cat:cat,
+          proj:proj,
+          memo:memo,
+          actual:actual
+        });
+      }
+    }
   }
   return log;
 }
