@@ -543,6 +543,7 @@ body {
   <div class="tab" onclick="go('team',this)">MAX실 9명</div>
   <div class="tab" onclick="go('hiring',this)">채용·외주</div>
   <div class="tab" onclick="go('brand',this)">브랜드 제안</div>
+  <div class="tab" onclick="go('workflow',this)">워크플로우</div>
 </div>
 
 <div class="main">
@@ -2128,6 +2129,119 @@ body {
     <strong>예시 탭입니다.</strong>&nbsp; 실제 진행은 Claude Code에서 "브랜드 제안 시작" / "와이드리서치부터 슬라이드까지"라고 말하면 <code>brand-proposal</code> 스킬이 Stage 0부터 질문형으로 구동합니다. 외부 프로세스명 비노출 · 자동 발송 금지 · 최종 HTML은 Stage 3 통과 후에만.
   </div>
 </div><!-- /sect-brand -->
+
+
+<!-- ══════════════ TAB 11: 워크플로우 ══════════════ -->
+<div id="sect-workflow" class="section">
+  <h2 class="section-title">워크플로우 — 관장 체계</h2>
+  <p class="section-desc">허브(CLAUDE.md)가 에이전트·스킬을 순서·게이트로 묶어 굴리는 "명명된 절차"들. 여기 있는 게 <strong>에이전트·스킬을 관장하는 층</strong>입니다.</p>
+
+  <div class="alert">
+    <span class="ic">🏢</span>
+    <div><strong>층 구조:</strong> 허브(CLAUDE.md·최상위 규칙) → 워크플로우/스킬(여러 명 지휘) → 에이전트 24(개별 전문가) → 라이브러리 SoT(기준 자료). 아래는 허브가 굴리는 워크플로우 6종 + 자동 루틴.</div>
+  </div>
+
+  <!-- 명명된 워크플로우 -->
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">① 제안 풀패키지</span><span class="badge badge-core">스킬</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> "브랜드 제안 시작" / RFP 수신 · <code>brand-proposal</code> 스킬 (자세히는 '브랜드 제안' 탭)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">Intake</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">Research</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">POV</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">Visual</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">Select</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">Brand System</span>→
+        <span style="padding:3px 8px;background:#1A1A1A;color:#fff;border-radius:4px;">HTML Export(사용자 OK)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">② 시안 검수 루프</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> 시안 나오면 · 전원 🟢까지 반복</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:#FBE7F1;border:1px solid #F2C9DF;border-radius:4px;">design-critique (6영역)</span>→
+        <span style="padding:3px 8px;background:#FBE7F1;border:1px solid #F2C9DF;border-radius:4px;">creative-director (톤)</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">delivery-gate (결정론)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">③ 제안서 검수</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> 제안 셀렉 후 · 🔴/🟡 시 개정→재호출</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:#E5F2E9;border:1px solid #BEDDC6;border-radius:4px;">review-panel (5렌즈)</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">fact-checker</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">cold-critic</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">delivery-gate</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">④ 외부 발송 게이트</span><span class="badge badge-urgent">자동</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> 외부 발송 직전 (자동) · 통과해도 <strong>최종 OK는 사용자</strong></div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">fact-checker</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">delivery-gate</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">tone-guardian</span>→
+        <span style="padding:3px 8px;background:#1A1A1A;color:#fff;border-radius:4px;">사용자 OK</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">⑤ 회신 초안</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> 슬랙·메일 회신 · 자동 발송 절대 금지</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">초안 작성</span>→
+        <span style="padding:3px 8px;background:#FAF1DC;border:1px solid #ECD9B0;border-radius:4px;">tone-guardian (톤·매너)</span>→
+        <span style="padding:3px 8px;background:#1A1A1A;color:#fff;border-radius:4px;">사용자 OK</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-name-row"><span class="card-name">⑥ 온보딩 팩</span></div>
+      <div style="font-size:10px;color:var(--ink3);margin:4px 0 8px;"><strong>발동:</strong> 신규 입사자·외주</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:10px;">
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">creative-director</span>+
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">design-system-guardian</span>→
+        <span style="padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">1장 HTML 온보딩 팩</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DoD 3티어 + 자동 루틴 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+    <div>
+      <h3 style="font-size:14px;font-weight:800;margin:0 0 10px;letter-spacing:-0.3px;">DoD 3티어 — 검수 강도(위험도별)</h3>
+      <table class="tier-table">
+        <tr><th>티어</th><th>대상</th><th>검수</th></tr>
+        <tr><td><span class="tier-badge tier0">Tier 0</span></td><td>내부 단순·조회</td><td>없음(퀵린트)</td></tr>
+        <tr><td><span class="tier-badge tier1">Tier 1</span></td><td>내부 산출·시안 초안</td><td>design-critique + delivery-gate</td></tr>
+        <tr><td><span class="tier-badge tier2">Tier 2</span></td><td>외부 발신·제안·계약</td><td>풀 패널(④ 게이트)</td></tr>
+      </table>
+      <div style="margin-top:8px;font-size:10px;color:var(--ink3);">애매하면 무조건 상향 · 외부 수신자 = 자동 Tier 2.</div>
+    </div>
+    <div>
+      <h3 style="font-size:14px;font-weight:800;margin:0 0 10px;letter-spacing:-0.3px;">자동 루틴 (트리거)</h3>
+      <table class="tier-table">
+        <tr><th>시각</th><th>워크플로우</th></tr>
+        <tr><td>매일 09:00</td><td>오늘 보드 갱신(Notion read)</td></tr>
+        <tr><td>월 08:00</td><td>주간: max-pm + overhead-watcher + account-radar</td></tr>
+        <tr><td>분기 첫주</td><td>트렌드: design-trend-radar → reference-curator</td></tr>
+        <tr><td>매일 18:00</td><td>결정 대기 알림</td></tr>
+        <tr><td>발송 직전</td><td>외부 발송 게이트(④)</td></tr>
+      </table>
+      <div style="margin-top:8px;font-size:10px;color:var(--ink3);">현재 스텁(비활성) · 사용자 승인 시 활성화.</div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <strong>이 탭 = 관장 체계.</strong>&nbsp; 개별 전문가(에이전트)를 순서·게이트로 묶은 절차가 여기 모여 있습니다. 실제 규칙 원본은 <code>CLAUDE.md</code>(검수 경로·티어·트리거), 스킬은 <code>.claude/skills/</code>. 모든 외부 발송은 사용자 최종 OK 후에만.
+  </div>
+</div><!-- /sect-workflow -->
 
 </div><!-- /main -->
 
