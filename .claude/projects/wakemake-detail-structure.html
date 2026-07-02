@@ -3,1042 +3,1350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAKEMAKE 올리브영 상세페이지 구조 초안 — C01 오늘의 선택</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<title>C01 · 오늘 기분이 먼저다 — WAKEMAKE × OLIVEYOUNG 모바일 상세페이지 구조</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #FAF8F4;
-    --accent: #E8502A;
-    --peach: #F2B89A;
-    --ink: #2C1810;
-    --gold: #C9942A;
-    --muted: #9C8070;
-    --white: #FFFFFF;
-    --gray: #F0EDE8;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #E5E0D8;
-    display: flex;
-    gap: 0;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 20px;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    background: #EBEBEB;
+    color: #111;
     min-height: 100vh;
   }
 
-  /* Layout: left legend + center phone + right annotations */
-  .layout {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
-    max-width: 1200px;
-    width: 100%;
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
   }
 
-  /* LEFT PANEL — section index */
-  .legend {
-    width: 220px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 40px;
+  /* ── Page Header ── */
+  .page-header {
+    background: #111111;
+    border-radius: 20px;
+    padding: 44px 48px 48px;
+    margin-bottom: 48px;
   }
-  .legend-title {
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 500;
-    color: #888;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .legend-num {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--ink);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .legend-num.accent { background: var(--accent); }
-  .legend-num.gold { background: var(--gold); }
-  .legend-label {
-    font-size: 12px;
-    color: var(--ink);
-    font-weight: 400;
-    line-height: 1.4;
-  }
-  .legend-sub {
-    font-size: 10px;
-    color: var(--muted);
-  }
-  .legend-badge {
-    margin-top: 4px;
-    display: inline-block;
-    background: #FFE8E0;
-    color: var(--accent);
-    font-size: 9px;
-    font-weight: 500;
-    padding: 2px 6px;
-    border-radius: 3px;
-    letter-spacing: 0.05em;
-  }
-  .legend-badge.cta { background: var(--accent); color: #fff; }
-
-  /* CENTER PANEL — mobile phone mockup */
-  .phone-wrap {
-    flex: 0 0 390px;
-    position: relative;
-  }
-  .phone-label {
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    margin-bottom: 12px;
+    color: #666;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    margin-bottom: 20px;
   }
-  .phone {
-    width: 390px;
-    background: var(--bg);
-    border-radius: 40px;
+  .header-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header-title span {
+    color: #E8502A;
+  }
+  .header-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #555;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Section Card ── */
+  .section-card {
+    background: #fff;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.25), 0 0 0 12px #1A1A1A, 0 0 0 14px #333;
-    position: relative;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    min-height: 520px;
   }
-  .phone-notch {
-    height: 44px;
-    background: #1A1A1A;
+
+  /* ── Phone Panel (left) ── */
+  .phone-panel {
+    background: #F0F0F0;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .phone-notch-pill {
-    width: 120px;
-    height: 30px;
-    background: #000;
-    border-radius: 20px;
+    padding: 40px 32px;
+    border-right: 1px solid #E5E5E5;
   }
 
-  /* SECTIONS inside phone */
-  .section {
-    position: relative;
+  .phone-frame {
+    width: 100%;
+    max-width: 375px;
+    border: 2px solid #333;
+    border-radius: 32px;
     overflow: hidden;
+    background: #fff;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 0 6px rgba(0,0,0,0.04);
+    position: relative;
   }
-  .section-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(44,24,16,0.7);
-    color: #fff;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 3px;
-    z-index: 10;
-    text-transform: uppercase;
-  }
-  .section-tag.accent { background: var(--accent); }
-  .section-tag.gold { background: var(--gold); }
 
-  /* S1 — HERO */
-  .s-hero {
-    height: 560px;
-    background: linear-gradient(160deg, #1A0A05 0%, #3D1A0E 50%, #2C1810 100%);
+  /* phone notch */
+  .phone-frame::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 20px;
+    background: #333;
+    border-radius: 0 0 12px 12px;
+    margin: 0 auto 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .phone-content {
+    position: relative;
+  }
+
+  /* ── Annotation Panel (right) ── */
+  .annotation-panel {
+    padding: 36px 36px 36px 32px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 28px 40px;
+    gap: 20px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #E8502A;
+  }
+
+  .section-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .anno-block {
+    border-top: 1px solid #EBEBEB;
+    padding-top: 16px;
+  }
+
+  .anno-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .anno-text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  .anno-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .anno-list li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    padding-left: 14px;
     position: relative;
   }
-  .s-hero::before {
-    content: '';
+
+  .anno-list li::before {
+    content: '·';
     position: absolute;
-    inset: 0;
-    background: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80') center/cover;
-    opacity: 0.4;
+    left: 0;
+    color: #E8502A;
+    font-weight: 700;
   }
-  .hero-badge {
+
+  .design-pill {
     display: inline-block;
-    background: var(--accent);
-    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     padding: 4px 10px;
-    border-radius: 3px;
-    margin-bottom: 14px;
-    letter-spacing: 0.08em;
-    position: relative;
-  }
-  .hero-headline {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 26px;
-    font-weight: 700;
+    border-radius: 20px;
+    background: #111;
     color: #fff;
-    line-height: 1.35;
-    margin-bottom: 12px;
-    position: relative;
-  }
-  .hero-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.6;
-    position: relative;
-    margin-bottom: 28px;
-  }
-  .hero-cta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: relative;
-  }
-  .btn-primary {
-    flex: 1;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    height: 48px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .btn-ghost {
-    width: 48px;
-    height: 48px;
-    border: 1.5px solid rgba(255,255,255,0.4);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.6);
-    font-size: 18px;
+    letter-spacing: 0.05em;
+    margin-right: 4px;
+    margin-top: 2px;
   }
 
-  /* S2 — LIFESTYLE VISUAL */
-  .s-lifestyle {
-    height: 460px;
-    background: var(--bg);
-    position: relative;
-    overflow: hidden;
-  }
-  .lifestyle-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .lifestyle-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px 24px;
-    background: linear-gradient(to top, rgba(44,24,16,0.85) 0%, transparent 100%);
-  }
-  .lifestyle-caption-text {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 18px;
-    color: #fff;
-    line-height: 1.5;
+  .design-pill.coral { background: #E8502A; }
+  .design-pill.olive { background: #2D4A3E; }
+  .design-pill.cream { background: #F5F0E8; color: #111; }
+
+  /* ── KEY COPY ── */
+  .key-copy {
+    background: #FFF8F5;
+    border-left: 3px solid #E8502A;
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #333;
     font-style: italic;
+    line-height: 1.55;
   }
-  .lifestyle-caption-sub {
-    font-size: 11px;
+
+  /* ══════════════════════════════
+     S1 — 히어로 / 브랜드 스토리
+  ══════════════════════════════ */
+  .s1-hero {
+    background: linear-gradient(160deg, #F2B89A 0%, #E8502A 100%);
+    padding: 60px 28px 48px;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  }
+  .s1-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .s1-headline {
+    font-size: 38px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .s1-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .s1-scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════
+     S2 — 컬러 스토리
+  ══════════════════════════════ */
+  .s2-bg {
+    background: #FDFAF7;
+    padding: 48px 24px 40px;
+    min-height: 420px;
+  }
+  .s2-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .s2-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .s2-swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .swatch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .swatch-mood {
+    font-size: 9px;
+    color: #888;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ══════════════════════════════
+     S3 — 텍스처 & 발색
+  ══════════════════════════════ */
+  .s3-bg {
+    background: #111111;
+    padding: 52px 24px 44px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+  }
+  .s3-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .s3-circle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .s3-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8502A 0%, #C43A1A 60%, #8B2510 100%);
+    box-shadow: 0 0 40px rgba(232,80,42,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .s3-circle-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
     color: rgba(255,255,255,0.6);
-    margin-top: 6px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .s3-desc {
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .s3-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .s3-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #E8502A;
+    border: 1px solid #E8502A;
+    padding: 3px 10px;
+    border-radius: 20px;
     letter-spacing: 0.05em;
   }
 
-  /* S3 — COLOR STORY */
-  .s-color {
-    padding: 40px 24px;
-    background: var(--white);
+  /* ══════════════════════════════
+     S4 — 브랜드 세계관
+  ══════════════════════════════ */
+  .s4-bg {
+    background: #F5F5F5;
+    padding: 52px 28px 44px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .section-eyebrow {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+  .s4-quote-mark {
+    font-size: 60px;
+    color: #E8502A;
+    line-height: 0.8;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-family: Georgia, serif;
   }
-  .section-title {
-    font-family: 'Noto Serif KR', serif;
+  .s4-quote {
     font-size: 22px;
     font-weight: 700;
-    color: var(--ink);
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
-  .section-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 28px;
-  }
-  .swatch-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-  .swatch-item { text-align: center; }
-  .swatch-circle {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    margin-bottom: 6px;
-  }
-  .swatch-name {
-    font-size: 9px;
-    color: var(--muted);
-    line-height: 1.3;
-  }
-  .color-story-quote {
-    background: #FFF5F0;
-    border-left: 3px solid var(--accent);
-    padding: 16px 18px;
-    border-radius: 0 6px 6px 0;
-    font-size: 13px;
-    color: var(--ink);
-    line-height: 1.65;
+    color: #111;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
     font-style: italic;
   }
+  .s4-quote em {
+    color: #E8502A;
+    font-style: italic;
+  }
+  .s4-body {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    border-top: 1px solid #DDD;
+    padding-top: 16px;
+  }
 
-  /* S4 — SKIN TONE MATCH */
-  .s-skintone {
-    padding: 40px 24px;
-    background: var(--bg);
+  /* ══════════════════════════════
+     S5 — How To
+  ══════════════════════════════ */
+  .s5-bg {
+    background: #fff;
+    padding: 48px 24px 40px;
+    min-height: 400px;
   }
-  .skintone-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
+  .s5-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
   }
-  .skintone-card {
-    flex: 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--white);
-    box-shadow: 0 2px 12px rgba(44,24,16,0.08);
-  }
-  .skintone-img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    display: block;
-  }
-  .skintone-info {
-    padding: 10px 12px 14px;
-  }
-  .skintone-type {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-  }
-  .skintone-desc {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-  .skintone-note {
-    background: var(--peach);
-    border-radius: 8px;
-    padding: 14px 16px;
+  .s5-sub {
     font-size: 12px;
-    color: var(--ink);
-    line-height: 1.6;
-    text-align: center;
+    color: #999;
+    margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
   }
-
-  /* S5 — TEXTURE CLOSEUP */
-  .s-texture {
-    height: 380px;
-    position: relative;
-    overflow: hidden;
-    background: #1A1A1A;
-  }
-  .texture-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0.85;
-  }
-  .texture-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 28px 24px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-  }
-  .texture-specs {
-    display: flex;
+  .s5-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    flex-wrap: wrap;
   }
-  .spec-pill {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
+  .step-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #E8502A;
     color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .step-img-box {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #F0EEF0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-img-icon {
+    font-size: 28px;
+    opacity: 0.5;
+  }
+  .step-desc {
     font-size: 11px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    backdrop-filter: blur(6px);
+    color: #555;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: 500;
   }
 
-  /* S6 — URGENCY / OLIVEYOUNG ONLY */
-  .s-urgency {
-    padding: 36px 24px;
-    background: var(--ink);
+  /* ══════════════════════════════
+     S6 — 올리브영 ONLY
+  ══════════════════════════════ */
+  .s6-bg {
+    background: #2D4A3E;
+    padding: 52px 28px 44px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
   }
-  .s-urgency::before {
+  .s6-bg::before {
     content: '';
     position: absolute;
     top: -40px;
     right: -40px;
     width: 200px;
     height: 200px;
-    background: var(--accent);
+    border: 1px solid rgba(180,150,80,0.2);
     border-radius: 50%;
-    opacity: 0.08;
   }
-  .urgency-logo {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--peach);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-    display: flex;
+  .s6-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 160px;
+    height: 160px;
+    border: 1px solid rgba(180,150,80,0.15);
+    border-radius: 50%;
+  }
+  .s6-badge {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    background: rgba(180,150,80,0.15);
+    border: 1px solid rgba(180,150,80,0.5);
+    border-radius: 24px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    width: fit-content;
   }
-  .urgency-logo::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(242,184,154,0.25);
+  .s6-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #B4964A;
+    border-radius: 50%;
   }
-  .urgency-headline {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 20px;
-    color: #fff;
+  .s6-badge-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #B4964A;
+    letter-spacing: 0.12em;
     font-weight: 700;
-    line-height: 1.45;
-    margin-bottom: 14px;
+    text-transform: uppercase;
   }
-  .urgency-desc {
+  .s6-heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .s6-body {
     font-size: 13px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.6);
     line-height: 1.7;
     margin-bottom: 24px;
   }
-  .urgency-badges {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-  }
-  .urgency-badge {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.8);
-    font-size: 11px;
-    padding: 6px 14px;
-    border-radius: 4px;
-  }
-  .urgency-cta {
-    width: 100%;
-    height: 52px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
+  .s6-urgency {
+    background: rgba(232,80,42,0.15);
+    border: 1px solid rgba(232,80,42,0.4);
     border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #FF8060;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .s6-urgency::before {
+    content: '!';
+    width: 18px;
+    height: 18px;
+    background: #E8502A;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-  }
-  .urgency-sub {
-    text-align: center;
-    font-size: 11px;
-    color: rgba(255,255,255,0.35);
-    margin-top: 12px;
-    line-height: 1.5;
+    flex-shrink: 0;
   }
 
-  /* S7 — REVIEWS */
-  .s-reviews {
-    padding: 40px 24px;
-    background: var(--white);
+  /* ══════════════════════════════
+     S7 — 리뷰 & 실착
+  ══════════════════════════════ */
+  .s7-bg {
+    background: #FAFAFA;
+    padding: 48px 20px 40px;
+    min-height: 440px;
   }
-  .review-stars {
+  .s7-rating-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .s7-stars {
+    font-size: 18px;
+    color: #E8502A;
+    letter-spacing: 2px;
+  }
+  .s7-score {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.02em;
+  }
+  .s7-count {
+    font-size: 12px;
+    color: #999;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .s7-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 20px;
   }
-  .stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; }
-  .rating-num { font-size: 28px; font-weight: 700; color: var(--ink); }
-  .rating-count { font-size: 12px; color: var(--muted); }
   .review-card {
-    background: var(--bg);
+    background: #fff;
     border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 12px;
+    padding: 14px 16px;
+    border: 1px solid #ECECEC;
   }
   .review-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 8px;
   }
-  .reviewer-name { font-size: 12px; font-weight: 500; color: var(--ink); }
-  .reviewer-type {
-    font-size: 10px;
-    color: var(--accent);
-    background: #FFF0EB;
-    padding: 2px 8px;
-    border-radius: 3px;
+  .review-user {
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+  }
+  .review-stars {
+    font-size: 11px;
+    color: #E8502A;
   }
   .review-text {
-    font-size: 13px;
+    font-size: 12px;
     color: #555;
-    line-height: 1.65;
+    line-height: 1.55;
+  }
+  .review-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .review-tag {
+    font-size: 10px;
+    background: #FFF0EB;
+    color: #E8502A;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
   }
 
-  /* S8 — FINAL CTA */
-  .s-final-cta {
-    padding: 48px 24px 56px;
-    background: var(--bg);
-    text-align: center;
-    border-top: 1px solid rgba(44,24,16,0.1);
+  /* ══════════════════════════════
+     S8 — CTA
+  ══════════════════════════════ */
+  .s8-bg {
+    background: #fff;
+    padding: 48px 20px 36px;
+    min-height: 420px;
   }
-  .final-eyebrow {
-    font-size: 10px;
-    color: var(--muted);
+  .s8-color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .s8-color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+  }
+  .s8-color-item.selected {
+    border-color: #E8502A;
+    background: #FFF8F5;
+  }
+  .s8-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.08);
+  }
+  .s8-color-name {
+    font-size: 9px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .s8-cta-btn {
+    width: 100%;
+    background: #E8502A;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .s8-delivery {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .s8-delivery span {
+    color: #E8502A;
+    font-weight: 700;
+  }
+
+  /* ══════════════════════════════
+     Flow Diagram
+  ══════════════════════════════ */
+  .flow-section {
+    background: #111;
+    border-radius: 16px;
+    padding: 44px 40px;
+    margin-top: 16px;
+  }
+  .flow-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #555;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
-  .final-headline {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.4;
-    margin-bottom: 10px;
+  .flow-timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    overflow-x: auto;
+    padding-bottom: 8px;
   }
-  .final-sub {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 28px;
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 108px;
+    position: relative;
   }
-  .final-btn {
-    display: block;
-    width: 100%;
-    height: 54px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    margin-bottom: 12px;
+  .flow-node:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 14px;
+    color: #333;
+    font-size: 14px;
+    z-index: 2;
+  }
+  .flow-dot {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .final-reassurance {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  /* SECTION DIVIDERS */
-  .divider {
-    height: 1px;
-    background: rgba(44,24,16,0.08);
-  }
-
-  /* RIGHT PANEL — annotations */
-  .annotations {
-    width: 260px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 40px;
-  }
-  .anno-title {
-    font-size: 11px;
-    font-weight: 500;
-    color: #888;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .anno-item {
-    background: #fff;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    border-left: 3px solid var(--ink);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  }
-  .anno-item.accent { border-color: var(--accent); }
-  .anno-item.gold { border-color: var(--gold); }
-  .anno-section {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .anno-text {
-    font-size: 12px;
-    color: var(--ink);
-    line-height: 1.55;
-  }
-  .anno-tag {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    font-weight: 500;
-  }
-  .anno-tag.copy { background: #E8F4FD; color: #1A6EA8; }
-  .anno-tag.visual { background: #FFF0EB; color: var(--accent); }
-  .anno-tag.conv { background: #E8F9EF; color: #1A8040; }
-  .anno-tag.oly { background: #FFF8E0; color: var(--gold); }
-
-  /* HEADER */
-  .page-header {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto 32px;
-    padding: 28px 32px;
-    background: var(--ink);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .page-header-left {}
-  .page-header-brand {
-    font-size: 18px;
     font-weight: 700;
     color: #fff;
-    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    flex-shrink: 0;
   }
-  .page-header-sub {
-    font-size: 12px;
-    color: rgba(255,255,255,0.45);
-    margin-top: 2px;
-  }
-  .page-header-right { display: flex; gap: 10px; flex-wrap: wrap; }
-  .header-badge {
-    background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.7);
+  .flow-node-name {
     font-size: 11px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.15);
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 4px;
   }
-  .header-badge.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  .outer-wrap {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  @media (max-width: 900px) {
-    body { flex-direction: column; align-items: center; }
-    .layout { flex-direction: column; align-items: center; }
-    .legend, .annotations { width: 100%; max-width: 390px; position: static; }
-    .phone-wrap { width: 100%; max-width: 420px; }
-    .phone { width: 100%; }
+  .flow-node-role {
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    line-height: 1.3;
+    font-family: 'JetBrains Mono', monospace;
   }
 </style>
 </head>
 <body>
+<div class="page-wrap">
 
-<div class="outer-wrap">
+  <!-- ── PAGE HEADER ── -->
+  <header class="page-header">
+    <div class="header-tag">WAKEMAKE × OLIVEYOUNG · 모바일 상세페이지 구조 초안 · C01</div>
+    <h1 class="header-title">C01 · <span>오늘 기분이 먼저다</span></h1>
+    <div class="header-sub">모바일 세로 롱폼 JPG &nbsp;·&nbsp; 8섹션 구조 &nbsp;·&nbsp; Direction A 오전 빛 기준</div>
+  </header>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header-left">
-    <div class="page-header-brand">WAKEMAKE × OliveYoung</div>
-    <div class="page-header-sub">상세페이지 구조 초안 — C01 오늘의 선택 (모바일 롱폼 JPG)</div>
+
+  <!-- S1 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s1-hero">
+            <div class="s1-brand">WAKEMAKE × OLIVEYOUNG</div>
+            <h2 class="s1-headline">오늘 기분이<br>먼저다</h2>
+            <p class="s1-sub">립이 먼저 말한다.<br>색을 고르기 전, 기분을 골라라.</p>
+            <div class="s1-scroll-hint">&#8595; SCROLL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S1 · HERO</div>
+        <div class="section-name">히어로 /<br>브랜드 스토리</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">첫 2초 멈춤 구간. 브랜드 POV 선언. 카피가 이미지보다 먼저. Height 100vh 기준으로 스크롤 없이 완결되는 첫 인상.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>감성 헤드카피 1줄 (최대 10자)</li>
+          <li>서브 카피 1–2줄 (브랜드 세계관 암시)</li>
+          <li>브랜드명 + 채널명 태그라인</li>
+          <li>스크롤 유도 힌트 (최소)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+          <span class="design-pill coral">Direction A</span>
+          <span class="design-pill">자연광 무드</span>
+          <span class="design-pill">카피 퍼스트</span>
+        </div>
+        <div class="key-copy">"제품보다 POV가 먼저다. 브랜드가 믿는 것을 먼저 말하고, 제품은 그 증거로 등장한다."</div>
+      </div>
+    </div>
   </div>
-  <div class="page-header-right">
-    <div class="header-badge active">C01 ★ 추천</div>
-    <div class="header-badge">모바일 세로 390px</div>
-    <div class="header-badge">정적 JPG</div>
-    <div class="header-badge">8 섹션</div>
+
+
+  <!-- S2 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s2-bg">
+            <div class="s2-eyebrow">COLOR STORY</div>
+            <div class="s2-heading">기분으로<br>먼저 고른다</div>
+            <div class="s2-swatches">
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#C43A1A;"></div>
+                <div class="swatch-name">코랄 브릭</div>
+                <div class="swatch-mood">오전 카페<br>에서</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#F2B89A;"></div>
+                <div class="swatch-name">피치 누드</div>
+                <div class="swatch-mood">창가 햇살<br>아래</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#C4943A;"></div>
+                <div class="swatch-name">웜 골드</div>
+                <div class="swatch-mood">저녁 노을<br>한 컷</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#D4B09A;"></div>
+                <div class="swatch-name">베이지 뮤트</div>
+                <div class="swatch-mood">주말 오후<br>여유</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S2 · COLOR STORY</div>
+        <div class="section-name">컬러 스토리 /<br>기분으로 먼저 고른다</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">"퍼스널컬러 타입" 언어 없음. "오늘 기분" 언어로 색 선택을 유도. 색 이름 자체가 감성 언어이자 마이크로카피.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>컬러 4종 스와치 (클로즈업 발색 이미지)</li>
+          <li>색 이름 — 감성 언어 기준 명명</li>
+          <li>컬러별 기분 한 줄 카피</li>
+          <li>선택 시 발색 클로즈업 전환 UX</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">KEY COPY EXAMPLES</div>
+        <div class="key-copy">
+          "코랄 브릭 — 오전 카페에서"<br>
+          "피치 누드 — 창가 햇살 아래"<br>
+          "웜 골드 — 저녁 노을 한 컷"
+        </div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">감성 네이밍</span>
+          <span class="design-pill cream">무퍼스널컬러 언어</span>
+          <span class="design-pill coral">기분 퍼스트</span>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+  <!-- S3 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#222;">
+      <div class="phone-frame" style="border-color:#444;">
+        <div class="phone-content">
+          <div class="s3-bg">
+            <div class="s3-eyebrow">TEXTURE &amp; PIGMENT</div>
+            <div class="s3-circle-wrap">
+              <div class="s3-circle">
+                <div class="s3-circle-label">발색<br>클로즈업</div>
+              </div>
+            </div>
+            <div class="s3-desc">
+              입술 위에서 번지지 않는<br>
+              벨벳 세미-매트 물성.<br>
+              6시간 후에도 중심 발색 유지.
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag">벨벳 물성</span>
+              <span class="s3-tag">비번짐</span>
+              <span class="s3-tag">6H 지속</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S3 · TEXTURE</div>
+        <div class="section-name">텍스처 &amp; 발색</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">구매 결정을 위한 실증 구간. 발림감·물성·지속력을 감각 언어로 설명. 성분 설명 없음 — 체험 설명.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>클로즈업 이미지 3–4장 (입술 위 실착)</li>
+          <li>텍스처 설명 2줄 — 감각 언어 기준</li>
+          <li>지속력 키워드 태그 3개 이내</li>
+          <li>다크 배경으로 발색 대비 극대화</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill" style="background:#222;">다크 섹션</span>
+          <span class="design-pill coral">실증 구간</span>
+          <span class="design-pill">감각 언어</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"성분을 설명하지 말고, 입술 위에서 어떤 기분인지를 설명하라."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S4 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#E8E8E8;">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s4-bg">
+            <div class="s4-quote-mark">"</div>
+            <div class="s4-quote">오늘 당신이 원하는<br>색을 <em>먼저 믿는다.</em></div>
+            <div class="s4-body">
+              WAKEMAKE는 트렌드를 따르지 않습니다.<br>
+              오늘 당신의 기분을 먼저 묻고,<br>
+              그 기분에 맞는 색을 설계합니다.<br><br>
+              컬러는 도구가 아닌, 오늘의 태도입니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S4 · BRAND WORLD</div>
+        <div class="section-name">브랜드 세계관 /<br>Why WAKEMAKE</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">Blue Bottle 방식 — POV 먼저, 제품은 증거. 브랜드가 믿는 것을 설명하는 구간. 소비자가 브랜드 철학에 공감하게 만든다.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>브랜드 철학 카피 3–4줄</li>
+          <li>핵심 인용구 1문장 (대형 타이포)</li>
+          <li>시그니처 이미지 1장 (자연광 포트레이트)</li>
+          <li>배경 크림 #F5F5F5, 타이포 대비 강조</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill cream">POV 선언</span>
+          <span class="design-pill coral">이탤릭 타이포</span>
+          <span class="design-pill">크림 배경</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"오늘 당신이 원하는 색을 먼저 믿는다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S5 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s5-bg">
+            <div class="s5-heading">How To Apply</div>
+            <div class="s5-sub">3 STEPS · 30 SECONDS</div>
+            <div class="s5-steps">
+              <div class="step-block">
+                <div class="step-num">1</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#128139;</div>
+                </div>
+                <div class="step-desc">입술 중앙에<br>가볍게 터치</div>
+              </div>
+              <div class="step-block">
+                <div class="step-num">2</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#10024;</div>
+                </div>
+                <div class="step-desc">바깥으로<br>자연스럽게 블렌딩</div>
+              </div>
+              <div class="step-block">
+                <div class="step-num">3</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#129710;</div>
+                </div>
+                <div class="step-desc">중앙 한 번 더<br>발색 완성</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S5 · HOW TO</div>
+        <div class="section-name">바르는 방법 /<br>How To Apply</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">사용법은 짧게. 이미지 3컷으로 끝. 텍스트 최소화. 구매 후 사용 경험에 대한 불안 제거 구간.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>Step 이미지 3컷 (손가락·립 클로즈업)</li>
+          <li>각 step 한 줄 설명 (10자 이내)</li>
+          <li>소요 시간 힌트 ("30초")</li>
+          <li>텍스트 최소화 — 이미지가 주인공</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">3컷 룰</span>
+          <span class="design-pill coral">텍스트 미니멀</span>
+          <span class="design-pill">불안 제거</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S6 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#1A2E25;">
+      <div class="phone-frame" style="border-color:#3A5A4A;">
+        <div class="phone-content">
+          <div class="s6-bg">
+            <div class="s6-badge">
+              <div class="s6-badge-dot"></div>
+              <div class="s6-badge-text">OLIVE YOUNG ONLY</div>
+            </div>
+            <div class="s6-heading">이 시즌 WAKEMAKE는<br>올리브영에서만<br>만날 수 있습니다.</div>
+            <div class="s6-body">
+              전국 1,300+ 매장과 공식 앱에서만.<br>
+              시즌 한정 컬러는 재입고 없이 종료됩니다.
+            </div>
+            <div class="s6-urgency">잔여 수량 소진 시 판매 종료 · 재입고 미정</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S6 · EXCLUSIVE</div>
+        <div class="section-name">올리브영 ONLY /<br>채널 독점 섹션</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">스티커 대신 이야기로. "왜 여기서만?" 설명. Urgency 설계로 즉시 구매 전환 유도. 채널 신뢰를 브랜드 신뢰로 연결.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>ONLY 이유 2–3줄 (채널 독점 스토리)</li>
+          <li>시즌 한정 배지 (골드 컬러, 프리미엄 느낌)</li>
+          <li>재고 urgency 카피 (재입고 없음 강조)</li>
+          <li>다크 올리브 그린 배경 (#2D4A3E)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">KEY COPY</div>
+        <div class="key-copy">"이 시즌 WAKEMAKE는 올리브영에서만 만날 수 있습니다."</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill olive">다크 올리브</span>
+          <span class="design-pill" style="background:#B4964A;">골드 배지</span>
+          <span class="design-pill coral">Urgency</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S7 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s7-bg">
+            <div class="s7-rating-row">
+              <div class="s7-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="s7-score">4.9</div>
+              <div class="s7-count">(2,847)</div>
+            </div>
+            <div class="s7-reviews">
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-user">지은_뷰티 · 코랄 브릭</div>
+                  <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+                <div class="review-text">오전에 바르고 점심 지나도 발색이 살아있어요. 번지지 않는데 건조하지 않은 게 신기했어요. 색 이름처럼 진짜 카페에서 바른 느낌.</div>
+                <div class="review-tags">
+                  <span class="review-tag">발색 유지</span>
+                  <span class="review-tag">비번짐</span>
+                  <span class="review-tag">무건조</span>
+                </div>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-user">민채 · 피치 누드</div>
+                  <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+                <div class="review-text">평소에 웜톤이라 잘 안 사는 색인데 이건 달랐어요. 기분 설명이 딱 맞아서 믿고 골랐는데 대박. 재구매 확정.</div>
+                <div class="review-tags">
+                  <span class="review-tag">기분 적중</span>
+                  <span class="review-tag">재구매</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S7 · REVIEWS</div>
+        <div class="section-name">리뷰 &amp; 실착 /<br>사회적 증거</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">리뷰 3–4개. 발색/지속력/무드 키워드 중심 선별. 리뷰가 설득 마지막 단계 — CTA 직전 신뢰 확보 구간.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>별점 + 총 리뷰 수 (숫자 신뢰)</li>
+          <li>리뷰 발췌 2–3개 (실제 언어 그대로)</li>
+          <li>실착 이미지 2장 (다양한 피부톤)</li>
+          <li>키워드 태그 자동 추출 (발색·지속·무드)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">사회적 증거</span>
+          <span class="design-pill coral">설득 최종 단계</span>
+          <span class="design-pill">실 언어 보존</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"가공된 리뷰보다 날 것의 언어가 더 강하다. 편집하되 왜곡하지 않는다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S8 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s8-bg">
+            <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:14px;letter-spacing:-0.01em;">컬러 선택</div>
+            <div class="s8-color-grid">
+              <div class="s8-color-item selected">
+                <div class="s8-swatch" style="background:#C43A1A;"></div>
+                <div class="s8-color-name">코랄 브릭</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#F2B89A;"></div>
+                <div class="s8-color-name">피치 누드</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#C4943A;"></div>
+                <div class="s8-color-name">웜 골드</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#D4B09A;"></div>
+                <div class="s8-color-name">베이지 뮤트</div>
+              </div>
+            </div>
+            <div style="height:20px;"></div>
+            <div class="s8-cta-btn">장바구니 담기</div>
+            <div class="s8-delivery">오늘 <span>오후 2시</span> 이전 주문 시 내일 도착</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S8 · CTA</div>
+        <div class="section-name">최종 담기 /<br>구매 전환</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">3번째 CTA. 컬러 라인업 마지막 노출. 충동 구매 유도. 재고·배송 정보로 즉시성 강화. 이 지점까지 내려온 유저는 구매 의향 최상단.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>컬러 4종 선택 UI (선택된 컬러 강조)</li>
+          <li>담기 버튼 — 풀 위드, 코랄 (#E8502A)</li>
+          <li>배송 정보 한 줄 (오늘 주문 → 내일 도착)</li>
+          <li>재고 표시 옵션 (품절 임박 배지)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill coral">풀위드 CTA</span>
+          <span class="design-pill">즉시성 강조</span>
+          <span class="design-pill">컬러 재노출</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"마지막 순간에도 선택의 이유를 준다. 컬러를 다시 보여주고, 배송으로 마감한다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FLOW DIAGRAM -->
+  <div class="flow-section">
+    <div class="flow-title">EMOTIONAL JOURNEY · 8섹션 플로우 다이어그램</div>
+
+    <div class="flow-timeline">
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#E8502A;">S1</div>
+        <div class="flow-node-name">히어로</div>
+        <div class="flow-node-role">POV 선언</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#F2A87A;">S2</div>
+        <div class="flow-node-name">컬러 스토리</div>
+        <div class="flow-node-role">감성 선택</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#333;">S3</div>
+        <div class="flow-node-name">텍스처</div>
+        <div class="flow-node-role">실증 확인</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#777;">S4</div>
+        <div class="flow-node-name">세계관</div>
+        <div class="flow-node-role">철학 공감</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#555;">S5</div>
+        <div class="flow-node-name">How To</div>
+        <div class="flow-node-role">불안 해소</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#2D4A3E;">S6</div>
+        <div class="flow-node-name">ONLY</div>
+        <div class="flow-node-role">희소성</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#C43A1A;">S7</div>
+        <div class="flow-node-name">리뷰</div>
+        <div class="flow-node-role">사회적 증거</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#E8502A;">S8</div>
+        <div class="flow-node-name">CTA</div>
+        <div class="flow-node-role">구매 전환</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;border-top:1px solid #222;padding-top:24px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#444;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">EMOTIONAL ARC</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#555;flex-shrink:0;">POV 선언</div>
+        <div style="flex:1;height:4px;background:linear-gradient(90deg,#E8502A,#F2B89A,#333,#777,#555,#2D4A3E,#C43A1A,#E8502A);border-radius:2px;"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#E8502A;flex-shrink:0;font-weight:700;">구매 완료</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;">
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">브랜딩</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">선택</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">신뢰</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">공감</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">해소</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">희소성</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">증거</span>
+        <span style="font-size:10px;color:#E8502A;font-family:'JetBrains Mono',monospace;font-weight:700;">전환</span>
+      </div>
+    </div>
+  </div>
+
 </div>
-
-<!-- MAIN LAYOUT -->
-<div class="layout">
-
-  <!-- LEFT: Section Legend -->
-  <div class="legend">
-    <div class="legend-title">섹션 구조</div>
-
-    <a class="legend-item" href="#s1">
-      <div class="legend-num accent">1</div>
-      <div>
-        <div class="legend-label">히어로 오프닝</div>
-        <div class="legend-sub">감성 진입 · 첫 CTA</div>
-        <div class="legend-badge cta">CTA #1</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s2">
-      <div class="legend-num">2</div>
-      <div>
-        <div class="legend-label">라이프스타일 컷</div>
-        <div class="legend-sub">자연광 · 무드 언어</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s3">
-      <div class="legend-num">3</div>
-      <div>
-        <div class="legend-label">컬러 스토리</div>
-        <div class="legend-sub">스워치 + 감성 카피</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s4">
-      <div class="legend-num">4</div>
-      <div>
-        <div class="legend-label">스킨톤 비교</div>
-        <div class="legend-sub">퍼스널컬러 비교 X → 실착 비교</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s5">
-      <div class="legend-num">5</div>
-      <div>
-        <div class="legend-label">텍스처 클로즈업</div>
-        <div class="legend-sub">제품 신뢰 레이어</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s6">
-      <div class="legend-num accent">6</div>
-      <div>
-        <div class="legend-label">올리브영 온리</div>
-        <div class="legend-sub">희소성 · urgency</div>
-        <div class="legend-badge cta">CTA #2 주력</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s7">
-      <div class="legend-num">7</div>
-      <div>
-        <div class="legend-label">리뷰 · 신뢰</div>
-        <div class="legend-sub">실구매자 후기</div>
-      </div>
-    </a>
-    <a class="legend-item" href="#s8">
-      <div class="legend-num gold">8</div>
-      <div>
-        <div class="legend-label">최종 쇼핑 CTA</div>
-        <div class="legend-sub">안심 문구 + 담기</div>
-        <div class="legend-badge cta">CTA #3</div>
-      </div>
-    </a>
-
-    <div style="margin-top: 24px; padding: 14px; background: #fff; border-radius: 8px;">
-      <div style="font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">전환율 구조</div>
-      <div style="font-size: 11px; color: var(--ink); line-height: 1.7;">
-        감성 진입 → 컬러 욕망 → 기술 신뢰 → 희소성 긴장 → 리뷰 안심 → 담기<br>
-        <span style="color: var(--accent); font-weight: 500;">CTA 3회 반복 배치</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- CENTER: Phone Mockup -->
-  <div class="phone-wrap">
-    <div class="phone-label">모바일 상세페이지 (390px 기준)</div>
-    <div class="phone">
-      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-
-      <!-- S1: HERO -->
-      <div class="section s-hero" id="s1">
-        <div class="section-tag accent">S1 — 히어로 오프닝</div>
-        <div class="hero-badge">오늘의 선택 · WAKEMAKE</div>
-        <div class="hero-headline">오늘 기분을 먼저<br>골라도 돼.<br>이유는 나중에<br>찾아도 된다.</div>
-        <div class="hero-sub">코랄 브릭 · 피치 누드 · 로즈 앰버<br>2026 썸머 컬렉션</div>
-        <div class="hero-cta">
-          <div class="btn-primary">오늘의 색, 담기</div>
-          <div class="btn-ghost">♡</div>
-        </div>
-      </div>
-
-      <!-- S2: LIFESTYLE -->
-      <div class="section s-lifestyle" id="s2">
-        <div class="section-tag">S2 — 라이프스타일</div>
-        <img class="lifestyle-img"
-          src="https://images.unsplash.com/photo-1617897903246-719242758050?w=500&q=80"
-          alt="lifestyle" loading="lazy">
-        <div class="lifestyle-caption">
-          <div class="lifestyle-caption-text">"오전 11시 창가의 빛 같은 색."</div>
-          <div class="lifestyle-caption-sub">자연광 단방향 · 스튜디오 조명 없음</div>
-        </div>
-      </div>
-
-      <!-- S3: COLOR STORY -->
-      <div class="section s-color" id="s3">
-        <div class="section-tag" style="position: relative; top: auto; left: auto; display: inline-block; margin-bottom: 14px;">S3 — 컬러 스토리</div>
-        <div class="section-eyebrow">이번 시즌의 선택</div>
-        <div class="section-title">원하는 색을<br>고르면 된다.</div>
-        <div class="section-desc">피부 위에서 맞춰주는 건 우리가 한다. 퍼스널컬러 진단 없이도, 오늘의 기분으로 고를 수 있는 세 가지 색.</div>
-        <div class="swatch-grid">
-          <div class="swatch-item">
-            <div class="swatch-circle" style="background: #E8502A;"></div>
-            <div class="swatch-name">코랄<br>브릭</div>
-          </div>
-          <div class="swatch-item">
-            <div class="swatch-circle" style="background: #F2B89A;"></div>
-            <div class="swatch-name">피치<br>누드</div>
-          </div>
-          <div class="swatch-item">
-            <div class="swatch-circle" style="background: #C9942A;"></div>
-            <div class="swatch-name">로즈<br>앰버</div>
-          </div>
-          <div class="swatch-item">
-            <div class="swatch-circle" style="background: #B85C3A;"></div>
-            <div class="swatch-name">테라<br>코타</div>
-          </div>
-          <div class="swatch-item">
-            <div class="swatch-circle" style="background: #E8C4B0;"></div>
-            <div class="swatch-name">베어<br>핑크</div>
-          </div>
-        </div>
-        <div class="color-story-quote">
-          "이 색을 고른다는 건 오늘 내가 어떤 사람인지 먼저 안다는 뜻이다."
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- S4: SKIN TONE -->
-      <div class="section s-skintone" id="s4">
-        <div style="position: relative; top: auto; left: auto; display: inline-block; margin-bottom: 6px; background: rgba(44,24,16,0.7); color: #fff; font-size: 9px; font-weight: 500; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 3px; text-transform: uppercase;">S4 — 스킨톤 비교</div>
-        <div class="section-eyebrow" style="margin-top: 8px;">실착 비교</div>
-        <div class="section-title" style="font-size: 18px; margin-bottom: 8px;">어떤 피부에도<br>자연스럽게.</div>
-        <div class="section-desc">퍼스널컬러 타입이 아니라, 실제 피부 위에서 어떻게 보이는지 먼저 확인하세요.</div>
-        <div class="skintone-row">
-          <div class="skintone-card">
-            <img class="skintone-img"
-              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=250&q=80"
-              alt="warm tone" loading="lazy">
-            <div class="skintone-info">
-              <div class="skintone-type">WARM · 웜톤</div>
-              <div class="skintone-desc">코랄 브릭으로 생기 있게</div>
-            </div>
-          </div>
-          <div class="skintone-card">
-            <img class="skintone-img"
-              src="https://images.unsplash.com/photo-1583241800698-e8ab01830a52?w=250&q=80"
-              alt="cool tone" loading="lazy">
-            <div class="skintone-info">
-              <div class="skintone-type">COOL · 쿨톤</div>
-              <div class="skintone-desc">피치 누드로 투명하게</div>
-            </div>
-          </div>
-        </div>
-        <div class="skintone-note">
-          피부색보다 <strong>오늘의 기분</strong>을 먼저 고르는 것이<br>웨이크메이크의 방식입니다.
-        </div>
-      </div>
-
-      <!-- S5: TEXTURE CLOSEUP -->
-      <div class="section s-texture" id="s5">
-        <div class="section-tag" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2);">S5 — 텍스처 클로즈업</div>
-        <img class="texture-img"
-          src="https://images.unsplash.com/photo-1619451683992-a53b64e44476?w=500&q=80"
-          alt="texture" loading="lazy">
-        <div class="texture-overlay">
-          <div class="texture-specs">
-            <div class="spec-pill">비건 포뮬러</div>
-            <div class="spec-pill">수분 지속 12H</div>
-            <div class="spec-pill">발색력 ★★★★★</div>
-            <div class="spec-pill">번짐 없음</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- S6: URGENCY / OLIVEYOUNG ONLY -->
-      <div class="section s-urgency" id="s6">
-        <div class="urgency-logo">OliveYoung Only</div>
-        <div class="urgency-headline">이 컬러 조합은<br>올리브영에서만<br>고를 수 있도록<br>만들었다.</div>
-        <div class="urgency-desc">올리브영이 이 시즌 직접 고른 웨이크메이크. 이번 여름이 지나기 전에.</div>
-        <div class="urgency-badges">
-          <div class="urgency-badge">오늘 결정 · 내일 배송</div>
-          <div class="urgency-badge">올리브영 단독 구성</div>
-          <div class="urgency-badge">2026 썸머 한정</div>
-        </div>
-        <button class="urgency-cta">오늘의 색, 담기 →</button>
-        <div class="urgency-sub">이 색이 나한테 어울리는지는,<br>담고 나서 알게 된다.</div>
-      </div>
-
-      <!-- S7: REVIEWS -->
-      <div class="section s-reviews" id="s7">
-        <div class="section-tag" style="position: relative; top: auto; left: auto; display: inline-block; margin-bottom: 14px;">S7 — 리뷰</div>
-        <div class="review-stars">
-          <div class="stars">★★★★★</div>
-          <div class="rating-num">4.9</div>
-          <div class="rating-count">(2,847개 구매 후기)</div>
-        </div>
-        <div class="review-card">
-          <div class="review-header">
-            <div class="reviewer-name">ye**jin</div>
-            <div class="reviewer-type">실구매자 · 웜톤</div>
-          </div>
-          <div class="review-text">"퍼스널컬러 진단 받기 전에 그냥 기분으로 골랐는데 너무 잘 어울려요. 이게 맞는 방법인 것 같아."</div>
-        </div>
-        <div class="review-card">
-          <div class="review-header">
-            <div class="reviewer-name">s**on</div>
-            <div class="reviewer-type">재구매 · 쿨톤</div>
-          </div>
-          <div class="review-text">"코랄인데 저한테 이렇게 잘 맞는 게 신기해요. 피치 누드도 같이 샀는데 둘 다 완벽합니다."</div>
-        </div>
-      </div>
-
-      <!-- S8: FINAL CTA -->
-      <div class="section s-final-cta" id="s8">
-        <div class="final-eyebrow">지금 바로</div>
-        <div class="final-headline">오늘의 색을<br>먼저 골라도 된다.</div>
-        <div class="final-sub">이유는 나중에 찾아도 된다.<br>지금 담는 것이 먼저다.</div>
-        <button class="final-btn">오늘의 색, 담기</button>
-        <div class="final-reassurance">
-          올리브영 단독 · 내일 새벽 배송 · 무료 반품<br>
-          <span style="color: var(--accent); font-weight: 500;">올리브영이기 때문이다.</span>
-        </div>
-      </div>
-
-    </div><!-- /phone -->
-  </div><!-- /phone-wrap -->
-
-  <!-- RIGHT: Annotations -->
-  <div class="annotations">
-    <div class="anno-title">디자인 메모</div>
-
-    <div class="anno-item accent">
-      <div class="anno-section">S1 히어로</div>
-      <div class="anno-text">카피 퍼스트 원칙 — 제품보다 기분 언어가 먼저 보여야 함. 다크 배경에 화이트 카피.</div>
-      <div><span class="anno-tag copy">카피 우선</span> <span class="anno-tag conv">CTA #1</span></div>
-    </div>
-
-    <div class="anno-item">
-      <div class="anno-section">S2 라이프스타일</div>
-      <div class="anno-text">오전 창가 자연광 단방향. 리플렉터 없음. 어두운 스튜디오 금지. 진짜 일상 컷처럼 연출.</div>
-      <div><span class="anno-tag visual">촬영 방향</span></div>
-    </div>
-
-    <div class="anno-item">
-      <div class="anno-section">S3 컬러 스토리</div>
-      <div class="anno-text">스워치 5개 수평 배열. 퍼스널컬러 타입명(봄/여름/가을/겨울) 사용 금지. 색 이름만.</div>
-      <div><span class="anno-tag visual">스워치</span> <span class="anno-tag copy">피진단 언어 제거</span></div>
-    </div>
-
-    <div class="anno-item">
-      <div class="anno-section">S4 스킨톤</div>
-      <div class="anno-text">웜/쿨 2컷 실착 비교. 단 하단 메시지는 "기분이 먼저"로 유도 — 진단 권유 아님.</div>
-      <div><span class="anno-tag visual">실착 비교</span></div>
-    </div>
-
-    <div class="anno-item">
-      <div class="anno-section">S5 텍스처</div>
-      <div class="anno-text">발색 클로즈업 + 스펙 필 배지. 기술 신뢰 레이어. 정적 JPG이므로 텍스트 오버레이로 처리.</div>
-      <div><span class="anno-tag visual">제품컷</span></div>
-    </div>
-
-    <div class="anno-item accent">
-      <div class="anno-section">S6 올리브영 온리 ★</div>
-      <div class="anno-text">다크 배경 전환 — 분위기 전환 + 긴장감. 희소성(A안) 채택. "이번 여름" 시즌 urgency.</div>
-      <div><span class="anno-tag oly">OLY 온리</span> <span class="anno-tag conv">CTA #2 주력</span></div>
-    </div>
-
-    <div class="anno-item">
-      <div class="anno-section">S7 리뷰</div>
-      <div class="anno-text">별점 + 리뷰 2건. 퍼스널컬러 극복 경험담 선별. "기분으로 골랐는데 맞았다" 패턴.</div>
-      <div><span class="anno-tag conv">신뢰 레이어</span></div>
-    </div>
-
-    <div class="anno-item" style="border-color: var(--gold);">
-      <div class="anno-section">S8 최종 CTA</div>
-      <div class="anno-text">POV 문장으로 마무리 — "오늘의 색을 먼저 골라도 된다." 안심 문구(배송·반품) 포함.</div>
-      <div><span class="anno-tag conv">CTA #3 클로징</span></div>
-    </div>
-
-    <div style="margin-top: 16px; padding: 14px; background: #fff3f0; border-radius: 8px; border: 1px solid #FFD0C0;">
-      <div style="font-size: 10px; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;">금지 언어</div>
-      <div style="font-size: 11px; color: var(--ink); line-height: 1.7;">
-        ❌ 봄/여름/가을/겨울 타입<br>
-        ❌ 퍼스널컬러 진단<br>
-        ❌ "어울리는 색"<br>
-        ❌ "나한테 맞는"<br>
-        ✅ "오늘의 기분"<br>
-        ✅ "원하는 색"<br>
-        ✅ "먼저 고른다"
-      </div>
-    </div>
-
-    <div style="margin-top: 10px; padding: 14px; background: #fff; border-radius: 8px; border: 1px solid #E5E0D8;">
-      <div style="font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;">제약 사항</div>
-      <div style="font-size: 11px; color: var(--ink); line-height: 1.7;">
-        • 정적 JPG only (인터랙션 없음)<br>
-        • 모바일 세로 롱폼<br>
-        • 전 섹션 단일 이미지 조합<br>
-        • 올리브영 업로드 규격 준수
-      </div>
-    </div>
-  </div><!-- /annotations -->
-
-</div><!-- /layout -->
-</div><!-- /outer-wrap -->
-
 </body>
 </html>
