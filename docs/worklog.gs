@@ -321,56 +321,68 @@ function doGet(){
 
 function generateDashboardHtml(log){
   var logJson=JSON.stringify(log);
-  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>업무 로그 대시보드</title><style>'+
-    ':root{--surface:#fcfcfb;--card:#fff;--line:#eceae4;--ink:#1f1d1a;--ink2:#6b6862;--ink3:#a29e96;--accent:#2f6fed;--radius:14px;--shadow:0 1px 2px rgba(0,0,0,.04),0 1px 8px rgba(0,0,0,.03)}'+
-    '*{box-sizing:border-box}body{margin:0;background:var(--surface);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased;padding:28px 30px 60px;max-width:1240px;margin:0 auto}'+
-    'h1{font-size:30px;font-weight:800;margin:0;letter-spacing:-.5px}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}.period{color:var(--ink2);font-size:14px;text-align:right;line-height:1.5;padding-top:8px}'+
-    '.tabs{display:flex;gap:6px;margin:22px 0 4px}.tab{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s}'+
-    '.tab:hover{border-color:#d8d5cd}.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}.view{display:none}.view.active{display:block}'+
-    '.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0 22px}.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}'+
-    '.tile .k{font-size:13px;color:var(--ink2);margin-bottom:8px}.tile .v{font-size:26px;font-weight:800;letter-spacing:-.5px}.tile .v small{font-size:14px;font-weight:600;color:var(--ink2)}'+
-    '.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 16px;padding:12px 4px}.lg{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink)}.dot{width:10px;height:10px;border-radius:50%}'+
-    '.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:8px;box-shadow:var(--shadow);overflow:hidden}.sec-title{font-size:19px;font-weight:800;margin:30px 0 12px}'+
-    'table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}table th{font-weight:700;background:#f4f2ec;padding:10px;text-align:left;border-bottom:1px solid var(--line)}table td{padding:10px;border-bottom:1px solid var(--line)}'+
-    '.bars{display:flex;flex-direction:column;gap:12px;padding:16px 8px 8px}.bar-row{display:grid;grid-template-columns:100px 1fr 60px;align-items:center;gap:12px}'+
-    '.bar-fill{height:24px;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#fff}'+
-    '@media(max-width:900px){.tiles{grid-template-columns:repeat(2,1fr)}table{font-size:13px}}@media(max-width:640px){body{padding:16px 13px 44px}h1{font-size:22px}.tabs{margin:16px 0 2px}.tile .v{font-size:21px}}'+
-    '</style></head><body><div class="head"><h1>📅 업무 로그</h1><div class="period">하이브랩 MX센터 · 김효정</div></div>'+
-    '<div class="tabs"><button class="tab on" onclick="show(\'week\')">주간</button><button class="tab" onclick="show(\'month\')">월간</button><button class="tab" onclick="show(\'quarter\')">분기</button><button class="tab" onclick="show(\'year\')">연간</button></div>'+
+  return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>업무 로그</title><style>'+
+    '*{box-sizing:border-box}body{margin:0;padding:20px;background:#fcfcfb;color:#1f1d1a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;max-width:1200px;margin:0 auto}'+
+    '.header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px}h1{font-size:28px;font-weight:800;margin:0}.meta{font-size:14px;color:#6b6862;text-align:right}'+
+    '.tabs{display:flex;gap:6px;margin-bottom:20px}.tab{padding:8px 16px;border:1px solid #eceae4;border-radius:20px;background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:#6b6862;transition:.2s}'+
+    '.tab:hover{border-color:#d8d5cd}.tab.active{background:#1f1d1a;color:#fff;border-color:#1f1d1a}.view{display:none}.view.active{display:block}'+
+    '.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:30px}.stat-card{background:#fff;border:1px solid #eceae4;border-radius:12px;padding:16px;text-align:center}'+
+    '.stat-label{font-size:12px;color:#6b6862;margin-bottom:8px}.stat-value{font-size:24px;font-weight:800}'+
+    '.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding:12px;background:#fff;border-radius:8px;border:1px solid #eceae4}'+
+    '.legend-item{display:flex;align-items:center;gap:6px;font-size:12px}.legend-dot{width:12px;height:12px;border-radius:50%}'+
+    '.grid-container{background:#fff;border:1px solid #eceae4;border-radius:12px;overflow-x:auto;padding:12px}table{border-collapse:separate;border-spacing:4px;width:100%}'+
+    'th{font-size:13px;font-weight:700;padding:8px;text-align:center;color:#1f1d1a}th .day{font-size:11px;color:#a29e96;display:block;margin-top:2px}'+
+    'td{padding:8px;text-align:center;font-size:12px}td.time{text-align:right;color:#a29e96;width:50px;white-space:nowrap;padding-right:12px}'+
+    '.cell{height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #eceae4;font-weight:600;font-size:12px}'+
+    '.cell.filled{border:none;color:#fff}.chart{background:#fff;border:1px solid #eceae4;border-radius:12px;padding:20px;margin-top:20px}'+
+    '.chart-title{font-size:16px;font-weight:800;margin-bottom:16px}.bar-row{display:grid;grid-template-columns:100px 1fr 60px;align-items:center;gap:12px;margin-bottom:12px}'+
+    '.bar-name{font-size:13px;text-align:right;color:#1f1d1a}.bar-track{background:#f4f2ec;border-radius:6px;height:24px;position:relative}'+
+    '.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:11px;font-weight:700}'+
+    '.bar-pct{font-size:12px;color:#6b6862}'+
+    '</style></head><body><div class="header"><h1>업무 로그</h1><div class="meta">2026 · 하이브랩 MX센터<br/>김효정(실장)</div></div>'+
+    '<div class="tabs"><div class="tab active" onclick="showView(\'week\')">주간</div><div class="tab" onclick="showView(\'month\')">월간</div><div class="tab" onclick="showView(\'quarter\')">분기</div><div class="tab" onclick="showView(\'year\')">연간</div></div>'+
     '<div id="week" class="view active"></div><div id="month" class="view"></div><div id="quarter" class="view"></div><div id="year" class="view"></div>'+
     '<script>'+
     'var LOG='+logJson+';'+
-    'var CATS=[["AI","AI작업","#CECBF6","#3C3489"],["견적","제안/견적","#F5C4B3","#712B13"],["디자인","디자인/GUI","#F4C0D1","#72243E"],'+
-    '["문서","문서/리포트","#B5D4F4","#0C447C"],["미팅","미팅","#FAC775","#633806"],["세일즈","세일즈/BD","#9FE1CB","#085041"],["운영","운영/HR","#C0DD97","#27500A"]];'+
-    'function catColor(cat){for(var i=0;i<CATS.length;i++)if(CATS[i][1]===cat)return CATS[i][2];return"#ccc"}'+
+    'var CATS=[["AI","AI작업","#CECBF6"],["견적","제안/견적","#F5C4B3"],["디자인","디자인/GUI","#F4C0D1"],["문서","문서/리포트","#B5D4F4"],["미팅","미팅","#FAC775"],["세일즈","세일즈/BD","#9FE1CB"],["운영","운영/HR","#C0DD97"]];'+
+    'var TIMES=["10–12","12–14","14–16","16–18","18–20"];'+
     'function isoWeek(d){var t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));var w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/86400000-3+((w1.getDay()+6)%7))/7)}'+
-    'function renderWeek(){var thisWeek="W"+isoWeek(new Date());var week={};LOG.forEach(function(e){if(!e.s)return;var w="W"+isoWeek(new Date(e.date));if(!week[w])week[w]={};var cat=e.cat;week[w][cat]=(week[w][cat]||0)+2});'+
-    'var html="<div class=\\"tiles\\"><div class=\\"tile\\"><div class=\\"k\\">이번 주 기록</div><div class=\\"v\\">"+(Object.values(week[thisWeek]||{}).reduce(function(a,b){return a+b},0)||0)+"<small>h</small></div></div></div>";'+
-    'html+="<table><tr><th>카테고리</th><th>시간(h)</th><th style=\\"text-align:right\\">비중</th></tr>";'+
-    'CATS.forEach(function(c){var h=week[thisWeek]&&week[thisWeek][c[1]]||0;var pct=h>0?(100*h/(Object.values(week[thisWeek]||{}).reduce(function(a,b){return a+b},0)||1)).toFixed(0)+"%":"0%";'+
-    'html+="<tr style=\\"border-left:4px solid "+c[2]+"\\""><td>"+c[1]+"</td><td>"+h+"h</td><td style=\\"text-align:right\\">"+pct+"</td></tr>"});'+
-    'html+="</table>";document.getElementById("week").innerHTML=html}'+
-    'function renderMonth(){var thisMonth=new Date().getFullYear()+"-"+(new Date().getMonth()+1).toString().padStart(2,"0");'+
-    'var month={};LOG.forEach(function(e){if(!e.date||!e.s)return;var m=e.date.substring(0,7);if(!month[m])month[m]={};var cat=e.cat;month[m][cat]=(month[m][cat]||0)+2});'+
-    'var html="<div class=\\"tiles\\"><div class=\\"tile\\"><div class=\\"k\\">이번 달 기록</div><div class=\\"v\\">"+(Object.values(month[thisMonth]||{}).reduce(function(a,b){return a+b},0)||0)+"<small>h</small></div></div></div>";'+
-    'html+="<table><tr><th>카테고리</th><th>시간(h)</th></tr>";'+
-    'CATS.forEach(function(c){var h=month[thisMonth]&&month[thisMonth][c[1]]||0;html+="<tr style=\\"border-left:4px solid "+c[2]+"\\""><td>"+c[1]+"</td><td>"+h+"h</td></tr>"});'+
-    'html+="</table>";document.getElementById("month").innerHTML=html}'+
-    'function renderQuarter(){var q=new Date().getMonth()<6?"상반기":"하반기";var y=new Date().getFullYear();'+
-    'var data={};LOG.forEach(function(e){if(!e.date||!e.s)return;var m=parseInt(e.date.substring(5,7));var isQ=q==="상반기"?m<7:m>6;if(isQ&&e.date.substring(0,4)==y){var cat=e.cat;data[cat]=(data[cat]||0)+2}});'+
-    'var html="<div class=\\"tiles\\"><div class=\\"tile\\"><div class=\\"k\\">"+y+" "+q+"</div><div class=\\"v\\">"+(Object.values(data).reduce(function(a,b){return a+b},0)||0)+"<small>h</small></div></div></div>";'+
-    'html+="<table><tr><th>카테고리</th><th>시간(h)</th></tr>";'+
-    'CATS.forEach(function(c){var h=data[c[1]]||0;html+="<tr style=\\"border-left:4px solid "+c[2]+"\\""><td>"+c[1]+"</td><td>"+h+"h</td></tr>"});'+
-    'html+="</table>";document.getElementById("quarter").innerHTML=html}'+
-    'function renderYear(){var y=new Date().getFullYear();var data={};LOG.forEach(function(e){if(!e.date||!e.s)return;if(e.date.substring(0,4)==y){var cat=e.cat;data[cat]=(data[cat]||0)+2}});'+
-    'var html="<div class=\\"tiles\\"><div class=\\"tile\\"><div class=\\"k\\">"+y+"년</div><div class=\\"v\\">"+(Object.values(data).reduce(function(a,b){return a+b},0)||0)+"<small>h</small></div></div></div>";'+
-    'html+="<table><tr><th>카테고리</th><th>시간(h)</th></tr>";'+
-    'CATS.forEach(function(c){var h=data[c[1]]||0;html+="<tr style=\\"border-left:4px solid "+c[2]+"\\""><td>"+c[1]+"</td><td>"+h+"h</td></tr>"});'+
-    'html+="</table>";document.getElementById("year").innerHTML=html}'+
-    'function show(v){document.querySelectorAll(".view").forEach(function(e){e.classList.remove("active")});'+
-    'document.querySelectorAll(".tab").forEach(function(e){e.classList.remove("on")});'+
-    'document.getElementById(v).classList.add("active");event.target.classList.add("on");'+
-    'if(v==="week")renderWeek();else if(v==="month")renderMonth();else if(v==="quarter")renderQuarter();else if(v==="year")renderYear()}'+
+    'function mondayOf(d){var t=new Date(d);var day=t.getDay();var diff=t.getDate()-day+(day===0?-6:1);return new Date(t.setDate(diff))}'+
+    'function fmtDate(d){return d.getFullYear()+"-"+(d.getMonth()+1).toString().padStart(2,"0")+"-"+d.getDate().toString().padStart(2,"0")}'+
+    'function renderWeek(){var monday=mondayOf(new Date());var html="<div class=\\"stats\\">";var weekData={};var dayTotals={};'+
+    'for(var i=0;i<7;i++){var d=new Date(monday);d.setDate(d.getDate()+i);var df=fmtDate(d);dayTotals[df]=0}'+
+    'LOG.forEach(function(e){if(!e.s)return;var w="W"+isoWeek(new Date(e.date));if(w==="W"+isoWeek(new Date())){if(!weekData[e.cat])weekData[e.cat]=0;weekData[e.cat]+=2;if(e.date in dayTotals)dayTotals[e.date]+=2}});'+
+    'var tot=0;for(var k in weekData)tot+=weekData[k];html+="<div class=\\"stat-card\\"><div class=\\"stat-label\\">기록된 시간</div><div class=\\"stat-value\\">"+tot+"<small style=\\"font-size:14px\\">h</small></div></div>";'+
+    'var topCat="";var topVal=0;for(var k=0;k<CATS.length;k++){if((weekData[CATS[k][1]]||0)>topVal){topVal=weekData[CATS[k][1]]||0;topCat=CATS[k][1]}}'+
+    'html+="<div class=\\"stat-card\\"><div class=\\"stat-label\\">최다 카테고리</div><div class=\\"stat-value\\" style=\\"font-size:18px\\">"+topCat+"</div></div>";'+
+    'html+="</div>";html+="<div class=\\"legend\\">";CATS.forEach(function(c){if(weekData[c[1]]>0)html+="<div class=\\"legend-item\\"><span class=\\"legend-dot\\" style=\\"background:"+c[2]+"\\"></span>"+c[1]+"</div>"});'+
+    'html+="</div>";html+="<div class=\\"grid-container\\"><table><tr><th></th>";'+
+    'var dnames=["월","화","수","목","금","토","일"];for(var i=0;i<7;i++){var d=new Date(monday);d.setDate(d.getDate()+i);html+="<th>"+dnames[i]+"<span class=\\"day\\">"+fmtDate(d).substring(5)+"</span></th>"}html+="</tr>";'+
+    'TIMES.forEach(function(t){html+="<tr><td class=\\"time\\">"+t+"</td>";for(var i=0;i<7;i++){var d=new Date(monday);d.setDate(d.getDate()+i);var df=fmtDate(d);'+
+    'var entry=LOG.find(function(e){return e.date===df&&e.s===t});if(entry){var bg=CATS.find(function(c){return c[1]===entry.cat});html+="<td><div class=\\"cell filled\\" style=\\"background:"+(bg?bg[2]:"#ccc")+";color:"+(bg?"#fff":"#333")+"\\">"+entry.cat+"</div></td>"}'+
+    'else html+="<td><div class=\\"cell\\"></div></td>"}html+="</tr>"});html+="</table></div>";'+
+    'html+="<div class=\\"chart\\"><div class=\\"chart-title\\">카테고리별 시간 (W"+isoWeek(new Date())+")</div>";'+
+    'CATS.forEach(function(c){var h=weekData[c[1]]||0;if(h>0){var pct=tot>0?(100*h/tot).toFixed(0):0;html+="<div class=\\"bar-row\\"><div class=\\"bar-name\\">"+c[1]+"</div><div class=\\"bar-track\\"><div class=\\"bar-fill\\" style=\\"width:"+pct+"%;background:"+c[2]+";color:#fff\\">"+h+"h</div></div><div class=\\"bar-pct\\">"+pct+"%</div></div>"}});'+
+    'html+="</div>";document.getElementById("week").innerHTML=html}'+
+    'function renderMonth(){var thisMonth=new Date().getFullYear()+"-"+(new Date().getMonth()+1).toString().padStart(2,"0");var monthData={};'+
+    'LOG.forEach(function(e){if(!e.date||!e.s)return;var m=e.date.substring(0,7);if(m===thisMonth){if(!monthData[e.cat])monthData[e.cat]=0;monthData[e.cat]+=2}});'+
+    'var tot=0;for(var k in monthData)tot+=monthData[k];var html="<div class=\\"stats\\"><div class=\\"stat-card\\"><div class=\\"stat-label\\">"+thisMonth+" 기록</div><div class=\\"stat-value\\">"+tot+"h</div></div></div>";'+
+    'html+="<div class=\\"chart\\"><div class=\\"chart-title\\">"+thisMonth+" 카테고리별</div>";CATS.forEach(function(c){var h=monthData[c[1]]||0;var pct=tot>0?(100*h/tot).toFixed(0):0;'+
+    'html+="<div class=\\"bar-row\\"><div class=\\"bar-name\\">"+c[1]+"</div><div class=\\"bar-track\\"><div class=\\"bar-fill\\" style=\\"width:"+pct+"%;background:"+c[2]+";color:#fff\\">"+h+"h</div></div><div class=\\"bar-pct\\">"+pct+"%</div></div>"});'+
+    'html+="</div>";document.getElementById("month").innerHTML=html}'+
+    'function renderQuarter(){var q=new Date().getMonth()<6?"상반기":"하반기";var y=new Date().getFullYear();var data={};'+
+    'LOG.forEach(function(e){if(!e.date||!e.s)return;var m=parseInt(e.date.substring(5,7));if((q==="상반기"&&m<7||q==="하반기"&&m>6)&&e.date.substring(0,4)==y){if(!data[e.cat])data[e.cat]=0;data[e.cat]+=2}});'+
+    'var tot=0;for(var k in data)tot+=data[k];var html="<div class=\\"stats\\"><div class=\\"stat-card\\"><div class=\\"stat-label\\">"+y+" "+q+"</div><div class=\\"stat-value\\">"+tot+"h</div></div></div>";'+
+    'html+="<div class=\\"chart\\"><div class=\\"chart-title\\">"+q+" 카테고리별</div>";CATS.forEach(function(c){var h=data[c[1]]||0;var pct=tot>0?(100*h/tot).toFixed(0):0;'+
+    'html+="<div class=\\"bar-row\\"><div class=\\"bar-name\\">"+c[1]+"</div><div class=\\"bar-track\\"><div class=\\"bar-fill\\" style=\\"width:"+pct+"%;background:"+c[2]+";color:#fff\\">"+h+"h</div></div><div class=\\"bar-pct\\">"+pct+"%</div></div>"});'+
+    'html+="</div>";document.getElementById("quarter").innerHTML=html}'+
+    'function renderYear(){var y=new Date().getFullYear();var data={};LOG.forEach(function(e){if(!e.date||!e.s)return;if(e.date.substring(0,4)==y){if(!data[e.cat])data[e.cat]=0;data[e.cat]+=2}});'+
+    'var tot=0;for(var k in data)tot+=data[k];var html="<div class=\\"stats\\"><div class=\\"stat-card\\"><div class=\\"stat-label\\">"+y+"년 기록</div><div class=\\"stat-value\\">"+tot+"h</div></div></div>";'+
+    'html+="<div class=\\"chart\\"><div class=\\"chart-title\\">카테고리별</div>";CATS.forEach(function(c){var h=data[c[1]]||0;var pct=tot>0?(100*h/tot).toFixed(0):0;'+
+    'html+="<div class=\\"bar-row\\"><div class=\\"bar-name\\">"+c[1]+"</div><div class=\\"bar-track\\"><div class=\\"bar-fill\\" style=\\"width:"+pct+"%;background:"+c[2]+";color:#fff\\">"+h+"h</div></div><div class=\\"bar-pct\\">"+pct+"%</div></div>"});'+
+    'html+="</div>";document.getElementById("year").innerHTML=html}'+
+    'function showView(v){document.querySelectorAll(".view").forEach(function(e){e.classList.remove("active")});document.querySelectorAll(".tab").forEach(function(e){e.classList.remove("active")});'+
+    'document.getElementById(v).classList.add("active");event.target.classList.add("active");if(v==="week")renderWeek();else if(v==="month")renderMonth();else if(v==="quarter")renderQuarter();else renderYear()}'+
     'renderWeek();'+
     '</script></body></html>';
 }
