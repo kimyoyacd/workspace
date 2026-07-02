@@ -105,12 +105,12 @@ body {
 .tree-spine::after {
   content: ''; position: absolute; bottom: 0; left: 50%;
   transform: translateX(-50%);
-  width: calc(100% * 7 + 6 * 12px);
+  width: calc(100% * 8 + 7 * 12px);
   height: 2px; background: var(--border);
 }
 
 .org-row {
-  display: grid; grid-template-columns: repeat(7, 1fr);
+  display: grid; grid-template-columns: repeat(8, 1fr);
   gap: 12px; width: 100%; margin-top: 24px;
   padding-top: 16px;
   border-top: 2px solid var(--border);
@@ -137,6 +137,7 @@ body {
 .col-5 .col-head { background: #FAF1DC; color: #7A5010; }
 .col-6 .col-head { background: #E2D5F0; color: #4A2080; }
 .col-7 .col-head { background: #F2CDB0; color: #A0552D; }
+.col-8 .col-head { background: #D6E8E2; color: #1F5A4E; }
 
 .card {
   background: var(--card); border: 1px solid var(--border);
@@ -521,9 +522,9 @@ body {
     <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · 9→20 증원 모드 · 워크스페이스 구축 완료</div>
   </div>
   <div class="header-right">
-    <div class="head-stat"><div class="n">24</div><div class="l">에이전트</div></div>
+    <div class="head-stat"><div class="n">31</div><div class="l">에이전트</div></div>
     <div class="head-divider"></div>
-    <div class="head-stat"><div class="n">7</div><div class="l">그룹</div></div>
+    <div class="head-stat"><div class="n">8</div><div class="l">그룹</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n">6</div><div class="l">진행 프로젝트</div></div>
     <div class="head-divider"></div>
@@ -551,11 +552,11 @@ body {
 <!-- ══════════════ TAB 1: 조직도 ══════════════ -->
 <div id="sect-org" class="section active">
   <h2 class="section-title">에이전트 조직도</h2>
-  <p class="section-desc">메인 세션(허브) 아래 24개 에이전트 · 7개 그룹 + brand-proposal 스킬(제안 파이프라인). 아래 섹션은 클릭해서 펼치기.</p>
+  <p class="section-desc">메인 세션(허브) 아래 31개 에이전트 · 8개 그룹 + 스킬 8종(brand-proposal·글쓰기 등). 아래 섹션은 클릭해서 펼치기.</p>
 
   <div class="alert">
     <span class="ic">✅</span>
-    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + 브랜드 제안 파이프라인(brand-proposal <strong>스킬</strong>) + 트리거 스텁. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트 · 잔여 1)</div>
+    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + 브랜드 제안 파이프라인(brand-proposal <strong>스킬</strong>) + 트리거 스텁. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (8그룹 31에이전트 · 스킬 8종)</div>
   </div>
 
   <div class="tree-wrap">
@@ -771,6 +772,56 @@ body {
           </div>
         </div>
       </div>
+
+      <!-- ⑧ 운영·메타·커뮤니케이션 -->
+      <div class="col col-8">
+        <div class="col-head">운영·메타·커뮤니케이션<span class="count">7 NEW</span></div>
+        <div class="col-tagline">구조 설계·감사·메일·회의록·카피·PPT·대시보드</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">AX 설계자</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">ax-architect</div>
+            <div class="card-role"><strong>조직·워크플로우 구조 재설계</strong>. 반복 패턴 관찰 → 시스템화(메타).</div>
+            <div class="card-trig"><strong>호출:</strong> "시스템으로 만들자" / "프로세스가 안 보여"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">연속성 감사관</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">project-continuity-auditor</div>
+            <div class="card-role">프로젝트 폴더 버전 불일치·누락·미반영 결정 감사.</div>
+            <div class="card-trig"><strong>호출:</strong> "다 반영됐는지 확인" / 버전 전환 직후</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">메일 드래프터</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">mail-drafter</div>
+            <div class="card-role">외부 메일·회신·제안 초안. 발송 전 tone-guardian 연계.</div>
+            <div class="card-trig"><strong>호출:</strong> "메일 써줘" / "회신 초안"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">회의록 로거</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">meeting-logger</div>
+            <div class="card-role">메모·녹취 → 구조화 회의록. Notion 읽기 연계.</div>
+            <div class="card-trig"><strong>호출:</strong> "회의록 써줘" / "미팅 정리"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">카피라이터</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">copy-writer</div>
+            <div class="card-role">UI·마케팅·브랜드 카피. 내장 글쓰기 스킬 5종.</div>
+            <div class="card-trig"><strong>호출:</strong> "카피 써줘" / "문구 뽑아줘"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">PPT 제너레이터</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">ppt-gen</div>
+            <div class="card-role">제안서·보고서 PPT 구성 설계(HTML 덱과 별개).</div>
+            <div class="card-trig"><strong>호출:</strong> "PPT" / "발표자료" / "덱"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">대시보드 에이전트</span><span class="badge badge-new">NEW</span></div>
+            <div class="card-slug">maxos-dashboard</div>
+            <div class="card-role">대시보드 HTML 전담 수정·섹션 추가·에이전트 등록.</div>
+            <div class="card-trig"><strong>호출:</strong> "대시보드 업데이트" / "v7 수정"</div>
+          </div>
+        </div>
+      </div>
     </div><!-- org-row -->
   </div><!-- tree-wrap -->
 
@@ -860,7 +911,7 @@ body {
   </div>
 
   <div class="footnote">
-    <strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong>&nbsp; 24개 에이전트 실제 생성 + 라우터 + SoT + 브랜드 제안 파이프라인(스킬) + 트리거 스텁. 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). GitHub PR #11(draft). 캡 24/25(잔여 1).
+    <strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong>&nbsp; 31개 에이전트(8그룹) + 스킬 8종 + 라우터 + SoT + 브랜드 제안 파이프라인 + Notion 연결 + 자동 갱신. 9탭(조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용). GitHub PR #11(draft). 캡 31/31.
   </div>
 </div><!-- /sect-org -->
 
@@ -1099,11 +1150,11 @@ body {
 <!-- ══════════════ TAB 3: CLAUDE.md 지침 ══════════════ -->
 <div id="sect-guidelines" class="section">
   <h2 class="section-title">CLAUDE.md 주요 지침 현황</h2>
-  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 24/25개 (잔여 1) + brand-proposal 스킬. ✅ CLAUDE.md 실제 생성 완료 — repo 루트(브랜치 claude/awesome-planck-kya29w).</p>
+  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 31/31개 + 스킬 8종. ✅ CLAUDE.md 실제 생성 완료 — repo 루트(브랜치 claude/awesome-planck-kya29w).</p>
 
   <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
     <span class="ic">⚠️</span>
-    <div><strong>에이전트 수</strong> — 현재 <strong>24/25개 (잔여 1)</strong>. 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 제안 파이프라인 = brand-proposal 스킬.</div>
+    <div><strong>에이전트 수</strong> — 현재 <strong>31/31개 (8그룹)</strong>. 캡은 자체 규칙(기술 한계 아님) — 필요 시 상향. 오케스트레이션은 <strong>스킬</strong>로(서브에이전트는 서브에이전트 호출 못 함). 구조 재설계 = <code>ax-architect</code>.</div>
   </div>
 
   <div class="guidelines-grid">
