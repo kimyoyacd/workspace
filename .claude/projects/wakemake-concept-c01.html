@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>WAKEMAKE × OliveYoung — Concept C01 · 오늘의 선택</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+    --cream: #F5F5F5;
+    --coral: #E8502A;
+    --peach: #F2B89A;
+    --brass: #B8860B;
+    --sans: "Pretendard Variable", Pretendard, sans-serif;
+    --mono: "JetBrains Mono", monospace;
+    --radius: 16px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: var(--sans);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  /* ── 최상단 커버 카드 ── */
+  .cover-card {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 48px 56px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .cover-card__left {
+    flex: 1;
+  }
+  .cover-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .cover-headline {
+    font-size: 40px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .cover-headline em {
+    color: var(--coral);
+    font-style: normal;
+  }
+  .cover-sub {
+    font-size: 15px;
+    color: #8A8780;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+  .cover-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cover-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #CCCCCC;
+    line-height: 1.55;
+  }
+  .cover-point__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brass);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .cover-card__right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 260px;
+  }
+  .score-block {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+  }
+  .score-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #8A8780;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .score-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--brass);
+    font-family: var(--mono);
+    line-height: 1;
+  }
+  .score-value span {
+    font-size: 16px;
+    color: #8A8780;
+    font-weight: 400;
+  }
+  .score-bar-wrap {
+    margin-top: 10px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+  .score-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--brass), var(--coral));
+    width: 90%;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #CCCCCC;
+  }
+  .tag--coral {
+    border-color: var(--coral);
+    color: var(--coral);
+  }
+  .tag--brass {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+
+  /* ── 전략 설명 카드 ── */
+  .strategy-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+  }
+  .strategy-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .strategy-card__title {
+    font-size: 13px;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .strategy-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .strategy-item__label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 8px;
+  }
+  .strategy-item__value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .strategy-item__desc {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  /* ── 메인 시뮬레이터 레이아웃 ── */
+  .simulator {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── 좌측 패널 ── */
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .panel-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 32px 36px;
+  }
+  .panel-card__section-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  .panel-card__title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .panel-card__body {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.75;
+  }
+  .panel-card__note {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--coral);
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .palette-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch__dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.06);
+  }
+  .swatch__name {
+    font-size: 11px;
+    color: var(--ink3);
+    font-family: var(--mono);
+  }
+  .section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .section-list__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--ink2);
+    padding: 12px 16px;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+  }
+  .section-list__num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--coral);
+    min-width: 28px;
+  }
+  .decision-box {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+  }
+  .decision-box__label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  .decision-box__title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    line-height: 1.35;
+  }
+  .decision-box__body {
+    font-size: 14px;
+    color: #AAAAAA;
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+  .next-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .next-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: #CCCCCC;
+    line-height: 1.55;
+  }
+  .next-step__num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--brass);
+    font-weight: 600;
+    min-width: 24px;
+    margin-top: 1px;
+  }
+
+  /* ── 우측 모바일 프레임 ── */
+  .phone-wrap {
+    position: sticky;
+    top: 40px;
+  }
+  .phone-frame {
+    width: 390px;
+    border-radius: 44px;
+    background: var(--ink);
+    box-shadow:
+      0 0 0 10px #2A2A2A,
+      0 0 0 12px #1A1A1A,
+      0 40px 80px rgba(0,0,0,0.45),
+      0 8px 24px rgba(0,0,0,0.25);
+    overflow: hidden;
+    position: relative;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 34px;
+    background: var(--ink);
+    border-radius: 20px;
+    z-index: 100;
+  }
+  .phone-screen {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 820px;
+    background: var(--cream);
+    scrollbar-width: none;
+  }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* ── PDP 섹션들 ── */
+
+  /* S1 Hero */
+  .pdp-hero {
+    background: var(--ink);
+    padding: 72px 28px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,80,42,0.22) 0%, transparent 70%);
+  }
+  .pdp-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -60px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(242,184,154,0.14) 0%, transparent 70%);
+  }
+  .pdp-hero__brand {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-style: italic;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .pdp-hero__headline {
+    font-size: 26px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    word-break: keep-all;
+  }
+  .pdp-hero__headline em {
+    color: var(--coral);
+    font-style: normal;
+  }
+  .pdp-hero__sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 32px;
+    word-break: keep-all;
+  }
+  .pdp-hero__visual {
+    height: 200px;
+    border-radius: 20px;
+    background: linear-gradient(135deg,
+      #1a0f0a 0%,
+      #2e1810 20%,
+      #E8502A 55%,
+      #F2B89A 80%,
+      #FFF0E8 100%
+    );
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .pdp-hero__visual::after {
+    content: 'WAKEMAKE';
+    position: absolute;
+    bottom: 16px; right: 20px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* S2 Color Story */
+  .pdp-color {
+    padding: 36px 28px;
+    background: var(--cream);
+  }
+  .pdp-section__label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  .pdp-color__mood {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    word-break: keep-all;
+  }
+  .pdp-color__sub {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    word-break: keep-all;
+  }
+  .color-swatches {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .color-swatch {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .color-swatch__block {
+    height: 80px;
+  }
+  .color-swatch__name {
+    background: var(--card);
+    padding: 8px 10px;
+    font-size: 10px;
+    color: var(--ink2);
+    font-family: var(--mono);
+    text-align: center;
+  }
+  .pdp-color__quote {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.65;
+    border-left: 3px solid var(--peach);
+    font-style: italic;
+    word-break: keep-all;
+  }
+
+  /* S3 Texture */
+  .pdp-texture {
+    margin: 0 28px 28px;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 180px;
+    position: relative;
+    background: linear-gradient(160deg,
+      #F5E8E0 0%,
+      #F2B89A 30%,
+      #E8502A 60%,
+      #C0381A 85%,
+      #7A200A 100%
+    );
+  }
+  .pdp-texture__grain {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(0,0,0,0.1) 0%, transparent 50%);
+  }
+  .pdp-texture__copy {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  .pdp-texture__copy p {
+    font-size: 15px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.35;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+    word-break: keep-all;
+  }
+  .pdp-texture__copy small {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+  }
+
+  /* S4 Skin Tone */
+  .pdp-skintone {
+    padding: 0 28px 32px;
+  }
+  .pdp-skintone__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .pdp-skintone__sub {
+    font-size: 11px;
+    color: var(--ink3);
+    margin-bottom: 18px;
+  }
+  .skintone-slots {
+    display: flex;
+    gap: 10px;
+  }
+  .skintone-slot {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+  }
+  .skintone-slot__face {
+    height: 90px;
+    position: relative;
+  }
+  .skintone-slot__lip {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .skintone-slot__lip-dot {
+    width: 32px;
+    height: 14px;
+    border-radius: 20px;
+    background: var(--coral);
+    opacity: 0.9;
+  }
+  .skintone-slot__info {
+    background: var(--card);
+    padding: 10px 10px 12px;
+    text-align: center;
+  }
+  .skintone-slot__label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .skintone-slot__desc {
+    font-size: 9px;
+    color: var(--ink3);
+    line-height: 1.4;
+  }
+
+  /* S5 How To */
+  .pdp-howto {
+    padding: 0 28px 32px;
+  }
+  .pdp-howto__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .howto-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .howto-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .howto-step__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--coral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .howto-step__content {}
+  .howto-step__num {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--coral);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin-bottom: 2px;
+  }
+  .howto-step__title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .howto-step__desc {
+    font-size: 11px;
+    color: var(--ink2);
+    line-height: 1.55;
+  }
+
+  /* S6 OliveYoung Only */
+  .pdp-only {
+    margin: 0 28px 28px;
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-only::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+  }
+  .only-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,134,11,0.15);
+    border: 1px solid var(--brass);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--brass);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .only-badge::before {
+    content: '★';
+    font-size: 9px;
+  }
+  .pdp-only__copy {
+    font-size: 15px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    word-break: keep-all;
+  }
+  .pdp-only__copy em {
+    color: var(--brass);
+    font-style: normal;
+  }
+  .delivery-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    position: relative;
+    z-index: 1;
+  }
+  .delivery-badge__icon {
+    font-size: 14px;
+  }
+  .delivery-badge__text {
+    font-size: 11px;
+    color: #BBBBBB;
+    line-height: 1.4;
+  }
+  .delivery-badge__text strong {
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  /* S7 Review */
+  .pdp-review {
+    padding: 0 28px 28px;
+  }
+  .review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .review-score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .review-score__num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--ink);
+    font-family: var(--mono);
+  }
+  .review-score__stars {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stars {
+    color: var(--coral);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .review-count {
+    font-size: 10px;
+    color: var(--ink3);
+    font-family: var(--mono);
+  }
+  .review-more {
+    font-size: 11px;
+    color: var(--coral);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .review-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .review-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+  }
+  .review-card__top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .review-card__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--peach), var(--coral));
+    flex-shrink: 0;
+  }
+  .review-card__avatar--2 {
+    background: linear-gradient(135deg, #D4B896, #B89070);
+  }
+  .review-card__name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .review-card__date {
+    font-size: 10px;
+    color: var(--ink3);
+    font-family: var(--mono);
+    margin-left: auto;
+  }
+  .review-card__stars {
+    color: var(--coral);
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .review-card__text {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+  .review-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .review-tag {
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: var(--cream);
+    color: var(--ink2);
+    font-family: var(--mono);
+  }
+
+  /* S8 CTA */
+  .pdp-cta {
+    background: var(--coral);
+    padding: 36px 28px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-cta::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
+  }
+  .pdp-cta__mood {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .pdp-cta__headline {
+    font-size: 22px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+    word-break: keep-all;
+  }
+  .pdp-cta__sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    word-break: keep-all;
+  }
+  .cta-button {
+    display: block;
+    width: 100%;
+    padding: 17px 20px;
+    background: #FFFFFF;
+    color: var(--coral);
+    text-align: center;
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    margin-bottom: 12px;
+  }
+  .cta-subtext {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    position: relative;
+    z-index: 1;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── 하단 결정 이유 + 다음 단계 ── */
+  .bottom-section {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── 커버 카드 ── -->
+<div class="cover-card">
+  <div class="cover-card__left">
+    <div class="cover-label">WAKEMAKE × OliveYoung PDP Renewal · 2026</div>
+    <h1 class="cover-headline">CONCEPT C01<br><em>오늘의 선택</em></h1>
+    <p class="cover-sub">감성 진입 → 즉각 전환 주력 컨셉 · PDP 시뮬레이션</p>
+    <div class="cover-points">
+      <div class="cover-point">
+        <div class="cover-point__dot"></div>
+        <span>퍼스널컬러 진단 프레임을 걷어내고 <strong style="color:#EEE">직관과 감성</strong>으로 선택하게 만드는 첫 번째 컨셉. 이유를 묻지 않는 것이 전략이다.</span>
+      </div>
+      <div class="cover-point">
+        <div class="cover-point__dot"></div>
+        <span>오전 창가 자연광·코랄 브릭의 온기가 "오늘 기분"을 건드리는 <strong style="color:#EEE">감각 언어</strong>로 구성. 올리브영 채널 온리 포지셔닝으로 전환 마찰을 최소화한다.</span>
+      </div>
+      <div class="cover-point">
+        <div class="cover-point__dot"></div>
+        <span>Strategic Fit 9/10 — 세 컨셉 중 가장 빠른 감성 연결과 전환률을 기대할 수 있는 구성. Hero~CTA 섹션 전체가 하나의 감정 곡선으로 설계되어 있다.</span>
+      </div>
+    </div>
+  </div>
+  <div class="cover-card__right">
+    <div class="score-block">
+      <div class="score-label">Strategic Fit</div>
+      <div class="score-value">9<span>/10</span></div>
+      <div class="score-bar-wrap"><div class="score-bar"></div></div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag--coral">감성 전환</span>
+      <span class="tag tag--brass">OliveYoung Only</span>
+      <span class="tag">직관 선택</span>
+      <span class="tag">코랄 브릭</span>
+      <span class="tag">창가 자연광</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── 전략 설명 카드 ── -->
+<div class="strategy-card">
+  <div class="strategy-card__header">
+    <span class="strategy-card__title">Concept Strategy Overview</span>
+    <div class="strategy-divider"></div>
+  </div>
+  <div class="strategy-grid">
+    <div class="strategy-item">
+      <div class="strategy-item__label">Role</div>
+      <div class="strategy-item__value">감성 진입 + 전환</div>
+      <div class="strategy-item__desc">이유를 먼저 주지 않고 감각으로 진입. Hero에서 CTA까지 하나의 감정 곡선.</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item__label">Core Strength</div>
+      <div class="strategy-item__value">직관 언어 + 채널 온리</div>
+      <div class="strategy-item__desc">올리브영 전용 포지셔닝으로 전환 마찰 제거. 퍼스널컬러 피로 없음.</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item__label">Target Emotion</div>
+      <div class="strategy-item__value">"오늘 기분대로"</div>
+      <div class="strategy-item__desc">분석 없이 골라도 된다는 허락. 즉각적 구매 감정 유발이 핵심.</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item__label">CTA Direction</div>
+      <div class="strategy-item__value" style="color:var(--coral)">오늘의 색, 담기</div>
+      <div class="strategy-item__desc">행동 동사 + 감성 명사의 조합. 장바구니 진입 저항 최소화.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 메인 시뮬레이터 ── -->
+<div class="simulator">
+
+  <!-- 좌측 패널 -->
+  <div class="left-panel">
+
+    <div class="panel-card">
+      <div class="panel-card__section-tag">S1 — Hero 섹션 분석</div>
+      <div class="panel-card__title">다크 배경 풀블리드 히어로의<br>역할과 카피 전략</div>
+      <div class="panel-card__body">
+        히어로는 PDP의 첫 감정 게이트다. C01은 #111 배경으로 코랄이 최대 채도로 보이는 환경을 만들고, 브랜드 레이블을 brass italic으로 작게 올려 "선택된 컬러" 감각을 준다.<br><br>
+        메인 카피 <strong>"오늘 기분을 먼저 골라도 돼"</strong>는 이유와 근거를 먼저 요구하는 퍼스널컬러 피로에 반응한 언어다. 서브 카피 "이유는 나중에 찾아도 된다"는 구매 허락 메시지로 기능한다.
+      </div>
+      <div class="panel-card__note">
+        coral 강조는 브릭 톤으로 조정 — 형광 오렌지가 아닌 "오전 창가의 따뜻한 빛"으로 읽혀야 한다.
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-card__section-tag">S2 — Color Story 팔레트</div>
+      <div class="panel-card__title">코랄 브릭 + 피치 + 크림<br>3컬러 스토리 설계</div>
+      <div class="panel-card__body">
+        세 가지 색은 온도 차이로 읽힌다. Coral Brick은 주색·포인트, Peach는 중간 전환색, Cream은 기저 스킨톤 베이스로 기능하며 함께 놓였을 때 자연광 속 누드 팔레트가 완성된다.
+      </div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="swatch__dot" style="background:var(--coral);"></div>
+          <div class="swatch__name">Coral Brick<br>#E8502A</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__dot" style="background:var(--peach);"></div>
+          <div class="swatch__name">Warm Peach<br>#F2B89A</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__dot" style="background:var(--cream); border:1.5px solid var(--border);"></div>
+          <div class="swatch__name">Nude Cream<br>#F5F5F5</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__dot" style="background:var(--brass);"></div>
+          <div class="swatch__name">Antique Brass<br>#B8860B</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-card__section-tag">S3~S5 — 텍스처·스킨톤·사용법</div>
+      <div class="panel-card__title">미들 섹션: 감각 → 확인 → 신뢰<br>3단계 설득 구조</div>
+      <div class="panel-card__body">
+        텍스처 클로즈업(S3)은 제품 발색의 감각을 CSS 그라디언트로 시각화. 립을 바르는 순간의 감각적 묘사로 상상력을 자극한다.<br><br>
+        스킨톤 슬롯(S4)은 진단이 아닌 확인의 역할 — "내 톤에도 어울리겠다"는 확신을 주는 장치로 작동. 쿨·뉴트럴·웜 3그룹을 CSS 그라디언트로 표현해 실제 이미지 없이도 톤 차이를 명확히 전달한다.<br><br>
+        3스텝 사용법(S5)은 아이콘 + 짧은 텍스트로 진입 장벽을 낮춘다.
+      </div>
+      <div class="section-list">
+        <div class="section-list__item">
+          <span class="section-list__num">S3</span>
+          <span>텍스처 그라디언트 블록 — "발리는 순간의 감각" 카피 오버레이</span>
+        </div>
+        <div class="section-list__item">
+          <span class="section-list__num">S4</span>
+          <span>스킨톤 슬롯 3개 (쿨/뉴트럴/웜) — CSS 그라디언트로 피부톤 표현</span>
+        </div>
+        <div class="section-list__item">
+          <span class="section-list__num">S5</span>
+          <span>3스텝 사용법 — 아이콘 + 텍스트 카드 구성</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-card__section-tag">S6~S8 — 채널 온리 · 리뷰 · CTA</div>
+      <div class="panel-card__title">전환 설계: 독점성 → 사회적 증거<br>→ 감성 CTA</div>
+      <div class="panel-card__body">
+        S6 OliveYoung Only 섹션은 다크 배경에 brass 배지로 희소성과 채널 온리 가치를 부각시킨다. "이 컬러 조합은 올리브영에서만 고를 수 있도록 만들었다"는 카피는 경쟁 채널 이탈을 막는 앵커 역할을 한다.<br><br>
+        S7 리뷰는 별점 4.8과 2개의 실제 구매자 목소리로 사회적 증거를 쌓는다. S8 CTA는 coral 배경으로 감정을 최고조로 끌어올리고 흰 버튼으로 클릭 유도한다.
+      </div>
+      <div class="panel-card__note">
+        CTA 버튼 카피 "오늘의 색, 담기"는 담다(장바구니) + 오늘의 색(감성)의 이중 의미. 행동 유도와 감성 언어를 동시에 충족.
+      </div>
+    </div>
+
+    <!-- 하단 결정 이유 + 다음 단계 -->
+    <div class="bottom-section">
+      <div class="decision-box">
+        <div class="decision-box__label">Decision Rationale</div>
+        <div class="decision-box__title">왜 C01을<br>추천하는가</div>
+        <div class="decision-box__body">
+          세 컨셉 중 C01은 가장 낮은 인지적 진입 장벽을 가진다. 퍼스널컬러 피로가 쌓인 20~30대 여성에게 "분석 없이 골라도 된다"는 메시지는 강력한 허락 언어로 기능한다.<br><br>
+          올리브영 채널 온리 포지셔닝은 타 채널 비교 쇼핑을 차단하고 즉각 구매로 연결되는 경로를 만든다. 감성 언어 + 채널 독점 조합이 Strategic Fit 9/10의 근거다.
+        </div>
+        <div class="next-steps">
+          <div class="next-step">
+            <span class="next-step__num">→</span>
+            <span>실제 제품 이미지 & 모델 사진 수급 후 비주얼 교체</span>
+          </div>
+          <div class="next-step">
+            <span class="next-step__num">→</span>
+            <span>올리브영 가이드라인 검토 후 채널 온리 배지 사용 승인</span>
+          </div>
+          <div class="next-step">
+            <span class="next-step__num">→</span>
+            <span>C02·C03과 비교 검토 후 최종 컨셉 1개 결정</span>
+          </div>
+          <div class="next-step">
+            <span class="next-step__num">→</span>
+            <span>결정 후 Figma 시안 작업 착수</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card" style="margin:0;">
+        <div class="panel-card__section-tag">다음 단계 안내</div>
+        <div class="panel-card__title">컨셉 확정 후<br>작업 플로우</div>
+        <div class="panel-card__body">
+          이 시뮬레이션은 올리브영 PDP 실제 섹션 구조와 카피 톤을 검토하기 위한 목업입니다. 컨셉 방향이 확정되면 아래 순서로 진행합니다.
+        </div>
+        <div class="section-list" style="margin-top:16px;">
+          <div class="section-list__item">
+            <span class="section-list__num" style="color:var(--brass);">01</span>
+            <span>C01 최종 확정 or 컨셉 조율 피드백 수렴</span>
+          </div>
+          <div class="section-list__item">
+            <span class="section-list__num" style="color:var(--brass);">02</span>
+            <span>Figma PDP 시안 작업 (모바일 390px 기준)</span>
+          </div>
+          <div class="section-list__item">
+            <span class="section-list__num" style="color:var(--brass);">03</span>
+            <span>올리브영 MD 검토용 PDF 덱 제작</span>
+          </div>
+          <div class="section-list__item">
+            <span class="section-list__num" style="color:var(--brass);">04</span>
+            <span>제품 이미지 & 모델 촬영 디렉션 브리프 작성</span>
+          </div>
+          <div class="section-list__item">
+            <span class="section-list__num" style="color:var(--brass);">05</span>
+            <span>최종 HTML 코딩 납품 (올리브영 PDP 스펙 기준)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /left-panel -->
+
+  <!-- 우측 모바일 프레임 -->
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+
+        <!-- S1 Hero -->
+        <div class="pdp-hero">
+          <div class="pdp-hero__brand">WAKEMAKE · Lip Collection 2026</div>
+          <h2 class="pdp-hero__headline">오늘 기분을 먼저<br>골라도 돼.<br><em>이유는 나중에</em><br><em>찾아도 된다.</em></h2>
+          <p class="pdp-hero__sub">분석하지 않아도 돼. 오늘 네가 끌리는 색이<br>오늘의 정답이니까.</p>
+          <div class="pdp-hero__visual"></div>
+        </div>
+
+        <!-- S2 Color Story -->
+        <div class="pdp-color">
+          <div class="pdp-section__label">Color Story</div>
+          <div class="pdp-color__mood">오전 11시 창가의<br>빛 같은 색</div>
+          <div class="pdp-color__sub">흐리지도 강하지도 않은 그 온도. 누드 베이스 위에 얹은 코랄 한 겹이 하루를 다르게 만든다.</div>
+          <div class="color-swatches">
+            <div class="color-swatch">
+              <div class="color-swatch__block" style="background:var(--coral);"></div>
+              <div class="color-swatch__name">Coral Brick</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch__block" style="background:var(--peach);"></div>
+              <div class="color-swatch__name">Warm Peach</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch__block" style="background:var(--cream); border:1px solid var(--border);"></div>
+              <div class="color-swatch__name">Nude Cream</div>
+            </div>
+          </div>
+          <div class="pdp-color__quote">
+            "이 색은 이유가 필요 없어요. 그냥 오늘 기분이면 충분해요."
+          </div>
+        </div>
+
+        <!-- S3 Texture -->
+        <div class="pdp-texture">
+          <div class="pdp-texture__grain"></div>
+          <div class="pdp-texture__copy">
+            <small>TEXTURE CLOSE-UP</small>
+            <p>발리는 순간의<br>감각</p>
+          </div>
+        </div>
+
+        <!-- S4 Skin Tone -->
+        <div class="pdp-skintone">
+          <div class="pdp-section__label">Skin Tone</div>
+          <div class="pdp-skintone__title">어떤 피부 톤에도</div>
+          <div class="pdp-skintone__sub">코랄 브릭은 피부 톤과 싸우지 않는다</div>
+          <div class="skintone-slots">
+            <div class="skintone-slot">
+              <div class="skintone-slot__face" style="background:linear-gradient(180deg, #F2E8E8 0%, #E8D0C8 100%);">
+                <div class="skintone-slot__lip">
+                  <div class="skintone-slot__lip-dot"></div>
+                </div>
+              </div>
+              <div class="skintone-slot__info">
+                <div class="skintone-slot__label">쿨톤</div>
+                <div class="skintone-slot__desc">핑크 베이스에<br>선명하게 발색</div>
+              </div>
+            </div>
+            <div class="skintone-slot">
+              <div class="skintone-slot__face" style="background:linear-gradient(180deg, #F5E8D8 0%, #E8D0B8 100%);">
+                <div class="skintone-slot__lip">
+                  <div class="skintone-slot__lip-dot"></div>
+                </div>
+              </div>
+              <div class="skintone-slot__info">
+                <div class="skintone-slot__label">뉴트럴</div>
+                <div class="skintone-slot__desc">가장 자연스러운<br>조화</div>
+              </div>
+            </div>
+            <div class="skintone-slot">
+              <div class="skintone-slot__face" style="background:linear-gradient(180deg, #F5E0C8 0%, #E8C8A0 100%);">
+                <div class="skintone-slot__lip">
+                  <div class="skintone-slot__lip-dot"></div>
+                </div>
+              </div>
+              <div class="skintone-slot__info">
+                <div class="skintone-slot__label">웜톤</div>
+                <div class="skintone-slot__desc">황기와 함께<br>깊은 온도감</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S5 How To -->
+        <div class="pdp-howto">
+          <div class="pdp-section__label">How To Use</div>
+          <div class="pdp-howto__title">3스텝 완성</div>
+          <div class="howto-steps">
+            <div class="howto-step">
+              <div class="howto-step__icon">💋</div>
+              <div class="howto-step__content">
+                <div class="howto-step__num">STEP 01</div>
+                <div class="howto-step__title">입술 중앙에 포인트</div>
+                <div class="howto-step__desc">중앙에 가볍게 찍어 코랄 브릭 포인트를 먼저 잡는다.</div>
+              </div>
+            </div>
+            <div class="howto-step">
+              <div class="howto-step__icon">✨</div>
+              <div class="howto-step__content">
+                <div class="howto-step__num">STEP 02</div>
+                <div class="howto-step__title">안쪽에서 바깥으로 블렌딩</div>
+                <div class="howto-step__desc">손가락이나 브러시로 자연스럽게 그라데이션을 만든다.</div>
+              </div>
+            </div>
+            <div class="howto-step">
+              <div class="howto-step__icon">🌟</div>
+              <div class="howto-step__content">
+                <div class="howto-step__num">STEP 03</div>
+                <div class="howto-step__title">입술 선 따라 선명하게</div>
+                <div class="howto-step__desc">원하면 립라이너 없이도 충분히 선명하게 완성된다.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S6 OliveYoung Only -->
+        <div class="pdp-only">
+          <div class="only-badge">OliveYoung Only</div>
+          <div class="pdp-only__copy">
+            이 컬러 조합은<br><em>올리브영에서만</em><br>고를 수 있도록 만들었다.
+          </div>
+          <div class="delivery-badge">
+            <span class="delivery-badge__icon">🚚</span>
+            <div class="delivery-badge__text">
+              <strong>오늘 밤 12시 전 주문 → 내일 도착</strong><br>
+              올리브영 익일배송 · 전국 당일 가능 지역 확인
+            </div>
+          </div>
+        </div>
+
+        <!-- S7 Review -->
+        <div class="pdp-review">
+          <div class="pdp-section__label" style="margin-bottom:14px;">Customer Review</div>
+          <div class="review-header">
+            <div class="review-score">
+              <div class="review-score__num">4.8</div>
+              <div class="review-score__stars">
+                <div class="stars">★★★★★</div>
+                <div class="review-count">리뷰 2,841개</div>
+              </div>
+            </div>
+            <a href="#" class="review-more">전체 보기 →</a>
+          </div>
+          <div class="review-cards">
+            <div class="review-card">
+              <div class="review-card__top">
+                <div class="review-card__avatar"></div>
+                <div class="review-card__name">j_**na</div>
+                <div class="review-card__date">26.06.18</div>
+              </div>
+              <div class="review-card__stars">★★★★★</div>
+              <div class="review-card__text">이유 없이 집었는데 이게 제 인생 코랄이에요. 퍼스널컬러 봄웜인데 솔직히 그냥 끌려서 샀거든요. 결과는 완벽했어요. 오전에 바르면 하루 종일 기분이 달라요.</div>
+              <div class="review-card__tags">
+                <span class="review-tag">#코랄브릭</span>
+                <span class="review-tag">#발색완벽</span>
+                <span class="review-tag">#재구매확정</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-card__top">
+                <div class="review-card__avatar review-card__avatar--2"></div>
+                <div class="review-card__name">m_*hee</div>
+                <div class="review-card__date">26.06.12</div>
+              </div>
+              <div class="review-card__stars">★★★★★</div>
+              <div class="review-card__text">올리브영 오프라인에서 발색 보고 즉구했어요. 촉촉하면서 지속력도 좋고 쿨톤인데도 생각보다 너무 잘 어울림. 오늘의 선택이 진짜 오늘의 선택이 됐어요.</div>
+              <div class="review-card__tags">
+                <span class="review-tag">#쿨톤도OK</span>
+                <span class="review-tag">#지속력굿</span>
+                <span class="review-tag">#올리브영온리</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S8 CTA -->
+        <div class="pdp-cta">
+          <div class="pdp-cta__mood">Today's Pick · Coral Brick</div>
+          <div class="pdp-cta__headline">오늘의 색을<br>담아가세요</div>
+          <div class="pdp-cta__sub">이유는 나중에 찾아도 돼. 지금 이 색이 끌린다면<br>그걸로 충분하니까.</div>
+          <button class="cta-button">오늘의 색, 담기</button>
+          <div class="cta-subtext">올리브영 익일배송 · 30일 교환·반품 보장</div>
+        </div>
+
+      </div><!-- /phone-screen -->
+    </div><!-- /phone-frame -->
+  </div><!-- /phone-wrap -->
+
+</div><!-- /simulator -->
+
+</body>
+</html>

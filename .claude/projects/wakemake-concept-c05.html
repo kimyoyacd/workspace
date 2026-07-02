@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>WAKEMAKE × OliveYoung — Concept C05 · 색×기술 PDP Simulation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+    --cream: #F5F5F5;
+    --coral: #E8502A;
+    --peach: #F2B89A;
+    --brass: #B8860B;
+    --sans: "Pretendard Variable", Pretendard, sans-serif;
+    --mono: "JetBrains Mono", monospace;
+    --radius: 16px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: var(--sans);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  /* ── COVER CARD ── */
+  .cover-card {
+    background: #111111;
+    border-radius: var(--radius);
+    padding: 56px 64px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,134,11,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    pointer-events: none;
+  }
+  .cover-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--brass);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,134,11,0.3);
+  }
+  .cover-headline {
+    font-size: 52px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .cover-headline em {
+    font-style: italic;
+    color: var(--brass);
+  }
+  .cover-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .cover-meta-item {
+    border-left: 2px solid rgba(184,134,11,0.4);
+    padding-left: 16px;
+  }
+  .cover-meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cover-meta-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.4;
+  }
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,134,11,0.2);
+    border: 1px solid rgba(184,134,11,0.4);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brass);
+    margin-bottom: 28px;
+  }
+
+  /* ── STRATEGY CARD ── */
+  .strategy-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 40px 48px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .strategy-item {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+  }
+  .strategy-item-label {
+    font-size: 11px;
+    color: var(--ink3);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .strategy-item-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .strategy-item-value.coral { color: var(--coral); }
+  .strategy-item-value.brass { color: var(--brass); }
+
+  /* ── MAIN LAYOUT ── */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── LEFT PANEL ── */
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .panel-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    border: 1px solid var(--border);
+  }
+  .panel-card.dark {
+    background: #111111;
+    border-color: #222;
+  }
+  .panel-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel-title .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--coral);
+    flex-shrink: 0;
+  }
+  .panel-title .dot.brass { background: var(--brass); }
+  .panel-body {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+  .panel-body strong { color: var(--ink); font-weight: 700; }
+  .panel-body .highlight { color: var(--coral); font-weight: 600; }
+  .panel-body .highlight.brass { color: var(--brass); }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .tag {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--ink2);
+    font-weight: 500;
+  }
+  .tag.coral { background: rgba(232,80,42,0.08); border-color: rgba(232,80,42,0.2); color: var(--coral); }
+  .tag.brass { background: rgba(184,134,11,0.08); border-color: rgba(184,134,11,0.2); color: var(--brass); }
+
+  /* Section annotation cards */
+  .section-annotation {
+    background: var(--cream);
+    border-left: 3px solid var(--coral);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .section-annotation.brass-left { border-left-color: var(--brass); }
+  .annotation-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .annotation-label.brass { color: var(--brass); }
+  .annotation-text {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .kpi-item {
+    background: #111111;
+    border-radius: var(--radius-sm);
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .kpi-value {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--brass);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+
+  /* Diff table */
+  .diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .diff-table th {
+    background: #111111;
+    color: #ffffff;
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .diff-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+  .diff-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+  .diff-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink2);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .diff-table tr:last-child td { border-bottom: none; }
+  .diff-table tr:nth-child(even) td { background: var(--cream); }
+  .diff-table .c05-col { color: var(--coral); font-weight: 600; }
+  .diff-table .c01-col { color: var(--ink3); }
+
+  /* ── RIGHT PANEL — PHONE MOCKUP ── */
+  .right-panel {
+    position: sticky;
+    top: 40px;
+  }
+  .phone-frame-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .phone-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .phone-outer {
+    width: 390px;
+    background: #1A1A1A;
+    border-radius: 52px;
+    padding: 14px;
+    box-shadow:
+      0 0 0 1px #2A2A2A,
+      0 40px 120px rgba(0,0,0,0.5),
+      inset 0 0 0 2px #333;
+  }
+  .phone-notch {
+    width: 120px;
+    height: 32px;
+    background: #1A1A1A;
+    border-radius: 0 0 20px 20px;
+    margin: 0 auto 0;
+    position: relative;
+    z-index: 10;
+  }
+  .phone-screen {
+    width: 100%;
+    height: 780px;
+    background: #FFFFFF;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+  .phone-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+  .phone-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── PDP CONTENT ── */
+  /* S0 — Nav bar */
+  .pdp-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F0F0F0;
+    background: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .pdp-nav-back {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #111;
+  }
+  .pdp-nav-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.01em;
+  }
+  .pdp-nav-cart {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  /* S1 — Hero */
+  .pdp-hero {
+    background: linear-gradient(160deg, #111111 0%, #1C1C1C 60%, #2A2015 100%);
+    padding: 28px 20px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(184,134,11,0.25) 0%, transparent 70%);
+  }
+  .pdp-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(17,17,17,0.6));
+  }
+  .pdp-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,134,11,0.2);
+    border: 1px solid rgba(184,134,11,0.4);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--brass);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .pdp-hero-tag {
+    display: inline-block;
+    background: rgba(232,80,42,0.15);
+    border: 1px solid rgba(232,80,42,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #F2B89A;
+    letter-spacing: 0.08em;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .pdp-hero-visual {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(135deg,
+      rgba(232,80,42,0.3) 0%,
+      rgba(184,134,11,0.2) 40%,
+      rgba(242,184,154,0.2) 80%,
+      transparent 100%);
+    border-radius: 12px;
+    margin: 16px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pdp-hero-visual-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  .pdp-hero-formula {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--brass);
+    opacity: 0.7;
+    letter-spacing: 0.08em;
+  }
+  .pdp-hero-headline {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 5;
+  }
+  .pdp-hero-headline em {
+    color: #F2B89A;
+    font-style: normal;
+  }
+  .pdp-hero-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    position: relative;
+    z-index: 5;
+  }
+  .pdp-hero-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 16px;
+    position: relative;
+    z-index: 5;
+  }
+  .pdp-price {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+  .pdp-price-original {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+  }
+  .pdp-discount {
+    font-size: 12px;
+    font-weight: 700;
+    color: #E8502A;
+    background: rgba(232,80,42,0.15);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* S2 — Formula Layer */
+  .pdp-section {
+    padding: 24px 16px;
+    border-bottom: 8px solid #F5F5F5;
+  }
+  .pdp-section-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .pdp-section-sub {
+    font-size: 11px;
+    color: #8A8780;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .formula-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .formula-card {
+    background: #111111;
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .formula-value {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: #B8860B;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .formula-unit {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+  .formula-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .formula-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .formula-badge {
+    background: #F5F5F5;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #4A4944;
+  }
+  .formula-badge.coral { background: rgba(232,80,42,0.08); color: #E8502A; }
+  .formula-badge.brass { background: rgba(184,134,11,0.08); color: #B8860B; }
+
+  /* S3 — Color True */
+  .color-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .color-block {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .color-before {
+    height: 60px;
+    background: linear-gradient(180deg, #D4A8A0 0%, #C99490 100%);
+  }
+  .color-after {
+    height: 60px;
+    background: linear-gradient(180deg, #E8502A 0%, #D44020 100%);
+  }
+  .color-block-label {
+    padding: 8px 10px;
+    background: #F5F5F5;
+    font-size: 10px;
+    font-weight: 600;
+    color: #4A4944;
+  }
+  .color-block-sub {
+    font-size: 9px;
+    color: #8A8780;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .color-quote {
+    background: #111111;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .color-quote span {
+    color: #F2B89A;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* S4 — Texture */
+  .texture-block {
+    height: 100px;
+    border-radius: 10px;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(184,134,11,0.05) 0px,
+        rgba(184,134,11,0.05) 1px,
+        transparent 1px,
+        transparent 8px
+      ),
+      linear-gradient(160deg, #1C1A18 0%, #2A2218 50%, #1C1A18 100%);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .texture-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%,
+      rgba(232,80,42,0.3) 0%,
+      rgba(184,134,11,0.2) 40%,
+      transparent 70%);
+  }
+  .texture-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .texture-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .texture-spec-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #F5F5F5;
+    border-radius: 8px;
+  }
+  .texture-spec-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #E8502A;
+    flex-shrink: 0;
+  }
+  .texture-spec-dot.brass { background: #B8860B; }
+  .texture-spec-text {
+    font-size: 11px;
+    color: #4A4944;
+    line-height: 1.4;
+  }
+  .texture-spec-text strong { color: #111; font-weight: 700; }
+
+  /* S5 — Skin Test */
+  .skin-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .skin-card {
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .skin-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .skin-icon.dry { background: rgba(242,184,154,0.2); }
+  .skin-icon.oily { background: rgba(184,134,11,0.1); }
+  .skin-icon.combo { background: rgba(232,80,42,0.08); }
+  .skin-type {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 3px;
+  }
+  .skin-result {
+    font-size: 10px;
+    color: #8A8780;
+    line-height: 1.4;
+  }
+  .skin-score {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .skin-score-value {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: #E8502A;
+    line-height: 1;
+  }
+  .skin-score-label {
+    font-size: 9px;
+    color: #8A8780;
+  }
+
+  /* S6 — OliveYoung ONLY */
+  .oy-section {
+    padding: 24px 16px;
+    background: linear-gradient(160deg, #111111 0%, #1A1800 100%);
+    border-bottom: 8px solid #F5F5F5;
+  }
+  .oy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(184,134,11,0.2);
+    border: 1px solid rgba(184,134,11,0.5);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 9px;
+    font-weight: 700;
+    color: #B8860B;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .oy-headline {
+    font-size: 15px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .oy-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .oy-copy strong {
+    color: #B8860B;
+    font-weight: 600;
+  }
+  .oy-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 16px;
+  }
+  .oy-curator-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 8px;
+    font-family: var(--mono);
+  }
+  .oy-curator-quote {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 2px solid #B8860B;
+    padding-left: 12px;
+  }
+
+  /* S7 — Reviews */
+  .review-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .review-card {
+    background: #F5F5F5;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .review-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8502A 0%, #F2B89A 100%);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: 700;
+  }
+  .review-meta {
+    flex: 1;
+  }
+  .review-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111;
+  }
+  .review-date {
+    font-size: 9px;
+    color: #8A8780;
+  }
+  .review-stars {
+    font-size: 11px;
+    color: #B8860B;
+  }
+  .review-tag {
+    font-size: 9px;
+    background: rgba(232,80,42,0.08);
+    color: #E8502A;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-weight: 600;
+  }
+  .review-body {
+    font-size: 11px;
+    color: #4A4944;
+    line-height: 1.6;
+  }
+  .review-body strong { color: #111; font-weight: 700; }
+
+  /* S8 — CTA */
+  .pdp-cta {
+    padding: 24px 16px 32px;
+    background: #FFFFFF;
+  }
+  .cta-sub {
+    font-size: 11px;
+    color: #8A8780;
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .cta-btn {
+    width: 100%;
+    background: #E8502A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .cta-btn-secondary {
+    width: 100%;
+    background: #F5F5F5;
+    color: #111;
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+  }
+  .cta-trust {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .cta-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: #8A8780;
+  }
+  .cta-trust-item span { font-size: 12px; }
+
+  /* ── BOTTOM SECTIONS ── */
+  .bottom-sections {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* util */
+  .mono { font-family: var(--mono); }
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-16 { margin-top: 16px; }
+
+  hr.dashed {
+    border: none;
+    border-top: 1px dashed var(--border);
+    margin: 20px 0;
+  }
+
+  .scroll-hint {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 10px;
+    color: var(--ink3);
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── COVER CARD ── -->
+<div class="cover-card">
+  <div class="cover-label">PDP Simulation · WAKEMAKE × OliveYoung · 2026</div>
+  <div class="score-badge">Strategy Fit ★ 8.5 / 10</div>
+  <div class="cover-headline">CONCEPT C05<br><em>색×기술</em></div>
+  <div class="cover-sub">신뢰 레이어 → 전환 전략 · 상세페이지 리뉴얼 제안</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">핵심 역할</div>
+      <div class="cover-meta-value">포뮬러 근거로 신뢰 구축<br>→ 구매 전환 가속</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">핵심 카피</div>
+      <div class="cover-meta-value">"원하는 색을 고르면 된다.<br>피부 위에서 맞춰주는 건 우리가 한다."</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">CTA · 채널</div>
+      <div class="cover-meta-value">"확인하고 담기"<br>올리브영 ONLY 큐레이션</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STRATEGY CARD ── -->
+<div class="strategy-card">
+  <div class="section-label">// C05 · Strategy Brief</div>
+  <div class="strategy-grid">
+    <div class="strategy-item">
+      <div class="strategy-item-label">컨셉 포지션</div>
+      <div class="strategy-item-value">기술적 신뢰감<br>포뮬러 기반 설득</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item-label">핵심 강점</div>
+      <div class="strategy-item-value coral">성분·수치 데이터<br>실사 텍스처 클로즈업</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item-label">신뢰 포인트</div>
+      <div class="strategy-item-value brass">피부 타입별 테스트<br>발색 전후 데이터 제시</div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-item-label">차별화 전략</div>
+      <div class="strategy-item-value">감성 중심 C01과 달리<br>근거 → 결정 흐름 설계</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN LAYOUT ── -->
+<div class="main-layout">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+
+    <div class="panel-card">
+      <div class="panel-title"><span class="dot"></span> S1 · Hero 섹션 설계 의도</div>
+      <div class="section-annotation">
+        <div class="annotation-label">Design Rationale</div>
+        <div class="annotation-text">다크 배경(#111111)으로 기술적 무게감을 먼저 확보. 제품 비주얼 대신 <strong>포뮬러 텍스처 그라디언트</strong>를 전면에 배치해 "이 제품은 기술이다"를 첫인상으로 전달. Brass italic 레이블이 고급스러운 기술 브랜드 코드를 심는다.</div>
+      </div>
+      <div class="panel-body">
+        <strong>헤드라인 구조:</strong> 색 선택의 자유(감성) + 포뮬러의 적응력(기술)을 한 문장으로 압축.<br><br>
+        가격 정보를 Hero 하단에 배치해 신뢰가 형성된 직후 구매 의향을 자극.
+      </div>
+      <div class="tag-row">
+        <span class="tag coral">#다크배경</span>
+        <span class="tag brass">#텍스처비주얼</span>
+        <span class="tag">#가격앵커링</span>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-title"><span class="dot brass"></span> S2 · Formula Layer</div>
+      <div class="section-annotation brass-left">
+        <div class="annotation-label brass">Data Card 전략</div>
+        <div class="annotation-text">3개의 수치 카드(밀착력·지속력·발색도)는 <strong>Mono 폰트 + Brass 컬러</strong>로 데이터 신뢰감을 극대화. 숫자 자체가 설득의 핵심 — 경쟁사 대비 우위 수치로 채울 것을 권장 (현재 Placeholder).</div>
+      </div>
+      <div class="panel-body">
+        성분 배지(Formula Badge)는 #F5F5F5 배경으로 부드럽게, Coral/Brass 강조 배지로 핵심 기술 성분을 부각. 과학적 신뢰감과 가독성을 동시에 달성.
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <div class="kpi-value">94<span style="font-size:14px">%</span></div>
+          <div class="kpi-label">밀착력 테스트<br>만족도</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-value">12<span style="font-size:14px">h</span></div>
+          <div class="kpi-label">지속력<br>실증 시간</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-value">99<span style="font-size:14px">%</span></div>
+          <div class="kpi-label">발색 정확도<br>자체 측정</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-title"><span class="dot"></span> S3 · Color True 비교 블록</div>
+      <div class="panel-body">
+        CSS 컬러 블록으로 <strong>"바르기 전(피부 본연색) vs 바른 후(정확한 발색)"</strong>을 시각화. 실제 Before/After 사진 없이도 컬러 대비만으로 발색 신뢰감을 전달하는 접근.<br><br>
+        <span class="highlight">"피부 위에서 맞춰주는"</span> 카피를 다크 박스 안에 배치해 기억 각인 효과.
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-title"><span class="dot brass"></span> S4·S5 · Texture + Skin Test</div>
+      <div class="section-annotation brass-left">
+        <div class="annotation-label brass">신뢰 레이어 강화</div>
+        <div class="annotation-text">텍스처 시각블록은 Grid 패턴 + Radial Gradient로 "실사 클로즈업"을 CSS로 재현. 건성/지성/복합성 3종 피부 테스트 카드는 <strong>구체적 수치 점수</strong>로 객관성을 확보.</div>
+      </div>
+      <div class="panel-body">
+        이 두 섹션이 C05의 핵심 차별점: 감성이 아닌 <span class="highlight">데이터와 검증</span>으로 설득하는 구조.
+      </div>
+    </div>
+
+    <div class="panel-card dark" style="border-color: #222;">
+      <div class="panel-title" style="color: rgba(255,255,255,0.4);">
+        <span class="dot brass" style="background: var(--brass);"></span>
+        <span style="color: rgba(255,255,255,0.5);">S6 · OliveYoung ONLY 큐레이션</span>
+      </div>
+      <div style="color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7;">
+        <span style="color: var(--brass); font-weight: 700;">Brass 배지 + 다크 배경</span>으로 독점 큐레이션의 희소성을 극대화.<br><br>
+        큐레이터 코멘트 형식으로 올리브영 MD의 선택 근거를 서술 — 브랜드 일방 주장이 아닌 <span style="color: #F2B89A;">채널 큐레이션 신뢰</span>를 활용.
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <div class="panel-title"><span class="dot"></span> S7·S8 · 리뷰 + CTA 전략</div>
+      <div class="panel-body">
+        리뷰 카드는 <strong>성분·지속력 특화</strong> 리뷰만 노출 — 컨셉 C05의 포뮬러 신뢰 메시지와 사용자 UGC가 일치하도록 큐레이션.<br><br>
+        CTA 서브카피 <span class="highlight">"이 색이 나한테 어울리는지는, 담고 나서 알게 된다."</span>는 구매 망설임을 인정하면서 역설적으로 클릭을 유도하는 심리적 장치.
+      </div>
+    </div>
+
+  </div><!-- /left-panel -->
+
+  <!-- RIGHT PANEL — PHONE MOCKUP -->
+  <div class="right-panel">
+    <div class="phone-frame-wrap">
+      <div class="phone-label">// Mobile PDP Simulation · 390px</div>
+      <div class="phone-outer">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-scroll" id="pdpScroll">
+
+            <!-- PDP Nav -->
+            <div class="pdp-nav">
+              <div class="pdp-nav-back">←</div>
+              <div class="pdp-nav-title">WAKEMAKE</div>
+              <div class="pdp-nav-cart">🛒</div>
+            </div>
+
+            <!-- S1 · Hero -->
+            <div class="pdp-hero">
+              <div>
+                <div class="pdp-hero-badge">✦ C05 색×기술 <span class="pdp-hero-tag">NEW</span></div>
+              </div>
+              <div class="pdp-hero-visual">
+                <div>
+                  <div class="pdp-hero-visual-label">[ FORMULA TEXTURE CLOSE-UP ]<br>실사 텍스처 비주얼</div>
+                  <div class="pdp-hero-formula">PIGMENT CONTROL TECH™</div>
+                </div>
+              </div>
+              <div class="pdp-hero-headline">
+                <em>원하는 색을 고르면 된다.</em><br>
+                피부 위에서 맞춰주는 건<br>우리가 한다.
+              </div>
+              <div class="pdp-hero-copy">웨이크메이크 피그먼트 컨트롤 립 · 00 코랄 레드</div>
+              <div class="pdp-hero-price-row">
+                <div class="pdp-price">14,900원</div>
+                <div class="pdp-price-original">18,000원</div>
+                <div class="pdp-discount">17% ↓</div>
+              </div>
+            </div>
+
+            <!-- S2 · Formula Layer -->
+            <div class="pdp-section">
+              <div class="pdp-section-title">🧪 포뮬러 레이어</div>
+              <div class="pdp-section-sub">성분이 증명하는 발색. 수치로 확인하세요.</div>
+              <div class="formula-cards">
+                <div class="formula-card">
+                  <div class="formula-value">94</div>
+                  <div class="formula-unit">% SCORE</div>
+                  <div class="formula-label">밀착력<br>테스트</div>
+                </div>
+                <div class="formula-card">
+                  <div class="formula-value">12</div>
+                  <div class="formula-unit">HOURS</div>
+                  <div class="formula-label">지속력<br>실증</div>
+                </div>
+                <div class="formula-card">
+                  <div class="formula-value">99</div>
+                  <div class="formula-unit">% TRUE</div>
+                  <div class="formula-label">발색<br>정확도</div>
+                </div>
+              </div>
+              <div class="formula-badge-row">
+                <div class="formula-badge coral">피그먼트 컨트롤™</div>
+                <div class="formula-badge brass">히알루론산 3%</div>
+                <div class="formula-badge">비건 포뮬러</div>
+                <div class="formula-badge">무향</div>
+                <div class="formula-badge coral">파라벤 FREE</div>
+              </div>
+            </div>
+
+            <!-- S3 · Color True -->
+            <div class="pdp-section">
+              <div class="pdp-section-title">🎨 컬러 트루 — 발색 전후</div>
+              <div class="pdp-section-sub">피부 위에서 맞춰주는 정확한 발색.</div>
+              <div class="color-compare">
+                <div class="color-block">
+                  <div class="color-before"></div>
+                  <div class="color-block-label">
+                    BEFORE
+                    <div class="color-block-sub">피부 본연색 · 베이스</div>
+                  </div>
+                </div>
+                <div class="color-block">
+                  <div class="color-after"></div>
+                  <div class="color-block-label" style="color: #E8502A;">
+                    AFTER
+                    <div class="color-block-sub" style="color: #8A8780;">00 코랄 레드 발색</div>
+                  </div>
+                </div>
+              </div>
+              <div class="color-quote">
+                "피부 위에서 <span>맞춰주는</span> 포뮬러. 튜브 속 색과 피부 위 색이 같다는 게 신기했어요."
+              </div>
+            </div>
+
+            <!-- S4 · Texture -->
+            <div class="pdp-section">
+              <div class="pdp-section-title">✨ 텍스처 클로즈업</div>
+              <div class="pdp-section-sub">실사 텍스처가 증명하는 품질.</div>
+              <div class="texture-block">
+                <div class="texture-label">[ TEXTURE MACRO SHOT PLACEHOLDER ]</div>
+              </div>
+              <div class="texture-specs">
+                <div class="texture-spec-row">
+                  <div class="texture-spec-dot"></div>
+                  <div class="texture-spec-text"><strong>버터 글라이드 텍스처</strong> — 밀리지 않고 스르르 발리는 제형</div>
+                </div>
+                <div class="texture-spec-row">
+                  <div class="texture-spec-dot brass"></div>
+                  <div class="texture-spec-text"><strong>논-스티키 피니쉬</strong> — 끈적임 없이 수분 유지 12H</div>
+                </div>
+                <div class="texture-spec-row">
+                  <div class="texture-spec-dot"></div>
+                  <div class="texture-spec-text"><strong>마이크로 피그먼트</strong> — 1μm 이하 입자로 균일 발색</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- S5 · Skin Test -->
+            <div class="pdp-section">
+              <div class="pdp-section-title">📋 피부 타입별 테스트</div>
+              <div class="pdp-section-sub">3가지 피부 유형 실증 결과.</div>
+              <div class="skin-cards">
+                <div class="skin-card">
+                  <div class="skin-icon dry">💧</div>
+                  <div>
+                    <div class="skin-type">건성 피부</div>
+                    <div class="skin-result">수분막 유지 + 각질 들뜸 없음<br>8시간 후에도 촉촉한 피니쉬 확인</div>
+                  </div>
+                  <div class="skin-score">
+                    <div class="skin-score-value">96</div>
+                    <div class="skin-score-label">/ 100</div>
+                  </div>
+                </div>
+                <div class="skin-card">
+                  <div class="skin-icon oily">✨</div>
+                  <div>
+                    <div class="skin-type">지성 피부</div>
+                    <div class="skin-result">유분 흡착 제어 + 번짐 없음<br>12시간 발색 유지율 91%</div>
+                  </div>
+                  <div class="skin-score">
+                    <div class="skin-score-value">91</div>
+                    <div class="skin-score-label">/ 100</div>
+                  </div>
+                </div>
+                <div class="skin-card">
+                  <div class="skin-icon combo">⚖️</div>
+                  <div>
+                    <div class="skin-type">복합성 피부</div>
+                    <div class="skin-result">T존·U존 균일 발색<br>부위별 피부 적응 공식 적용</div>
+                  </div>
+                  <div class="skin-score">
+                    <div class="skin-score-value">94</div>
+                    <div class="skin-score-label">/ 100</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- S6 · OliveYoung ONLY -->
+            <div class="oy-section">
+              <div class="oy-badge">✦ OliveYoung ONLY</div>
+              <div class="oy-headline">올리브영이 이 시즌<br>직접 고른 웨이크메이크.</div>
+              <div class="oy-copy">
+                수천 개의 뷰티 제품 중에서 <strong>올리브영 MD가 직접 선별</strong>한 시즌 픽. 발색 데이터와 피부 친화 성분, 두 가지 기준을 모두 충족한 제품만 올리브영 ONLY 배지를 달 수 있습니다.
+              </div>
+              <div class="oy-divider"></div>
+              <div class="oy-curator-label">// OliveYoung Curator Comment</div>
+              <div class="oy-curator-quote">
+                "포뮬러가 만드는 색을 처음 봤을 때, 이건 상세페이지가 아니라 논문이었어요. 이 시즌 가장 자신 있게 추천하는 립입니다."
+              </div>
+            </div>
+
+            <!-- S7 · Reviews -->
+            <div class="pdp-section">
+              <div class="pdp-section-title">⭐ 성분·지속력 리뷰</div>
+              <div class="pdp-section-sub">포뮬러를 경험한 실제 후기.</div>
+              <div class="review-cards">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="review-avatar">김</div>
+                    <div class="review-meta">
+                      <div class="review-name">김민**</div>
+                      <div class="review-date">2026.05.12 · 건성 피부</div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-tag">지속력</div>
+                  </div>
+                  <div class="review-body">
+                    밥 먹고 나서도 색이 그대로여서 깜짝 놀랐어요. <strong>12시간 지속력이 과장이 아닌 것 같아요.</strong> 히알루론산 때문인지 입술이 당기지도 않고요. 이 제품은 성분표 보고 구매했는데 완전 대박.
+                  </div>
+                </div>
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="review-avatar" style="background: linear-gradient(135deg, #B8860B 0%, #F2B89A 100%);">이</div>
+                    <div class="review-meta">
+                      <div class="review-name">이수**</div>
+                      <div class="review-date">2026.05.28 · 지성 피부</div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-tag">발색</div>
+                  </div>
+                  <div class="review-body">
+                    지성이라 립이 금방 번지는데 이건 달랐어요. <strong>발색 정확도가 진짜로 튜브 색 그대로 나옵니다.</strong> 피그먼트 컨트롤 기술인지 뭔지 모르겠지만 효과는 확실해요. 올영 ONLY라 다시 구매하러 왔어요.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- S8 · CTA -->
+            <div class="pdp-cta">
+              <div class="cta-sub">이 색이 나한테 어울리는지는,<br>담고 나서 알게 된다.</div>
+              <button class="cta-btn">확인하고 담기 →</button>
+              <button class="cta-btn-secondary">위시리스트에 추가</button>
+              <div class="cta-trust">
+                <div class="cta-trust-item"><span>🚚</span> 내일 도착</div>
+                <div class="cta-trust-item"><span>↩️</span> 14일 무료 반품</div>
+                <div class="cta-trust-item"><span>🔒</span> 안전 결제</div>
+              </div>
+            </div>
+
+          </div><!-- /phone-scroll -->
+        </div><!-- /phone-screen -->
+      </div><!-- /phone-outer -->
+      <div class="scroll-hint">↕ 스크롤 가능 · PDP 전체 구간</div>
+    </div>
+  </div><!-- /right-panel -->
+
+</div><!-- /main-layout -->
+
+<!-- ── BOTTOM SECTIONS ── -->
+<div class="bottom-sections">
+
+  <!-- C01 vs C05 비교 -->
+  <div class="panel-card" style="grid-column: 1 / -1;">
+    <div class="panel-title"><span class="dot coral" style="background: var(--coral);"></span> C01 · 무드 감성 vs C05 · 색×기술 — 차별점 비교</div>
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>C01 · 무드 감성</th>
+          <th>C05 · 색×기술 (본 시뮬레이션)</th>
+          <th>실무 선택 기준</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>설득 방식</strong></td>
+          <td class="c01-col">감정 이입 · 분위기 → 욕망 유발</td>
+          <td class="c05-col">데이터 제시 → 합리적 신뢰 → 전환</td>
+          <td>브랜드 친밀도 낮은 신규 고객: C05 유리</td>
+        </tr>
+        <tr>
+          <td><strong>Hero 비주얼</strong></td>
+          <td class="c01-col">인물 감성 사진 / 라이프스타일</td>
+          <td class="c05-col">포뮬러 텍스처 · 수치 그래픽</td>
+          <td>성분 관심 고객 급증 추세에 C05 적합</td>
+        </tr>
+        <tr>
+          <td><strong>핵심 카피 톤</strong></td>
+          <td class="c01-col">시적 · 감성적 ("오늘의 나를 위해")</td>
+          <td class="c05-col">직접적 · 기술 확신 ("맞춰주는 건 우리가")</td>
+          <td>20대 후반~30대 합리적 소비자: C05</td>
+        </tr>
+        <tr>
+          <td><strong>중간 섹션 구성</strong></td>
+          <td class="c01-col">컬러 팔레트 무드보드 · 착용 컷</td>
+          <td class="c05-col">수치 카드 3종 + 피부 타입별 테스트</td>
+          <td>C05가 재구매 전환율에 유리한 구조</td>
+        </tr>
+        <tr>
+          <td><strong>올리브영 연계</strong></td>
+          <td class="c01-col">계절 무드 큐레이션 → 감성 연결</td>
+          <td class="c05-col">MD 직접 선별 근거 · 희소성 강조</td>
+          <td>채널 신뢰 전이 효과: C05가 명시적</td>
+        </tr>
+        <tr>
+          <td><strong>CTA 카피</strong></td>
+          <td class="c01-col">"이 색을 내 것으로"</td>
+          <td class="c05-col">"확인하고 담기" + 역설적 서브카피</td>
+          <td>C05 서브카피가 구매 망설임 해소 효과</td>
+        </tr>
+        <tr>
+          <td><strong>전략 적합도</strong></td>
+          <td class="c01-col">브랜드 이미지 제고 · 리텐션</td>
+          <td class="c05-col" style="font-weight: 700;">신규 전환 · 합리 소비 · 성분 관심층</td>
+          <td><span style="background: rgba(232,80,42,0.1); color: #E8502A; padding: 2px 8px; border-radius: 4px; font-weight: 700;">C05 ★ 8.5 / 10</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 실무 제언 -->
+  <div class="panel-card">
+    <div class="panel-title"><span class="dot brass"></span> 실무 제언 — 이 시안을 쓸 때</div>
+    <div class="panel-body">
+      <strong>수치 Placeholder 처리 필수:</strong> 현재 94% · 12H · 99%는 예시값. 실제 제품 임상·사내 테스트 데이터로 교체 후 사용. 허위 수치 사용 시 표시광고법 위반 리스크.<br><br>
+      <strong>텍스처 비주얼:</strong> CSS 블록은 시뮬레이션용. 실제 PDP에서는 마크로 렌즈 촬영 실사 이미지 필수 (포뮬러 질감이 판매 포인트이므로).<br><br>
+      <strong>A/B 테스트 제안:</strong> C01 감성 vs C05 기술 — 동일 SKU 대상으로 2주 테스트 후 CVR 비교 권장. 성분 검색 유입 고객에게는 C05가 통계적으로 우위를 보일 가능성 높음.
+    </div>
+  </div>
+
+  <!-- 다음 단계 -->
+  <div class="panel-card dark" style="border-color: #222;">
+    <div class="panel-title" style="color: rgba(255,255,255,0.4);">
+      <span class="dot" style="background: var(--coral);"></span>
+      <span style="color: rgba(255,255,255,0.5);">다음 액션 아이템</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(232,80,42,0.2); border: 1px solid rgba(232,80,42,0.4); display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: var(--mono); color: #E8502A; flex-shrink: 0;">01</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;">브랜드팀 실제 포뮬러 수치 데이터 확보 → Placeholder 교체</div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(184,134,11,0.2); border: 1px solid rgba(184,134,11,0.4); display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: var(--mono); color: #B8860B; flex-shrink: 0;">02</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;">텍스처 마크로 사진 촬영 의뢰 (제품 클로즈업 3~5컷)</div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: var(--mono); color: rgba(255,255,255,0.4); flex-shrink: 0;">03</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;">올리브영 MD 큐레이터 코멘트 실제 인터뷰 또는 공식 문구 확보</div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: flex-start;">
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: var(--mono); color: rgba(255,255,255,0.4); flex-shrink: 0;">04</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;">C01과 C05 A/B 테스트 일정 조율 → 2주 CVR 비교 리포트</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /bottom-sections -->
+
+<div style="margin-top: 32px; text-align: center; font-family: var(--mono); font-size: 10px; color: var(--ink3); letter-spacing: 0.15em; padding-bottom: 40px;">
+  WAKEMAKE × OLIVEYOUNG · CONCEPT C05 · PDP SIMULATION · 2026 — DESIGN PROPOSAL
+</div>
+
+</body>
+</html>

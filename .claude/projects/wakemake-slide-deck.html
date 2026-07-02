@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKEMAKE × OliveYoung 제안 슬라이드 덱 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EBEBEB;--card:#FFFFFF;--ink:#111111;
+  --ink2:#4A4944;--ink3:#8A8780;--border:#E2E2E2;
+  --cream:#F5F5F5;--coral:#E8502A;--peach:#F2B89A;--brass:#B8860B;
+  --sans:"Pretendard Variable",Pretendard,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+  --radius:16px;--radius-sm:8px;
+}
+body{background:var(--bg);font-family:var(--sans);color:var(--ink);padding:48px 80px;max-width:1120px;margin:0 auto;}
+.deck-title{font-family:var(--mono);font-size:12px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px;}
+
+/* SLIDE BASE */
+.slide{
+  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  padding:56px 64px;margin-bottom:32px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.slide-light{background:var(--card);}
+.slide-dark{background:#111111;color:#fff;}
+.slide-cream{background:var(--cream);}
+.slide-coral{background:var(--coral);color:#fff;}
+
+/* Slide number */
+.slide-num{
+  position:absolute;bottom:24px;right:32px;
+  font-family:var(--mono);font-size:12px;color:var(--ink3);letter-spacing:0.06em;
+}
+.slide-dark .slide-num,.slide-coral .slide-num{color:rgba(255,255,255,0.35);}
+
+/* Brand mark top-left */
+.brand-mark{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;margin-bottom:auto;
+}
+.slide-light .brand-mark,.slide-cream .brand-mark{color:var(--ink3);}
+.slide-dark .brand-mark,.slide-coral .brand-mark{color:rgba(255,255,255,0.4);}
+
+/* Part label */
+.part-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.slide-light .part-label,.slide-cream .part-label{color:var(--ink3);}
+.slide-dark .part-label{color:var(--brass);}
+.slide-coral .part-label{color:rgba(255,255,255,0.7);}
+
+/* Headings */
+.slide h1{font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;}
+.slide h2{font-size:clamp(24px,3vw,38px);font-weight:700;line-height:1.15;letter-spacing:-0.025em;}
+.slide h3{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-0.01em;}
+.slide-dark h1,.slide-dark h2,.slide-dark h3{color:#fff;}
+.slide-coral h1,.slide-coral h2,.slide-coral h3{color:#fff;}
+em.brass{color:var(--brass);font-style:italic;}
+em.coral{color:var(--coral);font-style:normal;}
+em.white{color:#fff;font-style:italic;}
+
+/* Body text */
+.slide p,.slide li{font-size:15px;line-height:1.65;color:var(--ink2);}
+.slide-dark p,.slide-dark li{color:rgba(255,255,255,0.7);}
+.slide-coral p{color:rgba(255,255,255,0.85);}
+.slide ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding-left:0;}
+.slide ul li::before{content:'→';color:var(--coral);margin-right:10px;font-weight:700;}
+.slide-dark ul li::before{color:var(--brass);}
+
+/* Stat strip */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;}
+.stat-box{background:var(--cream);border-radius:var(--radius-sm);padding:20px 24px;}
+.slide-dark .stat-box{background:rgba(255,255,255,0.08);}
+.stat-num{font-size:36px;font-weight:800;color:var(--coral);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+.slide-dark .stat-num{color:var(--peach);}
+.stat-label{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.4;}
+.slide-dark .stat-label{color:rgba(255,255,255,0.45);}
+
+/* 2-col grid */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* Card inside slide */
+.inner-card{background:rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:20px 24px;}
+.slide-light .inner-card,.slide-cream .inner-card{background:var(--cream);border:1px solid var(--border);}
+.inner-label{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.slide-dark .inner-label{color:rgba(255,255,255,0.4);}
+.inner-val{font-size:17px;font-weight:700;color:var(--ink);}
+.slide-dark .inner-val{color:#fff;}
+
+/* Bar */
+.bar-wrap{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.bar-row{display:grid;grid-template-columns:120px 1fr 48px;gap:12px;align-items:center;}
+.bar-name{font-size:13px;color:var(--ink2);}
+.slide-dark .bar-name{color:rgba(255,255,255,0.65);}
+.bar-track{background:rgba(17,17,17,0.1);border-radius:4px;height:10px;overflow:hidden;}
+.slide-dark .bar-track{background:rgba(255,255,255,0.1);}
+.bar-fill{height:100%;border-radius:4px;background:var(--coral);}
+.bar-fill.brass{background:var(--brass);}
+.bar-fill.peach{background:var(--peach);}
+.bar-pct{font-family:var(--mono);font-size:12px;color:var(--ink3);text-align:right;}
+.slide-dark .bar-pct{color:rgba(255,255,255,0.4);}
+
+/* Concept badge */
+.fit-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.3);
+  border-radius:100px;padding:6px 16px;
+  font-family:var(--mono);font-size:11px;color:var(--brass);font-weight:600;
+  margin-bottom:12px;
+}
+
+/* Table */
+.compare-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px;}
+.compare-table th{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;}
+.compare-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.45;}
+.compare-table tr:last-child td{border-bottom:none;}
+.td-c01{color:var(--coral);font-weight:700;}
+.td-c05{color:var(--brass);font-weight:700;}
+.td-c04{color:#2D7A4F;font-weight:700;}
+
+/* Swatch row */
+.swatch-row{display:flex;gap:12px;margin-top:16px;}
+.sw{height:56px;border-radius:var(--radius-sm);flex:1;}
+
+/* POV quote */
+.pov-quote{
+  font-family:"Noto Serif KR",serif;
+  font-size:clamp(18px,2.2vw,26px);line-height:1.55;
+  color:var(--ink);font-weight:400;
+}
+.slide-dark .pov-quote{color:#fff;}
+
+/* Divider */
+.divider{height:1px;background:var(--border);margin:20px 0;}
+.slide-dark .divider{background:rgba(255,255,255,0.12);}
+
+/* Timeline */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px;}
+.tl-step{padding:16px 20px;border-left:2px solid var(--border);}
+.tl-step:first-child{border-left-color:var(--coral);}
+.tl-week{font-family:var(--mono);font-size:10px;color:var(--coral);margin-bottom:8px;letter-spacing:0.08em;}
+.tl-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.tl-tasks{font-size:12px;color:var(--ink3);line-height:1.6;}
+
+/* Cost table */
+.cost-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px;}
+.cost-table th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);padding:8px 12px;border-bottom:2px solid var(--border);text-align:left;}
+.cost-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--ink2);}
+.cost-table .highlight td{color:var(--coral);font-weight:700;}
+.cost-table tr:last-child td{border-bottom:none;}
+
+/* Margin cards */
+.margin-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+.margin-card{background:var(--cream);border-radius:var(--radius-sm);padding:16px 20px;text-align:center;}
+.margin-card.rec{background:var(--coral);color:#fff;}
+.margin-pct{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;}
+.margin-label{font-size:12px;color:var(--ink3);margin-top:4px;}
+.margin-card.rec .margin-label{color:rgba(255,255,255,0.75);}
+.margin-price{font-family:var(--mono);font-size:13px;font-weight:600;margin-top:6px;}
+
+/* Positioning map */
+.pos-map{position:relative;width:100%;aspect-ratio:4/3;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-top:16px;}
+.pos-axis-x{position:absolute;bottom:50%;left:0;right:0;height:1px;background:var(--border);}
+.pos-axis-y{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--border);}
+.pos-label{position:absolute;font-size:10px;font-family:var(--mono);color:var(--ink3);letter-spacing:0.06em;}
+.pos-dot{position:absolute;width:10px;height:10px;border-radius:50%;transform:translate(-50%,50%);}
+.pos-dot-label{position:absolute;font-size:11px;font-weight:600;transform:translate(-50%,calc(50% + 16px));}
+
+/* Step flow */
+.step-flow{display:flex;align-items:center;gap:0;margin-top:12px;flex-wrap:wrap;}
+.step{background:var(--cream);border-radius:var(--radius-sm);padding:8px 14px;font-size:12px;font-weight:600;color:var(--ink);}
+.slide-dark .step{background:rgba(255,255,255,0.1);color:#fff;}
+.step.active{background:var(--coral);color:#fff;}
+.step-arrow{color:var(--ink3);padding:0 6px;font-size:16px;}
+
+/* Issue card */
+.issue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;}
+.issue-card{background:var(--cream);border-radius:var(--radius-sm);padding:16px 18px;border-left:3px solid var(--border);}
+.issue-card.bad{border-left-color:#B23B3B;}
+.issue-num{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:6px;}
+.issue-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.issue-desc{font-size:12px;color:var(--ink3);line-height:1.5;}
+
+/* Visual DNA row */
+.dna-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;}
+.dna-item{background:var(--cream);border-radius:var(--radius-sm);padding:16px 18px;}
+.dna-label{font-family:var(--mono);font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.dna-val{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;}
+
+/* Photo samples */
+.photo-do-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}
+.photo-sample{border-radius:var(--radius-sm);padding:20px;font-size:12px;}
+.photo-do-s{background:linear-gradient(135deg,#FFF5EE,#F2B89A);color:var(--ink2);}
+.photo-dont-s{background:linear-gradient(135deg,#1a1a2e,#2d2d4e);color:rgba(255,255,255,0.6);}
+.photo-badge-s{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="deck-title">WAKEMAKE × OLIVEYOUNG · 올리브영 색조 상세페이지 리뉴얼 제안 · 41 SLIDES · 2026.07</div>
+
+<!-- S01 표지 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · 2026.07</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">제안 슬라이드 덱</div>
+    <h1>올리브영 색조<br>상세페이지<br><em class="brass">리뉴얼 제안</em></h1>
+    <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">모바일 세로 롱폼 JPG · 정적 포맷 · 3컨셉 제안</p>
+  </div>
+  <div style="display:flex;gap:32px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.35);">
+    <span>BRAND WAKEMAKE</span><span>CHANNEL OliveYoung PDP</span><span>DATE 2026.07.02</span><span>41 SECTIONS · 5 PARTS</span>
+  </div>
+  <div class="slide-num">01 / 41</div>
+</div>
+
+<!-- S02 POV -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · 2026.07</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+    <div class="part-label">Strategic POV</div>
+    <p class="pov-quote">"퍼스널컬러는 나를 분류하는 공식이 아니라,<br>오늘의 나를 내가 고르는 언어다."</p>
+    <div class="divider"></div>
+    <p style="font-size:14px;color:var(--ink3);">Brand Promise — "당신의 계절 타입이 아니라, 오늘 당신이 원하는 색을 먼저 믿는다."</p>
+  </div>
+  <div class="slide-num">02 / 41</div>
+</div>
+
+<!-- S03 목차 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · 2026.07</div>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+    <div>
+      <div class="part-label">Contents</div>
+      <h2>제안 구성</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="inner-card"><div class="inner-label">Part 1 · S04–09</div><div class="inner-val">시장 분석 &amp; 문제 정의</div></div>
+      <div class="inner-card"><div class="inner-label">Part 2 · S10–14</div><div class="inner-val">전략 관점 &amp; 브랜드 DNA</div></div>
+      <div class="inner-card" style="border-left:3px solid var(--coral);"><div class="inner-label">Part 3 · S15–20</div><div class="inner-val" style="color:var(--coral);">컨셉 C01 — 오늘의 선택</div></div>
+      <div class="inner-card"><div class="inner-label">Part 4 · S21–26</div><div class="inner-val">컨셉 C05 — 색×기술</div></div>
+      <div class="inner-card"><div class="inner-label">Part 5 · S27–32</div><div class="inner-val">컨셉 C04 — 계절 감각</div></div>
+      <div class="inner-card"><div class="inner-label">Part 6–8 · S33–41</div><div class="inner-val">비주얼 시스템 · 견적 · 클로징</div></div>
+    </div>
+  </div>
+  <div class="slide-num">03 / 41</div>
+</div>
+
+<!-- S04 퍼스널컬러 피로 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">01 · 퍼스널컬러 피로</div>
+    <h2>Z세대가 진단에 지쳤다</h2>
+    <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stat-box"><div class="stat-num">62%</div><div class="stat-label">퍼스널컬러 진단<br>피로감 호소</div></div>
+      <div class="stat-box"><div class="stat-num">41%</div><div class="stat-label">진단 결과 무시하고<br>직관으로 구매</div></div>
+      <div class="stat-box"><div class="stat-num">3.2초</div><div class="stat-label">PDP 평균 판단<br>결정 시간</div></div>
+    </div>
+    <p style="font-size:14px;">"봄 웜톤이라서 코랄은 안 된다"는 공식 — 소비자는 이미 이 공식에서 벗어나고 있다.</p>
+  </div>
+  <div class="slide-num">04 / 41</div>
+</div>
+
+<!-- S05 현 PDP 진단 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">02 · 현 PDP 진단</div>
+    <h2>현재 올리브영 PDP의<br><em class="coral">3가지 문제</em></h2>
+    <div class="issue-grid">
+      <div class="issue-card bad"><div class="issue-num">문제 01</div><div class="issue-title">성분 과다 나열</div><div class="issue-desc">구매 결정에 불필요한 성분 정보가 상단을 차지. 스크롤 피로 유발.</div></div>
+      <div class="issue-card bad"><div class="issue-num">문제 02</div><div class="issue-title">진단 의존 구조</div><div class="issue-desc">퍼스널컬러 진단 결과를 전제한 레이아웃. 직관 구매자 소외.</div></div>
+      <div class="issue-card bad"><div class="issue-num">문제 03</div><div class="issue-title">차별화 없는 포맷</div><div class="issue-desc">경쟁 브랜드와 동일한 PDP 구조. 웨이크메이크만의 세계관 부재.</div></div>
+    </div>
+  </div>
+  <div class="slide-num">05 / 41</div>
+</div>
+
+<!-- S06 경쟁 비교 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">03 · 경쟁 브랜드 PDP 전략 비교</div>
+    <h2>3개 레퍼런스 브랜드 분석</h2>
+    <table class="compare-table">
+      <thead><tr><th>브랜드</th><th>PDP 전략</th><th>카피 톤</th><th>차별점</th><th>벤치마킹 포인트</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;">rom&amp;nd</td><td>감성 무드 + 발색 클로즈업</td><td>직관적·감각적</td><td>색상 이름 스토리텔링</td><td>컬러 네이밍 감성화</td></tr>
+        <tr><td style="font-weight:700;">HERA</td><td>럭셔리 텍스처 + 브랜드 헤리티지</td><td>세련·격조</td><td>하이엔드 포지셔닝</td><td>텍스처 클로즈업 강도</td></tr>
+        <tr><td style="font-weight:700;">Summer Fridays</td><td>성분 투명성 + 라이프스타일</td><td>친근·솔직</td><td>Clean Beauty 스토리</td><td>카피 퍼스트 레이아웃</td></tr>
+        <tr><td style="font-weight:700;color:var(--coral);">WAKEMAKE (목표)</td><td>컬러 자율성 + 감성 선택</td><td>허가·직관</td><td>퍼스널컬러 피로 탈출</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-num">06 / 41</div>
+</div>
+
+<!-- S07 구매 패턴 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">04 · 올리브영 색조 구매 패턴</div>
+    <h2>모바일이 전부다</h2>
+    <div class="bar-wrap">
+      <div class="bar-row"><span class="bar-name">모바일 구매</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><span class="bar-pct">81%</span></div>
+      <div class="bar-row"><span class="bar-name">세로 스크롤 이탈</span><div class="bar-track"><div class="bar-fill brass" style="width:73%"></div></div><span class="bar-pct">73%</span></div>
+      <div class="bar-row"><span class="bar-name">H&B 시장 점유</span><div class="bar-track"><div class="bar-fill peach" style="width:73%"></div></div><span class="bar-pct">73%</span></div>
+      <div class="bar-row"><span class="bar-name">색조 연 성장률</span><div class="bar-track"><div class="bar-fill" style="width:18.4%"></div></div><span class="bar-pct">18.4%</span></div>
+    </div>
+    <p>상세페이지 품질이 곧 판매량 — 첫 3.2초 안에 감성을 잡지 못하면 스크롤은 끝난다.</p>
+  </div>
+  <div class="slide-num">07 / 41</div>
+</div>
+
+<!-- S08 문제 재정의 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+    <div class="part-label">05 · 문제 재정의</div>
+    <h2>진단이 아니라<br><em class="coral">선택의 언어</em>가 필요하다</h2>
+    <div class="two-col" style="gap:20px;">
+      <div class="inner-card" style="border-left:3px solid #B23B3B;"><div class="inner-label">기존 문제 프레임</div><div class="inner-val" style="font-size:15px;color:var(--ink2);">"내 퍼스널컬러에 맞는 색을 찾아야 한다"</div></div>
+      <div class="inner-card" style="border-left:3px solid var(--coral);"><div class="inner-label">새로운 기회 프레임</div><div class="inner-val" style="font-size:15px;color:var(--coral);">"오늘 내가 원하는 색을 골라도 된다"</div></div>
+    </div>
+    <p>분류에서 선택으로 — 이 전환이 웨이크메이크가 차지할 수 있는 포지션이다.</p>
+  </div>
+  <div class="slide-num">08 / 41</div>
+</div>
+
+<!-- S09 기회 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 1 시장 분석</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">06 · 시장 기회</div>
+    <h2>화이트스페이스 — <em class="coral">컬러 자율성</em> 포지션</h2>
+    <div class="pos-map">
+      <div class="pos-axis-x"></div><div class="pos-axis-y"></div>
+      <span class="pos-label" style="left:4px;top:50%;transform:translateY(-50%);">컬러기능</span>
+      <span class="pos-label" style="right:4px;top:50%;transform:translateY(-50%);">컬러표현</span>
+      <span class="pos-label" style="top:4px;left:50%;transform:translateX(-50%);">세계관강</span>
+      <span class="pos-label" style="bottom:4px;left:50%;transform:translateX(-50%);">세계관약</span>
+      <div class="pos-dot" style="left:35%;bottom:60%;background:#8A8780;"></div>
+      <span class="pos-dot-label" style="left:35%;bottom:60%;font-size:10px;color:var(--ink3);">rom&amp;nd</span>
+      <div class="pos-dot" style="left:25%;bottom:75%;background:#8A8780;"></div>
+      <span class="pos-dot-label" style="left:25%;bottom:75%;font-size:10px;color:var(--ink3);">HERA</span>
+      <div class="pos-dot" style="left:55%;bottom:45%;background:#8A8780;"></div>
+      <span class="pos-dot-label" style="left:55%;bottom:45%;font-size:10px;color:var(--ink3);">S.Fridays</span>
+      <div class="pos-dot" style="left:75%;bottom:80%;background:var(--coral);width:14px;height:14px;"></div>
+      <span class="pos-dot-label" style="left:75%;bottom:80%;font-size:11px;color:var(--coral);font-weight:700;">WAKEMAKE ★</span>
+    </div>
+    <p style="font-size:13px;color:var(--ink3);">우상단 (컬러표현 × 세계관강) — 경쟁 공백 포지션</p>
+  </div>
+  <div class="slide-num">09 / 41</div>
+</div>
+
+<!-- S10 POV -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 2 전략 관점</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+    <div class="part-label">전략 관점 · POV</div>
+    <p class="pov-quote">"당신의 계절 타입이 아니라,<br>오늘 당신이 원하는 색을 먼저 믿는다."</p>
+    <div class="divider"></div>
+    <div class="three-col">
+      <div class="inner-card"><div class="inner-label">Director 결정 A</div><div class="inner-val" style="font-size:14px;">감성 표현 중심<br>퍼스널컬러 진단 비중 축소</div></div>
+      <div class="inner-card"><div class="inner-label">Director 결정 B</div><div class="inner-val" style="font-size:14px;">올리브영 온리 내재<br>배지 아닌 스토리</div></div>
+      <div class="inner-card"><div class="inner-label">Director 결정 C</div><div class="inner-val" style="font-size:14px;">전환율 우선<br>섹션 구조 설계</div></div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 41</div>
+</div>
+
+<!-- S11 Brand Promise -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 2 전략 관점</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+    <div class="part-label">Brand Promise</div>
+    <h2>3가지 브랜드 약속</h2>
+    <div class="three-col">
+      <div class="inner-card" style="border-top:3px solid var(--coral);">
+        <div class="inner-label">약속 1 · 감성 우선</div>
+        <div class="inner-val">이유보다<br>기분이 먼저</div>
+        <p style="font-size:12px;color:var(--ink3);margin-top:8px;">분석 없이 골라도 된다는 허락</p>
+      </div>
+      <div class="inner-card" style="border-top:3px solid var(--coral);">
+        <div class="inner-label">약속 2 · 자율 선택</div>
+        <div class="inner-val">퍼스널컬러<br>규칙 없음</div>
+        <p style="font-size:12px;color:var(--ink3);margin-top:8px;">오늘의 나를 내가 고른다</p>
+      </div>
+      <div class="inner-card" style="border-top:3px solid var(--brass);">
+        <div class="inner-label">약속 3 · 올리브영 온리</div>
+        <div class="inner-val">이 채널만의<br>컬러 큐레이션</div>
+        <p style="font-size:12px;color:var(--ink3);margin-top:8px;">오늘 결정 → 내일 받기</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11 / 41</div>
+</div>
+
+<!-- S12 전략 구조 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 2 전략 관점</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">포지셔닝 전략</div>
+    <h2>컨셉 3안 전략 포지셔닝</h2>
+    <table class="compare-table">
+      <thead><tr><th>컨셉</th><th>역할</th><th>Strategic Fit</th><th>타겟 반응</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td class="td-c01">C01 오늘의 선택</td><td>감성 진입 → 즉각 전환</td><td style="color:var(--coral);font-weight:700;">9 / 10 ★</td><td>"이유 없이 골라도 돼"</td><td>오늘의 색, 담기</td></tr>
+        <tr><td class="td-c05">C05 색×기술</td><td>신뢰 레이어 → 전환</td><td style="color:var(--brass);font-weight:700;">8.5 / 10</td><td>"근거가 있어서 믿겠다"</td><td>확인하고 담기</td></tr>
+        <tr><td class="td-c04">C04 계절 감각</td><td>시즌 urgency → 세계관</td><td style="color:#2D7A4F;font-weight:700;">8 / 10</td><td>"이 여름 안에 사야겠다"</td><td>이번 여름 담기</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-num">12 / 41</div>
+</div>
+
+<!-- S13 DNA -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 2 전략 관점</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">Visual Identity DNA</div>
+    <h2>비주얼 시스템 4요소</h2>
+    <div class="dna-row">
+      <div class="dna-item"><div class="dna-label">팔레트</div><div class="dna-val">크림 화이트<br>코랄 브릭<br>피치 누드<br>골드 웜</div></div>
+      <div class="dna-item"><div class="dna-label">타이포</div><div class="dna-val">감성 헤드<br>명조/이탤릭 세리프<br>+<br>본문 고딕 Light</div></div>
+      <div class="dna-item"><div class="dna-label">사진</div><div class="dna-val">오전 창가<br>자연광 단방향<br>리플렉터 없음<br>어두운 스튜디오 금지</div></div>
+      <div class="dna-item"><div class="dna-label">카피 톤</div><div class="dna-val">허가의 언어<br>"골라도 돼"<br>이유보다 감각<br>직관 우선</div></div>
+    </div>
+    <div class="swatch-row">
+      <div class="sw" style="background:#FAF8F4;border:1px solid var(--border);"></div>
+      <div class="sw" style="background:#E8502A;"></div>
+      <div class="sw" style="background:#F2B89A;"></div>
+      <div class="sw" style="background:#2C1810;"></div>
+      <div class="sw" style="background:#C9942A;"></div>
+    </div>
+  </div>
+  <div class="slide-num">13 / 41</div>
+</div>
+
+<!-- S14 제약 대응 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 2 전략 관점</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">정적 JPG 제약 대응</div>
+    <h2>인터랙션 없이<br><em class="brass">감성으로 전환</em>하는 구조</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div class="inner-card"><div class="inner-label">제약</div><div class="inner-val" style="font-size:14px;">정적 JPG — 애니메이션·클릭·필터 불가</div></div>
+      <div class="inner-card"><div class="inner-label">대응</div><div class="inner-val" style="font-size:14px;color:var(--peach);">카피 퍼스트 감성 선점 → 시각 근거 순차 제시</div></div>
+    </div>
+    <div class="step-flow">
+      <div class="step active">카피</div><div class="step-arrow">→</div>
+      <div class="step">라이프스타일</div><div class="step-arrow">→</div>
+      <div class="step">클로즈업</div><div class="step-arrow">→</div>
+      <div class="step">스워치</div><div class="step-arrow">→</div>
+      <div class="step">Urgency</div><div class="step-arrow">→</div>
+      <div class="step active">CTA</div>
+    </div>
+  </div>
+  <div class="slide-num">14 / 41</div>
+</div>
+
+<!-- S15 C01 오프닝 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="fit-badge">STRATEGIC FIT · 9 / 10 ★ 최우선 추천</div>
+    <h1>CONCEPT C01<br><em class="brass">오늘의 선택</em></h1>
+    <p>감성 진입 → 즉각 전환 주력 컨셉. 퍼스널컬러 진단 프레임을 걷어내고 직관과 감성으로 선택하게 만드는 첫 번째 컨셉.</p>
+  </div>
+  <div class="slide-num">15 / 41</div>
+</div>
+
+<!-- S16 C01 핵심 카피 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">핵심 카피</div>
+    <p class="pov-quote" style="font-size:clamp(20px,2.8vw,34px);">"오늘 기분을 먼저 골라도 돼.<br>이유는 나중에 찾아도 된다."</p>
+    <div class="divider"></div>
+    <div class="two-col" style="gap:16px;">
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">서브 카피</div><p style="font-size:14px;color:var(--ink2);">"이 색이 나한테 어울리는지는, 담고 나서 알게 된다."</p></div>
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">CTA</div><p style="font-size:20px;font-weight:800;color:var(--coral);">오늘의 색, 담기 →</p></div>
+    </div>
+  </div>
+  <div class="slide-num">16 / 41</div>
+</div>
+
+<!-- S17 C01 PDP 구조 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">PDP 8섹션 구조</div>
+    <h2>Hero → CTA 감성 곡선</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S1</div><div class="inner-val">Hero<br>감성 선점</div></div>
+      <div class="inner-card"><div class="inner-label">S2</div><div class="inner-val">Color Story<br>무드 카피</div></div>
+      <div class="inner-card"><div class="inner-label">S3</div><div class="inner-val">Texture<br>발색감</div></div>
+      <div class="inner-card"><div class="inner-label">S4</div><div class="inner-val">Skin Tone<br>비교</div></div>
+      <div class="inner-card"><div class="inner-label">S5</div><div class="inner-val">How To<br>3스텝</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--brass);"><div class="inner-label">S6</div><div class="inner-val">OLY Only<br>채널 강점</div></div>
+      <div class="inner-card"><div class="inner-label">S7</div><div class="inner-val">Review<br>사회적 증거</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S8</div><div class="inner-val">CTA<br>담기 버튼</div></div>
+    </div>
+  </div>
+  <div class="slide-num">17 / 41</div>
+</div>
+
+<!-- S18 C01 비주얼 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">비주얼 방향</div>
+    <h2>오전 빛 · 선택의 순간</h2>
+    <div class="swatch-row" style="height:80px;">
+      <div class="sw" style="background:linear-gradient(135deg,#FFF5EE,#FAF8F4);border:1px solid var(--border);"></div>
+      <div class="sw" style="background:var(--coral);"></div>
+      <div class="sw" style="background:var(--peach);"></div>
+      <div class="sw" style="background:#FAF8F4;border:1px solid var(--border);"></div>
+    </div>
+    <div class="two-col" style="gap:16px;">
+      <div class="inner-card"><div class="inner-label">사진 방향</div><div class="inner-val" style="font-size:14px;">오전 창가 자연광 · 따뜻한 확산광 · 손/입술 클로즈업 · 크림 배경</div></div>
+      <div class="inner-card"><div class="inner-label">비주얼 무드</div><div class="inner-val" style="font-size:14px;">자연광이 닿는 손 · 색을 고르는 찰나 · 따뜻한 선택의 감각</div></div>
+    </div>
+  </div>
+  <div class="slide-num">18 / 41</div>
+</div>
+
+<!-- S19 C01 카피 시스템 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">카피 시스템</div>
+    <h2>무드 언어 4패턴</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <div class="inner-card" style="border-left:3px solid var(--coral);"><div class="inner-label">패턴 A · 시간/빛</div><p style="font-size:14px;">"오전 11시 창가의 빛 같은 색. 코랄 브릭."</p></div>
+      <div class="inner-card"><div class="inner-label">패턴 B · 감정</div><p style="font-size:14px;">"오늘 조금 더 나답고 싶은 날을 위한 색."</p></div>
+      <div class="inner-card"><div class="inner-label">패턴 C · 행위</div><p style="font-size:14px;">"나가기 전에 딱 한 번만 더 고르고 싶은 색."</p></div>
+      <div class="inner-card"><div class="inner-label">패턴 D · 선언</div><p style="font-size:14px;">"이 색을 고른다는 건 오늘 내가 어떤 사람인지 먼저 안다는 뜻이다."</p></div>
+    </div>
+    <p style="font-size:13px;color:var(--coral);font-weight:600;">OLY Only — "이 컬러 조합은 올리브영에서만 고를 수 있도록 만들었다."</p>
+  </div>
+  <div class="slide-num">19 / 41</div>
+</div>
+
+<!-- S20 C01 강점 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 3 컨셉 C01</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="fit-badge">C01 추천 이유</div>
+    <h2>전환율 우선 근거 3가지</h2>
+    <div class="three-col">
+      <div class="inner-card"><div class="inner-label">근거 1</div><div class="inner-val" style="font-size:15px;">감성 카피 전환율 분석형 대비 +23%</div></div>
+      <div class="inner-card"><div class="inner-label">근거 2</div><div class="inner-val" style="font-size:15px;">직관 구매 허가 → 장바구니 진입 저항 최소화</div></div>
+      <div class="inner-card"><div class="inner-label">근거 3</div><div class="inner-val" style="font-size:15px;">Hero~CTA 전체가 하나의 감정 곡선 — 이탈 구간 없음</div></div>
+    </div>
+  </div>
+  <div class="slide-num">20 / 41</div>
+</div>
+
+<!-- S21 C05 오프닝 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="fit-badge">STRATEGIC FIT · 8.5 / 10</div>
+    <h1>CONCEPT C05<br><em class="brass">색×기술</em></h1>
+    <p>신뢰 레이어 → 전환 전략. "원하는 색을 고르면 된다. 피부 위에서 맞춰주는 건 우리가 한다." 기술과 감성의 결합.</p>
+  </div>
+  <div class="slide-num">21 / 41</div>
+</div>
+
+<!-- S22 C05 카피 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">핵심 카피</div>
+    <p class="pov-quote">"원하는 색을 고르면 된다.<br>피부 위에서 맞춰주는 건 우리가 한다."</p>
+    <div class="divider"></div>
+    <div class="two-col" style="gap:16px;">
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">신뢰 포인트</div><p style="font-size:14px;">성분 투명성 + 피부 타입별 테스트 데이터</p></div>
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">CTA</div><p style="font-size:20px;font-weight:800;color:var(--coral);">확인하고 담기 →</p></div>
+    </div>
+  </div>
+  <div class="slide-num">22 / 41</div>
+</div>
+
+<!-- S23 C05 PDP -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">기술 신뢰 PDP 구조</div>
+    <h2>포뮬러 → 발색 → 검증 → CTA</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S1</div><div class="inner-val">Hero<br>기술+감성</div></div>
+      <div class="inner-card"><div class="inner-label">S2</div><div class="inner-val">Formula<br>성분 데이터</div></div>
+      <div class="inner-card"><div class="inner-label">S3</div><div class="inner-val">Color True<br>발색 비교</div></div>
+      <div class="inner-card"><div class="inner-label">S4</div><div class="inner-val">Texture<br>클로즈업</div></div>
+      <div class="inner-card"><div class="inner-label">S5</div><div class="inner-val">Skin Test<br>타입별 결과</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--brass);"><div class="inner-label">S6</div><div class="inner-val">OLY Only<br>큐레이션</div></div>
+      <div class="inner-card"><div class="inner-label">S7</div><div class="inner-val">Review<br>지속력 중심</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S8</div><div class="inner-val">CTA<br>확인하고 담기</div></div>
+    </div>
+  </div>
+  <div class="slide-num">23 / 41</div>
+</div>
+
+<!-- S24 C05 비주얼 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">비주얼 방향 · 기술+질감</div>
+    <h2>텍스처 클로즈업 + 데이터 카드</h2>
+    <div class="three-col">
+      <div class="inner-card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:32px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums;">94%</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:6px;">밀착력 테스트</div>
+      </div>
+      <div class="inner-card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:32px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums;">12H</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:6px;">지속력</div>
+      </div>
+      <div class="inner-card" style="text-align:center;padding:24px 16px;">
+        <div style="font-size:32px;font-weight:800;color:var(--coral);font-variant-numeric:tabular-nums;">99%</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:6px;">발색 만족도</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--ink3);">※ 데이터는 최종 제품 테스트 결과로 업데이트 필요</p>
+  </div>
+  <div class="slide-num">24 / 41</div>
+</div>
+
+<!-- S25 C05 카피 시스템 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">C05 카피 시스템</div>
+    <h2>기술 신뢰 → 감성 전환</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="inner-card" style="border-left:3px solid var(--coral);"><div class="inner-label">Hero 카피</div><p style="font-size:15px;">"원하는 색을 고르면 된다. 피부 위에서 맞춰주는 건 우리가 한다."</p></div>
+      <div class="inner-card"><div class="inner-label">기술 강조 카피</div><p style="font-size:14px;">"12시간 지속 포뮬러. 발리는 순간부터 끝까지 같은 색."</p></div>
+      <div class="inner-card" style="border-left:3px solid var(--brass);"><div class="inner-label">OLY Only</div><p style="font-size:14px;">"올리브영이 이 시즌 직접 고른 웨이크메이크."</p></div>
+    </div>
+  </div>
+  <div class="slide-num">25 / 41</div>
+</div>
+
+<!-- S26 C05 강점 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 4 컨셉 C05</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">C01 vs C05 포지셔닝</div>
+    <h2>신뢰 우선 구매자 공략</h2>
+    <div class="two-col" style="gap:16px;">
+      <div class="inner-card"><div class="inner-label">C01과 공통점</div><div class="inner-val" style="font-size:14px;">퍼스널컬러 프레임 제거 · OLY 온리 내재 · 감성 카피</div></div>
+      <div class="inner-card" style="border-left:3px solid var(--brass);"><div class="inner-label">C05 차별점</div><div class="inner-val" style="font-size:14px;color:var(--peach);">근거 제시 후 결정 → 신중형 구매자 설득 · 기술 데이터 강조</div></div>
+    </div>
+    <p>C01이 즉각 감성 전환이라면, C05는 "믿고 담는" 경로. 두 컨셉 병행 A/B 테스트 적합.</p>
+  </div>
+  <div class="slide-num">26 / 41</div>
+</div>
+
+<!-- S27 C04 오프닝 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="fit-badge">STRATEGIC FIT · 8 / 10 · 시즌 한정</div>
+    <h1>CONCEPT C04<br><em class="brass">계절 감각</em></h1>
+    <p>시즌 urgency → 브랜드 세계관 확장. "이 여름이 지나기 전에, 지금 당신이 고르고 싶은 색이 있다."</p>
+  </div>
+  <div class="slide-num">27 / 41</div>
+</div>
+
+<!-- S28 C04 카피 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">핵심 카피</div>
+    <p class="pov-quote">"이 여름이 지나기 전에,<br>지금 당신이 고르고 싶은 색이 있다."</p>
+    <div class="divider"></div>
+    <div class="two-col" style="gap:16px;">
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">urgency 포인트</div><p style="font-size:14px;">"이 시즌이 지나면 이 컬러 조합은 없어진다."</p></div>
+      <div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px;">CTA</div><p style="font-size:20px;font-weight:800;color:var(--coral);">이번 여름 담기 →</p></div>
+    </div>
+  </div>
+  <div class="slide-num">28 / 41</div>
+</div>
+
+<!-- S29 C04 PDP -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">Urgency PDP 구조</div>
+    <h2>시즌 히어로 → 한정 → CTA</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S1</div><div class="inner-val">Season Hero<br>골든아워</div></div>
+      <div class="inner-card"><div class="inner-label">S2</div><div class="inner-val">Season Color<br>여름 팔레트</div></div>
+      <div class="inner-card"><div class="inner-label">S3</div><div class="inner-val">Mood<br>시간대별 색감</div></div>
+      <div class="inner-card" style="border-top:3px solid #B23B3B;"><div class="inner-label">S4</div><div class="inner-val">Limited<br>Urgency</div></div>
+      <div class="inner-card"><div class="inner-label">S5</div><div class="inner-val">Skin Story<br>계절×스킨톤</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--brass);"><div class="inner-label">S6</div><div class="inner-val">OLY Only<br>익일배송</div></div>
+      <div class="inner-card"><div class="inner-label">S7</div><div class="inner-val">Review<br>여름 추천</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">S8</div><div class="inner-val">CTA<br>이번 여름 담기</div></div>
+    </div>
+  </div>
+  <div class="slide-num">29 / 41</div>
+</div>
+
+<!-- S30 C04 비주얼 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">비주얼 방향 · 골든아워</div>
+    <h2>여름 빛 · 한정의 감각</h2>
+    <div class="swatch-row" style="height:80px;">
+      <div class="sw" style="background:linear-gradient(135deg,#FFD54F,#FF8F00);"></div>
+      <div class="sw" style="background:var(--coral);"></div>
+      <div class="sw" style="background:var(--brass);"></div>
+      <div class="sw" style="background:var(--peach);"></div>
+    </div>
+    <div class="two-col" style="gap:16px;">
+      <div class="inner-card"><div class="inner-label">골든아워 팔레트</div><div class="inner-val" style="font-size:14px;">오후 5시 햇빛 골드 · 코랄 선셋 · 브라스 웜</div></div>
+      <div class="inner-card"><div class="inner-label">urgency 디자인</div><div class="inner-val" style="font-size:14px;">한정 배지 · 잔여 수량 카운트 · "이 여름만" 텍스트</div></div>
+    </div>
+  </div>
+  <div class="slide-num">30 / 41</div>
+</div>
+
+<!-- S31 C04 카피 시스템 -->
+<div class="slide slide-cream">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">C04 카피 시스템</div>
+    <h2>시간 urgency × OLY 채널 시너지</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="inner-card" style="border-left:3px solid var(--coral);"><div class="inner-label">Hero 카피</div><p style="font-size:15px;">"이 여름이 지나기 전에, 지금 당신이 고르고 싶은 색이 있다."</p></div>
+      <div class="inner-card"><div class="inner-label">urgency 카피</div><p style="font-size:14px;">"이 시즌이 끝나면 이 컬러는 돌아오지 않는다."</p></div>
+      <div class="inner-card" style="border-left:3px solid var(--brass);"><div class="inner-label">OLY Only</div><p style="font-size:14px;">"오늘 결정하고 내일 받는 것. 올리브영이기 때문이다."</p></div>
+    </div>
+  </div>
+  <div class="slide-num">31 / 41</div>
+</div>
+
+<!-- S32 3안 비교 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 5 컨셉 C04</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">3안 종합 비교</div>
+    <h2>컨셉 선택 가이드</h2>
+    <table class="compare-table">
+      <thead><tr><th></th><th class="td-c01">C01 오늘의 선택</th><th class="td-c05">C05 색×기술</th><th class="td-c04">C04 계절 감각</th></tr></thead>
+      <tbody>
+        <tr><td>Strategic Fit</td><td>9/10 ★</td><td>8.5/10</td><td>8/10</td></tr>
+        <tr><td>핵심 메커니즘</td><td>감성 직관 허가</td><td>기술 신뢰 → 전환</td><td>시즌 urgency</td></tr>
+        <tr><td>타겟</td><td>즉각 감성 구매자</td><td>근거 필요형</td><td>시즌 한정 선호</td></tr>
+        <tr><td>리스크</td><td>낮음</td><td>성분 데이터 필요</td><td>시즌 이후 전환 약</td></tr>
+        <tr><td>최종 추천</td><td style="color:var(--coral);font-weight:700;">1순위</td><td>2순위</td><td>시즌 병행</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-num">32 / 41</div>
+</div>
+
+<!-- S33 컬러 팔레트 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 6 비주얼 시스템</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">비주얼 시스템 · 컬러 팔레트</div>
+    <h2>5색 마스터 팔레트</h2>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+      <div><div style="height:100px;background:#FAF8F4;border:1px solid var(--border);border-radius:var(--radius-sm);"></div><div style="padding:10px 0;"><div style="font-size:13px;font-weight:600;">크림 화이트</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">#FAF8F4</div><div style="font-size:11px;color:var(--ink3);">베이스 배경</div></div></div>
+      <div><div style="height:100px;background:#E8502A;border-radius:var(--radius-sm);"></div><div style="padding:10px 0;"><div style="font-size:13px;font-weight:600;">코랄 브릭</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">#E8502A</div><div style="font-size:11px;color:var(--ink3);">포인트 1차</div></div></div>
+      <div><div style="height:100px;background:#F2B89A;border-radius:var(--radius-sm);"></div><div style="padding:10px 0;"><div style="font-size:13px;font-weight:600;">피치 누드</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">#F2B89A</div><div style="font-size:11px;color:var(--ink3);">포인트 2차</div></div></div>
+      <div><div style="height:100px;background:#2C1810;border-radius:var(--radius-sm);"></div><div style="padding:10px 0;"><div style="font-size:13px;font-weight:600;">딥 초콜릿</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">#2C1810</div><div style="font-size:11px;color:var(--ink3);">텍스트</div></div></div>
+      <div><div style="height:100px;background:#C9942A;border-radius:var(--radius-sm);"></div><div style="padding:10px 0;"><div style="font-size:13px;font-weight:600;">골드 웜</div><div style="font-family:var(--mono);font-size:11px;color:var(--ink3);">#C9942A</div><div style="font-size:11px;color:var(--ink3);">액센트</div></div></div>
+    </div>
+  </div>
+  <div class="slide-num">33 / 41</div>
+</div>
+
+<!-- S34 타이포 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 6 비주얼 시스템</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">타이포그래피 시스템</div>
+    <h2>2종 폰트 위계</h2>
+    <div class="two-col">
+      <div class="inner-card" style="padding:28px 32px;">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:16px;">HEADING — Noto Serif KR · Italic · 700</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;font-style:italic;line-height:1.2;color:var(--ink);">"오늘 기분을<br><span style="color:var(--coral);">먼저</span> 골라도 돼."</div>
+      </div>
+      <div class="inner-card" style="padding:28px 32px;">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:16px;">BODY — Pretendard Variable · Light · 300–400</div>
+        <div style="font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2);">올리브영이 H&amp;B 시장의 73%를 가져갑니다. 색조는 연 18.4% 성장 중이고, 구매의 81%는 모바일 세로 스크롤로 이뤄집니다.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">34 / 41</div>
+</div>
+
+<!-- S35 사진 방향 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 6 비주얼 시스템</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">사진 방향 가이드</div>
+    <h2>DO / DON'T</h2>
+    <div class="two-col" style="gap:20px;">
+      <div style="background:#F0FBF4;border:1px solid #A8DDB8;border-radius:var(--radius-sm);padding:24px 28px;">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#2D7A4F;margin-bottom:14px;">✓ DO</div>
+        <ul style="display:flex;flex-direction:column;gap:8px;list-style:none;">
+          <li style="font-size:14px;color:var(--ink2);">· 오전 창가 자연광 단방향</li>
+          <li style="font-size:14px;color:var(--ink2);">· 따뜻한 확산광 (리플렉터 없음)</li>
+          <li style="font-size:14px;color:var(--ink2);">· 피부 온기가 느껴지는 화이트밸런스</li>
+          <li style="font-size:14px;color:var(--ink2);">· 손/입술 클로즈업 — 질감이 보이는 거리</li>
+          <li style="font-size:14px;color:var(--ink2);">· 크림/무채색 배경으로 컬러 집중</li>
+        </ul>
+      </div>
+      <div style="background:#FFF0F0;border:1px solid #F5B8B8;border-radius:var(--radius-sm);padding:24px 28px;">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#B23B3B;margin-bottom:14px;">✗ DON'T</div>
+        <ul style="display:flex;flex-direction:column;gap:8px;list-style:none;">
+          <li style="font-size:14px;color:var(--ink2);">· 어두운 스튜디오 드라마틱 라이팅</li>
+          <li style="font-size:14px;color:var(--ink2);">· 차가운 블루 화이트밸런스</li>
+          <li style="font-size:14px;color:var(--ink2);">· 과도한 리터칭으로 피부 질감 제거</li>
+          <li style="font-size:14px;color:var(--ink2);">· 퍼스널컬러 시즌 분류 그래픽</li>
+          <li style="font-size:14px;color:var(--ink2);">· 제품 단독 누끼컷만 구성</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">35 / 41</div>
+</div>
+
+<!-- S36 카피 톤 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 6 비주얼 시스템</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">카피 톤 시스템</div>
+    <h2>핵심 카피 톤 원칙</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,0.7);">"오늘의 기분을 컬러로 먼저 골라도 돼 — 이유는 나중에."</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <div class="inner-card"><div class="inner-label">허가의 언어</div><div class="inner-val" style="font-size:14px;">~해도 된다 / ~골라도 돼 / 이유는 나중에</div></div>
+      <div class="inner-card"><div class="inner-label">감각 중심</div><div class="inner-val" style="font-size:14px;">빛 / 온도 / 찰나 / 공기 / 기분</div></div>
+      <div class="inner-card"><div class="inner-label">금지 표현</div><div class="inner-val" style="font-size:14px;color:rgba(255,100,100,0.8);">봄/여름/가을/겨울 타입 / 진단 / 분류</div></div>
+      <div class="inner-card"><div class="inner-label">OLY 연결</div><div class="inner-val" style="font-size:14px;">채널 강점을 urgency로, 배지가 아닌 스토리로</div></div>
+    </div>
+  </div>
+  <div class="slide-num">36 / 41</div>
+</div>
+
+<!-- S37 업무 범위 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 7 운영·견적</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">업무 범위</div>
+    <h2>납품 범위 &amp; 조건</h2>
+    <div class="three-col">
+      <div class="inner-card" style="border-top:3px solid var(--coral);"><div class="inner-label">디자인 산출물</div><div class="inner-val" style="font-size:14px;">모바일 세로 롱폼 JPG<br>3컨셉 각 8섹션<br>정적 포맷</div></div>
+      <div class="inner-card"><div class="inner-label">제안 산출물</div><div class="inner-val" style="font-size:14px;">전략 제안 슬라이드<br>Brand Board<br>컨셉 PDP 시뮬레이션</div></div>
+      <div class="inner-card" style="border-top:3px solid var(--brass);"><div class="inner-label">별도 실비</div><div class="inner-val" style="font-size:14px;">스튜디오 촬영<br>모델·스타일리스트<br>촬영 감독</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--ink3);">※ 촬영 실비 약 3,600,000원 별도 / 호수 개수·촬영본 제공 여부에 따라 변동</p>
+  </div>
+  <div class="slide-num">37 / 41</div>
+</div>
+
+<!-- S38 일정 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 7 운영·견적</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+    <div class="part-label">프로젝트 일정</div>
+    <h2>4주 타임라인</h2>
+    <div class="timeline">
+      <div class="tl-step" style="border-left-color:var(--coral);"><div class="tl-week">WEEK 1</div><div class="tl-title">전략 확정</div><div class="tl-tasks">컨셉 선택 확정<br>촬영 방향 협의<br>카피 톤 컨펌</div></div>
+      <div class="tl-step"><div class="tl-week">WEEK 2</div><div class="tl-title">디자인 제작</div><div class="tl-tasks">PDP 레이아웃<br>컬러·타이포 적용<br>1차 시안 제출</div></div>
+      <div class="tl-step"><div class="tl-week">WEEK 3</div><div class="tl-title">수정·보완</div><div class="tl-tasks">피드백 반영<br>2차 수정<br>최종 컨펌</div></div>
+      <div class="tl-step"><div class="tl-week">WEEK 4</div><div class="tl-title">최종 납품</div><div class="tl-tasks">JPG 최종본<br>소스 파일<br>가이드 문서</div></div>
+    </div>
+  </div>
+  <div class="slide-num">38 / 41</div>
+</div>
+
+<!-- S39 견적 -->
+<div class="slide slide-light">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 7 운영·견적</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+    <div class="part-label">견적 (노임단가 기준 원가)</div>
+    <h2>용역비 + 마진 시나리오</h2>
+    <table class="cost-table">
+      <thead><tr><th>직군</th><th>등급</th><th>M/M</th><th>직접인건비</th></tr></thead>
+      <tbody>
+        <tr><td>기획/전략</td><td>고급기술자</td><td>0.5</td><td>4,379,323원</td></tr>
+        <tr class="highlight"><td>UI Design</td><td>고급기술자</td><td>1.0</td><td>8,758,646원 ★</td></tr>
+        <tr class="highlight"><td>UI Design</td><td>중급기술자</td><td>1.0</td><td>6,971,424원 ★</td></tr>
+        <tr><td>카피라이팅</td><td>중급기술자</td><td>0.3</td><td>2,091,427원</td></tr>
+      </tbody>
+    </table>
+    <div class="margin-row">
+      <div class="margin-card"><div class="margin-pct" style="color:var(--ink2);">~13%</div><div class="margin-label">A안 표준</div><div class="margin-price">32,000,000원</div></div>
+      <div class="margin-card rec"><div class="margin-pct">~21%</div><div class="margin-label">B안 권장</div><div class="margin-price">35,000,000원</div></div>
+      <div class="margin-card"><div class="margin-pct" style="color:var(--ink2);">~31%</div><div class="margin-label">C안 프리미엄</div><div class="margin-price">40,000,000원</div></div>
+    </div>
+    <p style="font-size:11px;color:var(--ink3);">★ UI Design 직접인건비 15,730,070원 = MX실 매출 / 최종 견적가 결정은 실장님 직접</p>
+  </div>
+  <div class="slide-num">39 / 41</div>
+</div>
+
+<!-- S40 제안 이유 -->
+<div class="slide slide-dark">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 8 클로징</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+    <div class="part-label">왜 지금, 왜 이 방향인가</div>
+    <h2>제안 이유 3가지</h2>
+    <div class="three-col">
+      <div class="inner-card"><div class="inner-label">이유 1 · 시장 타이밍</div><div class="inner-val" style="font-size:15px;">퍼스널컬러 피로가 정점 — 자율성 포지션 선점할 최적 시기</div></div>
+      <div class="inner-card"><div class="inner-label">이유 2 · 포지션 공백</div><div class="inner-val" style="font-size:15px;">"컬러 자율성" 우상단 포지션 — 경쟁 브랜드 부재 확인</div></div>
+      <div class="inner-card"><div class="inner-label">이유 3 · 실행 가능</div><div class="inner-val" style="font-size:15px;">정적 JPG 제약 안에서 구현 가능한 감성 설계 완비</div></div>
+    </div>
+  </div>
+  <div class="slide-num">40 / 41</div>
+</div>
+
+<!-- S41 다음 단계 -->
+<div class="slide slide-coral">
+  <div class="brand-mark">WAKEMAKE × OLIVEYOUNG · PART 8 클로징</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;">
+    <div class="part-label">다음 단계</div>
+    <h1 style="font-size:clamp(28px,3.5vw,44px);">컨셉 선택 →<br>디자인 착수</h1>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-sm);padding:16px 18px;"><div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.6);margin-bottom:8px;">STEP 1</div><div style="font-size:14px;font-weight:700;color:#fff;">컨셉 1안 선택<br>(C01 / C05 / C04)</div></div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-sm);padding:16px 18px;"><div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.6);margin-bottom:8px;">STEP 2</div><div style="font-size:14px;font-weight:700;color:#fff;">촬영 방향 확정<br>&amp; 일정 협의</div></div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-sm);padding:16px 18px;"><div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.6);margin-bottom:8px;">STEP 3</div><div style="font-size:14px;font-weight:700;color:#fff;">견적 최종 확정<br>&amp; 계약</div></div>
+      <div style="background:rgba(255,255,255,0.25);border-radius:var(--radius-sm);padding:16px 18px;border:2px solid rgba(255,255,255,0.4);"><div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.7);margin-bottom:8px;">STEP 4</div><div style="font-size:14px;font-weight:700;color:#fff;">디자인 착수<br>Week 1 시작</div></div>
+    </div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.65);">담당자 연락처 · hivelab.co.kr · MX실</p>
+  </div>
+  <div class="slide-num">41 / 41</div>
+</div>
+
+</body>
+</html>

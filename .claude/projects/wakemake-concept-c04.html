@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>WAKEMAKE × OliveYoung — Concept C04 · 계절 감각</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+:root {
+  --bg: #EBEBEB;
+  --card: #FFFFFF;
+  --ink: #111111;
+  --ink2: #4A4944;
+  --ink3: #8A8780;
+  --border: #E2E2E2;
+  --cream: #F5F5F5;
+  --coral: #E8502A;
+  --peach: #F2B89A;
+  --brass: #B8860B;
+  --sans: "Pretendard Variable", Pretendard, sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: var(--sans);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* ── 레이아웃 ── */
+.page-wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── 커버 카드 ── */
+.cover-card {
+  background: #111111;
+  border-radius: var(--radius);
+  padding: 56px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.cover-left {}
+.cover-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.cover-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--brass);
+}
+.cover-sub {
+  font-size: 15px;
+  color: #8A8780;
+  margin-top: 12px;
+  font-family: var(--mono);
+}
+.cover-right {
+  display: flex;
+  gap: 24px;
+}
+.cover-stat {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  padding: 24px 28px;
+  text-align: center;
+  min-width: 140px;
+}
+.cover-stat-num {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--brass);
+  font-family: var(--mono);
+}
+.cover-stat-label {
+  font-size: 11px;
+  color: #8A8780;
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+}
+.cover-points {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cover-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #C5C0BA;
+  line-height: 1.5;
+}
+.cover-point::before {
+  content: "→";
+  color: var(--brass);
+  font-family: var(--mono);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── 메인 2컬럼 ── */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 430px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── 좌측 패널 ── */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.strategy-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  border: 1px solid var(--border);
+}
+.strategy-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.strategy-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.strategy-fit-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+.strategy-fit-track {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.strategy-fit-fill {
+  height: 100%;
+  width: 80%;
+  background: linear-gradient(90deg, var(--coral), var(--brass));
+  border-radius: 99px;
+}
+.strategy-fit-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brass);
+}
+.strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.strategy-item {
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+.strategy-item-label {
+  font-size: 10px;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.strategy-item-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.key-copy-card {
+  background: #111111;
+  border-radius: var(--radius);
+  padding: 36px 40px;
+}
+.key-copy-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.key-copy-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.55;
+}
+.key-copy-text em {
+  color: var(--coral);
+  font-style: normal;
+}
+.key-copy-cta {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 99px;
+}
+
+.mood-explain-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  border: 1px solid var(--border);
+}
+.mood-explain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.mood-explain-item {
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mood-explain-item.morning {
+  background: linear-gradient(160deg, #FFF3E0 0%, #FFE0B2 100%);
+}
+.mood-explain-item.golden {
+  background: linear-gradient(160deg, #FFCC80 0%, #FFB74D 100%);
+}
+.mood-explain-item.evening {
+  background: linear-gradient(160deg, #FF8A65 0%, #E8502A 100%);
+}
+.mood-explain-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.5);
+  text-transform: uppercase;
+}
+.mood-explain-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111111;
+}
+.mood-explain-desc {
+  font-size: 12px;
+  color: rgba(0,0,0,0.55);
+  line-height: 1.5;
+}
+
+/* ── 비교표 ── */
+.compare-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  border: 1px solid var(--border);
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 13px;
+}
+.compare-table th {
+  background: var(--cream);
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--border);
+}
+.compare-table th.active-col {
+  background: var(--coral);
+  color: #fff;
+}
+.compare-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+  line-height: 1.5;
+  vertical-align: top;
+}
+.compare-table td.active-col {
+  background: #FFF5F2;
+  font-weight: 600;
+  color: var(--ink);
+}
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+.badge-coral { background: var(--coral); color: #fff; }
+.badge-brass { background: var(--brass); color: #fff; }
+.badge-ink3 { background: var(--border); color: var(--ink3); }
+
+/* ── 우측 모바일 프레임 ── */
+.right-panel {
+  position: sticky;
+  top: 40px;
+}
+
+.phone-wrapper {
+  width: 390px;
+  background: #1C1C1E;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 40px 80px rgba(0,0,0,0.4),
+    0 80px 120px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.phone-notch {
+  width: 120px;
+  height: 36px;
+  background: #1C1C1E;
+  border-radius: 0 0 20px 20px;
+  margin: 0 auto 0;
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.phone-notch-pill {
+  width: 60px;
+  height: 5px;
+  background: #3A3A3C;
+  border-radius: 99px;
+}
+
+.phone-screen {
+  width: 100%;
+  border-radius: 32px;
+  background: #FFFFF8;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 780px;
+  scrollbar-width: none;
+  position: relative;
+}
+.phone-screen::-webkit-scrollbar { display: none; }
+
+/* ── PDP 내부 섹션들 ── */
+.pdp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,253,0.9);
+  backdrop-filter: blur(8px);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.pdp-nav-logo {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #111;
+}
+.pdp-nav-cart {
+  width: 28px;
+  height: 28px;
+  border-radius: 99px;
+  background: var(--coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+}
+
+/* S1 Hero */
+.pdp-hero {
+  position: relative;
+  height: 420px;
+  background: linear-gradient(
+    165deg,
+    #FFD54F 0%,
+    #FFAB40 25%,
+    #FF7043 55%,
+    #E8502A 80%,
+    #BF360C 100%
+  );
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px 20px;
+}
+.pdp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,255,200,0.35) 0%, transparent 60%);
+}
+.pdp-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 9px;
+  font-family: var(--mono);
+  color: #fff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  width: fit-content;
+  position: relative;
+}
+.pdp-hero-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #FFD54F;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+.pdp-hero-headline {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  position: relative;
+}
+.pdp-hero-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.78);
+  margin-top: 8px;
+  line-height: 1.55;
+  position: relative;
+}
+.pdp-hero-light {
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,240,150,0.55) 0%, transparent 70%);
+}
+.pdp-hero-light2 {
+  position: absolute;
+  bottom: 30px;
+  left: -20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+}
+
+/* S2 Season Color */
+.pdp-section {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.pdp-section-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pdp-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.pdp-section-sub {
+  font-size: 11px;
+  color: var(--ink3);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.color-palette-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.color-swatch {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.color-swatch-block {
+  height: 64px;
+  border-radius: 8px 8px 0 0;
+}
+.color-swatch-info {
+  padding: 6px 8px;
+  background: var(--cream);
+  border-radius: 0 0 8px 8px;
+}
+.color-swatch-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.color-swatch-code {
+  font-size: 8px;
+  font-family: var(--mono);
+  color: var(--ink3);
+}
+.season-limited-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFF5F2;
+  border: 1px solid var(--coral);
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-size: 9px;
+  font-family: var(--mono);
+  color: var(--coral);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* S3 Mood */
+.time-blocks {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.time-block {
+  flex: 1;
+  border-radius: 10px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.time-block.am {
+  background: linear-gradient(180deg, #FFF8E1 0%, #FFE0B2 100%);
+}
+.time-block.pm {
+  background: linear-gradient(180deg, #FFCC80 0%, #FFA726 100%);
+}
+.time-block.eve {
+  background: linear-gradient(180deg, #FF8A65 0%, #E8502A 100%);
+}
+.time-block-time {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: rgba(0,0,0,0.45);
+  letter-spacing: 0.1em;
+}
+.time-block-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #111;
+}
+.time-block.eve .time-block-name { color: #fff; }
+.time-block.eve .time-block-time { color: rgba(255,255,255,0.6); }
+.time-block-color-dots {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+}
+.time-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* S4 Limited */
+.pdp-limited {
+  padding: 24px 20px;
+  background: #111111;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.pdp-limited-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.pdp-limited-headline {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.countdown-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.countdown-item {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 4px;
+  text-align: center;
+}
+.countdown-num {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brass);
+  line-height: 1;
+}
+.countdown-unit {
+  font-size: 8px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 3px;
+  letter-spacing: 0.1em;
+}
+.limited-progress-track {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.limited-progress-fill {
+  height: 100%;
+  width: 73%;
+  background: linear-gradient(90deg, var(--brass), #FFD54F);
+  border-radius: 99px;
+}
+.limited-progress-label {
+  font-size: 9px;
+  font-family: var(--mono);
+  color: rgba(255,255,255,0.45);
+}
+.limited-progress-label span { color: var(--coral); font-weight: 700; }
+
+/* S5 Skin Story */
+.skin-swatches {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.skin-swatch {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.skin-swatch-upper {
+  height: 60px;
+  position: relative;
+  display: flex;
+}
+.skin-tone-bg {
+  width: 50%;
+}
+.skin-color-overlay {
+  width: 50%;
+  position: relative;
+}
+.skin-swatch-lower {
+  padding: 8px;
+  background: var(--cream);
+}
+.skin-swatch-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.skin-swatch-desc {
+  font-size: 8px;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+/* S6 OliveYoung */
+.pdp-oly {
+  padding: 24px 20px;
+  background: linear-gradient(135deg, #FFFDE7 0%, #FFF8E1 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.oly-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brass);
+  color: #fff;
+  font-size: 9px;
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.oly-headline {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+.oly-desc {
+  font-size: 11px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+.oly-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.oly-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--ink2);
+}
+.oly-feature-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(184,134,11,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* S7 Review */
+.review-item {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 8px;
+}
+.review-stars {
+  color: var(--brass);
+  font-size: 10px;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+.review-text {
+  font-size: 11px;
+  color: var(--ink2);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.review-author {
+  font-size: 9px;
+  font-family: var(--mono);
+  color: var(--ink3);
+}
+.review-tag {
+  display: inline-block;
+  background: #FFF5F2;
+  border: 1px solid var(--peach);
+  color: var(--coral);
+  font-size: 8px;
+  font-family: var(--mono);
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+  margin-bottom: 6px;
+}
+
+/* S8 CTA */
+.pdp-cta {
+  padding: 28px 20px;
+  text-align: center;
+  background: var(--card);
+}
+.pdp-cta-urgency {
+  font-size: 10px;
+  font-family: var(--mono);
+  color: var(--coral);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.pdp-cta-btn {
+  width: 100%;
+  background: var(--coral);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  letter-spacing: 0.02em;
+  display: block;
+  cursor: pointer;
+}
+.pdp-cta-sub {
+  margin-top: 10px;
+  font-size: 10px;
+  color: var(--ink3);
+  line-height: 1.5;
+}
+
+/* ── section label 공통 ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+/* ── 가격 정보 ── */
+.pdp-price-row {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: var(--card);
+}
+.pdp-brand-name {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pdp-product-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.pdp-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.pdp-price-og {
+  font-size: 12px;
+  color: var(--ink3);
+  text-decoration: line-through;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.pdp-price-disc {
+  font-size: 13px;
+  color: var(--coral);
+  font-weight: 700;
+  margin-left: 6px;
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ── 커버 카드 ── -->
+  <div class="cover-card">
+    <div class="cover-left">
+      <div class="cover-label">WAKEMAKE × OliveYoung · PDP 리뉴얼 제안 · Concept C04</div>
+      <div class="cover-title">계절 <em>감각</em><br>Season Sense</div>
+      <div class="cover-sub">2026. SUMMER LIMITED — BRAND × CHANNEL WORLD</div>
+      <div class="cover-points">
+        <div class="cover-point">시즌 urgency로 구매 결정을 앞당기는 "지금 아니면 없다" 세계관</div>
+        <div class="cover-point">골든아워 빛 무드 — 여름의 찰나를 색으로 담아내는 감각적 스토리텔링</div>
+        <div class="cover-point">올리브영 익일배송과 시즌 urgency를 하나의 카피로 연결하는 채널 강점 극대화</div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-stat">
+        <div class="cover-stat-num">8</div>
+        <div class="cover-stat-label">/ 10<br>Strategic Fit</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num" style="color:var(--coral);">1st</div>
+        <div class="cover-stat-label">Urgency<br>스코어</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num" style="font-size:24px;">SUMMER<br>ONLY</div>
+        <div class="cover-stat-label">채널 전략<br>포지션</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 메인 2컬럼 ── -->
+  <div class="main-layout">
+
+    <!-- ── 좌측 패널 ── -->
+    <div class="left-panel">
+
+      <!-- 전략 카드 -->
+      <div class="strategy-card">
+        <div class="strategy-label">Strategy Overview</div>
+        <div class="strategy-title">C04 "계절 감각" — 전략 포인트</div>
+        <div class="strategy-fit-bar">
+          <div class="strategy-fit-track"><div class="strategy-fit-fill"></div></div>
+          <div class="strategy-fit-label">8 / 10</div>
+        </div>
+        <div class="strategy-grid">
+          <div class="strategy-item">
+            <div class="strategy-item-label">Core Mechanic</div>
+            <div class="strategy-item-value">시즌 urgency → 브랜드 세계관 확장</div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-item-label">Key Tension</div>
+            <div class="strategy-item-value">"이 여름이 지나기 전에" — 시간 감각</div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-item-label">Visual Mood</div>
+            <div class="strategy-item-value">골든아워 빛, 여름 리미티드, 따뜻한 한정감</div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-item-label">Channel Fit</div>
+            <div class="strategy-item-value">OliveYoung 익일배송 × 시즌 urgency 시너지</div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-item-label">Strength</div>
+            <div class="strategy-item-value">구매 전환 직결. 세계관 + 실용 이중 효과</div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-item-label">Risk</div>
+            <div class="strategy-item-value">시즌 한정 — 비수기 활용 어려움</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 핵심 카피 카드 -->
+      <div class="key-copy-card">
+        <div class="key-copy-label">Core Copy System</div>
+        <div class="key-copy-text">
+          "이 여름이 지나기 전에,<br>
+          지금 당신이 고르고 싶은<br>
+          <em>색이 있다.</em>"
+        </div>
+        <div style="margin-top:20px; font-size:13px; color:#8A8780; line-height:1.7;">
+          — 서브 카피: "여름은 짧고, 색은 선명하다."<br>
+          — OLY 카피: "오늘 결정하고 내일 받는 것. 올리브영이기 때문이다."<br>
+          — CTA: "이번 여름 담기"
+        </div>
+        <div style="margin-top:20px;">
+          <span class="key-copy-cta">이번 여름 담기 →</span>
+        </div>
+      </div>
+
+      <!-- 무드 설명 -->
+      <div class="mood-explain-card">
+        <div class="strategy-label">Mood System — 시간대별 색감 세계관</div>
+        <div style="font-size:14px; font-weight:700; margin-bottom:4px;">여름 하루의 빛을 피부 위에</div>
+        <div style="font-size:12px; color:var(--ink3); margin-bottom:0; line-height:1.5;">오전 햇살부터 황금빛 오후, 노을빛 저녁까지 — 하루의 빛이 컬러가 된다.</div>
+        <div class="mood-explain-grid">
+          <div class="mood-explain-item morning">
+            <div class="mood-explain-time">06:00 – 10:00 AM</div>
+            <div class="mood-explain-name">Morning Dew</div>
+            <div class="mood-explain-desc">아직 뜨겁지 않은 여름 아침. 투명하고 선한 빛.</div>
+          </div>
+          <div class="mood-explain-item golden">
+            <div class="mood-explain-time">03:00 – 06:00 PM</div>
+            <div class="mood-explain-name">Golden Hour</div>
+            <div class="mood-explain-desc">황금빛이 모든 것을 물들이는 최고의 순간.</div>
+          </div>
+          <div class="mood-explain-item evening">
+            <div class="mood-explain-time">07:00 – 09:00 PM</div>
+            <div class="mood-explain-name">Sunset Flush</div>
+            <div class="mood-explain-desc">여름이 끝나가는 아쉬움. 가장 짙고 아름다운 색.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3안 비교표 -->
+      <div class="compare-card">
+        <div class="strategy-label">3안 종합 비교</div>
+        <div class="section-title" style="margin-bottom:4px;">C01 vs C05 vs <span style="color:var(--coral);">C04</span></div>
+        <div style="font-size:12px; color:var(--ink3); margin-bottom:0;">세 컨셉의 포지션·강도·채널 시너지를 한 눈에</div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>C01 · 무계획 미</th>
+              <th class="active-col">C04 · 계절 감각 ★</th>
+              <th>C05 · 나만의 실험실</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">Strategic Fit</td>
+              <td>7 / 10</td>
+              <td class="active-col"><span class="badge badge-coral">8 / 10</span></td>
+              <td>6 / 10</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">핵심 무드</td>
+              <td>자연스러움, 즉흥, 트렌디</td>
+              <td class="active-col">시즌 urgency, 골든아워, 한정감</td>
+              <td>개인화, 실험, 발견</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">타겟 반응</td>
+              <td>"나도 저렇게 하고 싶다"</td>
+              <td class="active-col">"지금 사야 한다" → 즉시 전환</td>
+              <td>"내 것을 찾겠다"</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">OLY 채널 시너지</td>
+              <td>중간 — 일반 제품군 어필</td>
+              <td class="active-col"><span class="badge badge-brass">최강</span> — 익일배송 × urgency</td>
+              <td>낮음 — 탐색형, 전환 약함</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">비주얼 강도</td>
+              <td>부드럽고 일상적</td>
+              <td class="active-col">강렬한 컬러 드라마, 한정 에너지</td>
+              <td>실험적, 개성 강함</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">리스크</td>
+              <td>차별화 약함, 유사 브랜드 多</td>
+              <td class="active-col">시즌 한정 — 비수기 연장 어려움</td>
+              <td>타겟 층 좁음, 진입 장벽</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">추천 시기</td>
+              <td>연중 사용 가능</td>
+              <td class="active-col"><span class="badge badge-coral">여름 시즌 집중</span></td>
+              <td>가을·겨울 시즌 연계</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600; color:var(--ink);">최종 추천</td>
+              <td><span class="badge badge-ink3">보류</span></td>
+              <td class="active-col"><span class="badge badge-coral">여름 메인 채택 ★</span></td>
+              <td><span class="badge badge-ink3">차기 시즌 검토</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ── 우측 모바일 프레임 ── -->
+    <div class="right-panel">
+      <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.12em; color:var(--ink3); text-transform:uppercase; margin-bottom:12px; text-align:center;">Mobile PDP Simulation — 390px</div>
+      <div class="phone-wrapper">
+        <div class="phone-notch">
+          <div class="phone-notch-pill"></div>
+        </div>
+        <div class="phone-screen">
+
+          <!-- Nav -->
+          <div class="pdp-nav">
+            <div class="pdp-nav-logo">WAKEMAKE</div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div style="font-size:11px;color:var(--ink3);">♡</div>
+              <div class="pdp-nav-cart">2</div>
+            </div>
+          </div>
+
+          <!-- S1 Hero -->
+          <div class="pdp-hero">
+            <div class="pdp-hero-light"></div>
+            <div class="pdp-hero-light2"></div>
+            <div class="pdp-hero-badge">
+              <div class="pdp-hero-dot"></div>
+              2026 SUMMER LIMITED
+            </div>
+            <div class="pdp-hero-headline">이 여름이<br>지나기 전에.</div>
+            <div class="pdp-hero-sub">지금 당신이 고르고 싶은<br>색이 있다. 여름은 짧고, 색은 선명하다.</div>
+          </div>
+
+          <!-- 제품 정보 -->
+          <div class="pdp-price-row">
+            <div class="pdp-brand-name">WAKEMAKE</div>
+            <div class="pdp-product-name">위크메이크 컬러 립 트리트먼트<br>2026 여름 한정 컬렉션</div>
+            <div>
+              <span class="pdp-price">15,900원</span>
+              <span class="pdp-price-og">19,900원</span>
+              <span class="pdp-price-disc">20%↓</span>
+            </div>
+          </div>
+
+          <!-- S2 Season Color -->
+          <div class="pdp-section">
+            <div class="pdp-section-label">Season Color · S2</div>
+            <div class="pdp-section-title">이 여름의 색</div>
+            <div class="pdp-section-sub">골든아워부터 노을빛까지, 여름만의 컬러 4가지</div>
+            <div class="color-palette-row">
+              <div class="color-swatch">
+                <div class="color-swatch-block" style="background:#FFB74D;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Morning Gold</div>
+                  <div class="color-swatch-code">#FFB74D</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-block" style="background:#F2B89A;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Peach Glow</div>
+                  <div class="color-swatch-code">#F2B89A</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-block" style="background:#E8502A;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Sunset Coral</div>
+                  <div class="color-swatch-code">#E8502A</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-block" style="background:#B8860B;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Brass Hour</div>
+                  <div class="color-swatch-code">#B8860B</div>
+                </div>
+              </div>
+            </div>
+            <div class="season-limited-tag">⚡ 2026 SUMMER ONLY</div>
+          </div>
+
+          <!-- S3 Mood -->
+          <div class="pdp-section">
+            <div class="pdp-section-label">Mood · S3</div>
+            <div class="pdp-section-title">시간이 만드는 색</div>
+            <div class="time-blocks">
+              <div class="time-block am">
+                <div class="time-block-time">06–10AM</div>
+                <div class="time-block-name">Morning</div>
+                <div class="time-block-color-dots">
+                  <div class="time-dot" style="background:#FFF9C4;"></div>
+                  <div class="time-dot" style="background:#FFE082;"></div>
+                  <div class="time-dot" style="background:#FFCC80;"></div>
+                </div>
+              </div>
+              <div class="time-block pm">
+                <div class="time-block-time">03–06PM</div>
+                <div class="time-block-name">Golden</div>
+                <div class="time-block-color-dots">
+                  <div class="time-dot" style="background:#FFCC80;"></div>
+                  <div class="time-dot" style="background:#FFA726;"></div>
+                  <div class="time-dot" style="background:#FF8F00;"></div>
+                </div>
+              </div>
+              <div class="time-block eve">
+                <div class="time-block-time">07–09PM</div>
+                <div class="time-block-name">Sunset</div>
+                <div class="time-block-color-dots">
+                  <div class="time-dot" style="background:#FF8A65;"></div>
+                  <div class="time-dot" style="background:#E8502A;"></div>
+                  <div class="time-dot" style="background:#BF360C;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S4 Limited -->
+          <div class="pdp-limited">
+            <div class="pdp-limited-label">Limited Season · S4</div>
+            <div class="pdp-limited-headline">이 시즌이 지나면<br>없어집니다.</div>
+            <div class="countdown-row">
+              <div class="countdown-item">
+                <div class="countdown-num">61</div>
+                <div class="countdown-unit">DAYS</div>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-num">14</div>
+                <div class="countdown-unit">HRS</div>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-num">27</div>
+                <div class="countdown-unit">MIN</div>
+              </div>
+            </div>
+            <div style="font-size:9px; color:rgba(255,255,255,0.5); margin-bottom:12px; font-family:var(--mono);">2026 SUMMER EDITION 종료까지</div>
+            <div class="limited-progress-track">
+              <div class="limited-progress-fill"></div>
+            </div>
+            <div class="limited-progress-label">전체 물량의 <span>73%</span> 판매 완료 · 재입고 없음</div>
+          </div>
+
+          <!-- S5 Skin Story -->
+          <div class="pdp-section">
+            <div class="pdp-section-label">Skin Story · S5</div>
+            <div class="pdp-section-title">내 피부 위의 여름</div>
+            <div class="pdp-section-sub">당신의 스킨톤에 맞는 여름 색을 고르세요.</div>
+            <div class="skin-swatches">
+              <div class="skin-swatch">
+                <div class="skin-swatch-upper">
+                  <div class="skin-tone-bg" style="background:#F5CBA7;"></div>
+                  <div class="skin-color-overlay" style="background:linear-gradient(135deg,#FFB74D,#F2B89A);"></div>
+                </div>
+                <div class="skin-swatch-lower">
+                  <div class="skin-swatch-name">라이트</div>
+                  <div class="skin-swatch-desc">Morning Gold</div>
+                </div>
+              </div>
+              <div class="skin-swatch">
+                <div class="skin-swatch-upper">
+                  <div class="skin-tone-bg" style="background:#E8A87C;"></div>
+                  <div class="skin-color-overlay" style="background:linear-gradient(135deg,#F2B89A,#E8502A);"></div>
+                </div>
+                <div class="skin-swatch-lower">
+                  <div class="skin-swatch-name">미디엄</div>
+                  <div class="skin-swatch-desc">Peach Flush</div>
+                </div>
+              </div>
+              <div class="skin-swatch">
+                <div class="skin-swatch-upper">
+                  <div class="skin-tone-bg" style="background:#C68642;"></div>
+                  <div class="skin-color-overlay" style="background:linear-gradient(135deg,#E8502A,#B8860B);"></div>
+                </div>
+                <div class="skin-swatch-lower">
+                  <div class="skin-swatch-name">딥</div>
+                  <div class="skin-swatch-desc">Sunset Coral</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S6 OliveYoung Only -->
+          <div class="pdp-oly">
+            <div class="oly-badge">★ OliveYoung ONLY</div>
+            <div class="oly-headline">오늘 결정하고<br>내일 받는 것.</div>
+            <div class="oly-desc">올리브영이기 때문이다. 이 여름이 끝나기 전에, 지금 주문하면 내일 손에 쥘 수 있습니다.</div>
+            <div class="oly-features">
+              <div class="oly-feature">
+                <div class="oly-feature-icon">🚀</div>
+                <div>오늘 밤 12시 전 주문 → <strong>내일 도착</strong> 보장</div>
+              </div>
+              <div class="oly-feature">
+                <div class="oly-feature-icon">📦</div>
+                <div>올리브영 단독 구성 · 타 채널 미출시</div>
+              </div>
+              <div class="oly-feature">
+                <div class="oly-feature-icon">🎁</div>
+                <div>여름 에디션 전용 패키지 · 리미티드 박스</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S7 Review -->
+          <div class="pdp-section">
+            <div class="pdp-section-label">Review · S7</div>
+            <div class="pdp-section-title" style="font-size:15px;">"여름에 딱 맞는 색"</div>
+            <div class="review-item">
+              <div class="review-tag">☀ 여름 추천</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">"이 색 진짜 여름 느낌 그 자체예요. 선크림 바르고 이거 하나만 해도 완성. 골든아워 때 사진 찍으면 진짜 예쁘게 나와요."</div>
+              <div class="review-author">kim**yoya · 스킨톤 미디엄 · 구매 인증</div>
+            </div>
+            <div class="review-item">
+              <div class="review-tag">⚡ 한정판 구매</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">"한정판이라 망설였는데 바로 오늘 시켰어요. 내일 도착이라니 올리브영 너무 좋다. 색이 딱 제가 찾던 노을빛이에요."</div>
+              <div class="review-author">summer_l**e · 스킨톤 라이트 · 구매 인증</div>
+            </div>
+          </div>
+
+          <!-- S8 CTA -->
+          <div class="pdp-cta">
+            <div class="pdp-cta-urgency">⚡ 73% 판매 완료 · 재입고 없음 · 이번 여름이 마지막</div>
+            <button class="pdp-cta-btn">이번 여름 담기</button>
+            <div class="pdp-cta-sub">오늘 주문 → 내일 도착 · 올리브영 단독</div>
+          </div>
+
+          <div style="height:32px;"></div>
+        </div><!-- /phone-screen -->
+      </div><!-- /phone-wrapper -->
+    </div><!-- /right-panel -->
+
+  </div><!-- /main-layout -->
+
+</div><!-- /page-wrapper -->
+</body>
+</html>
