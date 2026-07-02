@@ -297,7 +297,6 @@ function readKimHyojungLog(){
   // 데이터 읽기
   var data=sh.getRange(2,1,last-1,sh.getLastColumn()).getValues();
   var log=[];
-  var TIMES=['10–12','12–14','14–16','16–18','18–20'];
 
   for(var i=0;i<data.length;i++){
     var r=data[i];
@@ -365,7 +364,7 @@ function generateDashboardHtml(log){
     '<script>'+
     'var LOG='+logJson+';var selectedWeek=null;'+
     'var CATS=[["AI","AI작업","#CECBF6"],["견적","제안/견적","#F5C4B3"],["디자인","디자인/GUI","#F4C0D1"],["문서","문서/리포트","#B5D4F4"],["미팅","미팅","#FAC775"],["세일즈","세일즈/BD","#9FE1CB"],["운영","운영/HR","#C0DD97"]];'+
-    'var TIMES=["10–12","12–14","14–16","16–18","18–20"];'+
+    'var TIMES=["06–08","08–10","10–12","12–14","14–16","16–18","18–20","20–22","22–24"];'+
     'function isoWeek(d){var t=new Date(d);t.setHours(0,0,0,0);t.setDate(t.getDate()+3-((t.getDay()+6)%7));var w1=new Date(t.getFullYear(),0,4);return 1+Math.round(((t-w1)/86400000-3+((w1.getDay()+6)%7))/7)}'+
     'function mondayOf(d){var t=new Date(d);var day=t.getDay();var diff=t.getDate()-day+(day===0?-6:1);return new Date(t.setDate(diff))}'+
     'function fmtDate(d){return d.getFullYear()+"-"+(d.getMonth()+1).toString().padStart(2,"0")+"-"+d.getDate().toString().padStart(2,"0")}'+
