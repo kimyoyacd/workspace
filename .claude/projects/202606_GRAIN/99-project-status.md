@@ -1,4 +1,7 @@
 # GRAIN · Project Status Dashboard
+
+> ⚠️ **폐기(구버전 대시보드) — 2026-07-02.** 이 파일은 "Ritual Moment/Gravity Well"(MAX Lab 초기 버전) 기준 현황판이며, v1("Gravity is Proof")·v2("Time Lies About What It's Made Of") 어느 쪽과도 다른 제3의 구버전 정보입니다. 현재 진행 현황·확정 사항은 `00-project-index.md`를 참조하세요. 이 파일은 과거 기록 보존 목적으로만 남겨둡니다.
+
 > 2026-06-30 기준  
 > 모드: 전략 기획 완료 → P1 제품 설계 준비 단계
 

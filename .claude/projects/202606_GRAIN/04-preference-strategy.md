@@ -1,4 +1,7 @@
 # GRAIN · Manus 1 Step 5~6 + Gate 1
+
+> ⚠️ **v2로 대체되어 이 파일의 Director Decision은 더 이상 유효하지 않음.** v1("Gravity is Proof") 폐기 시점(2026-07-01)에 함께 폐기됨. 현재 유효한 방향은 `00-project-index.md` 및 `10-gate1-v2-surreal-matter.md` 참조.
+
 > 2026-07-01 · concept-director 에이전트 산출
 
 ## Step 5. 선호도 분석
