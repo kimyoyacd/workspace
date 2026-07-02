@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>MAX실 OS Dashboard v5 — 24 에이전트 · 자동화 · WAKEMAKE 완성</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#FAFAF7;--card:#fff;--ink:#141414;--ink2:#4A4944;--ink3:#8A8780;--line:#E8E5DE;--line2:#F1EEE7;--accent:#FF6B35;--sig:#2F3E5F;--sig-soft:#EEF1F7;--ok:#2D7A4F;--ok-soft:#E5F2E9;--warn:#C77A0F;--warn-soft:#FFF6E5;--danger:#B23B3B;--new:#5B4FCF;--new-soft:#EEEAFD;}
+html,body{background:#fff;margin:0;padding:0;}*{box-sizing:border-box;}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);font-size:13px;line-height:1.6;background:var(--bg);}
+.wrap{max-width:1280px;margin:0 auto;padding:0 0 70px;}
+.header{background:linear-gradient(135deg,#111111,#2A2A2A 60%,#1A1A1A);color:#fff;padding:22px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.header h1{margin:0 0 3px;font-size:19px;font-weight:900;letter-spacing:-.4px;}
+.header h1 em{color:#C9942A;font-style:normal;}
+.header .sub{font-size:11px;color:rgba(255,255,255,.5);}
+.hstats{display:flex;gap:22px;align-items:center;}
+.hstat{text-align:center;}.hstat .n{font-size:22px;font-weight:900;line-height:1;}.hstat .l{font-size:10px;color:rgba(255,255,255,.45);margin-top:3px;}
+.hstat .n.coral{color:#E8502A;}.hstat .n.brass{color:#C9942A;}
+.hdiv{width:1px;height:32px;background:rgba(255,255,255,.12);}
+.nav{background:var(--card);border-bottom:1px solid var(--line);padding:0 36px;display:flex;position:sticky;top:0;z-index:50;overflow-x:auto;box-shadow:0 1px 8px rgba(0,0,0,.05);}
+.tab{padding:13px 17px;font-size:12px;font-weight:600;color:var(--ink3);border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;}
+.tab:hover{color:var(--ink);}.tab.active{color:var(--ink);border-bottom-color:var(--ink);}
+.tab .badge{display:inline-block;background:var(--new);color:#fff;font-size:8px;font-weight:800;padding:1px 5px;border-radius:8px;margin-left:4px;vertical-align:middle;}
+.main{padding:28px 36px 0;}.section{display:none;}.section.active{display:block;}
+.stitle{font-size:20px;font-weight:900;margin:0 0 4px;letter-spacing:-.5px;}
+.sdesc{font-size:12px;color:var(--ink3);margin:0 0 20px;}
+.alert{background:var(--ok-soft);border:1px solid #D4E5D9;border-left:3px solid var(--ok);border-radius:6px;padding:11px 15px;margin-bottom:14px;font-size:12px;color:var(--ink2);display:flex;gap:10px;}
+.alert.warn{background:var(--warn-soft);border-color:#F0DDB0;border-left-color:var(--warn);}
+.alert.sig{background:var(--sig-soft);border-color:#D5DCEA;border-left-color:var(--sig);}
+.alert.new{background:var(--new-soft);border-color:#C8C0F5;border-left-color:var(--new);}
+.hub{background:linear-gradient(180deg,#161616,#2A2A2A);color:#fff;border-radius:10px;padding:14px 26px;text-align:center;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,.18);}
+.hub .lab{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);text-transform:uppercase;}
+.hub .nm{font-size:14px;font-weight:800;margin-top:2px;}.hub .sb{font-size:10px;color:rgba(255,255,255,.5);}
+.hubwrap{display:flex;flex-direction:column;align-items:center;margin-bottom:6px;}
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+.col{display:flex;flex-direction:column;}
+.colh{font-size:11px;font-weight:800;letter-spacing:.3px;padding:9px 12px;border-radius:6px 6px 0 0;display:flex;justify-content:space-between;align-items:center;}
+.g1 .colh{background:#1E2A40;color:#9AA8C4;}.g2 .colh{background:#C6DCEF;color:#1B4F6D;}.g3 .colh{background:#F2C9DF;color:#7A1F4A;}
+.g4 .colh{background:#FAF1DC;color:#7A5010;}.g5 .colh{background:#BEDDC6;color:#1A5234;}.g6 .colh{background:#E2D5F0;color:#4A2080;}
+.cnt{font-size:9px;font-weight:700;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.55);}
+.coltag{font-size:10px;color:var(--ink3);padding:5px 12px 8px;}
+.colbody{display:flex;flex-direction:column;gap:6px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 11px;transition:box-shadow .15s,transform .15s;}
+.card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);transform:translateY(-1px);}
+.cnmrow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.cnm{font-size:12.5px;font-weight:800;letter-spacing:-.2px;}
+.cstar{color:var(--accent);font-weight:900;}
+.cslug{font-size:9.5px;color:var(--ink3);font-family:ui-monospace,monospace;margin:1px 0 3px;}
+.crole{font-size:10px;color:var(--ink2);line-height:1.4;}
+.st{font-size:8px;font-weight:800;padding:1px 5px;border-radius:3px;white-space:nowrap;}
+.s-run{background:#1E2A40;color:#9AA8C4;}.s-ok{background:var(--ok-soft);color:var(--ok);}.s-warn{background:var(--warn-soft);color:var(--warn);}
+.flow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:16px;}
+.flowrow{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;}
+.fstep{border-radius:7px;padding:10px 8px;text-align:center;border:1px solid var(--line2);background:var(--bg);}
+.fstep .fn{font-size:9px;font-weight:800;color:var(--ink3);}.fstep .fw{font-size:11px;font-weight:800;margin:2px 0;}.fstep .fd{font-size:9px;color:var(--ink3);}
+.fstep.gate{background:#FFF7EF;border-color:#F2C9A0;}.fstep.user{background:#1A1A1A;color:#fff;}.fstep.user .fn,.fstep.user .fd{color:rgba(255,255,255,.55);}
+.fstep.verified{background:var(--ok-soft);border-color:#C2DFC8;}.fstep.verified .fn{color:var(--ok);}
+.tbl{width:100%;border-collapse:collapse;font-size:11.5px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.tbl th{background:var(--bg);text-align:left;padding:8px 11px;font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;border-bottom:1px solid var(--line);}
+.tbl td{padding:8px 11px;border-bottom:1px solid var(--line2);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td b{font-weight:700;}
+.tbl td .ok{color:var(--ok);font-weight:700;}.tbl td .warn{color:var(--warn);}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 17px;}
+.dcard.live{border-left:3px solid var(--ok);}
+.dcard h4{margin:0 0 6px;font-size:13px;font-weight:800;}
+.dcard .meta{font-size:11px;color:var(--ink3);line-height:1.6;}
+.dcard code{font-size:10px;background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:3px;font-family:ui-monospace,monospace;}
+.pill{font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;background:var(--ok-soft);color:var(--ok);}
+.pill.new{background:var(--new-soft);color:var(--new);}
+.scn{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 16px;margin-bottom:8px;}
+.scn h4{margin:0 0 4px;font-size:12.5px;font-weight:800;}.scn p{margin:0;font-size:11px;color:var(--ink2);}
+.scn code{font-size:10.5px;background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:3px;font-family:ui-monospace,monospace;}
+.foot{margin-top:24px;padding:12px 16px;background:var(--sig-soft);border-left:3px solid var(--sig);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;}
+.foot b{color:var(--sig);}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--ink3);margin-bottom:14px;}
+.legend span{display:flex;align-items:center;gap:5px;}
+
+/* WAKEMAKE 프로젝트 패널 */
+.wk-panel{background:#111111;color:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;}
+.wk-panel .wk-title{font-size:16px;font-weight:900;letter-spacing:-.3px;margin:0 0 4px;}
+.wk-panel .wk-title em{color:#C9942A;font-style:italic;}
+.wk-panel .wk-sub{font-size:11px;color:rgba(255,255,255,.45);margin:0 0 16px;}
+.wk-files{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.wk-file{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;}
+.wk-file .wk-tag{font-size:9px;font-weight:700;color:#C9942A;letter-spacing:.5px;margin-bottom:3px;}
+.wk-file .wk-fn{font-size:11px;font-weight:800;color:#fff;}
+.wk-file .wk-st{font-size:9px;color:rgba(255,255,255,.4);margin-top:2px;}
+.wk-file.done{border-left:2px solid #E8502A;}
+.wk-file.existing{border-left:2px solid rgba(255,255,255,.25);}
+
+/* HTML 검증 플로우 */
+.verify-flow{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:14px;flex-wrap:wrap;}
+.vf-step{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:70px;}
+.vf-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.vf-label{font-size:9px;font-weight:700;color:var(--ink3);text-align:center;line-height:1.3;}
+.vf-arrow{color:var(--ink3);font-size:14px;font-weight:700;}
+
+/* 토큰 룰 */
+.token-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.token-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;}
+.token-card .tk-label{font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;margin-bottom:4px;}
+.token-card .tk-val{font-size:11px;font-weight:800;color:var(--ink);font-family:ui-monospace,monospace;}
+.token-card .tk-desc{font-size:9px;color:var(--ink3);margin-top:2px;}
+.swatch{width:24px;height:24px;border-radius:4px;display:inline-block;border:1px solid rgba(0,0,0,.08);vertical-align:middle;margin-right:4px;}
+
+@media(max-width:900px){.groups,.dgrid,.wk-files,.token-grid{grid-template-columns:1fr;}.flowrow{grid-template-columns:1fr 1fr;}.verify-flow{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <h1>MAX실 OS Dashboard <em>v5</em> <span style="color:rgba(255,255,255,.4);font-weight:500;">· 24 에이전트 · HTML 검증 시스템 · WAKEMAKE 완성</span></h1>
+    <div class="sub">실제 파일이 존재하는 24개 에이전트 · 6그룹 · 자동화 트리거 구조 · HTML 스크린샷 검증 루프 추가 · 2026.07.02</div>
+  </div>
+  <div class="hstats">
+    <div class="hstat"><div class="n">24</div><div class="l">에이전트</div></div>
+    <div class="hdiv"></div><div class="hstat"><div class="n">6</div><div class="l">그룹</div></div>
+    <div class="hdiv"></div><div class="hstat"><div class="n coral">9</div><div class="l">WAKEMAKE 파일</div></div>
+    <div class="hdiv"></div><div class="hstat"><div class="n brass">2</div><div class="l">데이터연결</div></div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="tab active" onclick="go('org',this)">조직도 (24)</div>
+  <div class="tab" onclick="go('flow',this)">워크플로</div>
+  <div class="tab" onclick="go('html',this)">HTML 산출물 규칙 <span class="badge">NEW</span></div>
+  <div class="tab" onclick="go('wk',this)">WAKEMAKE 현황 <span class="badge">NEW</span></div>
+  <div class="tab" onclick="go('auto',this)">자동화 ⚡</div>
+  <div class="tab" onclick="go('data',this)">데이터·상태</div>
+  <div class="tab" onclick="go('manual',this)">사용법</div>
+</div>
+
+<div class="main">
+
+<!-- 조직도 -->
+<div id="s-org" class="section active">
+  <h2 class="stitle">에이전트 조직도 — 24종 · 6그룹</h2>
+  <p class="sdesc">v4 대비: concept-director·brainstormer·critic WAKEMAKE 실 검증 완료(🔵→🟢). HTML 산출물에 design-critique 검수 루프 추가.</p>
+  <div class="legend">
+    <span><span class="st s-run">검증</span> 이번 세션에서 실행 확인</span>
+    <span><span class="st s-ok">작동</span> 도구·연결 충족</span>
+    <span><span class="st s-warn">조건부</span> 추가 자료 필요</span>
+  </div>
+  <div class="hubwrap"><div class="hub"><div class="lab">MAIN SESSION</div><div class="nm">허브 (김효정 실장)</div><div class="sb">에이전트 호출·결과 종합 · 최종 결정은 실장님</div></div></div>
+
+  <div class="groups">
+    <div class="col g1">
+      <div class="colh">① 수주·전략<span class="cnt">5</span></div>
+      <div class="coltag">RFP → 시장 → 관점 → 발산 → 검증</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">RFP 분석가</span><span class="st s-ok">작동</span></div><div class="cslug">rfp-analyst</div><div class="crole">명시·숨은·미정의·위험 4분류 + 확인 질문</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">시장조사</span><span class="st s-ok">작동</span></div><div class="cslug">market-research</div><div class="crole">경쟁 30 → XY맵 → 빈자리 · WAKEMAKE 실 검증</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">컨셉 디렉터 <span class="cstar">★</span></span><span class="st s-run">검증</span></div><div class="cslug">concept-director</div><div class="crole">관점 한 문장 고정(전 매체 상속) · POV Gate</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">브레인스토머</span><span class="st s-run">검증</span></div><div class="cslug">brainstormer</div><div class="crole">발산 3방향 + 컨셉 쇼트리스트 · WAKEMAKE 검증</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">냉정한 비평가</span><span class="st s-run">검증</span></div><div class="cslug">critic</div><div class="crole">5축 점수화(/100) · Brand System Summary</div></div>
+      </div>
+    </div>
+
+    <div class="col g2">
+      <div class="colh">② 디자인 인텔리전스<span class="cnt">4</span></div>
+      <div class="coltag">트렌드·레퍼런스·시스템·검수</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">트렌드 레이더</span><span class="st s-ok">작동</span></div><div class="cslug">design-trend-radar</div><div class="crole">최근 3개월 글로벌 트렌드, 출처 필수</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">레퍼런스 큐레이터</span><span class="st s-ok">작동</span></div><div class="cslug">reference-curator</div><div class="crole">카테고리별 레퍼런스 큐레이션, 출처 필수</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">시스템 가디언</span><span class="st s-warn">조건부</span></div><div class="cslug">design-system-guardian</div><div class="crole">사내 시스템 준수 점검 · design-system.md 필요</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">디자인 비평가</span><span class="st s-run">검증</span></div><div class="cslug">design-critique</div><div class="crole">시안 6영역 🟢🟡🔴 · HTML 검수 루프 표준화</div></div>
+      </div>
+    </div>
+
+    <div class="col g3">
+      <div class="colh">③ 디자인 생성<span class="cnt">4</span></div>
+      <div class="coltag">이미지·무드보드·Figma·영상</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">비주얼 제너레이터</span><span class="st s-ok">작동</span></div><div class="cslug">visual-generator</div><div class="crole">키비주얼·목업(Higgsfield)</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">무드보드 빌더</span><span class="st s-run">검증</span></div><div class="cslug">moodboard-builder</div><div class="crole">레퍼런스+생성 무드보드 · WAKEMAKE 3방향 검증</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">피그마 브릿지</span><span class="st s-ok">작동</span></div><div class="cslug">figma-bridge</div><div class="crole">코드↔Figma 양방향</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">스토리보드 메이커</span><span class="st s-ok">작동</span></div><div class="cslug">storyboard-maker</div><div class="crole">영상·모션 콘티(Higgsfield)</div></div>
+      </div>
+    </div>
+
+    <div class="col g4">
+      <div class="colh">④ 검수 게이트<span class="cnt">4</span></div>
+      <div class="coltag">사람·외부로 가기 전</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">팩트 체커</span><span class="st s-ok">작동</span></div><div class="cslug">fact-checker</div><div class="crole">사실·숫자·인용 반증 먼저</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">5관점 패널</span><span class="st s-ok">작동</span></div><div class="cslug">review-panel</div><div class="crole">기획·크리에이터·사업·마케팅·B2B</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">딜리버리 게이트</span><span class="st s-ok">작동</span></div><div class="cslug">delivery-gate</div><div class="crole">라이트모드·PII·잘림 린트</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">톤 가디언</span><span class="st s-ok">작동</span></div><div class="cslug">tone-guardian</div><div class="crole">회신 톤·매너 교정</div></div>
+      </div>
+    </div>
+
+    <div class="col g5">
+      <div class="colh">⑤ 운영·매출<span class="cnt">3</span></div>
+      <div class="coltag">현황·견적·클라</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">프로젝트 매니저</span><span class="st s-run">검증</span><span class="st s-warn">도구단서</span></div><div class="cslug">project-manager</div><div class="crole">진행·매출·가동률(노션·시트)</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">견적 회계사</span><span class="st s-ok">작동</span></div><div class="cslug">quote-accountant</div><div class="crole">원가표+마진, UI Design만 우리실 매출</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">어카운트 레이더</span><span class="st s-warn">조건부</span></div><div class="cslug">account-radar</div><div class="crole">반복 클라 히스토리·리스크</div></div>
+      </div>
+    </div>
+
+    <div class="col g6">
+      <div class="colh">⑥ 조직·채용·법무<span class="cnt">4</span></div>
+      <div class="coltag">9→20 증원·외주·계약</div>
+      <div class="colbody">
+        <div class="card"><div class="cnmrow"><span class="cnm">크리에이티브 디렉터</span><span class="st s-ok">작동</span></div><div class="cslug">creative-director</div><div class="crole">시안 톤 최종·온보딩 팩</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">채용 레이더</span><span class="st s-warn">조건부</span></div><div class="cslug">hiring-radar</div><div class="crole">증원 파이프라인·JD</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">벤더 레이더</span><span class="st s-warn">조건부</span></div><div class="cslug">vendor-radar</div><div class="crole">외주 풀·외주비</div></div>
+        <div class="card"><div class="cnmrow"><span class="cnm">법무·컴플라이언스</span><span class="st s-ok">작동</span></div><div class="cslug">legal-compliance</div><div class="crole">계약·NDA 쟁점(자문 대체 아님)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 워크플로 -->
+<div id="s-flow" class="section">
+  <h2 class="stitle">워크플로 — Manus 3단계 (파이프라인 A)</h2>
+  <p class="sdesc">WAKEMAKE 상세페이지 실전 검증 완료. 각 단계 산출물과 Gate 기준이 확립됐다.</p>
+
+  <div style="font-size:12px;font-weight:800;margin:0 0 10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;">사전 단계</div>
+  <div class="flow" style="margin-bottom:10px;">
+    <div class="flowrow" style="grid-template-columns:1fr 1fr 1fr;max-width:500px;">
+      <div class="fstep verified"><div class="fn">0</div><div class="fw">RFP 분석</div><div class="fd">명시·숨은·위험</div></div>
+      <div class="fstep" style="background:transparent;border:none;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ink3);">→</div>
+      <div class="fstep verified"><div class="fn">과업 분해</div><div class="fw">니즈 4분류</div><div class="fd">진짜 요구 확인</div></div>
+    </div>
+  </div>
+
+  <div style="font-size:12px;font-weight:800;margin:16px 0 10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;">Manus 1 — 전략·리서치</div>
+  <div class="flow" style="margin-bottom:10px;">
+    <div class="flowrow">
+      <div class="fstep verified"><div class="fn">①</div><div class="fw">시장조사</div><div class="fd">경쟁 30·XY맵</div></div>
+      <div class="fstep gate"><div class="fn">②</div><div class="fw">컨셉 디렉터 ★</div><div class="fd">관점 한 문장</div></div>
+      <div class="fstep verified"><div class="fn">③</div><div class="fw">브레인스토머</div><div class="fd">3방향 발산</div></div>
+      <div class="fstep gate"><div class="fn">Gate 1</div><div class="fw">체크리스트</div><div class="fd">통과 시 M2 진입</div></div>
+      <div class="fstep user"><div class="fn">실장님</div><div class="fw">방향 셀렉</div><div class="fd">2~3개</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:10px;color:var(--ink3);">산출물: manus_1_state.json · 전략 리서치 덱 HTML · 무드보드 3방향 HTML</div>
+  </div>
+
+  <div style="font-size:12px;font-weight:800;margin:16px 0 10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;">Manus 2 — 비주얼 아이덴티티</div>
+  <div class="flow" style="margin-bottom:10px;">
+    <div class="flowrow">
+      <div class="fstep verified"><div class="fn">④</div><div class="fw">트렌드 레이더</div><div class="fd">T1~T8 태그</div></div>
+      <div class="fstep verified"><div class="fn">⑤</div><div class="fw">레퍼런스 큐레이터</div><div class="fd">DNA 추출</div></div>
+      <div class="fstep gate"><div class="fn">⑥</div><div class="fw">브레인스토머</div><div class="fd">컨셉 6→쇼트리스트</div></div>
+      <div class="fstep gate"><div class="fn">Gate 2·3</div><div class="fw">체크리스트</div><div class="fd">통과 시 R3 진입</div></div>
+      <div class="fstep user"><div class="fn">실장님</div><div class="fw">컨셉 확정</div><div class="fd">2~3개</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:10px;color:var(--ink3);">산출물: manus_2_state.json · 컨셉 C01·C04·C05 PDP HTML · State of 리포트 HTML</div>
+  </div>
+
+  <div style="font-size:12px;font-weight:800;margin:16px 0 10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;">Runable 3 — 브랜드 시스템 + 슬라이드</div>
+  <div class="flow" style="margin-bottom:16px;">
+    <div class="flowrow">
+      <div class="fstep verified"><div class="fn">⑦</div><div class="fw">컨셉 디렉터</div><div class="fd">브랜드보드+Value Cards</div></div>
+      <div class="fstep verified"><div class="fn">⑧</div><div class="fw">비평가</div><div class="fd">Brand System 점검</div></div>
+      <div class="fstep verified"><div class="fn">⑨</div><div class="fw">슬라이드 덱</div><div class="fd">35~45장</div></div>
+      <div class="fstep gate"><div class="fn">⑩</div><div class="fw">HTML 검증</div><div class="fd">스크린샷·검수·수정</div></div>
+      <div class="fstep user"><div class="fn">실장님</div><div class="fw">최종 OK</div><div class="fd">링크 발송</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:10px;color:var(--ink3);">산출물: 브랜드보드 HTML · 종합 제안서 HTML · 41슬라이드 덱 HTML · 프로젝트 노트</div>
+  </div>
+
+  <div class="alert sig"><span>🔑</span><div><b>관점 게이트(②)가 핵심.</b> 사이트·브랜딩·UA·광고·상세가 다 달라 보여도 같은 상품 관점에서 갈라지므로, 발산·검증보다 관점을 먼저 고정.</div></div>
+  <div class="alert warn"><span>🚨</span><div><b>절대 위임 금지(실장님 직접):</b> 최종 견적가·마진율·계약 날인·단가 협상·채용/해고·외부 발송 OK.</div></div>
+</div>
+
+<!-- HTML 산출물 규칙 -->
+<div id="s-html" class="section">
+  <h2 class="stitle">HTML 산출물 규칙</h2>
+  <p class="sdesc">모든 HTML 생성 시 반드시 따르는 검증 루프. WAKEMAKE 세션에서 표준화됨.</p>
+
+  <div class="alert new"><span>🆕</span><div><b>v5 신규 추가.</b> WAKEMAKE 상세페이지 작업 중 확립된 스크린샷 검증 → design-critique → 수정 사이클을 CLAUDE.md에 공식 등록.</div></div>
+
+  <h3 style="font-size:13px;font-weight:800;margin:16px 0 10px;">필수 검증 플로우</h3>
+  <div class="verify-flow">
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#F0F0F0;">📝</div>
+      <div class="vf-label">HTML<br>생성</div>
+    </div>
+    <div class="vf-arrow">→</div>
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#E8F0FE;">🖥️</div>
+      <div class="vf-label">Chromium<br>스크린샷</div>
+    </div>
+    <div class="vf-arrow">→</div>
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#FFF6E5;">🔍</div>
+      <div class="vf-label">design-<br>critique</div>
+    </div>
+    <div class="vf-arrow">→</div>
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#FDE8E8;">🔴</div>
+      <div class="vf-label">🔴 항목<br>수정</div>
+    </div>
+    <div class="vf-arrow">→</div>
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#E5F2E9;">✅</div>
+      <div class="vf-label">재확인</div>
+    </div>
+    <div class="vf-arrow">→</div>
+    <div class="vf-step">
+      <div class="vf-icon" style="background:#111111;">📤</div>
+      <div class="vf-label" style="color:#fff;">커밋·푸시<br>링크 출력</div>
+    </div>
+  </div>
+
+  <div class="scn">
+    <h4>스크린샷 명령어 (Chromium headless)</h4>
+    <p style="font-family:ui-monospace,monospace;background:var(--bg);padding:10px;border-radius:6px;margin-top:6px;font-size:10.5px;line-height:1.7;">/opt/pw-browsers/chromium-1194/chrome-linux/chrome \<br>  --headless=new --disable-gpu --no-sandbox --window-size=1440,900 \<br>  --screenshot="/tmp/preview.png" "file:///path/to/file.html"</p>
+    <p style="margin-top:6px;">병렬 처리: 여러 파일은 <code>&</code> 백그라운드 → <code>wait</code>로 일괄 대기</p>
+  </div>
+
+  <h3 style="font-size:13px;font-weight:800;margin:20px 0 10px;">디자인 토큰 룰 — 절대 규칙</h3>
+  <div class="token-grid">
+    <div class="token-card">
+      <div class="tk-label">다크 배경</div>
+      <div class="tk-val"><span class="swatch" style="background:#111111;"></span>#111111 고정</div>
+      <div class="tk-desc">갈색·보라·청록 금지.<br>#1C1410, #1A1A2E 등 절대 사용 불가</div>
+    </div>
+    <div class="token-card">
+      <div class="tk-label">Accent 계층</div>
+      <div class="tk-val"><span class="swatch" style="background:#E8502A;"></span>Coral 1차</div>
+      <div class="tk-desc"><span class="swatch" style="background:#B8860B;"></span>Brass #B8860B 2차.<br>혼용 시 Coral 우선</div>
+    </div>
+    <div class="token-card">
+      <div class="tk-label">Border-radius</div>
+      <div class="tk-val">var(--radius)</div>
+      <div class="tk-desc">16px 고정. --radius-sm: 8px.<br>하드코딩 절대 금지</div>
+    </div>
+    <div class="token-card">
+      <div class="tk-label">폰트 변수</div>
+      <div class="tk-val">var(--sans)</div>
+      <div class="tk-desc">var(--mono) for 수치.<br>font-family 직접 기입 금지</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px;font-weight:800;margin:20px 0 10px;">에이전트 세션 한계 복구 패턴</h3>
+  <table class="tbl">
+    <tr><th>상황</th><th>복구 방법</th></tr>
+    <tr><td>에이전트 rate limit / 세션 종료로 파일 미생성</td><td><b>즉시 새 Agent 스폰</b> 또는 Write 도구로 직접 작성. 대기·재시도 없음.</td></tr>
+    <tr><td>독립 파일 여러 개 동시 생성 필요</td><td><b>Agent 병렬 스폰</b> (단일 응답에 여러 tool call). 직렬 처리 금지.</td></tr>
+    <tr><td>CSS 일관성 일괄 수정 필요</td><td>Python 배치 스크립트 or Edit 도구. 파일별 개별 수동 수정 비효율.</td></tr>
+    <tr><td>복수 파일 CSS 토큰 동기화</td><td>마스터 :root 블록 정의 후 Copy-paste → 각 파일에 Write.</td></tr>
+  </table>
+
+  <div class="foot" style="margin-top:18px;"><b>링크 형식:</b> <code style="font-family:ui-monospace,monospace;">https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/&lt;브랜치&gt;/&lt;경로&gt;</code><br>SendUserFile 방식 사용 금지. 커밋·푸시 후 링크만 출력.</div>
+</div>
+
+<!-- WAKEMAKE 현황 -->
+<div id="s-wk" class="section">
+  <h2 class="stitle">WAKEMAKE × OliveYoung 현황</h2>
+  <p class="sdesc">올리브영 색조 상세페이지 리뉴얼 제안 풀패키지 — 2026.07.02 기준</p>
+
+  <div class="alert"><span>✅</span><div><b>풀 패키지 9종 완성.</b> 브랜치 <code style="font-family:ui-monospace,monospace;">claude/wakemaker-detail-redesign-1ukk61</code> · PR #27 Open (Draft). 전략 리서치 → 무드보드 → 컨셉 PDP 3종 → 브랜드보드 → 슬라이드 덱 전 단계 완료.</div></div>
+
+  <div class="wk-panel">
+    <div class="wk-title">WAKEMAKE × <em>OLIVEYOUNG</em> — 색조 상세페이지 리뉴얼 제안</div>
+    <div class="wk-sub">모바일 세로 롱폼 JPG · 정적 포맷 · 3컨셉 제안 · 2026.07</div>
+    <div class="wk-files">
+      <div class="wk-file existing">
+        <div class="wk-tag">MANUS 1</div>
+        <div class="wk-fn">wakemake-deck.html</div>
+        <div class="wk-st">전략 리서치 덱 · 포지셔닝맵·Gate 1</div>
+      </div>
+      <div class="wk-file existing">
+        <div class="wk-tag">MANUS 1</div>
+        <div class="wk-fn">wakemake-moodboard.html</div>
+        <div class="wk-st">무드보드 3방향 (A·B·C)</div>
+      </div>
+      <div class="wk-file existing">
+        <div class="wk-tag">MANUS 2</div>
+        <div class="wk-fn">wakemake-state-of-deck.html</div>
+        <div class="wk-st">State of K-Beauty PDP 2026 리포트</div>
+      </div>
+      <div class="wk-file existing">
+        <div class="wk-tag">MANUS 2</div>
+        <div class="wk-fn">wakemake-proposal-2026.html</div>
+        <div class="wk-st">종합 제안서 (41섹션)</div>
+      </div>
+      <div class="wk-file done">
+        <div class="wk-tag">RUNABLE 3 · 신규</div>
+        <div class="wk-fn">wakemake-concept-c01.html</div>
+        <div class="wk-st">C01 오늘의 선택 PDP · Strategic Fit 9/10</div>
+      </div>
+      <div class="wk-file done">
+        <div class="wk-tag">RUNABLE 3 · 신규</div>
+        <div class="wk-fn">wakemake-concept-c04.html</div>
+        <div class="wk-st">C04 계절 감각 PDP · 컨셉 비교표 포함</div>
+      </div>
+      <div class="wk-file done">
+        <div class="wk-tag">RUNABLE 3 · 신규</div>
+        <div class="wk-fn">wakemake-concept-c05.html</div>
+        <div class="wk-st">C05 색×기술 PDP · 피부톤 매칭 강조</div>
+      </div>
+      <div class="wk-file done">
+        <div class="wk-tag">RUNABLE 3 · 신규</div>
+        <div class="wk-fn">wakemake-brand-board.html</div>
+        <div class="wk-st">브랜드보드 + Value Cards VC01~VC04</div>
+      </div>
+      <div class="wk-file done">
+        <div class="wk-tag">RUNABLE 3 · 신규</div>
+        <div class="wk-fn">wakemake-slide-deck.html</div>
+        <div class="wk-st">41슬라이드 제안 덱 · 8파트</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px;font-weight:800;margin:20px 0 10px;">CSS 디자인 시스템 — WAKEMAKE 마스터 토큰</h3>
+  <div class="dgrid" style="margin-bottom:16px;">
+    <div class="dcard">
+      <h4>라이트 모드 (덱·제안·무드보드)</h4>
+      <div class="meta" style="font-family:ui-monospace,monospace;font-size:10px;line-height:1.9;">
+        --bg: #EBEBEB · --card: #FFFFFF · --ink: #111111<br>
+        --ink2: #4A4944 · --ink3: #8A8780 · --border: #E2E2E2<br>
+        --coral: #E8502A · --peach: #F2B89A · --brass: #B8860B<br>
+        --radius: 16px · --radius-sm: 8px
+      </div>
+    </div>
+    <div class="dcard">
+      <h4>다크 모드 (state-of-deck 전용)</h4>
+      <div class="meta" style="font-family:ui-monospace,monospace;font-size:10px;line-height:1.9;">
+        --bg: #111111 · --card: #1A1A1A · --ink: #FFFFFF<br>
+        --ink2: rgba(255,255,255,.70) · --border: rgba(255,255,255,.12)<br>
+        --coral: #E8502A · --brass: #B8860B · --brass-light: #D4A017<br>
+        --radius: 16px · --radius-sm: 8px
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px;font-weight:800;margin:0 0 10px;">이번 세션 주요 수정 이력</h3>
+  <table class="tbl">
+    <tr><th>수정 항목</th><th>Before</th><th>After</th><th>영향 파일</th></tr>
+    <tr><td>다크 배경 갈색 제거</td><td class="warn">#1C1410, #1A1208, #1A1500</td><td class="ok">#111111</td><td>모든 파일</td></tr>
+    <tr><td>Cover radial-glow 제거</td><td class="warn">radial-gradient 브론즈 glow</td><td class="ok">linear-gradient 또는 transparent</td><td>moodboard, C05</td></tr>
+    <tr><td>border-radius 통일</td><td class="warn">10px / 12px 하드코딩</td><td class="ok">var(--radius)</td><td>deck, proposal</td></tr>
+    <tr><td>JetBrains Mono 변수화</td><td class="warn">font-family: 'JetBrains...' 직접 기입 39곳</td><td class="ok">var(--mono)</td><td>proposal</td></tr>
+    <tr><td>stat-number 색상 정정</td><td class="warn">brass (#B8860B)</td><td class="ok">coral (#E8502A)</td><td>state-of-deck</td></tr>
+  </table>
+</div>
+
+<!-- 자동화 -->
+<div id="s-auto" class="section">
+  <h2 class="stitle">자동화 구조 ⚡</h2>
+  <p class="sdesc">에이전트가 "언제 도는가". 기준 맵: <code style="font-family:ui-monospace,monospace;background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:3px;">.claude/library/automation.md</code></p>
+
+  <h3 style="font-size:13px;font-weight:800;margin:0 0 10px;">🕐 스케줄 자동</h3>
+  <table class="tbl" style="margin-bottom:20px;">
+    <tr><th>시점</th><th>동작</th><th>에이전트</th></tr>
+    <tr><td>매일 09:00</td><td>오늘 현황·마감 임박 보드</td><td>project-manager</td></tr>
+    <tr><td>매주 월 08:00</td><td>주간 컨닝(가동률·매출·클라)</td><td>project-manager · account-radar</td></tr>
+    <tr><td>매일 18:00</td><td>결정 대기 항목 모음</td><td>project-manager</td></tr>
+    <tr><td>분기 첫 주</td><td>글로벌 디자인 트렌드</td><td>design-trend-radar → reference-curator</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;font-weight:800;margin:0 0 10px;">⚡ 이벤트 자동</h3>
+  <table class="tbl" style="margin-bottom:20px;">
+    <tr><th>트리거 상황</th><th>게이트 순서</th></tr>
+    <tr><td>외부 제안서·메일 발송 직전</td><td>fact-checker → delivery-gate → tone-guardian</td></tr>
+    <tr><td>시안 업로드</td><td>design-critique → design-system-guardian → creative-director</td></tr>
+    <tr><td>HTML 파일 신규 생성</td><td>Chromium 스크린샷 → design-critique → 수정 → 커밋</td></tr>
+    <tr><td>제안안 셀렉 직후</td><td>review-panel (5관점)</td></tr>
+    <tr><td>계약서 첨부</td><td>legal-compliance</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;font-weight:800;margin:0 0 10px;">리스크 티어</h3>
+  <table class="tbl">
+    <tr><th>티어</th><th>대상</th><th>게이트</th></tr>
+    <tr><td><b>Tier 0</b></td><td>내부 단순·조회</td><td>없음</td></tr>
+    <tr><td><b>Tier 1</b></td><td>내부 산출·시안 초안·HTML</td><td>Chromium 스크린샷 → design-critique → delivery-gate</td></tr>
+    <tr><td><b>Tier 2</b></td><td>외부 발신·제안·계약·브랜드</td><td>fact-checker → review-panel → delivery-gate → tone-guardian</td></tr>
+  </table>
+
+  <div class="alert warn" style="margin-top:18px;"><span>⚙️</span><div><b>실제 상시 자동화는 추가 연결 필요.</b> 세션 내 크론·settings.json 훅은 세션이 떠 있어야 발동. 24/7 자동(매일 09:00 등)은 GitHub Actions cron 같은 외부 러너 연결이 다음 단계. 지금은 트리거 맵(설계)까지 완료.</div></div>
+</div>
+
+<!-- 데이터·상태 -->
+<div id="s-data" class="section">
+  <h2 class="stitle">데이터 연결 · 라이브러리</h2>
+  <p class="sdesc">에이전트가 읽는 실데이터와 자료.</p>
+  <div class="dgrid">
+    <div class="dcard live"><h4>📋 노션 2026 Project DB <span class="pill">LIVE</span></h4><div class="meta">진행현황·달성율·오류. 라이브 14건 조회 확인.<br><code>collection://2e79ff44-…bf54</code></div></div>
+    <div class="dcard live"><h4>📊 구글시트 가동률 <span class="pill">LIVE</span></h4><div class="meta">MAX_2026 리소스 관리. xlsx 파싱.<br>탭: 월별 투입 현황·Time-Log·개인 9명</div></div>
+  </div>
+  <h3 style="font-size:13px;font-weight:800;margin:22px 0 10px;">라이브러리 · 8종 + WAKEMAKE 프로젝트 파일 9종</h3>
+  <table class="tbl">
+    <tr><th>파일</th><th>용도</th></tr>
+    <tr><td><b>prompts/manus-1-brand-planning.md</b></td><td>파이프라인 A Manus 1 전략·리서치 프롬프트</td></tr>
+    <tr><td><b>prompts/manus-2-visual-identity.md</b></td><td>파이프라인 A Manus 2 비주얼 아이덴티티 프롬프트</td></tr>
+    <tr><td><b>prompts/runable-3-brand-system.md</b></td><td>파이프라인 A Runable 3 브랜드 시스템 프롬프트</td></tr>
+    <tr><td><b>prompts/wide-research.md</b></td><td>경쟁 30 리서치 프롬프트</td></tr>
+    <tr><td><b>unit-rates.md</b></td><td>견적 노임단가표 · UI Design 매출 규칙</td></tr>
+    <tr><td><b>qc-checklist.md</b></td><td>시안 검수 6영역</td></tr>
+    <tr><td><b>data-sources.md</b></td><td>노션·구글시트 연결 주소록</td></tr>
+    <tr><td><b>automation.md</b></td><td>자동화 트리거 맵</td></tr>
+  </table>
+  <div class="foot" style="margin-top:18px;"><b>조건부(🟡) 작동 위해 필요한 것:</b> design-system-guardian→사내 디자인 시스템 문서 · account-radar→클라 히스토리(노션 일부 연결됨) · hiring-radar→채용 진행자료 · vendor-radar→외주 풀 목록. 주시면 🟡→🟢.</div>
+</div>
+
+<!-- 사용법 -->
+<div id="s-manual" class="section">
+  <h2 class="stitle">사용법</h2>
+  <p class="sdesc">트리거를 말하면 알맞은 에이전트가 작동합니다.</p>
+  <div class="scn"><h4>① 제안 풀세트 → "○○ 제안 풀세트 돌려"</h4><p>RFP→시장→관점→발산→컨셉 PDP→브랜드보드→슬라이드 덱이 순서대로. 실장님은 셀렉·OK만. HTML 각 단계마다 스크린샷 검증 자동 실행.</p></div>
+  <div class="scn"><h4>② 관점부터 → "이 제품 관점 한 문장으로"</h4><p><code>concept-director</code>가 관점 고정 → 모든 디자인 상속.</p></div>
+  <div class="scn"><h4>③ 견적 → "코웨이 UI Design 고급1 3.5MM 100%, 견적"</h4><p><code>quote-accountant</code>가 원가표+마진+<b>우리실 매출(UI분)</b>. 최종가는 실장님.</p></div>
+  <div class="scn"><h4>④ 현황 → "이번 주 현황" / "가동률"</h4><p><code>project-manager</code>가 노션·시트 읽어 진행보드+달성율+가동률+오류.</p></div>
+  <div class="scn"><h4>⑤ 생성 → "키비주얼 뽑아" / "무드보드" / "Figma 보내"</h4><p><code>visual-generator·moodboard-builder·figma-bridge·storyboard-maker</code>.</p></div>
+  <div class="scn"><h4>⑥ 검수 → "시안 봐줘" / "계약서 검토" / "발송 전 점검"</h4><p><code>design-critique·legal-compliance·delivery-gate</code> 등.</p></div>
+  <div class="scn"><h4>⑦ HTML 시각 검증 → "스크린샷 찍어" / "디자인 점검해줘"</h4><p>Chromium 헤드리스로 스크린샷 → <code>design-critique</code> 에이전트 검수 → 🔴 항목 자동 수정 → 재스크린샷 확인. 커밋 전 반드시 선행.</p></div>
+  <div class="foot"><b>핵심:</b> 말하기 → 에이전트가 일함 → 실장님 최종 결정.<br>이 대시보드: <code style="font-family:ui-monospace,monospace">.claude/projects/maxos-dashboard-v5.html</code> · 24개 에이전트: <code style="font-family:ui-monospace,monospace">.claude/agents/</code></div>
+</div>
+
+</div>
+</div>
+<script>
+function go(t,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById('s-'+t).classList.add('active');el.classList.add('active');window.scrollTo({top:0,behavior:'instant'});}
+</script>
+</body>
+</html>
