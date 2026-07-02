@@ -54,13 +54,15 @@
 .claude/
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── project-index/    # 프로젝트 인덱스 페이지 생성
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
-│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   ├── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   └── index-template.html  # 프로젝트 인덱스 골조 (재사용 템플릿)
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -69,7 +71,7 @@
 - 새 스킬: `.claude/skills/<스킬명>/SKILL.md` 형식으로 추가
 - 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
 
-## 현재 등록된 에이전트 (24종 · 6그룹)
+## 현재 등록된 에이전트 (25종 · 6그룹)
 **① 수주·전략**
 - `rfp-analyst` (RFP 분석가) — RFP→명시·숨은·미정의·위험 4분류 + 확인 질문
 - `market-research` (시장조사) — 경쟁사 N개 → XY 포지셔닝 맵 + 빈자리, 출처 필수
@@ -102,6 +104,7 @@
 
 **⑥ 조직·채용·법무**
 - `creative-director` (크리에이티브 디렉터) — 시안 톤 최종·온보딩 팩
+- `project-index` (프로젝트 인덱스) — HTML 산출물 자동 탐색 → 인덱스 페이지 생성·커밋·링크 출력
 - `hiring-radar` (채용 레이더) — 9→20 증원 파이프라인
 - `vendor-radar` (벤더 레이더) — 외주 풀·외주비
 - `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
@@ -110,6 +113,7 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `project-index` — 프로젝트 HTML 산출물 묶어 인덱스(바로가기) 페이지 생성. 템플릿: `.claude/library/index-template.html`
 
 ## 프로젝트 자동 파이프라인
 
