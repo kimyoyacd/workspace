@@ -9,21 +9,33 @@
 <style>
 :root {
   color-scheme: light;
-  --bg: #EDEDE9;
+  --bg: #F4F4F1;
   --card: #FFFFFF;
   --ink: #111111;
   --ink2: #3E3E3A;
   --ink3: #888882;
   --ink4: #B8B8B2;
-  --border: #D0D0CC;
-  --border-soft: #DCDCD8;
+  --border: #D8D8D4;
+  --border-soft: #E4E4E0;
   --accent: #1B2A44;
   --accent-soft: #EEF1F6;
   --sig: #1B2A44;
   --sig-soft: #EEF1F6;
-  --ok: #3E3E3A;
-  --warn: #777772;
-  --danger: #111111;
+  /* 시맨틱 상태 컬러 — 상태 표시(dot·badge·left-border)에만 사용 */
+  --s-active:  #2563EB;  /* 진행중 */
+  --s-active-bg: #EFF6FF;
+  --s-warn:   #D97706;  /* 임박·예정 */
+  --s-warn-bg: #FFFBEB;
+  --s-danger: #DC2626;  /* 마감초과·위험 */
+  --s-danger-bg: #FEF2F2;
+  --s-ok:     #059669;  /* 완료·고정운영 */
+  --s-ok-bg:  #F0FDF4;
+  --s-hold:   #6B7280;  /* 홀딩·대기 */
+  --s-hold-bg: #F3F4F6;
+  /* 구버전 ok/warn/danger — 아직 쓰이는 곳 fallback */
+  --ok: #059669;
+  --warn: #D97706;
+  --danger: #DC2626;
 }
 html, body { background: var(--bg); margin: 0; padding: 0; }
 * { box-sizing: border-box; }
@@ -89,11 +101,14 @@ body {
 /* ALERT */
 .alert {
   background: var(--card) !important; border: 1px solid var(--border) !important;
-  border-left: 3px solid var(--ink3) !important;
+  border-left: 3px solid var(--s-warn) !important;
   border-radius: 6px; padding: 11px 15px; margin-bottom: 8px !important;
   display: flex !important; gap: 10px; align-items: flex-start; font-size: 12px; color: var(--ink2);
   margin-top: 0 !important;
 }
+.alert.a-info { border-left-color: var(--s-active) !important; }
+.alert.a-ok   { border-left-color: var(--s-ok) !important; }
+.alert.a-danger { border-left-color: var(--s-danger) !important; }
 .alert .ic { font-size: 15px; margin-top: 1px; }
 
 /* ═══ ORG TREE ═══ */
@@ -166,9 +181,9 @@ body {
   white-space: nowrap;
 }
 .badge-core   { background: var(--accent); color: rgba(255,255,255,0.9); }
-.badge-new    { background: var(--border-soft); color: var(--ink2); }
-.badge-global { background: var(--accent-soft); color: var(--accent); }
-.badge-urgent { background: var(--ink2); color: #fff; }
+.badge-new    { background: var(--s-ok-bg); color: var(--s-ok); }
+.badge-global { background: var(--s-active-bg); color: var(--s-active); }
+.badge-urgent { background: var(--s-danger); color: #fff; }
 
 /* COLLAPSIBLE */
 .collapsible-section { margin-top: 16px; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
@@ -287,27 +302,28 @@ body {
 
 /* ═══ PROJECTS TAB ═══ */
 .today-board {
-  background: var(--card); border: 1.5px solid var(--border); border-radius: 12px;
-  padding: 16px 20px; margin-bottom: 32px; border-left: 4px solid var(--ink2);
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 32px; border-left: 4px solid var(--s-danger);
 }
 .today-board-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .today-board-head h3 { margin: 0; font-size: 14px; font-weight: 900; color: var(--ink); }
 .today-note { font-size: 11px; color: var(--ink3); }
 .today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .today-col-h { font-size: 11px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.today-col.overdue .today-col-h  { color: var(--ink); }
-.today-col.duetoday .today-col-h { color: var(--ink2); }
+.today-col.overdue .today-col-h  { color: var(--s-danger); }
+.today-col.duetoday .today-col-h { color: var(--s-warn); }
 .today-col-h .cnt { margin-left: auto; background: rgba(0,0,0,0.05); border-radius: 9px; padding: 0 7px; font-size: 10px; color: var(--ink3); font-weight: 700; }
-.today-item { display: flex; gap: 9px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; align-items: flex-start; }
-.today-col.duetoday .today-item { border-color: var(--border-soft); }
+.today-item { display: flex; gap: 9px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; align-items: flex-start; border-left: 3px solid var(--border); }
+.today-col.overdue .today-item  { border-left-color: var(--s-danger); }
+.today-col.duetoday .today-item { border-left-color: var(--s-warn); border-color: var(--border-soft); }
 .ti-area { flex-shrink: 0; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-top: 1px; }
 .ti-body { flex: 1; min-width: 0; }
 .ti-title { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.35; }
 .ti-meta { font-size: 10.5px; color: var(--ink3); margin-top: 3px; }
 .ti-type { font-weight: 700; padding: 1px 5px; border-radius: 4px; font-size: 10px; }
-.type-do     { background: var(--ink); color: #fff; }
-.type-remind { background: var(--border); color: var(--ink2); }
-.type-check  { background: var(--accent-soft); color: var(--accent); }
+.type-do     { background: var(--s-danger); color: #fff; }
+.type-remind { background: var(--s-warn-bg); color: var(--s-warn); border: 1px solid #FDE68A; }
+.type-check  { background: var(--s-active-bg); color: var(--s-active); }
 
 .project-section { margin-bottom: 40px; }
 .project-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 2px solid var(--border); }
@@ -326,11 +342,11 @@ body {
 .project-item-title { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 .project-item-desc { font-size: 10.5px; color: var(--ink3); line-height: 1.4; }
 .project-item-tag { display: inline-block; margin-top: 5px; padding: 2px 8px; border-radius: 4px; font-size: 9.5px; font-weight: 600; }
-.tag-hot  { background: var(--ink); color: #fff; }
-.tag-qa   { background: var(--border); color: var(--ink2); }
-.tag-new  { background: var(--accent-soft); color: var(--accent); }
-.tag-hold { background: var(--border-soft); color: var(--ink3); }
-.tag-live { background: var(--accent); color: #fff; }
+.tag-hot  { background: var(--s-danger); color: #fff; }
+.tag-qa   { background: var(--s-ok-bg); color: var(--s-ok); }
+.tag-new  { background: var(--s-ok-bg); color: var(--s-ok); }
+.tag-hold { background: var(--s-hold-bg); color: var(--s-hold); }
+.tag-live { background: var(--s-active-bg); color: var(--s-active); font-weight: 700; }
 .sep { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
 
 /* GANTT */
@@ -946,21 +962,21 @@ body {
         <div class="today-col overdue">
           <div class="today-col-h">오늘 마감 (DB 종료=6/26)<span class="cnt">3</span></div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">넷마블 AI</span>
+            <span class="ti-area" style="background:#DC2626;color:#fff;">넷마블 AI</span>
             <div class="ti-body">
               <div class="ti-title">업세일즈 제안건 (난이도 H · AI)</div>
               <div class="ti-meta"><span class="ti-type type-do">오늘 마감</span> · 6/5~6/26 · 제안 완성도 OK 확인 후 발송</div>
             </div>
           </div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">YBM</span>
+            <span class="ti-area" style="background:#DC2626;color:#fff;">YBM</span>
             <div class="ti-body">
               <div class="ti-title">브릿지 사이트 KV 모션 (M · Motion)</div>
               <div class="ti-meta"><span class="ti-type type-do">오늘 마감</span> · 6/24~6/26 · 산출물 회수 확인</div>
             </div>
           </div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">코웨이</span>
+            <span class="ti-area" style="background:#DC2626;color:#fff;">코웨이</span>
             <div class="ti-body">
               <div class="ti-title">GUI 컨설팅 및 구축 (H · UI+Motion)</div>
               <div class="ti-meta"><span class="ti-type type-do">시작end 6/26</span> · 종료 필드 6/19 충돌 ⚠️ 노션 입력 점검 필요</div>
@@ -970,28 +986,28 @@ body {
         <div class="today-col duetoday">
           <div class="today-col-h">내일~다음주 결정<span class="cnt">4</span></div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--ink2);color:#fff;border-radius:4px;">현대 수소</span>
+            <span class="ti-area" style="background:#D97706;color:#fff;">현대 수소</span>
             <div class="ti-body">
               <div class="ti-title">홈페이지 구축 (H · Motion) — 6/27 토</div>
               <div class="ti-meta"><span class="ti-type type-do">내일 마감</span> · 6/22~6/27 · 종료 5/1 입력 ⚠️ 확인 필요</div>
             </div>
           </div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--border);color:var(--ink2);border-radius:4px;">크래프톤</span>
+            <span class="ti-area" style="background:#EFF6FF;color:#2563EB;">크래프톤</span>
             <div class="ti-body">
               <div class="ti-title">박연옥 님 메일 보내기 (6/29 월)</div>
               <div class="ti-meta"><span class="ti-type type-remind">캘린더 리마인드</span> · 위메이드→크래프톤 이동 건</div>
             </div>
           </div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--border);color:var(--ink2);border-radius:4px;">노션 정리</span>
+            <span class="ti-area" style="background:#F3F4F6;color:#6B7280;">노션 정리</span>
             <div class="ti-body">
               <div class="ti-title">DB 종료 처리 누락 4건</div>
               <div class="ti-meta"><span class="ti-type type-check">결정 필요</span> · 아모레 WWD(5/8) · 회사소개서(6/12) · 비나 테스트(3/25) · 넷마블 AI 시장조사(3/27) → 상태 '완료'로</div>
             </div>
           </div>
           <div class="today-item">
-            <span class="ti-area" style="background:var(--accent-soft);color:var(--accent);border-radius:4px;">리소스</span>
+            <span class="ti-area" style="background:#FFFBEB;color:#D97706;">리소스</span>
             <div class="ti-body">
               <div class="ti-title">가용리소스 -3 (오버로드) 해소안</div>
               <div class="ti-meta"><span class="ti-type type-check">결정 필요</span> · VX 3TO·VM 5TO 모두 100% · 추가투입 or 일정 조정</div>
@@ -1012,7 +1028,7 @@ body {
 
       <!-- 진행중 -->
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:var(--accent);"></span>진행중<span class="col-count">6</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:#2563EB;"></span>진행중<span class="col-count">6</span></div>
         <div class="project-item">
           <div class="project-item-title">코웨이 GUI 컨설팅 및 구축</div>
           <div class="project-item-desc">UI·Motion · 난이도 H · 3/24~6/26 (시작end 기준). 종료 필드 6/19 입력 ⚠️ 노션 확인 필요</div>
@@ -1047,7 +1063,7 @@ body {
 
       <!-- 진행예정 / 홀딩 -->
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink3);"></span>진행예정 / 홀딩<span class="col-count">4</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:#D97706;"></span>진행예정 / 홀딩<span class="col-count">4</span></div>
         <div class="project-item">
           <div class="project-item-title">가디언 메이든 사전 런칭 준비</div>
           <div class="project-item-desc">Motion · 난이도 H · 5/1~ 종료미정. 사전 런칭 패키지</div>
@@ -1072,7 +1088,7 @@ body {
 
       <!-- 곧 완료 / 고정운영 -->
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink2);"></span>곧 완료 / 고정운영<span class="col-count">4</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:#059669;"></span>곧 완료 / 고정운영<span class="col-count">4</span></div>
         <div class="project-item">
           <div class="project-item-title">올리브영 제안 PB 상세 페이지 제작</div>
           <div class="project-item-desc">UI · 6/15~6/19. 제안 제출 완료 (수주 결과 대기)</div>
@@ -3177,14 +3193,14 @@ function renderKanban(projects) {
   if (!el) return;
 
   const GROUPS = [
-    { key:'active',  label:'진행중',    dot:'var(--accent)', tag:'tag-live' },
-    { key:'almost',  label:'거의 완료', dot:'var(--ink2)',   tag:'tag-new'  },
-    { key:'fixed',   label:'고정운영',  dot:'var(--ink2)',   tag:'tag-qa'   },
-    { key:'upcoming',label:'진행예정',  dot:'var(--ink3)',   tag:'tag-hold' },
-    { key:'discuss', label:'협의중',    dot:'var(--ink3)',   tag:'tag-qa'   },
-    { key:'review',  label:'검토중',    dot:'var(--ink4)',   tag:'tag-hold' },
-    { key:'hold',    label:'홀딩',      dot:'var(--ink4)',   tag:'tag-hold' },
-    { key:'interest',label:'관심',      dot:'var(--ink4)',   tag:'tag-hold' },
+    { key:'active',  label:'진행중',    dot:'#2563EB', tag:'tag-live' },
+    { key:'almost',  label:'거의 완료', dot:'#059669', tag:'tag-new'  },
+    { key:'fixed',   label:'고정운영',  dot:'#059669', tag:'tag-qa'   },
+    { key:'upcoming',label:'진행예정',  dot:'#D97706', tag:'tag-hold' },
+    { key:'discuss', label:'협의중',    dot:'#D97706', tag:'tag-qa'   },
+    { key:'review',  label:'검토중',    dot:'#6B7280', tag:'tag-hold' },
+    { key:'hold',    label:'홀딩',      dot:'#6B7280', tag:'tag-hold' },
+    { key:'interest',label:'관심',      dot:'#6B7280', tag:'tag-hold' },
   ];
 
   const grouped = {};
