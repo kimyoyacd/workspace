@@ -3137,7 +3137,7 @@ function renderTodayBoard(projects) {
     html += '<div class="today-col overdue"><div class="today-col-h">🔴 마감 도래<span class="cnt">' + overdue.length + '</span></div>';
     overdue.forEach(p => {
       const cat = esc(p.categories[0] || p.status);
-      html += '<div class="today-item"><span class="ti-area" style="background:#FDECEC;color:rgba(255,255,255,0.7);">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-do">종료 ' + (p.endDate||'') + '</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
+      html += '<div class="today-item"><span class="ti-area" style="background:var(--ink);color:#fff;">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-do">종료 ' + (p.endDate||'') + '</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
     });
     html += '</div>';
   }
@@ -3146,7 +3146,7 @@ function renderTodayBoard(projects) {
     upcoming.forEach(p => {
       const daysLeft = Math.ceil((new Date(p.endDate) - new Date(today)) / 86400000);
       const cat = esc(p.categories[0] || p.status);
-      html += '<div class="today-item"><span class="ti-area" style="background:#FFF6E5;color:#7A5010;">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-remind">D-' + daysLeft + ' (' + (p.endDate||'') + ')</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
+      html += '<div class="today-item"><span class="ti-area" style="background:var(--border);color:var(--ink2);">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-remind">D-' + daysLeft + ' (' + (p.endDate||'') + ')</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
     });
     html += '</div>';
   }
@@ -3154,20 +3154,37 @@ function renderTodayBoard(projects) {
   el.innerHTML = html;
 }
 
+// ── 오프라인 fallback 데이터 (Notion 연결 불가 시 표시) ───
+const FALLBACK_PROJECTS = [
+  { title:'코웨이 GUI 컨설팅 및 구축',           group:'active',  categories:['UI','Motion'],  difficulty:'H', startDate:'2026-03-24', endDate:'2026-06-26' },
+  { title:'넷마블 AI 업세일즈 제안건',           group:'active',  categories:['AI'],           difficulty:'H', startDate:'2026-06-05', endDate:'2026-06-26' },
+  { title:'현대 수소 홈페이지 구축',             group:'active',  categories:['Motion'],       difficulty:'H', startDate:'2026-06-22', endDate:'2026-06-27' },
+  { title:'YBM 브릿지 사이트 KV 모션',          group:'active',  categories:['Motion'],       difficulty:'M', startDate:'2026-06-24', endDate:'2026-06-26' },
+  { title:'MX 센터 SNS',                        group:'active',  categories:['SNS'],          difficulty:'M', startDate:'2026-09-04', endDate:'2026-10-01' },
+  { title:'[테스트] 비나 검수 데이터 시트',      group:'active',  categories:['game'],         difficulty:'M', startDate:'2026-03-18', endDate:'2026-03-25' },
+  { title:'가디언 메이든 사전 런칭 준비',        group:'upcoming', categories:['Motion'],      difficulty:'H', startDate:'2026-05-01', endDate:null },
+  { title:'[비나] 넥슨 히간이루실',             group:'upcoming', categories:['Motion'],       difficulty:'M', startDate:'2026-06-04', endDate:'2026-06-12' },
+  { title:'넥슨 메이플 키우기 제안 준비',        group:'upcoming', categories:['Motion'],      difficulty:'H', startDate:'2026-04-20', endDate:'2026-04-30' },
+  { title:'하이브 팬덤 앱 리뉴얼',              group:'upcoming', categories:['App','UI'],     difficulty:'H', startDate:null, endDate:null },
+  { title:'[고정운영] 넷마블 운영 4TO',         group:'fixed',   categories:['운영'],          difficulty:'L', startDate:'2026-03-31', endDate:'2026-12-31' },
+  { title:'아모레 WWD 제안',                    group:'almost',  categories:['Proposal'],      difficulty:'M', startDate:'2026-04-01', endDate:'2026-05-08' },
+  { title:'회사 소개서 업데이트 PPT',           group:'almost',  categories:['PPT'],           difficulty:'L', startDate:'2026-06-01', endDate:'2026-06-12' },
+];
+
 // ── 칸반 렌더 ─────────────────────────────────────────────
 function renderKanban(projects) {
   const el = document.getElementById('projects-kanban-live');
   if (!el) return;
 
   const GROUPS = [
-    { key:'active',  label:'진행중',    dot:'#3b82f6', tag:'tag-live' },
-    { key:'almost',  label:'거의 완료', dot:'#22c55e', tag:'tag-new'  },
-    { key:'fixed',   label:'고정운영',  dot:'#10b981', tag:'tag-qa'   },
-    { key:'upcoming',label:'진행예정',  dot:'#f59e0b', tag:'tag-hold' },
-    { key:'discuss', label:'협의중',    dot:'#f59e0b', tag:'tag-qa'   },
-    { key:'review',  label:'검토중',    dot:'#94a3b8', tag:'tag-hold' },
-    { key:'hold',    label:'홀딩',      dot:'#94a3b8', tag:'tag-hold' },
-    { key:'interest',label:'관심',      dot:'#94a3b8', tag:'tag-hold' },
+    { key:'active',  label:'진행중',    dot:'var(--accent)', tag:'tag-live' },
+    { key:'almost',  label:'거의 완료', dot:'var(--ink2)',   tag:'tag-new'  },
+    { key:'fixed',   label:'고정운영',  dot:'var(--ink2)',   tag:'tag-qa'   },
+    { key:'upcoming',label:'진행예정',  dot:'var(--ink3)',   tag:'tag-hold' },
+    { key:'discuss', label:'협의중',    dot:'var(--ink3)',   tag:'tag-qa'   },
+    { key:'review',  label:'검토중',    dot:'var(--ink4)',   tag:'tag-hold' },
+    { key:'hold',    label:'홀딩',      dot:'var(--ink4)',   tag:'tag-hold' },
+    { key:'interest',label:'관심',      dot:'var(--ink4)',   tag:'tag-hold' },
   ];
 
   const grouped = {};
@@ -3273,10 +3290,9 @@ async function fetchLiveData() {
     const hasErr = data.projectsError || data.resourcesError;
     setSyncStatus(hasErr ? 'error' : 'ok', data.fetchedAt ? data.fetchedAt.slice(5,16).replace('T',' ') : '');
   } catch (err) {
-    setSyncStatus('error', err.message);
+    setSyncStatus('error', '오프라인 — 스냅샷 표시 중 (2026-06-26)');
     renderTeam([]);
-    const el = document.getElementById('projects-kanban-live');
-    if (el) el.innerHTML = '<div class="live-loading" style="color:var(--danger);height:100px;">⚠️ 데이터 로드 실패: ' + esc(err.message) + '<br><span style="font-size:10px;margin-top:4px;display:block;">dashboard-data.json 파일이 같은 폴더에 있는지, GitHub Actions가 정상 실행됐는지 확인하세요</span></div>';
+    renderKanban(FALLBACK_PROJECTS);
   }
 }
 
