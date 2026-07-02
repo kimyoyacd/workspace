@@ -17,6 +17,15 @@
 - 디자인·기획 맥락에서 조언할 때는 현업 실장 관점에서 실용적으로 제안한다.
 - 한국어로 소통한다 (별도 요청 시 영어 전환).
 
+## HTML 산출물 규칙 (필수)
+- HTML 파일을 만든 후 **반드시 커밋·푸시**하고, 아래 형식의 **htmlpreview 링크**를 채팅에 바로 출력한다.
+- `SendUserFile` (로컬 파일 첨부) 방식은 사용하지 않는다.
+- 링크 형식:
+  ```
+  https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/<브랜치명>/<파일경로>
+  ```
+- 파일 생성 → git add → git commit → git push → 링크 출력 순서를 항상 지킨다.
+
 ## 프로젝트 관리 규칙
 - 신규 프로젝트 시작 시 `.claude/projects/` 폴더 아래에 프로젝트별 노트 파일을 생성한다.
 - 파일명 형식: `YYYYMM_프로젝트명.md`
