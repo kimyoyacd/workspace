@@ -100,15 +100,15 @@ body {
 
 /* ALERT */
 .alert {
-  background: var(--card) !important; border: 1px solid var(--border) !important;
-  border-left: 3px solid var(--s-warn) !important;
-  border-radius: 6px; padding: 11px 15px; margin-bottom: 8px !important;
+  background: #F0F4F0 !important; border: 1px solid #B8C8B8 !important;
+  border-left: 4px solid var(--s-ok) !important;
+  border-radius: 6px; padding: 11px 15px; margin-bottom: 7px !important;
   display: flex !important; gap: 10px; align-items: flex-start; font-size: 12px; color: var(--ink2);
   margin-top: 0 !important;
 }
-.alert.a-info { border-left-color: var(--s-active) !important; }
-.alert.a-ok   { border-left-color: var(--s-ok) !important; }
-.alert.a-danger { border-left-color: var(--s-danger) !important; }
+.alert.a-info { background:#EFF6FF !important; border-color:#BFDBFE !important; border-left-color: var(--s-active) !important; }
+.alert.a-warn { background:#FFFBEB !important; border-color:#FDE68A !important; border-left-color: var(--s-warn) !important; }
+.alert.a-danger { background:#FEF2F2 !important; border-color:#FECACA !important; border-left-color: var(--s-danger) !important; }
 .alert .ic { font-size: 15px; margin-top: 1px; }
 
 /* ═══ ORG TREE ═══ */
@@ -156,13 +156,13 @@ body {
 .col-tagline { font-size: 10px; color: var(--ink3); padding: 4px 12px 8px; line-height: 1.4; }
 .col-body { display: flex; flex-direction: column; gap: 6px; }
 
-/* Column colors — 6 pipeline groups · mono */
-.col-1 .col-head { background: var(--accent); color: rgba(255,255,255,0.9); }
-.col-2 .col-head { background: #2C3E58; color: rgba(255,255,255,0.85); }
-.col-3 .col-head { background: #3A4A60; color: rgba(255,255,255,0.85); }
-.col-4 .col-head { background: #4A5568; color: rgba(255,255,255,0.85); }
-.col-5 .col-head { background: #606878; color: rgba(255,255,255,0.85); }
-.col-6 .col-head { background: #7A8494; color: rgba(255,255,255,0.9); }
+/* Column colors — 6 pipeline groups · semantic */
+.col-1 .col-head { background: #1D4ED8; color: #fff; }          /* ① 착수판단 · 리서치 · blue */
+.col-2 .col-head { background: #065F46; color: #fff; }          /* ② 전략발산 · green */
+.col-3 .col-head { background: #5B21B6; color: #fff; }          /* ③ 비주얼생성 · violet */
+.col-4 .col-head { background: #92400E; color: #fff; }          /* ④ 검수게이트 · amber */
+.col-5 .col-head { background: #0F766E; color: #fff; }          /* ⑤ 수주재무 · teal */
+.col-6 .col-head { background: #334155; color: #fff; }          /* ⑥ 조직관리 · slate */
 
 .card {
   background: var(--card); border: 1px solid var(--border);
