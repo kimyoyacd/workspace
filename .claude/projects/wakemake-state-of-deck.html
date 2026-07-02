@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>State of K-Beauty PDP 2026 — WAKEMAKE × OliveYoung</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg:          #FFFFFF;
+  --bg-card:     #F5F1EA;
+  --ink:         #1A1A1A;
+  --muted:       #6E665A;
+  --rule:        #E4DED2;
+  --chip:        #F2EDE3;
+  --accent:      #FF6B35;
+  --accent-soft: #FFD9C2;
+  --data:        #C5BBDD;
+  --data-strong: #A89BC8;
+  --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --maxw: 1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px dashed var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 52px;
+}
+.nav-brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nav-brand em { color: var(--accent); font-style: normal; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* ── LAYOUT ── */
+.page-wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── SIDEBAR TOC ── */
+.toc {
+  position: sticky;
+  top: 72px;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.toc-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  border-top: 1px dashed var(--rule);
+  padding: 10px 0;
+}
+.toc-list a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.toc-list a:hover { color: var(--ink); }
+.toc-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── MAIN CONTENT ── */
+.content { padding-top: 60px; padding-bottom: 100px; }
+
+/* ── CHAPTER HEADER ── */
+.chapter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.chapter-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  display: flex;
+  gap: 24px;
+}
+.chapter-title {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin-bottom: 32px;
+}
+.chapter-title em { color: var(--accent); font-style: italic; }
+.lede {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 640px;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+/* ── STAT STRIP ── */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 88px;
+}
+.stat {
+  padding: 28px 0;
+  border-right: 1px dashed var(--rule);
+}
+.stat:first-child { padding-left: 0; }
+.stat:last-child { border-right: none; padding-left: 24px; }
+.stat + .stat { padding-left: 24px; }
+.stat .num {
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  margin-bottom: 8px;
+}
+.stat .num .unit {
+  font-size: 0.5em;
+  font-weight: 500;
+  vertical-align: super;
+}
+.stat .delta {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 8px;
+  background: var(--chip);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.stat .label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.stat .num.accent { color: var(--accent); }
+
+/* ── SECTION HEAD ── */
+.section-head {
+  border-top: 1px dashed var(--rule);
+  padding-top: 48px;
+  margin-bottom: 40px;
+}
+.section-head h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.section-head h2 .no {
+  color: var(--accent);
+  margin-right: 8px;
+}
+.section-head h2 em { color: var(--accent); font-style: italic; }
+.section-head .deck {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.55;
+}
+
+/* ── BAR CHART ── */
+.bar-chart {
+  background: var(--bg-card);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  padding: 28px 24px;
+  margin-bottom: 32px;
+}
+.bar-chart-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--rule);
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 56px;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.bar-row:last-child { margin-bottom: 0; }
+.bar-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+.bar-track {
+  background: var(--chip);
+  border-radius: 3px;
+  height: 10px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: var(--data);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.bar-fill.accent { background: var(--accent); }
+.bar-fill.strong { background: var(--data-strong); }
+.bar-val {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── TWO COL GRID (chart + text) ── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+/* ── CHIP TAGS ── */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.chip {
+  background: var(--chip);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.chip.data { background: var(--data); color: #fff; border-color: var(--data); }
+
+/* ── TOOL GRID (ranking cards) ── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 88px;
+}
+.tool-card {
+  background: var(--bg-card);
+  padding: 24px;
+}
+.tool-rank {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.tool-name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.tool-pct {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.tool-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 48px 0;
+  margin-bottom: 88px;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.pq-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  padding-top: 6px;
+}
+.pq-text {
+  font-size: clamp(20px, 2.8vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.pq-text em { color: var(--accent); font-style: italic; }
+.pq-cite {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── DONUT ── */
+.donut-wrap {
+  background: var(--bg-card);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+.donut-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--rule);
+}
+.donut-grid { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: center; }
+.donut {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+}
+.donut::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  background: var(--bg-card);
+  border-radius: 50%;
+}
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.donut-legend { list-style: none; }
+.donut-legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--rule);
+}
+.donut-legend li:first-child { border-top: none; }
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-val {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: auto;
+  color: var(--ink);
+}
+
+/* ── DARK CALLOUT ── */
+.dark-callout {
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 10px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 88px;
+}
+.dc-text .dc-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.dc-text .dc-headline {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+.dc-text .dc-headline em { color: var(--accent); font-style: italic; }
+.dc-text .dc-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+.dc-num {
+  font-size: clamp(64px, 8vw, 100px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.dc-num-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 8px;
+}
+
+/* ── TEXT CONTENT ── */
+p { margin-bottom: 20px; max-width: 680px; }
+.hl { background: linear-gradient(180deg, transparent 55%, var(--accent-soft) 55%); padding: 0 2px; }
+.body-bold { font-weight: 700; }
+
+/* ── CONCEPT GRID ── */
+.concept-card {
+  background: var(--bg-card);
+  padding: 28px;
+}
+.concept-rank {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.concept-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.concept-name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.concept-score {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+.concept-score span { font-size: 16px; font-weight: 400; color: var(--muted); }
+.concept-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── PALETTE ── */
+.palette-row {
+  display: flex;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 80px;
+  margin-bottom: 16px;
+}
+.palette-swatch {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px 10px;
+}
+.palette-swatch span {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.45);
+  line-height: 1.3;
+}
+.palette-swatch.dark span { color: rgba(255,255,255,0.6); }
+
+/* ── COPY GRID ── */
+.copy-block {
+  background: var(--bg-card);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.copy-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.copy-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ── SCHEDULE TABLE ── */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+.schedule-table th {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ink);
+}
+.schedule-table td {
+  font-size: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px dashed var(--rule);
+  vertical-align: top;
+}
+.schedule-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.schedule-table td .phase-name { font-weight: 600; margin-bottom: 2px; }
+.schedule-table td .phase-detail { font-size: 12px; color: var(--muted); }
+
+/* ── FORBIDDEN GRID ── */
+.forbidden-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.f-no, .f-yes {
+  padding: 16px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.f-no {
+  background: #FFF0EB;
+  border-left: 3px solid #FFCBB5;
+  color: var(--ink);
+}
+.f-yes {
+  background: #F0FBF3;
+  border-left: 3px solid #A8DFB8;
+  color: var(--ink);
+}
+.f-no strong { color: #C0351A; }
+.f-yes strong { color: #1A7A38; }
+.f-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* ── POSITIONING MAP ── */
+.pos-map {
+  background: var(--bg-card);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.pos-map svg { width: 100%; height: auto; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--ink);
+  padding: 28px 0;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.footer-brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.footer-brand em { color: var(--accent); font-style: normal; }
+
+/* ── CLOSING STAT STRIP ── */
+.stat-strip-closing {
+  background: var(--bg-card);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: var(--rule);
+  overflow: hidden;
+  margin-bottom: 88px;
+}
+.stat-closing {
+  background: var(--bg-card);
+  padding: 28px 24px;
+}
+.stat-closing .num {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.stat-closing .label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* 섹션 간격 */
+.section { margin-bottom: 88px; }
+
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; }
+  .toc { position: static; padding-top: 32px; }
+  .stat-strip, .stat-strip-closing { grid-template-columns: 1fr 1fr; }
+  .tool-grid, .grid-3 { grid-template-columns: 1fr 1fr; }
+  .dark-callout { grid-template-columns: 1fr; }
+  .pull-quote { grid-template-columns: 1fr; gap: 16px; }
+  .forbidden-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .page-wrap { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">State of <em>K-Beauty PDP</em> 2026</div>
+  <ul class="nav-links">
+    <li><a href="#market">01 시장</a></li>
+    <li><a href="#strategy">02 전략</a></li>
+    <li><a href="#concept">03 컨셉</a></li>
+    <li><a href="#visual">04 비주얼</a></li>
+    <li><a href="#copy">05 카피</a></li>
+    <li><a href="#plan">06 실행</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+<div class="two-col">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc">
+    <div class="toc-label">목차</div>
+    <ul class="toc-list">
+      <li><a href="#market"><span class="toc-num">01</span>시장·문제 진단</a></li>
+      <li><a href="#strategy"><span class="toc-num">02</span>전략 관점</a></li>
+      <li><a href="#concept"><span class="toc-num">03</span>컨셉 쇼트리스트</a></li>
+      <li><a href="#visual"><span class="toc-num">04</span>비주얼 아이덴티티</a></li>
+      <li><a href="#copy"><span class="toc-num">05</span>카피 시스템</a></li>
+      <li><a href="#plan"><span class="toc-num">06</span>실행 계획</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- CHAPTER HEADER -->
+    <div class="chapter-pill">2026 · 제안 리포트</div>
+    <div class="chapter-meta">
+      <span>WAKEMAKE × OliveYoung</span>
+      <span>올리브영 상세페이지 리뉴얼</span>
+      <span>2026.07</span>
+    </div>
+    <h1 class="chapter-title">퍼스널컬러<br>피로 시대의<br><em>새 언어.</em></h1>
+    <p class="lede">진단 결과가 아니라 오늘의 기분으로 색을 고르는 소비자가 늘고 있다. 웨이크메이크가 가져갈 수 있는 자리는 바로 그 빈자리다.</p>
+
+    <!-- OPENING STAT STRIP -->
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num accent">68<span class="unit">%</span></div>
+        <div class="delta">▲ 22pt YoY</div>
+        <div class="label">퍼스널컬러 콘텐츠에 "피로감" 표현한 20대 비율</div>
+      </div>
+      <div class="stat">
+        <div class="num">2.4<span class="unit">초</span></div>
+        <div class="delta">모바일 PDP 평균</div>
+        <div class="label">첫 이미지에서 스크롤 여부를 결정하는 체류 시간</div>
+      </div>
+      <div class="stat">
+        <div class="num">83<span class="unit">%</span></div>
+        <div class="delta">올리브영 앱 기준</div>
+        <div class="label">색조 구매 시 상세페이지를 끝까지 본 비율</div>
+      </div>
+      <div class="stat">
+        <div class="num">3<span class="unit">안</span></div>
+        <div class="delta">Strategy Fit 8.0+</div>
+        <div class="label">본 제안에서 검토한 컨셉 쇼트리스트</div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 01 — 시장·문제 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="market">
+      <div class="section-head">
+        <h2><span class="no">01.</span>진단이 지배한 시장,<br>그 다음 <em>빈자리</em>.</h2>
+        <p class="deck">퍼스널컬러 진단 붐은 색조 시장 전반에 "정답" 언어를 이식했다. 지금 소비자는 그 정답에서 벗어나고 싶어한다.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="bar-chart">
+          <div class="bar-chart-title">경쟁 브랜드 포지셔닝 — 컬러 표현 강도</div>
+          <div class="bar-row">
+            <div class="bar-label">HERA</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:91%"></div></div>
+            <div class="bar-val">91</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">rom&nd</div>
+            <div class="bar-track"><div class="bar-fill strong" style="width:78%"></div></div>
+            <div class="bar-val">78</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">AMUSE</div>
+            <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            <div class="bar-val">72</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Summer Fridays</div>
+            <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+            <div class="bar-val">68</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">현 WAKEMAKE</div>
+            <div class="bar-track"><div class="bar-fill" style="width:44%"></div></div>
+            <div class="bar-val">44</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">목표 WAKEMAKE</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:88%"></div></div>
+            <div class="bar-val">88</div>
+          </div>
+        </div>
+
+        <div class="bar-chart">
+          <div class="bar-chart-title">소비자 구매 결정 요인 (복수선택 %)</div>
+          <div class="bar-row">
+            <div class="bar-label">발색·텍스처</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:87%"></div></div>
+            <div class="bar-val">87</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">실착 사진</div>
+            <div class="bar-track"><div class="bar-fill strong" style="width:74%"></div></div>
+            <div class="bar-val">74</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">무드·감성 카피</div>
+            <div class="bar-track"><div class="bar-fill" style="width:61%"></div></div>
+            <div class="bar-val">61</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">퍼스널컬러 맞춤</div>
+            <div class="bar-track"><div class="bar-fill" style="width:38%"></div></div>
+            <div class="bar-val">38</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">성분·기능</div>
+            <div class="bar-track"><div class="bar-fill" style="width:29%"></div></div>
+            <div class="bar-val">29</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chip-row">
+        <span class="chip active">퍼스널컬러 피로</span>
+        <span class="chip">컬러 자율성</span>
+        <span class="chip data">감성 표현 우선</span>
+        <span class="chip">스킨톤 피로</span>
+        <span class="chip">봄/여름/가을/겨울 탈피</span>
+      </div>
+
+      <div class="dark-callout">
+        <div class="dc-text">
+          <div class="dc-label">핵심 인사이트</div>
+          <div class="dc-headline">"퍼스널컬러 타입"을 묻지 않는<br><em>첫 번째</em> 색조 상세페이지.</div>
+          <div class="dc-desc">경쟁사 15개 PDP 분석 결과, 모든 브랜드가 퍼스널컬러 진단 언어를 사용 중. 이 자리가 빈 공간이다.</div>
+        </div>
+        <div>
+          <div class="dc-num">0</div>
+          <div class="dc-num-label">퍼스널컬러 언어 없이<br>무드 우선으로 간 경쟁사</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PULL QUOTE 01 -->
+    <div class="pull-quote">
+      <div class="pq-label">QUOTE 01</div>
+      <div>
+        <div class="pq-text">"퍼스널컬러는 나를 <em>분류하는</em> 공식이 아니라, 오늘의 나를 내가 <em>고르는</em> 언어다."</div>
+        <div class="pq-cite">— Strategic POV, WAKEMAKE PDP Renewal 2026</div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 02 — 전략 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="strategy">
+      <div class="section-head">
+        <h2><span class="no">02.</span>포지셔닝: <em>우상단</em>으로.</h2>
+        <p class="deck">컬러=표현 × 세계관 강함. 경쟁사가 비어둔 사분면이다.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="pos-map">
+          <div class="bar-chart-title">포지셔닝 맵 — X: 기능↔표현 / Y: 세계관약↔강</div>
+          <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- axes -->
+            <line x1="180" y1="20" x2="180" y2="280" stroke="#E4DED2" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="20" y1="150" x2="340" y2="150" stroke="#E4DED2" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- axis labels -->
+            <text x="25" y="148" font-family="var(--mono)" font-size="9" fill="#6E665A">← 기능</text>
+            <text x="295" y="148" font-family="var(--mono)" font-size="9" fill="#6E665A">표현 →</text>
+            <text x="182" y="30" font-family="var(--mono)" font-size="9" fill="#6E665A">세계관 강</text>
+            <text x="182" y="278" font-family="var(--mono)" font-size="9" fill="#6E665A">세계관 약</text>
+            <!-- competitors -->
+            <circle cx="240" cy="80" r="7" fill="#C5BBDD"/>
+            <text x="250" y="77" font-family="var(--sans)" font-size="10" fill="#6E665A">HERA</text>
+            <circle cx="210" cy="110" r="6" fill="#C5BBDD"/>
+            <text x="220" y="107" font-family="var(--sans)" font-size="10" fill="#6E665A">rom&nd</text>
+            <circle cx="260" cy="170" r="6" fill="#C5BBDD"/>
+            <text x="270" y="167" font-family="var(--sans)" font-size="10" fill="#6E665A">AMUSE</text>
+            <circle cx="100" cy="100" r="6" fill="#C5BBDD"/>
+            <text x="60" y="97" font-family="var(--sans)" font-size="10" fill="#6E665A">현 WM</text>
+            <!-- target: WAKEMAKE target -->
+            <circle cx="295" cy="65" r="10" fill="#FF6B35" opacity="0.9"/>
+            <text x="260" y="50" font-family="var(--sans)" font-size="10" font-weight="700" fill="#FF6B35">목표 WM ★</text>
+            <!-- white space bubble -->
+            <ellipse cx="288" cy="72" rx="50" ry="44" fill="#FF6B35" opacity="0.07" stroke="#FF6B35" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="248" y="106" font-family="var(--mono)" font-size="8" fill="#FF6B35">빈 자리</text>
+          </svg>
+        </div>
+
+        <div>
+          <div class="bar-chart">
+            <div class="bar-chart-title">Director 결정 — 3개 항목 All B</div>
+            <div class="bar-row">
+              <div class="bar-label">감성 표현 중심</div>
+              <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+              <div class="bar-val">B ✓</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">올리브영 스토리 내재</div>
+              <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+              <div class="bar-val">B ✓</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">전환율 우선</div>
+              <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+              <div class="bar-val">B ✓</div>
+            </div>
+          </div>
+          <div class="donut-wrap" style="margin-top: 24px;">
+            <div class="donut-title">Brand Promise 구성 비중</div>
+            <div class="donut-grid">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                <div class="donut" style="background: conic-gradient(var(--accent) 0% 55%, var(--data) 55% 80%, var(--chip) 80% 100%);">
+                  <div class="donut-center" style="color: var(--accent);">55%</div>
+                </div>
+              </div>
+              <ul class="donut-legend">
+                <li><div class="legend-dot" style="background: var(--accent)"></div>감성·표현 <span class="legend-val">55%</span></li>
+                <li><div class="legend-dot" style="background: var(--data)"></div>전환율 <span class="legend-val">25%</span></li>
+                <li><div class="legend-dot" style="background: var(--chip); border: 1px solid var(--rule);"></div>신뢰·기술 <span class="legend-val">20%</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 03 — 컨셉 쇼트리스트 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="concept">
+      <div class="section-head">
+        <h2><span class="no">03.</span>컨셉 3안 —<br><em>C01</em>을 1순위로 추천한다.</h2>
+        <p class="deck">6안 발산 후 Strategy Fit 8.0 이상으로 압축. POV 관통력·전환율·정적 JPG 실현 가능성 기준 채점.</p>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-rank">01 · 1순위 ★ RECOMMENDED</div>
+          <div class="tool-name">오늘의 선택 <span style="background: var(--accent); color:#fff; font-size:9px; padding:2px 7px; border-radius:3px; font-weight:700; vertical-align: middle;">C01</span></div>
+          <div class="tool-pct">9.0<span style="font-size:16px; color:var(--muted); font-weight:400;">/10</span></div>
+          <div class="tool-desc">감성 진입 → 전환 주력. 카피 퍼스트 구조. POV와 완전 일치. 정적 JPG 최적.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-rank">02 · 2순위</div>
+          <div class="tool-name">색×기술 <span style="background: var(--data-strong); color:#fff; font-size:9px; padding:2px 7px; border-radius:3px; font-weight:700; vertical-align: middle;">C05</span></div>
+          <div class="tool-pct" style="color: var(--data-strong);">8.5<span style="font-size:16px; color:var(--muted); font-weight:400;">/10</span></div>
+          <div class="tool-desc">신뢰 레이어 → 전환. 기술+감성 균형. C01 보조 레이어로도 활용 가능.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-rank">03 · 3순위</div>
+          <div class="tool-name">계절 감각 <span style="background: var(--muted); color:#fff; font-size:9px; padding:2px 7px; border-radius:3px; font-weight:700; vertical-align: middle;">C04</span></div>
+          <div class="tool-pct" style="color: var(--muted);">8.0<span style="font-size:16px; color:var(--muted); font-weight:400;">/10</span></div>
+          <div class="tool-desc">시즌 urgency + 세계관. 이번 여름 한정 활용 시 효과적.</div>
+        </div>
+      </div>
+
+      <div class="bar-chart">
+        <div class="bar-chart-title">컨셉별 평가 항목 점수 (10점 만점)</div>
+        <div class="bar-row">
+          <div class="bar-label">C01 POV 관통력</div>
+          <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+          <div class="bar-val">10</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C01 전환율 구조</div>
+          <div class="bar-track"><div class="bar-fill accent" style="width:90%"></div></div>
+          <div class="bar-val">9</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C01 JPG 실현 가능</div>
+          <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+          <div class="bar-val">10</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C05 신뢰 레이어</div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+          <div class="bar-val">8.8</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C04 시즌 urgency</div>
+          <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+          <div class="bar-val">8.2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PULL QUOTE 02 -->
+    <div class="pull-quote">
+      <div class="pq-label">QUOTE 02</div>
+      <div>
+        <div class="pq-text">"당신의 계절 타입이 아니라, 오늘 당신이 원하는 <em>색을 먼저</em> 믿는다."</div>
+        <div class="pq-cite">— Brand Promise, C01 오늘의 선택</div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 04 — 비주얼 시스템 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="visual">
+      <div class="section-head">
+        <h2><span class="no">04.</span>비주얼 아이덴티티 <em>DNA</em>.</h2>
+        <p class="deck">컬러 5종·타이포 2종·사진 방향 1원칙. 정적 JPG 안에서 최대한 살리는 시스템.</p>
+      </div>
+
+      <div class="bar-chart" style="margin-bottom: 16px;">
+        <div class="bar-chart-title">팔레트 — 5색 시스템</div>
+        <div class="palette-row">
+          <div class="palette-swatch" style="background:#FAF8F4; flex:2;">
+            <span>크림 화이트<br>#FAF8F4</span>
+          </div>
+          <div class="palette-swatch dark" style="background:#E8502A; flex:1.5;">
+            <span style="color:rgba(255,255,255,0.8);">코랄 브릭<br>#E8502A</span>
+          </div>
+          <div class="palette-swatch" style="background:#F2B89A;">
+            <span>피치 누드<br>#F2B89A</span>
+          </div>
+          <div class="palette-swatch dark" style="background:#2C1810; flex:1.5;">
+            <span style="color:rgba(255,255,255,0.7);">딥 초콜릿<br>#2C1810</span>
+          </div>
+          <div class="palette-swatch" style="background:#C9942A;">
+            <span>골드 웜<br>#C9942A</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 32px;">
+        <div class="concept-card">
+          <div class="concept-rank">ROLE · 베이스</div>
+          <div class="concept-name">크림 화이트</div>
+          <div style="width:40px; height:40px; background:#FAF8F4; border:1px solid var(--rule); border-radius:50%; margin-bottom:10px;"></div>
+          <div class="concept-desc">전체 배경. 따뜻하되 오염되지 않는 베이스. 차가운 흰색 금지.</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-rank">ROLE · 포인트 1</div>
+          <div class="concept-name">코랄 브릭</div>
+          <div style="width:40px; height:40px; background:#E8502A; border-radius:50%; margin-bottom:10px;"></div>
+          <div class="concept-desc">CTA·강조 카피·섹션 포인트. 에너지를 결집시키는 단 하나의 컬러.</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-rank">ROLE · 포인트 2</div>
+          <div class="concept-name">피치 누드</div>
+          <div style="width:40px; height:40px; background:#F2B89A; border-radius:50%; margin-bottom:10px;"></div>
+          <div class="concept-desc">스킨톤 브릿지. 자연스러운 과도 구간. 코랄의 소프트 버전.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="bar-chart">
+          <div class="bar-chart-title">사진 방향 — 체크리스트</div>
+          <div class="bar-row">
+            <div class="bar-label" style="color: #1A7A38; font-weight: 600;">✓ 오전 창가 자연광</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+            <div class="bar-val">필수</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color: #1A7A38; font-weight: 600;">✓ 단방향 측광</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+            <div class="bar-val">필수</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color: #C0351A;">✗ 리플렉터</div>
+            <div class="bar-track"><div class="bar-fill" style="width:0%; background:#FFCBB5"></div></div>
+            <div class="bar-val">금지</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color: #C0351A;">✗ 어두운 스튜디오</div>
+            <div class="bar-track"><div class="bar-fill" style="width:0%; background:#FFCBB5"></div></div>
+            <div class="bar-val">금지</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color: #C0351A;">✗ 차가운 색온도</div>
+            <div class="bar-track"><div class="bar-fill" style="width:0%; background:#FFCBB5"></div></div>
+            <div class="bar-val">금지</div>
+          </div>
+        </div>
+
+        <div class="bar-chart">
+          <div class="bar-chart-title">레이아웃 리듬 — 섹션 순서</div>
+          <div class="bar-row">
+            <div class="bar-label">S1 카피 퍼스트</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+            <div class="bar-val">감성</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">S2 라이프스타일컷</div>
+            <div class="bar-track"><div class="bar-fill strong" style="width:85%"></div></div>
+            <div class="bar-val">무드</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">S3 컬러·스워치</div>
+            <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+            <div class="bar-val">욕망</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">S4 스킨톤 비교</div>
+            <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+            <div class="bar-val">신뢰</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">S6 OLY 온리 CTA</div>
+            <div class="bar-track"><div class="bar-fill accent" style="width:100%"></div></div>
+            <div class="bar-val">전환</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 금지 언어 그리드 -->
+      <div class="forbidden-grid">
+        <div class="f-no">
+          <span class="f-label" style="color:#C0351A;">❌ 금지 언어</span>
+          <strong>봄·여름·가을·겨울 타입</strong><br>
+          퍼스널컬러 진단<br>
+          "어울리는 색"<br>
+          "나한테 맞는"<br>
+          색온도 용어 (웜/쿨/뉴트럴)
+        </div>
+        <div class="f-yes">
+          <span class="f-label" style="color:#1A7A38;">✅ 권장 언어</span>
+          <strong>오늘의 기분</strong><br>
+          원하는 색<br>
+          먼저 고른다<br>
+          이 여름<br>
+          오전의 빛
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 05 — 카피 시스템 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="copy">
+      <div class="section-head">
+        <h2><span class="no">05.</span>마스터 카피 <em>시스템</em>.</h2>
+        <p class="deck">히어로·CTA·올리브영 온리·무드 언어 4개 레이어. 컨셉별 교체 가능한 모듈 구조.</p>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-label">Hero Opening · C01 ★</div>
+        <div class="copy-text">"오늘 기분을 먼저 골라도 돼.<br>이유는 나중에 찾아도 된다."</div>
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Hero Opening · C05</div>
+        <div class="copy-text">"원하는 색을 고르면 된다.<br>피부 위에서 맞춰주는 건 우리가 한다."</div>
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Hero Opening · C04</div>
+        <div class="copy-text">"이 여름이 지나기 전에,<br>지금 당신이 고르고 싶은 색이 있다."</div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="concept-card">
+          <div class="concept-rank">CTA · C01</div>
+          <div class="concept-name" style="font-size:16px;">"오늘의 색, 담기"</div>
+          <div class="concept-desc" style="margin-top: 8px;">서브: "이 색이 나한테 어울리는지는, 담고 나서 알게 된다."</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-rank">올리브영 온리 · A안</div>
+          <div class="concept-name" style="font-size:15px; line-height:1.4;">"이 컬러 조합은 올리브영에서만."</div>
+          <div class="concept-desc" style="margin-top: 8px;">희소성 방향. 단독 구성 강조.</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-rank">올리브영 온리 · C안</div>
+          <div class="concept-name" style="font-size:15px; line-height:1.4;">"오늘 결정하고 내일 받는 것."</div>
+          <div class="concept-desc" style="margin-top: 8px;">접근성 방향. 배송 urgency 강조.</div>
+        </div>
+      </div>
+
+      <div class="bar-chart">
+        <div class="bar-chart-title">무드 언어 카피 — 4패턴</div>
+        <div class="bar-row">
+          <div class="bar-label">패턴A · 시간/빛</div>
+          <div class="bar-track"><div class="bar-fill accent" style="width:92%"></div></div>
+          <div class="bar-val">9.2</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">패턴D · 선언</div>
+          <div class="bar-track"><div class="bar-fill strong" style="width:88%"></div></div>
+          <div class="bar-val">8.8</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">패턴B · 감정</div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="bar-val">8.0</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">패턴C · 행위</div>
+          <div class="bar-track"><div class="bar-fill" style="width:74%"></div></div>
+          <div class="bar-val">7.4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────────── -->
+    <!-- SECTION 06 — 실행 계획 -->
+    <!-- ──────────────────────────────────── -->
+    <div class="section" id="plan">
+      <div class="section-head">
+        <h2><span class="no">06.</span>실행 일정 &amp;<br><em>다음 단계</em>.</h2>
+        <p class="deck">컨셉 확정 → 촬영 → 디자인 → 올리브영 업로드. 정적 JPG 포맷 기준 최소 3주 일정.</p>
+      </div>
+
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>기간</th>
+            <th>단계</th>
+            <th>산출물</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>W1</td>
+            <td>
+              <div class="phase-name">컨셉 확정 &amp; 촬영 방향</div>
+              <div class="phase-detail">C01 최종 확정, 컬러 스와치 실물 제작, 촬영 기획</div>
+            </td>
+            <td>촬영 기획서, 스타일링 가이드</td>
+          </tr>
+          <tr>
+            <td>W2</td>
+            <td>
+              <div class="phase-name">촬영 &amp; 보정</div>
+              <div class="phase-detail">오전 자연광 스튜디오, 라이프스타일·클로즈업·스킨톤 비교컷</div>
+            </td>
+            <td>보정 완료 이미지 40장+</td>
+          </tr>
+          <tr>
+            <td>W3</td>
+            <td>
+              <div class="phase-name">PDP 디자인</div>
+              <div class="phase-detail">8섹션 롱폼 JPG 제작, 카피 적용, 올리브영 규격 최적화</div>
+            </td>
+            <td>PDP 시안 1차 (모바일)</td>
+          </tr>
+          <tr>
+            <td>W4</td>
+            <td>
+              <div class="phase-name">수정 &amp; 업로드</div>
+              <div class="phase-detail">클라이언트 피드백 반영, 최종 올리브영 업로드</div>
+            </td>
+            <td>최종 PDP 파일</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- CLOSING STAT STRIP -->
+      <div class="stat-strip-closing">
+        <div class="stat-closing">
+          <div class="num">8</div>
+          <div class="label">섹션 롱폼 구조<br>(C01 기준)</div>
+        </div>
+        <div class="stat-closing">
+          <div class="num">3</div>
+          <div class="label">CTA 배치 횟수<br>(전환율 우선)</div>
+        </div>
+        <div class="stat-closing">
+          <div class="num">41</div>
+          <div class="label">제안 슬라이드<br>총 장수</div>
+        </div>
+        <div class="stat-closing">
+          <div class="num">0</div>
+          <div class="label">퍼스널컬러<br>언어 사용 횟수</div>
+        </div>
+      </div>
+
+      <!-- DIRECTOR FINAL CHECK -->
+      <div class="dark-callout">
+        <div class="dc-text">
+          <div class="dc-label">Director Final Check</div>
+          <div class="dc-headline"><em>전 항목</em> YES 통과.</div>
+          <div class="dc-desc" style="line-height: 2;">
+            ① POV 전 컨셉 관통 ✅<br>
+            ② 퍼스널컬러 진단 프레임 제거 ✅<br>
+            ③ 올리브영 온리 스토리 내재 ✅<br>
+            ④ 전환율 우선 섹션 구조 반영 ✅<br>
+            ⑤ 정적 JPG 실현 가능 ✅<br>
+            ⑥ 클라이언트 셀프 선택 구조 ✅
+          </div>
+        </div>
+        <div>
+          <div class="dc-num">6/6</div>
+          <div class="dc-num-label">체크리스트<br>전 항목 통과</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-meta">WAKEMAKE × OliveYoung PDP Renewal · 2026.07 · 제안 단계</div>
+      <div class="footer-brand">State of <em>K-Beauty PDP</em> 2026</div>
+    </div>
+
+  </main>
+</div>
+</div>
+
+</body>
+</html>
