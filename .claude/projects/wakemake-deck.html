@@ -8,16 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:    #F2EDE6;
+  --bg:    #EBEBEB;
   --card:  #FFFFFF;
-  --ink:   #2C1810;
-  --ink2:  #6B4B3A;
-  --ink3:  #9C8070;
-  --border:#E4DCD2;
+  --ink:   #111111;
+  --ink2:  #4A4944;
+  --ink3:  #8A8780;
+  --border:#E2E2E2;
   --coral: #E8502A;
   --peach: #F2B89A;
-  --gold:  #C9942A;
-  --cream: #FAF8F4;
+  --brass: #B8860B;
+  --cream: #F5F5F5;
   --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -184,7 +184,7 @@ body {
   color: var(--ink2);
   line-height: 1.5;
 }
-.brand-cell.highlight { background: #FFF0EB; }
+.brand-cell.highlight { background: #F0EFED; }
 .brand-cell.highlight .b-name { color: var(--coral); }
 
 /* ── CLUSTER GRID ── */
@@ -201,7 +201,7 @@ body {
   padding: 18px;
 }
 .cluster-card.whitespace {
-  background: #FFF0EB;
+  background: #F0EFED;
   border-color: var(--coral);
 }
 .cc-tag {
@@ -258,7 +258,7 @@ body {
 .bar-row:last-child { margin-bottom: 0; }
 .bar-name { font-weight: 500; color: var(--ink); }
 .bar-track {
-  background: #F2EDE6;
+  background: #EBEBEB;
   border-radius: 3px;
   height: 9px;
   overflow: hidden;
@@ -269,7 +269,7 @@ body {
   border-radius: 3px;
 }
 .bar-fill.a { background: var(--coral); }
-.bar-fill.b { background: var(--gold); }
+.bar-fill.b { background: var(--brass); }
 .bar-val {
   font-family: var(--mono);
   font-size: 11px;
@@ -376,7 +376,7 @@ body {
   letter-spacing: 0.04em;
 }
 .chip.on { background: var(--coral); color: #fff; border-color: var(--coral); }
-.chip.gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+.chip.gold { background: var(--brass); color: #fff; border-color: var(--brass); }
 
 /* ── COLOR SWATCHES ── */
 .swatch-row {
@@ -405,7 +405,7 @@ body {
 .quote-block {
   border-left: 3px solid var(--coral);
   padding: 14px 18px;
-  background: #FFF5F0;
+  background: #F5F5F5;
   border-radius: 0 8px 8px 0;
   margin-bottom: 16px;
 }
@@ -526,7 +526,7 @@ body {
   aspect-ratio: 16/9;
   border-radius: 10px;
   border: 1px solid var(--border);
-  box-shadow: 0 4px 24px rgba(44,24,16,0.10);
+  box-shadow: 0 4px 24px rgba(17,17,17,0.08);
   overflow: hidden;
   position: relative;
   margin-bottom: 16px;
@@ -634,10 +634,10 @@ body {
 }
 .s1-img.tall { grid-row: 1 / 3; }
 .s1-img.img1 { background: linear-gradient(135deg, #F2B89A 0%, #E8502A 100%); color: rgba(255,255,255,0.7); }
-.s1-img.img2 { background: linear-gradient(135deg, #FAF8F4 0%, #F2B89A 100%); }
-.s1-img.img3 { background: linear-gradient(135deg, #2C1810 0%, #6B4B3A 100%); color: rgba(255,255,255,0.6); }
-.s1-img.img4 { background: linear-gradient(135deg, #C9942A 0%, #FAF8F4 100%); }
-.s1-img.img5 { background: linear-gradient(135deg, #E8502A 0%, #C9942A 100%); color: rgba(255,255,255,0.7); }
+.s1-img.img2 { background: linear-gradient(135deg, #F5F5F5 0%, #E2E2E2 100%); color: var(--ink3); }
+.s1-img.img3 { background: linear-gradient(135deg, #111111 0%, #4A4944 100%); color: rgba(255,255,255,0.6); }
+.s1-img.img4 { background: linear-gradient(135deg, #B8860B 0%, #F5F5F5 100%); color: var(--ink3); }
+.s1-img.img5 { background: linear-gradient(135deg, #E8502A 0%, #B8860B 100%); color: rgba(255,255,255,0.7); }
 
 /* ── SLIDE 2: Brand Value Keywords ── */
 .s2-cards {
@@ -656,8 +656,8 @@ body {
   margin-bottom: 1%;
 }
 .s2-card:nth-child(1) .s2-alpha { color: var(--coral); }
-.s2-card:nth-child(2) .s2-alpha { color: var(--gold); }
-.s2-card:nth-child(3) .s2-alpha { color: var(--ink2); }
+.s2-card:nth-child(2) .s2-alpha { color: var(--brass); }
+.s2-card:nth-child(3) .s2-alpha { color: var(--ink); }
 .s2-title {
   font-size: clamp(10px, 1.6vw, 18px);
   font-weight: 800;
@@ -836,8 +836,8 @@ body {
   margin-bottom: 1.5%;
 }
 .s5-col:nth-child(1) .s5-col-label { color: var(--coral); }
-.s5-col:nth-child(2) .s5-col-label { color: var(--gold); }
-.s5-col:nth-child(3) .s5-col-label { color: var(--ink2); }
+.s5-col:nth-child(2) .s5-col-label { color: var(--brass); }
+.s5-col:nth-child(3) .s5-col-label { color: var(--ink); }
 .s5-col-title {
   font-size: clamp(8px, 1vw, 13px);
   font-weight: 700;
@@ -864,26 +864,26 @@ body {
   padding: 4px;
 }
 /* C01 mood - warm coral */
-.s5-col:nth-child(1) .s5-img:nth-child(1) { background: linear-gradient(135deg, #FAF8F4, #F2B89A); color: var(--ink3); }
-.s5-col:nth-child(1) .s5-img:nth-child(2) { background: linear-gradient(135deg, #E8502A, #C9942A); }
-.s5-col:nth-child(1) .s5-img:nth-child(3) { background: linear-gradient(135deg, #2C1810, #6B4B3A); }
-.s5-col:nth-child(1) .s5-img:nth-child(4) { background: linear-gradient(135deg, #F2B89A, #FAF8F4); color: var(--ink3); }
-.s5-col:nth-child(1) .s5-img:nth-child(5) { background: linear-gradient(135deg, #C9942A, #E8502A); }
-.s5-col:nth-child(1) .s5-img:nth-child(6) { background: linear-gradient(135deg, #FAF8F4, #2C1810); }
+.s5-col:nth-child(1) .s5-img:nth-child(1) { background: linear-gradient(135deg, #F5F5F5, #F2B89A); color: var(--ink3); }
+.s5-col:nth-child(1) .s5-img:nth-child(2) { background: linear-gradient(135deg, #E8502A, #B8860B); }
+.s5-col:nth-child(1) .s5-img:nth-child(3) { background: linear-gradient(135deg, #111111, #4A4944); }
+.s5-col:nth-child(1) .s5-img:nth-child(4) { background: linear-gradient(135deg, #F2B89A, #F5F5F5); color: var(--ink3); }
+.s5-col:nth-child(1) .s5-img:nth-child(5) { background: linear-gradient(135deg, #B8860B, #E8502A); }
+.s5-col:nth-child(1) .s5-img:nth-child(6) { background: linear-gradient(135deg, #F5F5F5, #111111); }
 /* C05 mood - clean tech */
-.s5-col:nth-child(2) .s5-img:nth-child(1) { background: linear-gradient(135deg, #F5F5F5, #E0E0E0); color: var(--ink3); }
-.s5-col:nth-child(2) .s5-img:nth-child(2) { background: linear-gradient(135deg, #C9942A, #F5F5F5); color: var(--ink3); }
-.s5-col:nth-child(2) .s5-img:nth-child(3) { background: linear-gradient(135deg, #1A1A1A, #444); }
-.s5-col:nth-child(2) .s5-img:nth-child(4) { background: linear-gradient(135deg, #F0EDE8, #C9942A); color: var(--ink3); }
-.s5-col:nth-child(2) .s5-img:nth-child(5) { background: linear-gradient(135deg, #444, #C9942A); }
-.s5-col:nth-child(2) .s5-img:nth-child(6) { background: linear-gradient(135deg, #E8502A, #1A1A1A); }
+.s5-col:nth-child(2) .s5-img:nth-child(1) { background: linear-gradient(135deg, #EBEBEB, #E2E2E2); color: var(--ink3); }
+.s5-col:nth-child(2) .s5-img:nth-child(2) { background: linear-gradient(135deg, #B8860B, #EBEBEB); color: var(--ink3); }
+.s5-col:nth-child(2) .s5-img:nth-child(3) { background: linear-gradient(135deg, #111111, #4A4944); }
+.s5-col:nth-child(2) .s5-img:nth-child(4) { background: linear-gradient(135deg, #F5F5F5, #B8860B); color: var(--ink3); }
+.s5-col:nth-child(2) .s5-img:nth-child(5) { background: linear-gradient(135deg, #4A4944, #B8860B); }
+.s5-col:nth-child(2) .s5-img:nth-child(6) { background: linear-gradient(135deg, #E8502A, #111111); }
 /* C04 mood - seasonal */
-.s5-col:nth-child(3) .s5-img:nth-child(1) { background: linear-gradient(135deg, #FFF3DC, #FFAD80); color: var(--ink3); }
-.s5-col:nth-child(3) .s5-img:nth-child(2) { background: linear-gradient(135deg, #FF6B35, #C9942A); }
-.s5-col:nth-child(3) .s5-img:nth-child(3) { background: linear-gradient(135deg, #8BB87A, #2C4A20); }
-.s5-col:nth-child(3) .s5-img:nth-child(4) { background: linear-gradient(135deg, #FFAD80, #FFF3DC); color: var(--ink3); }
-.s5-col:nth-child(3) .s5-img:nth-child(5) { background: linear-gradient(135deg, #2C1810, #8BB87A); }
-.s5-col:nth-child(3) .s5-img:nth-child(6) { background: linear-gradient(135deg, #FF6B35, #FFF3DC); }
+.s5-col:nth-child(3) .s5-img:nth-child(1) { background: linear-gradient(135deg, #F5F5F5, #F2B89A); color: var(--ink3); }
+.s5-col:nth-child(3) .s5-img:nth-child(2) { background: linear-gradient(135deg, #E8502A, #B8860B); }
+.s5-col:nth-child(3) .s5-img:nth-child(3) { background: linear-gradient(135deg, #8A8780, #4A4944); }
+.s5-col:nth-child(3) .s5-img:nth-child(4) { background: linear-gradient(135deg, #F2B89A, #F5F5F5); color: var(--ink3); }
+.s5-col:nth-child(3) .s5-img:nth-child(5) { background: linear-gradient(135deg, #111111, #8A8780); }
+.s5-col:nth-child(3) .s5-img:nth-child(6) { background: linear-gradient(135deg, #E8502A, #F5F5F5); }
 
 /* ── SLIDE 6: Competitor Research ── */
 .s6-grid {
@@ -1171,11 +1171,11 @@ body {
     <div class="cat-deck">5색 팔레트 + 명조 이탤릭 헤드 + 고딕 Light 본문. 정적 JPG 안에서 최대 감성 밀도.</div>
 
     <div class="swatch-row">
-      <div class="swatch" style="background:#FAF8F4; flex:2.5;"><span>크림 화이트<br>#FAF8F4</span></div>
+      <div class="swatch" style="background:#EBEBEB; flex:2.5;"><span>뉴트럴 그레이<br>#EBEBEB</span></div>
       <div class="swatch dk" style="background:#E8502A; flex:1.5;"><span>코랄 브릭<br>#E8502A</span></div>
       <div class="swatch" style="background:#F2B89A;"><span>피치 누드<br>#F2B89A</span></div>
-      <div class="swatch dk" style="background:#2C1810; flex:1.5;"><span>딥 초콜릿<br>#2C1810</span></div>
-      <div class="swatch" style="background:#C9942A;"><span>골드 웜<br>#C9942A</span></div>
+      <div class="swatch dk" style="background:#111111; flex:1.5;"><span>잉크 블랙<br>#111111</span></div>
+      <div class="swatch" style="background:#B8860B;"><span>브라스 골드<br>#B8860B</span></div>
     </div>
 
     <div class="two-col">
