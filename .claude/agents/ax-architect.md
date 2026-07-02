@@ -32,7 +32,7 @@ tools: Read, Glob, Grep
 3. **구조 적합성 판단**: 지금의 7개 그룹·라이브러리 문서 체계가 그 패턴을 감당하는지 확인한다.
    - 감당한다 → "기존 문서 X에 규칙만 추가하면 됨" 식으로 최소 개입 제안.
    - 감당 못한다 → 새 에이전트 그룹/새 라이브러리 문서/새 프로젝트 인덱스 템플릿 항목이 필요하다고 제안.
-4. **중복·충돌 점검**: 여러 라이브러리 문서(`brand-design-proposal.md`, `design-deck-wireframe.md`, `MOODBOARD_MASTER_FRAMEWORK.md`, `runable-3-slide-templates.md` 등)가 같은 규칙을 다르게 서술하고 있지 않은지 확인한다 — 있으면 어느 쪽이 최신/정확한지 판단하고 나머지는 그쪽을 참조하도록 정리 방향 제시.
+4. **중복·충돌 점검**: 여러 라이브러리 문서(`brand-design-proposal.md`, `design-deck-wireframe.md`, `MOODBOARD_MASTER_FRAMEWORK.md`, `deck-slide-templates.md` 등)가 같은 규칙을 다르게 서술하고 있지 않은지 확인한다 — 있으면 어느 쪽이 최신/정확한지 판단하고 나머지는 그쪽을 참조하도록 정리 방향 제시.
 5. **에이전트 배치 검증**: 30종 에이전트가 7개 그룹 중 정확한 위치에 있는지, 역할이 겹치는 에이전트가 있는지 확인한다.
 
 ## 출력 형식

@@ -1,7 +1,7 @@
 # 브랜드 디자인 제안서 — 마스터 오케스트레이션 가이드
 
 > 초기 제안이 들어오면 이 파일이 기준이 된다. 1차 → 2 → 3차 + 4개 Designer Lens Gate를 누락 없이 진행한다.
-> 하위 상세 지침: `manus-1-brand-planning.md` / `manus-2-visual-identity.md` / `runable-3-brand-system.md` / `designer-lens-gates.md`
+> 하위 상세 지침: `stage-1-brand-planning.md` / `stage-2-visual-identity.md` / `stage3-3-brand-system.md` / `designer-lens-gates.md`
 
 ---
 
@@ -67,15 +67,15 @@
 | 1차 — 클러스터링 | `02-clustering.md` | market-research(글) → 메인 저장 |
 | 1차 — 포지셔닝 맵 | `03-positioning-map.md` | market-research(글) → 메인 저장 |
 | 1차 — 선호도·전략 | `04-preference-strategy.md` | market-research+concept-director(글) → 메인 저장 |
-| 1차 State | `manus-1-state.json` | 메인 저장 |
+| 1차 State | `stage-1-state.json` | 메인 저장 |
 | 2차 — Visual DNA | `05-visual-dna.md` | visual-generator+brainstormer(글) → 메인 저장 |
 | 2차 — 컨셉 6개 | `06-concept-territories.md` | brainstormer(글) → 메인 저장 |
 | 2차 — Client×Mood | `07-client-mood-matrix.md` | critic(글) → 메인 저장 |
-| 2차 State | `manus-2-state.json` | 메인 저장 |
+| 2차 State | `stage-2-state.json` | 메인 저장 |
 | 3차 — Brand Board | `08-brand-board.md` | concept-director(글) → 메인 저장 |
 | 3차 — Value·Copy·Symbol | `09-brand-system.md` | brainstormer+critic(글) → 메인 저장 |
 | 3차 — CI/BI Audit | `10-competitor-cibi.md` | market-research(글) → 메인 저장 |
-| 3차 State | `runable-3-state.json` | 메인 저장 |
+| 3차 State | `stage3-3-state.json` | 메인 저장 |
 | 이미지 | `images/*.png` | visual-generator(프롬프트) → **메인이 Higgsfield 생성** |
 | 최종 덱 | `deck.html` | 메인 조립 → 커밋·PR |
 
@@ -87,13 +87,13 @@
 |---|---|---|
 | 1차 · 경쟁 30개 리서치 | `market-research` | `01-competitor-matrix.md` 저장 |
 | 1차 · 클러스터링+XY맵 | `market-research` | `02-clustering.md`, `03-positioning-map.md` 저장 |
-| 1차 · 선호도+전략 (Gate 1 포함) | `market-research` + `concept-director` | `04-preference-strategy.md` + `manus-1-state.json` 저장 |
+| 1차 · 선호도+전략 (Gate 1 포함) | `market-research` + `concept-director` | `04-preference-strategy.md` + `stage-1-state.json` 저장 |
 | 2차 · Visual DNA (Gate 2 선행) | `visual-generator` + `brainstormer` | `05-visual-dna.md` 저장 |
 | 2차 · 6컨셉+매트릭스 (Gate 3 포함) | `brainstormer` | `06-concept-territories.md` 저장 |
-| 2차 · Client×Mood | `critic` + `review-panel` | `07-client-mood-matrix.md` + `manus-2-state.json` 저장 |
+| 2차 · Client×Mood | `critic` + `review-panel` | `07-client-mood-matrix.md` + `stage-2-state.json` 저장 |
 | 3차 · Brand Board (Gate 4 포함) | `concept-director` | `08-brand-board.md` 저장 |
 | 3차 · Value·Copy·Symbol | `brainstormer` + `critic` | `09-brand-system.md` 저장 |
-| 3차 · CI/BI Audit | `market-research` | `10-competitor-cibi.md` + `runable-3-state.json` 저장 |
+| 3차 · CI/BI Audit | `market-research` | `10-competitor-cibi.md` + `stage3-3-state.json` 저장 |
 | 이미지 프롬프트 | `visual-generator` | **메인이 Higgsfield로 생성** → `images/` 저장 |
 | 덱 조립 | — | `deck.html`(이미지 임베드) → 커밋·PR |
 
@@ -150,13 +150,13 @@
 [ ] Strategic POV Gate(Gate 1)가 통과되었는가? ← 필수
 [ ] 비주얼 프롬프트에 Human Touch Layer가 있는가?
 [ ] 출처 없는 수치를 단정하지 않았는가?
-[ ] manus-1-state.json이 저장되었는가? ← 파일 확인
+[ ] stage-1-state.json이 저장되었는가? ← 파일 확인
 ```
 
 ## 2차 Gate Checklist (종료 전 확인)
 
 ```md
-[ ] manus-1-state.json이 존재하는가? ← 없으면 시작 불가
+[ ] stage-1-state.json이 존재하는가? ← 없으면 시작 불가
 [ ] Lens Translation Gate(Gate 2)가 DNA 전에 완료되었는가? ← 필수
 [ ] 6개 컨셉이 서로 다른 감각인가?
 [ ] 각 컨셉이 포지셔닝 전략으로 회수되는가?
@@ -164,13 +164,13 @@
 [ ] Living System Gate(Gate 3)가 완료되었는가? ← 필수
 [ ] Client×Mood Matrix 점수 근거가 명확한가?
 [ ] Brutalist Framework 적용 여부가 판단되었는가?
-[ ] manus-2-state.json이 저장되었는가? ← 파일 확인
+[ ] stage-2-state.json이 저장되었는가? ← 파일 확인
 ```
 
 ## 3차 Gate Checklist (종료 전 확인)
 
 ```md
-[ ] manus-1-state.json + manus-2-state.json 둘 다 존재하는가? ← 없으면 시작 불가
+[ ] stage-1-state.json + stage-2-state.json 둘 다 존재하는가? ← 없으면 시작 불가
 [ ] Human Touch & Risk Gate(Gate 4)가 통과되었는가? ← 필수
 [ ] Brand Board에 Behavior System + Human Touch System이 있는가?
 [ ] Value Cards에 시각 증거가 있는가?
