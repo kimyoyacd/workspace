@@ -35,12 +35,12 @@ body {
 
 /* ── PAGE WRAP ── */
 .page {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  padding: 60px 40px 100px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
 }
 
 /* ── PROJECT HEADER ── */
@@ -97,16 +97,19 @@ body {
 
 /* ── CAT CARD (Research Section) ── */
 .cat-card {
-  background: var(--card);
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  overflow: hidden;
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 40px 44px 48px;
+  position: relative;
+}
+.cat-card.dark {
+  background: #1A1414;
+  color: #fff;
 }
 .cat-header {
-  border-bottom: 1px solid var(--border);
-  padding: 18px 28px;
+  margin-bottom: 20px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
@@ -114,10 +117,10 @@ body {
 .cat-label {
   font-family: var(--mono);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink3);
+  color: var(--ink2);
 }
 .cat-label em {
   background: var(--coral);
@@ -128,64 +131,90 @@ body {
   font-size: 10px;
   margin-left: 8px;
 }
+.cat-card.dark .cat-label { color: var(--brass); }
 .cat-status {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--ink3);
   letter-spacing: 0.06em;
 }
-.cat-body { padding: 28px; }
+.cat-body { }
 .cat-title {
-  font-size: 22px;
+  font-size: 42px;
   font-weight: 800;
   letter-spacing: -0.025em;
-  line-height: 1.25;
-  margin-bottom: 10px;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
 .cat-title em { color: var(--coral); font-style: italic; }
+.cat-card.dark .cat-title { color: #fff; }
 .cat-deck {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--ink2);
-  margin-bottom: 24px;
-  max-width: 640px;
-  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 680px;
+  line-height: 1.65;
 }
+.cat-card.dark .cat-deck { color: rgba(255,255,255,0.6); }
 
 /* ── BRAND GRID ── */
 .brand-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
+  gap: 10px;
   margin-bottom: 20px;
 }
 .brand-cell {
-  background: var(--cream);
-  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
 }
 .brand-cell .b-name {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  padding-right: 36px;
 }
 .brand-cell .b-cat {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--ink3);
-  margin-bottom: 6px;
   letter-spacing: 0.05em;
 }
 .brand-cell .b-desc {
   font-size: 11px;
   color: var(--ink2);
   line-height: 1.5;
+  margin-top: 2px;
 }
-.brand-cell.highlight { background: #F0EFED; }
+.brand-cell .b-src a {
+  font-size: 10px;
+  color: #2454C7;
+  text-decoration: none;
+  margin-top: 6px;
+  display: block;
+}
 .brand-cell.highlight .b-name { color: var(--coral); }
+/* tier badges */
+.tier-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 8px;
+  padding: 2px 7px;
+  letter-spacing: 0.04em;
+}
+.tier-1 { background: #2D7A4F; }
+.tier-2 { background: #C77A0F; }
+.tier-3 { background: #8A8780; }
+.tier-4 { background: #B23B3B; }
 
 /* ── CLUSTER GRID ── */
 .cluster-grid {
@@ -569,21 +598,28 @@ body {
 /* ── SLIDE 1: Brand Story ── */
 .s1-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3%;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(6px, 1.2%, 12px);
   flex: 1;
-  align-items: start;
 }
-.s1-left {}
+.s1-left {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .s1-brand {
-  font-size: clamp(14px, 2.2vw, 26px);
+  font-size: clamp(14px, 2.4vw, 28px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 0.5%;
+  margin-bottom: 2%;
+  line-height: 1.1;
 }
 .s1-brand em { color: var(--coral); font-style: italic; }
 .s1-sub {
-  font-size: clamp(8px, 1vw, 13px);
+  font-size: clamp(7px, 0.9vw, 11.5px);
   font-weight: 500;
   color: var(--ink2);
   margin-bottom: 1.5%;
@@ -591,33 +627,41 @@ body {
 }
 .s1-tags {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 5px;
   margin-bottom: 2%;
 }
 .s1-tag {
   border: 1px solid var(--border);
-  font-size: clamp(6px, 0.7vw, 9px);
+  font-size: clamp(5.5px, 0.65vw, 8.5px);
   font-family: var(--mono);
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 3px;
   color: var(--ink2);
   letter-spacing: 0.05em;
 }
 .s1-paras {
-  font-size: clamp(6px, 0.75vw, 10px);
+  font-size: clamp(5.5px, 0.68vw, 9.5px);
   color: var(--ink2);
   line-height: 1.65;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 .s1-paras p { margin: 0; }
-.s1-right {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 3%;
-  height: 100%;
+/* ph2: col2, both rows */
+.s1-ph2 {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+/* ph3: col3, both rows */
+.s1-ph3 {
+  grid-column: 3;
+  grid-row: 1;
+}
+.s1-ph4 {
+  grid-column: 3;
+  grid-row: 2;
 }
 .s1-img {
   background: var(--cream);
@@ -631,8 +675,9 @@ body {
   color: var(--ink3);
   text-align: center;
   line-height: 1.4;
+  width: 100%;
+  height: 100%;
 }
-.s1-img.tall { grid-row: 1 / 3; }
 .s1-img.img1 { background: linear-gradient(135deg, #F2B89A 0%, #E8502A 100%); color: rgba(255,255,255,0.7); }
 .s1-img.img2 { background: linear-gradient(135deg, #F5F5F5 0%, #E2E2E2 100%); color: var(--ink3); }
 .s1-img.img3 { background: linear-gradient(135deg, #111111 0%, #4A4944 100%); color: rgba(255,255,255,0.6); }
@@ -643,11 +688,15 @@ body {
 .s2-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2%;
+  gap: 0;
   flex: 1;
   align-items: start;
 }
-.s2-card {}
+.s2-card {
+  padding: 0 clamp(12px, 2vw, 24px);
+  border-left: 1px solid #eee;
+}
+.s2-card:first-child { border-left: none; padding-left: 0; }
 .s2-alpha {
   font-size: clamp(28px, 5vw, 56px);
   font-weight: 900;
@@ -716,54 +765,69 @@ body {
   transform: translate(-50%, -50%);
   background: var(--ink);
   color: #fff;
-  border-radius: 6px;
-  padding: 2% 3%;
+  border-radius: 50%;
+  width: clamp(90px, 14%, 140px);
+  height: clamp(90px, 14%, 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   z-index: 2;
 }
 .mm-center .n {
-  font-size: clamp(11px, 1.5vw, 17px);
+  font-size: clamp(9px, 1.3vw, 15px);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--coral);
+  line-height: 1.2;
 }
 .mm-center .s {
-  font-size: clamp(6px, 0.7vw, 8.5px);
+  font-size: clamp(5px, 0.6vw, 7.5px);
   color: rgba(255,255,255,0.55);
-  margin-top: 1px;
+  margin-top: 2px;
   letter-spacing: 0.03em;
 }
 .mm-line {
   position: absolute;
   height: 1px;
-  background: var(--border);
+  background: #ddd;
   transform-origin: left center;
   z-index: 1;
 }
 .mm-node {
   position: absolute;
-  border: 1.5px solid var(--border);
-  border-radius: 4px;
-  padding: 1.2% 1.8%;
+  border-radius: 50%;
+  width: clamp(64px, 10%, 108px);
+  height: clamp(64px, 10%, 108px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #fff;
+  border: 2px solid;
   z-index: 2;
+  text-align: center;
 }
 .mm-node .cat {
-  font-size: clamp(7px, 0.85vw, 10px);
+  font-size: clamp(6px, 0.8vw, 9.5px);
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   line-height: 1.2;
   text-transform: uppercase;
 }
 .mm-node .catkr {
-  font-size: clamp(5.5px, 0.6vw, 7.5px);
+  font-size: clamp(4.5px, 0.55vw, 7px);
   color: var(--ink3);
-  margin-top: 1px;
+  margin-top: 2px;
 }
 .mm-kw {
   position: absolute;
   font-size: clamp(5px, 0.58vw, 7px);
   color: var(--ink3);
+  background: var(--cream);
+  border-radius: 5px;
+  padding: 3px 8px;
   white-space: nowrap;
   z-index: 3;
 }
@@ -772,11 +836,14 @@ body {
 .s4-axes { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
 .axis-row {
   display: grid;
-  grid-template-columns: 28px 1fr 1fr 1fr;
+  grid-template-columns: 28px 130px 1fr 130px;
   align-items: center;
-  gap: 2%;
+  gap: clamp(8px, 1.5%, 14px);
   font-size: clamp(6px, 0.75vw, 9.5px);
+  padding: clamp(6px, 1.5%, 14px) 0;
+  border-bottom: 1px solid #f0f0f0;
 }
+.axis-row:last-child { border-bottom: none; }
 .axis-num {
   font-family: var(--mono);
   font-size: clamp(6px, 0.7vw, 9px);
@@ -791,22 +858,31 @@ body {
   height: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .axis-track {
   width: 100%;
   height: 1px;
-  background: var(--border);
+  background: #ccc;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.axis-dot {
-  position: absolute;
-  width: 9px; height: 9px;
+.axis-dot-item {
+  width: clamp(7px, 1vw, 10px);
+  height: clamp(7px, 1vw, 10px);
   border-radius: 50%;
+  border: 1.5px solid #999;
+  background: #fff;
+  flex-shrink: 0;
+}
+.axis-dot-item.active {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.axis-dot-item.active-coral {
   background: var(--coral);
-  top: 50%; transform: translate(-50%, -50%);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1.5px var(--coral);
+  border-color: var(--coral);
 }
 .axis-right .ar-main { font-weight: 600; color: var(--ink); }
 .axis-right .ar-sub { color: var(--ink3); font-size: 0.85em; margin-top: 1px; }
@@ -1160,18 +1236,20 @@ body {
 <body>
 <div class="page">
 
-<!-- PROJECT HEADER -->
-<div class="project-header">
-  <div class="ph-left">
-    <div class="ph-tag">리서치 완료 · 전략 확정 · 실행 준비</div>
-    <div class="ph-title">WAKEMAKE<br>× <em>OliveYoung</em></div>
-    <div class="ph-sub">올리브영 색조 상세페이지 리뉴얼 제안 · 2026.07 · 리서치 10섹션 + 슬라이드 6종</div>
-  </div>
-  <div class="ph-right">
-    <div class="ph-badge active">C01 ★ 오늘의 선택 추천</div>
-    <div class="ph-badge">모바일 세로 롱폼 JPG</div>
-    <div class="ph-badge">정적 포맷 · 인터랙션 없음</div>
-    <div class="ph-badge">최종 점검 6/6 ✅</div>
+<!-- COVER CAT-CARD -->
+<div class="cat-card" style="background:#111111; color:#EBEBEB; position:relative; overflow:hidden; min-height:320px;">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,134,11,.18) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="cat-label" style="color:#B8860B; letter-spacing:.15em; font-size:11px; margin-bottom:32px;">WAKEMAKE × OLIVEYOUNG · 2026.07 · 제안 덱</div>
+    <div class="cat-title" style="color:#EBEBEB; font-size:52px; line-height:1.08; margin-bottom:20px;">올리브영 색조<br>상세페이지<br><em style="color:#B8860B;">리뉴얼 제안</em></div>
+    <div class="cat-deck" style="color:#8A8780; max-width:520px; margin-bottom:36px;">리서치 10섹션 + 슬라이드 6종 · 모바일 세로 롱폼 JPG · 정적 포맷</div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span style="background:#B8860B; color:#111; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:700;">시장 규모 분석</span>
+      <span style="background:rgba(235,235,235,.12); color:#EBEBEB; padding:5px 14px; border-radius:20px; font-size:11px;">경쟁사 포지셔닝</span>
+      <span style="background:rgba(235,235,235,.12); color:#EBEBEB; padding:5px 14px; border-radius:20px; font-size:11px;">Z세대 타겟 인사이트</span>
+      <span style="background:rgba(235,235,235,.12); color:#EBEBEB; padding:5px 14px; border-radius:20px; font-size:11px;">글로벌 PDP 트렌드</span>
+      <span style="background:rgba(235,235,235,.12); color:#EBEBEB; padding:5px 14px; border-radius:20px; font-size:11px;">비주얼 방향 제안</span>
+    </div>
   </div>
 </div>
 
@@ -1276,41 +1354,49 @@ body {
 
     <div class="brand-grid">
       <div class="brand-cell highlight">
+        <span class="tier-badge tier-1">T1</span>
         <div class="b-name">HERA</div>
         <div class="b-cat">프리미엄 · 퍼스널컬러 강</div>
         <div class="b-desc">세계관 최강. 타입 분류 + 고급 이미지. 전환 구조 약함. PDP 20장+, 헤리티지 중심.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-2">T2</span>
         <div class="b-name">rom&nd</div>
         <div class="b-cat">MZ · 색 표현 중심</div>
         <div class="b-desc">발색 클로즈업 + 스워치 중심. 무드 카피 미약. 트렌드 반응 빠름.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-2">T2</span>
         <div class="b-name">AMUSE</div>
         <div class="b-cat">비건 · 감성 브랜딩</div>
         <div class="b-desc">자연주의 세계관. 퍼스널컬러 진단 일부 사용. 비건 신뢰 레이어 강.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-3">T3</span>
         <div class="b-name">Summer Fridays</div>
         <div class="b-cat">글로벌 · 텍스처 강조</div>
         <div class="b-desc">발림감·수분 중심. 카피 퍼스트 구조 일부. 고가 포지셔닝.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-2">T2</span>
         <div class="b-name">VDL</div>
         <div class="b-cat">트렌디 · 컬러 도구성</div>
         <div class="b-desc">기능+트렌드 언어 균형. 세계관 약. 스펙 테이블 의존.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-2">T2</span>
         <div class="b-name">3CE</div>
         <div class="b-cat">스타일 · 무드 감성</div>
         <div class="b-desc">라이프스타일 무드 있음. 퍼스널컬러 언어 최소화. 하지만 POV 부재.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-2">T2</span>
         <div class="b-name">INTO YOU</div>
         <div class="b-cat">K-뷰티 · 발색 강</div>
         <div class="b-desc">스워치+실착 비교 중심. 전환율 구조 양호. 감성 세계관 0.</div>
       </div>
       <div class="brand-cell">
+        <span class="tier-badge tier-1">T1</span>
         <div class="b-name">CLIO</div>
         <div class="b-cat">올리브영 메인 · 기능 강</div>
         <div class="b-desc">기능 스펙+실착 중심. 올리브영 최다 판매. 감성 세계관 약.</div>
@@ -2058,12 +2144,17 @@ body {
           <p>올리브영에서만 만날 수 있는 이 시즌의 WAKEMAKE. 오늘 결정하고 내일 받을 수 있는 색.</p>
         </div>
       </div>
-      <div class="s1-right">
-        <div class="s1-img img1 tall">라이프스타일<br>오전 창가<br>자연광</div>
-        <div class="s1-img img2">코랄 브릭<br>스워치</div>
-        <div class="s1-img img3">텍스처<br>클로즈업</div>
-        <div class="s1-img img4">피치 누드<br>스워치</div>
-        <div class="s1-img img5">골드 웜<br>실착</div>
+      <div class="s1-ph2">
+        <div class="s1-img img1">코랄 브릭<br>스워치</div>
+        <div class="s1-img img2">피치 누드<br>스워치</div>
+        <div class="s1-img img3">골드 웜<br>실착</div>
+        <div class="s1-img img4">텍스처<br>클로즈업</div>
+      </div>
+      <div class="s1-ph3">
+        <div class="s1-img img5 tall">라이프스타일<br>오전 창가<br>자연광</div>
+      </div>
+      <div class="s1-ph4">
+        <div class="s1-img img6">모델<br>실착 컷</div>
       </div>
     </div>
   </div>
@@ -2206,31 +2297,31 @@ body {
       <div class="axis-row">
         <div class="axis-num">01</div>
         <div class="axis-left"><div class="al-main">기능 중심</div><div class="al-sub">성분·지속력 강조</div></div>
-        <div class="axis-line"><div class="axis-track"><div class="axis-dot" style="left:75%"></div></div></div>
+        <div class="axis-line"><div class="axis-track"><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item active-coral"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div></div></div>
         <div class="axis-right"><div class="ar-main">표현 중심</div><div class="ar-sub">감성·무드 강조</div></div>
       </div>
       <div class="axis-row">
         <div class="axis-num">02</div>
         <div class="axis-left"><div class="al-main">퍼스널컬러 진단</div><div class="al-sub">타입별 추천</div></div>
-        <div class="axis-line"><div class="axis-track"><div class="axis-dot" style="left:88%"></div></div></div>
+        <div class="axis-line"><div class="axis-track"><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item active-coral"></div><div class="axis-dot-item"></div></div></div>
         <div class="axis-right"><div class="ar-main">컬러 자율성</div><div class="ar-sub">기분으로 먼저 고른다</div></div>
       </div>
       <div class="axis-row">
         <div class="axis-num">03</div>
         <div class="axis-left"><div class="al-main">세계관 약</div><div class="al-sub">제품 스펙 중심</div></div>
-        <div class="axis-line"><div class="axis-track"><div class="axis-dot" style="left:80%"></div></div></div>
+        <div class="axis-line"><div class="axis-track"><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item active-coral"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div></div></div>
         <div class="axis-right"><div class="ar-main">세계관 강</div><div class="ar-sub">POV·철학 중심</div></div>
       </div>
       <div class="axis-row">
         <div class="axis-num">04</div>
         <div class="axis-left"><div class="al-main">광고 언어</div><div class="al-sub">제품이 주인공</div></div>
-        <div class="axis-line"><div class="axis-track"><div class="axis-dot" style="left:82%"></div></div></div>
+        <div class="axis-line"><div class="axis-track"><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item active-coral"></div><div class="axis-dot-item active"></div><div class="axis-dot-item"></div></div></div>
         <div class="axis-right"><div class="ar-main">감성 언어</div><div class="ar-sub">기분·순간이 주인공</div></div>
       </div>
       <div class="axis-row">
         <div class="axis-num">05</div>
         <div class="axis-left"><div class="al-main">대중 가격대</div><div class="al-sub">접근성 강조</div></div>
-        <div class="axis-line"><div class="axis-track"><div class="axis-dot" style="left:60%"></div></div></div>
+        <div class="axis-line"><div class="axis-track"><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item active-coral"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div><div class="axis-dot-item"></div></div></div>
         <div class="axis-right"><div class="ar-main">프리미엄 감성</div><div class="ar-sub">큐레이션·희소성</div></div>
       </div>
     </div>
