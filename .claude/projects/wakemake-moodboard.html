@@ -52,17 +52,8 @@
   .page-header::before {
     content: '';
     position: absolute;
-    top: -80px; right: -80px;
-    width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(184,134,11,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .page-header::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; left: 20%;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, rgba(232,80,42,0.12) 0%, transparent 70%);
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,134,11,0.08) 0%, transparent 50%);
     pointer-events: none;
   }
   .header-tag {
@@ -211,7 +202,7 @@
 
   /* Dir B */
   .b-hero { background: linear-gradient(145deg, #111111 0%, #1A1A1A 55%); }
-  .b-b2   { background: #FF3B5C; }
+  .b-b2   { background: var(--coral); }
   .b-b3   { background: linear-gradient(160deg, #111111 0%, #4A4944 100%); }
   .b-b4   { background: #FFB300; }
   .b-b5   { background: #111111; align-items: center; padding: 20px; }
@@ -350,7 +341,7 @@
 
   /* ── ACCENT BARS ── */
   .dir-accent-a { border-left: 3px solid var(--coral); padding-left: 18px; }
-  .dir-accent-b { border-left: 3px solid #FF3B5C; padding-left: 18px; }
+  .dir-accent-b { border-left: 3px solid var(--coral); padding-left: 18px; }
   .dir-accent-c { border-left: 3px solid rgba(17,17,17,0.2); padding-left: 18px; }
 
   /* ── BOTTOM PANEL ── */
@@ -384,7 +375,7 @@
   .bottom-text span { color: var(--brass); }
   .bottom-buttons { display: flex; gap: 10px; flex-shrink: 0; }
   .btn {
-    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-family: var(--sans);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -539,7 +530,7 @@
     <!-- Palette B -->
     <div class="palette-row">
       <div class="swatch" style="background:#0D0D0D;"><span class="swatch-label sl-dark">나이트 블랙</span></div>
-      <div class="swatch" style="background:#FF3B5C;"><span class="swatch-label sl-dark">네온 핫핑크</span></div>
+      <div class="swatch" style="background:var(--coral);"><span class="swatch-label sl-dark">네온 핫핑크</span></div>
       <div class="swatch" style="background:#C0A0FF;"><span class="swatch-label sl-dark">라벤더 글로우</span></div>
       <div class="swatch" style="background:#FFB300;"><span class="swatch-label sl-dark">앰버 네온</span></div>
       <div class="swatch" style="background:#111111;"><span class="swatch-label sl-dark">딥 네이비</span></div>
