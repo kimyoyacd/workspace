@@ -34,9 +34,12 @@ body {
 /* HEADER */
 .header {
   background: linear-gradient(135deg, #161616 0%, #2A2A2A 60%, #1A1A2E 100%);
-  color: #fff; padding: 20px 36px;
-  display: flex; align-items: center; justify-content: space-between;
+  color: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.header-inner {
+  max-width: 1440px; margin: 0 auto; padding: 20px 40px;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .header-left h1 { margin: 0 0 3px; font-size: 18px; font-weight: 900; letter-spacing: -0.4px; }
 .header-left h1 span { color: #9AA8C4; font-weight: 500; }
@@ -54,8 +57,12 @@ body {
 /* NAV */
 .nav {
   background: var(--card); border-bottom: 1px solid var(--border);
-  padding: 0 36px; display: flex; position: sticky; top: 0; z-index: 50;
+  position: sticky; top: 0; z-index: 50;
   overflow-x: auto; box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+.nav-inner {
+  max-width: 1440px; margin: 0 auto; padding: 0 40px;
+  display: flex;
 }
 .tab {
   padding: 13px 18px; font-size: 12px; font-weight: 600;
@@ -71,11 +78,11 @@ body {
 .tab.soon-tab { cursor: not-allowed; opacity: 0.5; }
 
 /* MAIN */
-.main { padding: 28px 36px 60px; max-width: 1800px; }
+.main { padding: 28px 40px 60px; max-width: 1440px; margin: 0 auto; }
 .section { display: none; }
 .section.active { display: block; }
-.section-title { font-size: 20px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px; }
-.section-desc { font-size: 12px; color: var(--ink3); margin: 0 0 20px; }
+.section-title { font-size: 20px; font-weight: 900; margin: 0 0 5px; letter-spacing: -0.5px; }
+.section-desc { font-size: 12px; color: var(--ink3); margin: 0 0 24px; }
 
 /* ALERT */
 .alert {
@@ -111,7 +118,7 @@ body {
 
 .org-row {
   display: grid; grid-template-columns: repeat(6, 1fr);
-  gap: 12px; width: 100%; margin-top: 24px;
+  gap: 14px; width: 100%; margin-top: 24px;
   padding-top: 16px;
   border-top: 2px solid var(--border);
 }
@@ -505,9 +512,9 @@ body {
 .vendor-stars { font-size: 10px; color: #F59E0B; margin-left: auto; }
 
 /* RESPONSIVE */
-@media (max-width: 1800px) { .org-row { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 1300px) { .org-row { grid-template-columns: repeat(3, 1fr); } .directives-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 1100px) { .hub-panel { grid-template-columns: 1fr; } .org-row { grid-template-columns: repeat(2, 1fr); } .today-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1440px) { .org-row { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1100px) { .org-row { grid-template-columns: repeat(3, 1fr); } .directives-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) { .hub-panel { grid-template-columns: 1fr; } .org-row { grid-template-columns: repeat(2, 1fr); } .today-grid { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .org-row { grid-template-columns: 1fr; } .kanban { grid-template-columns: 1fr; } .manual-grid { grid-template-columns: 1fr; } .guidelines-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr; } }
 
 /* v6 실시간 연동 */
@@ -525,6 +532,7 @@ body {
 
 <!-- HEADER -->
 <div class="header">
+<div class="header-inner">
   <div class="header-left">
     <h1>MAX실 OS <span>· Dashboard v7</span></h1>
     <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · <span id="sync-sub">노션/구글시트 실시간 연동 초기화 중...</span></div>
@@ -541,9 +549,11 @@ body {
     <div class="head-badge" id="sync-badge">● 연결 중... · v8.1</div>
   </div>
 </div>
+</div>
 
 <!-- NAV -->
 <div class="nav">
+<div class="nav-inner">
   <div class="tab active" data-tab="org">조직도</div>
   <div class="tab" data-tab="projects">프로젝트 현황</div>
   <div class="tab" data-tab="team">MAX실 9명</div>
@@ -554,6 +564,7 @@ body {
   <div class="tab" data-tab="skills">스킬 & 워크플로우</div>
   <div class="tab" data-tab="guidelines">CLAUDE.md 지침</div>
   <div class="tab" data-tab="manual">사용설명서</div>
+</div>
 </div>
 
 <div class="main">
