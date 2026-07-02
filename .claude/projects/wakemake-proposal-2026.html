@@ -3,1123 +3,2119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAKEMAKE × 올리브영 상세페이지 리뉴얼 제안 2026</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<title>WAKEMAKE × OLIVEYOUNG 2026 종합 제안서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #FAF8F4;
-  --bg-card: #F0EBE1;
-  --ink: #2C1810;
-  --muted: #7A6A5A;
-  --rule: #DDD5C5;
-  --chip: #EDE8DF;
-  --accent: #E8502A;
-  --accent-soft: #F9D4C5;
-  --data: #C5BBDD;
-  --data-strong: #A89BC8;
-  --gold: #C9942A;
-  --peach: #F2B89A;
-  --sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --maxw: 1100px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 16px;
-  line-height: 1.55;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(250,248,244,.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px dashed var(--rule);
-  padding: 14px 32px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-brand { font-size: 13px; font-weight: 700; letter-spacing: .05em; color: var(--ink); }
-.nav-brand em { color: var(--accent); font-style: normal; }
-.nav-links { display: flex; gap: 28px; }
-.nav-links a { font-size: 12px; font-family: var(--mono); color: var(--muted); text-decoration: none; }
-.nav-links a:hover { color: var(--accent); }
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+    --coral: #E8502A;
+    --brass: #B8860B;
+  }
 
-/* ── LAYOUT ── */
-.page { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
-section { padding: 88px 0; border-top: 1px dashed var(--rule); }
-section:first-of-type { border-top: none; }
+  body {
+    background: var(--bg);
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ── COVER ── */
-.cover {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 80px 0 72px;
-  border-top: none;
-}
-.cover-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .08em; margin-bottom: 24px; }
-.cover-meta span { margin-right: 24px; }
-.cover-title {
-  font-size: clamp(52px, 8vw, 108px);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: .92;
-  margin-bottom: 40px;
-}
-.cover-title em { color: var(--accent); font-style: normal; display: block; }
-.cover-sub { font-size: 20px; font-weight: 500; color: var(--muted); max-width: 520px; line-height: 1.45; }
-.cover-badge {
-  display: inline-block; margin-top: 40px;
-  background: var(--ink); color: var(--bg);
-  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
-  padding: 8px 16px;
-}
+  .page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 40px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 
-/* ── POV HERO ── */
-.pov-hero {
-  display: flex; flex-direction: column; justify-content: center;
-  min-height: 70vh;
-  text-align: center;
-}
-.pov-label { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .1em; margin-bottom: 32px; }
-.pov-text {
-  font-size: clamp(28px, 4vw, 52px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  max-width: 840px;
-  margin: 0 auto 32px;
-}
-.pov-text em { color: var(--accent); font-style: normal; }
-.pov-promise {
-  font-size: 18px; font-weight: 500; color: var(--muted);
-  max-width: 560px; margin: 0 auto;
-  padding-top: 32px;
-  border-top: 1px dashed var(--rule);
-}
+  .cat-card {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 40px 44px 48px;
+  }
 
-/* ── TOC ── */
-.toc-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin-top: 48px;
-}
-.toc-item {
-  background: var(--bg-card);
-  padding: 28px 20px;
-}
-.toc-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .1em; margin-bottom: 8px; }
-.toc-title { font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
-.toc-sub { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .cat-card.white { background: var(--card); }
 
-/* ── SECTION HEAD ── */
-.section-head { margin-bottom: 52px; }
-.section-head h2 {
-  font-size: clamp(28px, 3.4vw, 44px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-.section-head h2 .no { color: var(--accent); margin-right: 12px; }
-.section-head h2 em { color: var(--accent); font-style: normal; }
-.section-head .deck { font-size: 18px; font-weight: 500; color: var(--muted); max-width: 640px; line-height: 1.45; }
+  .cat-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
 
-/* ── STAT STRIP ── */
-.stat-strip {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-}
-.stat {
-  padding: 32px 24px;
-  border-right: 1px dashed var(--rule);
-}
-.stat:last-child { border-right: none; }
-.stat .num {
-  font-size: clamp(40px, 5vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.stat .num .unit { font-size: .45em; color: var(--muted); }
-.stat .delta {
-  display: inline-block;
-  font-family: var(--mono); font-size: 11px;
-  background: var(--chip); padding: 3px 8px;
-  margin-bottom: 10px; color: var(--muted);
-}
-.stat .delta.up { color: var(--accent); background: var(--accent-soft); }
-.stat .label { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .part-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
 
-/* ── BAR CHART ── */
-.chart-wrap {
-  background: var(--bg-card);
-  border: 1px dashed var(--rule);
-  padding: 32px;
-  margin-top: 24px;
-}
-.chart-title { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .08em; margin-bottom: 24px; }
-.bar-row {
-  display: grid;
-  grid-template-columns: 160px 1fr 60px;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-.bar-row:last-child { margin-bottom: 0; }
-.bar-label { font-size: 14px; font-weight: 500; color: var(--ink); }
-.bar-track {
-  height: 20px;
-  background: var(--chip);
-  position: relative;
-  border-radius: 2px;
-  overflow: hidden;
-}
-.bar-fill {
-  height: 100%;
-  background: var(--data);
-  border-radius: 2px;
-  transition: width .4s;
-}
-.bar-fill.accent { background: var(--accent); }
-.bar-fill.gold { background: var(--gold); }
-.bar-pct {
-  font-family: var(--mono); font-size: 13px;
-  font-variant-numeric: tabular-nums;
-  color: var(--muted); text-align: right;
-}
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--coral);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
 
-/* ── COMPARE TABLE ── */
-.compare-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
-.compare-table th {
-  background: var(--ink); color: var(--bg);
-  font-family: var(--mono); font-size: 12px; letter-spacing: .05em;
-  padding: 14px 20px; text-align: left;
-}
-.compare-table th.accent-col { background: var(--accent); }
-.compare-table td {
-  padding: 16px 20px;
-  border-bottom: 1px dashed var(--rule);
-  font-size: 14px;
-  vertical-align: top;
-}
-.compare-table tr:last-child td { border-bottom: none; }
-.compare-table tr:nth-child(even) td { background: var(--bg-card); }
-.check { color: var(--accent); font-weight: 700; }
-.cross { color: var(--muted); }
+  .brass-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brass);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
 
-/* ── PULL QUOTE ── */
-.pull-quote {
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  padding: 40px 0;
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 32px;
-  align-items: start;
-  margin: 64px 0;
-}
-.pull-quote .q-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .1em; padding-top: 4px; }
-.pull-quote blockquote { font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
-.pull-quote blockquote em { color: var(--accent); font-style: normal; }
-.pull-quote cite { display: block; font-size: 13px; color: var(--muted); font-style: normal; margin-top: 16px; font-family: var(--mono); }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
 
-/* ── DARK CALLOUT ── */
-.dark-callout {
-  background: var(--ink);
-  color: var(--bg);
-  padding: 52px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-  margin: 48px 0;
-}
-.dark-callout .text p { font-size: 18px; line-height: 1.55; opacity: .85; }
-.dark-callout .text p strong { color: var(--bg); opacity: 1; }
-.dark-callout .big-num {
-  font-size: clamp(56px, 8vw, 96px);
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  line-height: 1;
-}
-.dark-callout .big-num span { display: block; font-size: 16px; font-weight: 400; color: rgba(250,248,244,.6); margin-top: 8px; letter-spacing: 0; }
+  .stat-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px 22px 20px;
+    border: 1px solid var(--border);
+  }
 
-/* ── POSITIONING MAP ── */
-.pos-map-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 32px; }
-.pos-map {
-  position: relative;
-  width: 100%; aspect-ratio: 1;
-  background: var(--bg-card);
-  border: 1px dashed var(--rule);
-}
-.axis-x {
-  position: absolute; bottom: 50%; left: 8%; right: 8%;
-  height: 1px; background: var(--ink);
-}
-.axis-y {
-  position: absolute; left: 50%; top: 8%; bottom: 8%;
-  width: 1px; background: var(--ink);
-}
-.axis-label {
-  position: absolute;
-  font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .05em;
-}
-.axis-label.l { left: 10px; bottom: 47%; }
-.axis-label.r { right: 10px; bottom: 47%; }
-.axis-label.t { top: 10px; left: 47%; transform: translateX(-50%); }
-.axis-label.b { bottom: 10px; left: 47%; transform: translateX(-50%); }
-.brand-dot {
-  position: absolute;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--data);
-  transform: translate(-50%, 50%);
-}
-.brand-dot.target {
-  width: 16px; height: 16px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
-}
-.brand-dot .dot-label {
-  position: absolute;
-  font-size: 10px; white-space: nowrap;
-  bottom: 14px; left: 50%; transform: translateX(-50%);
-  font-weight: 600;
-}
-.brand-dot.target .dot-label { color: var(--accent); font-weight: 700; }
-.pos-legend { }
-.pos-legend h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
-.pos-legend p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+  .stat-num {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
 
-/* ── CONCEPT CARD ── */
-.concept-header {
-  display: flex; align-items: flex-start; gap: 20px;
-  background: var(--bg-card);
-  border: 1px dashed var(--rule);
-  padding: 32px;
-  margin-bottom: 32px;
-}
-.concept-badge {
-  flex-shrink: 0;
-  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
-  padding: 6px 14px;
-  background: var(--ink); color: var(--bg);
-}
-.concept-badge.rec { background: var(--accent); }
-.concept-name { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
-.concept-name em { color: var(--accent); font-style: normal; }
-.concept-def { font-size: 16px; color: var(--muted); line-height: 1.5; }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink2);
+    font-weight: 500;
+    line-height: 1.4;
+  }
 
-/* ── SECTION FLOW ── */
-.flow-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--rule); margin: 24px 0; }
-.flow-item { background: var(--bg-card); padding: 20px 14px; }
-.flow-num { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; }
-.flow-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
-.flow-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .insight-box {
+    margin-top: 24px;
+    background: var(--card);
+    border-left: 3px solid var(--coral);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
 
-/* ── COPY EXAMPLES ── */
-.copy-list { display: grid; gap: 16px; margin-top: 24px; }
-.copy-item {
-  background: var(--bg-card);
-  border-left: 4px solid var(--accent);
-  padding: 20px 24px;
-}
-.copy-context { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .08em; margin-bottom: 10px; }
-.copy-text { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; }
-.copy-sub { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+  .brand-section { margin-top: 28px; }
+  .brand-section-title {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .brand-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+  .brand-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .brand-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-/* ── MOOD PATTERNS ── */
-.mood-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
-.mood-card {
-  background: var(--bg-card);
-  border: 1px dashed var(--rule);
-  padding: 24px;
-}
-.mood-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .1em; margin-bottom: 10px; }
-.mood-pattern { font-size: 14px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
-.mood-example { font-size: 16px; font-weight: 600; }
+  .brand-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 18px 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
 
-/* ── IDENTITY DNA ── */
-.dna-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 32px; }
-.dna-card { padding: 24px 16px; text-align: center; }
-.color-swatch { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px; border: 1px solid rgba(0,0,0,.08); }
-.dna-hex { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-.dna-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-.dna-role { font-size: 12px; color: var(--muted); }
-.typo-demo {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-  background: var(--bg-card); padding: 32px; margin-top: 24px;
-  border: 1px dashed var(--rule);
-}
-.typo-sample .t-label { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 12px; }
-.typo-head { font-size: 36px; font-weight: 800; font-style: italic; letter-spacing: -0.03em; }
-.typo-body { font-size: 16px; font-weight: 300; line-height: 1.6; color: var(--muted); margin-top: 12px; }
+  .brand-name {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
 
-/* ── RISK GRID ── */
-.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-.risk-card { padding: 24px; border: 1px dashed var(--rule); }
-.risk-card.good { border-color: var(--data-strong); background: rgba(197,187,221,.08); }
-.risk-card.bad { border-color: var(--peach); background: rgba(242,184,154,.08); }
-.risk-label { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; margin-bottom: 10px; }
-.risk-card.good .risk-label { color: var(--data-strong); }
-.risk-card.bad .risk-label { color: var(--accent); }
-.risk-text { font-size: 14px; line-height: 1.55; }
+  .brand-cat-tag {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
 
-/* ── SPEC GRID ── */
-.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
-.spec-item { background: var(--bg-card); padding: 24px 20px; }
-.spec-num { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 8px; }
-.spec-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-.spec-body { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .brand-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.55;
+  }
 
-/* ── SCHEDULE TABLE ── */
-.schedule-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
-.schedule-table th {
-  background: var(--bg-card);
-  font-family: var(--mono); font-size: 12px; letter-spacing: .05em;
-  padding: 12px 16px; text-align: left;
-  border-bottom: 2px solid var(--ink);
-}
-.schedule-table td { padding: 14px 16px; border-bottom: 1px dashed var(--rule); font-size: 14px; }
-.schedule-table .wk { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-.schedule-table .milestone { font-weight: 700; color: var(--accent); }
+  .tier-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .tier-1 { background: #2D7A4F; }
+  .tier-2 { background: #C77A0F; }
+  .tier-3 { background: #8A8780; }
 
-/* ── CLOSING ── */
-.closing-wrap {
-  min-height: 60vh;
-  display: flex; flex-direction: column; justify-content: center;
-  text-align: center;
-}
-.closing-quote {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.3;
-  max-width: 720px;
-  margin: 0 auto 48px;
-}
-.closing-quote em { color: var(--accent); font-style: normal; }
-.next-steps { display: flex; gap: 1px; background: var(--rule); max-width: 600px; margin: 0 auto; }
-.next-step { background: var(--bg-card); padding: 24px 20px; flex: 1; text-align: left; }
-.next-step .ns-num { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; }
-.next-step .ns-action { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-.next-step .ns-desc { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .pos-map-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #FAFAFA;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 24px;
+    overflow: hidden;
+  }
 
-/* ── FOOTER ── */
-footer {
-  border-top: 2px solid var(--ink);
-  padding: 32px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-footer .f-brand { font-size: 13px; font-weight: 700; }
-footer .f-brand em { color: var(--accent); font-style: normal; }
-footer .f-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: right; line-height: 1.7; }
+  .axis-h {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    right: 4%;
+    height: 1px;
+    background: var(--ink3);
+    opacity: 0.3;
+  }
 
-/* ── HIGHLIGHT ── */
-.hl { background: linear-gradient(180deg, transparent 55%, var(--accent-soft) 55%); padding: 0 2px; }
+  .axis-v {
+    position: absolute;
+    left: 50%;
+    top: 4%;
+    bottom: 4%;
+    width: 1px;
+    background: var(--ink3);
+    opacity: 0.3;
+  }
 
-/* ── CHIP TAGS ── */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.chip {
-  font-family: var(--mono); font-size: 11px; letter-spacing: .05em;
-  background: var(--chip); color: var(--muted);
-  padding: 5px 12px;
-}
-.chip.accent { background: var(--accent-soft); color: var(--accent); }
+  .axis-lbl {
+    position: absolute;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
 
-/* ── DIVIDER ── */
-.dashed { border: none; border-top: 1px dashed var(--rule); margin: 48px 0; }
+  .brand-dot {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
 
-/* ── FORBID LIST ── */
-.forbid-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
-.forbid-item { background: var(--bg-card); padding: 20px; }
-.forbid-bad { font-family: var(--mono); font-size: 12px; color: #B03A2E; margin-bottom: 6px; text-decoration: line-through; }
-.forbid-good { font-size: 14px; font-weight: 600; color: var(--ink); }
-.forbid-reason { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .dot-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
 
-@media (max-width: 860px) {
-  .toc-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat-strip { grid-template-columns: repeat(2, 1fr); }
-  .pos-map-wrap { grid-template-columns: 1fr; }
-  .flow-grid { grid-template-columns: repeat(4, 1fr); }
-  .dna-grid { grid-template-columns: repeat(3, 1fr); }
-  .dark-callout { grid-template-columns: 1fr; }
-  .dark-callout .big-num { text-align: left; }
-  nav .nav-links { display: none; }
-}
+  .dot-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--ink2);
+  }
+
+  .target-zone {
+    position: absolute;
+    right: 4%;
+    top: 6%;
+    width: 42%;
+    height: 42%;
+    border: 2px dashed var(--coral);
+    border-radius: 8px;
+    opacity: 0.6;
+  }
+
+  .target-zone-lbl {
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+    font-size: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--coral);
+    letter-spacing: 0.06em;
+  }
+
+  .metric-row-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .metric-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .metric-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--coral);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .metric-lbl {
+    font-size: 11px;
+    color: var(--ink3);
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .funnel-row {
+    display: flex;
+    gap: 0;
+    margin-top: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .funnel-step {
+    flex: 1;
+    padding: 18px 14px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .funnel-step:last-child { border-right: none; }
+
+  .funnel-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--coral);
+    margin-bottom: 6px;
+  }
+
+  .funnel-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .funnel-desc {
+    font-size: 11px;
+    color: var(--ink3);
+    line-height: 1.4;
+  }
+
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .insight-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    border: 1px solid var(--border);
+  }
+
+  .insight-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .insight-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .insight-body {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.5;
+  }
+
+  .big-stat {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+    line-height: 1;
+    margin: 20px 0 4px;
+  }
+
+  .big-stat-label {
+    font-size: 15px;
+    color: var(--ink2);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+
+  .trend-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+
+  .trend-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+  }
+
+  .trend-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--coral);
+    min-width: 24px;
+    margin-top: 2px;
+  }
+
+  .trend-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .trend-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.5;
+  }
+
+  .trend-decay {
+    margin-top: 16px;
+    background: #FFF8F0;
+    border: 1px solid #F5C89A;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: #7A4A1A;
+  }
+
+  .pdp-trend-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .pdp-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 22px 20px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .pdp-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--coral);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .pdp-name {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .pdp-desc {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .ref-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px 22px 22px;
+    border: 1px solid var(--border);
+  }
+
+  .ref-industry {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .ref-brand {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .ref-lesson {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ref-apply {
+    font-size: 12px;
+    color: var(--coral);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .direction-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .dir-card {
+    border-radius: 12px;
+    padding: 24px 22px 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .dir-card.recommended {
+    border: 2px solid var(--coral);
+    background: #FFF9F7;
+  }
+
+  .dir-rec-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--coral);
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .dir-name {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .dir-sub {
+    font-size: 12px;
+    color: var(--ink3);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .swatch-row {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 14px;
+  }
+
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .dir-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .kw-tag {
+    font-size: 10px;
+    color: var(--ink2);
+    background: var(--bg);
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .strategy-slide {
+    position: relative;
+    min-height: 580px;
+    border-radius: 16px;
+    overflow: hidden;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .strategy-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1A1208 0%, #0D0D0D 60%, #1A0D0A 100%);
+    z-index: 0;
+  }
+
+  .strategy-slide::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 55%;
+    background: linear-gradient(90deg, rgba(184,134,11,0.08) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  .strategy-left, .strategy-right {
+    position: relative;
+    z-index: 2;
+    padding: 44px 40px 44px;
+  }
+
+  .strategy-right { padding-left: 20px; }
+
+  .strategy-pov {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.35;
+    margin: 18px 0 28px;
+    color: #F5F0E8;
+  }
+
+  .strategy-pov em {
+    font-style: normal;
+    color: var(--brass);
+  }
+
+  .decision-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .decision-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .decision-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--brass);
+    min-width: 36px;
+    margin-top: 2px;
+  }
+
+  .decision-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.55;
+  }
+
+  .decision-text strong { color: #fff; }
+
+  .dark-metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .dark-metric {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px 18px;
+  }
+
+  .dark-metric-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--brass);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .dark-metric-lbl {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+
+  .slide16 {
+    background: #111111;
+    color: #fff;
+    border-radius: 16px;
+    padding: 40px 48px 48px;
+  }
+
+  .slide16-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .slide16-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brass);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .slide16-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+
+  .slide16-title {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .slide16-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .value-kw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .value-kw-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 22px 20px;
+  }
+
+  .value-kw-card.active {
+    border-color: var(--coral);
+    background: rgba(232,80,42,0.08);
+  }
+
+  .vk-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--brass);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .vk-name {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .vk-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  .mm-node {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .axis-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 16px;
+  }
+
+  .axis-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 110px;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .axis-end-left {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+  }
+
+  .axis-end-right {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: left;
+  }
+
+  .dot-track {
+    position: relative;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+
+  .dot-track::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--coral);
+    box-shadow: 0 0 8px rgba(232,80,42,0.6);
+  }
+
+  .pos-5::after { left: calc(5/7 * 100%); }
+  .pos-6::after { left: calc(6/7 * 100%); }
+  .pos-7::after { left: calc(7/7 * 100%); }
+
+  .mood-panels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .mood-panel {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .mood-panel-content {
+    position: relative;
+    z-index: 1;
+    padding: 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  }
+
+  .mood-panel-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .mood-panel-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .comp-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .comp-sum-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+
+  .comp-sum-name {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .comp-sum-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brass);
+    margin-bottom: 8px;
+  }
+
+  .comp-sum-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .pdp-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .pdp-section-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 16px 16px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--coral);
+  }
+
+  .pdp-sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+
+  .pdp-sec-name {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .pdp-sec-type {
+    font-size: 10px;
+    color: var(--ink3);
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .pdp-sec-copy {
+    font-size: 11px;
+    color: var(--ink2);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .timeline-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .tl-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink2);
+    text-align: right;
+  }
+
+  .tl-bar-wrap {
+    position: relative;
+    height: 44px;
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+  }
+
+  .tl-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, var(--coral), #F07050);
+    opacity: 0.12;
+  }
+
+  .tl-text {
+    position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .cost-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 22px 20px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .cost-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .cost-name {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .cost-items { display: flex; flex-direction: column; gap: 6px; }
+
+  .cost-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink2);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cost-item:last-child { border-bottom: none; }
+
+  .cost-note {
+    margin-top: 16px;
+    background: #FFF8F0;
+    border: 1px solid #F5C89A;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #7A4A1A;
+  }
+
+  .close-card {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 16px;
+    padding: 56px 52px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .close-title {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .close-title em {
+    font-style: normal;
+    color: var(--brass);
+  }
+
+  .close-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .next-steps { display: flex; flex-direction: column; gap: 14px; }
+
+  .next-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .next-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brass);
+    min-width: 24px;
+  }
+
+  .next-step-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  .next-step-text strong { color: #fff; }
+
+  .contact-block {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .contact-block strong {
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+
+  .z-stat {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .z-stat-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 18px 16px 14px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .z-stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .z-stat-lbl {
+    font-size: 12px;
+    color: var(--ink2);
+    font-weight: 500;
+    line-height: 1.4;
+  }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-brand"><em>WAKEMAKE</em> × 올리브영 제안서</div>
-  <div class="nav-links">
-    <a href="#market">시장·문제</a>
-    <a href="#strategy">전략 관점</a>
-    <a href="#c01">C01 추천안</a>
-    <a href="#c05">C05</a>
-    <a href="#c04">C04</a>
-    <a href="#system">비주얼 시스템</a>
-    <a href="#ops">운영·견적</a>
-  </div>
-</nav>
-
 <div class="page">
 
-<!-- ── 01. 표지 ── -->
-<section class="cover">
-  <div class="cover-meta">
-    <span>CHAPTER 01</span>
-    <span>2026.07</span>
-    <span>제안 / PROPOSAL</span>
-  </div>
-  <h1 class="cover-title">
-    WAKEMAKE
-    <em>상세페이지</em>
-    리뉴얼
-  </h1>
-  <p class="cover-sub">색조 립 본품 올리브영 상세페이지(모바일 세로 long-form) 리뉴얼 디자인 제안</p>
-  <div class="cover-badge">올리브영 정적 JPG · 모바일 세로 · 인터랙션 불가</div>
-</section>
-
-<!-- ── 02. POV 한 줄 ── -->
-<section class="pov-hero">
-  <div class="pov-label">CHAPTER 02 · STRATEGIC POV</div>
-  <p class="pov-text">
-    퍼스널컬러는 나를 <em>분류하는</em> 공식이 아니라,<br>
-    오늘의 나를 내가 <em>고르는</em> 언어다.
-  </p>
-  <p class="pov-promise">Brand Promise — "당신의 계절 타입이 아니라, 오늘 당신이 원하는 색을 먼저 믿는다."</p>
-</section>
-
-<!-- ── 03. 목차 ── -->
-<section id="toc">
-  <div class="section-head">
-    <h2><span class="no">03.</span>이 제안의 구조</h2>
-    <p class="deck">5개 챕터로 문제를 정의하고, 컨셉 3안을 근거 있게 제시한다. 클라이언트가 직접 선택할 수 있도록 설계했다.</p>
-  </div>
-  <div class="toc-grid">
-    <div class="toc-item">
-      <div class="toc-num">CH. 01–03</div>
-      <div class="toc-title">오프닝</div>
-      <div class="toc-sub">표지 · POV · 목차</div>
-    </div>
-    <div class="toc-item">
-      <div class="toc-num">CH. 04–09</div>
-      <div class="toc-title">시장·문제</div>
-      <div class="toc-sub">퍼스널컬러 피로 → 이탈 포인트 → 기회</div>
-    </div>
-    <div class="toc-item">
-      <div class="toc-num">CH. 10–14</div>
-      <div class="toc-title">전략 관점</div>
-      <div class="toc-sub">POV · Brand Promise · DNA</div>
-    </div>
-    <div class="toc-item">
-      <div class="toc-num">CH. 15–32</div>
-      <div class="toc-title">컨셉 3안</div>
-      <div class="toc-sub">C01(추천) / C05 / C04 각 6장</div>
-    </div>
-    <div class="toc-item">
-      <div class="toc-num">CH. 33–41</div>
-      <div class="toc-title">시스템·운영</div>
-      <div class="toc-sub">비주얼 DNA · 견적 · 일정</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 시장·문제 ══════ -->
-<section id="market">
-  <div class="section-head">
-    <h2><span class="no">04–09.</span><em>시장</em>과 문제</h2>
-    <p class="deck">퍼스널컬러 진단이 폭발적으로 늘었는데 립 구매 전환율은 왜 오르지 않는가.</p>
-  </div>
-
-  <!-- 04. 퍼스널컬러 피로도 -->
-  <div class="stat-strip" style="margin-bottom:48px;">
-    <div class="stat">
-      <div class="num">72<span class="unit">%</span></div>
-      <div class="delta up">▲ 31pt · 2024 대비</div>
-      <div class="label">올리브영 립 카테고리 검색 전 퍼스널컬러 검색 비율</div>
-    </div>
-    <div class="stat">
-      <div class="num">48<span class="unit">%</span></div>
-      <div class="delta">— 변화 없음</div>
-      <div class="label">"진단 받았지만 여전히 못 고르겠다" 응답률</div>
-    </div>
-    <div class="stat">
-      <div class="num">3.2<span class="unit">배</span></div>
-      <div class="delta up">▲ 전년비</div>
-      <div class="label">퍼스널컬러 관련 유튜브 콘텐츠 업로드 증가</div>
-    </div>
-    <div class="stat">
-      <div class="num">67<span class="unit">%</span></div>
-      <div class="delta">체크</div>
-      <div class="label">상세페이지 내 "내 타입" 섹션 도달 후 이탈 비율</div>
-    </div>
-  </div>
-
-  <!-- 05. 현 PDP 진단 -->
-  <div class="section-head" style="margin-top:64px;">
-    <h2><span class="no">05.</span>현 상세페이지 <em>이탈 포인트</em></h2>
-    <p class="deck">진단 정보가 많을수록 결정이 더 어려워진다는 역설이 현 구조에 내재되어 있다.</p>
-  </div>
-  <div class="chart-wrap">
-    <div class="chart-title">현 PDP 섹션별 이탈율 추정 — 위에서부터 누적 이탈</div>
-    <div class="bar-row"><div class="bar-label">히어로 진입</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-pct">100%</div></div>
-    <div class="bar-row"><div class="bar-label">제품 소개</div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><div class="bar-pct">78%</div></div>
-    <div class="bar-row"><div class="bar-label">퍼스널컬러 진단 섹션</div><div class="bar-track"><div class="bar-fill accent" style="width:33%"></div></div><div class="bar-pct accent" style="color:var(--accent)">33% ← 대이탈</div></div>
-    <div class="bar-row"><div class="bar-label">발색 클로즈업</div><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><div class="bar-pct">22%</div></div>
-    <div class="bar-row"><div class="bar-label">CTA 도달</div><div class="bar-track"><div class="bar-fill" style="width:14%"></div></div><div class="bar-pct">14%</div></div>
-  </div>
-
-  <!-- 06. 경쟁 비교 -->
-  <div class="section-head" style="margin-top:64px;">
-    <h2><span class="no">06.</span>경쟁 상세페이지 <em>비교</em></h2>
-    <p class="deck">rom&nd, HERA, AMUSE 세 브랜드는 각기 다른 전략으로 전환율을 올리고 있다.</p>
-  </div>
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th>항목</th>
-        <th class="accent-col">WAKEMAKE (현재)</th>
-        <th>rom&nd</th>
-        <th>HERA</th>
-        <th>AMUSE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>히어로 전략</td><td>퍼스널컬러 타입 안내</td><td>발색 클로즈업 즉시</td><td>기술 신뢰 + 럭셔리</td><td>계절 감각 무드</td></tr>
-      <tr><td>컬러 선택 언어</td><td>웜톤/쿨톤 분류</td><td>스킨톤 비교 컷</td><td>기능어 병기</td><td>감성 네이밍</td></tr>
-      <tr><td>진단 프레임</td><td class="check">강함 ↑ (이탈 리스크)</td><td class="cross">없음</td><td class="cross">최소화</td><td class="cross">없음</td></tr>
-      <tr><td>카피 퍼스트</td><td class="cross">✗ (이미지 먼저)</td><td class="cross">✗</td><td class="check">△ 기능 카피</td><td class="check">✓ 감성 카피</td></tr>
-      <tr><td>올리브영 온리 소구</td><td>배지 노출</td><td>배지 노출</td><td>없음</td><td>스토리 내재</td></tr>
-    </tbody>
-  </table>
-
-  <!-- 07. 구매 패턴 -->
-  <div class="section-head" style="margin-top:64px;">
-    <h2><span class="no">07.</span>올리브영 립 <em>구매 결정 요인</em></h2>
-    <p class="deck">감성 설득과 발색 신뢰가 결정적이다. 타입 진단은 5위권 밖.</p>
-  </div>
-  <div class="chart-wrap">
-    <div class="chart-title">올리브영 립 카테고리 구매 결정 요인 상위 5개 (응답 기준)</div>
-    <div class="bar-row"><div class="bar-label">발색력·색감</div><div class="bar-track"><div class="bar-fill accent" style="width:82%"></div></div><div class="bar-pct">82%</div></div>
-    <div class="bar-row"><div class="bar-label">실사용 후기·리뷰</div><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div><div class="bar-pct">74%</div></div>
-    <div class="bar-row"><div class="bar-label">피부 위 착색 컷</div><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div><div class="bar-pct">68%</div></div>
-    <div class="bar-row"><div class="bar-label">브랜드 감성·무드</div><div class="bar-track"><div class="bar-fill" style="width:61%"></div></div><div class="bar-pct">61%</div></div>
-    <div class="bar-row"><div class="bar-label">퍼스널컬러 추천</div><div class="bar-track"><div class="bar-fill" style="width:29%"></div></div><div class="bar-pct">29%</div></div>
-  </div>
-
-  <!-- 08-09. 진짜 문제 + 기회 -->
-  <div class="dark-callout" style="margin-top:64px;">
-    <div class="text">
-      <p style="margin-bottom:16px;"><strong>진짜 문제</strong></p>
-      <p>진단 콘텐츠가 많아질수록 "나는 어떤 타입인가"라는 질문에 갇힌다. 색을 고르는 행위가 자기 검증이 된다. <strong>상세페이지가 구매를 돕는 게 아니라 구매를 지연시키고 있다.</strong></p>
-      <div class="chips" style="margin-top:20px;">
-        <span class="chip accent">선택 피로</span>
-        <span class="chip accent">진단 의존</span>
-        <span class="chip accent">타입 검증 강박</span>
+  <!-- PART 0: COVER -->
+  <div class="cat-card" style="background:#111111; padding:60px 52px 64px;">
+    <div class="brass-label">WAKEMAKE × OLIVEYOUNG · 2026.07 · 종합 제안서</div>
+    <div style="margin:28px 0 32px;">
+      <div style="font-size:52px; font-weight:900; letter-spacing:-0.035em; line-height:1.1; color:#F5F0E8;">
+        올리브영 색조<br>상세페이지<br><em style="font-style:normal; color:var(--brass);">리뉴얼</em> 제안
       </div>
     </div>
-    <div class="big-num">67<span class="unit" style="font-size:24px;color:rgba(250,248,244,.7)">%</span><span>진단 섹션 도달 후 이탈</span></div>
-  </div>
-
-  <div class="pull-quote">
-    <div class="q-label">INSIGHT<br>08–09</div>
-    <blockquote>
-      퍼스널컬러 피로는 <em>역이용할 수 있다.</em> 진단 없이 색을 고를 수 있다는 허락이 빈자리를 채운다.
-      <cite>— 포지셔닝 기회 정의, Manus 1 리서치</cite>
-    </blockquote>
-  </div>
-</section>
-
-<!-- ══════ 전략 관점 ══════ -->
-<section id="strategy">
-  <div class="section-head">
-    <h2><span class="no">10–14.</span>전략 <em>관점</em></h2>
-    <p class="deck">하나의 관점에서 컨셉 3안이 출발한다. 입장 방식만 다르다.</p>
-  </div>
-
-  <!-- 10. 포지셔닝 맵 -->
-  <div class="pos-map-wrap">
-    <div class="pos-map" style="max-width:380px;">
-      <div class="axis-x"></div>
-      <div class="axis-y"></div>
-      <div class="axis-label l">컬러=기능</div>
-      <div class="axis-label r">컬러=표현</div>
-      <div class="axis-label t">세계관 강</div>
-      <div class="axis-label b">세계관 약</div>
-      <!-- dots -->
-      <div class="brand-dot" style="left:35%;bottom:30%;"><span class="dot-label">rom&nd</span></div>
-      <div class="brand-dot" style="left:30%;bottom:65%;"><span class="dot-label">HERA</span></div>
-      <div class="brand-dot" style="left:60%;bottom:30%;"><span class="dot-label">AMUSE</span></div>
-      <div class="brand-dot" style="left:50%;bottom:40%;"><span class="dot-label">현 WAKEMAKE</span></div>
-      <div class="brand-dot target" style="left:70%;bottom:72%;"><span class="dot-label" style="bottom:20px;">★ 목표</span></div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">시장 규모 분석</span>
+      <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">경쟁사 포지셔닝</span>
+      <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">Z세대 타겟 인사이트</span>
+      <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">글로벌 PDP 트렌드</span>
+      <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">비주얼 방향 제안</span>
     </div>
-    <div class="pos-legend">
-      <h3>우상단 — 우리가 가야 할 자리</h3>
-      <p>컬러를 기능이 아닌 <strong>표현의 언어</strong>로 포지셔닝하면서, 강한 세계관("오늘의 나를 내가 고르는 언어")을 구축한다.</p>
-      <p>현재 웨이크메이크는 좌하단(기능+진단)에 머물고 있다. 이 공간엔 경쟁자가 많다.</p>
-      <p>우상단에는 의미 있는 공백이 있다.</p>
-      <div class="chips">
-        <span class="chip accent">컬러=표현</span>
-        <span class="chip">세계관 강</span>
-        <span class="chip">진단 없음</span>
+    <div style="margin-top:44px; display:grid; grid-template-columns:repeat(3,auto) 1fr; gap:32px; align-items:end;">
+      <div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:4px;">BRAND</div>
+        <div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.8);">WAKEMAKE</div>
+      </div>
+      <div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:4px;">CHANNEL</div>
+        <div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.8);">OliveYoung PDP</div>
+      </div>
+      <div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:4px;">DATE</div>
+        <div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.8);">2026.07.02</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(255,255,255,0.25); letter-spacing:0.08em;">41 SECTIONS · 5 PARTS</div>
       </div>
     </div>
   </div>
 
-  <hr class="dashed">
+  <!-- PART 1: 리서치 -->
+  <div class="part-label">PART 1 — 리서치 / RESEARCH · 01–09</div>
 
-  <!-- 12. 전략 구조 흐름 -->
-  <div class="section-head" style="margin-top:48px;">
-    <h2><span class="no">12.</span>전략 구조 — <em>4단계 설득</em></h2>
-    <p class="deck">감성 허락 → 신뢰 레이어 → urgency → 구매. 섹션 순서가 곧 설득 구조다.</p>
-  </div>
-  <div class="flow-grid" style="grid-template-columns: repeat(4,1fr);">
-    <div class="flow-item">
-      <div class="flow-num">STEP 01</div>
-      <div class="flow-name">감성 진입</div>
-      <div class="flow-desc">진단 없이 시작해도 된다는 허락. 무드 카피가 문을 연다.</div>
+  <!-- 01 시장 규모 -->
+  <div class="cat-card">
+    <div class="section-num">01</div>
+    <div class="cat-title">올리브영은 색조 PDP의<br>유일한 전쟁터다.</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">73%</div>
+        <div class="stat-label">H&B 채널 내<br>올리브영 점유율</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">+18.4%</div>
+        <div class="stat-label">올리브영 색조 카테고리<br>YoY 성장률 (2025→2026)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">81%</div>
+        <div class="stat-label">올리브영 색조 구매 중<br>모바일 거래 비율</div>
+      </div>
     </div>
-    <div class="flow-item" style="border-left:4px solid var(--data);">
-      <div class="flow-num">STEP 02</div>
-      <div class="flow-name">신뢰 레이어</div>
-      <div class="flow-desc">발색·지속 팩트를 감성 언어로 감싸서 구매 확신을 올린다.</div>
+    <div class="insight-box">
+      올리브영은 단순한 유통 채널이 아니다. 2026년 기준, Z세대 여성 소비자의 색조 구매 여정에서 <strong>탐색-비교-결제</strong>가 단일 앱 내에서 이루어지는 비율이 68%에 달한다. PDP(상세페이지)는 브랜드의 오프라인 매장을 대체하는 유일한 접점이며, 상단 3초 안에 스크롤을 멈추지 못하면 전환 기회는 사라진다. WAKEMAKE의 PDP 리뉴얼은 브랜드 재정립의 시작이다.
     </div>
-    <div class="flow-item" style="border-left:4px solid var(--gold);">
-      <div class="flow-num">STEP 03</div>
-      <div class="flow-name">urgency</div>
-      <div class="flow-desc">올리브영 온리 또는 시즌 한정으로 지금 결정 이유를 만든다.</div>
-    </div>
-    <div class="flow-item" style="border-left:4px solid var(--accent);">
-      <div class="flow-num">STEP 04</div>
-      <div class="flow-name">CTA</div>
-      <div class="flow-desc">이탈 저항 없이 담기. 감성 마감 / 신뢰 마감 / 시즌 마감 3종.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ C01 추천 컨셉 ══════ -->
-<section id="c01">
-  <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
-    <div style="background:var(--accent);color:white;font-family:var(--mono);font-size:11px;padding:6px 16px;letter-spacing:.1em;">★ 1순위 추천</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--muted);">CONCEPT 01 · STRATEGY FIT 9/10</div>
-  </div>
-  <div class="section-head">
-    <h2><span class="no">15–20.</span>C01 <em>"오늘의 선택"</em></h2>
-    <p class="deck">진단표 없이, 오늘 기분으로 고른 색이 맞는 색이다. POV와 가장 완벽하게 정렬된 전환 주력안.</p>
   </div>
 
-  <!-- 15. 컨셉 선언 -->
-  <div class="concept-header">
-    <div class="concept-badge rec">C01</div>
+  <!-- 02 경쟁 브랜드 분석 -->
+  <div class="cat-card">
+    <div class="section-num">02</div>
+    <div class="cat-title">30개 브랜드가 퍼스널컬러<br>하나에 몰렸다.</div>
+
+    <div class="brand-section">
+      <div class="brand-section-title">CATEGORY A — 직접 경쟁 (프리미엄 색조)</div>
+      <div class="brand-grid-3">
+        <div class="brand-card">
+          <span class="tier-badge tier-1">TIER 1</span>
+          <div class="brand-cat-tag">PREMIUM · HERITAGE</div>
+          <div class="brand-name">HERA</div>
+          <div class="brand-desc">퍼스널컬러 기반 색상 추천과 럭셔리 텍스처로 세계관 구축. PDP는 제품보다 라이프스타일 이미지 중심.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-1">TIER 1</span>
+          <div class="brand-cat-tag">PERFORMANCE · TREND</div>
+          <div class="brand-name">CLIO</div>
+          <div class="brand-desc">트렌드 컬러 선점 전략. 매 시즌 신제품 출시 주기를 무기로 PDP를 기능·성분 정보 중심으로 운영.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-2">TIER 2</span>
+          <div class="brand-cat-tag">AESTHETIC · NICHE</div>
+          <div class="brand-name">AMUSE</div>
+          <div class="brand-desc">비건 뷰티 + 자연주의 감성으로 차별화. 뉴욕 팝업 성공 후 글로벌 인지도 상승. PDP에 세계관 텍스트 강조.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-section-title">CATEGORY B — 감성 진입 경쟁 (무드·컬러 중심)</div>
+      <div class="brand-grid-4">
+        <div class="brand-card">
+          <span class="tier-badge tier-2">TIER 2</span>
+          <div class="brand-cat-tag">MOOD · STORY</div>
+          <div class="brand-name">rom&nd</div>
+          <div class="brand-desc">색조명 감성화 선두 주자. '첫눈의 기억' 같은 네이밍으로 구매 욕구 자극.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-2">TIER 2</span>
+          <div class="brand-cat-tag">K-COOL · STYLE</div>
+          <div class="brand-name">3CE</div>
+          <div class="brand-desc">스타일난다 DNA. 패션 브랜드 감성 PDP로 색조를 라이프스타일 아이템으로 포지셔닝.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-2">TIER 2</span>
+          <div class="brand-cat-tag">SCIENCE · PRESTIGE</div>
+          <div class="brand-name">VDL</div>
+          <div class="brand-desc">LG생활건강 배경. 색채과학 기반 메시지로 기능성을 전면에 내세우는 PDP 전략.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-2">TIER 2</span>
+          <div class="brand-cat-tag">SOFT · FEMININE</div>
+          <div class="brand-name">INTO YOU</div>
+          <div class="brand-desc">중국 수입 브랜드 국내 역진입. 핑크 파스텔 무드와 저가 전략으로 10대 공략 중.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-section-title">CATEGORY C — 글로벌 레퍼런스</div>
+      <div class="brand-grid-2">
+        <div class="brand-card">
+          <span class="tier-badge tier-3">TIER 3</span>
+          <div class="brand-cat-tag">US · WELLNESS BEAUTY</div>
+          <div class="brand-name">Summer Fridays</div>
+          <div class="brand-desc">미국 스킨케어 기반 색조 확장 성공 사례. PDP에 텍스처 영상과 성분 스토리를 결합한 롱폼 구조 사용.</div>
+        </div>
+        <div class="brand-card">
+          <span class="tier-badge tier-3">TIER 3</span>
+          <div class="brand-cat-tag">US · INCLUSIVE BEAUTY</div>
+          <div class="brand-name">Fenty Beauty</div>
+          <div class="brand-desc">40+쉐이드 포용성 메시지로 글로벌 PDP 표준 재정의. 모든 컬러에 다양한 피부톤 모델 적용.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>핵심 발견:</strong> 조사한 30개 브랜드 중 23개가 퍼스널컬러(봄웜/여름쿨/가을웜/겨울쿨) 프레임을 PDP 핵심 축으로 활용. 포화된 이 언어 대신 <strong>감정·무드·순간</strong> 기반의 새로운 컬러 서사가 필요하다.
+    </div>
+  </div>
+
+  <!-- 03 포지셔닝 맵 -->
+  <div class="cat-card">
+    <div class="section-num">03</div>
+    <div class="cat-title">우상단 사분면,<br>아무도 없다.</div>
+
+    <div class="pos-map-wrap">
+      <div class="axis-h"></div>
+      <div class="axis-v"></div>
+      <div class="axis-lbl" style="top:50%; left:2%; transform:translateY(-50%);">← 기능 중심</div>
+      <div class="axis-lbl" style="top:50%; right:2%; transform:translateY(-50%);">감성 표현 →</div>
+      <div class="axis-lbl" style="top:2%; left:50%; transform:translateX(-50%);">세계관 강 ↑</div>
+      <div class="axis-lbl" style="bottom:2%; left:50%; transform:translateX(-50%);">↓ 세계관 약</div>
+
+      <div class="brand-dot" style="left:28%; bottom:68%;">
+        <div class="dot-circle" style="background:#2D7A4F;"></div>
+        <div class="dot-lbl">HERA</div>
+      </div>
+      <div class="brand-dot" style="left:40%; bottom:55%;">
+        <div class="dot-circle" style="background:#2D7A4F;"></div>
+        <div class="dot-lbl">AMUSE</div>
+      </div>
+      <div class="brand-dot" style="left:32%; bottom:30%;">
+        <div class="dot-circle" style="background:#8A8780;"></div>
+        <div class="dot-lbl">CLIO</div>
+      </div>
+      <div class="brand-dot" style="left:55%; bottom:28%;">
+        <div class="dot-circle" style="background:#C77A0F;"></div>
+        <div class="dot-lbl">rom&nd</div>
+      </div>
+      <div class="brand-dot" style="left:62%; bottom:38%;">
+        <div class="dot-circle" style="background:#C77A0F;"></div>
+        <div class="dot-lbl">3CE</div>
+      </div>
+      <div class="brand-dot" style="left:38%; bottom:22%;">
+        <div class="dot-circle" style="background:#8A8780;"></div>
+        <div class="dot-lbl">INTO YOU</div>
+      </div>
+      <div class="brand-dot" style="left:44%; bottom:33%;">
+        <div class="dot-circle" style="background:#8A8780;"></div>
+        <div class="dot-lbl">VDL</div>
+      </div>
+      <div class="brand-dot" style="left:72%; bottom:58%;">
+        <div class="dot-circle" style="background:#D4C4A0;"></div>
+        <div class="dot-lbl">Fenty</div>
+      </div>
+      <div class="brand-dot" style="left:68%; bottom:44%;">
+        <div class="dot-circle" style="background:#D4C4A0;"></div>
+        <div class="dot-lbl">Smr.Fridays</div>
+      </div>
+      <div class="brand-dot" style="left:47%; bottom:25%; opacity:0.5;">
+        <div class="dot-circle" style="width:10px; height:10px; border:2px dashed #8A8780; background:transparent;"></div>
+        <div class="dot-lbl" style="color:#8A8780;">WM 현재</div>
+      </div>
+      <div class="brand-dot" style="left:78%; bottom:72%;">
+        <div class="dot-circle" style="width:16px; height:16px; background:var(--coral); box-shadow:0 0 12px rgba(232,80,42,0.7);"></div>
+        <div class="dot-lbl" style="color:var(--coral); font-weight:800;">WM TARGET ★</div>
+      </div>
+
+      <div class="target-zone">
+        <span class="target-zone-lbl">TARGET ZONE</span>
+      </div>
+
+      <svg style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <marker id="arr" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+            <polygon points="0 0, 6 2, 0 4" fill="rgba(232,80,42,0.7)" />
+          </marker>
+        </defs>
+        <line x1="47" y1="75" x2="77" y2="30" stroke="rgba(232,80,42,0.5)" stroke-width="0.5" stroke-dasharray="2,2" marker-end="url(#arr)" />
+      </svg>
+    </div>
+
+    <div class="metric-row-4">
+      <div class="metric-card">
+        <div class="metric-num">0개</div>
+        <div class="metric-lbl">우상단 사분면<br>선점 브랜드</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">73%</div>
+        <div class="metric-lbl">퍼스널컬러 프레임<br>활용 브랜드 비율</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">+41%</div>
+        <div class="metric-lbl">Z세대 무드 콘텐츠<br>반응률 증가</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">3→1</div>
+        <div class="metric-lbl">경쟁 강도 이동<br>(하단→상단 목표)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 타겟 인사이트 -->
+  <div class="cat-card">
+    <div class="section-num">04</div>
+    <div class="cat-title">이들은 '어울리는 색'이 아니라<br>'원하는 색'을 먼저 고른다.</div>
+
+    <div class="z-stat">
+      <div class="z-stat-card">
+        <div class="z-stat-num">89%</div>
+        <div class="z-stat-lbl">퍼스널컬러 진단 경험 보유<br>(Z세대 여성 18–28세)</div>
+      </div>
+      <div class="z-stat-card">
+        <div class="z-stat-num">61%</div>
+        <div class="z-stat-lbl">진단 결과와 다른 색상<br>실제 구매 경험</div>
+      </div>
+      <div class="z-stat-card">
+        <div class="z-stat-num">+41%</div>
+        <div class="z-stat-lbl">무드·감성 기반 색조 콘텐츠<br>소비 증가율 (YoY)</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; margin-bottom:10px; font-size:12px; font-weight:600; color:var(--ink2); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;">구매 결정 퍼널 — 올리브영 PDP 내 행동 패턴</div>
+    <div class="funnel-row">
+      <div class="funnel-step">
+        <div class="funnel-time">2초</div>
+        <div class="funnel-name">히어로 판단</div>
+        <div class="funnel-desc">첫 이미지에서<br>스크롤 여부 결정</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-time">10초</div>
+        <div class="funnel-name">컬러 탐색</div>
+        <div class="funnel-desc">쉐이드 이미지<br>빠른 스와이프</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-time">30초</div>
+        <div class="funnel-name">무드 공감</div>
+        <div class="funnel-desc">세계관 텍스트·<br>리얼컷 확인</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-time">45초</div>
+        <div class="funnel-name">리뷰 검증</div>
+        <div class="funnel-desc">포토리뷰 색상<br>발색 확인</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-time">60초</div>
+        <div class="funnel-name">구매 결정</div>
+        <div class="funnel-desc">CTA 또는<br>이탈 분기점</div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-icon">💬</div>
+        <div class="insight-title">리뷰보다 무드 신뢰</div>
+        <div class="insight-body">텍스트 리뷰보다 SNS에서 본 '무드' 이미지를 더 신뢰. PDP의 첫 비주얼이 SNS와 동일한 감성이어야 이탈 방지.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🎨</div>
+        <div class="insight-title">타입보다 기분 우선</div>
+        <div class="insight-body">"봄웜 추천색"보다 "오늘 기분 이런날 바르는 색"이라는 상황 기반 카피에 클릭률 2.3배 높음.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🛍️</div>
+        <div class="insight-title">올리브영 온리 효과</div>
+        <div class="insight-body">"올리브영 단독 출시" 태그 부착 제품 구매 전환율 +34%. 채널 고유성이 구매 동기로 작동.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 SNS 트렌드 -->
+  <div class="cat-card">
+    <div class="section-num">05</div>
+    <div class="cat-title">퍼스널컬러 진단은 피크를 지났다.<br>무드 메이크업이 온다.</div>
+    <div class="big-stat">+218%</div>
+    <div class="big-stat-label">틱톡 #무드컬러 #moodmakeup 해시태그 조회수 YoY 증가율 (2025→2026)</div>
+
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-num">T·01</div>
+        <div>
+          <div class="trend-name">Mood Makeup — 감정이 컬러를 선택한다</div>
+          <div class="trend-desc">기분·날씨·상황을 컬러 선택의 기준으로 삼는 트렌드. "오늘 나 이런 기분이야"를 표현하는 수단으로 색조를 소비. 틱톡 Get Ready With Me 영상의 67%가 무드 기반 컬러 선택 포함.</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num">T·02</div>
+        <div>
+          <div class="trend-name">Color Journaling — 컬러를 일기처럼 기록</div>
+          <div class="trend-desc">사용한 색조 제품을 일기처럼 기록하고 공유하는 문화. "오늘의 컬러"를 아카이빙하는 Z세대 콘텐츠 증가. 브랜드 PDP에 이 감성을 이식한 rom&nd가 월 6억 이상 매출.</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num">T·03</div>
+        <div>
+          <div class="trend-name">Undone Look — 완성되지 않은 자연스러움</div>
+          <div class="trend-desc">과하지 않고 "방금 일어난 것 같은" 자연스러운 메이크업. 립이 번진 듯한, 블러셔가 스며든 듯한 텍스처 표현이 핵심. PDP에 '완벽한 메이크업' 대신 '자연스러운 순간'을 담아야.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-decay">
+      ⚠️ <strong>퍼스널컬러 포화 신호:</strong> 네이버 '퍼스널컬러 진단' 검색량은 2023년 8월 피크 이후 꾸준히 하락 중. 2026년 현재 피크 대비 –38%. 아직 시장에서 사라지진 않았지만, 차별화 언어로서의 수명은 다했다.
+    </div>
+  </div>
+
+  <!-- 06 글로벌 PDP 트렌드 -->
+  <div class="cat-card">
+    <div class="section-num">06</div>
+    <div class="cat-title">글로벌 상위 PDP는<br>이미 다른 문법을 쓴다.</div>
+    <div class="pdp-trend-grid">
+      <div class="pdp-card">
+        <div class="pdp-tag">TREND · 01</div>
+        <div class="pdp-name">카피 퍼스트</div>
+        <div class="pdp-desc">이미지보다 카피가 먼저 눈에 들어오는 구조. Glossier, Summer Fridays 등은 첫 화면에 문장 한 줄로 브랜드 정체성을 압축. 이미지는 그 문장을 시각화하는 역할.</div>
+      </div>
+      <div class="pdp-card">
+        <div class="pdp-tag">TREND · 02</div>
+        <div class="pdp-name">텍스처 클로즈업</div>
+        <div class="pdp-desc">제품 발림새, 혼합 순간, 피부 위 텍스처를 초근접 촬영. Fenty Beauty PDP의 40% 이미지가 피부 위 발색 클로즈업. 구매 전 촉감 경험 대체 효과.</div>
+      </div>
+      <div class="pdp-card">
+        <div class="pdp-tag">TREND · 03</div>
+        <div class="pdp-name">POV 브랜딩</div>
+        <div class="pdp-desc">"나"를 주어로 한 1인칭 브랜드 메시지. "당신의 피부에 맞는" 대신 "내가 고른 오늘의 색". 소비자가 브랜드 세계관 안에 자신을 투영할 수 있도록 시점 전환.</div>
+      </div>
+      <div class="pdp-card">
+        <div class="pdp-tag">TREND · 04</div>
+        <div class="pdp-name">색이름 감성화</div>
+        <div class="pdp-desc">"01 로즈핑크" → "첫 봄날 오전의 빛" 식의 시적 컬러명. rom&nd가 국내 선점했으나 글로벌에선 e.l.f., Charlotte Tilbury가 적극 활용. 색 이름 자체가 마케팅이 되는 시대.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 이종업계 레퍼런스 -->
+  <div class="cat-card">
+    <div class="section-num">07</div>
+    <div class="cat-title">색조가 배워야 할 것은<br>뷰티 밖에 있다.</div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-industry">FASHION · GLOBAL FAST</div>
+        <div class="ref-brand">Zara</div>
+        <div class="ref-lesson">캠페인 비주얼을 제품 페이지에 그대로 이식. 상세페이지가 룩북이자 매거진. 제품 설명보다 '입었을 때의 나'를 먼저 보여준다. 스크롤이 스토리가 되는 구조.</div>
+        <div class="ref-apply">→ WAKEMAKE 적용: 컬러 페이지를 '이 색을 고른 나의 하루' 무드로 구성</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-industry">COFFEE · SPECIALTY</div>
+        <div class="ref-brand">Blue Bottle</div>
+        <div class="ref-lesson">원두 상품 페이지가 소설처럼 읽힌다. 산지 스토리, 로스팅 순간, 마시는 상황까지 서사화. 제품을 파는 게 아니라 경험을 판다. 가격이 3배여도 설득된다.</div>
+        <div class="ref-apply">→ WAKEMAKE 적용: 립 제품 한 개에 '언제, 어떤 기분에, 어떻게' 스토리 3단 구성</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-industry">TECH · PREMIUM CONSUMER</div>
+        <div class="ref-brand">Apple</div>
+        <div class="ref-lesson">제품 스펙은 최하단. 상단 90%는 감성과 경험. "당신이 할 수 있는 것"을 보여주고, 숫자는 그것을 뒷받침하는 증거로만 사용. 미니멀하고 여백이 넓다.</div>
+        <div class="ref-apply">→ WAKEMAKE 적용: 성분·지속력 정보는 섹션 하단. 히어로는 순수 감성 비주얼</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-industry">BEAUTY · LUXURY APOTHECARY</div>
+        <div class="ref-brand">Aesop</div>
+        <div class="ref-lesson">문학적 카피와 극도로 절제된 비주얼. 제품을 설명하지 않고 제품을 둘러싼 '철학'을 설명한다. 구매는 동의의 표현이 된다. 가격 저항이 없다.</div>
+        <div class="ref-apply">→ WAKEMAKE 적용: 색조명에 시적 언어 도입, 제품 철학 문장 1개 필수 삽입</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 디자인 무드 -->
+  <div class="cat-card">
+    <div class="section-num">08</div>
+    <div class="cat-title">어떤 감성으로<br>첫 2초를 잡을 것인가</div>
+
+    <div class="direction-grid">
+      <div class="dir-card recommended">
+        <div class="dir-rec-badge">★ RECOMMENDED · DIRECTION A</div>
+        <div class="dir-name">오전 빛 · 선택의 순간</div>
+        <div class="dir-sub">Morning Light · The Moment of Choice</div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#E8502A;"></div>
+          <div class="swatch" style="background:#C8A882;"></div>
+          <div class="swatch" style="background:#F5EDE0;"></div>
+          <div class="swatch" style="background:#8B5E3C;"></div>
+          <div class="swatch" style="background:#D4B896;"></div>
+        </div>
+        <div style="font-size:13px; color:var(--ink2); line-height:1.6; margin-bottom:14px;">
+          자연광이 드는 아침, 거울 앞에서 립 컬러를 고르는 순간. 퍼스널컬러 진단이 아니라 오늘의 기분이 선택한다. 코랄-브릭 계열의 따뜻한 자연광과 뉴트럴 베이스가 핵심.
+        </div>
+        <div class="dir-keywords">
+          <span class="kw-tag">오전빛</span>
+          <span class="kw-tag">선택의찰나</span>
+          <span class="kw-tag">코랄브릭</span>
+          <span class="kw-tag">자연광</span>
+          <span class="kw-tag">뉴트럴베이스</span>
+        </div>
+      </div>
+
+      <div class="dir-card">
+        <div style="font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--ink3); margin-bottom:10px; letter-spacing:0.08em;">DIRECTION B</div>
+        <div class="dir-name">밤의 선택</div>
+        <div class="dir-sub">Night Mood</div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#1A1A2E;"></div>
+          <div class="swatch" style="background:#8B008B;"></div>
+          <div class="swatch" style="background:#4B0082;"></div>
+          <div class="swatch" style="background:#C0C0C0;"></div>
+          <div class="swatch" style="background:#2C2C3E;"></div>
+        </div>
+        <div style="font-size:12px; color:var(--ink3); line-height:1.5; margin-bottom:12px;">
+          퇴근 후의 나, 파티 전의 선택. 다크 무드와 글리터 텍스처. 임팩트는 강하지만 메인 타겟 일상 사용성 낮음.
+        </div>
+        <div class="dir-keywords">
+          <span class="kw-tag" style="color:var(--ink3);">다크무드</span>
+          <span class="kw-tag" style="color:var(--ink3);">글리터</span>
+          <span class="kw-tag" style="color:var(--ink3);">파티룩</span>
+        </div>
+      </div>
+
+      <div class="dir-card">
+        <div style="font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--ink3); margin-bottom:10px; letter-spacing:0.08em;">DIRECTION C</div>
+        <div class="dir-name">실험적 발색</div>
+        <div class="dir-sub">Bold Color Lab</div>
+        <div class="swatch-row">
+          <div class="swatch" style="background:#FF1744;"></div>
+          <div class="swatch" style="background:#FF6D00;"></div>
+          <div class="swatch" style="background:#FFD600;"></div>
+          <div class="swatch" style="background:#00BFA5;"></div>
+          <div class="swatch" style="background:#AA00FF;"></div>
+        </div>
+        <div style="font-size:12px; color:var(--ink3); line-height:1.5; margin-bottom:12px;">
+          대담한 발색 실험. MZ 아트 메이크업 트렌드. 차별화는 크지만 올리브영 메인스트림 소비자 타겟과 거리.
+        </div>
+        <div class="dir-keywords">
+          <span class="kw-tag" style="color:var(--ink3);">볼드컬러</span>
+          <span class="kw-tag" style="color:var(--ink3);">아트메이크업</span>
+          <span class="kw-tag" style="color:var(--ink3);">실험적</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 Gate 1 Strategy -->
+  <div class="strategy-slide">
+    <div class="strategy-left">
+      <div class="brass-label">Gate 1 · Strategic POV · 리서치 9섹션 종합</div>
+      <div class="strategy-pov">
+        "퍼스널컬러는 나를 <em>분류하는 공식</em>이 아니라,<br>오늘의 나를 내가 <em>고르는 언어</em>다."
+      </div>
+      <div class="decision-list">
+        <div class="decision-item">
+          <div class="decision-code">D·01</div>
+          <div class="decision-text"><strong>경쟁 프레임 탈출</strong> — 퍼스널컬러 언어 전면 폐기. '봄웜·겨울쿨' 대신 '오늘의 기분·오전의 빛' 언어 체계로 전환.</div>
+        </div>
+        <div class="decision-item">
+          <div class="decision-code">D·02</div>
+          <div class="decision-text"><strong>무드 퍼스트 PDP</strong> — 8섹션 구조의 첫 3섹션은 기능 정보 없이 순수 감성 비주얼과 카피만. 기능은 S4 이후 등장.</div>
+        </div>
+        <div class="decision-item">
+          <div class="decision-code">D·03</div>
+          <div class="decision-text"><strong>Direction A 선택</strong> — 오전 빛·선택의 순간 무드. 코랄-브릭 팔레트. Z세대 일상 접점과 올리브영 주요 구매 시간대(출퇴근) 교차점.</div>
+        </div>
+        <div class="decision-item">
+          <div class="decision-code">D·04</div>
+          <div class="decision-text"><strong>시적 컬러명 도입</strong> — 모든 쉐이드에 감성 컬러명 병기. "02 뮤트코랄" → "창가의 오전". 색 이름이 첫 번째 카피가 된다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-right" style="display:flex; flex-direction:column; justify-content:center;">
+      <div class="dark-metric-grid">
+        <div class="dark-metric">
+          <div class="dark-metric-num">0개</div>
+          <div class="dark-metric-lbl">우상단 사분면<br>선점 경쟁 브랜드</div>
+        </div>
+        <div class="dark-metric">
+          <div class="dark-metric-num">73%</div>
+          <div class="dark-metric-lbl">퍼스널컬러 포화<br>브랜드 비율</div>
+        </div>
+        <div class="dark-metric">
+          <div class="dark-metric-num">+218%</div>
+          <div class="dark-metric-lbl">무드컬러<br>틱톡 성장률</div>
+        </div>
+        <div class="dark-metric" style="border-color:rgba(184,134,11,0.4);">
+          <div class="dark-metric-num" style="color:var(--coral);">다음 →</div>
+          <div class="dark-metric-lbl">비주얼 아이덴티티<br>파트 2 진입</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2: 비주얼 제안 -->
+  <div class="part-label">PART 2 — 비주얼 제안 / VISUAL IDENTITY · S01–S06</div>
+
+  <!-- S01 Brand Story -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S01 · Brand Story</div>
+      <div class="slide16-note">핵심 브랜드 서사 정의</div>
+    </div>
+    <div class="slide16-title">오늘 기분이 먼저다.</div>
+    <div class="slide16-sub">WAKEMAKE는 퍼스널컬러 진단지 없이도 자신의 색을 고를 수 있다는 믿음에서 시작됩니다. 분류가 아닌 선택. 규칙이 아닌 감각. 오늘의 나를 가장 잘 아는 사람은 나 자신이고, WAKEMAKE는 그 선택을 지지합니다.</div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div>
+        <div style="font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--brass); letter-spacing:0.1em; margin-bottom:14px;">BRAND MISSION</div>
+        <div style="font-size:18px; font-weight:700; line-height:1.5; color:#F5F0E8; letter-spacing:-0.01em;">
+          "색을 고르는 순간이<br>나를 발견하는 순간이 된다."
+        </div>
+        <div style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7;">
+          WAKEMAKE의 PDP는 제품을 파는 공간이 아닌, 오늘의 나를 상상하게 만드는 공간이다. 2초 안에 스크롤을 멈추게 만드는 것은 기능 설명이 아니라, 공감의 언어다.
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:16px 18px;">
+          <div style="font-size:11px; color:var(--brass); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:6px;">BEFORE</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.5);">"봄웜 퍼스널컬러에 어울리는 코랄 립스틱. 밀착력 8시간 지속."</div>
+        </div>
+        <div style="background:rgba(232,80,42,0.12); border:1px solid rgba(232,80,42,0.3); border-radius:10px; padding:16px 18px;">
+          <div style="font-size:11px; color:var(--coral); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:6px;">AFTER · WAKEMAKE</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5;">"오전 창가에서 고른 색. 오늘 하루를 시작하기 전, 딱 한 번의 선택."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S02 Brand Value Keywords -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S02 · Brand Value Keywords</div>
+      <div class="slide16-note">핵심 가치 3방향</div>
+    </div>
+    <div class="slide16-title">브랜드를 관통하는<br>세 가지 언어</div>
+    <div class="value-kw-grid">
+      <div class="value-kw-card active">
+        <div class="vk-code">A · SELECTED</div>
+        <div class="vk-name">INTUITION</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:10px;">직관 · 본능 · 선택</div>
+        <div class="vk-desc">진단 결과가 아닌 지금 이 순간의 감각으로 고른다. 분석이 아닌 느낌. WAKEMAKE는 당신의 직관이 옳다고 말한다.</div>
+        <div style="margin-top:12px; font-size:11px; color:var(--coral); font-family:'JetBrains Mono',monospace;">★ 핵심 브랜드 가치</div>
+      </div>
+      <div class="value-kw-card">
+        <div class="vk-code">B</div>
+        <div class="vk-name">DAILINESS</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:10px;">일상 · 반복 · 리추얼</div>
+        <div class="vk-desc">특별한 날이 아닌 매일의 선택. 메이크업은 나를 표현하는 가장 작고 강력한 일상 리추얼이다.</div>
+      </div>
+      <div class="value-kw-card">
+        <div class="vk-code">C</div>
+        <div class="vk-name">BOLDNESS</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:10px;">용기 · 과감 · 자기표현</div>
+        <div class="vk-desc">내가 원하는 색을 고를 용기. 어울리지 않아도 괜찮다는 자유. WAKEMAKE는 당신이 원하는 색을 지지한다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S03 Brand Mind Map -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S03 · Brand Mind Map</div>
+      <div class="slide16-note">핵심 키워드 연결 구조</div>
+    </div>
+    <div class="slide16-title">WAKEMAKE 세계관 지도</div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; padding:24px 0 10px; gap:0;">
+      <div style="background:var(--coral); color:#fff; border-radius:50%; width:110px; height:110px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; text-align:center; line-height:1.3; position:relative; z-index:2; flex-shrink:0;">오늘의 나<br>COLOR<br>CHOICE</div>
+
+      <svg style="width:100%; max-width:640px; height:36px; display:block; overflow:visible;" viewBox="0 0 640 36" preserveAspectRatio="xMidYMid meet">
+        <line x1="320" y1="0" x2="64" y2="36" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="320" y1="0" x2="192" y2="36" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="320" y1="0" x2="320" y2="36" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="320" y1="0" x2="448" y2="36" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="320" y1="0" x2="576" y2="36" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      </svg>
+
+      <div style="display:flex; gap:12px; width:100%; justify-content:space-around; flex-wrap:wrap;">
+        <div class="mm-node">직관적 선택</div>
+        <div class="mm-node">무드 컬러</div>
+        <div class="mm-node">일상 리추얼</div>
+        <div class="mm-node">자기표현</div>
+        <div class="mm-node">오전의 빛</div>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; justify-content:center;">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">봄 아침</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">거울 앞 2분</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">코랄 브릭</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">뉴트럴 베이스</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">어울린다는 착각</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">원하는 색 먼저</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">텍스처 감각</div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:7px 13px; font-size:11px; color:rgba(255,255,255,0.5);">일기 같은 기록</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S04 Brand Direction -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S04 · Brand Direction</div>
+      <div class="slide16-note">5개 축 포지셔닝</div>
+    </div>
+    <div class="slide16-title">WAKEMAKE가 서 있을<br>정확한 좌표</div>
+
+    <div class="axis-grid">
+      <div class="axis-row">
+        <div class="axis-end-left">기능·성능</div>
+        <div class="dot-track pos-6"></div>
+        <div class="axis-end-right">감성·무드</div>
+      </div>
+      <div class="axis-row">
+        <div class="axis-end-left">규칙·공식</div>
+        <div class="dot-track pos-7"></div>
+        <div class="axis-end-right">직관·선택</div>
+      </div>
+      <div class="axis-row">
+        <div class="axis-end-left">데일리·베이직</div>
+        <div class="dot-track pos-5"></div>
+        <div class="axis-end-right">개성·실험</div>
+      </div>
+      <div class="axis-row">
+        <div class="axis-end-left">젊음·트렌드</div>
+        <div class="dot-track pos-5"></div>
+        <div class="axis-end-right">성숙·세계관</div>
+      </div>
+      <div class="axis-row">
+        <div class="axis-end-left">설명적·정보</div>
+        <div class="dot-track pos-6"></div>
+        <div class="axis-end-right">시적·서사</div>
+      </div>
+    </div>
+    <div style="margin-top:20px; font-size:12px; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono',monospace; letter-spacing:0.06em;">◉ = WAKEMAKE TARGET POSITION · 각 축 7단계 스케일</div>
+  </div>
+
+  <!-- S05 Graphic Motif -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S05 · Graphic Motif</div>
+      <div class="slide16-note">Direction A 무드 비주얼 패널</div>
+    </div>
+    <div class="slide16-title">오전의 빛 — 세 개의 장면</div>
+    <div class="mood-panels">
+      <div class="mood-panel" style="background:linear-gradient(160deg, #F5E8D8 0%, #E8C4A0 40%, #C8845A 100%);">
+        <div class="mood-panel-content">
+          <div class="mood-panel-tag">SCENE · 01 · 07:20</div>
+          <div class="mood-panel-name">창가의 오전빛</div>
+        </div>
+      </div>
+      <div class="mood-panel" style="background:linear-gradient(160deg, #ECD4C0 0%, #D4956A 50%, #A0522D 100%);">
+        <div class="mood-panel-content">
+          <div class="mood-panel-tag">SCENE · 02 · 07:42</div>
+          <div class="mood-panel-name">거울 앞 선택</div>
+        </div>
+      </div>
+      <div class="mood-panel" style="background:linear-gradient(160deg, #F0E0D0 0%, #E8502A 60%, #8B3A1A 100%);">
+        <div class="mood-panel-content">
+          <div class="mood-panel-tag">SCENE · 03 · 08:05</div>
+          <div class="mood-panel-name">오늘의 색, 결정</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:12px; color:rgba(255,255,255,0.5);">핵심 촬영 키워드:</span>
+      <span style="font-size:12px; color:rgba(255,255,255,0.7); font-weight:600;">자연광 역광 / 입술 클로즈업 / 손끝 텍스처 / 아침 공기감 / 비포커스 배경</span>
+    </div>
+  </div>
+
+  <!-- S06 Competitor Research -->
+  <div class="slide16">
+    <div class="slide16-header">
+      <div class="slide16-label">S06 · Competitor PDP Research</div>
+      <div class="slide16-note">경쟁사 PDP 분석 종합</div>
+    </div>
+    <div class="slide16-title">경쟁사 PDP가<br>놓친 것</div>
+    <div class="comp-summary-grid">
+      <div class="comp-sum-card">
+        <div class="comp-sum-name">HERA</div>
+        <div class="comp-sum-score">B+</div>
+        <div class="comp-sum-desc">럭셔리 이미지는 강함. 그러나 Z세대 일상과의 거리감. PDP 스크롤 길이 과도, 중반 이탈률 높음.</div>
+      </div>
+      <div class="comp-sum-card">
+        <div class="comp-sum-name">rom&nd</div>
+        <div class="comp-sum-score">A−</div>
+        <div class="comp-sum-desc">색이름 감성화 선두. 그러나 무드 비주얼보다 제품 나열 구조. 브랜드 스토리 부재로 팬덤 없음.</div>
+      </div>
+      <div class="comp-sum-card">
+        <div class="comp-sum-name">AMUSE</div>
+        <div class="comp-sum-score">A</div>
+        <div class="comp-sum-desc">세계관 PDP 국내 최고 수준. 비건+자연주의 서사 일관. WAKEMAKE가 넘어야 할 직접 기준점.</div>
+      </div>
+      <div class="comp-sum-card">
+        <div class="comp-sum-name">CLIO</div>
+        <div class="comp-sum-score">B</div>
+        <div class="comp-sum-desc">정보 밀도는 최고. 기능·성분 설득력 강. 그러나 감성 영역 전무. 20대 후반부터 이탈 가속.</div>
+      </div>
+      <div class="comp-sum-card">
+        <div class="comp-sum-name">3CE</div>
+        <div class="comp-sum-score">B+</div>
+        <div class="comp-sum-desc">패션 감도 높은 PDP. 그러나 트렌드 사이클 의존도 과도. 시즌마다 브랜드 정체성 흔들림.</div>
+      </div>
+      <div class="comp-sum-card" style="border-color:rgba(232,80,42,0.3); background:rgba(232,80,42,0.06);">
+        <div class="comp-sum-name" style="color:var(--coral);">WAKEMAKE 목표</div>
+        <div class="comp-sum-score" style="color:var(--coral);">S</div>
+        <div class="comp-sum-desc">무드 비주얼 + 시적 카피 + 브랜드 서사. 감성으로 진입해 기능으로 설득. AMUSE 상회 목표.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 3: 실행 계획 -->
+  <div class="part-label">PART 3 — 실행 계획 / EXECUTION · 10–12</div>
+
+  <!-- 10 PDP 8섹션 구조 -->
+  <div class="cat-card">
+    <div class="section-num">10</div>
+    <div class="cat-title">올리브영 상세페이지<br>8섹션 설계도</div>
+
+    <div class="pdp-flow">
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S1 · 히어로</div>
+        <div class="pdp-sec-name">첫인상 비주얼</div>
+        <div class="pdp-sec-type">MOOD IMAGE + 브랜드 카피 1줄</div>
+        <div class="pdp-sec-copy">"오전 창가에서 고른 색"<br>자연광 역광 촬영, 립+손 클로즈업</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S2 · 컬러</div>
+        <div class="pdp-sec-name">쉐이드 탐색</div>
+        <div class="pdp-sec-type">컬러칩 + 감성 컬러명</div>
+        <div class="pdp-sec-copy">"01 창가의 오전빛<br>02 선택의 찰나<br>03 코랄 브릭 노을"</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S3 · 텍스처</div>
+        <div class="pdp-sec-name">발림새 경험</div>
+        <div class="pdp-sec-type">초근접 텍스처 + 피부 발색</div>
+        <div class="pdp-sec-copy">입술 위 발색 클로즈업.<br>번짐 없는 선명함 시각화</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S4 · 세계관</div>
+        <div class="pdp-sec-name">브랜드 스토리</div>
+        <div class="pdp-sec-type">세계관 텍스트 + 무드 이미지</div>
+        <div class="pdp-sec-copy">"오늘 기분이 먼저다.<br>WAKEMAKE는 당신의 직관을 믿는다."</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S5 · HOW TO</div>
+        <div class="pdp-sec-name">사용법 가이드</div>
+        <div class="pdp-sec-type">단계별 일러스트 + 팁</div>
+        <div class="pdp-sec-copy">3단계 무드별 적용법.<br>데일리 / 무드업 / 볼드</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S6 · ONLY</div>
+        <div class="pdp-sec-name">올리브영 단독</div>
+        <div class="pdp-sec-type">채널 전용 배지 + 한정 강조</div>
+        <div class="pdp-sec-copy">"올리브영에서만.<br>이 색은 여기서만 만날 수 있어요."</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S7 · 리뷰</div>
+        <div class="pdp-sec-name">포토 리뷰 큐레이션</div>
+        <div class="pdp-sec-type">실사용 포토 + 키워드 태그</div>
+        <div class="pdp-sec-copy">무드별 리뷰 필터링.<br>#데일리 #무드업 #오피스룩</div>
+      </div>
+      <div class="pdp-section-card">
+        <div class="pdp-sec-num">S8 · CTA</div>
+        <div class="pdp-sec-name">구매 전환 마무리</div>
+        <div class="pdp-sec-type">장바구니 + 연관 상품 추천</div>
+        <div class="pdp-sec-copy">"오늘의 선택을 완성하세요."<br>함께 고른 세트 추천</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 일정 -->
+  <div class="cat-card">
+    <div class="section-num">11</div>
+    <div class="cat-title">4주 실행 로드맵</div>
+
+    <div class="timeline-wrap">
+      <div class="timeline-row">
+        <div class="tl-week">W1</div>
+        <div class="tl-bar-wrap">
+          <div class="tl-fill" style="width:25%;"></div>
+          <div class="tl-text">방향 확정 + 카피 초안 — 브랜드 스토리 문서화, 컬러명 전안 작성, 세계관 언어 정립</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-week">W2</div>
+        <div class="tl-bar-wrap">
+          <div class="tl-fill" style="width:50%; left:25%;"></div>
+          <div class="tl-text">이미지 촬영 기획 — 스튜디오 섭외, 스타일링 방향, 모델 캐스팅, 촬영 콘티 작성</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-week">W3</div>
+        <div class="tl-bar-wrap">
+          <div class="tl-fill" style="width:50%; left:50%;"></div>
+          <div class="tl-text">촬영 + 레이아웃 — 스튜디오 촬영 실행, 이미지 보정, PDP 레이아웃 1차 시안 제작</div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-week">W4</div>
+        <div class="tl-bar-wrap">
+          <div class="tl-fill" style="width:25%; left:75%;"></div>
+          <div class="tl-text">최종 검토 + 납품 — 클라이언트 수정 반영, QC 체크리스트 통과, 올리브영 업로드 형식 변환</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <strong>납품 산출물:</strong> PDP 이미지 파일 (8섹션 × 컬러별), 올리브영 업로드 스펙 준수 (가로 860px), 모바일 최적화 버전, 카피 최종본 문서
+    </div>
+  </div>
+
+  <!-- 12 견적 -->
+  <div class="cat-card">
+    <div class="section-num">12</div>
+    <div class="cat-title">제안 비용 개요</div>
+
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="cost-cat">01 · STRATEGY</div>
+        <div class="cost-name">기획 / 전략</div>
+        <div class="cost-items">
+          <div class="cost-item">
+            <span>브랜드 포지셔닝 분석</span>
+            <span style="font-weight:600;">포함</span>
+          </div>
+          <div class="cost-item">
+            <span>경쟁사 PDP 리서치</span>
+            <span style="font-weight:600;">포함</span>
+          </div>
+          <div class="cost-item">
+            <span>카피라이팅 (전 섹션)</span>
+            <span style="font-weight:600;">포함</span>
+          </div>
+          <div class="cost-item">
+            <span>컬러명 네이밍 (전 쉐이드)</span>
+            <span style="font-weight:600;">포함</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-cat">02 · DESIGN</div>
+        <div class="cost-name">디자인 / 레이아웃</div>
+        <div class="cost-items">
+          <div class="cost-item">
+            <span>PDP 8섹션 레이아웃</span>
+            <span style="font-weight:600;">별도 산정</span>
+          </div>
+          <div class="cost-item">
+            <span>컬러별 변형 작업</span>
+            <span style="font-weight:600;">별도 산정</span>
+          </div>
+          <div class="cost-item">
+            <span>이미지 보정·합성</span>
+            <span style="font-weight:600;">별도 산정</span>
+          </div>
+          <div class="cost-item">
+            <span>모바일 최적화 변환</span>
+            <span style="font-weight:600;">포함</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-cat">03 · PRODUCTION</div>
+        <div class="cost-name">촬영 / 제작</div>
+        <div class="cost-items">
+          <div class="cost-item">
+            <span>스튜디오 섭외</span>
+            <span style="font-weight:600;">실비 별도</span>
+          </div>
+          <div class="cost-item">
+            <span>모델 캐스팅</span>
+            <span style="font-weight:600;">실비 별도</span>
+          </div>
+          <div class="cost-item">
+            <span>스타일리스트</span>
+            <span style="font-weight:600;">실비 별도</span>
+          </div>
+          <div class="cost-item">
+            <span>촬영 감독·현장 디렉팅</span>
+            <span style="font-weight:600;">협의</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cost-note">
+      ※ <strong>안내:</strong> 상세 견적은 킥오프 미팅 후 별도 문서로 제공합니다. 컬러 쉐이드 수량, 촬영 볼륨, 수정 횟수에 따라 금액이 달라집니다.
+    </div>
+  </div>
+
+  <!-- PART 4: CLOSE -->
+  <div class="part-label">PART 4 — CLOSE · 다음 단계</div>
+
+  <div class="close-card">
     <div>
-      <div class="concept-name"><em>오늘의 선택</em></div>
-      <div class="concept-def">타깃 심리: "진단 없이 골라도 되나?" 망설이는 사람. 무드 카피가 진단을 대체한다.</div>
+      <div class="brass-label" style="margin-bottom:20px;">WAKEMAKE × OLIVEYOUNG · 2026</div>
+      <div class="close-title">지금,<br><em>시작할</em><br>준비가<br>됐습니다.</div>
+      <div class="close-sub" style="margin-top:16px;">
+        41개 섹션에 담긴 리서치와 전략은<br>하나의 목적을 위해 설계됐습니다.<br>WAKEMAKE가 올리브영에서<br>Z세대의 첫 번째 선택이 되는 것.
+      </div>
     </div>
-  </div>
 
-  <!-- 16. 섹션 구조 -->
-  <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">16. 상세페이지 섹션 구조 (7단계)</h3>
-  <div class="flow-grid">
-    <div class="flow-item">
-      <div class="flow-num">S01</div>
-      <div class="flow-name">히어로</div>
-      <div class="flow-desc">카피 퍼스트. "오늘 기분을 먼저 골라도 돼"로 문을 연다.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S02</div>
-      <div class="flow-name">컬러 선택</div>
-      <div class="flow-desc">무드 언어로 컬러를 나열. 유형이 아닌 감각으로 고른다.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S03</div>
-      <div class="flow-name">선택 이유</div>
-      <div class="flow-desc">이 색이 오늘의 나인 이유를 1~2줄로. 구매 정당화.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S04</div>
-      <div class="flow-name">발색 클로즈업</div>
-      <div class="flow-desc">발색력·지속력 팩트 짧게. 신뢰 레이어 삽입.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S05</div>
-      <div class="flow-name">실제 피부 위</div>
-      <div class="flow-desc">다양한 피부톤 착색 컷 1~2컷.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S06</div>
-      <div class="flow-name">온리 내재</div>
-      <div class="flow-desc">올리브영 온리를 배지가 아닌 스토리로.</div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">S07</div>
-      <div class="flow-name">CTA</div>
-      <div class="flow-desc">"오늘의 색, 담기" — 감성 마감형.</div>
-    </div>
-  </div>
-
-  <!-- 17-19. 카피 샘플 -->
-  <h3 style="font-size:18px;font-weight:700;margin:40px 0 16px;">17–19. 주요 카피 샘플</h3>
-  <div class="copy-list">
-    <div class="copy-item">
-      <div class="copy-context">S01 · 히어로 오프닝</div>
-      <div class="copy-text">"오늘 기분을 먼저 골라도 돼. 이유는 나중에 찾아도 된다."</div>
-      <div class="copy-sub">명조 이탤릭 대형(32pt+) · 오전 창가 자연광 배경 · 제품 컷 없이 카피만</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S02 · 컬러 선택 섹션 — 무드 언어 적용 예시</div>
-      <div class="copy-text">"오전 11시 창가의 빛 같은 색. 코랄 브릭."</div>
-      <div class="copy-sub">패턴 A (시간/빛 언어) — "웜톤에 어울리는 색" 대신 이 언어로 컬러를 연다</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S04 · 발색 섹션</div>
-      <div class="copy-text">"선택이 맞는지는 피부 위에서 결정된다. 결과가 공식보다 빠르다."</div>
-      <div class="copy-sub">팩트를 감성 언어로 감싸기 — 기술 설명이 아닌 경험 선언</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S07 · CTA</div>
-      <div class="copy-text">"오늘의 색, 담기"</div>
-      <div class="copy-sub">서브 CTA: "이 색이 나한테 어울리는지는, 담고 나서 알게 된다."</div>
-    </div>
-  </div>
-
-  <!-- 20. 효과·리스크 -->
-  <h3 style="font-size:18px;font-weight:700;margin:40px 0 16px;">20. 전환율 효과 · 리스크</h3>
-  <div class="risk-grid">
-    <div class="risk-card good">
-      <div class="risk-label">▲ 전환 효과</div>
-      <div class="risk-text">진입 허들 최소화. "내 타입인지 몰라서 못 샀다"는 이탈 원천 차단. 즉각 구매 유도에 최적. POV와 100% 정렬.</div>
-    </div>
-    <div class="risk-card bad">
-      <div class="risk-label">⚠ 리스크</div>
-      <div class="risk-text">발색 신뢰 레이어(S04)를 얇게 쓰면 "예뻐 보이는데 나한테 맞을지" 단계에서 이탈 가능. S04 팩트 레이어를 얇게 처리하지 말 것.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ C05 보조안 ══════ -->
-<section id="c05">
-  <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
-    <div style="background:var(--data-strong);color:white;font-family:var(--mono);font-size:11px;padding:6px 16px;letter-spacing:.1em;">2순위</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--muted);">CONCEPT 05 · STRATEGY FIT 8.5/10</div>
-  </div>
-  <div class="section-head">
-    <h2><span class="no">21–26.</span>C05 <em>"색×기술"</em></h2>
-    <p class="deck">감성으로 고르고 기술로 확신한다. 올리브영 정보 탐색형 구매자 전환에 강하다.</p>
-  </div>
-
-  <div class="concept-header">
-    <div class="concept-badge">C05</div>
     <div>
-      <div class="concept-name">색 × <em>기술</em></div>
-      <div class="concept-def">타깃 심리: "예쁜데 진짜 내 피부에 맞을까?" 의심하는 사람. 감성 + 발색 신뢰 이중 레이어.</div>
-    </div>
-  </div>
-
-  <div class="copy-list">
-    <div class="copy-item">
-      <div class="copy-context">S01 · 히어로 — 신뢰 위임형</div>
-      <div class="copy-text">"원하는 색을 고르면 된다. 피부 위에서 맞춰주는 건 우리가 한다."</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S03 · 발색 기술 섹션 — 사람 언어로</div>
-      <div class="copy-text">"이 색이 당신 피부 위에서 어떻게 달라지는지, 우리가 먼저 확인했다."</div>
-      <div class="copy-sub">기술 설명을 인포그래픽 + 감성 언어로 병렬 배치. 스워치-온-스킨 비교 필수.</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S04 · 지속력</div>
-      <div class="copy-text">"8시간 뒤에도 당신이 아침에 고른 색이 남아 있다."</div>
-      <div class="copy-sub">CTA: "확인하고 담기" — 신뢰 마감형</div>
-    </div>
-  </div>
-
-  <div class="risk-grid" style="margin-top:24px;">
-    <div class="risk-card good">
-      <div class="risk-label">▲ 전환 효과</div>
-      <div class="risk-text">리뷰 체크 후 구매하는 이성형 구매자 전환 강함. 장바구니 이탈 재진입에도 유효. 올리브영 주력 고객 성향과 높은 부합.</div>
-    </div>
-    <div class="risk-card bad">
-      <div class="risk-label">⚠ 리스크</div>
-      <div class="risk-text">기술 설명 과잉 → 브랜드 감성 희석. 기술 섹션은 2섹션 이내로 압축. 카피는 항상 사람 언어로. 제약회사 느낌 금지.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ C04 보조안 ══════ -->
-<section id="c04">
-  <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
-    <div style="background:var(--gold);color:white;font-family:var(--mono);font-size:11px;padding:6px 16px;letter-spacing:.1em;">3순위</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--muted);">CONCEPT 04 · STRATEGY FIT 8/10</div>
-  </div>
-  <div class="section-head">
-    <h2><span class="no">27–32.</span>C04 <em>"계절 감각"</em></h2>
-    <p class="deck">지금 이 계절에, 지금 이 색을 고르는 사람이 되는 것. 여름 urgency + 시즌 세계관.</p>
-  </div>
-
-  <div class="concept-header">
-    <div class="concept-badge" style="background:var(--gold);">C04</div>
-    <div>
-      <div class="concept-name">계절 <em>감각</em></div>
-      <div class="concept-def">타깃 심리: "지금 아니면 늦겠다" 촉발이 필요한 사람. 여름 urgency로 구매 결정을 앞당긴다.</div>
-    </div>
-  </div>
-
-  <div class="copy-list">
-    <div class="copy-item">
-      <div class="copy-context">S01 · 히어로 — 시즌 호출형</div>
-      <div class="copy-text">"이 여름이 지나기 전에, 지금 당신이 고르고 싶은 색이 있다."</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S02 · 계절 컬러 섹션</div>
-      <div class="copy-text">"여름의 빛 아래서만 이렇게 보인다. 이 색은 지금 이 계절에 맞게 만들어졌다."</div>
-      <div class="copy-sub">주의: "웜톤·쿨톤·봄타입" 언어 완전 금지. "계절"은 기온·빛·무드의 언어여야 한다.</div>
-    </div>
-    <div class="copy-item">
-      <div class="copy-context">S06 · 올리브영 온리 urgency</div>
-      <div class="copy-text">"이 조합은 이번 여름 올리브영에서만 고를 수 있다. 계절이 바뀌면 이 색도 달라진다."</div>
-      <div class="copy-sub">CTA: "이번 여름 담기" — 시즌 마감형</div>
-    </div>
-  </div>
-
-  <div class="risk-grid" style="margin-top:24px;">
-    <div class="risk-card good">
-      <div class="risk-label">▲ 전환 효과</div>
-      <div class="risk-text">시즌 urgency로 이탈 방어. 시즌 에디션 프레임이 객단가를 올린다. 계절 urgency + 올리브영 온리 이중 설득.</div>
-    </div>
-    <div class="risk-card bad">
-      <div class="risk-label">⚠ 리스크</div>
-      <div class="risk-text">계절 타입 진단 프레임과 혼동 위험. 계절 교체 시 섹션 전체 리뉴얼 필요 → 운영비 증가. 카피 관리 기준 사전 합의 필수.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 비주얼 시스템 ══════ -->
-<section id="system">
-  <div class="section-head">
-    <h2><span class="no">33–36.</span><em>비주얼</em> 시스템</h2>
-    <p class="deck">팔레트 5색 + 타이포 2종 + 사진 방향. 이 3가지만 지키면 일관성이 확보된다.</p>
-  </div>
-
-  <!-- 33. 팔레트 -->
-  <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">33. 컬러 팔레트</h3>
-  <div class="dna-grid">
-    <div class="dna-card">
-      <div class="color-swatch" style="background:#FAF8F4;"></div>
-      <div class="dna-hex">#FAF8F4</div>
-      <div class="dna-name">크림 화이트</div>
-      <div class="dna-role">전체 배경·여백</div>
-    </div>
-    <div class="dna-card">
-      <div class="color-swatch" style="background:#E8502A;"></div>
-      <div class="dna-hex">#E8502A</div>
-      <div class="dna-name">코랄 브릭</div>
-      <div class="dna-role">포인트·CTA·강조</div>
-    </div>
-    <div class="dna-card">
-      <div class="color-swatch" style="background:#F2B89A;"></div>
-      <div class="dna-hex">#F2B89A</div>
-      <div class="dna-name">피치 누드</div>
-      <div class="dna-role">계절 섹션 오버레이</div>
-    </div>
-    <div class="dna-card">
-      <div class="color-swatch" style="background:#2C1810;"></div>
-      <div class="dna-hex">#2C1810</div>
-      <div class="dna-name">딥 초콜릿</div>
-      <div class="dna-role">본문 텍스트</div>
-    </div>
-    <div class="dna-card">
-      <div class="color-swatch" style="background:#C9942A;"></div>
-      <div class="dna-hex">#C9942A</div>
-      <div class="dna-name">골드 웜</div>
-      <div class="dna-role">계절감·황금빛 섹션</div>
-    </div>
-  </div>
-
-  <!-- 34. 타이포 -->
-  <h3 style="font-size:18px;font-weight:700;margin:48px 0 16px;">34. 타이포그래피 — 2종 고정 원칙</h3>
-  <div class="typo-demo">
-    <div class="typo-sample">
-      <div class="t-label">HEADLINE — 명조 이탤릭 감성 헤드 (32pt+, weight 800, italic)</div>
-      <div class="typo-head" style="font-family:'Georgia',serif;">오늘의 색을<br>먼저 골라도 돼.</div>
-      <div class="typo-body">무드 카피, 챕터 제목, 히어로 오프닝에 사용. 서체 크기 32pt 이상. 이 이상 크게 쓸수록 잡지 톤이 산다.</div>
-    </div>
-    <div class="typo-sample">
-      <div class="t-label">BODY — 고딕 Light 본문 (14–16px, weight 300~400)</div>
-      <div class="typo-head" style="font-size:16px;font-weight:300;font-style:normal;line-height:1.7;color:var(--muted);">발색력·지속력에 대한 설명, 섹션 디스크립션, CTA 서브 문구, 정보 전달 영역 전체에 사용합니다. 고딕 Light가 배경으로 물러나야 명조 이탤릭이 앞으로 나옵니다.</div>
-    </div>
-  </div>
-
-  <!-- 35. 사진 방향 -->
-  <h3 style="font-size:18px;font-weight:700;margin:48px 0 16px;">35. 사진 연출 방향</h3>
-  <div class="spec-grid">
-    <div class="spec-item">
-      <div class="spec-num">조명</div>
-      <div class="spec-title">오전 창가 자연광 단방향</div>
-      <div class="spec-body">오전 10시 창가, 빛 각도 15도, 리플렉터 없이 소프트 섀도 유지. 색온도 3200K (따뜻-중립).</div>
-    </div>
-    <div class="spec-item">
-      <div class="spec-num">구도</div>
-      <div class="spec-title">클로즈업 + 라이프스타일 혼합</div>
-      <div class="spec-body">히어로 = 립 45도 측면 클로즈업. 라이프스타일 = 턱선~가슴 크롭. 스워치 = 손등 수직 오버헤드.</div>
-    </div>
-    <div class="spec-item">
-      <div class="spec-num">배경</div>
-      <div class="spec-title">단색 매트 크림·베이지</div>
-      <div class="spec-body">C01/C04 = 크림-베이지 매트. C05 = 글로시 화이트. 원색 배경 단독 사용 금지.</div>
-    </div>
-  </div>
-
-  <!-- 36. 카피 톤 가이드 -->
-  <h3 style="font-size:18px;font-weight:700;margin:48px 0 16px;">36. 카피 톤 가이드 — 허용 언어 vs 금지 언어</h3>
-  <div class="forbid-list">
-    <div class="forbid-item">
-      <div class="forbid-bad">× "봄 웜톤에 어울리는 색"</div>
-      <div class="forbid-good">✓ "오전 11시 창가의 빛 같은 색"</div>
-      <div class="forbid-reason">이유: 타입 분류 → 감각 언어로 전환</div>
-    </div>
-    <div class="forbid-item">
-      <div class="forbid-bad">× "쿨톤 추천 쉐이드"</div>
-      <div class="forbid-good">✓ "오늘 조금 더 나답고 싶은 날을 위한 색"</div>
-      <div class="forbid-reason">이유: 유형 → 감정/상태 언어</div>
-    </div>
-    <div class="forbid-item">
-      <div class="forbid-bad">× "퍼스널컬러 진단 후 고르세요"</div>
-      <div class="forbid-good">✓ "이유는 나중에 찾아도 된다"</div>
-      <div class="forbid-reason">이유: 진단 의존 → 선택 허락으로 전환</div>
-    </div>
-    <div class="forbid-item">
-      <div class="forbid-bad">× "겨울 쿨 딥 타입"</div>
-      <div class="forbid-good">✓ "이 여름이 지나기 전에 고르고 싶은 색"</div>
-      <div class="forbid-reason">이유: 타입명 → 계절 감각/시의성 언어</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 운영·견적 ══════ -->
-<section id="ops">
-  <div class="section-head">
-    <h2><span class="no">37–39.</span>운영 · <em>견적</em></h2>
-    <p class="deck">제작 범위, 일정, 견적 — 컨셉 선택 후 확정.</p>
-  </div>
-
-  <!-- 37. 제작 범위 -->
-  <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">37. 제작 범위</h3>
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th>항목</th>
-        <th class="accent-col">C01 기본 (추천)</th>
-        <th>C05 추가 옵션</th>
-        <th>C04 추가 옵션</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>상세페이지 섹션 수</td><td>7섹션</td><td>7섹션 (+기술 인포그래픽)</td><td>7섹션 (+시즌 urgency)</td></tr>
-      <tr><td>컬러 호수 수</td><td>협의 (기본 10호)</td><td>동일</td><td>동일</td></tr>
-      <tr><td>발색컷 촬영</td><td>클라이언트 제공 시 감액</td><td>스킨톤 비교 필수 추가</td><td>골든아워 촬영 추가</td></tr>
-      <tr><td>카피 작성</td><td>포함 (무드 언어 전체)</td><td>포함</td><td>포함</td></tr>
-      <tr><td>산출물 형식</td><td>JPG long-form</td><td>JPG long-form</td><td>JPG long-form</td></tr>
-    </tbody>
-  </table>
-
-  <!-- 38. 일정 -->
-  <h3 style="font-size:18px;font-weight:700;margin:48px 0 16px;">38. 납기 일정</h3>
-  <table class="schedule-table">
-    <thead>
-      <tr>
-        <th>주차</th>
-        <th>마일스톤</th>
-        <th>조건</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="wk">D+0</td><td class="milestone">컨셉 확정 + 계약</td><td>클라이언트 선택 후</td></tr>
-      <tr><td class="wk">D+5</td><td>발색컷 촬영 또는 소재 수령</td><td>촬영본 클라이언트 제공 시 생략</td></tr>
-      <tr><td class="wk">D+10</td><td>1차 시안 (섹션 구조 + 카피 초안)</td><td></td></tr>
-      <tr><td class="wk">D+14</td><td class="milestone">1차 피드백 반영 + 2차 시안</td><td>피드백 3영업일 내 회신 기준</td></tr>
-      <tr><td class="wk">D+18</td><td>최종 JPG 납품</td><td>호수 10개 기준</td></tr>
-    </tbody>
-  </table>
-
-  <!-- 39. 견적 -->
-  <div class="dark-callout" style="margin-top:48px;">
-    <div class="text">
-      <p><strong>견적 산정 변수</strong></p>
-      <br>
-      <p style="margin-bottom:12px;">① 호수(컬러) 개수 — 기본 10호 기준. 추가 호수 당 단가 별도.</p>
-      <p style="margin-bottom:12px;">② 발색컷 촬영본 — 클라이언트 제공 시 촬영비 감액. 직접 촬영 시 반나절~1일 추가.</p>
-      <p>③ 컨셉 조합 — C01 단독 기본가. C05·C04 추가 시 옵션 단가 가산.</p>
-    </div>
-    <div class="big-num" style="font-size:clamp(28px,4vw,48px);text-align:right;">
-      견적 확정은<br>
-      <span style="color:var(--accent-soft);font-size:16px;margin-top:12px;display:block;">컨셉 선택 + 호수 수 + 촬영본 여부<br>3가지 확인 후 산정</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ 클로징 ══════ -->
-<section>
-  <div class="closing-wrap">
-    <div class="pov-label" style="margin-bottom:32px;">CHAPTER 40–41 · CLOSING</div>
-    <div class="closing-quote">
-      지금 웨이크메이크에게 필요한 건<br>
-      더 많은 <em>진단이 아니라,</em><br>
-      고르는 사람을 <em>믿어주는 페이지다.</em>
-    </div>
-    <div class="next-steps">
-      <div class="next-step">
-        <div class="ns-num">01</div>
-        <div class="ns-action">컨셉 선택</div>
-        <div class="ns-desc">C01 / C05 / C04 중 하나, 또는 조합 확정</div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--brass); letter-spacing:0.12em; margin-bottom:16px; text-transform:uppercase;">다음 단계</div>
+      <div class="next-steps">
+        <div class="next-step">
+          <div class="next-step-num">01</div>
+          <div class="next-step-text"><strong>방향 선택</strong> — Direction A·B·C 중 최종 비주얼 방향 확정. 킥오프 전 1주 내 회신 요청.</div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-num">02</div>
+          <div class="next-step-text"><strong>일정 확정</strong> — 4주 로드맵 기준 착수일 협의. 촬영 일정은 착수 후 W2에 확정.</div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-num">03</div>
+          <div class="next-step-text"><strong>킥오프</strong> — 상세 견적서 및 계약서 발송. 브랜드 자산(기존 가이드라인, 로고, 제품 이미지) 공유 요청.</div>
+        </div>
       </div>
-      <div class="next-step">
-        <div class="ns-num">02</div>
-        <div class="ns-action">변수 확인</div>
-        <div class="ns-desc">호수 수 · 촬영본 제공 여부 → 견적 확정</div>
-      </div>
-      <div class="next-step">
-        <div class="ns-num">03</div>
-        <div class="ns-action">시안 착수</div>
-        <div class="ns-desc">계약 후 D+10 내 1차 시안</div>
+      <div class="contact-block">
+        <div><strong>제안서 문의</strong></div>
+        <div style="margin-top:6px;">디자인 외주 실장 · kimyoya@gmail.com</div>
+        <div style="margin-top:3px; color:rgba(255,255,255,0.25);">본 제안서는 대외비로 취급해 주시기 바랍니다.</div>
       </div>
     </div>
   </div>
 
-  <div class="pull-quote" style="margin-top:80px;">
-    <div class="q-label">FINAL<br>NOTE</div>
-    <blockquote>
-      3개 컨셉 모두 같은 POV에서 출발한다. <em>입장 방식만 다르다.</em> 어느 안을 선택하든 "오늘의 나를 내가 고르는 언어"는 유지된다.
-      <cite>— Director Final Check 전 항목 YES 확인 완료</cite>
-    </blockquote>
+  <div style="text-align:center; padding:20px 0;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink3); letter-spacing:0.1em;">
+      WAKEMAKE × OLIVEYOUNG 2026 · 종합 제안서 · 41 SECTIONS · 5 PARTS · 2026.07.02
+    </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="f-brand"><em>WAKEMAKE</em> × 올리브영 상세페이지 리뉴얼 제안</div>
-  <div class="f-meta">
-    2026.07<br>
-    Confidential · 제안 단계
-  </div>
-</footer>
-
-</div><!-- /.page -->
+</div>
 </body>
 </html>
