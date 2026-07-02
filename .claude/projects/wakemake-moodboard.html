@@ -9,17 +9,25 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #EBEBEB;
-    --card: #FFFFFF;
-    --ink: #111111;
-    --brass: #B8860B;
-    --coral: #E8502A;
-    --radius: 16px;
-  }
+  --bg:     #EBEBEB;
+  --card:   #FFFFFF;
+  --ink:    #111111;
+  --ink2:   #4A4944;
+  --ink3:   #8A8780;
+  --border: #E2E2E2;
+  --cream:  #F5F5F5;
+  --coral:  #E8502A;
+  --peach:  #F2B89A;
+  --brass:  #B8860B;
+  --sans:   "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:   "JetBrains Mono", monospace;
+  --radius: 16px;
+  --radius-sm: 8px;
+}
 
   body {
     background: var(--bg);
-    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+    font-family: var(--sans);
     color: var(--ink);
     min-height: 100vh;
   }
@@ -152,7 +160,7 @@
   .mood-block {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: flex-end;
     padding: 14px 16px;
@@ -382,7 +390,7 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 13px 26px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     transition: transform 0.15s, opacity 0.15s;
