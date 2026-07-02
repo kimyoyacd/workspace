@@ -45,6 +45,20 @@ body{ font-family:'Pretendard','Noto Sans KR',sans-serif; color:var(--ink); font
 .learn .it b{ color:var(--ink); }
 .learn .it .to{ display:block; font-size:11px; color:var(--accent); font-weight:700; margin-top:2px; }
 .masked{ background:var(--soft); color:var(--ink3); padding:0 6px; border-radius:3px; font-size:11px; }
+.legend2{ display:flex; gap:18px; font-size:11px; color:var(--ink3); margin-bottom:16px; align-items:center; }
+.legend2 .dot{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+.road{ position:relative; padding-left:28px; }
+.road::before{ content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background:var(--border); }
+.node{ position:relative; padding:8px 0 16px; }
+.node::before{ content:''; position:absolute; left:-25px; top:6px; width:10px; height:10px; border-radius:50%; background:#B5B2AB; border:2px solid #fff; }
+.node.dir::before{ left:-28px; top:4px; width:16px; height:16px; background:var(--accent); box-shadow:0 0 0 4px #FFE3D6; }
+.node .st{ font-size:13.5px; font-weight:800; }
+.node .who{ font-size:11px; color:var(--ink3); }
+.node.dir .who{ color:var(--accent); font-weight:800; }
+.node .ins{ font-size:12.5px; color:var(--ink2); margin-top:5px; background:#FFF6F1; border:1px solid #F6D9C9; border-radius:8px; padding:9px 12px; }
+.node .ins b{ color:var(--ink); }
+.chips{ margin-top:7px; display:flex; gap:5px; flex-wrap:wrap; }
+.chips span{ font-size:10px; font-weight:700; padding:2px 9px; border-radius:20px; background:var(--sig-soft); color:var(--sig); }
 .foot{ margin-top:36px; padding:16px 18px; background:var(--sig-soft); border-left:3px solid var(--sig); border-radius:6px; font-size:12px; color:var(--ink2); }
 </style>
 </head>
@@ -80,17 +94,66 @@ body{ font-family:'Pretendard','Noto Sans KR',sans-serif; color:var(--ink); font
 
   <!-- ② 로직/프로세스 -->
   <div class="sec">
-    <div class="sec-n">02</div><h2>적용한 로직 · 프로세스</h2>
+    <div class="sec-n">02</div><h2>로직 로드맵 — 어디서 멈춰 무엇을 지시했나</h2>
     <div class="card">
-      <div class="flow">
-        <span class="g">rfp-analyst</span><span class="arrow">→</span>
-        <span>전략·문제점 도출</span><span class="arrow">→</span>
-        <span>과제 디자인(웨이크메이크·컬러그램)</span><span class="arrow">→</span>
-        <span class="g">design-critique</span><span class="arrow">→</span>
-        <span class="g">delivery-gate</span><span class="arrow">→</span>
-        <span class="u">사용자 최종 OK · 제출</span>
+      <div class="legend2">
+        <span><span class="dot" style="background:#B5B2AB;"></span>자동 (에이전트)</span>
+        <span><span class="dot" style="background:var(--accent);"></span>🧭 사용자 개입 (디렉터 지시)</span>
       </div>
-      <p style="font-size:12.5px;color:var(--ink3);margin:14px 0 0;">RFP를 <b>명시/숨은/미정의/위험</b> 4분류로 해부 → 평가 배점(정성 과제 + 정량 견적)을 역산해 산출물 우선순위 결정 → 검수 게이트 통과 후 사용자 승인으로 제출. 자동 발송 없음.</p>
+      <div class="road">
+
+        <div class="node">
+          <div class="st">RFP 수신·해부</div>
+          <div class="who">자동 · rfp-analyst — 명시/숨은/미정의/위험 4분류</div>
+        </div>
+
+        <div class="node dir">
+          <div class="st">🧭 개입 ① 문서 충돌 확인 지시</div>
+          <div class="who">디렉터 지시</div>
+          <div class="ins"><b>"택2 / 택일이 문서마다 다르다 — 발주처에 직접 확인해."</b></div>
+          <div class="chips"><span>리스크 관점</span><span>사실 확인</span></div>
+        </div>
+
+        <div class="node dir">
+          <div class="st">🧭 개입 ② 대상 브랜드 선택 지시</div>
+          <div class="who">디렉터 지시</div>
+          <div class="ins"><b>"필리밀리는 빼. 발색이 드러나는 웨이크메이크·컬러그램으로 승부."</b></div>
+          <div class="chips"><span>크리에이티브 관점</span><span>평가 유리</span></div>
+        </div>
+
+        <div class="node">
+          <div class="st">과제 디자인 초안</div>
+          <div class="who">자동 · 디자인 (도입부 + POINT 1, "요즘 색조스럽게")</div>
+        </div>
+
+        <div class="node dir">
+          <div class="st">🧭 개입 ③ AI 사용 범위 지시</div>
+          <div class="who">디렉터 지시</div>
+          <div class="ins"><b>"AI 연출컷은 적극 써. 단 발색컷은 실사로 — 컴플라이언스 리스크."</b></div>
+          <div class="chips"><span>컴플라이언스 관점</span><span>연출/발색 분리</span></div>
+        </div>
+
+        <div class="node">
+          <div class="st">시안 검수</div>
+          <div class="who">자동 · design-critique(6영역) → delivery-gate(결정론)</div>
+        </div>
+
+        <div class="node dir">
+          <div class="st">🧭 개입 ④ 최종 단가 결정</div>
+          <div class="who">디렉터 직접 (위임 금지)</div>
+          <div class="ins"><b>"단가는 내가 정한다."</b> 최저단가 준용 구조 감안 — 에이전트는 시나리오만.</div>
+          <div class="chips"><span>사업 관점</span><span>마진</span><span>7대 위임금지</span></div>
+        </div>
+
+        <div class="node dir">
+          <div class="st">🧭 개입 ⑤ 제출 최종 OK</div>
+          <div class="who">디렉터 직접 (출구 승인)</div>
+          <div class="ins"><b>"이대로 제출."</b> 자동 발송 없음 — 사람이 마지막에 승인.</div>
+          <div class="chips"><span>출구 게이트</span></div>
+        </div>
+
+      </div>
+      <p style="font-size:11.5px;color:var(--ink3);margin:14px 0 0;">→ 자동 4구간 · <b>디렉터 개입 5구간</b>. 사람은 <b>리스크·크리에이티브·컴플라이언스·사업·출구</b> 관점에서만 멈춰 지시했고, 나머지는 에이전트가 굴렸다.</p>
     </div>
   </div>
 
