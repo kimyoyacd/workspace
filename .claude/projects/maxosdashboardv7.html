@@ -935,15 +935,69 @@ body {
   <h2 class="section-title">프로젝트 현황 보드</h2>
   <p class="section-desc">📡 <strong>SOT:</strong> Notion <a href="https://app.notion.com/p/2e79ff44ed51817a9138eac149de9f21" target="_blank" style="color:var(--sig);">2026 Project DB</a> · 가동률: <a href="https://docs.google.com/spreadsheets/d/1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0/edit" target="_blank" style="color:var(--sig);">MAX_2026 리소스 관리 시트</a> · <span id="last-updated" style="color:var(--ink3);">데이터 로드 중...</span></p>
 
-  <!-- 오늘 보드 (동적) -->
+  <!-- 오늘 보드 -->
   <div class="today-board">
     <div class="today-board-head">
-      <h3 id="today-board-title">🎯 마감 임박 프로젝트</h3>
-      <span class="today-note" id="today-board-note">노션 2026 Project DB에서 실시간 추출 중...</span>
+      <h3 id="today-board-title">오늘 꼭 해야 하는 일 — 2026-06-26 (금)</h3>
+      <span class="today-note" id="today-board-note">노션 2026 Project DB 마감 자동 추출 · 가용리소스 -3 (8명/11명분) ⚠️</span>
     </div>
     <div id="today-live">
-      <div style="display:flex;align-items:center;justify-content:center;height:80px;color:var(--ink3);font-size:12px;gap:8px;">
-        <span class="spin-icon">⟳</span> 노션 데이터 로드 중...
+      <div class="today-grid">
+        <div class="today-col overdue">
+          <div class="today-col-h">오늘 마감 (DB 종료=6/26)<span class="cnt">3</span></div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">넷마블 AI</span>
+            <div class="ti-body">
+              <div class="ti-title">업세일즈 제안건 (난이도 H · AI)</div>
+              <div class="ti-meta"><span class="ti-type type-do">오늘 마감</span> · 6/5~6/26 · 제안 완성도 OK 확인 후 발송</div>
+            </div>
+          </div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">YBM</span>
+            <div class="ti-body">
+              <div class="ti-title">브릿지 사이트 KV 모션 (M · Motion)</div>
+              <div class="ti-meta"><span class="ti-type type-do">오늘 마감</span> · 6/24~6/26 · 산출물 회수 확인</div>
+            </div>
+          </div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--ink);color:#fff;border-radius:4px;">코웨이</span>
+            <div class="ti-body">
+              <div class="ti-title">GUI 컨설팅 및 구축 (H · UI+Motion)</div>
+              <div class="ti-meta"><span class="ti-type type-do">시작end 6/26</span> · 종료 필드 6/19 충돌 ⚠️ 노션 입력 점검 필요</div>
+            </div>
+          </div>
+        </div>
+        <div class="today-col duetoday">
+          <div class="today-col-h">내일~다음주 결정<span class="cnt">4</span></div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--ink2);color:#fff;border-radius:4px;">현대 수소</span>
+            <div class="ti-body">
+              <div class="ti-title">홈페이지 구축 (H · Motion) — 6/27 토</div>
+              <div class="ti-meta"><span class="ti-type type-do">내일 마감</span> · 6/22~6/27 · 종료 5/1 입력 ⚠️ 확인 필요</div>
+            </div>
+          </div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--border);color:var(--ink2);border-radius:4px;">크래프톤</span>
+            <div class="ti-body">
+              <div class="ti-title">박연옥 님 메일 보내기 (6/29 월)</div>
+              <div class="ti-meta"><span class="ti-type type-remind">캘린더 리마인드</span> · 위메이드→크래프톤 이동 건</div>
+            </div>
+          </div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--border);color:var(--ink2);border-radius:4px;">노션 정리</span>
+            <div class="ti-body">
+              <div class="ti-title">DB 종료 처리 누락 4건</div>
+              <div class="ti-meta"><span class="ti-type type-check">결정 필요</span> · 아모레 WWD(5/8) · 회사소개서(6/12) · 비나 테스트(3/25) · 넷마블 AI 시장조사(3/27) → 상태 '완료'로</div>
+            </div>
+          </div>
+          <div class="today-item">
+            <span class="ti-area" style="background:var(--accent-soft);color:var(--accent);border-radius:4px;">리소스</span>
+            <div class="ti-body">
+              <div class="ti-title">가용리소스 -3 (오버로드) 해소안</div>
+              <div class="ti-meta"><span class="ti-type type-check">결정 필요</span> · VX 3TO·VM 5TO 모두 100% · 추가투입 or 일정 조정</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -951,11 +1005,96 @@ body {
   <!-- MAX실 프로젝트 -->
   <div class="project-section">
     <div class="project-section-header">
-      <h3>MAX실 디자인 프로젝트 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· 노션 2026 Project DB 실시간</span></h3>
-      <span class="section-badge badge-design" id="projects-summary">로드 중...</span>
+      <h3>MAX실 디자인 프로젝트 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· 노션 2026 Project DB 상태 그룹별</span></h3>
+      <span class="section-badge badge-design" id="projects-summary">진행중 6 · 진행예정/홀딩 2 · 곧 완료 2 · 고정운영 1</span>
     </div>
     <div id="projects-kanban-live" class="kanban">
-      <div class="live-loading"><span class="spin-icon">⟳</span> 노션 프로젝트 데이터 로드 중...</div>
+
+      <!-- 진행중 -->
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--accent);"></span>진행중<span class="col-count">6</span></div>
+        <div class="project-item">
+          <div class="project-item-title">코웨이 GUI 컨설팅 및 구축</div>
+          <div class="project-item-desc">UI·Motion · 난이도 H · 3/24~6/26 (시작end 기준). 종료 필드 6/19 입력 ⚠️ 노션 확인 필요</div>
+          <span class="project-item-tag tag-live">H · 장기</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">넷마블 AI 업세일즈 제안건</div>
+          <div class="project-item-desc">AI · 난이도 H · 6/5~6/26. 오늘 마감일</div>
+          <span class="project-item-tag tag-hot">H · 오늘 마감</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">현대 수소 홈페이지 구축</div>
+          <div class="project-item-desc">Motion · 난이도 H · 6/22~6/27. 종료 필드 5/1 입력 ⚠️ 확인 필요</div>
+          <span class="project-item-tag tag-hot">H · 내일 마감</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">YBM 브릿지 사이트 개편 KV 모션</div>
+          <div class="project-item-desc">Motion · 난이도 M · 6/24~6/26. 오늘 마감</div>
+          <span class="project-item-tag tag-hot">M · 오늘 마감</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">MX 센터 SNS</div>
+          <div class="project-item-desc">game 카테고리 · M · 9/4~10/1. 9월 착수 예정</div>
+          <span class="project-item-tag tag-live">M · 9월 착수</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">[테스트] 비나 검수 데이터 시트 제작</div>
+          <div class="project-item-desc">game · 3/18~3/25 (시작 기준). 상태 진행중 ⚠️ 기한 지남 — 종료 처리 필요</div>
+          <span class="project-item-tag tag-hot">⚠️ 종료 처리 필요</span>
+        </div>
+      </div>
+
+      <!-- 진행예정 / 홀딩 -->
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink3);"></span>진행예정 / 홀딩<span class="col-count">4</span></div>
+        <div class="project-item">
+          <div class="project-item-title">가디언 메이든 사전 런칭 준비</div>
+          <div class="project-item-desc">Motion · 난이도 H · 5/1~ 종료미정. 사전 런칭 패키지</div>
+          <span class="project-item-tag tag-hold">H · 종료 미정</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">[비나] 넥슨 히간이루실</div>
+          <div class="project-item-desc">Motion · 6/4~6/12 (시작 범위). 종료 필드 6/1~6/2 입력 ⚠️ 확인 필요</div>
+          <span class="project-item-tag tag-hold">진행예정</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">넥슨 메이플 키우기 제안 준비</div>
+          <div class="project-item-desc">Motion · 난이도 H · 4/20~4/30. 총 3종 (베리 포함 6종)</div>
+          <span class="project-item-tag tag-hold">진행예정</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">카카오페이지 1일소요</div>
+          <div class="project-item-desc">Motion · 4/24 (1일). 진행예정 상태</div>
+          <span class="project-item-tag tag-hold">진행예정</span>
+        </div>
+      </div>
+
+      <!-- 곧 완료 / 고정운영 -->
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink2);"></span>곧 완료 / 고정운영<span class="col-count">4</span></div>
+        <div class="project-item">
+          <div class="project-item-title">올리브영 제안 PB 상세 페이지 제작</div>
+          <div class="project-item-desc">UI · 6/15~6/19. 제안 제출 완료 (수주 결과 대기)</div>
+          <span class="project-item-tag tag-new">제안 제출</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">회사 소개서 업데이트</div>
+          <div class="project-item-desc">PPT · 6/1~6/12. 완료 처리 필요</div>
+          <span class="project-item-tag tag-new">완료 처리</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">아모레퍼시픽 WWD 행사 발표 디자인</div>
+          <div class="project-item-desc">PPT · 4/9~5/8. 완료 처리 필요</div>
+          <span class="project-item-tag tag-new">완료 처리</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">[고정운영] 넷마블 운영 4TO</div>
+          <div class="project-item-desc">Motion · 3/31~12/31. 연간 상시 운영</div>
+          <span class="project-item-tag tag-qa">고정운영</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
