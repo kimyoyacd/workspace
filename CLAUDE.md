@@ -28,6 +28,7 @@
 - 파이프라인: **Manus 1(자리·리서치) → Gate 1 → Manus 2(감각·비주얼) → Gate 2·3 → Gate 4 → Runable 3(시스템+슬라이드)**. 4개 Designer Lens Gate 상세는 `designer-lens-gates.md` 참조.
 - **`runable-3-slide-templates.md`(6종 슬라이드 타입 카탈로그)도 브랜드 프로젝트 시작 시 마스터 가이드와 함께 자동으로 확인한다** — Runable 3 단계에 가서야 존재를 떠올리는 게 아니라, Manus 1 리서치 단계부터 "이 자료가 결국 어느 슬라이드 타입(Brand Story/Value Keywords/Mind Map/Direction/Graphic Motif/Competitor Research)으로 조립될지"를 염두에 두고 산출물을 구조화한다. 디자인 시스템(16:9, 서체, 컬러, 그리드)은 프로젝트마다 통일하고 내용만 교체.
 - **무드보드 단계에 진입하면 `.claude/library/prompts/MOODBOARD_MASTER_FRAMEWORK.md`를 자동으로 먼저 확인**한다. 핵심: (1) 덱은 "오프닝 3~4장(관점→결과물정의→메시지)" 먼저, 리서치는 그 뒤에 증거로 배치 (2) 리서치는 경쟁사 포지셔닝뿐 아니라 디자인 트렌드 + **타깃층 관심사(출처 필수)**까지 3중으로 (3) 방향 제안은 항상 Safe/Expected Route와 Aspirational/Wild Card Route 2개를 병행 (4) 무드보드의 모든 이미지에 키워드·선정이유·담긴 이야기 3종 주석 필수 (5) 9칸 그리드는 밝은 톤=중앙 십자/어두운 텍스처=모서리 공식으로 배치.
+- **슬라이드 압축 금지 원칙(전체 파이프라인 공통)**: 어느 단계에서든 도출된 산출물은 분량에 관계없이 **각각 별도 슬라이드로 만들어 즉시 deck.html에 append**한다. 여러 산출물을 요약해서 한 슬라이드에 욱여넣지 않는다 — 상세는 `MOODBOARD_MASTER_FRAMEWORK.md`의 "슬라이드 분량 원칙" 참조.
 - **게이트 통과 시 자동 진행 금지**: Gate 1(관점 한 문장), Gate 2(Lens Translation), 형태/톤 확정 등 방향이 갈리는 지점에서는 반드시 사용자 확인을 받은 뒤에만 다음 단계로 넘어간다. 선택지는 추상적으로 묻지 말고 구체적 예시(카피·이미지 톤 비교)로 보여줘서 판단을 돕는다.
 - **경쟁사·레퍼런스 브랜드 카드는 항상 전체 필드를 채운다**: 브랜드명/국가/가격대/타깃/핵심메시지/강점·약점 + **클릭 가능한 출처 링크**(새 탭). 정보 미확인 시 "확인 안됨"으로 정직하게 표기하고 Source Tier(1~4)를 남긴다. 이름과 한줄설명만 있는 카드는 불충분.
 - **산출물은 개별 파일로 흩어 보여주지 않고 프로젝트 폴더의 `deck.html` 한 파일에 섹션으로 계속 누적**한다. 중간 확인이 필요한 지점 외에는 완성된 덩어리 단위로 보여준다.
@@ -41,13 +42,33 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
 ├── library/       # 재사용 자산
-│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── prompts/   # design-deck-wireframe, brand-design-proposal, wide-research,
+│   │              # runable-3-slide-templates, MOODBOARD_MASTER_FRAMEWORK,
+│   │              # designer-lens-gates, brand-brief-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
 │   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
 └── projects/      # 프로젝트별 노트
+    └── <프로젝트>/00-project-index.md  # 프로젝트마다 "지금 진실" 인덱스 — 항상 여기부터 확인
 ```
+
+## 워크플로우 재사용 가이드 — "다음에도 이 방식 그대로 쓰려면"
+
+이 문서와 `.claude/library/prompts/*`에 있는 가이드들은 **자동 트리거**로 동작하도록 설계되어 있다. 즉 사용자가 매번 파일명을 언급하지 않아도, 아래처럼 작업 성격만 밝히면 해당 가이드를 알아서 먼저 확인하고 그 순서를 따른다.
+
+| 하고 싶은 말 (예시) | 자동으로 확인하는 가이드 |
+|---|---|
+| "OO 브랜드 새로 기획하자" / "리서치부터 시작해줘" | `brand-design-proposal.md` → Manus 1부터 |
+| "무드보드 다시 짜보자" / "톤 방향 두 가지로 보여줘" | `MOODBOARD_MASTER_FRAMEWORK.md` |
+| "웹사이트/배너/게임 UI인데 브랜드는 아니야" | `design-deck-wireframe.md` |
+| "슬라이드 최종 정리해줘" / "Runable 3" | `runable-3-slide-templates.md` |
+| "다 반영됐는지 점검해줘" | `project-continuity-auditor` 에이전트 |
+
+**재사용 시 유의할 것**
+1. 새 프로젝트를 시작하면 그 프로젝트 폴더에 `00-project-index.md`부터 만든다(GRAIN 프로젝트의 패턴을 그대로 복제). 이 인덱스가 있어야 다음 세션에서도 "현재 뭐가 맞는지"를 바로 파악할 수 있다.
+2. 가이드 파일 자체를 프로젝트를 실제로 돌리면서 계속 고도화한다 — 이번 GRAIN 세션처럼 실무 중 발견된 빈틈(이미지 그리드 규격, 슬라이드 압축 금지 등)은 그때그때 해당 라이브러리 파일에 바로 반영해 다음 프로젝트부터 자동 적용되게 한다. 즉 "지침 파일 업데이트"는 매번 새로 하는 별도 작업이 아니라, 프로젝트 진행 자체의 부산물로 취급한다.
+3. 프로젝트별 특수 사정(예: GRAIN만의 3라인 구조)은 프로젝트 인덱스에 남기고, **범용적으로 재사용 가능한 규칙만** 라이브러리 파일로 승격한다. 이 구분이 흐려지면 다음 프로젝트에 GRAIN 전용 내용이 잘못 섞여 들어간다.
 
 ## 커스텀 에이전트 & 스킬 운영
 - 새 에이전트: `.claude/agents/<에이전트명>.md` 형식으로 추가
