@@ -53,23 +53,31 @@ var SEED = [
 
 /* ══════════════ 설치 / 메뉴 ══════════════ */
 function onOpen(){
-  SpreadsheetApp.getUi().createMenu('📋 업무로그')
-    .addItem('대시보드 갱신', 'refreshDashboard')
-    .addItem('투두 자동분류(빈 카테고리 채움)', 'classifyTodos')
-    .addSeparator()
-    .addItem('초기 설치(setup)', 'setup')
-    .addToUi();
+  // 시트를 '열 때' 자동 실행되는 함수. 수동 실행하지 마세요(→ setup 실행).
+  try{
+    SpreadsheetApp.getUi().createMenu('📋 업무로그')
+      .addItem('대시보드 갱신', 'refreshDashboard')
+      .addItem('투두 자동분류(빈 카테고리 채움)', 'classifyTodos')
+      .addSeparator()
+      .addItem('초기 설치(setup)', 'setup')
+      .addToUi();
+  }catch(e){ /* UI 없는 context에서는 무시 */ }
 }
 
 function setup(){
   var ss = SpreadsheetApp.getActive();
-  ensureSettings_(ss);
-  ensureLog_(ss);
-  ensureTodo_(ss);
-  ensureDashboard_(ss);
-  installTriggers_();
-  refreshDashboard();
-  SpreadsheetApp.getUi().alert('설치 완료 ✅\n탭: 설정 / 로그 / 투두 / 대시보드\n매일 19:00, 매월 1일 08:00 자동 갱신 트리거 등록됨.');
+  var errs = [];
+  function step(name, fn){ try{ fn(); }catch(e){ errs.push('· '+name+': '+e.message); } }
+  step('설정 탭',   function(){ ensureSettings_(ss); });
+  step('로그 탭',   function(){ ensureLog_(ss); });
+  step('투두 탭',   function(){ ensureTodo_(ss); });
+  step('대시보드 탭', function(){ ensureDashboard_(ss); });
+  step('트리거 등록', function(){ installTriggers_(); });
+  step('대시보드 갱신', function(){ refreshDashboard(); });
+  var msg = errs.length
+    ? '일부 단계 실패 ⚠\n' + errs.join('\n') + '\n\n(탭은 생성되었을 수 있습니다. 이 메시지를 그대로 알려주세요.)'
+    : '설치 완료 ✅\n탭: 설정 / 로그 / 투두 / 대시보드\n매일 19:00, 매월 1일 08:00 자동 갱신.';
+  try{ SpreadsheetApp.getUi().alert(msg); }catch(e){ Logger.log(msg); }
 }
 
 /* ══════════════ 탭 생성 ══════════════ */
