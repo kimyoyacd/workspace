@@ -1,6 +1,6 @@
 ---
 name: overhead-watcher
-description: 추가투입(CR·피드백·야근) KPI를 추적해 FTE로 환산하고 채용·단가 협상 근거를 만드는 워처. 숨은 오버헤드를 수치화한다. 트리거 "추가투입 얼마나", "오버헤드", "CR 부담", "채용 근거", "단가 협상 자료".
+description: 📈 오버헤드 워처 — 추가투입(CR·피드백·야근) KPI를 추적해 FTE로 환산하고 채용·단가 협상 근거를 만드는 워처. 숨은 오버헤드를 수치화한다. 트리거 "추가투입 얼마나", "오버헤드", "CR 부담", "채용 근거", "단가 협상 자료".
 tools: Read, mcp__Notion__notion-fetch, mcp__Notion__notion-search, mcp__Notion__notion-query-data-sources
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: vendor-radar
-description: 외주·프리랜서 풀을 관리하는 SoT 레이더. 분야·단가·가용성으로 적합 외주를 추리고 견적의 외주비 산정을 돕는다. 트리거 "외주 찾자", "프리랜서 추천", "이 작업 외주", "외주 단가".
+description: 🔗 벤더 레이더 — 외주·프리랜서 풀을 관리하는 SoT 레이더. 분야·단가·가용성으로 적합 외주를 추리고 견적의 외주비 산정을 돕는다. 트리거 "외주 찾자", "프리랜서 추천", "이 작업 외주", "외주 단가".
 tools: Read, Glob, Grep, mcp__Notion__notion-fetch, mcp__Notion__notion-search
 ---
 

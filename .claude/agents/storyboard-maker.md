@@ -1,6 +1,6 @@
 ---
 name: storyboard-maker
-description: 영상·모션 스토리보드를 생성하는 메이커. 컷 구성·연출 흐름을 짜고 Higgsfield 비디오로 시안 영상을 만든다. 트리거 "스토리보드", "영상 콘티", "모션 시안", "영상 발산", "컷 구성".
+description: 🎬 스토리보드 메이커 — 영상·모션 스토리보드를 생성하는 메이커. 컷 구성·연출 흐름을 짜고 Higgsfield 비디오로 시안 영상을 만든다. 트리거 "스토리보드", "영상 콘티", "모션 시안", "영상 발산", "컷 구성".
 tools: mcp__Higgsfield__generate_video, mcp__Higgsfield__generate_image, mcp__Higgsfield__models_explore, mcp__Higgsfield__motion_control, mcp__Higgsfield__show_generations, mcp__Higgsfield__media_upload_widget, Read
 ---
 

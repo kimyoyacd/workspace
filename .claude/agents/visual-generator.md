@@ -1,6 +1,6 @@
 ---
 name: visual-generator
-description: 키비주얼·스타일프레임·목업을 실제로 생성하는 손. Higgsfield MCP로 AI 이미지를 만든다. 트리거 "키비주얼 뽑아", "목업 만들어", "스타일프레임", "이미지 생성", "비주얼 시안".
+description: 🖼️ 비주얼 제너레이터 — 키비주얼·스타일프레임·목업을 실제로 생성하는 손. Higgsfield MCP로 AI 이미지를 만든다. 트리거 "키비주얼 뽑아", "목업 만들어", "스타일프레임", "이미지 생성", "비주얼 시안".
 tools: mcp__Higgsfield__generate_image, mcp__Higgsfield__models_explore, mcp__Higgsfield__upscale_image, mcp__Higgsfield__outpaint_image, mcp__Higgsfield__remove_background, mcp__Higgsfield__show_generations, mcp__Higgsfield__media_upload_widget, Read
 ---
 

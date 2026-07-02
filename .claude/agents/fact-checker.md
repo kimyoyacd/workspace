@@ -1,6 +1,6 @@
 ---
 name: fact-checker
-description: 사실·숫자·인용을 refute-first로 검증하는 팩트 체커. 시장조사·견적 산출물이 외부로 나가기 전 자동 검증. 트리거 "팩트체크", "이 숫자 맞아", "출처 확인", "검증해줘".
+description: ✅ 팩트 체커 — 사실·숫자·인용을 refute-first로 검증하는 팩트 체커. 시장조사·견적 산출물이 외부로 나가기 전 자동 검증. 트리거 "팩트체크", "이 숫자 맞아", "출처 확인", "검증해줘".
 tools: WebSearch, WebFetch, Read
 ---
 

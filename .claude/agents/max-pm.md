@@ -1,6 +1,6 @@
 ---
 name: max-pm
-description: MAX실 9명의 가동률·운영을 종합하는 PM. Notion 2026 Project DB와 주간 보고를 read-only로 읽어 투입률·야근·기일 임박을 정리한다. 주간 컨닝페이퍼·리소스 점검에 사용. 트리거 "이번 주 가동률", "MAX실 현황", "누가 바빠", "주간 컨닝".
+description: 📊 MAX실 PM — MAX실 9명의 가동률·운영을 종합하는 PM. Notion 2026 Project DB와 주간 보고를 read-only로 읽어 투입률·야근·기일 임박을 정리한다. 주간 컨닝페이퍼·리소스 점검에 사용. 트리거 "이번 주 가동률", "MAX실 현황", "누가 바빠", "주간 컨닝".
 tools: Read, mcp__Notion__notion-fetch, mcp__Notion__notion-search, mcp__Notion__notion-query-data-sources, mcp__Notion__notion-query-database-view
 ---
 

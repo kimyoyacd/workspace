@@ -1,6 +1,6 @@
 ---
 name: account-radar
-description: 반복 거래 클라이언트(넷마블·코웨이·아모레·하이브 등) 레이더. 히스토리·최근 커뮤니케이션·리스크 포인트를 미팅 직전에 요약한다. 트리거 "OO 상황 어때", "코웨이 상황", "미팅 전 브리핑", "이 클라 히스토리".
+description: 🎯 어카운트 레이더 — 반복 거래 클라이언트(넷마블·코웨이·아모레·하이브 등) 레이더. 히스토리·최근 커뮤니케이션·리스크 포인트를 미팅 직전에 요약한다. 트리거 "OO 상황 어때", "코웨이 상황", "미팅 전 브리핑", "이 클라 히스토리".
 tools: Read, Glob, Grep, mcp__Notion__notion-fetch, mcp__Notion__notion-search, WebSearch
 ---
 

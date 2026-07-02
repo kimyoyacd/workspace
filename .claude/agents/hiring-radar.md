@@ -1,6 +1,6 @@
 ---
 name: hiring-radar
-description: 9→20 증원 채용 파이프라인 레이더. JD·소싱·면접·오퍼 단계별 현황과 인력 갭을 관리한다. 트리거 "채용 상황", "VM 채용 어디까지", "채용 파이프라인", "인력 갭".
+description: 👤 채용 레이더 — 9→20 증원 채용 파이프라인 레이더. JD·소싱·면접·오퍼 단계별 현황과 인력 갭을 관리한다. 트리거 "채용 상황", "VM 채용 어디까지", "채용 파이프라인", "인력 갭".
 tools: Read, mcp__Notion__notion-fetch, mcp__Notion__notion-search, WebSearch
 ---
 

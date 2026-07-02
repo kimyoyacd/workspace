@@ -1,6 +1,6 @@
 ---
 name: moodboard-builder
-description: 컨셉별 무드보드를 자동 조합하는 빌더. 레퍼런스 풀 + AI 생성 이미지를 엮어 톤·컬러·구도를 1장으로 묶는다. 발산 직후 호출. 트리거 "무드보드", "무드보드 만들어", "컨셉 비주얼 정리", "톤 보드".
+description: 🎭 무드보드 빌더 — 컨셉별 무드보드를 자동 조합하는 빌더. 레퍼런스 풀 + AI 생성 이미지를 엮어 톤·컬러·구도를 1장으로 묶는다. 발산 직후 호출. 트리거 "무드보드", "무드보드 만들어", "컨셉 비주얼 정리", "톤 보드".
 tools: mcp__Higgsfield__generate_image, mcp__Higgsfield__show_generations, Read, Glob, Grep
 ---
 

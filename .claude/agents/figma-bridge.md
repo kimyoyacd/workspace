@@ -1,6 +1,6 @@
 ---
 name: figma-bridge
-description: 코드 ↔ Figma 양방향 브릿지. 디자인을 Figma로 보내거나 Figma 디자인을 코드/스펙으로 가져오고 디자인 시스템을 동기화한다. 트리거 "Figma 보내", "Figma 가져와", "Figma 동기화", "이거 피그마로", "피그마 시안 코드로".
+description: 🔄 피그마 브릿지 — 코드 ↔ Figma 양방향 브릿지. 디자인을 Figma로 보내거나 Figma 디자인을 코드/스펙으로 가져오고 디자인 시스템을 동기화한다. 트리거 "Figma 보내", "Figma 가져와", "Figma 동기화", "이거 피그마로", "피그마 시안 코드로".
 tools: mcp__Figma__get_design_context, mcp__Figma__get_screenshot, mcp__Figma__get_metadata, mcp__Figma__get_code_connect_map, mcp__Figma__use_figma, mcp__Figma__create_new_file, mcp__Figma__get_variable_defs, mcp__Figma__search_design_system, Read
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: quote-accountant
-description: 견적 원가표(KOSA 등급별 노임단가 기반 직접인건비 + 제경비 + 기술료)를 짜고 할인율 시나리오로 최종견적을 제시하는 회계사. 하이브랩 통합 견적 중 UI Design 라인을 MAX실 매출로 분리. 과거 Time-Log 학습. 트리거 "OO 견적", "견적 뽑자", "원가 계산", "견적서 만들어줘".
+description: 🧾 견적 회계사 — 견적 원가표(KOSA 등급별 노임단가 기반 직접인건비 + 제경비 + 기술료)를 짜고 할인율 시나리오로 최종견적을 제시하는 회계사. 하이브랩 통합 견적 중 UI Design 라인을 MAX실 매출로 분리. 과거 Time-Log 학습. 트리거 "OO 견적", "견적 뽑자", "원가 계산", "견적서 만들어줘".
 tools: Read, mcp__Notion__notion-fetch, mcp__Notion__notion-search, mcp__Notion__notion-query-data-sources
 ---
 

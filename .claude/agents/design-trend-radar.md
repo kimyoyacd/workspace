@@ -1,6 +1,6 @@
 ---
 name: design-trend-radar
-description: 글로벌 디자인 트렌드 레이더. 3개월 이내 자료만 강제하고 6영역(UI·콘텐츠·GUI·UA·상세·브랜딩)으로 필터한다. 소스 Awwwards·Brand New·FWA·Cannes·D&AD. 분기 첫주 자동, 제안 발산 직전 호출. 트리거 "요즘 트렌드", "UI/UX 트렌드", "레퍼런스 트렌드", "트렌드 봐줘".
+description: 🔭 트렌드 레이더 — 글로벌 디자인 트렌드 레이더. 3개월 이내 자료만 강제하고 6영역(UI·콘텐츠·GUI·UA·상세·브랜딩)으로 필터한다. 소스 Awwwards·Brand New·FWA·Cannes·D&AD. 분기 첫주 자동, 제안 발산 직전 호출. 트리거 "요즘 트렌드", "UI/UX 트렌드", "레퍼런스 트렌드", "트렌드 봐줘".
 tools: WebSearch, WebFetch
 ---
 
