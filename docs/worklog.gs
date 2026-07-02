@@ -288,19 +288,26 @@ function readKimHyojungLog(){
     return [];
   }
   var last=sh.getLastRow(); if(last<2) return [];
-  var data=sh.getRange(2,1,last-1,6).getValues(); // 날짜, 시간, 카테고리, 프로젝트, 메모, 실제여부
+  // 헤더 읽기
+  var header=sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0];
+  var colMap={};
+  for(var i=0;i<header.length;i++){
+    colMap[header[i]]=i;
+  }
+  // 데이터 읽기
+  var data=sh.getRange(2,1,last-1,sh.getLastColumn()).getValues();
   var log=[];
   for(var i=0;i<data.length;i++){
     var r=data[i];
-    var date=r[0]; if(!date) continue;
+    var date=r[colMap['날짜']]; if(!date) continue;
     if(typeof date==='object') date=Utilities.formatDate(date,TZ,'yyyy-MM-dd');
-    var timeSlot=r[1]||''; // "10-12" → "10–12" (en dash)
+    var timeSlot=(r[colMap['시간']]||'').toString();
     if(timeSlot) timeSlot=timeSlot.replace(/\-/g,'–');
-    var cat=r[2]||'';
-    var proj=r[3]||'';
-    var memo=r[4]||'';
-    var actualFlag=r[5]||''; // empty→true(actual), "O"→false(waiting)
-    var actual=!actualFlag || actualFlag.trim()==='';
+    var cat=r[colMap['카테고리']]||'';
+    var proj=r[colMap['프로젝트']]||'';
+    var memo=r[colMap['메모']]||'';
+    var actualFlag=(r[colMap['실제여부']]||'').toString().trim();
+    var actual=!actualFlag || actualFlag==='';
     log.push({
       date:date,
       s:timeSlot,
