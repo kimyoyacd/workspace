@@ -1114,7 +1114,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     <div class="body" style="color:rgba(255,255,255,.5);">3-1 9-Stage Playbook</div>
     <div class="body" style="color:rgba(255,255,255,.5);">3-2 팀 구성</div>
     <div class="body" style="color:rgba(255,255,255,.5);">3-3 리스크 체크 R1~R6</div>
-    <div class="body" style="color:rgba(255,255,255,.5);">3-4 프로젝트 타임라인</div>
+    <div class="body" style="color:rgba(255,255,255,.5);">3-4 견적 구조 A — 건당 MM·단가</div>
+    <div class="body" style="color:rgba(255,255,255,.5);">3-5 견적 구조 B — AI 효율화 전략</div>
   </div>
 </div>
 
@@ -1266,6 +1267,180 @@ document.addEventListener('DOMContentLoaded',()=>{
   <div style="margin-top:16px;display:flex;justify-content:space-between;">
     <span class="caption" style="color:var(--gray-500);">리스크 사전 식별 · 대응 전략</span>
     <span class="caption" style="color:var(--gray-300);">20</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE · 견적 구조 A — 건당 단가 기준
+══════════════════════════════════════════════ -->
+<div class="slide" style="background:#fff;padding:64px 72px;display:flex;flex-direction:column;">
+
+  <div style="margin-bottom:24px;">
+    <div class="label" style="color:var(--accent);margin-bottom:12px;">3-4 · 견적 구조 A</div>
+    <div class="h1" style="color:var(--black);">건당 투입 MM · 단가 기준</div>
+  </div>
+
+  <div style="flex:1;display:grid;grid-template-columns:3fr 2fr;gap:24px;">
+
+    <!-- 좌: MM 테이블 -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="label" style="color:var(--gray-500);">상세페이지 1건 기준 투입 MM (촬영기획 → 납품)</div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--gray-100);border-radius:14px;overflow:hidden;flex:1;">
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--black);padding:12px 20px;">
+          <span class="label" style="color:rgba(255,255,255,.6);font-size:10px;">단계</span>
+          <span class="label" style="color:rgba(255,255,255,.6);font-size:10px;">역할</span>
+          <span class="label" style="color:var(--accent-light);font-size:10px;text-align:right;">투입 MM</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">촬영기획</span>
+          <span class="body-sm" style="color:var(--gray-500);">PM/기획</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.2~0.3</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">촬영 디렉팅</span>
+          <span class="body-sm" style="color:var(--gray-500);">디렉터</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.3~0.5</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">리터칭</span>
+          <span class="body-sm" style="color:var(--gray-500);">보정 디자이너</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.2~0.3</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">디자인 제작</span>
+          <span class="body-sm" style="color:var(--gray-500);">디자이너</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.5~1.0</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">퍼블리싱</span>
+          <span class="body-sm" style="color:var(--gray-500);">퍼블리셔</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.2~0.3</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#fff;padding:11px 20px;">
+          <span class="body-sm" style="color:var(--black);font-weight:600;">QA</span>
+          <span class="body-sm" style="color:var(--gray-500);">QA</span>
+          <span class="body-sm" style="color:var(--black);text-align:right;">0.1</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--gray-900);padding:14px 20px;">
+          <span class="body" style="color:#fff;font-weight:700;">합계</span>
+          <span></span>
+          <span class="body" style="color:#fff;font-weight:700;text-align:right;">1.5~2.5 MM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 우: 등급별 건당 단가 -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="label" style="color:var(--gray-500);">등급별 건당 단가 (촬영 실비 별도)</div>
+      <div class="card" style="display:flex;flex-direction:column;gap:6px;">
+        <div class="label" style="color:var(--gray-500);">기본형 — 컷+설명 반복</div>
+        <div class="h2" style="color:var(--gray-500);">150~250만원</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:6px;">
+        <div class="label" style="color:var(--gray-500);">표준형 — KV+인포그래픽</div>
+        <div class="h2" style="color:var(--black);">300~500만원</div>
+      </div>
+      <div class="card-dark" style="display:flex;flex-direction:column;gap:6px;">
+        <div class="label" style="color:var(--accent-light);">프리미엄 — 인터랙션+AI+글로벌</div>
+        <div class="h2" style="color:#fff;">500~800만원</div>
+        <div class="caption" style="color:rgba(255,255,255,.5);">이번 제안 품질 기준</div>
+      </div>
+      <div class="card" style="background:var(--gray-50);flex:1;display:flex;flex-direction:column;gap:4px;justify-content:center;">
+        <div class="label" style="color:var(--accent);">촬영 실비 (별도 정산)</div>
+        <div class="body-sm" style="color:var(--gray-700);">스튜디오 30~80 · 모델 50~200<br>헤메·스타일 60~100 · 포토 50~100</div>
+        <div class="body-sm" style="color:var(--black);font-weight:600;">촬영 1회 ≈ 200~500만원</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;display:flex;justify-content:space-between;">
+    <span class="caption" style="color:var(--gray-500);">업계 표준 기준 — 대형 에이전시 MM 단가 550~700만원 적용</span>
+    <span class="caption" style="color:var(--gray-300);">—</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SLIDE · 견적 구조 B — AI 효율화 가격 전략
+══════════════════════════════════════════════ -->
+<div class="slide" style="background:#fff;padding:64px 72px;display:flex;flex-direction:column;">
+
+  <div style="margin-bottom:24px;">
+    <div class="label" style="color:var(--accent);margin-bottom:12px;">3-5 · 견적 구조 B</div>
+    <div class="h1" style="color:var(--black);">AI 효율화 — 표준형 단가로 프리미엄 품질</div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;gap:16px;">
+
+    <!-- AI 절감 비교 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;">
+      <div class="card" style="display:flex;flex-direction:column;gap:8px;">
+        <div class="label" style="color:var(--gray-500);">눕기·연출 컷</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="body-sm" style="color:var(--gray-300);text-decoration:line-through;">촬영 200~300만</span>
+        </div>
+        <div class="h2" style="color:var(--black);">AI 생성 30~50만</div>
+        <div style="margin-top:auto;">
+          <span class="pill">▼ 80% 절감</span>
+        </div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px;">
+        <div class="label" style="color:var(--gray-500);">피부톤별 3종 버전</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="body-sm" style="color:var(--gray-300);text-decoration:line-through;">×3 촬영</span>
+        </div>
+        <div class="h2" style="color:var(--black);">1회 촬영 + AI 변환</div>
+        <div style="margin-top:auto;">
+          <span class="pill">▼ 60% 절감</span>
+        </div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px;">
+        <div class="label" style="color:var(--gray-500);">영문 글로벌 버전</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="body-sm" style="color:var(--gray-300);text-decoration:line-through;">별도 150~200만</span>
+        </div>
+        <div class="h2" style="color:var(--black);">텍스트 레이어 교체</div>
+        <div style="margin-top:auto;">
+          <span class="pill">▼ 70% 절감</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9개월 총 견적 프레임 -->
+    <div class="card-dark" style="display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;gap:24px;align-items:center;">
+      <div>
+        <div class="label" style="color:var(--accent-light);margin-bottom:6px;">초기 구축 (브랜드 2개)</div>
+        <div class="h2" style="color:#fff;">7~9 MM</div>
+        <div class="caption" style="color:rgba(255,255,255,.5);">촬영기획·디자인·퍼블·QA</div>
+      </div>
+      <div>
+        <div class="label" style="color:var(--accent-light);margin-bottom:6px;">월간 운영 (7개월)</div>
+        <div class="h2" style="color:#fff;">월 1.5~2.5 MM</div>
+        <div class="caption" style="color:rgba(255,255,255,.5);">SKU 업데이트 2~3건 + 캠페인</div>
+      </div>
+      <div>
+        <div class="label" style="color:var(--accent-light);margin-bottom:6px;">글로벌 듀얼 빌드</div>
+        <div class="h2" style="color:#fff;">+2~3 MM</div>
+        <div class="caption" style="color:rgba(255,255,255,.5);">영문 레이어 교체 방식</div>
+      </div>
+      <div style="border-left:1px solid rgba(255,255,255,.15);padding-left:24px;">
+        <div class="label" style="color:var(--accent-light);margin-bottom:6px;">9개월 총 투입</div>
+        <div style="font-family:var(--font-en);font-size:40px;font-weight:800;color:#fff;line-height:1;">21~24 <span style="font-size:20px;font-weight:400;">MM</span></div>
+      </div>
+    </div>
+
+    <!-- 가격 전략 한 줄 -->
+    <div class="card" style="background:var(--gray-50);display:flex;align-items:center;gap:24px;">
+      <div class="label" style="color:var(--accent);white-space:nowrap;">가격 전략</div>
+      <div class="body" style="color:var(--black);">AI 파이프라인으로 실제 투입 MM을 낮춰 <strong>표준형 단가(건당 350~500만원)에 프리미엄 품질을 납품</strong> — 최저단가 경쟁(R6)에 품질 저하 없이 대응하는 구조.</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:16px;display:flex;justify-content:space-between;">
+    <span class="caption" style="color:var(--gray-500);">상세 견적은 종합견적서 별첨 — 본 슬라이드는 구조 설명</span>
+    <span class="caption" style="color:var(--gray-300);">—</span>
   </div>
 </div>
 
