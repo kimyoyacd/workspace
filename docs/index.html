@@ -166,7 +166,14 @@ const LOG = [
   {date:"2026-06-25",s:"12–14",cat:"세일즈",proj:"크래프톤",memo:"[계획] 박연옥 님 메일 발송+후속", actual:false},
   {date:"2026-06-25",s:"14–16",cat:"세일즈",proj:"내부",    memo:"[계획] KPI 사업방안(KR1·KR3)", actual:false},
   {date:"2026-06-25",s:"16–18",cat:"문서", proj:"내부",     memo:"[계획] 에이전트 진행물 리뷰·정리", actual:false},
-  // ▷ 이번 주부터 실제 기록을 계속 추가하세요. (월/반기/년 뷰는 로그가 쌓이면 자동 확장)
+  // ── W27 (6/29–7/5) ──
+  {date:"2026-07-01",s:"10–12",cat:"미팅", proj:"내부",     memo:"[센터] 주간보고 (화 11시)", actual:true},
+  {date:"2026-07-02",s:"10–12",cat:"세일즈",proj:"HYBE",    memo:"[계획] HYBE 아이데이션", actual:false},
+  {date:"2026-07-02",s:"12–14",cat:"세일즈",proj:"크래프톤",memo:"[계획] 박연옥 님 메일", actual:false},
+  {date:"2026-07-02",s:"14–16",cat:"세일즈",proj:"넷마블",  memo:"[계획] 넷마블 업세일즈", actual:false},
+  {date:"2026-07-02",s:"16–18",cat:"문서", proj:"내부",     memo:"[계획] KPI 사업방안", actual:false},
+  {date:"2026-07-02",s:"18–20",cat:"문서", proj:"내부",     memo:"[계획] 에이전트 진행물 리뷰", actual:false},
+  // ▷ 실제 완료 후 actual:true 로 바꾸고, 아래에 새 행을 계속 추가하세요.
 ];
 
 /* ── 날짜 파생 (주/월/반기/년) ─────────────────────────── */
@@ -188,10 +195,10 @@ const fmtMD=dt=>(dt.getMonth()+1)+"/"+dt.getDate();
 
 /* ── 상태 ──────────────────────────────────────────────── */
 let view="week";
-let weekAnchor=mondayOf(parse("2026-06-22"));   // 표시 주
-let monthAnchor="2026-06";
-const YEAR=2026;
-const TODAY=parse("2026-06-24"); // '오늘' 하이라이트(데모)
+const TODAY=(()=>{const d=new Date();d.setHours(0,0,0,0);return d;})();
+const YEAR=TODAY.getFullYear();
+let weekAnchor=mondayOf(TODAY);
+let monthAnchor=YEAR+"-"+String(TODAY.getMonth()+1).padStart(2,"0");
 
 /* ── 렌더 진입 ─────────────────────────────────────────── */
 const $=s=>document.querySelector(s);
@@ -210,23 +217,20 @@ function catBar(rows,title){
       <div class="bar-track"><div class="bar-fill" style="width:${w}%;background:${c.bg};color:${c.fg}">${h}h</div></div>
       <div class="pct">${pct}%</div></div>`;}).join("");
   return `<div class="sec-title">카테고리별 시간 비중 <small>${title} · 채운 블록 × 2h</small></div>
-    <div class="card"><div class="bars">${rowsHtml||'<div style="padding:20px;color:#a29e96">데이터 없음</div>'}</div></div>`;
-}
+    <div class="card"><div class="bars">${rowsHtml||'<div style="padding:20px;color:#a29e96">데이터 없음</div>'}</div></div>`;}
 
 /* 스택 막대: cols=[{cap,tot,segs:[{cat,h}]}] */
 function stacked(cols,title,sub){
   const max=Math.max(...cols.map(c=>c.tot),1);
   const body=cols.map(col=>{
     const segs=CATS.map(c=>{const s=col.segs.find(x=>x.cat===c.key);return s&&s.h>0?
-      `<div class="seg" title="${c.name} ${s.h}h" style="height:${s.h/max*180}px;background:${c.bg}"></div>`:"";}).join("");
+      `<div class="seg" title="${c.name} ${s.h}h" style="height:${s.h/max*180}px;background:${c.bg}"></div>"":"";")).join("");
     return `<div class="stackcol"><div class="col">${segs}</div><div class="cap">${col.cap}</div></div>`;
   }).join("");
-  // tot 라벨을 위해 다시 상단표시
   const tops=cols.map(col=>`<div style="flex:1;text-align:center;font-size:12px;color:#a29e96">${col.tot}h</div>`).join("");
   return `<div class="sec-title">${title} <small>${sub||""}</small></div>
     <div class="card"><div style="display:flex;gap:22px;padding:14px 16px 0">${tops}</div>
-    <div class="stackwrap">${body}</div></div>`;
-}
+    <div class="stackwrap">${body}</div></div>`;}
 
 function insight(html){$("#insight").innerHTML=html;}
 
@@ -237,7 +241,6 @@ function renderWeek(){
   $("#navLabel").textContent=`${fmtMD(start)} – ${fmtMD(end)} · W${wk}`;
   $("#navHint").textContent="셀 위에 마우스 = 업무 내용 · 파란 테두리 = 오늘";
   const inWeek=ROWS.filter(r=>r.wkStart.getTime()===start.getTime());
-  // tiles
   const t=catTotals(inWeek),tot=sum(t);
   const top=CATS.map(c=>({c,h:t[c.key]})).sort((a,b)=>b.h-a.h)[0];
   $("#tiles").innerHTML=[
@@ -246,11 +249,10 @@ function renderWeek(){
     tile("미팅",`${t.미팅}h`),
     tile("최다 카테고리",`<span style="font-size:20px">${top&&top.h?top.c.name:"—"}</span>`),
   ].join("");
-  // grid
   let head="<tr><th></th>";
   for(let i=0;i<7;i++){const d=new Date(start);d.setDate(d.getDate()+i);
     const isT=d.getTime()===TODAY.getTime();
-    head+=`<th class="${isT?'today':''}">${DOW[i]}<span class="d">${fmtMD(d)}</span></th>`;}
+    head+=`<th class="${isT?'today':''">${DOW[i]}<span class="d">${fmtMD(d)}</span></th>`;}
   head+="</tr>";
   let rowsH="";
   TIMES.forEach(tm=>{
@@ -262,20 +264,17 @@ function renderWeek(){
       if(cell){const c=CAT[cell.cat];
         rowsH+=`<td><div class="cell filled ${isT?'today':''}" style="background:${c.bg};color:${c.fg}" data-memo="${cell.memo}${cell.actual?'':' (계획)'}">
           ${c.name.split("/")[0]}<span class="adot" style="background:${c.fg};${cell.actual?'':'opacity:.25'}"></span></div></td>`;
-      } else rowsH+=`<td><div class="cell ${isT?'today':''}"></div></td>`;
-    }
-    rowsH+="</tr>";
-  });
+      } else rowsH+=`<td><div class="cell ${isT?'today':''}"></div></td>`;}
+    rowsH+="</tr>";});
   $("#viewRoot").innerHTML=`<div class="card"><div class="gridscroll"><table class="grid">${head}${rowsH}</table></div></div>
     <div class="foot">점 = 실측(흐린 점 = 계획) · <b>파란 테두리 = 오늘</b> · 모바일은 좌우 스크롤 · 셀 탭/마우스 = 업무 내용</div>
     ${catBar(inWeek,"이번 주")}`;
   const pctSales=tot?Math.round(t.세일즈/tot*100):0;
   const night=inWeek.filter(r=>["20–22","22–24"].includes(r.s)).length;
   insight(`<h3>🔎 이번 주 흐름</h3><ul>
-    <li>세일즈/제안·미팅이 이번 주 축 — 넷마블·올리브트리·코웨이가 동시에 진행 중. <b>세일즈/BD ${pctSales}%</b>.</li>
-    <li class="warn">⚠ 야간(20시 이후) 블록 ${night}개 · 휴식 블록 0 — 종료 시각이 늦어지는 중.</li>
-    <li>목 6/25는 계획(흐린 점): 넷마블 업세일즈 마무리 → 박연옥 메일 → KPI → 리뷰.</li></ul>`);
-}
+    <li>기록된 총 시간 <b>${tot}h</b> · 세일즈/BD ${t.세일즈}h · 미팅 ${t.미팅}h.</li>
+    ${night>0?`<li class="warn">⚠ 야간(20시 이후) 블록 ${night}개 — 종료 시각 체크 필요.</li>`:""}
+    <li>실제(진한 점) 완료 후 actual:true 로 업데이트하면 자동 집계됩니다.</li></ul>`);}
 
 /* ── 뷰: 월간 ──────────────────────────────────────────── */
 function monthRows(m){return ROWS.filter(r=>r.month===m);}
@@ -293,7 +292,6 @@ function renderMonth(){
     tile("야간 블록 비중",`${nightP}%`),
     tile("주요 프로젝트",`<span style="font-size:18px">${topProj(rows)}</span>`),
   ].join("");
-  // 주차별 스택
   const weeks=[...new Set(rows.map(r=>r.week))].sort((a,b)=>a-b);
   const cols=weeks.map(w=>{const wr=rows.filter(r=>r.week===w);const ct=catTotals(wr);
     return{cap:"W"+w,tot:sum(ct),segs:CATS.map(c=>({cat:c.key,h:ct[c.key]}))};});
@@ -302,9 +300,8 @@ function renderMonth(){
     projList(rows);
   insight(`<h3>📊 ${Number(mm)}월 리뷰</h3><ul>
     <li>이 달의 무게중심: <b>${top?top.c.name:"—"}</b> (${top?top.h:0}h). 총 ${tot}h 기록.</li>
-    <li>주차별로 보면 ${weeks.map(w=>"W"+w).join("·")} 순으로 진행 — 후반부로 갈수록 세일즈/견적 비중 상승.</li>
-    <li class="warn">⚠ 야간 블록 비중 ${nightP}% — 다음 달 목표: 야간 20% 이하 / 주 1회 AI작업 블록 확보.</li></ul>`);
-}
+    <li>주차별로 보면 ${weeks.map(w=>"W"+w).join("·")} 순으로 진행.</li>
+    <li class="warn">⚠ 야간 블록 비중 ${nightP}% — 다음 달 목표: 야간 20% 이하.</li></ul>`);}
 function topProj(rows){const m={};rows.forEach(r=>{if(r.proj&&r.proj!=="내부"&&r.proj!=="팀")m[r.proj]=(m[r.proj]||0)+HRS;});
   const e=Object.entries(m).sort((a,b)=>b[1]-a[1])[0];return e?`${e[0]} ${e[1]}h`:"—";}
 function projList(rows){const m={};rows.forEach(r=>{const k=r.proj||"기타";m[k]=(m[k]||0)+HRS;});
@@ -312,30 +309,31 @@ function projList(rows){const m={};rows.forEach(r=>{const k=r.proj||"기타";m[k
   const body=e.map(([n,h])=>`<div class="bar-row"><div class="name">${n}</div>
     <div class="bar-track"><div class="bar-fill" style="width:${Math.round(h/max*100)}%;background:#e6e3db;color:#4a4741">${h}h</div></div>
     <div class="pct"></div></div>`).join("");
-  return `<div class="sec-title">주요 업무 Top <small>프로젝트/클라이언트별</small></div><div class="card"><div class="bars">${body}</div></div>`;
-}
+  return `<div class="sec-title">주요 업무 Top <small>프로젝트/클라이언트별</small></div><div class="card"><div class="bars">${body}</div></div>`;}
 
 /* ── 뷰: 반기 ──────────────────────────────────────────── */
 function renderHalf(){
-  $("#navLabel").textContent=`${YEAR} 상반기 (1–6월)`;
+  const isFirst=TODAY.getMonth()<6;
+  const halfName=isFirst?"상반기":"하반기";
+  const halfRange=isFirst?"1–6월":"7–12월";
+  $("#navLabel").textContent=`${YEAR} ${halfName} (${halfRange})`;
   $("#navHint").textContent="월별 추이 · 상/하반기 요약";
-  const rows=ROWS.filter(r=>r.year===YEAR&&r.half==="상반기");
+  const rows=ROWS.filter(r=>r.year===YEAR&&r.half===halfName);
   const t=catTotals(rows),tot=sum(t);
   const top=CATS.map(c=>({c,h:t[c.key]})).sort((a,b)=>b.h-a.h)[0];
   const months=[...new Set(rows.map(r=>r.monthN))].sort((a,b)=>a-b);
   $("#tiles").innerHTML=[
-    tile("상반기 총 기록",`${tot}h`),
+    tile(`${halfName} 총 기록`,`${tot}h`),
     tile("최다 카테고리",`<span style="font-size:20px">${top?top.c.name:"—"}</span>`),
     tile("기록된 월",`${months.length}<small> / 6개월</small>`),
     tile("주요 프로젝트",`<span style="font-size:18px">${topProj(rows)}</span>`),
   ].join("");
   const cols=months.map(mn=>{const mr=rows.filter(r=>r.monthN===mn);const ct=catTotals(mr);
     return{cap:mn+"월",tot:sum(ct),segs:CATS.map(c=>({cat:c.key,h:ct[c.key]}))};});
-  $("#viewRoot").innerHTML=stacked(cols,"월별 추이","월 × 카테고리(스택)")+catBar(rows,"상반기 누적");
-  insight(`<h3>🗓️ ${YEAR} 상반기</h3><ul>
-    <li>상반기 무게중심: <b>${top?top.c.name:"—"}</b>. 월이 쌓일수록 카테고리 믹스 변화가 보입니다.</li>
-    <li>이번 주(6/22~)부터 누적 시작 — 로그가 쌓이면 월별 추이가 자동으로 채워집니다.</li></ul>`);
-}
+  $("#viewRoot").innerHTML=stacked(cols,"월별 추이","월 × 카테고리(스택)")+catBar(rows,`${halfName} 누적`);
+  insight(`<h3>🗓️ ${YEAR} ${halfName}</h3><ul>
+    <li>${halfName} 무게중심: <b>${top?top.c.name:"—"}</b>. 월이 쌓일수록 카테고리 믹스 변화가 보입니다.</li>
+    <li>로그가 쌓이면 월별 추이가 자동으로 채워집니다.</li></ul>`);}
 
 /* ── 뷰: 연간 ──────────────────────────────────────────── */
 function renderYear(){
@@ -355,13 +353,11 @@ function renderYear(){
   $("#viewRoot").innerHTML=stacked(cols,"월별 추이 (1–12월)","월 × 카테고리(스택)")+catBar(rows,"연간 누적");
   insight(`<h3>📈 ${YEAR}년</h3><ul>
     <li>상반기 ${sum(catTotals(h1))}h vs 하반기 ${sum(catTotals(h2))}h — 월별 스택으로 루틴 변화 추적.</li>
-    <li>연간 뷰는 매월 로그가 자동 롤업됩니다.</li></ul>`);
-}
+    <li>연간 뷰는 매월 로그가 자동 롤업됩니다.</li></ul>`);}
 
 /* ── 라우팅 ────────────────────────────────────────────── */
 function render(){
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.view===view));
-  $("#nav").style.display=(view==="week"||view==="month")?"flex":"flex";
   if(view==="week")renderWeek();
   else if(view==="month")renderMonth();
   else if(view==="half")renderHalf();
@@ -373,8 +369,7 @@ $("#next").onclick=()=>{shift(1);};
 function shift(dir){
   if(view==="week"){weekAnchor.setDate(weekAnchor.getDate()+7*dir);render();}
   else if(view==="month"){let[y,m]=monthAnchor.split("-").map(Number);m+=dir;if(m<1){m=12;y--;}if(m>12){m=1;y++;}
-    monthAnchor=y+"-"+String(m).padStart(2,"0");render();}
-}
+    monthAnchor=y+"-"+String(m).padStart(2,"0");render();}}
 renderLegend();render();
 </script>
 </body>
