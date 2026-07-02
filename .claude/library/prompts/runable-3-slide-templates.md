@@ -1,7 +1,7 @@
-# Runable 3 · Slide Template System (Brand Story Deck)
+# Runable 3 · Slide Template System (Brand/Project Story Deck)
 
-**역할**: Runable 3 최종 슬라이드 생성 시 사용하는 재사용 가능한 슬라이드 타입 카탈로그.
-**원칙**: 모든 슬라이드는 아래 글로벌 디자인 시스템을 일관되게 따른다. 브랜드마다 [내용]만 교체하고 [디자인] 레이아웃 스펙은 그대로 유지한다.
+**역할**: Runable 3 최종 슬라이드 생성 시 사용하는 재사용 가능한 슬라이드 타입 카탈로그. **브랜드 프로젝트 전용이 아니다** — `design-deck-wireframe.md`(범용 덱 골격)의 6번 섹션("최종 시스템 슬라이드")에서도 그대로 재사용하도록 설계되어 있다. 홈페이지·배너·게임UI 등 비-브랜드 프로젝트도 이 6종을 그대로 쓰되, "Brand"를 "Project"로 바꿔 읽으면 된다.
+**원칙**: 모든 슬라이드는 아래 글로벌 디자인 시스템을 일관되게 따른다. 프로젝트마다 [내용]만 교체하고 [디자인] 레이아웃 스펙은 그대로 유지한다.
 
 ---
 
@@ -132,6 +132,10 @@
 3. Manus 1의 Positioning Strategy + Manus 2의 Visual DNA를 Slide Type 3(Brand Mind Map)으로 변환
 4. Manus 1의 헤리티지 스펙트럼 등 방향성 결정들을 Slide Type 4(Brand Direction)로 변환
 5. Manus 2의 Visual DNA(Form/Color/Material 등)를 Slide Type 5(Graphic Motif)로 변환 — 이미지는 Higgsfield로 메인이 직접 생성
-6. Brand Board Havnn 핵심 내용을 Slide Type 1(Brand Story)로 변환
+6. 관점(Gate 1 POV) + 브랜드/프로젝트 핵심 서사를 Slide Type 1(Brand/Project Story)로 변환 — 이 슬라이드가 보통 덱 맨 앞(오프닝)에 배치되지만, 타입 자체는 이 6종 세트의 일부로 마지막에 완성해도 무방(오프닝 배치 순서와 제작 순서는 별개).
+
+## 비-브랜드 프로젝트에서 재사용할 때
+- `design-deck-wireframe.md`를 따르는 홈페이지/배너/게임UI 등 프로젝트도 이 6종을 그대로 쓴다. 용어만 치환: "Brand Story"→"Project Story", "Brand Value Keywords"→"Project Value Keywords" 등. [디자인] 레이아웃 스펙은 절대 바꾸지 않는다 — 바뀌는 건 항상 [내용]뿐.
+- Manus/Runable 게이트를 생략·축약한 프로젝트(design-deck-wireframe 경유)라도, 이 6종 슬라이드는 축약하지 않고 6개 다 채운다 — "이 프로젝트는 작으니 3개만" 식으로 임의로 개수를 줄이지 않는다. 정말 해당 없는 타입(예: 경쟁사 리서치가 없는 내부 툴 프로젝트)만 명시적으로 "해당없음" 표기 후 제외.
 
 모든 슬라이드는 `deck.html`에 순서대로 누적하며, 색상/서체 등 디자인 시스템은 슬라이드 전체에서 통일한다.
