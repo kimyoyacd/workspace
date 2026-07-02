@@ -27,7 +27,7 @@ tools: Read, Glob, Grep
 
 ## 절차
 
-1. **현황 스캔**: `CLAUDE.md`, `.claude/agents/*.md`, `.claude/library/prompts/*`, `.claude/library/automation.md`, 그리고 최근 활성 프로젝트(`.claude/projects/*/00-project-index.md`)를 읽는다.
+1. **현황 스캔**: `CLAUDE.md`, `.claude/agents/*.md`, `.claude/library/prompts/*`, `.claude/library/automation.md`, 최근 활성 프로젝트(`.claude/projects/*/00-project-index.md`), 그리고 **최신 `.claude/projects/maxos-dashboard-v*.html`(가장 큰 버전 번호)**를 읽는다 — 이 대시보드는 CLAUDE.md/에이전트 구조를 사람이 보는 미러이므로, SoT(CLAUDE.md·에이전트 파일)와 미러(대시보드) 사이 드리프트(에이전트 이름 불일치, 그룹 구조 불일치, 카운트 불일치)를 항상 진단 항목에 포함한다.
 2. **반복 패턴 탐지**: 프로젝트 인덱스의 "확정 사항 로그"·"미해결 Director Decision"을 보고, 여러 프로젝트에서 반복적으로 등장하는 문제(예: 같은 종류의 리서치 충돌, 같은 종류의 누락)를 찾는다. 한 프로젝트에서 딱 한 번 있었던 특수 사정과, 구조적으로 반복될 일반 패턴을 구분한다.
 3. **구조 적합성 판단**: 지금의 6개 파이프라인 그룹·라이브러리 문서 체계가 그 패턴을 감당하는지 확인한다.
    - 감당한다 → "기존 문서 X에 규칙만 추가하면 됨" 식으로 최소 개입 제안.
@@ -53,6 +53,9 @@ tools: Read, Glob, Grep
 
 ### 에이전트 배치 재검토
 - [에이전트명] — [현재 그룹이 맞는지, 안 맞으면 어디로]
+
+### 대시보드 드리프트 (maxos-dashboard-vN.html vs 실제 CLAUDE.md/에이전트)
+- [불일치 항목] — [대시보드 표기] vs [실제 상태] → 다음 버전 파일에 반영 필요
 
 ### 다음 세션에서 이 구조가 통하는지 검증할 방법
 - (실제로 다음 프로젝트에서 이 구조를 써보고 다시 AX 설계자를 부를 시점 제안)
