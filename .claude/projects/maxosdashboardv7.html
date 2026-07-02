@@ -544,15 +544,15 @@ body {
 
 <!-- NAV -->
 <div class="nav">
-  <div class="tab active" onclick="go('org',this)">조직도</div>
-  <div class="tab" onclick="go('projects',this)">프로젝트 현황</div>
-  <div class="tab" onclick="go('team',this)">MAX실 9명</div>
-  <div class="tab" onclick="go('overhead',this)">추가투입 위험</div>
-  <div class="tab" onclick="go('clients',this)">클라이언트 레이더</div>
-  <div class="tab" onclick="go('trend',this)">디자인 트렌드 보드</div>
-  <div class="tab" onclick="go('brand',this)">브랜드 제안</div>
-  <div class="tab" onclick="go('guidelines',this)">CLAUDE.md 지침</div>
-  <div class="tab" onclick="go('manual',this)">사용설명서</div>
+  <div class="tab active" data-tab="org">조직도</div>
+  <div class="tab" data-tab="projects">프로젝트 현황</div>
+  <div class="tab" data-tab="team">MAX실 9명</div>
+  <div class="tab" data-tab="overhead">추가투입 위험</div>
+  <div class="tab" data-tab="clients">클라이언트 레이더</div>
+  <div class="tab" data-tab="trend">디자인 트렌드 보드</div>
+  <div class="tab" data-tab="brand">브랜드 제안</div>
+  <div class="tab" data-tab="guidelines">CLAUDE.md 지침</div>
+  <div class="tab" data-tab="manual">사용설명서</div>
 </div>
 
 <div class="main">
@@ -824,7 +824,7 @@ body {
 
   <!-- HUB 디테일 -->
   <div class="collapsible-section">
-    <div class="collapsible-header" onclick="toggleCollapse(this)">
+    <div class="collapsible-header" data-collapsible="true">
       <div class="toggle">▶</div>
       <h3><span class="ico">HUB</span>허브 운영 디테일</h3>
       <p>3개 모드 · 5개 자동 트리거 · 7개 위임 X</p>
@@ -869,7 +869,7 @@ body {
 
   <!-- FLOW -->
   <div class="collapsible-section">
-    <div class="collapsible-header" onclick="toggleCollapse(this)">
+    <div class="collapsible-header" data-collapsible="true">
       <div class="toggle">▶</div>
       <h3><span class="ico">FLOW</span>제안서 풀패키지 워크플로</h3>
       <p>"제안 풀패키지 돌려" 1마디 → 12단계 자동 오케스트레이션</p>
@@ -2621,6 +2621,16 @@ function toggleCollapse(header) {
   header.classList.toggle('expanded');
   header.nextElementSibling.classList.toggle('expanded');
 }
+
+/* inline onclick 대신 addEventListener (CSP unsafe-inline 차단 대응) */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tab[data-tab]').forEach(function (t) {
+    t.addEventListener('click', function () { go(t.dataset.tab, t); });
+  });
+  document.querySelectorAll('[data-collapsible]').forEach(function (h) {
+    h.addEventListener('click', function () { toggleCollapse(h); });
+  });
+});
 
 /* GANTT */
 const TOTAL = 122; // June 1 ~ Sep 30

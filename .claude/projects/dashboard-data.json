@@ -1,0 +1,25 @@
+{
+  "fetchedAt": "2026-07-02T09:00:00.000Z",
+  "projects": [
+    { "id": "1", "title": "코웨이 GUI 컨설팅 및 구축", "group": "active", "status": "진행중", "categories": ["UI", "GUI"], "difficulty": "H", "startDate": "2026-03-24", "endDate": "2026-06-26", "notionUrl": null },
+    { "id": "2", "title": "넷마블 운영 4TO", "group": "fixed", "status": "고정운영", "categories": ["Motion", "운영"], "difficulty": "M", "startDate": "2026-03-31", "endDate": "2026-12-31", "notionUrl": null },
+    { "id": "3", "title": "가디언 메이든 사전 런칭 준비", "group": "upcoming", "status": "진행예정", "categories": ["Motion", "게임"], "difficulty": "H", "startDate": "2026-05-01", "endDate": null, "notionUrl": null },
+    { "id": "4", "title": "넷마블 AI 업세일즈 제안", "group": "active", "status": "진행중", "categories": ["AI", "제안"], "difficulty": "H", "startDate": "2026-06-05", "endDate": "2026-06-26", "notionUrl": null },
+    { "id": "5", "title": "현대 수소 홈페이지 구축", "group": "active", "status": "진행중", "categories": ["웹", "Motion"], "difficulty": "H", "startDate": "2026-06-22", "endDate": "2026-06-27", "notionUrl": null },
+    { "id": "6", "title": "[MAX Lab] GRAIN 호글라스 AI 브랜드 실험", "group": "upcoming", "status": "진행예정", "categories": ["브랜딩", "AI"], "difficulty": "M", "startDate": "2026-06-30", "endDate": "2026-07-31", "notionUrl": null }
+  ],
+  "resources": [
+    { "name": "김효정", "utilRate": 95 },
+    { "name": "김창환", "utilRate": 88 },
+    { "name": "강민우", "utilRate": 72 },
+    { "name": "강승일", "utilRate": 80 },
+    { "name": "문경선", "utilRate": 65 },
+    { "name": "이지현", "utilRate": 90 },
+    { "name": "전한아", "utilRate": 78 },
+    { "name": "김지원", "utilRate": 85 },
+    { "name": "김준환", "utilRate": 70 }
+  ],
+  "projectsError": null,
+  "resourcesError": null,
+  "_note": "임시 스냅샷 — GitHub Actions 실행 전까지 사용. Notion/Sheets 실시간 아님."
+}
