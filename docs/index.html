@@ -166,27 +166,7 @@ const LOG = [
   {date:"2026-06-25",s:"12–14",cat:"세일즈",proj:"크래프톤",memo:"[계획] 박연옥 님 메일 발송+후속", actual:false},
   {date:"2026-06-25",s:"14–16",cat:"세일즈",proj:"내부",    memo:"[계획] KPI 사업방안(KR1·KR3)", actual:false},
   {date:"2026-06-25",s:"16–18",cat:"문서", proj:"내부",     memo:"[계획] 에이전트 진행물 리뷰·정리", actual:false},
-  // ── 이전 주차 (월간/반기 추이용 샘플) ──
-  {date:"2026-06-16",s:"10–12",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-06-16",s:"12–14",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-06-16",s:"14–16",cat:"AI",  proj:"R&D",  memo:"AI R&D",actual:true},
-  {date:"2026-06-17",s:"10–12",cat:"견적",proj:"올리브영",memo:"올리브영 PB 제안",actual:true},
-  {date:"2026-06-17",s:"14–16",cat:"미팅",proj:"내부",memo:"주간회의",actual:true},
-  {date:"2026-06-18",s:"10–12",cat:"세일즈",proj:"넷마블",memo:"넷마블 업세일즈",actual:true},
-  {date:"2026-06-18",s:"12–14",cat:"문서",proj:"내부",memo:"월 리포트",actual:true},
-  {date:"2026-06-09",s:"10–12",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-06-09",s:"14–16",cat:"견적",proj:"올리브영",memo:"제안",actual:true},
-  {date:"2026-06-10",s:"10–12",cat:"AI",proj:"R&D",memo:"AI R&D",actual:true},
-  {date:"2026-06-10",s:"14–16",cat:"미팅",proj:"내부",memo:"회의",actual:true},
-  {date:"2026-06-02",s:"10–12",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-06-03",s:"10–12",cat:"AI",proj:"R&D",memo:"AI R&D 아이데이션",actual:true},
-  {date:"2026-06-03",s:"14–16",cat:"미팅",proj:"내부",memo:"회의",actual:true},
-  // ── 5월 (반기/연간 추이용 샘플) ──
-  {date:"2026-05-12",s:"10–12",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-05-12",s:"14–16",cat:"AI",proj:"R&D",memo:"AI R&D",actual:true},
-  {date:"2026-05-13",s:"10–12",cat:"세일즈",proj:"넷마블",memo:"넷마블",actual:true},
-  {date:"2026-05-19",s:"10–12",cat:"디자인",proj:"코웨이",memo:"코웨이 GUI",actual:true},
-  {date:"2026-05-20",s:"14–16",cat:"미팅",proj:"내부",memo:"회의",actual:true},
+  // ▷ 이번 주부터 실제 기록을 계속 추가하세요. (월/반기/년 뷰는 로그가 쌓이면 자동 확장)
 ];
 
 /* ── 날짜 파생 (주/월/반기/년) ─────────────────────────── */
@@ -354,7 +334,7 @@ function renderHalf(){
   $("#viewRoot").innerHTML=stacked(cols,"월별 추이","월 × 카테고리(스택)")+catBar(rows,"상반기 누적");
   insight(`<h3>🗓️ ${YEAR} 상반기</h3><ul>
     <li>상반기 무게중심: <b>${top?top.c.name:"—"}</b>. 월이 쌓일수록 카테고리 믹스 변화가 보입니다.</li>
-    <li>일부 월은 샘플 데이터 — 실제 로그가 쌓이면 자동으로 채워집니다.</li></ul>`);
+    <li>이번 주(6/22~)부터 누적 시작 — 로그가 쌓이면 월별 추이가 자동으로 채워집니다.</li></ul>`);
 }
 
 /* ── 뷰: 연간 ──────────────────────────────────────────── */
