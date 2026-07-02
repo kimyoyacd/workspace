@@ -36,6 +36,8 @@
 | Figma 양방향 | `figma-bridge` |
 | 스토리보드·영상 | `storyboard-maker` |
 | 브랜드 제안 / 와이드리서치~슬라이드 / 단계별 질문 / RFP 수신 | `brand-proposal` 스킬 (Hyojung Guided 질문형, 허브가 단계별 에이전트 호출) |
+| 글쓰기·톤 점검 (캡션·대본·훅·릴스·뉴스레터) | `anti-ai-writing` / `viral-hooks` / `storytelling` / `dumbify` / `voice-dna` 스킬 |
+| 제안 슬라이드 디자인 (모노톤) | `hivelab-proposal-style` 스킬 |
 
 ## 안전 불변규칙 (예외 없음)
 1. **자동 발송/게시 절대 금지** — 모든 외부 산출물은 사용자 검토 후.
