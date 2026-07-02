@@ -166,7 +166,14 @@ const LOG = [
   {date:"2026-06-25",s:"12–14",cat:"세일즈",proj:"크래프톤",memo:"[계획] 박연옥 님 메일 발송+후속", actual:false},
   {date:"2026-06-25",s:"14–16",cat:"세일즈",proj:"내부",    memo:"[계획] KPI 사업방안(KR1·KR3)", actual:false},
   {date:"2026-06-25",s:"16–18",cat:"문서", proj:"내부",     memo:"[계획] 에이전트 진행물 리뷰·정리", actual:false},
-  // ▷ 이번 주부터 실제 기록을 계속 추가하세요. (월/반기/년 뷰는 로그가 쌓이면 자동 확장)
+  // ── W27 (6/29–7/5) ──
+  {date:"2026-07-01",s:"10–12",cat:"미팅", proj:"내부",     memo:"[센터] 주간보고 (화 11시)", actual:true},
+  {date:"2026-07-02",s:"10–12",cat:"세일즈",proj:"HYBE",    memo:"[계획] HYBE 아이데이션", actual:false},
+  {date:"2026-07-02",s:"12–14",cat:"세일즈",proj:"크래프톤",memo:"[계획] 박연옥 님 메일", actual:false},
+  {date:"2026-07-02",s:"14–16",cat:"세일즈",proj:"넷마블",  memo:"[계획] 넷마블 업세일즈", actual:false},
+  {date:"2026-07-02",s:"16–18",cat:"문서", proj:"내부",     memo:"[계획] KPI 사업방안", actual:false},
+  {date:"2026-07-02",s:"18–20",cat:"문서", proj:"내부",     memo:"[계획] 에이전트 진행물 리뷰", actual:false},
+  // ▷ 실제 완료 후 actual:true 로 바꾸고, 아래에 새 행을 계속 추가하세요.
 ];
 
 /* ── 날짜 파생 (주/월/반기/년) ─────────────────────────── */
@@ -188,10 +195,10 @@ const fmtMD=dt=>(dt.getMonth()+1)+"/"+dt.getDate();
 
 /* ── 상태 ──────────────────────────────────────────────── */
 let view="week";
-let weekAnchor=mondayOf(parse("2026-06-22"));   // 표시 주
-let monthAnchor="2026-06";
-const YEAR=2026;
-const TODAY=parse("2026-06-24"); // '오늘' 하이라이트(데모)
+const TODAY=(()=>{const d=new Date();d.setHours(0,0,0,0);return d;})();
+const YEAR=TODAY.getFullYear();
+let weekAnchor=mondayOf(TODAY);
+let monthAnchor=YEAR+"-"+String(TODAY.getMonth()+1).padStart(2,"0");
 
 /* ── 렌더 진입 ─────────────────────────────────────────── */
 const $=s=>document.querySelector(s);
