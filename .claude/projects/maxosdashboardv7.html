@@ -596,27 +596,21 @@ body {
   <h2 class="section-title">에이전트 조직도</h2>
   <p class="section-desc">메인 세션(허브) 아래 <strong>29개 에이전트 · 7그룹</strong> (2 대기) + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design + AI 라이팅 스킬 5종(dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna). 아래 섹션은 클릭해서 펼치기.</p>
 
-  <div class="alert">
-    <span class="ic">✅</span>
-    <div><strong>v8.1 — GRAIN AI Creative Experiment 업데이트 (PR #25 반영).</strong> 신규 에이전트 2종: <code>ax-architect</code>(AX 시스템 설계자, 조직 전체 AI 워크플로우 구조 설계) + <code>project-continuity-auditor</code>(브랜드 프로젝트 연속성 감사, 버전 전환 직후·Runable 3 진입 직전 자동). 신규 라이브러리 5종: <code>MOODBOARD_MASTER_FRAMEWORK·brand-design-proposal·design-deck-wireframe·runable-3-slide-templates·wide-research</code>. 브랜드 파이프라인 원칙 강화: Materialize·게이트 확인·경쟁사 카드 완전성·이미지 그리드·연속성 관리. 에이전트 총 <strong>29종</strong>. GRAIN 호글라스 프로젝트 추가(202606_GRAIN). 기준일 2026-07-02.</div>
-  </div>
-  <div class="alert">
-    <span class="ic">✅</span>
-    <div><strong>v8 — copy-writer 에이전트 신규 추가 + AI 라이팅 스킬 5종 통합.</strong> <code>copy-writer</code>(카테고리별 카피라이팅, viral-hooks·storytelling·anti-ai-writing 내장) 신규. <code>dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna</code> 스킬 설치. <code>ux-writing.md</code> 라이브러리 생성(토스·refeeel 참조). 에이전트 총 27종 · 7그룹(2 대기).</div>
-  </div>
-  <div class="alert">
-    <span class="ic">✅</span>
-    <div><strong>v6 — HYO MANUS 브랜드 제안 자동화 시스템 구축.</strong> <code>hyo-manus</code> 스킬 신규 등록 + HYO MANUS 1차/2차/3차 라이브러리 정비 + HTML 체크포인트 파이프라인. LUNE 브랜드 샘플 완성 (36슬라이드). GitHub <strong>PR #26</strong>(draft).</div>
-  </div>
-  <div class="alert">
-    <span class="ic">✅</span>
-    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + brand-proposal 스킬. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트)</div>
+  <!-- 변경이력 아코디언 -->
+  <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px;">
+    <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block';this.querySelector('.tog').textContent=this.nextElementSibling.style.display==='block'?'▲':'▼';" style="background:var(--card);padding:9px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--ink2);user-select:none;">
+      <span style="font-size:9px;background:#22C55E;color:#fff;padding:1px 6px;border-radius:3px;font-weight:800;">최신</span>
+      v8.1 · 에이전트 29종 · 기준일 2026-07-02
+      <span class="tog" style="margin-left:auto;color:var(--ink4);">▼</span>
+    </div>
+    <div style="display:none;border-top:1px solid var(--border);padding:12px 16px;background:#FAFAF8;font-size:11px;color:var(--ink2);line-height:1.8;">
+      <div style="margin-bottom:8px;"><strong>v8.1</strong> — ax-architect + project-continuity-auditor 신규. 라이브러리 5종 추가. GRAIN 프로젝트 추가.</div>
+      <div style="margin-bottom:8px;"><strong>v8</strong> — copy-writer + AI 라이팅 스킬 5종(dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna) 통합.</div>
+      <div style="margin-bottom:8px;"><strong>v6</strong> — hyo-manus 스킬 + HYO MANUS 브랜드 제안 자동화. LUNE 샘플 완성.</div>
+      <div><strong>v5</strong> — 9탭 통합 OS + 24개 에이전트 생성 + CLAUDE.md 라우터 + SoT 3종.</div>
+    </div>
   </div>
 
-  <!-- 파이프라인 분류 규칙 안내 -->
-  <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:10.5px;color:var(--ink2);line-height:1.6;">
-    <strong>분류 원칙:</strong> 에이전트는 직무팀이 아닌 <strong>파이프라인 단계</strong>로 분류합니다. 신규 에이전트 추가 시 "어느 단계에서 투입되는가"를 기준으로 6개 그룹 중 하나에 배치.
-  </div>
 
   <div class="tree-wrap">
     <div class="hub-node">
