@@ -550,7 +550,8 @@ body {
   <div class="tab" data-tab="overhead">추가투입 위험</div>
   <div class="tab" data-tab="clients">클라이언트 레이더</div>
   <div class="tab" data-tab="trend">디자인 트렌드 보드</div>
-  <div class="tab" data-tab="brand">브랜드 제안</div>
+  <div class="tab" data-tab="brand">디자인 제안</div>
+  <div class="tab" data-tab="skills">스킬 & 워크플로우</div>
   <div class="tab" data-tab="guidelines">CLAUDE.md 지침</div>
   <div class="tab" data-tab="manual">사용설명서</div>
 </div>
@@ -2005,9 +2006,222 @@ tools: Read, Glob, Grep, WebSearch
 
 
 <!-- ══════════════ TAB 9: 브랜드 제안 ══════════════ -->
+<!-- ══════════════ TAB: 스킬 & 워크플로우 ══════════════ -->
+<div id="sect-skills" class="section">
+  <h2 class="section-title">스킬 & 워크플로우</h2>
+  <p class="section-desc">에이전트·스킬·워크플로우 3개 레이어 구조. 각 개념이 어떻게 연결되는지 한눈에 파악.</p>
+
+  <!-- 개념 가이드 -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
+    <div style="background:#F0F4FF;border:1.5px solid #C7D4F5;border-radius:10px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#3B5BDB;text-transform:uppercase;margin-bottom:8px;">① 에이전트</div>
+      <div style="font-size:13px;font-weight:800;margin-bottom:6px;">전문가 개인</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"한 번 호출, 한 가지 일"<br>rfp-analyst, critic, moodboard-builder 등 29종.<br>각자 역할이 고정되어 있고, 허브(메인 세션)가 상황에 맞게 호출.</div>
+      <div style="margin-top:10px;padding:6px 10px;background:#3B5BDB;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "RFP 분석해줘" → rfp-analyst 실행</div>
+    </div>
+    <div style="background:#F0FBF4;border:1.5px solid #B2DFC4;border-radius:10px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#2D7A4F;text-transform:uppercase;margin-bottom:8px;">② 스킬</div>
+      <div style="font-size:13px;font-weight:800;margin-bottom:6px;">산출물 레시피</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"어떻게 출력할 것인가"를 정의.<br>list-deck-design, anti-ai-writing 등 7종.<br><code>/스킬명</code>으로 호출하면 정해진 포맷으로 결과 생성.</div>
+      <div style="margin-top:10px;padding:6px 10px;background:#2D7A4F;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "/list-deck-design" → 에디토리얼 리포트 HTML 생성</div>
+    </div>
+    <div style="background:#FDF8F0;border:1.5px solid #ECD9B0;border-radius:10px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#C77A0F;text-transform:uppercase;margin-bottom:8px;">③ 워크플로우</div>
+      <div style="font-size:13px;font-weight:800;margin-bottom:6px;">에이전트 파이프라인</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"누가 어떤 순서로 개입하는가"를 정의.<br>게이트(확인 포인트) 포함. 브랜드 트랙·UI/UX 트랙 2종.<br>brand-pipeline 에이전트가 전체 흐름 관리.</div>
+      <div style="margin-top:10px;padding:6px 10px;background:#C77A0F;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "브랜드 제안 시작" → brand-pipeline이 3단계 자동 진행</div>
+    </div>
+  </div>
+
+  <!-- 스킬 목록 -->
+  <h3 style="font-size:15px;font-weight:900;margin:0 0 14px;letter-spacing:-0.3px;">스킬 목록 <span style="font-size:11px;font-weight:500;color:var(--ink3);margin-left:6px;">7종 · /스킬명 으로 호출</span></h3>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+    <!-- 라이팅 계열 -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1E3A5F,#2D5A8E);padding:10px 16px;">
+        <div style="font-size:10px;font-weight:900;color:#90B4D4;letter-spacing:1px;text-transform:uppercase;">라이팅 계열 · 5종</div>
+        <div style="font-size:12px;color:#E2EEF7;margin-top:2px;">글을 쓰거나 점검할 때</div>
+      </div>
+      <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #3B5BDB;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#3B5BDB;">anti-ai-writing</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">AI가 쓴 티 나는 글 탈출. 모든 글의 최종 필터. 산문에 가장 강력.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #7048B6;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#7048B6;">dumbify</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">설명형 콘텐츠 단순화. 빽빽한 초안·전문용어 → 누구나 따라가는 글.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #C77A0F;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#C77A0F;">storytelling</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">릴스·영상 대본. 훅 이후를 붙잡는 내러티브 구조 적용.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #B23B3B;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#B23B3B;">viral-hooks</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">첫 문장 전용. 릴스 인트로·뉴스레터 제목·트윗 첫 줄.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #2D7A4F;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#2D7A4F;">voice-dna</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">브랜드·개인 보이스 톤 추출 및 일관성 유지.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 디자인 계열 -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#3D1F6E,#6B3FA0);padding:10px 16px;">
+        <div style="font-size:10px;font-weight:900;color:#C4A8E8;letter-spacing:1px;text-transform:uppercase;">디자인 계열 · 2종</div>
+        <div style="font-size:12px;color:#EDE8F5;margin-top:2px;">산출물 포맷을 고정할 때</div>
+      </div>
+      <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #6B3FA0;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#6B3FA0;">list-deck-design</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">에디토리얼 리포트 HTML 생성. stateofaidesign.com 스타일. 수치·데이터를 한 장 보고서로.</div>
+            <div style="margin-top:5px;font-size:9.5px;color:var(--ink3);">트리거: "리포트로 정리" / "list deck" / "state of ~ 스타일"</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #374151;">
+          <div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#374151;">hivelab-proposal-style</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">하이브랩 제안서 스타일 가이드. 제안 슬라이드 톤·레이아웃 기준.</div>
+            <div style="margin-top:5px;font-size:9.5px;color:var(--ink3);">트리거: 하이브랩 관련 제안 진행 시</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 스킬 연계 팁 -->
+      <div style="margin:0 12px 12px;padding:10px 12px;background:#F3EEF9;border-radius:7px;font-size:10.5px;color:#4A2080;line-height:1.65;">
+        <strong>💡 라이팅 스킬 연계 순서</strong><br>
+        초안 작성 → <code>dumbify</code>(단순화) → <code>storytelling</code>(구조) → <code>anti-ai-writing</code>(필터)<br>
+        첫 문장만: <code>viral-hooks</code> 단독 / 톤 기준 먼저: <code>voice-dna</code> 후 작성
+      </div>
+    </div>
+  </div>
+
+  <!-- 워크플로우 -->
+  <h3 style="font-size:15px;font-weight:900;margin:0 0 14px;letter-spacing:-0.3px;">워크플로우 <span style="font-size:11px;font-weight:500;color:var(--ink3);margin-left:6px;">에이전트 파이프라인 · 게이트 포함</span></h3>
+
+  <!-- 브랜드 트랙 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;">
+    <div style="background:linear-gradient(135deg,#1A1A2E,#2D2D4E);padding:12px 20px;display:flex;align-items:center;gap:12px;">
+      <div>
+        <div style="font-size:10px;font-weight:900;color:#818CF8;letter-spacing:1px;text-transform:uppercase;">디자인 제안 · 브랜드 트랙</div>
+        <div style="font-size:12px;color:#C7D2FE;margin-top:2px;">brand-pipeline 에이전트가 전체 흐름 관리 · GRAIN 실전 검증 완료</div>
+      </div>
+      <div style="margin-left:auto;padding:4px 10px;background:#4338CA;border-radius:12px;font-size:10px;color:#fff;font-weight:700;white-space:nowrap;">트리거: "브랜드 제안 시작"</div>
+    </div>
+    <div style="padding:16px 20px;">
+      <!-- 흐름도 -->
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:16px;">
+        <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">브랜드 정보 수집</div>
+        <div style="color:var(--ink4);font-size:16px;">→</div>
+        <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Manus 1<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">경쟁사 30개·포지셔닝</div></div>
+        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 1<div style="font-size:8.5px;font-weight:500;">관점 한 문장 확정</div></div>
+        <div style="color:var(--ink4);font-size:16px;">→</div>
+        <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Manus 2<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">비주얼 DNA·컨셉 발산</div></div>
+        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 2<div style="font-size:8.5px;font-weight:500;">Living System 확인</div></div>
+        <div style="color:var(--ink4);font-size:16px;">→</div>
+        <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Runable 3<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">브랜드 시스템화</div></div>
+        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 3<div style="font-size:8.5px;font-weight:500;">슬라이드 ready 확인</div></div>
+        <div style="color:var(--ink4);font-size:16px;">→</div>
+        <div style="padding:6px 12px;background:#1A1A2E;border-radius:6px;font-size:10.5px;font-weight:700;color:#818CF8;">Final Deck<div style="font-size:9px;font-weight:500;color:#A5B4FC;margin-top:1px;">35~45장 슬라이드</div></div>
+      </div>
+      <!-- 규칙 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:10.5px;">
+        <div style="padding:7px 10px;background:#FFF1F0;border-left:3px solid #B23B3B;border-radius:4px;color:var(--ink2);">🚫 게이트 통과 전 다음 단계 진행 금지</div>
+        <div style="padding:7px 10px;background:#FFF1F0;border-left:3px solid #B23B3B;border-radius:4px;color:var(--ink2);">🚫 슬라이드는 Runable 3에서만 · ready=true 확인 후</div>
+        <div style="padding:7px 10px;background:#ECFDF5;border-left:3px solid #2D7A4F;border-radius:4px;color:var(--ink2);">✅ 최종 마진·날인은 실장님 직접 결정</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI/UX 트랙 (예정) -->
+  <div style="background:var(--card);border:1.5px dashed var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;opacity:0.7;">
+    <div style="background:#F8F9FA;padding:12px 20px;display:flex;align-items:center;gap:12px;">
+      <div>
+        <div style="font-size:10px;font-weight:900;color:var(--ink3);letter-spacing:1px;text-transform:uppercase;">디자인 제안 · UI/UX 트랙</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px;">게임 UI·홈페이지·상세페이지·배너 제안 전용 파이프라인</div>
+      </div>
+      <div style="margin-left:auto;padding:4px 10px;background:var(--border);border-radius:12px;font-size:10px;color:var(--ink3);font-weight:700;">🔜 구성 예정</div>
+    </div>
+    <div style="padding:14px 20px;">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+        <div style="padding:6px 12px;background:var(--bg);border:1.5px dashed var(--border);border-radius:6px;font-size:10.5px;color:var(--ink3);">RFP 분석</div>
+        <div style="color:var(--ink4);">→</div>
+        <div style="padding:6px 12px;background:var(--bg);border:1.5px dashed var(--border);border-radius:6px;font-size:10.5px;color:var(--ink3);">벤치마크·레퍼런스</div>
+        <div style="color:var(--ink4);">→</div>
+        <div style="padding:6px 12px;background:var(--bg);border:1.5px dashed var(--border);border-radius:6px;font-size:10.5px;color:var(--ink3);">시안 방향 확정</div>
+        <div style="color:var(--ink4);">→</div>
+        <div style="padding:6px 12px;background:var(--bg);border:1.5px dashed var(--border);border-radius:6px;font-size:10.5px;color:var(--ink3);">제안 기획서</div>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink3);">넷마블 게임 UI · 홈페이지 구축 · 배너 캠페인 · 상세페이지 등 실무에 맞는 단계로 별도 정의 예정.</div>
+    </div>
+  </div>
+
+  <!-- 제안서 풀패키지 워크플로우 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+    <div style="background:linear-gradient(135deg,#1F3B2F,#2D5A43);padding:12px 20px;display:flex;align-items:center;gap:12px;">
+      <div>
+        <div style="font-size:10px;font-weight:900;color:#86EFAC;letter-spacing:1px;text-transform:uppercase;">제안서 풀패키지 워크플로우</div>
+        <div style="font-size:12px;color:#BBF7D0;margin-top:2px;">허브에서 "제안 풀패키지 돌려" 1마디 → 12단계 자동</div>
+      </div>
+      <div style="margin-left:auto;padding:4px 10px;background:#16A34A;border-radius:12px;font-size:10px;color:#fff;font-weight:700;white-space:nowrap;">트리거: "제안 풀패키지 돌려"</div>
+    </div>
+    <div style="padding:14px 20px;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">① rfp-analyst</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">② market-research</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">③ trend-radar</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">④ concept-director</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑤ brainstormer</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#1A1A1A;border-radius:5px;font-size:10px;font-weight:700;color:#fff;">⑥ 실장 셀렉</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑦ quote-accountant</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑧ review-panel</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#FEF9EC;border:1px solid #FCD34D;border-radius:5px;font-size:10px;font-weight:700;color:#92400E;">⑨ fact-checker</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#FEF9EC;border:1px solid #FCD34D;border-radius:5px;font-size:10px;font-weight:700;color:#92400E;">⑩ critic</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#FEF9EC;border:1px solid #FCD34D;border-radius:5px;font-size:10px;font-weight:700;color:#92400E;">⑪ delivery-gate</div>
+        <span style="color:var(--ink4);">→</span>
+        <div style="padding:5px 9px;background:#1A1A1A;border-radius:5px;font-size:10px;font-weight:700;color:#fff;">⑫ 실장 OK</div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:12px;font-size:10px;color:var(--ink3);">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:2px;display:inline-block;"></span>에이전트</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;background:#1A1A1A;border-radius:2px;display:inline-block;"></span>실장 직접 결정</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;background:#FEF9EC;border:1px solid #FCD34D;border-radius:2px;display:inline-block;"></span>검수 게이트</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote" style="margin-top:20px;">
+    <strong>스킬 파일 위치:</strong> <code>.claude/skills/*/SKILL.md</code> &nbsp;·&nbsp;
+    <strong>에이전트 파일 위치:</strong> <code>.claude/agents/*.md</code> &nbsp;·&nbsp;
+    <strong>워크플로우 정의:</strong> <code>.claude/agents/brand-pipeline.md</code> · <code>.claude/library/prompts/brand-design-proposal.md</code>
+  </div>
+</div><!-- /sect-skills -->
+
 <div id="sect-brand" class="section">
-  <h2 class="section-title">브랜드 제안 파이프라인</h2>
-  <p class="section-desc"><code>hyo-manus</code> 스킬 · <code>brand-design-proposal.md</code> 마스터 가이드 · 3단계+4게이트 체계. 인테이크만 입력하면 Manus 1 → Gate 1 → Manus 2 → Gate 2 → Runable 3 자동 진행. GRAIN 프로젝트로 실전 검증 완료.</p>
+  <h2 class="section-title">디자인 제안 파이프라인 — 브랜드 트랙</h2>
+  <p class="section-desc"><code>brand-pipeline</code> 에이전트 · <code>brand-design-proposal.md</code> 마스터 가이드 · 3단계+4게이트 체계. 인테이크만 입력하면 Manus 1 → Gate 1 → Manus 2 → Gate 2 → Runable 3 자동 진행. GRAIN 프로젝트로 실전 검증 완료. UI/UX 트랙은 스킬 & 워크플로우 탭 참조.</p>
 
   <!-- v8.1 업그레이드 원칙 박스 -->
   <div style="background:#1A1A2E;border-radius:12px;padding:18px 22px;margin-bottom:20px;color:#E2E8F0;">
