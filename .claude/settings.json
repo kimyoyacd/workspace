@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(.claude/**)",
+      "Read(maxos-status.html)",
+      "Glob(.claude/**)",
+      "Grep(.claude/**)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"MAX실 OS v2.0 에이전트 세션 시작. 현재 에이전트: 라우팅 맵은 CLAUDE.md 참조. 안전 불변규칙·7개 위임금지 적용 중.\"}'",
+            "timeout": 5,
+            "statusMessage": "MAX실 OS 컨텍스트 로드 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
