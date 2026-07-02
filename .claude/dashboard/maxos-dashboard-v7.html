@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>MAX실 OS Dashboard v7 · 실시간 연동</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --ink: #111111;
+  --ink2: #4A4944;
+  --ink3: #8A8780;
+  --ink4: #B5B2AB;
+  --border: #E8E5DE;
+  --border-soft: #F1EEE7;
+  --sig: #2F3E5F;
+  --sig-soft: #EEF1F7;
+  --ok: #2D7A4F;
+  --warn: #C77A0F;
+  --danger: #B23B3B;
+}
+html, body { background: var(--bg); margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+  color: var(--ink); font-size: 13px; line-height: 1.6;
+  letter-spacing: -0.1px; font-feature-settings: 'tnum' 1;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #161616 0%, #2A2A2A 60%, #1A1A2E 100%);
+  color: #fff; padding: 20px 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.header-left h1 { margin: 0 0 3px; font-size: 18px; font-weight: 900; letter-spacing: -0.4px; }
+.header-left h1 span { color: #9AA8C4; font-weight: 500; }
+.header-left .sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+.header-right { display: flex; gap: 28px; align-items: center; }
+.head-stat { text-align: center; }
+.head-stat .n { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+.head-stat .l { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.4px; }
+.head-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.12); }
+.head-badge {
+  background: rgba(47,62,95,0.6); border: 1px solid rgba(154,168,196,0.3);
+  color: #9AA8C4; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;
+}
+
+/* NAV */
+.nav {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 0 36px; display: flex; position: sticky; top: 0; z-index: 50;
+  overflow-x: auto; box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+.tab {
+  padding: 13px 18px; font-size: 12px; font-weight: 600;
+  color: var(--ink3); border-bottom: 2px solid transparent;
+  white-space: nowrap; cursor: pointer; transition: all .2s;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+.tab .soon {
+  font-size: 9px; font-weight: 700; color: var(--ink4);
+  background: var(--border-soft); padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+}
+.tab.soon-tab { cursor: not-allowed; opacity: 0.5; }
+
+/* MAIN */
+.main { padding: 28px 36px 60px; max-width: 1800px; }
+.section { display: none; }
+.section.active { display: block; }
+.section-title { font-size: 20px; font-weight: 900; margin: 0 0 4px; letter-spacing: -0.5px; }
+.section-desc { font-size: 12px; color: var(--ink3); margin: 0 0 20px; }
+
+/* ALERT */
+.alert {
+  background: #F4F9F5; border: 1px solid #D4E5D9; border-left: 3px solid var(--ok);
+  border-radius: 6px; padding: 11px 15px; margin-bottom: 20px;
+  display: flex; gap: 10px; align-items: flex-start; font-size: 12px; color: var(--ink2);
+}
+.alert .ic { font-size: 15px; margin-top: 1px; }
+
+/* ═══ ORG TREE ═══ */
+.hub-node {
+  background: linear-gradient(180deg, #161616, #2A2A2A);
+  color: #fff; border-radius: 10px; padding: 14px 28px;
+  text-align: center; display: inline-block;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  margin-bottom: 0;
+}
+.hub-node .label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 3px; }
+.hub-node .name { font-size: 14px; font-weight: 800; margin-bottom: 1px; }
+.hub-node .sub { font-size: 10px; color: rgba(255,255,255,0.5); }
+
+.tree-wrap { display: flex; flex-direction: column; align-items: center; }
+.tree-spine {
+  width: 2px; height: 24px; background: var(--border);
+  position: relative;
+}
+.tree-spine::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% * 7 + 6 * 12px);
+  height: 2px; background: var(--border);
+}
+
+.org-row {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 12px; width: 100%; margin-top: 24px;
+  padding-top: 16px;
+  border-top: 2px solid var(--border);
+}
+.col { display: flex; flex-direction: column; }
+.col-head {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.3px;
+  text-transform: uppercase; padding: 8px 12px; border-radius: 6px 6px 0 0;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2px;
+}
+.count {
+  font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 10px;
+  background: rgba(255,255,255,0.5);
+}
+.col-tagline { font-size: 10px; color: var(--ink3); padding: 4px 12px 8px; line-height: 1.4; }
+.col-body { display: flex; flex-direction: column; gap: 6px; }
+
+/* Column colors — 6 pipeline groups */
+.col-1 .col-head { background: linear-gradient(135deg,#374151,#1f2937); color: #D1D5DB; }
+.col-2 .col-head { background: linear-gradient(135deg,#1E3A5F,#1B4F6D); color: #BAD6EF; }
+.col-3 .col-head { background: linear-gradient(135deg,#065f46,#047857); color: #A7F3D0; }
+.col-4 .col-head { background: linear-gradient(135deg,#7c3aed,#6d28d9); color: #DDD6FE; }
+.col-5 .col-head { background: linear-gradient(135deg,#991b1b,#b91c1c); color: #FECACA; }
+.col-6 .col-head { background: linear-gradient(135deg,#374151,#4B5563); color: #D1D5DB; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 7px; padding: 10px 11px;
+  transition: box-shadow .15s, transform .15s;
+}
+.card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); transform: translateY(-1px); }
+.card-name-row { display: flex; align-items: center; gap: 5px; margin-bottom: 2px; flex-wrap: wrap; }
+.card-name { font-size: 12.5px; font-weight: 800; letter-spacing: -0.2px; }
+.card-slug { font-size: 10px; color: var(--ink3); font-family: ui-monospace, monospace; margin-bottom: 4px; }
+.card-role { font-size: 10.5px; color: var(--ink2); line-height: 1.45; margin-bottom: 3px; }
+.card-trig { font-size: 10px; color: var(--ink3); }
+.card-warn { font-size: 9.5px; color: var(--danger); margin-top: 5px; padding: 3px 7px; background: #FDECEC; border-radius: 3px; }
+
+.badge {
+  font-size: 8.5px; font-weight: 800; padding: 1px 5px; border-radius: 3px;
+  white-space: nowrap;
+}
+.badge-core { background: #1E2A40; color: #9AA8C4; }
+.badge-new  { background: #E5F2E9; color: #1F5A38; }
+.badge-global { background: #EEF1F7; color: var(--sig); }
+.badge-urgent { background: #FFF6E5; color: var(--warn); }
+
+/* COLLAPSIBLE */
+.collapsible-section { margin-top: 16px; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+.collapsible-header {
+  background: var(--card); padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+  user-select: none;
+}
+.collapsible-header:hover { background: var(--border-soft); }
+.collapsible-header .toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 4px;
+  background: var(--card); border: 1px solid var(--border);
+  font-size: 11px; font-weight: 800; color: var(--ink2);
+  transition: transform .2s;
+}
+.collapsible-header.expanded .toggle { transform: rotate(90deg); }
+.collapsible-header h3 { font-size: 14px; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 8px; }
+.collapsible-header h3 .ico {
+  font-size: 9px; font-weight: 800; background: var(--ink); color: #fff;
+  padding: 2px 7px; border-radius: 3px; letter-spacing: 0.4px;
+}
+.collapsible-header p { font-size: 11px; color: var(--ink3); margin: 0; margin-left: auto; }
+.collapsible-content { max-height: 0; overflow: hidden; transition: max-height .3s ease-out; }
+.collapsible-content.expanded { max-height: 5000px; }
+.collapsible-body { padding: 22px; }
+
+/* HUB PANEL */
+.hub-panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 280px 1fr 1fr; }
+.hub-core { background: linear-gradient(180deg, #161616 0%, #2A2A2A 100%); color: #fff; padding: 22px; }
+.hub-core .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 8px; }
+.hub-core .name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+.hub-core .role { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.55; margin-bottom: 20px; }
+.hub-modes { display: flex; flex-direction: column; gap: 8px; }
+.hub-mode { display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; border-radius: 5px; background: rgba(255,255,255,0.06); border-left: 2px solid; }
+.hub-mode.m1 { border-color: #6DCC8E; } .hub-mode.m2 { border-color: #6DA8E3; } .hub-mode.m3 { border-color: #E3B86D; }
+.hub-mode .pct { font-size: 13px; font-weight: 800; color: #fff; min-width: 28px; }
+.hub-mode .mname { font-size: 11px; font-weight: 700; color: #fff; }
+.hub-mode .mdesc { font-size: 10px; color: rgba(255,255,255,0.5); }
+.hub-triggers { padding: 20px 22px; border-right: 1px solid var(--border); }
+.hub-nodelegate { padding: 20px 22px; background: #FDFCF9; }
+.hub-section-h { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--ink3); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.hub-section-h::before { content: ''; width: 14px; height: 1px; background: var(--ink3); }
+.trigger { display: grid; grid-template-columns: 80px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); align-items: baseline; }
+.trigger:last-child { border-bottom: none; }
+.trigger .when { font-size: 10px; font-weight: 700; color: var(--sig); font-family: ui-monospace, monospace; }
+.trigger .what strong { font-size: 11px; font-weight: 700; display: block; margin-bottom: 1px; }
+.trigger .what span { font-size: 10px; color: var(--ink3); }
+.nodelegate-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin-top: 4px; }
+.nodelegate-item { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; font-size: 11px; color: var(--ink2); border-bottom: 1px dashed var(--border-soft); }
+.nodelegate-item .num { font-size: 9px; font-weight: 800; color: var(--danger); background: #FDECEC; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nodelegate-item strong { font-weight: 700; color: var(--ink); }
+
+/* FLOW */
+.flow-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+.flow-sub { font-size: 11px; color: var(--ink3); margin-bottom: 18px; }
+.flow-chain { display: grid; grid-template-columns: repeat(12, 1fr); gap: 5px; align-items: stretch; }
+.flow-step { background: var(--bg); border: 1px solid var(--border-soft); border-radius: 6px; padding: 7px 5px 8px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 72px; }
+.flow-step.user { background: #1A1A1A; color: #fff; border-color: #1A1A1A; }
+.flow-step.design { background: #FBE7F1; border-color: #F2C9DF; }
+.flow-step.panel { background: #E5F2E9; border-color: #BEDDC6; }
+.flow-step.gate  { background: #FAF1DC; border-color: #ECD9B0; }
+.flow-step .n { font-size: 8.5px; font-weight: 800; color: var(--ink3); margin-bottom: 2px; }
+.flow-step.user .n { color: rgba(255,255,255,0.45); }
+.flow-step .who { font-size: 9.5px; font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 2px; }
+.flow-step.user .who { color: #fff; }
+.flow-step .do { font-size: 8.5px; color: var(--ink3); line-height: 1.3; }
+.flow-step.user .do { color: rgba(255,255,255,0.5); }
+.flow-legend { margin-top: 12px; display: flex; gap: 14px; font-size: 10px; color: var(--ink3); flex-wrap: wrap; }
+.flow-legend .lg { display: flex; align-items: center; gap: 5px; }
+.flow-legend .sw { width: 10px; height: 10px; border-radius: 3px; }
+
+/* CASE */
+.case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.case-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; position: relative; overflow: hidden; }
+.case-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
+.case-card.s-ok::before { background: var(--ok); }
+.case-card.s-warn::before { background: var(--warn); }
+.case-card.s-danger::before { background: var(--danger); }
+.case-card.s-new::before { background: var(--sig); }
+.case-header { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+.case-status { font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 3px; text-transform: uppercase; }
+.case-status.s-ok { background: #E5F2E9; color: var(--ok); }
+.case-status.s-warn { background: #FFF6E5; color: var(--warn); }
+.case-status.s-danger { background: #FDECEC; color: var(--danger); }
+.case-status.s-new { background: var(--sig-soft); color: var(--sig); }
+.case-client { font-size: 10px; color: var(--ink3); margin-left: auto; font-family: ui-monospace, monospace; }
+.case-title { font-size: 13px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; }
+.case-row { display: grid; grid-template-columns: 50px 1fr; gap: 6px; font-size: 10.5px; padding: 3px 0; line-height: 1.5; }
+.case-row + .case-row { border-top: 1px dotted var(--border-soft); }
+.case-row .lbl { font-size: 9px; font-weight: 800; color: var(--ink3); letter-spacing: 0.3px; text-transform: uppercase; }
+.case-row .val { color: var(--ink2); }
+.case-row .val strong { color: var(--ink); font-weight: 700; }
+.case-agents { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-soft); display: flex; flex-wrap: wrap; gap: 3px; }
+.case-agents .ag { font-size: 9px; padding: 2px 6px; border-radius: 3px; background: #F1EEE7; color: var(--ink2); font-family: ui-monospace, monospace; }
+.case-agents .ag.active { background: var(--ink); color: #fff; }
+
+/* DIRECTIVES */
+.directives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.dir-col { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.dir-col h4 { font-size: 11px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); margin: 0 0 4px; display: flex; align-items: center; gap: 6px; }
+.dir-col h4 .ic { font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 800; }
+.dir-col h4 .ic.must { background: #FDECEC; color: var(--danger); }
+.dir-col h4 .ic.auto { background: #E5F2E9; color: var(--ok); }
+.dir-col h4 .ic.rule { background: var(--sig-soft); color: var(--sig); }
+.dir-col .sub { font-size: 10px; color: var(--ink3); margin-bottom: 12px; }
+.dir-list { display: flex; flex-direction: column; }
+.dir-item { display: grid; grid-template-columns: 22px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px dashed var(--border-soft); font-size: 11px; color: var(--ink2); line-height: 1.45; }
+.dir-item:last-child { border-bottom: none; }
+.dir-item .num { font-size: 9px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.dir-item.must .num { background: #FDECEC; color: var(--danger); }
+.dir-item.auto .num { background: #E5F2E9; color: var(--ok); }
+.dir-item.rule .num { background: var(--sig-soft); color: var(--sig); }
+.dir-item strong { color: var(--ink); font-weight: 700; }
+.dir-item .ann { display: block; font-size: 9.5px; color: var(--ink3); margin-top: 2px; }
+
+/* ═══ PROJECTS TAB ═══ */
+.today-board {
+  background: #fff7f7; border: 1.5px solid #fecaca; border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 32px; box-shadow: 0 3px 12px rgba(220,38,38,0.05);
+}
+.today-board-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.today-board-head h3 { margin: 0; font-size: 14px; font-weight: 900; color: #b91c1c; }
+.today-note { font-size: 11px; color: var(--ink3); }
+.today-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.today-col-h { font-size: 11px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.today-col.overdue .today-col-h { color: #dc2626; }
+.today-col.duetoday .today-col-h { color: #ea580c; }
+.today-col-h .cnt { margin-left: auto; background: rgba(0,0,0,0.05); border-radius: 9px; padding: 0 7px; font-size: 10px; color: var(--ink3); font-weight: 700; }
+.today-item { display: flex; gap: 9px; background: #fff; border: 1px solid #f1d4d4; border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; align-items: flex-start; }
+.today-col.duetoday .today-item { border-color: #fde4cf; }
+.ti-area { flex-shrink: 0; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-top: 1px; }
+.ti-body { flex: 1; min-width: 0; }
+.ti-title { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.ti-meta { font-size: 10.5px; color: var(--ink3); margin-top: 3px; }
+.ti-type { font-weight: 700; padding: 1px 5px; border-radius: 4px; font-size: 10px; }
+.type-do { background: #fee2e2; color: #b91c1c; }
+.type-remind { background: #fef3c7; color: #b45309; }
+.type-check { background: #e0e7ff; color: #4338ca; }
+
+.project-section { margin-bottom: 40px; }
+.project-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 2px solid var(--border); }
+.project-section-header h3 { font-size: 15px; font-weight: 900; color: var(--ink); margin: 0; }
+.section-badge { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.badge-design { background: #FBE7F1; color: #7A1F4A; }
+.badge-ops { background: var(--sig-soft); color: var(--sig); }
+
+.kanban { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.kanban-col { background: var(--bg); border-radius: 10px; padding: 14px; }
+.kanban-col-header { font-size: 12px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+.col-dot { width: 9px; height: 9px; border-radius: 50%; }
+.col-count { margin-left: auto; background: rgba(0,0,0,0.05); border-radius: 10px; padding: 1px 8px; font-size: 10.5px; color: var(--ink3); }
+.project-item { background: var(--card); border: 1px solid var(--border); border-radius: 7px; padding: 11px 13px; margin-bottom: 7px; transition: box-shadow .2s, transform .15s; }
+.project-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+.project-item-title { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.project-item-desc { font-size: 10.5px; color: var(--ink3); line-height: 1.4; }
+.project-item-tag { display: inline-block; margin-top: 5px; padding: 2px 8px; border-radius: 4px; font-size: 9.5px; font-weight: 600; }
+.tag-hot  { background: #fee2e2; color: #b91c1c; }
+.tag-qa   { background: #fef3c7; color: #b45309; }
+.tag-new  { background: #dcfce7; color: #15803d; }
+.tag-hold { background: #f1f5f9; color: var(--ink3); }
+.tag-live { background: #dbeafe; color: #1d4ed8; }
+.sep { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* GANTT */
+.gantt-wrap { margin-top: 20px; }
+.gantt-title { font-size: 12px; font-weight: 700; color: var(--ink3); margin-bottom: 8px; }
+.gantt-legend { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.gantt-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ink3); }
+.gantt-legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+.gantt-container { overflow-x: auto; }
+.gantt-inner { min-width: 700px; }
+.gantt-header-row { display: flex; margin-left: 160px; margin-bottom: 4px; position: relative; height: 20px; }
+.gantt-header-label { position: absolute; font-size: 10px; color: var(--ink4); white-space: nowrap; transform: translateX(-50%); }
+.gantt-row { display: flex; align-items: center; height: 28px; margin-bottom: 2px; }
+.gantt-row-label { width: 156px; min-width: 156px; font-size: 10.5px; color: var(--ink3); padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gantt-track { flex: 1; height: 28px; position: relative; background: #f8fafc; border-radius: 4px; }
+.gantt-bar { position: absolute; height: 16px; top: 6px; border-radius: 4px; }
+.gantt-bar-wip  { background: #3b82f6; }
+.gantt-bar-hold { background: repeating-linear-gradient(45deg, #f59e0b, #f59e0b 4px, #fde68a 4px, #fde68a 8px); }
+.gantt-bar-done { background: #22c55e; opacity: 0.5; }
+.gantt-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #ef4444; opacity: 0.7; pointer-events: none; }
+
+/* GUIDELINES TAB */
+.guidelines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+.guide-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.guide-card-title { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f8fafc; }
+.checklist-item:last-child { border-bottom: none; }
+.check-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+.check-ok   { background: #dcfce7; color: #15803d; }
+.check-warn { background: #fef3c7; color: #b45309; }
+.check-err  { background: #fee2e2; color: #b91c1c; }
+.check-info { background: #dbeafe; color: #1d4ed8; }
+.check-text { font-size: 11.5px; color: var(--ink2); line-height: 1.5; }
+.check-text strong { color: var(--ink); font-weight: 700; }
+.tier-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.tier-table th { background: var(--bg); padding: 7px 10px; text-align: left; font-size: 10.5px; font-weight: 700; color: var(--ink3); border-bottom: 1px solid var(--border); }
+.tier-table td { padding: 7px 10px; font-size: 10.5px; color: var(--ink3); border-bottom: 1px solid var(--border-soft); vertical-align: top; }
+.tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+.tier0 { background: #f1f5f9; color: var(--ink3); }
+.tier1 { background: #fef3c7; color: #b45309; }
+.tier2 { background: #fee2e2; color: #b91c1c; }
+
+/* MANUAL TAB */
+.manual-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.manual-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.manual-card-num { font-size: 28px; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 8px; }
+.manual-card-title { font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.manual-card-desc { font-size: 12px; color: var(--ink2); line-height: 1.6; }
+.manual-scenario { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+.manual-scenario h4 { font-size: 13px; font-weight: 800; color: var(--ink); margin: 0 0 6px; }
+.manual-scenario p { font-size: 12px; color: var(--ink2); margin: 0; line-height: 1.6; }
+.manual-scenario code { font-size: 11px; background: var(--bg); border: 1px solid var(--border); padding: 1px 6px; border-radius: 3px; font-family: ui-monospace, monospace; }
+.footnote { margin-top: 24px; padding: 13px 17px; background: var(--sig-soft); border-left: 3px solid var(--sig); border-radius: 4px; font-size: 11px; color: var(--ink2); line-height: 1.6; }
+.footnote strong { color: var(--sig); font-weight: 800; }
+
+/* ═══ TREND TAB ═══ */
+.trend-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.trend-meta .src-badge { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 12px; background: #F1EEE7; color: var(--ink2); }
+.trend-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
+.trend-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 14px; position: relative; overflow: hidden; }
+.trend-card::after { content: ''; position: absolute; top: 0; right: 0; width: 3px; bottom: 0; }
+.trend-card.cat-ui::after { background: #3B82F6; }
+.trend-card.cat-motion::after { background: #8B5CF6; }
+.trend-card.cat-brand::after { background: #F59E0B; }
+.trend-card.cat-ai::after { background: #10B981; }
+.trend-card.cat-ua::after { background: #EF4444; }
+.trend-num { font-size: 9px; font-weight: 800; color: var(--ink4); margin-bottom: 5px; letter-spacing: 0.5px; }
+.trend-title { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 5px; letter-spacing: -0.3px; }
+.trend-desc { font-size: 11px; color: var(--ink2); line-height: 1.55; margin-bottom: 8px; }
+.trend-apply { font-size: 10.5px; color: var(--sig); background: var(--sig-soft); padding: 5px 8px; border-radius: 4px; line-height: 1.4; }
+.trend-apply strong { font-weight: 700; }
+.trend-tags { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+.trend-tag { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; background: var(--bg); color: var(--ink3); border: 1px solid var(--border-soft); }
+.trend-top5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+.trend-top-card { background: linear-gradient(160deg, #1E2A40, #2F3E5F); color: #fff; border-radius: 10px; padding: 14px; }
+.trend-top-card .n { font-size: 22px; font-weight: 900; opacity: 0.3; line-height: 1; margin-bottom: 6px; }
+.trend-top-card .t { font-size: 12px; font-weight: 800; line-height: 1.3; margin-bottom: 5px; }
+.trend-top-card .d { font-size: 10px; color: rgba(255,255,255,0.55); line-height: 1.45; }
+.trend-auto-notice { background: #FBE7F1; border: 1px solid #F2C9DF; border-radius: 8px; padding: 11px 15px; font-size: 11.5px; color: #7A1F4A; margin-bottom: 20px; }
+
+/* ═══ OVERHEAD TAB ═══ */
+.overhead-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.overhead-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 16px; }
+.overhead-card .oh-label { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; color: var(--ink3); text-transform: uppercase; margin-bottom: 12px; }
+.util-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.util-name { font-size: 11px; color: var(--ink2); width: 80px; flex-shrink: 0; }
+.util-bar { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.util-fill { height: 100%; border-radius: 4px; }
+.util-fill.ok { background: var(--ok); }
+.util-fill.warn { background: var(--warn); }
+.util-fill.danger { background: var(--danger); }
+.util-pct { font-size: 11px; font-weight: 700; width: 32px; text-align: right; flex-shrink: 0; }
+.fte-table { width: 100%; border-collapse: collapse; }
+.fte-table th { font-size: 9.5px; font-weight: 700; color: var(--ink3); text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.3px; }
+.fte-table td { font-size: 11px; color: var(--ink2); padding: 6px 8px; border-bottom: 1px solid var(--border-soft); }
+.fte-table td:last-child { font-weight: 700; }
+.risk-flag { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+.risk-flag:last-child { border-bottom: none; }
+.risk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.risk-dot.high { background: var(--danger); }
+.risk-dot.mid  { background: var(--warn); }
+.risk-dot.low  { background: var(--ok); }
+.risk-text { font-size: 11px; color: var(--ink2); line-height: 1.45; }
+.risk-text strong { color: var(--ink); }
+
+/* ═══ CLIENTS TAB ═══ */
+.client-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.client-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.client-header { padding: 13px 15px 10px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: flex-start; gap: 10px; }
+.client-logo { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.client-name { font-size: 14px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+.client-type { font-size: 10px; color: var(--ink3); margin-top: 2px; }
+.client-status { margin-left: auto; font-size: 9.5px; font-weight: 800; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
+.cs-active { background: #E5F2E9; color: var(--ok); }
+.cs-wait { background: #FFF6E5; color: var(--warn); }
+.cs-new { background: var(--sig-soft); color: var(--sig); }
+.client-body { padding: 11px 15px; }
+.client-row { display: grid; grid-template-columns: 52px 1fr; gap: 6px; padding: 4px 0; border-bottom: 1px dotted var(--border-soft); font-size: 10.5px; }
+.client-row:last-child { border-bottom: none; }
+.client-row .cl { font-size: 9px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.3px; padding-top: 1px; }
+.client-row .cv { color: var(--ink2); line-height: 1.4; }
+.client-risk { margin-top: 8px; padding: 6px 8px; border-radius: 5px; font-size: 10px; line-height: 1.45; }
+.client-risk.r-high { background: #FDECEC; color: #B23B3B; }
+.client-risk.r-mid  { background: #FFF6E5; color: var(--warn); }
+.client-risk.r-low  { background: #E5F2E9; color: var(--ok); }
+.client-stars { color: #F59E0B; font-size: 11px; letter-spacing: -1px; }
+.relation-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 4px; overflow: hidden; }
+.relation-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--sig), #5B78B0); }
+
+/* ═══ TEAM TAB ═══ */
+.team-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.team-stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 16px; text-align: center; }
+.team-stat-n { font-size: 32px; font-weight: 900; color: var(--ink); line-height: 1; }
+.team-stat-n .unit { font-size: 14px; color: var(--ink3); font-weight: 500; }
+.team-stat-l { font-size: 11px; color: var(--ink3); margin-top: 4px; }
+.team-stat-sub { font-size: 10px; color: var(--ink4); margin-top: 2px; }
+.member-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.member-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 14px; }
+.member-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.member-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; flex-shrink: 0; color: #fff; }
+.av-vm { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+.av-vx { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+.av-cd { background: linear-gradient(135deg, #1E2A40, #2F3E5F); }
+.member-name { font-size: 13px; font-weight: 800; color: var(--ink); }
+.member-role { font-size: 10px; color: var(--ink3); margin-top: 1px; }
+.member-util { margin-bottom: 8px; }
+.member-util-label { font-size: 10px; color: var(--ink3); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.member-util-bar { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.member-util-fill { height: 100%; border-radius: 3px; }
+.member-projects { font-size: 10.5px; color: var(--ink2); }
+.member-project { display: flex; align-items: center; gap: 5px; padding: 3px 0; border-bottom: 1px dotted var(--border-soft); }
+.member-project:last-child { border-bottom: none; }
+.member-project .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sig); flex-shrink: 0; }
+.member-skills { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 8px; }
+.skill-tag { font-size: 9px; padding: 2px 6px; border-radius: 3px; background: var(--bg); color: var(--ink3); border: 1px solid var(--border-soft); }
+.group-label { font-size: 12px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+.group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ═══ HIRING TAB ═══ */
+.hiring-roadmap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 20px; }
+.roadmap-bar { display: flex; gap: 2px; margin: 14px 0 8px; height: 28px; border-radius: 6px; overflow: hidden; }
+.roadmap-seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; transition: flex .3s; }
+.roadmap-seg.now { background: var(--sig); }
+.roadmap-seg.q3  { background: #5B78B0; }
+.roadmap-seg.q4  { background: #8BA3C7; }
+.roadmap-seg.y27 { background: #B5C8E0; }
+.pipeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.pipeline-col { background: var(--bg); border-radius: 9px; padding: 12px; }
+.pipeline-col-h { font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.pipeline-col-h .dot { width: 8px; height: 8px; border-radius: 50%; }
+.pipeline-item { background: var(--card); border: 1px solid var(--border); border-radius: 7px; padding: 10px; margin-bottom: 7px; }
+.pipeline-item:last-child { margin-bottom: 0; }
+.pipeline-pos { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.pipeline-meta { font-size: 10px; color: var(--ink3); line-height: 1.4; }
+.pipeline-urgent { font-size: 9.5px; color: var(--danger); background: #FDECEC; padding: 2px 6px; border-radius: 3px; margin-top: 5px; display: inline-block; }
+.vendor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.vendor-card { background: var(--card); border: 1px solid var(--border); border-radius: 9px; padding: 13px; }
+.vendor-cat { font-size: 10px; font-weight: 800; color: var(--sig); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+.vendor-item { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px dotted var(--border-soft); font-size: 11px; color: var(--ink2); }
+.vendor-item:last-child { border-bottom: none; }
+.vendor-item .v-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); flex-shrink: 0; }
+.vendor-item .v-dot.absent { background: var(--ink4); }
+.vendor-stars { font-size: 10px; color: #F59E0B; margin-left: auto; }
+
+/* RESPONSIVE */
+@media (max-width: 1800px) { .org-row { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1300px) { .org-row { grid-template-columns: repeat(3, 1fr); } .directives-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 1100px) { .hub-panel { grid-template-columns: 1fr; } .org-row { grid-template-columns: repeat(2, 1fr); } .today-grid { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .org-row { grid-template-columns: 1fr; } .kanban { grid-template-columns: 1fr; } .manual-grid { grid-template-columns: 1fr; } .guidelines-grid { grid-template-columns: 1fr; } .case-grid { grid-template-columns: 1fr; } }
+
+/* v6 실시간 연동 */
+.sync-ok    { color: #22c55e !important; border-color: #22c55e !important; }
+.sync-err   { color: #ef4444 !important; border-color: #ef4444 !important; }
+.sync-warn  { color: #f59e0b !important; border-color: #f59e0b !important; }
+.live-skeleton { animation: pulse-bg 1.5s ease-in-out infinite; background: var(--border-soft); border-radius:6px; }
+@keyframes pulse-bg { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.live-loading { display:flex; align-items:center; justify-content:center; grid-column:1/-1; height:140px; color:var(--ink3); font-size:12px; gap:8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin-icon { display:inline-block; animation:spin 1s linear infinite; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>MAX실 OS <span>· Dashboard v7</span></h1>
+    <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · <span id="sync-sub">노션/구글시트 실시간 연동 초기화 중...</span></div>
+  </div>
+  <div class="header-right">
+    <div class="head-stat"><div class="n">27</div><div class="l">에이전트</div></div>
+    <div class="head-divider"></div>
+    <div class="head-stat"><div class="n">7</div><div class="l">스킬</div></div>
+    <div class="head-divider"></div>
+    <div class="head-stat"><div class="n" id="stat-projects">—</div><div class="l">진행 프로젝트</div></div>
+    <div class="head-divider"></div>
+    <div class="head-stat"><div class="n" id="stat-util">—</div><div class="l">평균 가동률</div></div>
+    <div class="head-divider"></div>
+    <div class="head-badge" id="sync-badge">● 연결 중... · v8.1</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="tab active" data-tab="org">조직도</div>
+  <div class="tab" data-tab="projects">프로젝트 현황</div>
+  <div class="tab" data-tab="team">MAX실 9명</div>
+  <div class="tab" data-tab="overhead">추가투입 위험</div>
+  <div class="tab" data-tab="clients">클라이언트 레이더</div>
+  <div class="tab" data-tab="trend">디자인 트렌드 보드</div>
+  <div class="tab" data-tab="brand">브랜드 제안</div>
+  <div class="tab" data-tab="guidelines">CLAUDE.md 지침</div>
+  <div class="tab" data-tab="manual">사용설명서</div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════ TAB 1: 조직도 ══════════════ -->
+<div id="sect-org" class="section active">
+  <h2 class="section-title">에이전트 조직도</h2>
+  <p class="section-desc">메인 세션(허브) 아래 <strong>29개 에이전트 · 7그룹</strong> (2 대기) + <strong>brand-proposal</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design + AI 라이팅 스킬 5종(dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna). 아래 섹션은 클릭해서 펼치기.</p>
+
+  <div class="alert" style="background:#EFF6FF;border-color:#BAE6FD;border-left-color:#2563EB;margin-bottom:8px;">
+    <span class="ic">✅</span>
+    <div><strong>v8.1 — GRAIN AI Creative Experiment 업데이트 (PR #25 반영).</strong> 신규 에이전트 2종: <code>ax-architect</code>(AX 시스템 설계자, 조직 전체 AI 워크플로우 구조 설계) + <code>project-continuity-auditor</code>(브랜드 프로젝트 연속성 감사, 버전 전환 직후·Stage 3 진입 직전 자동). 신규 라이브러리 5종: <code>MOODBOARD_MASTER_FRAMEWORK·brand-design-proposal·design-deck-wireframe·deck-slide-templates·wide-research</code>. 브랜드 파이프라인 원칙 강화: Materialize·게이트 확인·경쟁사 카드 완전성·이미지 그리드·연속성 관리. 에이전트 총 <strong>29종</strong>. GRAIN 호글라스 프로젝트 추가(202606_GRAIN). 기준일 2026-07-02.</div>
+  </div>
+  <div class="alert">
+    <span class="ic">✅</span>
+    <div><strong>v8 — copy-writer 에이전트 신규 추가 + AI 라이팅 스킬 5종 통합.</strong> <code>copy-writer</code>(카테고리별 카피라이팅, viral-hooks·storytelling·anti-ai-writing 내장) 신규. <code>dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna</code> 스킬 설치. <code>ux-writing.md</code> 라이브러리 생성(토스·refeeel 참조). 에이전트 총 27종 · 7그룹(2 대기).</div>
+  </div>
+  <div class="alert" style="background:#F0F9FF;border-color:#BAE6FD;border-left-color:#0284C7;margin-top:8px;">
+    <span class="ic">✅</span>
+    <div><strong>v6 — HYO MANUS 브랜드 제안 자동화 시스템 구축.</strong> <code>brand-proposal</code> 스킬 신규 등록 + HYO MANUS 1차/2차/3차 라이브러리 정비 + HTML 체크포인트 파이프라인. LUNE 브랜드 샘플 완성 (36슬라이드). GitHub <strong>PR #26</strong>(draft).</div>
+  </div>
+  <div class="alert" style="background:#F4F9F5;border-color:#D4E5D9;border-left-color:#2D7A4F;margin-top:0;">
+    <span class="ic">✅</span>
+    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + brand-proposal 스킬. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트)</div>
+  </div>
+
+  <!-- 파이프라인 분류 규칙 안내 -->
+  <div style="background:#F8F7FF;border:1.5px solid #C4B5FD;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:10.5px;color:#4C1D95;line-height:1.6;">
+    <strong>📐 분류 원칙:</strong> 에이전트는 직무팀이 아닌 <strong>파이프라인 단계</strong>로 분류합니다. 신규 에이전트 추가 시 "어느 단계에서 투입되는가"를 기준으로 6개 그룹 중 하나에 배치.
+  </div>
+
+  <div class="tree-wrap">
+    <div class="hub-node">
+      <div class="label">MAIN SESSION</div>
+      <div class="name">허브 (김효정)</div>
+      <div class="sub">오케스트레이터 · <strong>29명 에이전트</strong> + 스킬 7종(brand-proposal·list-deck-design·dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna) 호출 허브</div>
+    </div>
+
+    <div class="org-row">
+
+      <!-- ① 착수 판단 -->
+      <div class="col col-1">
+        <div class="col-head">① 착수 판단<span class="count">2</span></div>
+        <div class="col-tagline">프로젝트 수주 가능성 판단 — 가장 먼저 투입</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">RFP 분석가</span></div>
+            <div class="card-slug">rfp-analyst</div>
+            <div class="card-role">RFP → 명시·숨은·미정의·위험 4분류. 확인 질문 도출.</div>
+            <div class="card-trig"><strong>호출:</strong> RFP·과업지시서 수신 즉시</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">냉정한 비평가</span></div>
+            <div class="card-slug">critic</div>
+            <div class="card-role">비용·기간·역량·실현·설득력 점수화. 수주 여부 판단 근거 제공.</div>
+            <div class="card-trig"><strong>호출:</strong> "현실적으로 돼?" / "리스크 짚어줘" / 착수 결정 전</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ② 리서치 전문 -->
+      <div class="col col-2">
+        <div class="col-head">② 리서치 전문<span class="count">4</span></div>
+        <div class="col-tagline" style="font-size:9px;">market-research → design-trend-radar → reference-curator → fact-checker 순서</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">시장조사</span><span class="badge badge-core">① 먼저</span></div>
+            <div class="card-slug">market-research</div>
+            <div class="card-role">경쟁사 30개 → XY 포지셔닝 맵 + 화이트스페이스. 출처 필수. GRAIN 실전 검증.</div>
+            <div class="card-trig"><strong>호출:</strong> "시장조사" / "포지셔닝 맵" / 브랜드 제안 착수 시</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">디자인 트렌드 레이더</span><span class="badge badge-global">🌐 ②</span></div>
+            <div class="card-slug">design-trend-radar</div>
+            <div class="card-role">최근 3개월 글로벌 트렌드. Awwwards·Brand New·FWA·Cannes·D&amp;AD. 출처 URL 필수.</div>
+            <div class="card-trig"><strong>호출:</strong> 분기 자동 / 시장조사 직후</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">레퍼런스 큐레이터</span><span style="font-size:9px;color:var(--ink3);margin-left:auto;">③ 다음</span></div>
+            <div class="card-slug">reference-curator</div>
+            <div class="card-role">클라/카테고리별 레퍼런스 큐레이션. 출처 URL 필수.</div>
+            <div class="card-trig"><strong>호출:</strong> 트렌드 리서치 직후 / 시안 시작 전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">팩트 체커</span><span style="font-size:9px;color:#B45309;margin-left:auto;">④ 자동</span></div>
+            <div class="card-slug">fact-checker</div>
+            <div class="card-role">사실·숫자·인용 반증 먼저. 리서치 완료 후 자동 발동.</div>
+            <div class="card-trig"><strong>자동:</strong> 리서치 결과 / 제안서 수치 / 숫자가 포함된 산출물</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ 아이데이션·발산 -->
+      <div class="col col-3">
+        <div class="col-head">③ 아이데이션·발산<span class="count">2</span></div>
+        <div class="col-tagline">관점 고정(concept-director) → 발산(brainstormer) 순서</div>
+        <div class="col-body">
+          <div class="card" style="border-left-color:#059669;">
+            <div class="card-name-row"><span class="card-name">컨셉 디렉터</span><span class="badge badge-core">★ 관점 게이트</span></div>
+            <div class="card-slug">concept-director</div>
+            <div class="card-role">핵심 제품/타이틀 → <strong>관점 한 문장</strong> 고정. 전 매체 상속. 무드보드 덱 §0 오프닝도 담당.</div>
+            <div class="card-trig"><strong>호출:</strong> "관점 잡아줘" / 리서치 완료 후 / 제안 시작 전 반드시</div>
+            <div style="margin-top:6px;padding:5px 7px;background:#ECFDF5;border-radius:4px;font-size:9px;line-height:1.5;color:#065F46;">관점 확정 전까지 발산 진행 금지 — Gate 1</div>
+          </div>
+          <div class="card" style="border-left-color:#059669;">
+            <div class="card-name-row"><span class="card-name">브레인스토머</span></div>
+            <div class="card-slug">brainstormer</div>
+            <div class="card-role">아이디어 발산 · 방향별 키워드·포지셔닝 축. 무드보드 퍼스널리티 슬라이더(MOODBOARD_MASTER_FRAMEWORK §5) 포함.</div>
+            <div class="card-trig"><strong>호출:</strong> "발산해줘" / "아이디어 줘" / 관점 확정 직후</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 무드보드·비주얼 제작 -->
+      <div class="col col-4">
+        <div class="col-head">④ 무드보드·비주얼 제작<span class="count">4</span></div>
+        <div class="col-tagline">moodboard-builder 총괄 → visual-generator/figma-bridge/storyboard-maker 순환</div>
+        <div class="col-body">
+          <div class="card" style="border-left-color:#7C3AED;">
+            <div class="card-name-row"><span class="card-name">무드보드 빌더</span><span class="badge" style="background:#EDE9FE;color:#6D28D9;">총괄</span></div>
+            <div class="card-slug">moodboard-builder</div>
+            <div class="card-role">컨셉별 무드보드 총괄. 레퍼런스+생성 이미지 조합. MOODBOARD_MASTER_FRAMEWORK §1~§10 준수. 내부 조직은 §10 교차참조.</div>
+            <div class="card-trig"><strong>호출:</strong> "무드보드" / 발산 직후 / Hyojung guide 2 진입 시</div>
+          </div>
+          <div class="card" style="border-left-color:#9333EA;">
+            <div class="card-name-row"><span class="card-name">비주얼 제너레이터</span></div>
+            <div class="card-slug">visual-generator</div>
+            <div class="card-role">키비주얼·스타일프레임·목업. Higgsfield 이미지. 3×2 그리드 원칙 적용.</div>
+            <div class="card-trig"><strong>호출:</strong> "키비주얼 뽑아" / "목업" / 스타일 앵커 확정 후</div>
+          </div>
+          <div class="card" style="border-left-color:#9333EA;">
+            <div class="card-name-row"><span class="card-name">Figma 브릿지</span></div>
+            <div class="card-slug">figma-bridge</div>
+            <div class="card-role">코드 ↔ Figma 양방향. 디자인 시스템 동기화. 비주얼 확정 후 Figma 이관.</div>
+            <div class="card-trig"><strong>호출:</strong> "Figma 보내" / "Figma 가져와" / 시스템화 단계</div>
+          </div>
+          <div class="card" style="border-left-color:#9333EA;">
+            <div class="card-name-row"><span class="card-name">스토리보드 메이커</span></div>
+            <div class="card-slug">storyboard-maker</div>
+            <div class="card-role">영상·모션 콘티. Higgsfield 비디오 생성. 모션 확정 후 투입.</div>
+            <div class="card-trig"><strong>호출:</strong> "스토리보드" / "영상 콘티" / 모션 발산</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ 디자인 검수 게이트 -->
+      <div class="col col-5">
+        <div class="col-head">⑤ 디자인 검수 게이트<span class="count">6</span></div>
+        <div class="col-tagline" style="color:#B23B3B;font-weight:700;">산출물 완성 후 → 납품 전 필수 경유</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">디자인 비평가</span><span class="badge badge-core">1차</span></div>
+            <div class="card-slug">design-critique</div>
+            <div class="card-role">시안 6영역 검수 🟢🟡🔴. UI·GUI·UA·상세페이지·브랜딩.</div>
+            <div class="card-trig"><strong>호출:</strong> 시안 1차 완성 시</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">디자인 시스템 가디언</span></div>
+            <div class="card-slug">design-system-guardian</div>
+            <div class="card-role">사내 디자인 시스템 준수 점검. 6종 슬라이드 스펙 포함. 신규 온보딩.</div>
+            <div class="card-trig"><strong>자동:</strong> 시안 완성 / 신규 입사자 온보딩</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">5관점 패널</span><span class="badge badge-core">통합</span></div>
+            <div class="card-slug">review-panel</div>
+            <div class="card-role">기획·크리에이터·사업·마케팅·B2B 5관점 병렬 검토.</div>
+            <div class="card-trig"><strong>호출:</strong> 발산 후 / 제안 셀렉 전</div>
+            <div style="margin-top:6px;padding:5px 7px;background:#E5F2E9;border-radius:4px;font-size:9px;line-height:1.5;color:#1F5A38;">① 기획 · ② 크리에이터 · ③ 사업 · ④ 마케팅 · ⑤ B2B고객</div>
+          </div>
+          <div class="card" style="border-left-color:#7C3AED;">
+            <div class="card-name-row"><span class="card-name">연속성 감사관</span></div>
+            <div class="card-slug">project-continuity-auditor</div>
+            <div class="card-role">브랜드 프로젝트 버전 불일치·누락 결정 탐지. 창의적 판단 없이 기계적 검증.</div>
+            <div class="card-trig"><strong>자동:</strong> 버전 전환 직후 · Stage 3 진입 직전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">딜리버리 게이트</span></div>
+            <div class="card-slug">delivery-gate</div>
+            <div class="card-role">라이트모드·PII·텍스트잘림·링크 린트. 납품·발송 직전 최종 관문.</div>
+            <div class="card-trig"><strong>자동:</strong> 외부 발송·납품 직전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">톤 가디언</span></div>
+            <div class="card-slug">tone-guardian</div>
+            <div class="card-role">회신·메일 초안 톤·매너 교정. 외부 커뮤니케이션 발송 전.</div>
+            <div class="card-trig"><strong>자동:</strong> mail-drafter 완료 후 / 외부 발송 전</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑥ 운영·조직 -->
+      <div class="col col-6">
+        <div class="col-head">⑥ 운영·조직<span class="count">11</span></div>
+        <div class="col-tagline">견적·클라·커뮤니케이션·CD·법무·AX (파이프라인 외 상시 운영)</div>
+        <div class="col-body">
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">견적 회계사</span><span class="badge badge-urgent">급함</span></div>
+            <div class="card-slug">quote-accountant</div>
+            <div class="card-role">노임단가 원가표 + 마진 시나리오. UI Design만 우리실 매출.</div>
+            <div class="card-trig"><strong>호출:</strong> "○○ 견적" / 제안 착수</div>
+            <div class="card-warn">🚨 최종 마진율·날인 사용자 직접</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">어카운트 레이더</span></div>
+            <div class="card-slug">account-radar</div>
+            <div class="card-role">반복 클라 히스토리·리스크. 미팅 전 브리핑.</div>
+            <div class="card-trig"><strong>호출:</strong> "코웨이 상황" / 미팅 직전</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">프로젝트 매니저</span></div>
+            <div class="card-slug">project-manager</div>
+            <div class="card-role">진행현황·매출·가동률. 노션·시트 read-only.</div>
+            <div class="card-trig"><strong>호출:</strong> "이번 주 현황" / "가동률"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">크리에이티브 디렉터</span><span class="badge badge-core">코어</span></div>
+            <div class="card-slug">creative-director</div>
+            <div class="card-role">시안 톤·퀄리티 최종 심사. 신규/외주 온보딩 표준 생성.</div>
+            <div class="card-trig"><strong>호출:</strong> "CD 검수" / "온보딩 만들어줘"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">카피라이터</span></div>
+            <div class="card-slug">copy-writer</div>
+            <div class="card-role">카테고리·톤별 카피. viral-hooks·storytelling·anti-ai-writing 내장.</div>
+            <div class="card-trig"><strong>호출:</strong> "카피 써줘" / "배너 문구"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">메일 초안 작성</span></div>
+            <div class="card-slug">mail-drafter</div>
+            <div class="card-role">외부 메일·회신·제안 메시지 초안. 수신자·목적·톤 기반.</div>
+            <div class="card-trig"><strong>호출:</strong> "메일 써줘" / "회신 초안"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">회의록 작성</span></div>
+            <div class="card-slug">meeting-logger</div>
+            <div class="card-role">메모·녹취→구조화 회의록. 액션 아이템·담당자·기한 추출.</div>
+            <div class="card-trig"><strong>호출:</strong> "회의록 써줘" / "미팅 정리"</div>
+          </div>
+          <div class="card">
+            <div class="card-name-row"><span class="card-name">법무·컴플라이언스</span></div>
+            <div class="card-slug">legal-compliance</div>
+            <div class="card-role">계약·NDA 쟁점·리스크 플래그.</div>
+            <div class="card-trig"><strong>호출:</strong> "계약서 검토" / 계약서 첨부</div>
+            <div class="card-warn">🚨 법무 자문 대체 아님</div>
+          </div>
+          <div class="card" style="border-left-color:#6366f1;background:#FAFAFE;">
+            <div class="card-name-row"><span class="card-name">AX 설계자</span><span class="badge" style="background:#E0E7FF;color:#4338CA;">메타</span></div>
+            <div class="card-slug">ax-architect</div>
+            <div class="card-role">"조직이 AI와 일하는 방식" 자체를 설계. 반복 패턴 관찰 → 구조 재설계 제안. 대시보드 드리프트 진단.</div>
+            <div class="card-trig"><strong>호출:</strong> "워크플로우 정리해줘" / "에이전트 구조 다시 짜줘"</div>
+          </div>
+          <div class="card" style="opacity:0.45;border-style:dashed;">
+            <div class="card-name-row"><span class="card-name">채용 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-slug">hiring-radar</div>
+            <div class="card-role">증원 파이프라인. JD·소싱·면접·오퍼.</div>
+            <div class="card-trig" style="color:#9ca3af;">비활성 — 필요 시 활성화</div>
+          </div>
+          <div class="card" style="opacity:0.45;border-style:dashed;">
+            <div class="card-name-row"><span class="card-name">벤더 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-slug">vendor-radar</div>
+            <div class="card-role">외주·프리랜서 풀 관리. 외주비 산정.</div>
+            <div class="card-trig" style="color:#9ca3af;">비활성 — 필요 시 활성화</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- org-row -->
+  </div><!-- tree-wrap -->
+
+  <!-- HUB 디테일 -->
+  <div class="collapsible-section">
+    <div class="collapsible-header" data-collapsible="true">
+      <div class="toggle">▶</div>
+      <h3><span class="ico">HUB</span>허브 운영 디테일</h3>
+      <p>3개 모드 · 5개 자동 트리거 · 7개 위임 X</p>
+    </div>
+    <div class="collapsible-content">
+      <div class="collapsible-body">
+        <div class="hub-panel">
+          <div class="hub-core">
+            <div class="label">MAIN SESSION</div>
+            <div class="name">허브 (김효정)</div>
+            <div class="role">29명 에이전트 + 스킬을 굴리는 교통경찰 + 자동 루틴.<br>오케스트레이션(제안 풀패키지 등)은 스킬이 담당 — 서브에이전트는 서브에이전트를 못 부른다.</div>
+            <div class="hub-modes">
+              <div class="hub-mode m1"><div class="pct">60%</div><div><div class="mname">즉답</div><div class="mdesc">위임 없이 허브가 직접 답</div></div></div>
+              <div class="hub-mode m2"><div class="pct">30%</div><div><div class="mname">라우팅</div><div class="mdesc">키워드 자동 매칭 → 결과 정리</div></div></div>
+              <div class="hub-mode m3"><div class="pct">10%</div><div><div class="mname">종합</div><div class="mdesc">병렬 호출 → 1장으로 묶음</div></div></div>
+            </div>
+          </div>
+          <div class="hub-triggers">
+            <div class="hub-section-h">자동 트리거</div>
+            <div class="trigger"><div class="when">매일 09:00</div><div class="what"><strong>오늘 보드 갱신</strong><span>시트 read → "오늘 꼭 / 기일초과"</span></div></div>
+            <div class="trigger"><div class="when">월 08:00</div><div class="what"><strong>주간 컨닝페이퍼</strong><span>max-pm + overhead-watcher + account-radar</span></div></div>
+            <div class="trigger"><div class="when">분기 첫주</div><div class="what"><strong>🎨 디자인 트렌드</strong><span>design-trend-radar → reference-curator</span></div></div>
+            <div class="trigger"><div class="when">매일 18:00</div><div class="what"><strong>결정대기 알림</strong><span>오늘 모인 "사용자 결정 필요" 항목</span></div></div>
+            <div class="trigger"><div class="when">발송 직전</div><div class="what"><strong>외부 발송 게이트</strong><span>fact-checker → delivery-gate → tone-guardian</span></div></div>
+          </div>
+          <div class="hub-nodelegate">
+            <div class="hub-section-h" style="color:var(--danger);">절대 위임 안 함 — 사용자 직접</div>
+            <div class="nodelegate-list">
+              <div class="nodelegate-item"><span class="num">1</span><div><strong>최종 견적가</strong></div></div>
+              <div class="nodelegate-item"><span class="num">2</span><div><strong>마진율</strong></div></div>
+              <div class="nodelegate-item"><span class="num">3</span><div><strong>계약 날인</strong></div></div>
+              <div class="nodelegate-item"><span class="num">4</span><div><strong>단가 협상 카드</strong></div></div>
+              <div class="nodelegate-item"><span class="num">5</span><div><strong>인사 평가·재계약</strong></div></div>
+              <div class="nodelegate-item"><span class="num">6</span><div><strong>신규 채용·해고</strong></div></div>
+              <div class="nodelegate-item"><span class="num">7</span><div><strong>외부 발송 최종 OK</strong></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div class="collapsible-section">
+    <div class="collapsible-header" data-collapsible="true">
+      <div class="toggle">▶</div>
+      <h3><span class="ico">FLOW</span>제안서 풀패키지 워크플로</h3>
+      <p>"제안 풀패키지 돌려" 1마디 → 12단계 자동 오케스트레이션</p>
+    </div>
+    <div class="collapsible-content">
+      <div class="collapsible-body">
+        <div class="flow-wrap">
+          <div class="flow-sub">사용자는 ⑤셀렉 + ⑫최종 OK 두 번만 결정. 나머지는 자동.</div>
+          <div class="flow-chain">
+            <div class="flow-step"><div><div class="n">①</div><div class="who">RFP 분석가</div></div><div class="do">진짜 니즈</div></div>
+            <div class="flow-step"><div><div class="n">②</div><div class="who">시장조사</div></div><div class="do">사업 출처</div></div>
+            <div class="flow-step design"><div><div class="n">②-2</div><div class="who">트렌드 레이더</div></div><div class="do">🎨 3개월</div></div>
+            <div class="flow-step design"><div><div class="n">③</div><div class="who">레퍼런스</div></div><div class="do">풀에서 추림</div></div>
+            <div class="flow-step"><div><div class="n">④</div><div class="who">브레인스토머</div></div><div class="do">6관점</div></div>
+            <div class="flow-step user"><div><div class="n">⑤</div><div class="who">사용자 셀렉</div></div><div class="do">1~2개</div></div>
+            <div class="flow-step"><div><div class="n">⑥</div><div class="who">견적 회계사</div></div><div class="do">원가·마진</div></div>
+            <div class="flow-step panel"><div><div class="n">⑦</div><div class="who">review-panel</div></div><div class="do">5렌즈</div></div>
+            <div class="flow-step gate"><div><div class="n">⑧</div><div class="who">팩트 체커</div></div><div class="do">숫자</div></div>
+            <div class="flow-step gate"><div><div class="n">⑨</div><div class="who">냉정 비평</div></div><div class="do">red-team</div></div>
+            <div class="flow-step gate"><div><div class="n">⑩</div><div class="who">CD+비평가</div></div><div class="do">6영역</div></div>
+            <div class="flow-step gate"><div><div class="n">⑪</div><div class="who">딜리버리</div></div><div class="do">결정론</div></div>
+          </div>
+          <div style="margin-top:5px;display:grid;grid-template-columns:repeat(12,1fr);gap:5px;">
+            <div class="flow-step user" style="grid-column:12;"><div><div class="n">⑫</div><div class="who">사용자 OK</div></div><div class="do">제출</div></div>
+          </div>
+          <div class="flow-legend">
+            <div class="lg"><span class="sw" style="background:var(--bg);border:1px solid var(--border-soft);"></span>에이전트</div>
+            <div class="lg"><span class="sw" style="background:#FBE7F1;border:1px solid #F2C9DF;"></span>🎨 디자인</div>
+            <div class="lg"><span class="sw" style="background:#1A1A1A;"></span>사용자 결정</div>
+            <div class="lg"><span class="sw" style="background:#E5F2E9;border:1px solid #BEDDC6;"></span>패널</div>
+            <div class="lg"><span class="sw" style="background:#FAF1DC;border:1px solid #ECD9B0;"></span>게이트</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <strong>v6 — HYO MANUS 자동화 시스템 추가.</strong>&nbsp; brand-proposal 스킬(1차→Gate→2차→Gate→3차→Final Deck) + HTML 체크포인트 자동 생성. list-deck-design 스킬 기존 유지. 스킬 총 2개. 등록 에이전트 24개(캡 25, 잔여 1). GitHub PR #26(draft). ·&nbsp;
+    <strong>v5 — 9탭 통합 OS.</strong>&nbsp; 24개 에이전트 + 라우터 + SoT + brand-proposal(구버전 스킬). GitHub PR #11(draft).
+  </div>
+</div><!-- /sect-org -->
+
+
+<!-- ══════════════ TAB 2: 프로젝트 현황 ══════════════ -->
+<div id="sect-projects" class="section">
+  <h2 class="section-title">프로젝트 현황 보드</h2>
+  <p class="section-desc">📡 <strong>SOT:</strong> Notion <a href="https://app.notion.com/p/2e79ff44ed51817a9138eac149de9f21" target="_blank" style="color:var(--sig);">2026 Project DB</a> · 가동률: <a href="https://docs.google.com/spreadsheets/d/1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0/edit" target="_blank" style="color:var(--sig);">MAX_2026 리소스 관리 시트</a> · <span id="last-updated" style="color:var(--ink3);">데이터 로드 중...</span></p>
+
+  <!-- 오늘 보드 (동적) -->
+  <div class="today-board">
+    <div class="today-board-head">
+      <h3 id="today-board-title">🎯 마감 임박 프로젝트</h3>
+      <span class="today-note" id="today-board-note">노션 2026 Project DB에서 실시간 추출 중...</span>
+    </div>
+    <div id="today-live">
+      <div style="display:flex;align-items:center;justify-content:center;height:80px;color:var(--ink3);font-size:12px;gap:8px;">
+        <span class="spin-icon">⟳</span> 노션 데이터 로드 중...
+      </div>
+    </div>
+  </div>
+
+  <!-- MAX실 프로젝트 -->
+  <div class="project-section">
+    <div class="project-section-header">
+      <h3>MAX실 디자인 프로젝트 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· 노션 2026 Project DB 실시간</span></h3>
+      <span class="section-badge badge-design" id="projects-summary">로드 중...</span>
+    </div>
+    <div id="projects-kanban-live" class="kanban">
+      <div class="live-loading"><span class="spin-icon">⟳</span> 노션 프로젝트 데이터 로드 중...</div>
+    </div>
+  </div>
+
+  <!-- Gantt -->
+  <div class="gantt-wrap">
+    <div class="gantt-title">간트차트 — MAX실 디자인 프로젝트 (6/1 ~ 9/30)</div>
+    <div class="gantt-legend">
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#3b82f6;"></div>진행중</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:repeating-linear-gradient(45deg,#f59e0b,#f59e0b 4px,#fde68a 4px,#fde68a 8px);"></div>홀딩/대기</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#22c55e;opacity:0.5;"></div>완료</div>
+      <div class="gantt-legend-item"><div style="width:12px;height:12px;border-left:2px dashed #ef4444;"></div>오늘(6/26)</div>
+    </div>
+    <div class="gantt-container">
+      <div class="gantt-inner" id="gantt-max"></div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- AI 크리에이티브 실험 프로젝트 -->
+  <div class="project-section">
+    <div class="project-section-header">
+      <h3>AI 크리에이티브 실험 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· MAX Lab — 내부 브랜드 파이프라인 검증</span></h3>
+      <span class="section-badge" style="background:#EDE9FE;color:#6D28D9;border:1px solid #C4B5FD;">활성 1 (PR #25)</span>
+    </div>
+    <div class="kanban">
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:#7C3AED;"></span>진행중 — Hyojung guide 2 완료<span class="col-count">1</span></div>
+        <div class="project-item" style="border-left:3px solid #7C3AED;">
+          <div class="project-item-title">202606_GRAIN — 호글라스 브랜드 (AI Creative Experiment)</div>
+          <div class="project-item-desc">포지셔닝: Functional↔Emotional × Minimal↔Expressive 좌상단. 최종 2컨셉: <strong>Ritual Moment</strong> (9.5/10) + <strong>Gravity Well</strong> (9/10). 통합 메시지: "We don't sell hourglasses. We sell the weight of a moment." · 비주얼: Brushed Brass + Cloud Dancer + Charcoal. 다음: Stage 3 (최종 슬라이드 덱)</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+            <span class="project-item-tag" style="background:#EDE9FE;color:#6D28D9;">Hyojung guide 1 ✅</span>
+            <span class="project-item-tag" style="background:#EDE9FE;color:#6D28D9;">Hyojung guide 2 ✅</span>
+            <span class="project-item-tag tag-hold">Stage 3 대기</span>
+          </div>
+        </div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:#22c55e;"></span>완료 산출물<span class="col-count">9</span></div>
+        <div class="project-item">
+          <div class="project-item-title">경쟁사 30개 분석 + 포지셔닝 맵</div>
+          <div class="project-item-desc"><code>01-competitor-matrix.md · 03-positioning-map.md</code></div>
+          <span class="project-item-tag tag-new">✅ Hyojung guide 1</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">Visual Identity DNA 8렌즈 + 컨셉 6개 평가</div>
+          <div class="project-item-desc"><code>02-proposal2-identity.md · 05-visual-dna.md · 09-proposal2-visual-system.html</code></div>
+          <span class="project-item-tag tag-new">✅ Hyojung guide 2</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">전략 리포트 (list-deck-design)</div>
+          <div class="project-item-desc"><code>05-design-report.html</code> — 에디토리얼 단일 페이지</div>
+          <span class="project-item-tag tag-new">✅ 완료</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">제품 디자인 브리프 + 무드보드 전략</div>
+          <div class="project-item-desc"><code>06-product-design-brief.md · 07-moodboard-strategy.md</code></div>
+          <span class="project-item-tag tag-new">✅ 완료</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- 운영 프로젝트 -->
+  <div class="project-section">
+    <div class="project-section-header">
+      <h3>조직 운영</h3>
+      <span class="section-badge badge-ops">활성 1 · 홀딩 1 · 완료 5</span>
+    </div>
+    <div class="kanban">
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:#3b82f6;"></span>활성 (실데이터 대기)<span class="col-count">1</span></div>
+        <div class="project-item">
+          <div class="project-item-title">구글 시트 Time-Log 연동</div>
+          <div class="project-item-desc">과거 프로젝트 시간 기록 → 견적 회계사 학습용. Google Sheets MCP 읽기 전용. SoT 스텁 생성됨 — 실데이터 연결 대기</div>
+          <span class="project-item-tag tag-live">google-sheets-read</span>
+        </div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:#f59e0b;"></span>홀딩<span class="col-count">1</span></div>
+        <div class="project-item">
+          <div class="project-item-title">settings.json 자동 트리거 활성화</div>
+          <div class="project-item-desc">09:00/월08:00/18:00/분기 크론. <strong>스텁 생성됨</strong>(settings.json.example) — 자동 발송 금지 원칙 검토 후 사용자 승인 시 활성화</div>
+          <span class="project-item-tag tag-hold">⏳ 스텁 완료 · 활성화 대기</span>
+        </div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header"><span class="col-dot" style="background:#22c55e;"></span>완료<span class="col-count">5</span></div>
+        <div class="project-item">
+          <div class="project-item-title">MAX실 Claude Code 워크스페이스 구축</div>
+          <div class="project-item-desc">에이전트 24개 <code>.claude/agents/</code> + brand-proposal 스킬 실제 생성. CLI 등록 확인. GitHub PR #11(draft) 푸시</div>
+          <span class="project-item-tag tag-new">✅ 24 에이전트 생성</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">CLAUDE.md 허브 라우터</div>
+          <div class="project-item-desc">3모드 · 키워드 라우팅표 · 7개 위임금지 · DoD 3티어 · 검수 경로 (≤100줄)</div>
+          <span class="project-item-tag tag-new">✅ 완료</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">SoT 라이브러리 스텁</div>
+          <div class="project-item-desc">quote-sot(unit-rates) · design-sot(brand-tone/design-system/qc-checklist) · project-sot. 템플릿 — 실데이터 대기</div>
+          <span class="project-item-tag tag-new">✅ 스텁 완료</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">프로젝트 규약 + 대시보드 보관</div>
+          <div class="project-item-desc">.claude/projects/ 규약 + 대시보드 HTML을 .claude/dashboard/ 에 지도로 보관(v2.0·v2.1·v5)</div>
+          <span class="project-item-tag tag-new">✅ 완료</span>
+        </div>
+        <div class="project-item">
+          <div class="project-item-title">MAX실 OS Dashboard v5 (9탭)</div>
+          <div class="project-item-desc">9탭 통합(트렌드·추가투입·클라·9명·채용 추가) + 실제 구축 결과 반영</div>
+          <span class="project-item-tag tag-new">✅ 완료</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /sect-projects -->
+
+
+<!-- ══════════════ TAB 3: CLAUDE.md 지침 ══════════════ -->
+<div id="sect-guidelines" class="section">
+  <h2 class="section-title">CLAUDE.md 주요 지침 현황</h2>
+  <p class="section-desc">MAX실 워크스페이스 운영 규칙. 모든 세션·에이전트 공통 불변규칙. 에이전트 27/30개 활성 (2 대기 포함) + 스킬 7종. ✅ CLAUDE.md 실제 생성 완료.</p>
+
+  <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
+    <span class="ic">⚠️</span>
+    <div><strong>에이전트 수</strong> — 현재 <strong>29/30개 (잔여 1)</strong>. 2개 대기(hiring-radar·vendor-radar). v8.1 신규: <code>ax-architect</code> · <code>project-continuity-auditor</code>. 오케스트레이션은 에이전트가 아니라 <strong>스킬</strong>로 추가(서브에이전트는 서브에이전트를 호출 못 함). 등록 스킬 7종: <code>brand-proposal</code> · <code>list-deck-design</code> · <code>dumbify</code> · <code>storytelling</code> · <code>viral-hooks</code> · <code>anti-ai-writing</code> · <code>voice-dna</code>.</div>
+  </div>
+
+  <div class="guidelines-grid">
+    <div class="guide-card">
+      <div class="guide-card-title">안전 불변규칙 (예외 없음)</div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>자동 발송/게시 절대 금지</strong> — 모든 외부 커뮤니케이션·산출물은 사용자 검토 후 진행</div></div>
+      <div class="checklist-item"><div class="check-icon check-ok">✓</div><div class="check-text"><strong>HTML 라이트모드 3종 필수</strong> — <code>meta color-scheme light</code> + <code>:root{color-scheme:light}</code> + <code>html,body{background:#fff}</code></div></div>
+      <div class="checklist-item"><div class="check-icon check-ok">✓</div><div class="check-text"><strong>검토용 문서 HTML 전용</strong> — 사용자에게 보여주는 문서는 HTML로. .md 금지</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>미확인 사실·숫자 금지</strong> — 산출 전 팩트체크 최소 1회</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>민감정보 처리·노출 금지</strong> — 단가·클라 정보·개인정보</div></div>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-title">DoD 핑퐁 루프 — 리스크 티어</div>
+      <table class="tier-table">
+        <tr><th>티어</th><th>정의</th><th>검수 패널</th></tr>
+        <tr><td><span class="tier-badge tier0">Tier 0</span></td><td>내부 단순·탐색·조회</td><td>없음 (퀵린트만)</td></tr>
+        <tr><td><span class="tier-badge tier1">Tier 1</span></td><td>내부 산출·문서·시안 초안</td><td>design-critique + delivery-gate</td></tr>
+        <tr><td><span class="tier-badge tier2">Tier 2</span></td><td>외부 발신·제안서·계약·브랜드</td><td>풀 패널: fact-checker → cold-critic → delivery-gate → tone-guardian</td></tr>
+      </table>
+      <div style="margin-top:12px;font-size:11px;color:var(--ink3);line-height:1.6;">
+        <strong>애매하면 무조건 상향.</strong> 외부·클라 수신자 = 자동 Tier 2 승격.
+      </div>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-title">7개 절대 위임 금지 (사용자 직접)</div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>최종 견적가</strong> — 에이전트는 4개 마진율 시나리오만 제시</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>마진율 선택</strong> — 10/20/30/40% 중 사용자 직접</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>계약 날인</strong> — 서명·마감·승인</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>단가 협상 카드</strong> — 협상 전략 시나리오 선택</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>인사 평가·재계약</strong> — 연봉·직급·계약 조건</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>신규 채용·해고</strong> — 최종 의사결정</div></div>
+      <div class="checklist-item"><div class="check-icon check-err">✕</div><div class="check-text"><strong>외부 발송 최종 OK</strong> — 클라 회신·제안서·계약서</div></div>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-title">운영 핵심 룰</div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>시트 쓰기 금지</strong> — 에이전트는 read-only. 쓰기는 사용자 직접</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>에이전트 총수 ≤ 30개</strong> — 현재 29개(활성 27·대기 2). 잔여 1. 오케스트레이션은 스킬로(서브에이전트는 서브에이전트 호출 불가)</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>CLAUDE.md ≤ 100줄</strong> — 초과 시 library/로 분산</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>에이전트 파일 각 ≤ 100줄</strong> — 상세 내용은 library/로. 라우팅만 유지</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>새 프로젝트 폴더 생성 전</strong> — projects/ 유사 폴더 중복 점검 필수</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>SoT 3종</strong> — quote-sot / design-sot / project-sot → .claude/library/ 아래</div></div>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-title">회신·시안·제안 검수 경로</div>
+      <div class="checklist-item"><div class="check-icon check-ok">✓</div><div class="check-text"><strong>회신 초안 기본 경유</strong> — 슬랙·메일 회신 → <strong>톤 가디언</strong> 통과 후 사용자 OK</div></div>
+      <div class="checklist-item"><div class="check-icon check-ok">✓</div><div class="check-text"><strong>시안 검수 순서</strong> — design-critique(6영역) → creative-director(톤) → delivery-gate(결정론)</div></div>
+      <div class="checklist-item"><div class="check-icon check-ok">✓</div><div class="check-text"><strong>제안서 검수</strong> — review-panel(5렌즈) → fact-checker → cold-critic → delivery-gate</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>개정→수렴 루프</strong> — 패널 🔴/🟡 시 기획 개정 후 재호출 → 전원 🟢까지 반복</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>패널 상충 우선순위</strong> — fact-checker PASS여도 cold-critic 🔴 → 더 엄격한 판정 우선</div></div>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-title">메타룰 — 파일 구조 관리</div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>GitHub: kimyoyacd/workspace</strong> — .claude/ 폴더 전체 커밋·푸시 필수</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>에이전트 파일 경로</strong> — .claude/agents/[slug].md (name/description/tools 프론트매터 필수)</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>SoT 파일 경로</strong> — .claude/library/[quote-sot|design-sot|project-sot]/[파일].md</div></div>
+      <div class="checklist-item"><div class="check-icon check-info">i</div><div class="check-text"><strong>프로젝트 폴더</strong> — .claude/projects/[클라명]/[STATUS.md + 산출물]</div></div>
+      <div class="checklist-item"><div class="check-icon check-warn">!</div><div class="check-text"><strong>새 에이전트 추가 후</strong> — 즉시 이 대시보드 에이전트 수 업데이트 필수</div></div>
+    </div>
+  </div>
+</div><!-- /sect-guidelines -->
+
+
+<!-- ══════════════ TAB 4: 사용설명서 ══════════════ -->
+<div id="sect-manual" class="section">
+  <h2 class="section-title">사용설명서</h2>
+  <p class="section-desc">Claude Code + MAX실 에이전트 시스템을 어떻게 쓰는지. 중학생도 이해할 수 있게.</p>
+
+  <div class="manual-grid">
+    <div class="manual-card">
+      <div class="manual-card-num">01</div>
+      <div class="manual-card-title">에이전트 = 특정 일을 기억하는 전문가</div>
+      <div class="manual-card-desc">
+        Claude Code에서 새 대화를 열면 → 그게 "에이전트"가 됩니다. 각 에이전트는 특정 역할만 기억합니다.<br><br>
+        <strong>비유:</strong> 회사에서 "법무팀한테 보내" 하면 법무팀이 알아서 처리하는 것처럼, "계약서 검토해줘" 하면 <code>legal-compliance</code> 에이전트가 자동으로 호출됩니다.
+      </div>
+    </div>
+    <div class="manual-card">
+      <div class="manual-card-num">02</div>
+      <div class="manual-card-title">파일 = 에이전트의 설명서</div>
+      <div class="manual-card-desc">
+        <code>.claude/agents/creative-director.md</code> 파일이 있으면 → 그게 "크리에이티브 디렉터" 에이전트가 됩니다.<br><br>
+        <strong>GitHub에 올리면</strong> → 어디서나 같은 에이전트가 작동합니다. 폴더가 기억입니다. 파일이 없으면 에이전트도 없습니다.
+      </div>
+    </div>
+    <div class="manual-card">
+      <div class="manual-card-num">03</div>
+      <div class="manual-card-title">이 대시보드 = 지도 (실제 작업은 Claude Code)</div>
+      <div class="manual-card-desc">
+        이 HTML 파일은 "누가 있는지 보여주는 지도"입니다.<br><br>
+        <strong>실제 작업:</strong> Claude Code를 열고 → 키워드로 말하면 자동으로 적합한 에이전트가 일을 합니다. 이 대시보드를 열면서 대화하면 됩니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 에이전트 트리거 전체표 ── -->
+  <!-- 자동 실행 설명 -->
+  <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:16px 20px;margin:24px 0;">
+    <div style="font-size:13px;font-weight:800;color:#1D4ED8;margin-bottom:10px;">⚡ 에이전트 자동 실행 — 맞아, 자동으로 돌아가</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11px;line-height:1.7;">
+      <div>
+        <div style="font-weight:700;color:#1D4ED8;margin-bottom:4px;">🤖 자동(Auto) 에이전트</div>
+        <div style="color:#1e40af;">Claude가 상황을 인식해 자동 호출. 별도 명령 불필요.</div>
+        <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;">
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>fact-checker</code> — 리서치·수치 산출 후 자동</span>
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>tone-guardian</code> — 메일 초안 작성 후 자동</span>
+          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>delivery-gate</code> — 외부 발송 직전 자동</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#374151;margin-bottom:4px;">💬 호출(Manual) 에이전트</div>
+        <div style="color:#374151;">키워드를 입력하거나 에이전트 이름을 직접 불러야 작동.</div>
+        <div style="margin-top:6px;font-size:10px;color:#6B7280;line-height:1.8;">
+          "메일 써줘" → <code>mail-drafter</code><br>
+          "시안 검수해줘" → <code>design-critique</code><br>
+          "RFP 분석해줘" → <code>rfp-analyst</code><br>
+          "회의록 써줘" → <code>meeting-logger</code>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #BFDBFE;font-size:10.5px;color:#374151;">
+      🚫 <strong>자동 발송은 절대 없음</strong> — 초안·결과물은 항상 사용자 확인 후 진행. 에이전트가 "발송"을 트리거하는 경우는 없음.
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:800;margin:28px 0 12px;">🔑 에이전트 호출 키워드 — 전체표</h3>
+  <p style="font-size:11px;color:var(--ink3);margin:0 0 14px;">키워드로 말하면 해당 에이전트가 자동 호출됩니다. 에이전트 이름을 직접 명시해도 됩니다 (예: "rfp-analyst 써서 분석해줘"). <strong>굵게 표시된 그룹</strong>은 자동 발동 에이전트 포함.</p>
+
+  <div style="overflow-x:auto;margin-bottom:32px;">
+    <table style="width:100%;border-collapse:collapse;font-size:11px;">
+      <thead>
+        <tr style="background:var(--bg);">
+          <th style="padding:8px 12px;text-align:left;font-weight:800;color:var(--ink3);border-bottom:2px solid var(--border);white-space:nowrap;">에이전트</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:800;color:var(--ink3);border-bottom:2px solid var(--border);">이렇게 말하면</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:800;color:var(--ink3);border-bottom:2px solid var(--border);">그룹</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ① 리서치 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">rfp-analyst</td><td style="padding:7px 12px;color:var(--ink2);">"RFP 분석해줘" / "과업지시서 봐줘" / "이 제안요청서 분석"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">market-research</td><td style="padding:7px 12px;color:var(--ink2);">"경쟁사 분석해줘" / "포지셔닝 맵 그려줘" / "시장조사"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-trend-radar</td><td style="padding:7px 12px;color:var(--ink2);">"요즘 트렌드 뭐야" / "디자인 트렌드 봐줘" / "분기 트렌드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">reference-curator</td><td style="padding:7px 12px;color:var(--ink2);">"레퍼런스 찾아줘" / "참고 사례 모아줘" / "벤치마크"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" · <strong style="color:#B45309;">자동: 리서치 결과 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <!-- ② 전략·발산 -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <!-- ③ 비주얼 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">moodboard-builder</td><td style="padding:7px 12px;color:var(--ink2);">"무드보드 만들어줘" / "분위기 잡아줘" / "톤 보드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">figma-bridge</td><td style="padding:7px 12px;color:var(--ink2);">"Figma 보내줘" / "Figma 가져와" / "피그마 동기화"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">storyboard-maker</td><td style="padding:7px 12px;color:var(--ink2);">"스토리보드 짜줘" / "영상 콘티" / "모션 기획"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <!-- ④ 검수 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-system-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"시스템 점검" / "가이드 맞나" · <strong style="color:#B45309;">자동: 시안 완성 시</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">review-panel</td><td style="padding:7px 12px;color:var(--ink2);">"5관점 검토해줘" / "다각도로 봐줘" / 발산 후 셀렉 전</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#6D28D9;font-weight:700;">project-continuity-auditor ★</td><td style="padding:7px 12px;color:var(--ink2);">"다 반영됐는지 확인" / "누락된 거 있나" / "전체 일관성 체크" · <strong style="color:#B45309;">자동: 버전 전환 직후 · Stage 3 진입 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <!-- ⑤ 수주·재무 -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <!-- ⑥ 조직관리 -->
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
+        <!-- ⑦ 커뮤니케이션 (신규) -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">copy-writer ✦</td><td style="padding:7px 12px;color:var(--ink2);">"카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구" / "말투 맞춰 써줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:#B45309;">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">delivery-gate</td><td style="padding:7px 12px;color:var(--ink2);">"발송 전 점검" / "딜리버리 체크" · <strong style="color:#B45309;">자동: 외부 발송 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <!-- ⑧ AX 시스템 (신규) -->
+        <tr style="background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#4338CA;font-weight:700;">ax-architect ★</td><td style="padding:7px 12px;color:var(--ink2);">"워크플로우 정리해줘" / "에이전트 구조 다시 짜줘" / "AX 관점에서 봐줘" / "프로세스가 안 보여" / "이거 시스템으로 만들자"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E0E7FF;color:#3730A3;">⑧ AX 시스템</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 새 프로젝트 시작하기 ── -->
+  <h3 style="font-size:16px;font-weight:800;margin:0 0 12px;">📁 새 프로젝트 시작하기</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px;">
+    <div class="manual-card">
+      <div class="manual-card-num" style="font-size:18px;">Step 1</div>
+      <div class="manual-card-title">새 대화(세션) 열기</div>
+      <div class="manual-card-desc">Claude Code에서 새 대화를 시작하면 자동으로 <code>CLAUDE.md</code>를 읽어 컨텍스트를 파악합니다. 매 세션마다 같은 에이전트 시스템이 준비됩니다.</div>
+    </div>
+    <div class="manual-card">
+      <div class="manual-card-num" style="font-size:18px;">Step 2</div>
+      <div class="manual-card-title">프로젝트 노트 생성</div>
+      <div class="manual-card-desc">"코웨이 신규 랜딩 프로젝트 시작해" 라고 하면 Claude가 <code>.claude/projects/202607_코웨이랜딩.md</code> 파일을 만들어 클라이언트·범위·일정·견적을 채워 넣습니다.</div>
+    </div>
+    <div class="manual-card">
+      <div class="manual-card-num" style="font-size:18px;">Step 3</div>
+      <div class="manual-card-title">다음 세션에서 이어받기</div>
+      <div class="manual-card-desc">다른 날 다시 열 때는 "202607 코웨이 랜딩 이어서 작업해줘" 또는 ".claude/projects/202607_코웨이랜딩.md 확인해줘" 라고 하면 됩니다.</div>
+    </div>
+    <div class="manual-card">
+      <div class="manual-card-num" style="font-size:18px;">TIP</div>
+      <div class="manual-card-title">클라이언트 정보 추가</div>
+      <div class="manual-card-desc">같은 세션에서 "담당자 홍길동, 예산 500만, 마감 7/31 추가해줘" 하면 노트에 쌓입니다. 세션이 바뀌어도 파일은 GitHub에 남아 히스토리가 유지됩니다.</div>
+    </div>
+  </div>
+
+  <!-- ── 에이전트 새로 만들기 ── -->
+  <h3 style="font-size:16px;font-weight:800;margin:0 0 12px;">⚙️ 에이전트 새로 만들기</h3>
+  <div class="manual-card" style="margin-bottom:32px;">
+    <div class="manual-card-desc">
+      <strong>방법 1 — Claude에게 요청</strong><br>
+      <code>"넥슨 전담 에이전트 만들어줘 — 넥슨 히스토리 추적하고 미팅 전 브리핑"</code><br>
+      → Claude가 <code>.claude/agents/넥슨전담.md</code> 파일을 만들고 CLAUDE.md 목록도 업데이트합니다.<br><br>
+      <strong>방법 2 — 직접 파일 생성</strong><br>
+      <code>.claude/agents/에이전트명.md</code> 파일을 만들고 아래 포맷으로 작성:
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px;margin-top:8px;font-size:10.5px;overflow-x:auto;line-height:1.6;">---
+name: my-agent
+description: 어떤 상황에서 호출되는지 (트리거 키워드 포함)
+tools: Read, Glob, Grep, WebSearch
+---
+
+# 역할
+한 문장 역할 정의.
+
+## 행동 규칙
+- 규칙 1: ...
+- 규칙 2: ...</pre>
+      파일을 GitHub에 push하면 모든 세션에서 바로 사용 가능합니다.
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:800;margin:0 0 16px;">💬 이렇게 말하면 됩니다 — 12가지 시나리오</h3>
+
+  <div class="manual-scenario">
+    <h4>① 시안 검수 → "코웨이 시안 검수해줘"</h4>
+    <p>Claude Code에 시안 파일을 첨부하고 → <code>creative-director</code>가 톤을 보고 → <code>design-critique</code>가 6영역 체크 → 결과를 사용자에게 보고합니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>② 견적 요청 → "아모레 설화수 캠페인 견적 뽑자"</h4>
+    <p><code>quote-accountant</code>가 인건비·외주비·제작비·관리비 4축 원가표를 만들고 → 10/20/30/40% 마진율 시나리오 4가지를 보여줍니다. 마진율 선택은 사용자 직접.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>③ 이번 주 가동률 → "이번 주 가동률 알려줘"</h4>
+    <p><code>max-pm</code>이 구글 시트를 읽어서 9명 각각의 투입률, 야근 여부, 기일 임박 프로젝트를 정리해서 보여줍니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>④ 제안 발산 → "넷마블 신규 캠페인 컨셉 발산해줘"</h4>
+    <p><code>brainstormer</code>가 6관점 × 10개 후보를 생성 → 사용자가 1~2개 선택 → 제안서 풀패키지가 자동으로 돌아갑니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑤ 클라 상황 파악 → "코웨이 요즘 상황 어때?"</h4>
+    <p><code>account-radar</code>가 코웨이 히스토리, 최근 커뮤니케이션, 리스크 포인트를 요약해서 미팅 직전에 보여줍니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑥ 트렌드 확인 → "요즘 UI/UX 트렌드 뭐야?"</h4>
+    <p><code>design-trend-radar</code>가 Awwwards·Brand New 등에서 3개월 이내 글로벌 트렌드만 추려서 보고합니다. 분기 첫주에는 자동으로 업데이트됩니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑦ 제안 풀패키지 → "설화수 제안 풀패키지 돌려"</h4>
+    <p>12단계 자동 오케스트레이션: RFP분석 → 시장조사 → 트렌드 → 레퍼런스 → 발산 → <strong>사용자 셀렉</strong> → 견적 → 5관점패널 → 팩트체크 → 비평 → 시안검수 → 딜리버리 → <strong>사용자 OK</strong></p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑧ 키비주얼 생성 → "설화수 키비주얼 뽑아줘"</h4>
+    <p><code>visual-generator</code>가 Higgsfield MCP로 AI 이미지 생성. 스타일프레임, 목업 이미지를 바로 만들어 줍니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑨ 회신 초안 검토 → "넷마블에 CR 5차 답변 초안 잡아줘"</h4>
+    <p>초안 작성 후 → <code>tone-guardian</code>이 톤 체크 → 사용자가 최종 OK하면 발송. 자동 발송은 절대 안 됩니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑩ 신규 입사자 온보딩 → "이번에 새로 온 VM 정○○ 온보딩해줘"</h4>
+    <p><code>creative-director</code>가 브랜드 톤·매너, 클라별 주의사항, 디자인 시스템, QC 체크리스트가 담긴 1장 HTML 온보딩 팩을 만들어 줍니다.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑪ 채용 현황 → "VM 채용 지금 어디까지야?" <span style="font-size:10px;font-weight:400;color:#9CA3AF;">(🔘 대기 상태 — 활성화 필요 시 사용)</span></h4>
+    <p><code>hiring-radar</code>가 파이프라인 현황, JD 상태, 소싱 후보, 면접 일정을 요약해서 보여줍니다. 현재 비활성 — 필요 시 바로 호출 가능.</p>
+  </div>
+  <div class="manual-scenario">
+    <h4>⑫ 계약서 검토 → "하이브 NDA 계약서 검토해줘"</h4>
+    <p><code>legal-compliance</code>가 계약서 첨부를 받아 쟁점·리스크를 플래그. 단, 법무 자문을 대체하지 않습니다.</p>
+  </div>
+  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
+    <h4>⑬ 메일 작성 → "코웨이 담당자한테 2차 시안 전달 메일 써줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+    <p><code>mail-drafter</code>가 수신자·목적·톤에 맞는 메일 초안을 생성 → <code>tone-guardian</code>이 자동으로 톤 체크 → 사용자가 최종 OK 후 발송. <strong>자동 발송은 절대 없음.</strong></p>
+  </div>
+  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
+    <h4>⑭ 회의록 정리 → "오늘 넷마블 미팅 내용 회의록으로 정리해줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+    <p><code>meeting-logger</code>가 메모·구두 설명을 받아 날짜·참석자·논의내용·결정사항·액션아이템(담당자+기한) 구조화 회의록 생성. 노션 저장은 사용자 확인 후.</p>
+  </div>
+
+  <div class="footnote">
+    <strong>핵심 정리:</strong> Claude Code 열기 → 말하기 → 에이전트가 일함 → 사용자가 최종 결정.<br>
+    자동 실행 에이전트(fact-checker·tone-guardian·delivery-gate)는 상황 인식 시 자동 개입. 초안·산출물 발송은 항상 사용자 OK 필요.<br>
+    이 대시보드는 "어떤 에이전트가 있는지" 보여주는 지도입니다. 실제 대화는 Claude Code에서 하세요.
+  </div>
+</div><!-- /sect-manual -->
+
+
+<!-- ══════════════ TAB 5: 디자인 트렌드 보드 ══════════════ -->
+<div id="sect-trend" class="section">
+  <h2 class="section-title">디자인 트렌드 보드</h2>
+  <p class="section-desc">2026 Q2 글로벌 트렌드 — design-trend-radar 에이전트가 분기마다 자동 갱신. 최종 채택은 CD 직접.</p>
+
+  <div class="trend-auto-notice">
+    🎨 <strong>자동 갱신 예정:</strong> 매 분기 첫주 design-trend-radar → reference-curator 순으로 업데이트됩니다. 현재 데이터: 2026 Q2 (4~6월 기준). 다음 갱신: 2026-07-01.
+  </div>
+
+  <div class="trend-meta">
+    <span class="src-badge">Awwwards</span>
+    <span class="src-badge">Behance</span>
+    <span class="src-badge">Brand New</span>
+    <span class="src-badge">FWA</span>
+    <span class="src-badge">D&AD</span>
+    <span class="src-badge">Cannes Lions</span>
+    <span class="src-badge">Dribbble</span>
+  </div>
+
+  <!-- TOP 5 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">🏆 2026 Q2 글로벌 키 트렌드 TOP 5</h3>
+  <div class="trend-top5">
+    <div class="trend-top-card">
+      <div class="n">01</div>
+      <div class="t">AI 네이티브 UX</div>
+      <div class="d">생성형 AI가 UI 인터랙션 레이어에 직접 통합. 빈 상태·로딩·에러 UX가 대화형으로 전환.</div>
+    </div>
+    <div class="trend-top-card">
+      <div class="n">02</div>
+      <div class="t">절제된 모션 (Quiet Motion)</div>
+      <div class="d">과도한 애니메이션 지양. 1~2개 핵심 모션에 집중. 목적 없는 움직임 = 노이즈.</div>
+    </div>
+    <div class="trend-top-card">
+      <div class="n">03</div>
+      <div class="t">타이포 퍼스트 레이아웃</div>
+      <div class="d">이미지보다 타이포그래피가 시각 위계 주도. 대형 헤드라인 + 절제된 여백.</div>
+    </div>
+    <div class="trend-top-card">
+      <div class="n">04</div>
+      <div class="t">다크·라이트 이중 설계</div>
+      <div class="d">처음부터 다크·라이트 동시 설계. 시스템 모드 추종이 아닌 브랜드 기반 전환.</div>
+    </div>
+    <div class="trend-top-card">
+      <div class="n">05</div>
+      <div class="t">물리적 소재 디지털화</div>
+      <div class="d">유리·금속·패브릭 질감을 디지털 인터페이스에 적용. 촉감형 비주얼 경험.</div>
+    </div>
+  </div>
+
+  <!-- 트렌드 카드 그리드 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">📚 트렌드 카드 (2026 Q2 · 총 18장)</h3>
+  <div class="trend-cards">
+
+    <div class="trend-card cat-ai">
+      <div class="trend-num">T-001 · AI/UX</div>
+      <div class="trend-title">프롬프트 인터페이스 디자인</div>
+      <div class="trend-desc">검색창이 아닌 대화창 UI. 입력 → 즉시 생성 → 수정 루프. ChatGPT Canvas, Figma Make 참고.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> UI 프로젝트에서 '검색' 컴포넌트를 AI 인터랙션으로 재설계 제안</div>
+      <div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">UX</span><span class="trend-tag">UI</span></div>
+    </div>
+
+    <div class="trend-card cat-motion">
+      <div class="trend-num">T-002 · Motion</div>
+      <div class="trend-title">마이크로 스크롤 트리거</div>
+      <div class="trend-desc">스크롤 1픽셀 = 모션 1프레임. 스크롤 진행률에 정확히 연동된 애니메이션. Apple 스타일.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 홈페이지·랜딩 제안 시 스크롤 연동 모션 디폴트로 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Web</span></div>
+    </div>
+
+    <div class="trend-card cat-ui">
+      <div class="trend-num">T-003 · UI</div>
+      <div class="trend-title">Bento Box 레이아웃</div>
+      <div class="trend-desc">다양한 크기의 카드 그리드. 정보 밀도 높지만 시각적으로 정돈. 대시보드·앱스토어 트렌드.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 정보형 UI 제안 시 Bento 레이아웃 먼저 제시</div>
+      <div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Layout</span></div>
+    </div>
+
+    <div class="trend-card cat-brand">
+      <div class="trend-num">T-004 · Branding</div>
+      <div class="trend-title">모노클로매틱 브랜딩</div>
+      <div class="trend-desc">단색 + 명도 변화만으로 시스템 구축. 로고·타이포·컬러 전부 1색 기반. Chanel, 르메르 방향.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 프리미엄 브랜드 BI 제안 시 1색 시스템 우선 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Premium</span></div>
+    </div>
+
+    <div class="trend-card cat-ui">
+      <div class="trend-num">T-005 · UI</div>
+      <div class="trend-title">Glassmorphism 2.0</div>
+      <div class="trend-desc">1세대 뿌연 글래스 → 2세대: 얇은 테두리 + 매우 미세한 블러 + 하이라이트. iOS 18 스타일.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 앱 UI에서 모달·팝업 컴포넌트에 적용 제안</div>
+      <div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Mobile</span></div>
+    </div>
+
+    <div class="trend-card cat-motion">
+      <div class="trend-num">T-006 · Motion</div>
+      <div class="trend-title">3D 타이포그래피 모션</div>
+      <div class="trend-desc">평면 텍스트에 3D 회전·변형 적용. 짧은 루프 영상. SNS 광고·KV 트렌드.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 게임·엔터 클라 KV 제안 시 3D 타이포 모션 기본 옵션</div>
+      <div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">3D</span><span class="trend-tag">SNS</span></div>
+    </div>
+
+    <div class="trend-card cat-ua">
+      <div class="trend-num">T-007 · UA</div>
+      <div class="trend-title">감성형 에러 UX</div>
+      <div class="trend-desc">에러·빈 상태·404를 브랜드 개성 표현 기회로. 단순 경고 대신 일러스트+카피로 전환.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> UI 프로젝트에서 에러 케이스 자동으로 제안</div>
+      <div class="trend-tags"><span class="trend-tag">UX</span><span class="trend-tag">UA</span></div>
+    </div>
+
+    <div class="trend-card cat-brand">
+      <div class="trend-num">T-008 · Branding</div>
+      <div class="trend-title">로고 키네틱 (Kinetic Logo)</div>
+      <div class="trend-desc">움직이는 로고. 정적 심볼 → 맥락별 변형. 디지털 환경 전용 로고 모션 시스템.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> BI 프로젝트에서 모션 로고 가이드 포함 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Motion</span></div>
+    </div>
+
+    <div class="trend-card cat-ai">
+      <div class="trend-num">T-009 · AI</div>
+      <div class="trend-title">AI 생성 + 인간 큐레이션</div>
+      <div class="trend-desc">AI 100% 생성이 아닌, AI가 만든 것을 디자이너가 선별·편집하는 하이브리드 워크플로.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 이미지 생성 에이전트 결과물은 CD가 필터링 후 사용</div>
+      <div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">Workflow</span></div>
+    </div>
+
+    <div class="trend-card cat-ui">
+      <div class="trend-num">T-010 · UI</div>
+      <div class="trend-title">가변 폰트 (Variable Font) 활용</div>
+      <div class="trend-desc">하나의 폰트 파일로 굵기·기울기·폭을 실시간 조정. 반응형 타이포 구현에 최적.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 웹 프로젝트에서 variable font 적용 디폴트 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Typography</span><span class="trend-tag">Web</span></div>
+    </div>
+
+    <div class="trend-card cat-motion">
+      <div class="trend-num">T-011 · Motion</div>
+      <div class="trend-title">Lottie 경량 모션</div>
+      <div class="trend-desc">JSON 기반 초경량 애니메이션. 영상 대비 1/50 용량. 모바일 앱 마이크로 인터랙션 표준.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 앱·웹 UI에서 아이콘 애니메이션 Lottie로 납품 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Mobile</span><span class="trend-tag">경량</span></div>
+    </div>
+
+    <div class="trend-card cat-ua">
+      <div class="trend-num">T-012 · UA</div>
+      <div class="trend-title">다크 패턴 탈피 디자인</div>
+      <div class="trend-desc">숨겨진 취소·강제 구독 등 다크패턴 역이용 → 투명하고 명확한 UX로 신뢰도 차별화.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 구독·이커머스 UX에서 다크패턴 제거 포인트 반드시 지적</div>
+      <div class="trend-tags"><span class="trend-tag">UX</span><span class="trend-tag">Ethics</span></div>
+    </div>
+
+    <div class="trend-card cat-brand">
+      <div class="trend-num">T-013 · Branding</div>
+      <div class="trend-title">로컬리티 + 글로벌 퓨전</div>
+      <div class="trend-desc">한국 전통 요소를 글로벌 감성으로 재해석. K-브랜드 해외 진출 레퍼런스 급증.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 글로벌 타깃 클라 제안 시 '한국적 감성 글로벌화' 방향 옵션</div>
+      <div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">K-Brand</span></div>
+    </div>
+
+    <div class="trend-card cat-ai">
+      <div class="trend-num">T-014 · AI</div>
+      <div class="trend-title">퍼소나 기반 개인화 UI</div>
+      <div class="trend-desc">사용자 행동 데이터 → 실시간 레이아웃·컬러·콘텐츠 개인화. Netflix 홈 수준의 적응형 UI.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 이커머스·앱 제안 시 AI 개인화 레이어 추가 제안</div>
+      <div class="trend-tags"><span class="trend-tag">AI</span><span class="trend-tag">Personalization</span></div>
+    </div>
+
+    <div class="trend-card cat-ui">
+      <div class="trend-num">T-015 · UI</div>
+      <div class="trend-title">스켈레톤 스크린 고도화</div>
+      <div class="trend-desc">로딩 중 골격 UI → 실제 콘텐츠와 1:1 매핑. 레이아웃 시프트 0%가 기준.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 앱·웹 UI 산출물에 스켈레톤 화면 자동 포함</div>
+      <div class="trend-tags"><span class="trend-tag">UI</span><span class="trend-tag">Performance</span></div>
+    </div>
+
+    <div class="trend-card cat-motion">
+      <div class="trend-num">T-016 · Motion</div>
+      <div class="trend-title">사운드 디자인 연동 모션</div>
+      <div class="trend-desc">영상 모션과 사운드를 처음부터 동시 설계. 음소거 상태에서도 완결된 비주얼 전달 필수.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 영상 제안 시 사운드 ON/OFF 양쪽 버전 납품 제안</div>
+      <div class="trend-tags"><span class="trend-tag">Motion</span><span class="trend-tag">Sound</span></div>
+    </div>
+
+    <div class="trend-card cat-brand">
+      <div class="trend-num">T-017 · Branding</div>
+      <div class="trend-title">컬러 마케팅 = 시그니처 색</div>
+      <div class="trend-desc">팬톤 1가지 시그니처 컬러로 브랜드 점유. 에르메스 오렌지, 코카콜라 레드처럼.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> BI 제안 시 '시그니처 컬러 1개' 확정을 목표로 설계</div>
+      <div class="trend-tags"><span class="trend-tag">Branding</span><span class="trend-tag">Color</span></div>
+    </div>
+
+    <div class="trend-card cat-ua">
+      <div class="trend-num">T-018 · UA</div>
+      <div class="trend-title">접근성 = 표준 (WCAG AA 기본)</div>
+      <div class="trend-desc">장애인 접근성이 '옵션'에서 '기본 요건'으로 전환. 색대비·폰트크기·대체텍스트 기본 충족 필수.</div>
+      <div class="trend-apply"><strong>MAX 적용:</strong> 모든 UI 산출물 WCAG AA 충족 여부 QC에 포함</div>
+      <div class="trend-tags"><span class="trend-tag">A11y</span><span class="trend-tag">UA</span><span class="trend-tag">기본</span></div>
+    </div>
+
+  </div>
+
+  <div class="footnote">
+    <strong>사용법:</strong> "트렌드 찾아줘" → design-trend-radar 호출 → 실시간 웹 스캔 후 트렌드 카드 갱신. 이 보드는 마지막 분기 갱신 캐시입니다. <strong>채택 여부는 CD 직접 결정.</strong>
+  </div>
+</div><!-- /sect-trend -->
+
+
+<!-- ══════════════ TAB 6: 추가투입 위험 ══════════════ -->
+<div id="sect-overhead" class="section">
+  <h2 class="section-title">추가투입 위험 (Overhead Watcher)</h2>
+  <p class="section-desc">CR·피드백·야근 KPI 분석 → FTE 환산 → 채용 근거. overhead-watcher 에이전트 시각화. 기준일 2026-06-26.</p>
+
+  <div class="alert" style="background:#FFF7ED;border-color:#FED7AA;border-left-color:var(--warn);">
+    <span class="ic">⚠️</span>
+    <div><strong>현재 팀 오버로드 감지.</strong> VX 3명 + VM 5명 전원 100% 이상 할당. 2건 오늘 동시 마감. 즉시 재배치 또는 외주 투입 검토 필요.</div>
+  </div>
+
+  <!-- 가동률 현황 -->
+  <div class="overhead-grid">
+    <div class="overhead-card">
+      <div class="oh-label">팀 가동률 (2026 W26)</div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VM 시니어①</div>
+        <div class="util-bar"><div class="util-fill danger" style="width:120%;"></div></div>
+        <div class="util-pct" style="color:var(--danger);">120%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VM 시니어②</div>
+        <div class="util-bar"><div class="util-fill warn" style="width:100%;"></div></div>
+        <div class="util-pct" style="color:var(--warn);">100%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VM 미드③</div>
+        <div class="util-bar"><div class="util-fill warn" style="width:90%;"></div></div>
+        <div class="util-pct" style="color:var(--warn);">90%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VM 주니어④</div>
+        <div class="util-bar"><div class="util-fill ok" style="width:80%;"></div></div>
+        <div class="util-pct" style="color:var(--ok);">80%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VM 주니어⑤</div>
+        <div class="util-bar"><div class="util-fill ok" style="width:75%;"></div></div>
+        <div class="util-pct" style="color:var(--ok);">75%</div>
+      </div>
+      <div style="border-top:1px solid var(--border-soft);margin-top:10px;padding-top:10px;">
+      <div class="util-bar-wrap">
+        <div class="util-name">VX 시니어①</div>
+        <div class="util-bar"><div class="util-fill danger" style="width:110%;"></div></div>
+        <div class="util-pct" style="color:var(--danger);">110%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VX 미드②</div>
+        <div class="util-bar"><div class="util-fill warn" style="width:95%;"></div></div>
+        <div class="util-pct" style="color:var(--warn);">95%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">VX 주니어③</div>
+        <div class="util-bar"><div class="util-fill ok" style="width:70%;"></div></div>
+        <div class="util-pct" style="color:var(--ok);">70%</div>
+      </div>
+      <div class="util-bar-wrap">
+        <div class="util-name">실장 (CD)</div>
+        <div class="util-bar"><div class="util-fill warn" style="width:100%;"></div></div>
+        <div class="util-pct" style="color:var(--warn);">100%</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="overhead-card">
+      <div class="oh-label">FTE 갭 환산</div>
+      <table class="fte-table">
+        <tr><th>항목</th><th>현황</th><th>필요 FTE</th></tr>
+        <tr><td>현재 팀원</td><td>9명</td><td>—</td></tr>
+        <tr><td>평균 가동률 초과</td><td>+10%</td><td>+0.9 FTE</td></tr>
+        <tr><td>고정운영 전담 (넷마블)</td><td>VM 0.5명 상시</td><td>+0.5 FTE</td></tr>
+        <tr><td>피드백·CR 추가시간</td><td>주 평균 12h</td><td>+0.3 FTE</td></tr>
+        <tr><td>휴가·병가 여유분</td><td>0% (없음)</td><td>+0.5 FTE</td></tr>
+        <tr><td style="font-weight:700;color:var(--ink);">총 갭</td><td>—</td><td style="color:var(--danger);">+2.2 FTE</td></tr>
+      </table>
+      <div style="margin-top:12px;padding:8px;background:var(--sig-soft);border-radius:5px;font-size:11px;color:var(--sig);line-height:1.5;">
+        <strong>권장:</strong> 즉시 VM 1명 충원 or 고정 외주 1명 (vendor-radar 확인) → hiring-radar 에스컬레이션
+      </div>
+    </div>
+
+    <div class="overhead-card">
+      <div class="oh-label">위험 플래그 (이번 주)</div>
+      <div class="risk-flag">
+        <div class="risk-dot high"></div>
+        <div class="risk-text"><strong>동시 마감 충돌</strong> — 넷마블 AI 업세일즈 + YBM KV 모션 동일 날짜(6/26). VM 시니어① 이중 투입 상태.</div>
+      </div>
+      <div class="risk-flag">
+        <div class="risk-dot high"></div>
+        <div class="risk-text"><strong>현대 수소 6/27 마감</strong> — 모션 H 난이도. VM이 내일 마감까지 리소스 확보 필요.</div>
+      </div>
+      <div class="risk-flag">
+        <div class="risk-dot mid"></div>
+        <div class="risk-text"><strong>코웨이 GUI 장기 진행</strong> — 3/24~6/26 (13주). 팀원 1명 지속 할당. CR 피드백 누적 우려.</div>
+      </div>
+      <div class="risk-flag">
+        <div class="risk-dot mid"></div>
+        <div class="risk-text"><strong>VX 시니어 110% 초과</strong> — 현재 프로젝트 겹침. 다음 주 신규 프로젝트 투입 전 재배치 필요.</div>
+      </div>
+      <div class="risk-flag">
+        <div class="risk-dot low"></div>
+        <div class="risk-text"><strong>MX 센터 SNS 9월 착수</strong> — 현재 할당 없으나 9월 리소스 예약 필요. 사전 계획 권장.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 권장 액션 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;">
+    <div class="hub-section-h">권장 액션 (사용자 결정 필요)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+      <div style="padding:12px;background:#FDECEC;border-radius:7px;">
+        <div style="font-size:10px;font-weight:800;color:var(--danger);text-transform:uppercase;margin-bottom:6px;">즉시 (이번 주)</div>
+        <div style="font-size:11px;color:var(--ink2);line-height:1.55;">VM 시니어① 프로젝트 우선순위 재조정<br>코웨이 vs 넷마블 AI 중 1개 집중<br>→ <strong>사용자 결정 필요</strong></div>
+      </div>
+      <div style="padding:12px;background:#FFF6E5;border-radius:7px;">
+        <div style="font-size:10px;font-weight:800;color:var(--warn);text-transform:uppercase;margin-bottom:6px;">단기 (1개월)</div>
+        <div style="font-size:11px;color:var(--ink2);line-height:1.55;">모션 외주 1명 단기 투입 검토<br>vendor-radar → 가용 외주 확인<br>→ <strong>사용자 결정 후 발주</strong></div>
+      </div>
+      <div style="padding:12px;background:var(--sig-soft);border-radius:7px;">
+        <div style="font-size:10px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:6px;">중기 (3개월)</div>
+        <div style="font-size:11px;color:var(--ink2);line-height:1.55;">VM 정규직 1명 채용<br>JD 작성 → hiring-radar 에스컬레이션<br>→ <strong>채용 의사결정: 사용자 직접</strong></div>
+      </div>
+    </div>
+  </div>
+</div><!-- /sect-overhead -->
+
+
+<!-- ══════════════ TAB 7: 클라이언트 레이더 ══════════════ -->
+<div id="sect-clients" class="section">
+  <h2 class="section-title">클라이언트 레이더</h2>
+  <p class="section-desc">반복 클라이언트 관계·리스크·히스토리. account-radar 에이전트 연동. 기준일 2026-06-26.</p>
+
+  <div class="client-grid">
+
+    <!-- 넷마블 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#0A0D1A;color:#4B8BEF;font-size:10px;font-weight:900;">NMB</div>
+        <div>
+          <div class="client-name">넷마블</div>
+          <div class="client-type">게임 · 고정운영 + 단건</div>
+        </div>
+        <div class="client-status cs-active">진행중</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★★</span> 장기 파트너 · 고정운영 계약</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">고정운영 4TO (~12/31) + AI 업세일즈 제안 (오늘 마감)</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">고정운영 연간 + 단건 추가 방식</div></div>
+        <div class="client-row"><div class="cl">담당자</div><div class="cv">담당자명 직접 입력 필요</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">피드백 빠름 · 수정 요청 잦은 편 · CR 사전 협의 필수</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:92%;"></div></div>
+        <div class="client-risk r-mid">⚠️ AI 업세일즈 오늘 마감 — 제안 완성도 최종 확인 후 발송 OK 필요</div>
+      </div>
+    </div>
+
+    <!-- 코웨이 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#005BAA;color:#fff;font-size:10px;font-weight:900;">CWY</div>
+        <div>
+          <div class="client-name">코웨이</div>
+          <div class="client-type">생활가전 · UI+Motion</div>
+        </div>
+        <div class="client-status cs-active">진행중</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★☆</span> 지속 협업 · Preferred 등급</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">GUI 컨설팅 및 구축 (3/24~6/26, H) — 오늘 시작end 기준 마감</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가 95%</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">감수 꼼꼼함 · 피드백 사이클 3~4일 · 법무 검토 후 계약</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:80%;"></div></div>
+        <div class="client-risk r-high">🔴 날짜 필드 충돌 — 노션에서 시작end(6/26) vs 종료(6/19) 불일치. 확인 필요</div>
+      </div>
+    </div>
+
+    <!-- 현대 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#002C5F;color:#fff;font-size:10px;font-weight:900;">HMC</div>
+        <div>
+          <div class="client-name">현대자동차 (현대 수소)</div>
+          <div class="client-type">자동차 · Motion · 홈페이지</div>
+        </div>
+        <div class="client-status cs-active">진행중</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★☆☆</span> Standard · 신규에 가까움</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">수소 홈페이지 구축 (6/22~6/27, H) — 내일 마감</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가 100%</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">홈페이지 H 난이도 · 종료 필드 5/1 입력 오류 확인 필요</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:50%;"></div></div>
+        <div class="client-risk r-high">🔴 6/27(내일) 마감 + 날짜 필드 충돌. 최우선 처리 필요</div>
+      </div>
+    </div>
+
+    <!-- 아모레퍼시픽 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#1A1A1A;color:#C8A96A;font-size:10px;font-weight:900;">APC</div>
+        <div>
+          <div class="client-name">아모레퍼시픽</div>
+          <div class="client-type">뷰티 · PPT · 브랜딩</div>
+        </div>
+        <div class="client-status cs-wait">완료 대기</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★★☆</span> Standard · 반복 수주 기대</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">WWD 행사 발표 디자인 (4/9~5/8) — 완료 처리 누락</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">단건 · 표준 단가</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">글로벌 감각 요구 · 영문 병행 필수 · 프리미엄 브랜드</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:68%;"></div></div>
+        <div class="client-risk r-mid">⚠️ 노션 상태 여전히 '진행중' — 완료 처리 후 다음 기회 모니터링</div>
+      </div>
+    </div>
+
+    <!-- 크래프톤 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#FFD600;color:#000;font-size:10px;font-weight:900;">KFT</div>
+        <div>
+          <div class="client-name">크래프톤</div>
+          <div class="client-type">게임 · 신규 기회</div>
+        </div>
+        <div class="client-status cs-new">신규 검토</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★☆☆☆</span> Standard · 첫 접촉 단계</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">박연옥 님 메일 6/29(월) 예정 — 캘린더 리마인드</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">미정 · 협의 단계</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">위메이드 → 크래프톤 이동 건. 담당자 변경으로 관계 재구축 필요</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:25%;"></div></div>
+        <div class="client-risk r-low">✅ 6/29 메일 발송 예정. 톤 가디언 거쳐 사용자 OK 후 발송</div>
+      </div>
+    </div>
+
+    <!-- 올리브영 -->
+    <div class="client-card">
+      <div class="client-header">
+        <div class="client-logo" style="background:#00A651;color:#fff;font-size:10px;font-weight:900;">OLV</div>
+        <div>
+          <div class="client-name">올리브영</div>
+          <div class="client-type">H&B · UI · 상세페이지</div>
+        </div>
+        <div class="client-status cs-wait">결과 대기</div>
+      </div>
+      <div class="client-body">
+        <div class="client-row"><div class="cl">관계</div><div class="cv"><span class="client-stars">★★★☆☆</span> Standard · 제안 후 수주 대기</div></div>
+        <div class="client-row"><div class="cl">현재</div><div class="cv">PB 상세페이지 제안 제출 완료 (6/15~6/19) — 수주 결과 대기</div></div>
+        <div class="client-row"><div class="cl">계약</div><div class="cv">미정 · 수주 시 단건</div></div>
+        <div class="client-row"><div class="cl">특이사항</div><div class="cv">MZ 감성 · 트렌디 · 이커머스 UX 경험 중요</div></div>
+        <div class="relation-bar"><div class="relation-fill" style="width:45%;"></div></div>
+        <div class="client-risk r-low">✅ 제안 제출 완료. 회신 대기 중 — 팔로업 시 account-radar 호출</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:20px;padding:12px 16px;background:var(--sig-soft);border-left:3px solid var(--sig);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;">
+    <strong>"코웨이 상황 어때?"</strong> 처럼 클라 이름을 언급하면 account-radar 에이전트가 자동 호출됩니다. 히스토리·리스크·커뮤니케이션 현황을 실시간으로 요약해 줍니다.
+  </div>
+</div><!-- /sect-clients -->
+
+
+<!-- ══════════════ TAB 8: MAX실 9명 ══════════════ -->
+<div id="sect-team" class="section">
+  <h2 class="section-title">MAX실 9명</h2>
+  <p class="section-desc">VM 5 + VX 3 + 실장 1. max-pm 에이전트 연동 (시트 read-only). 아래 카드는 팀원 정보 직접 입력 필요.</p>
+
+  <!-- 팀 개요 -->
+  <div class="team-overview">
+    <div class="team-stat-card">
+      <div class="team-stat-n">9<span class="unit">명</span></div>
+      <div class="team-stat-l">현재 팀 규모</div>
+      <div class="team-stat-sub">VM 5 · VX 3 · 실장 1</div>
+    </div>
+    <div class="team-stat-card">
+      <div class="team-stat-n" style="color:var(--danger);">20<span class="unit">명</span></div>
+      <div class="team-stat-l">목표 팀 규모</div>
+      <div class="team-stat-sub">갭 11명 · hiring-radar 추적 중</div>
+    </div>
+    <div class="team-stat-card" id="team-avg-util">
+      <div class="team-stat-n" style="color:var(--warn);" id="team-avg-util-n">—<span class="unit">%</span></div>
+      <div class="team-stat-l">평균 가동률 (이번 달)</div>
+      <div class="team-stat-sub" id="team-avg-util-sub">구글 시트 실시간 연동 중</div>
+    </div>
+  </div>
+
+  <!-- VM 그룹 -->
+  <div class="group-label">VM (VirtualMax) · 5명 — 비주얼·모션·영상</div>
+  <div id="team-grid-vm" class="member-grid">
+    <div class="live-loading" style="grid-column:1/-1;height:80px;"><span class="spin-icon">⟳</span> 가동률 로드 중...</div>
+  </div>
+
+  <!-- VX 그룹 -->
+  <div class="group-label">VX (VirtualX) · 3명 — UX·개발·인터랙션</div>
+  <div id="team-grid-vx" class="member-grid">
+    <div class="live-loading" style="grid-column:1/-1;height:80px;"><span class="spin-icon">⟳</span> 가동률 로드 중...</div>
+  </div>
+
+  <!-- 실장 -->
+  <div class="group-label">실장 · 1명 — CD + 운영 관리</div>
+  <div id="team-grid-cd" class="member-grid">
+    <div class="live-loading" style="grid-column:1/-1;height:80px;"><span class="spin-icon">⟳</span> 가동률 로드 중...</div>
+  </div>
+
+  <div style="margin-top:20px;padding:12px 16px;background:var(--sig-soft);border-left:3px solid var(--sig);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;">
+    <strong>실시간 연동:</strong> 가동률은 <a href="https://docs.google.com/spreadsheets/d/1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0/edit" target="_blank" style="color:var(--sig);">MAX_2026 리소스 관리 시트</a> → <code>📊 월별 투입 현황</code> 탭에서 자동 추출됩니다. 시트 데이터가 업데이트되면 대시보드 새로고침 시 반영됩니다.
+  </div>
+</div><!-- /sect-team -->
+
+
+<!-- ══════════════ TAB 9: 브랜드 제안 ══════════════ -->
+<div id="sect-hiring-removed" class="section" style="display:none!important;">
+  <h2 class="section-title">채용·외주</h2>
+  <p class="section-desc">9→20 증원 파이프라인 + 외주·벤더 풀. hiring-radar + vendor-radar 에이전트 연동. 최종 채용·해고 결정은 사용자 직접.</p>
+
+  <!-- 증원 로드맵 -->
+  <div class="hiring-roadmap">
+    <h3 style="font-size:14px;font-weight:800;margin:0 0 4px;letter-spacing:-0.3px;">9 → 20명 증원 로드맵</h3>
+    <div style="font-size:11px;color:var(--ink3);">2026 Q3~2027 상반기 목표 · 최종 채용 결정: 사용자 직접</div>
+    <div class="roadmap-bar" style="margin:14px 0 6px;">
+      <div class="roadmap-seg now" style="flex:9;" title="현재 9명">현재 9명</div>
+      <div class="roadmap-seg q3" style="flex:3;" title="Q3 +3명">+3</div>
+      <div class="roadmap-seg q4" style="flex:3;" title="Q4 +3명">+3</div>
+      <div class="roadmap-seg y27" style="flex:5;" title="2027 +5명">+5 (2027)</div>
+    </div>
+    <div style="display:flex;gap:14px;font-size:10px;color:var(--ink3);">
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--sig);"></div>현재</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#5B78B0;"></div>2026 Q3 +3명</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#8BA3C7;"></div>2026 Q4 +3명</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#B5C8E0;"></div>2027 +5명</div>
+    </div>
+    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">
+        <div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">Q3 2026 목표</div>
+        VM 시니어 1명 채용<br>VM 미드 1명 채용<br>VX 주니어 1명 채용
+      </div>
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">
+        <div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">Q4 2026 목표</div>
+        PM 1명 채용<br>VM 주니어 1명<br>VX 미드 1명
+      </div>
+      <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">
+        <div style="font-size:9px;font-weight:800;color:var(--sig);text-transform:uppercase;margin-bottom:4px;">2027 목표</div>
+        각 직군 균형 충원<br>총 20명 완성<br>팀 구조 재편
+      </div>
+    </div>
+  </div>
+
+  <!-- 채용 파이프라인 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">📋 채용 파이프라인</h3>
+  <div class="pipeline-grid">
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="dot" style="background:#94A3B8;"></div>소싱 중</div>
+      <div class="pipeline-item">
+        <div class="pipeline-pos">VM 시니어 (모션 리드)</div>
+        <div class="pipeline-meta">자격: AE 5년+ · 모션 리드 경험<br>채널: 원티드 · 추천</div>
+        <div class="pipeline-urgent">⚡ 즉시 충원 필요 — 리소스 갭</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="pipeline-pos">VX 주니어 (UX 보조)</div>
+        <div class="pipeline-meta">자격: Figma 능숙 · UX 1년+<br>채널: 원티드 · 링크드인</div>
+      </div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="dot" style="background:#F59E0B;"></div>JD 작성 필요</div>
+      <div class="pipeline-item">
+        <div class="pipeline-pos">VM 미드 (브랜딩)</div>
+        <div class="pipeline-meta">아직 JD 미작성<br>"VM 미드 JD 뽑아줘" → hiring-radar</div>
+      </div>
+      <div class="pipeline-item">
+        <div class="pipeline-pos">PM (프로젝트 매니저)</div>
+        <div class="pipeline-meta">Q4 타깃<br>JD 작성: 9월 예정</div>
+      </div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="dot" style="background:#3B82F6;"></div>면접 진행 중</div>
+      <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 진행 중인 면접 없음<br><br>소싱 완료 후 업데이트</div>
+    </div>
+    <div class="pipeline-col">
+      <div class="pipeline-col-h"><div class="dot" style="background:#22C55E;"></div>오퍼 · 입사 예정</div>
+      <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 오퍼 없음<br><br>⚠️ 최종 채용 결정: 사용자 직접</div>
+    </div>
+  </div>
+
+  <!-- 벤더 풀 -->
+  <h3 style="font-size:14px;font-weight:800;margin:20px 0 12px;letter-spacing:-0.3px;">🔗 외주·벤더 풀</h3>
+  <div class="vendor-grid">
+
+    <div class="vendor-card">
+      <div class="vendor-cat">모션 · 2D/3D</div>
+      <div class="vendor-item"><div class="v-dot"></div><div>모션 외주 A (프리랜서)<br><span style="font-size:9.5px;color:var(--ink3);">2D AE · 시니어급 · 단가 직접 입력</span></div><div class="vendor-stars">★★★★★</div></div>
+      <div class="vendor-item"><div class="v-dot"></div><div>3D 외주 B<br><span style="font-size:9.5px;color:var(--ink3);">Cinema 4D · 중급 · 단가 직접 입력</span></div><div class="vendor-stars">★★★★☆</div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">추가 발굴 필요<br><span style="font-size:9.5px;">"모션 외주 찾자" → vendor-radar</span></div></div>
+    </div>
+
+    <div class="vendor-card">
+      <div class="vendor-cat">영상 편집</div>
+      <div class="vendor-item"><div class="v-dot"></div><div>영상 편집 A<br><span style="font-size:9.5px;color:var(--ink3);">광고영상 전문 · 단가 직접 입력</span></div><div class="vendor-stars">★★★★☆</div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">스튜디오 벤더 미확보<br><span style="font-size:9.5px;">"영상 벤더 찾자" → vendor-radar</span></div></div>
+    </div>
+
+    <div class="vendor-card">
+      <div class="vendor-cat">UI 개발 · 프론트엔드</div>
+      <div class="vendor-item"><div class="v-dot"></div><div>프론트엔드 외주 A<br><span style="font-size:9.5px;color:var(--ink3);">React · Next.js · 단가 직접 입력</span></div><div class="vendor-stars">★★★★☆</div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">추가 개발 외주 필요<br><span style="font-size:9.5px;">홈페이지 수주 급증 시 대비</span></div></div>
+    </div>
+
+    <div class="vendor-card">
+      <div class="vendor-cat">번역 · 현지화</div>
+      <div class="vendor-item"><div class="v-dot"></div><div>번역 에이전시 A<br><span style="font-size:9.5px;color:var(--ink3);">EN/KO · /단어 단가 직접 입력</span></div><div class="vendor-stars">★★★☆☆</div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">JP 번역 미확보<br><span style="font-size:9.5px;">글로벌 클라 수주 시 필요</span></div></div>
+    </div>
+
+    <div class="vendor-card">
+      <div class="vendor-cat">사운드 디자인</div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">사운드 디자이너 미확보<br><span style="font-size:9.5px;">영상 수주 증가 시 필수 — 발굴 필요</span></div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">음원 라이선스 풀 미정<br><span style="font-size:9.5px;">legal-compliance 확인 후 계약</span></div></div>
+    </div>
+
+    <div class="vendor-card">
+      <div class="vendor-cat">사진 · 스튜디오</div>
+      <div class="vendor-item"><div class="v-dot"></div><div>스튜디오 A (제품촬영)<br><span style="font-size:9.5px;color:var(--ink3);">이커머스·제품 · 단가 직접 입력</span></div><div class="vendor-stars">★★★★☆</div></div>
+      <div class="vendor-item"><div class="v-dot absent"></div><div style="color:var(--ink3);">라이프스타일 사진작가 미확보</div></div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:20px;padding:12px 16px;background:#FDECEC;border-left:3px solid var(--danger);border-radius:4px;font-size:11px;color:var(--ink2);line-height:1.6;">
+    <strong>⚠️ 절대 위임 안 함:</strong> 채용 최종 결정 (합격·불합격·연봉 협의)과 외주 발주 최종 OK는 사용자 직접 결정. 에이전트는 JD 작성, 소싱 전략, 벤더 단가 비교까지만 합니다.
+  </div>
+</div><!-- /sect-hiring-removed -->
+
+
+<!-- ══════════════ TAB 9: 브랜드 제안 ══════════════ -->
+<div id="sect-brand" class="section">
+  <h2 class="section-title">브랜드 제안 파이프라인</h2>
+  <p class="section-desc"><code>brand-proposal</code> 스킬 · <code>brand-design-proposal.md</code> 마스터 가이드 · 3단계+4게이트 체계. 인테이크만 입력하면 Hyojung guide 1 → Gate 1 → Hyojung guide 2 → Gate 2 → Stage 3 자동 진행. GRAIN 프로젝트로 실전 검증 완료.</p>
+
+  <!-- v8.1 업그레이드 원칙 박스 -->
+  <div style="background:#1A1A2E;border-radius:12px;padding:18px 22px;margin-bottom:20px;color:#E2E8F0;">
+    <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#818CF8;text-transform:uppercase;margin-bottom:14px;">★ GRAIN 실전 검증으로 확정된 6개 워크플로우 원칙 (v8.1)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10.5px;line-height:1.65;">
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">① MATERIALIZE — 글로만 끝내지 말 것</div>
+        <div style="color:#CBD5E1;">서브에이전트는 분석·전략·프롬프트까지만. 이미지 생성(Higgsfield)과 파일 저장은 <strong style="color:#fff;">메인 세션</strong>이 직접. 마지막에 HTML 덱으로 조립 후 커밋·PR.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">② 게이트 확인 — 자동으로 넘어가지 말 것</div>
+        <div style="color:#CBD5E1;">Gate 1(관점 한 문장), Gate 2(Lens Translation) 등 방향이 갈리는 지점에서 반드시 멈추고 사용자 확인. 선택지는 추상 문장 아닌 <strong style="color:#fff;">구체 예시</strong>(카피 비교, 이미지 톤)로.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">③ 경쟁사 카드 완전성</div>
+        <div style="color:#CBD5E1;">브랜드명/국가/가격대/타깃/핵심메시지 + <strong style="color:#fff;">출처 링크</strong> 필수. 이름+한줄 요약만 있는 축약 카드는 불충분. 30개 요청 시 30개 전부 카드화.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">④ 이미지 그리드 원칙</div>
+        <div style="color:#CBD5E1;">같은 계열 6컷은 낱장 6번 말고 <strong style="color:#fff;">"3×2 그리드 한 장"</strong>으로. 스타일 앵커 먼저 확정 → 그리드 대량 생성. aspect_ratio "1:1" 기본.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">⑤ 연속성 관리 (00-project-index.md)</div>
+        <div style="color:#CBD5E1;">프로젝트 폴더마다 <code style="color:#93C5FD;">00-project-index.md</code> 필수 — Gate 확정·버전 전환 즉시 업데이트. <code>project-continuity-auditor</code> 자동 발동: 버전 전환 직후 · Stage 3 진입 직전.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+        <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">⑥ 산출물 누적 원칙 (deck.html)</div>
+        <div style="color:#CBD5E1;">개별 HTML 흩어 보여주지 말고 <code style="color:#93C5FD;">deck.html</code> 한 파일에 섹션 누적. 슬라이드 내부 압축 금지 — 산출물은 각각 별도 슬라이드로.</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:8px 12px;background:rgba(255,255,255,0.06);border-radius:6px;font-size:10px;color:#94A3B8;">
+      🔬 <strong style="color:#C4B5FD;">GRAIN 호글라스 실전 검증</strong> — 경쟁사 30개 분석 · Hyojung guide 1+2 완료 · Ritual Moment + Gravity Well 최종 2컨셉 확정. 이 6개 원칙은 GRAIN에서 발생한 실제 문제를 해결하면서 추출됨. <code>brand-design-proposal.md</code> SOT에 저장.
+    </div>
+  </div>
+
+  <!-- 라이브러리 현황 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:800;color:var(--ink);margin-bottom:12px;">📚 브랜드 제안 라이브러리 (.claude/library/prompts/) — v8.1 신규 5종 추가</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px;">
+      <div style="padding:8px 10px;background:#EDE9FE;border-radius:6px;border-left:2px solid #7C3AED;">
+        <div style="font-weight:800;color:#6D28D9;font-family:ui-monospace,monospace;margin-bottom:3px;">brand-design-proposal.md</div>
+        <div style="color:#4C1D95;">★ 마스터 오케스트레이션 가이드. 6개 원칙 + 3단계+4게이트 전체 파이프라인 SOT.</div>
+      </div>
+      <div style="padding:8px 10px;background:#EDE9FE;border-radius:6px;border-left:2px solid #7C3AED;">
+        <div style="font-weight:800;color:#6D28D9;font-family:ui-monospace,monospace;margin-bottom:3px;">MOODBOARD_MASTER_FRAMEWORK.md</div>
+        <div style="color:#4C1D95;">무드보드 퍼스널리티 슬라이더 + 덱 오프닝 §0~§5 완전 가이드.</div>
+      </div>
+      <div style="padding:8px 10px;background:#EDE9FE;border-radius:6px;border-left:2px solid #7C3AED;">
+        <div style="font-weight:800;color:#6D28D9;font-family:ui-monospace,monospace;margin-bottom:3px;">deck-slide-templates.md</div>
+        <div style="color:#4C1D95;">최종 슬라이드 덱 타입 카탈로그 (Brand Story/Value/Mind Map/Direction 등).</div>
+      </div>
+      <div style="padding:8px 10px;background:#EDE9FE;border-radius:6px;border-left:2px solid #7C3AED;">
+        <div style="font-weight:800;color:#6D28D9;font-family:ui-monospace,monospace;margin-bottom:3px;">design-deck-wireframe.md</div>
+        <div style="color:#4C1D95;">디자인 덱 와이어프레임 — 섹션 구조 표준.</div>
+      </div>
+      <div style="padding:8px 10px;background:#EDE9FE;border-radius:6px;border-left:2px solid #7C3AED;">
+        <div style="font-weight:800;color:#6D28D9;font-family:ui-monospace,monospace;margin-bottom:3px;">wide-research.md</div>
+        <div style="color:#4C1D95;">광범위 리서치 프롬프트 — 시장·경쟁·트렌드 통합 조사 가이드.</div>
+      </div>
+      <div style="padding:8px 10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">
+        <div style="font-weight:800;color:var(--ink3);font-family:ui-monospace,monospace;margin-bottom:3px;">기존 파일들</div>
+        <div style="color:var(--ink3);">proposal-1 · proposal-2 · stage3-3 · designer-lens-gates · brand-brief-template · persona-directives 등</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <span class="ic">🚀</span>
+    <div><strong>트리거:</strong> <code>"브랜드 제안 시작"</code> 또는 <code>"/brand-proposal"</code> — 브랜드명·카테고리·타겟·가격대·목표만 있으면 자동 진행. Gate 통과 시 <code>.claude/projects/YYYYMM_브랜드명_brand-proposal.html</code> 체크포인트 자동 저장.</div>
+  </div>
+
+  <!-- HYO MANUS PIPELINE — 가로 흐름 카드형 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 4px;letter-spacing:-0.3px;">HYO MANUS 자동화 파이프라인 — 실행 순서 · MD · 에이전트</h3>
+  <p style="font-size:10px;color:var(--ink3);margin:0 0 20px;">각 Phase가 왼쪽에서 오른쪽으로 진행됩니다. Gate 통과 후 다음 Phase로 자동 진입.</p>
+
+  <style>
+  /* ── 가로 파이프라인 ── */
+  .hm-wrap { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+
+  /* 인테이크 — 풀 폭 */
+  .hm-intake-card {
+    background:#EEF0FF; border:1.5px solid #c7d2fe; border-radius:10px;
+    padding:14px 20px; display:flex; align-items:flex-start; gap:20px;
+  }
+  .hm-intake-badge {
+    font-size:8px; font-weight:900; letter-spacing:1.5px; color:#4338ca;
+    background:#c7d2fe; border-radius:4px; padding:3px 8px; white-space:nowrap; margin-top:2px;
+  }
+  .hm-intake-title { font-size:13px; font-weight:800; color:#3730a3; margin:0 0 4px; }
+  .hm-intake-md { font-size:9px; font-family:ui-monospace,monospace; color:#4338ca; margin:0 0 6px; }
+  .hm-intake-items { font-size:10px; color:#3730a3; line-height:1.7; margin:0; }
+
+  /* Phase row */
+  .hm-phase-row { display:flex; align-items:stretch; gap:0; }
+  .hm-phase-label-col {
+    writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg);
+    font-size:8px; font-weight:900; letter-spacing:2px; color:var(--ink3);
+    padding:8px 6px; border-right:2px solid var(--border); margin-right:12px;
+    min-width:28px; display:flex; align-items:center; justify-content:center;
+  }
+  .hm-cards-flow { display:flex; align-items:flex-start; gap:0; flex:1; overflow-x:auto; padding-bottom:4px; }
+
+  /* 카드 공통 */
+  .hm-card {
+    min-width:200px; max-width:220px; flex-shrink:0;
+    border-radius:10px; border:1.5px solid var(--border);
+    background:#fff; display:flex; flex-direction:column; overflow:hidden;
+  }
+  .hm-card-head {
+    padding:10px 14px 8px; border-bottom:1px solid var(--border-soft);
+  }
+  .hm-card-badge {
+    font-size:7.5px; font-weight:900; letter-spacing:1.2px;
+    border-radius:3px; padding:2px 7px; display:inline-block; margin-bottom:5px;
+  }
+  .hm-card-title { font-size:12px; font-weight:800; letter-spacing:-0.3px; line-height:1.3; margin:0; }
+  .hm-card-body { padding:10px 14px; flex:1; }
+  .hm-card-md {
+    font-size:8.5px; font-family:ui-monospace,monospace; font-weight:700;
+    color:#4A3080; background:#F0EEF9; border-radius:3px;
+    padding:2px 7px; display:block; margin-bottom:8px; line-height:1.5;
+    word-break:break-all;
+  }
+  .hm-card-agents { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+  .hm-card-agent {
+    font-size:8px; font-weight:700; padding:2px 6px; border-radius:3px;
+    background:#EEF1F7; color:var(--sig); font-family:ui-monospace,monospace;
+  }
+  .hm-card-agent-warn { background:#FEF3C7; color:#92400E; }
+  .hm-card-out { font-size:9.5px; color:var(--ink3); line-height:1.65; }
+  .hm-card-out strong { color:var(--ink2); }
+
+  /* Gate 카드 */
+  .hm-card-gate { background:#F0FAF3; border-color:#86efac; min-width:170px; max-width:190px; }
+  .hm-card-gate .hm-card-head { border-bottom-color:#bbf7d0; }
+  .hm-card-gate .hm-card-title { color:#15803d; }
+  .hm-card-gate .hm-card-out { font-family:ui-monospace,monospace; font-size:8.5px; color:#166534; line-height:1.8; }
+
+  /* 체크포인트 카드 */
+  .hm-card-cp { background:#FAFAF8; border-color:#d4d4d4; border-style:dashed; min-width:160px; max-width:180px; }
+  .hm-card-cp .hm-card-title { color:#555; }
+
+  /* Final 카드 */
+  .hm-card-final { background:#1A1A1A; border-color:#1A1A1A; min-width:200px; max-width:220px; }
+  .hm-card-final .hm-card-head { border-bottom-color:#333; }
+  .hm-card-final .hm-card-title { color:#fff; }
+  .hm-card-final .hm-card-badge { background:#fff; color:#1A1A1A; }
+  .hm-card-final .hm-card-md { background:#2a2a2a; color:#aaa; }
+  .hm-card-final .hm-card-out { color:#aaa; }
+  .hm-card-final .hm-card-out strong { color:#fff; }
+
+  /* 화살표 */
+  .hm-arrow {
+    display:flex; align-items:center; padding:0 6px; color:var(--ink3);
+    font-size:16px; flex-shrink:0; align-self:center; margin-top:-20px;
+  }
+
+  /* Phase 연결 꺾임 화살표 */
+  .hm-down-arrow {
+    text-align:center; color:var(--ink3); font-size:14px; padding:6px 0;
+    margin-left:40px;
+  }
+
+  /* 배지 색상별 */
+  .badge-intake { background:#c7d2fe; color:#3730a3; }
+  .badge-stage  { background:#FCE8E8; color:var(--sig); }
+  .badge-gate   { background:#bbf7d0; color:#15803d; }
+  .badge-cp     { background:#e5e5e5; color:#555; }
+  </style>
+
+  <div class="hm-wrap">
+
+    <!-- ── 인테이크 ── -->
+    <div class="hm-intake-card">
+      <div>
+        <div class="hm-intake-badge">INTAKE</div>
+      </div>
+      <div style="flex:1;">
+        <div class="hm-intake-title">인테이크 확인</div>
+        <div class="hm-intake-md">📋 .claude/skills/brand-proposal/SKILL.md</div>
+        <div class="hm-intake-items">브랜드명 &nbsp;·&nbsp; 카테고리 &nbsp;·&nbsp; 목표 고객 &nbsp;·&nbsp; 시장 &nbsp;·&nbsp; 가격대 &nbsp;·&nbsp; 브랜드 목표 — 6개 항목 확인 후 자동 진입</div>
+      </div>
+    </div>
+
+    <div class="hm-down-arrow">↓</div>
+
+    <!-- ── Phase 1 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 1</div>
+      <div class="hm-cards-flow">
+
+        <!-- 1차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 1차</div>
+            <div class="hm-card-title">리서치 &amp; 포지셔닝</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage1_Research_Positioning.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">rfp-analyst</span>
+              <span class="hm-card-agent">market-research</span>
+              <span class="hm-card-agent">fact-checker</span>
+              <span class="hm-card-agent">concept-director</span>
+              <span class="hm-card-agent">reference-curator</span>
+            </div>
+            <div class="hm-card-out">
+              경쟁사 30개 매트릭스<br>
+              클러스터링 → 카테고리 3개<br>
+              카테고리별 레퍼런스 8개+<br>
+              포지셔닝 맵 3안 → 1안 선정<br>
+              <strong>인상키워드 5~7개</strong><br>
+              BX 프롬프트 팩<br>
+              → stage_1_state JSON
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Gate 1 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 1</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ 경쟁 브랜드 30개+<br>
+              ✅ 카테고리 3개 · 레퍼런스 8개+<br>
+              ✅ 인사이트 축 정의<br>
+              ✅ 인상키워드 5~7개<br>
+              ✅ 포지셔닝 맵 축 임의 아님<br>
+              ✅ 빈자리 설명 가능<br>
+              ✅ 전략 한 문장<br>
+              ✅ 출처 없는 수치 없음
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- 체크포인트 1 -->
+        <div class="hm-card hm-card-cp">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">CHECKPOINT 1</div>
+            <div class="hm-card-title">리서치 파트 HTML 생성</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              경쟁사 매트릭스 · 포지셔닝 맵<br>
+              인상키워드 · 전략 한 문장<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_brand-proposal_research.html</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hm-down-arrow">↓</div>
+
+    <!-- ── Phase 2 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 2</div>
+      <div class="hm-cards-flow">
+
+        <!-- 2차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 2차</div>
+            <div class="hm-card-title">브랜드 전략 &amp; 비주얼 아이덴티티</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage2_Visual_Identity_Moodboard.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">brainstormer</span>
+              <span class="hm-card-agent">reference-curator</span>
+              <span class="hm-card-agent">moodboard-builder</span>
+              <span class="hm-card-agent hm-card-agent-warn">design-trend-radar ★</span>
+              <span class="hm-card-agent">design-critique</span>
+              <span class="hm-card-agent">visual-generator</span>
+            </div>
+            <div style="font-size:8.5px;color:#92400E;background:#FEF3C7;border-radius:3px;padding:3px 8px;margin:-2px 0 8px;line-height:1.5;">★ 분기 캐시 아님 — 브랜드 맞춤 신규 웹 스캔</div>
+            <div class="hm-card-out">
+              <strong>3열 흐름표</strong> (카테고리→전략→무드)<br>
+              <strong>브랜드 스토리 구조</strong> (서사 아크)<br>
+              디자인 전략 3안<br>
+              무드보드 · Visual DNA 6렌즈<br>
+              컨셉 숏리스트 2~3개<br>
+              → stage_2_state JSON
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Gate 2 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 2</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ 3열 흐름표 완성<br>
+              ✅ 브랜드 스토리 작성<br>
+              ✅ 디자인 전략 3안<br>
+              ✅ 전략당 무드보드 1장<br>
+              ✅ Visual DNA 6렌즈<br>
+              ✅ Client×Mood Matrix<br>
+              ✅ 숏리스트 2~3개<br>
+              ✅ stage_2_state JSON
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- 체크포인트 2 -->
+        <div class="hm-card hm-card-cp">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">CHECKPOINT 2</div>
+            <div class="hm-card-title">브랜드 전략 HTML 생성</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              3열 흐름표 · 브랜드 스토리<br>
+              디자인 전략 3안 · Visual DNA<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_brand-proposal_strategy.html</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hm-down-arrow">↓</div>
+
+    <!-- ── Phase 3 ── -->
+    <div class="hm-phase-row">
+      <div class="hm-phase-label-col">PHASE 3</div>
+      <div class="hm-cards-flow">
+
+        <!-- 3차 -->
+        <div class="hm-card">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-stage">HYO MANUS 3차</div>
+            <div class="hm-card-title">브랜드 시스템 완성</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">📄 Stage3_Brand_System_Final_Deck.md</span>
+            <div class="hm-card-agents">
+              <span class="hm-card-agent">design-system-guardian</span>
+              <span class="hm-card-agent">creative-director</span>
+              <span class="hm-card-agent">visual-generator</span>
+              <span class="hm-card-agent">review-panel</span>
+              <span class="hm-card-agent">delivery-gate</span>
+            </div>
+            <div class="hm-card-out">
+              Brand Board<br>
+              Value Cards (3~5개)<br>
+              Copy Headline System<br>
+              Symbol Association Map<br>
+              CI/BI Audit<br>
+              <strong>slide_generation_ready: true 확인</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Gate 3 -->
+        <div class="hm-card hm-card-gate">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-gate">GATE 3</div>
+            <div class="hm-card-title">자동 체크</div>
+          </div>
+          <div class="hm-card-body">
+            <div class="hm-card-out">
+              ✅ Brand Board 전항목<br>
+              ✅ Value Cards 3~5개<br>
+              ✅ Copy Headline 6유형<br>
+              ✅ Symbol Association Map<br>
+              ✅ CI/BI Audit 6개+<br>
+              ✅ slide_generation_ready: true<br>
+              ✅ Director Final Check
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Final A: 브랜드 시스템 -->
+        <div class="hm-card hm-card-cp" style="min-width:190px;max-width:210px;">
+          <div class="hm-card-head">
+            <div class="hm-card-badge badge-cp">FINAL A</div>
+            <div class="hm-card-title">전체 브랜드 시스템 HTML</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md</span>
+            <div class="hm-card-out">
+              Brand Board · Value Cards<br>
+              Copy Headline · CI/BI Audit<br>
+              <code style="font-size:8px;">YYYYMM_브랜드_brand-proposal_system.html</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="hm-arrow">→</div>
+
+        <!-- Final B: 제안 전체 -->
+        <div class="hm-card hm-card-final">
+          <div class="hm-card-head">
+            <div class="hm-card-badge">FINAL B</div>
+            <div class="hm-card-title">제안 전체 HTML (35~45장)</div>
+          </div>
+          <div class="hm-card-body">
+            <span class="hm-card-md">🗂 html-template.md + ux-writing.md</span>
+            <div class="hm-card-out">
+              3개 스테이지 통합<br>
+              슬라이드 덱 완성본<br>
+              <code style="font-size:8px;color:#aaa;">YYYYMM_브랜드_brand-proposal_proposal.html</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /hm-wrap -->
+
+  <div style="font-size:10px;background:#F4F2EE;border-radius:8px;padding:10px 16px;color:var(--ink3);margin-bottom:28px;line-height:1.7;">
+    <strong style="color:var(--ink);">MD 파일 역할 요약</strong><br>
+    <code>SKILL.md</code> — 전체 자동화 흐름 정의 (인테이크·Gate 기준·HTML 생성 규칙)<br>
+    <code>Stage1_Research_Positioning.md</code> — 경쟁사 매트릭스·포지셔닝 맵 상세 방법론<br>
+    <code>Stage2_Visual_Identity_Moodboard.md</code> — 비주얼 DNA·무드보드·디자인 전략 기준<br>
+    <code>Stage3_Brand_System_Final_Deck.md</code> — Brand Board·Value Cards·덱 슬라이드 구성<br>
+    <code>html-template.md</code> — 체크포인트 HTML 공통 구조 (파이프라인 바·섹션 레이아웃)
+  </div>
+
+  <!-- 브랜드 전략 흐름 3열 시각화 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 6px;letter-spacing:-0.3px;">[2차] 브랜드 전략 흐름 — 카테고리 인사이트 → 전략 → 디자인 무드</h3>
+  <p style="font-size:11px;color:var(--ink3);margin:0 0 14px;">1차 클러스터링으로 도출된 3개 카테고리가 각각 브랜딩 전략 1개·디자인 무드 1개와 연결됩니다. 이 3열 흐름표가 2차 비주얼 방향의 근거·요약입니다. (아래는 Stage 브랜드 작업 예시)</p>
+
+  <div style="background:#F8F8F6;border-radius:12px;padding:20px 24px;margin-bottom:14px;">
+    <!-- 헤더 -->
+    <div style="display:grid;grid-template-columns:1fr 28px 1.3fr 28px 1fr;gap:0;align-items:center;padding-bottom:12px;border-bottom:2px solid var(--border);margin-bottom:4px;">
+      <div style="font-size:9px;font-weight:800;color:var(--ink3);letter-spacing:1.5px;">CATEGORY / INSIGHT</div>
+      <div></div>
+      <div style="font-size:9px;font-weight:800;color:var(--ink3);letter-spacing:1.5px;">STRATEGY / CONCEPT</div>
+      <div></div>
+      <div style="font-size:9px;font-weight:800;color:var(--ink3);letter-spacing:1.5px;">DESIGN MOOD</div>
+    </div>
+    <!-- 행 A -->
+    <div style="display:grid;grid-template-columns:1fr 28px 1.3fr 28px 1fr;gap:0;align-items:center;padding:16px 0;border-bottom:1px solid var(--border-soft);">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);">Curated Chaos</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:2px;line-height:1.4;">큐레이션 = 브랜드 정체성</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-0.5px;">Cycle of Scenes</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;">장면의 순환</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--ink);line-height:1.3;">Glitch &amp; Möbius</div>
+      </div>
+    </div>
+    <!-- 행 B -->
+    <div style="display:grid;grid-template-columns:1fr 28px 1.3fr 28px 1fr;gap:0;align-items:center;padding:16px 0;border-bottom:1px solid var(--border-soft);">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);">Immersive Worlds</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:2px;line-height:1.4;">공간이 먼저 말한다</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-0.5px;">Raw Meets Refined</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;">날것과 정제됨의 충돌</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--ink);line-height:1.3;">Brutalist<br>Framework</div>
+      </div>
+    </div>
+    <!-- 행 C -->
+    <div style="display:grid;grid-template-columns:1fr 28px 1.3fr 28px 1fr;gap:0;align-items:center;padding:16px 0 4px;">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);">Street Pulse</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:2px;line-height:1.4;">진정성 = 신뢰의 근거</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-0.5px;">Living Archive</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;">살아있는 아카이브</div>
+      </div>
+      <div style="text-align:center;font-size:16px;color:var(--ink3);">→</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--ink);line-height:1.3;">Industrial<br>&amp; Neon Pulse</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:10px;color:var(--ink3);margin-bottom:28px;padding:8px 12px;background:#FFF7ED;border-radius:6px;border-left:3px solid var(--warn);">
+    ↑ <strong>Stage 브랜드 2차 산출물 예시</strong> — 실제 작업 시 카테고리명·전략명·무드명이 브랜드별로 교체. 3열 흐름표 + 카테고리별 레퍼런스 브랜드 그리드가 세트로 산출됨.
+  </div>
+
+  <!-- 디자인 전략 3안 구성 요소 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">[2차] 디자인 전략 3안 — 각 전략의 구성 요소</h3>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
+    <div class="card" style="border-left:3px solid var(--sig);">
+      <div style="font-size:9px;font-weight:800;color:var(--sig);margin-bottom:6px;">전략 A (예: Cycle of Scenes)</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.7;">그래픽 모티프 · 형태<br>타이포그래피 &amp; 로고타입<br>컬러 팔레트 &amp; 질감<br>이미지 무드보드</div>
+    </div>
+    <div class="card" style="border-left:3px solid #888;">
+      <div style="font-size:9px;font-weight:800;color:#888;margin-bottom:6px;">전략 B (예: Raw Meets Refined)</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.7;">그래픽 모티프 · 형태<br>타이포그래피 &amp; 로고타입<br>컬러 팔레트 &amp; 질감<br>이미지 무드보드</div>
+    </div>
+    <div class="card" style="border-left:3px solid #333;">
+      <div style="font-size:9px;font-weight:800;color:#333;margin-bottom:6px;">전략 C (예: Living Archive)</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.7;">그래픽 모티프 · 형태<br>타이포그래피 &amp; 로고타입<br>컬러 팔레트 &amp; 질감<br>이미지 무드보드</div>
+    </div>
+  </div>
+
+  <!-- GATE 자동 체크 예시 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">Gate 자동 체크 (인라인 표시)</h3>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 1 자동 체크]</strong><br>
+      ✅ 경쟁 브랜드 30개 이상<br>
+      ✅ 직접·간접·감성 경쟁 포함<br>
+      ✅ 카테고리 3개 + 레퍼런스 8개+<br>
+      ✅ 카테고리 인사이트 축 정의<br>
+      ✅ 브랜드 인상키워드 5~7개<br>
+      ✅ 포지셔닝 맵 축 임의 아님<br>
+      ✅ 빈자리 설명 가능<br>
+      ✅ 포지셔닝 전략 한 문장<br>
+      ✅ 비주얼 프롬프트 연결<br>
+      ✅ 출처 없는 수치 없음<br>
+      <strong>→ Gate 1 통과 · 2차 자동 진입</strong>
+    </div>
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 2 자동 체크]</strong><br>
+      ✅ 브랜드 방향성 3열 흐름표 완성<br>
+      ✅ 브랜드 스토리 구조 작성<br>
+      ✅ 디자인 전략 3안 (모티프·타이포·컬러·질감)<br>
+      ✅ 전략당 이미지 무드보드 1장<br>
+      ✅ Visual DNA 6렌즈 완성<br>
+      ✅ Client×Mood Matrix 채움<br>
+      ✅ 숏리스트 2~3개 선정<br>
+      ✅ 경쟁 비주얼 코드 맵 완성<br>
+      ✅ stage_2_state JSON 생성<br>
+      <strong>→ Gate 2 통과 · 3차 자동 진입</strong>
+    </div>
+    <div class="card" style="font-family:monospace;font-size:10px;line-height:1.8;background:#F7F6F2;">
+      <strong style="font-size:11px;">[Gate 3 자동 체크]</strong><br>
+      ✅ Brand Board 전항목 채움<br>
+      ✅ Value Cards 3~5개 완성<br>
+      ✅ Copy Headline 6유형<br>
+      ✅ Symbol Association Map<br>
+      ✅ CI/BI Audit 6개 이상<br>
+      ✅ slide_generation_ready: true<br>
+      ✅ Director Final Check 완료<br>
+      <strong>→ Gate 3 통과 · Final Deck 생성</strong>
+    </div>
+  </div>
+
+  <!-- 단계별 호출 에이전트 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">단계 ↔ 호출 에이전트</h3>
+  <table class="tier-table" style="margin-bottom:24px;">
+    <tr><th>단계</th><th>호출 에이전트</th><th>산출물 키</th></tr>
+    <tr><td>HYO MANUS 1차</td><td>rfp-analyst · market-research · fact-checker · concept-director · reference-curator</td><td>카테고리 3개 + 인상키워드 + stage_1_state JSON</td></tr>
+    <tr><td>HYO MANUS 2차</td><td>brainstormer · reference-curator · moodboard-builder · design-trend-radar · design-critique · visual-generator</td><td>브랜드 방향성 3열표 + 스토리 구조 + 디자인 전략 3안 + stage_2_state JSON</td></tr>
+    <tr><td>HYO MANUS 3차</td><td>design-system-guardian · creative-director · visual-generator · review-panel · delivery-gate</td><td>stage_3_state + Final Deck HTML</td></tr>
+    <tr><td>HTML 체크포인트</td><td>(자동) brand-proposal 스킬 내장</td><td>YYYYMM_브랜드명_brand-proposal.html</td></tr>
+  </table>
+
+  <!-- 샘플 -->
+  <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">완성 샘플 — LUNE 브랜드 (2026.07)</h3>
+  <div class="card" style="display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;">
+    <div style="flex:1;">
+      <div style="font-size:11px;font-weight:800;margin-bottom:4px;">LUNE · 젠더뉴트럴 라이프스타일 패션 · 서울</div>
+      <div style="font-size:10px;color:var(--ink3);line-height:1.6;">타겟: 20–40대 감각적 남녀 · 프리미엄 가격대<br>포지셔닝: Quiet Luxury × Premium (Quiet↔Expressive / Mass↔Premium)<br>선택 컨셉: Lunar Stillness + Material Truth (2 finalist)<br>Final Deck: 36슬라이드 완성 · slide_generation_ready: true</div>
+    </div>
+    <div style="text-align:right;font-size:10px;color:var(--ink4);">
+      <div style="font-weight:800;color:var(--ok);margin-bottom:4px;">✅ 전 단계 완료</div>
+      <div>Gate 1 ✅ Gate 2 ✅ Gate 3 ✅</div>
+      <div style="margin-top:4px;"><code style="font-size:9px;">202607_LUNE_brand-proposal.html</code></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    <strong>© 효정 브랜드 제안 프로세스 · 외부 배포 금지.</strong>&nbsp; <code>brand-proposal</code> 스킬 트리거: "브랜드 제안 시작" / "브랜드 제안 자동화" / "/brand-proposal". 1차·2차에서는 절대 Final Deck 미생성 — <code>slide_generation_ready: true</code> 이후에만.
+  </div>
+</div><!-- /sect-brand -->
+
+</div><!-- /main -->
+
+<script>
+function go(tab, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sect-' + tab).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function toggleCollapse(header) {
+  header.classList.toggle('expanded');
+  header.nextElementSibling.classList.toggle('expanded');
+}
+
+/* inline onclick 대신 addEventListener (CSP unsafe-inline 차단 대응) */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tab[data-tab]').forEach(function (t) {
+    t.addEventListener('click', function () { go(t.dataset.tab, t); });
+  });
+  document.querySelectorAll('[data-collapsible]').forEach(function (h) {
+    h.addEventListener('click', function () { toggleCollapse(h); });
+  });
+});
+
+/* GANTT */
+const TOTAL = 122; // June 1 ~ Sep 30
+const TODAY = 26;  // June 26 = day 26
+
+function pct(d) { return ((d - 1) / TOTAL * 100).toFixed(3) + '%'; }
+function wpct(dur) { return (dur / TOTAL * 100).toFixed(3) + '%'; }
+
+function buildGantt(id, rows) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const labels = [1, 15, 31, 46, 61, 76, 92, 107, 122];
+  const ltext  = ['6/1','6/15','7/1','7/15','8/1','8/15','9/1','9/15','9/30'];
+  let html = '<div class="gantt-header-row">';
+  labels.forEach((d,i) => { html += `<span class="gantt-header-label" style="left:${pct(d)}">${ltext[i]}</span>`; });
+  html += '</div>';
+  rows.forEach(r => {
+    const cls = r.type === 'wip' ? 'gantt-bar-wip' : r.type === 'hold' ? 'gantt-bar-hold' : 'gantt-bar-done';
+    html += `<div class="gantt-row">
+      <div class="gantt-row-label" title="${r.name}">${r.name}</div>
+      <div class="gantt-track">
+        <div class="gantt-bar ${cls}" style="left:${pct(r.start)};width:${wpct(r.dur)}"></div>
+        <div class="gantt-today-line" style="left:${pct(TODAY)}"></div>
+      </div></div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ══════════════ v7 실시간 연동 ══════════════════════════════════════
+// GitHub Actions가 매일 scripts/fetch-dashboard-data.js 를 실행해
+// .claude/projects/dashboard-data.json 을 자동 갱신한다. Apps Script 불필요.
+const DATA_URL = './dashboard-data.json';
+// ════════════════════════════════════════════════════════════════════
+
+const TEAM_CONFIG = [
+  { name:'김효정', role:'실장 · CD', team:'CD',  avClass:'av-cd', avText:'실', skills:['CD','PM','Strategy','Business'] },
+  { name:'김창환', role:'VM팀장 · 비주얼 리드',  team:'VM', avClass:'av-vm', avText:'VM', skills:['Motion','Branding','Direction'] },
+  { name:'강민우', role:'VM파트장',               team:'VM', avClass:'av-vm', avText:'VM', skills:['Motion','UI','AE'] },
+  { name:'강승일', role:'VM전임',                 team:'VM', avClass:'av-vm', avText:'VM', skills:['Motion','Illustration','Design'] },
+  { name:'문경선', role:'VM전임',                 team:'VM', avClass:'av-vm', avText:'VM', skills:['Motion','Photoshop','Design'] },
+  { name:'이지현', role:'VM전임',                 team:'VM', avClass:'av-vm', avText:'VM', skills:['UI','Design','Figma'] },
+  { name:'전한아', role:'VX파트장',               team:'VX', avClass:'av-vx', avText:'VX', skills:['UX','Figma','Prototyping'] },
+  { name:'김지원', role:'VX전임',                 team:'VX', avClass:'av-vx', avText:'VX', skills:['Front-End','React','Figma'] },
+  { name:'김준환', role:'VX선임',                 team:'VX', avClass:'av-vx', avText:'VX', skills:['UX','Figma','Design'] },
+];
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── 동기 상태 배지 ────────────────────────────────────────
+function setSyncStatus(state, info) {
+  const badge = document.getElementById('sync-badge');
+  const sub   = document.getElementById('sync-sub');
+  const now   = info || '';
+  if (!badge) return;
+  badge.className = 'head-badge ' + (state === 'ok' ? 'sync-ok' : state === 'error' ? 'sync-err' : state === 'offline' ? 'sync-warn' : '');
+  if (state === 'ok')      { badge.textContent = '● 실시간 · 갱신 ' + now + ' · v7'; if (sub) sub.textContent = '노션/구글시트 실시간 연동 · ' + now + ' 기준'; }
+  else if (state === 'error')   { badge.textContent = '● 연결 오류 · v7'; if (sub) sub.textContent = '연결 실패: ' + now + ' — 캐시 데이터 표시 중'; }
+  else if (state === 'offline') { badge.textContent = '● 오프라인 모드 · v7'; if (sub) sub.textContent = 'dashboard-data.json 로드 실패'; }
+  else                          { badge.textContent = '● 연결 중... · v7'; }
+}
+
+// ── 헤더 통계 업데이트 ────────────────────────────────────
+function updateStats(projects, resources) {
+  const active = projects.filter(p => ['active','almost','fixed'].includes(p.group)).length;
+  const spEl = document.getElementById('stat-projects');
+  if (spEl) spEl.textContent = active;
+
+  const rates = resources.filter(r => r.utilRate !== null).map(r => r.utilRate);
+  if (rates.length) {
+    const avg = Math.round(rates.reduce((a,b)=>a+b,0) / rates.length);
+    const suEl = document.getElementById('stat-util');
+    if (suEl) suEl.textContent = avg + '%';
+    const avgN   = document.getElementById('team-avg-util-n');
+    const avgSub = document.getElementById('team-avg-util-sub');
+    if (avgN)   avgN.innerHTML = avg + '<span class="unit">%</span>';
+    if (avgSub) avgSub.textContent = avg >= 100 ? '🔴 과부하 — 재배치 검토' : avg >= 80 ? '🟢 정상 (목표 80~90%)' : '🟡 여유 있음';
+    if (avgN)   avgN.style.color = avg >= 100 ? 'var(--danger)' : avg >= 80 ? 'var(--warn)' : 'var(--ok)';
+  }
+}
+
+// ── 오늘 보드 렌더 ────────────────────────────────────────
+function renderTodayBoard(projects) {
+  const el = document.getElementById('today-live');
+  if (!el) return;
+  const today = new Date().toISOString().slice(0,10);
+  const todayStr = today.slice(5);
+  const titleEl = document.getElementById('today-board-title');
+  const noteEl  = document.getElementById('today-board-note');
+  if (titleEl) titleEl.textContent = '🎯 마감 임박 프로젝트 — ' + today;
+  if (noteEl)  noteEl.textContent  = '노션 종료 날짜 기준 자동 추출 · 진행중/거의완료 상태만';
+
+  const overdue  = projects.filter(p => p.endDate && p.endDate <= today && ['active','almost'].includes(p.group));
+  const upcoming = projects.filter(p => {
+    if (!p.endDate || !['active','almost','upcoming'].includes(p.group)) return false;
+    const diff = (new Date(p.endDate) - new Date(today)) / 86400000;
+    return diff > 0 && diff <= 7;
+  });
+
+  if (!overdue.length && !upcoming.length) {
+    el.innerHTML = '<div style="padding:16px;font-size:12px;color:var(--ok);">✅ 7일 내 마감 임박 항목 없음</div>';
+    return;
+  }
+
+  let html = '<div class="today-grid">';
+  if (overdue.length) {
+    html += '<div class="today-col overdue"><div class="today-col-h">🔴 마감 도래<span class="cnt">' + overdue.length + '</span></div>';
+    overdue.forEach(p => {
+      const cat = esc(p.categories[0] || p.status);
+      html += '<div class="today-item"><span class="ti-area" style="background:#FDECEC;color:#B23B3B;">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-do">종료 ' + (p.endDate||'') + '</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
+    });
+    html += '</div>';
+  }
+  if (upcoming.length) {
+    html += '<div class="today-col duetoday"><div class="today-col-h">⏰ 7일 내 마감<span class="cnt">' + upcoming.length + '</span></div>';
+    upcoming.forEach(p => {
+      const daysLeft = Math.ceil((new Date(p.endDate) - new Date(today)) / 86400000);
+      const cat = esc(p.categories[0] || p.status);
+      html += '<div class="today-item"><span class="ti-area" style="background:#FFF6E5;color:#7A5010;">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-remind">D-' + daysLeft + ' (' + (p.endDate||'') + ')</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ── 칸반 렌더 ─────────────────────────────────────────────
+function renderKanban(projects) {
+  const el = document.getElementById('projects-kanban-live');
+  if (!el) return;
+
+  const GROUPS = [
+    { key:'active',  label:'진행중',    dot:'#3b82f6', tag:'tag-live' },
+    { key:'almost',  label:'거의 완료', dot:'#22c55e', tag:'tag-new'  },
+    { key:'fixed',   label:'고정운영',  dot:'#10b981', tag:'tag-qa'   },
+    { key:'upcoming',label:'진행예정',  dot:'#f59e0b', tag:'tag-hold' },
+    { key:'discuss', label:'협의중',    dot:'#f59e0b', tag:'tag-qa'   },
+    { key:'review',  label:'검토중',    dot:'#94a3b8', tag:'tag-hold' },
+    { key:'hold',    label:'홀딩',      dot:'#94a3b8', tag:'tag-hold' },
+    { key:'interest',label:'관심',      dot:'#94a3b8', tag:'tag-hold' },
+  ];
+
+  const grouped = {};
+  projects.forEach(p => { (grouped[p.group] = grouped[p.group]||[]).push(p); });
+
+  const counts = {};
+  ['active','almost','fixed'].forEach(k => { counts[k] = (grouped[k]||[]).length; });
+  const totalActive = counts.active + counts.almost + counts.fixed;
+  const totalHold   = (grouped.upcoming||[]).length + (grouped.discuss||[]).length + (grouped.review||[]).length + (grouped.hold||[]).length;
+  const summaryEl   = document.getElementById('projects-summary');
+  if (summaryEl) summaryEl.textContent = '진행중 ' + totalActive + ' · 협의/홀딩 ' + totalHold;
+
+  let html = '';
+  GROUPS.forEach(g => {
+    const items = grouped[g.key] || [];
+    if (!items.length) return;
+    html += '<div class="kanban-col"><div class="kanban-col-header"><span class="col-dot" style="background:' + g.dot + ';"></span>' + g.label + '<span class="col-count">' + items.length + '</span></div>';
+    items.forEach(p => {
+      const cat   = p.categories.slice(0,2).join('·');
+      const dates = [p.startDate, p.endDate].filter(Boolean).map(d => d.slice(5)).join('~');
+      const desc  = [cat, p.difficulty ? '난이도 '+p.difficulty : '', dates].filter(Boolean).join(' · ');
+      html += '<div class="project-item"' + (p.notionUrl ? ' onclick="window.open(\''+p.notionUrl+'\',\'_blank\')" style="cursor:pointer;"' : '') + '>';
+      html += '<div class="project-item-title">' + esc(p.title) + '</div>';
+      html += '<div class="project-item-desc">' + esc(desc) + '</div>';
+      html += '<span class="project-item-tag ' + g.tag + '">' + esc(cat || g.label) + (p.difficulty ? ' · '+p.difficulty : '') + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+
+  if (!html) html = '<div class="live-loading" style="height:100px;color:var(--ok);">✅ 진행 중인 프로젝트 없음</div>';
+  el.innerHTML = html;
+}
+
+// ── 팀 섹션 렌더 ──────────────────────────────────────────
+function renderTeam(resources) {
+  const resMap = {};
+  (resources||[]).forEach(r => { resMap[r.name] = r; });
+
+  const groups = { VM:[], VX:[], CD:[] };
+  TEAM_CONFIG.forEach(m => { (groups[m.team]||groups.VM).push(m); });
+
+  ['VM','VX','CD'].forEach(team => {
+    const el = document.getElementById('team-grid-' + team.toLowerCase());
+    if (!el) return;
+    let html = '';
+    groups[team].forEach(m => {
+      const res  = resMap[m.name] || {};
+      const rate = res.utilRate != null ? res.utilRate : null;
+      const pct  = rate != null ? rate + '%' : '—%';
+      const bar  = rate != null ? Math.min(rate, 100) : 0;
+      const col  = rate == null ? 'var(--ink4)' : rate >= 100 ? 'var(--danger)' : rate >= 80 ? 'var(--warn)' : 'var(--ok)';
+      html += '<div class="member-card">';
+      html += '<div class="member-header"><div class="member-avatar ' + m.avClass + '">' + m.avText + '</div>';
+      html += '<div><div class="member-name">' + m.name + '</div><div class="member-role">' + m.role + '</div></div></div>';
+      html += '<div class="member-util"><div class="member-util-label"><span>가동률</span><span style="color:' + col + ';font-weight:700;">' + pct + '</span></div>';
+      html += '<div class="member-util-bar"><div class="member-util-fill" style="width:' + bar + '%;background:' + col + ';transition:width .7s;"></div></div></div>';
+      html += '<div class="member-skills">';
+      m.skills.forEach(s => { html += '<span class="skill-tag">' + s + '</span>'; });
+      html += '</div></div>';
+    });
+    el.innerHTML = html;
+  });
+}
+
+// ── 메인 fetch ────────────────────────────────────────────
+async function fetchLiveData() {
+  setSyncStatus('loading');
+  try {
+    const resp = await fetch(DATA_URL + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+
+    // 프로젝트 — 독립 처리
+    const projects = data.projects || [];
+    if (data.projectsError) {
+      const el = document.getElementById('projects-kanban-live');
+      if (el) el.innerHTML = '<div class="live-loading" style="color:var(--danger);height:100px;">⚠️ Notion 프로젝트 로드 실패<br><span style="font-size:10px;margin-top:4px;display:block;">' + esc(data.projectsError) + '</span></div>';
+    } else {
+      renderTodayBoard(projects);
+      renderKanban(projects);
+    }
+
+    // 가동률 — 독립 처리
+    const resources = data.resources || [];
+    if (data.resourcesError) {
+      ['team-grid-vm','team-grid-vx','team-grid-cd'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = '<div style="grid-column:1/-1;padding:10px 14px;background:#FFF1F0;border-radius:8px;font-size:11px;color:var(--danger);border-left:3px solid var(--danger);">⚠️ 가동률 로드 실패 (Google Sheets): ' + esc(data.resourcesError) + '</div>';
+      });
+      renderTeam([]);
+    } else {
+      renderTeam(resources);
+    }
+
+    updateStats(projects, resources);
+
+    const lastUpdEl = document.getElementById('last-updated');
+    if (lastUpdEl) {
+      const dt = data.fetchedAt ? new Date(data.fetchedAt) : new Date();
+      lastUpdEl.textContent = '마지막 갱신: ' + dt.toLocaleString('ko-KR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
+    const hasErr = data.projectsError || data.resourcesError;
+    setSyncStatus(hasErr ? 'error' : 'ok', data.fetchedAt ? data.fetchedAt.slice(5,16).replace('T',' ') : '');
+  } catch (err) {
+    setSyncStatus('error', err.message);
+    renderTeam([]);
+    const el = document.getElementById('projects-kanban-live');
+    if (el) el.innerHTML = '<div class="live-loading" style="color:var(--danger);height:100px;">⚠️ 데이터 로드 실패: ' + esc(err.message) + '<br><span style="font-size:10px;margin-top:4px;display:block;">dashboard-data.json 파일이 같은 폴더에 있는지, GitHub Actions가 정상 실행됐는지 확인하세요</span></div>';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  renderTeam([]); // 팀 카드 즉시 렌더 (가동률 —% 상태로)
+  fetchLiveData();
+});
+// ════════════════════════════════════════════════════════════════════
+
+// 데이터 출처: Notion 2026 Project DB (collection://2e79ff44…5bf54) — SOT
+// 기준일 2026-06-26 → v6부터 실시간 · 간트는 아래 정적 스냅샷 유지
+buildGantt('gantt-max', [
+  // 진행중 [H] UI+Motion — 시작 3/24, 시작end 6/26 (종료필드 입력오류)
+  { name: '코웨이 GUI 컨설팅 및 구축 (3/24~6/26, H)',    start: 1,  dur: 26, type: 'wip'  },
+  // 고정운영 — 넷마블 운영 최소 운영 4TO (3/31~12/31)
+  { name: '[고정운영] 넷마블 운영 4TO (~12/31)',          start: 1,  dur: 122,type: 'wip'  },
+  // 진행예정 [H] Motion — 가디언 메이든 사전 런칭 준비 (5/1~ 종료미정)
+  { name: '가디언 메이든 사전 런칭 준비 (5/1~, H)',       start: 1,  dur: 30, type: 'hold' },
+  // 진행중 PPT — 회사 소개서 업데이트 (6/1~6/12)
+  { name: '회사 소개서 업데이트 PPT (6/1~6/12)',         start: 1,  dur: 12, type: 'done' },
+  // 진행예정 Motion — [비나] 넥슨 히간이루실 (6/4~6/12)
+  { name: '[비나] 넥슨 히간이루실 (6/4~6/12)',           start: 4,  dur: 9,  type: 'hold' },
+  // 진행중 [H] AI — 넷마블 AI 업세일즈 제안건 (6/5~6/26)
+  { name: '넷마블 AI 업세일즈 제안 (6/5~6/26, H)',      start: 5,  dur: 22, type: 'wip'  },
+  // 진행중 UI — 올리브영 제안 PB 상세 페이지 (6/15~6/19)
+  { name: '올리브영 PB 상세 페이지 제안 (6/15~6/19)',     start: 15, dur: 5,  type: 'done' },
+  // 진행중 [H] Motion — 현대 수소 홈페이지 구축 (6/22~6/27)
+  { name: '현대 수소 홈페이지 구축 (6/22~6/27, H)',      start: 22, dur: 6,  type: 'wip'  },
+  // 진행중 [M] Motion — YBM 브릿지 사이트 KV 모션 (6/24~6/26)
+  { name: 'YBM 브릿지 KV 모션 (6/24~6/26, M)',         start: 24, dur: 3,  type: 'wip'  },
+  // 진행중 [M] game — MX 센터 SNS (9/4~10/1, 9/30 클립)
+  { name: 'MX 센터 SNS (9/4~10/1, M)',                start: 96, dur: 27, type: 'wip'  },
+  // MAX Lab — GRAIN 호글라스 AI 브랜드 실험 (6/30~7/31, Hyojung guide 2 완료 · Stage 3 대기)
+  { name: '[MAX Lab] GRAIN 호글라스 브랜드 (6/30~)',   start: 30, dur: 32, type: 'hold' },
+]);
+</script>
+</body>
+</html>

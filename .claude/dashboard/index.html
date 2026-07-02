@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>MAX실 OS — 바로가기 인덱스</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{ color-scheme:light; --bg:#EFEDE8; --card:#fff; --ink:#141414; --ink2:rgba(0,0,0,.62); --ink3:rgba(0,0,0,.40); --border:rgba(0,0,0,.09); --coral:#E8502A; --brass:#B8860B; --sig:#2F3E5F; --ok:#2D7A4F; }
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ background:#fff; }
+body{ background:var(--bg); color:var(--ink); font-family:'Pretendard',sans-serif; line-height:1.6; letter-spacing:-0.2px; }
+html{ scroll-behavior:smooth; }
+.nav{ position:sticky; top:0; z-index:50; background:rgba(239,237,232,.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); display:flex; gap:6px; padding:12px 32px; overflow-x:auto; }
+.nav a{ font-size:12px; font-weight:600; color:var(--ink3); text-decoration:none; padding:5px 12px; border-radius:20px; white-space:nowrap; }
+.nav a:hover{ color:var(--ink); background:rgba(0,0,0,.05); }
+.wrap{ max-width:1080px; margin:0 auto; padding:0 32px 80px; }
+.hero{ padding:56px 0 34px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+.hero .kick{ font-size:11px; font-weight:800; letter-spacing:2px; color:var(--coral); text-transform:uppercase; }
+.hero h1{ font-size:34px; font-weight:900; letter-spacing:-1px; margin:10px 0 8px; }
+.hero h1 span{ color:var(--ink3); font-weight:500; }
+.hero p{ font-size:14px; color:var(--ink2); max-width:620px; }
+.hero .stats{ display:flex; gap:28px; margin-top:22px; flex-wrap:wrap; }
+.hero .stats div{ font-size:11px; color:var(--ink3); }
+.hero .stats b{ display:block; font-size:22px; font-weight:900; color:var(--ink); }
+.sec{ margin-top:44px; }
+.sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:16px; }
+.sec-head h2{ font-size:15px; font-weight:800; }
+.sec-head .c{ font-size:11px; color:var(--ink3); font-weight:700; }
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+.card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; text-decoration:none; color:inherit; position:relative; overflow:hidden; transition:transform .15s, box-shadow .15s; display:flex; flex-direction:column; min-height:150px; }
+.card::before{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--ac,transparent); opacity:0; transition:opacity .15s; }
+.card:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.card:hover::before{ opacity:1; }
+.card.coral{ --ac:var(--coral); } .card.brass{ --ac:var(--brass); } .card.sig{ --ac:var(--sig); } .card.ok{ --ac:var(--ok); }
+.card .tag{ font-size:10px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; color:var(--ink3); }
+.card.coral .tag{ color:var(--coral); } .card.brass .tag{ color:var(--brass); } .card.sig .tag{ color:var(--sig); } .card.ok .tag{ color:var(--ok); }
+.card h3{ font-size:17px; font-weight:800; margin:6px 0 6px; letter-spacing:-0.3px; }
+.card p{ font-size:12.5px; color:var(--ink2); flex:1; }
+.card .foot{ display:flex; align-items:center; justify-content:space-between; margin-top:14px; font-size:11px; color:var(--ink3); }
+.card .arrow{ font-size:16px; color:var(--ink3); transition:transform .15s; }
+.card:hover .arrow{ transform:translateX(3px); color:var(--ink); }
+.card.info{ cursor:default; }
+.card.info:hover{ transform:none; box-shadow:none; }
+.foot-note{ margin-top:46px; padding:16px 18px; background:#fff; border:1px solid var(--border); border-left:3px solid var(--sig); border-radius:8px; font-size:12px; color:var(--ink2); }
+.foot-note code{ background:var(--bg); padding:1px 6px; border-radius:4px; font-size:11px; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="#live">라이브 대시보드</a>
+  <a href="#pipeline">파이프라인·프로세스</a>
+  <a href="#project">프로젝트·회고</a>
+  <a href="#archive">아카이브</a>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kick">MAX실 OS · Index</div>
+    <h1>바로가기 <span>— 모든 지도를 한 곳에서</span></h1>
+    <p>디자인센터 50명 + MAX실 9명 운영을 굴리는 에이전트 OS. 대시보드·파이프라인·프로젝트 회고로 바로 이동하세요.</p>
+    <div class="stats">
+      <div><b>31</b>에이전트</div>
+      <div><b>8</b>스킬</div>
+      <div><b>8</b>그룹</div>
+      <div><b>Notion</b>라이브 연결</div>
+    </div>
+  </div>
+
+  <!-- 라이브 대시보드 -->
+  <div class="sec" id="live">
+    <div class="sec-head"><h2>🟢 라이브 대시보드</h2><span class="c">2</span></div>
+    <div class="grid">
+      <a class="card coral" href="./maxos-dashboard-v7.html">
+        <span class="tag">Data-driven · Live</span>
+        <h3>Dashboard v7</h3>
+        <p>Notion 2026 Project DB에서 매일 자동 갱신되는 프로젝트 현황·가동률 보드. GitHub Actions 연동.</p>
+        <div class="foot"><span>오늘 보드 · 간트 · 팀</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card sig" href="./maxos-dashboard-v5.html">
+        <span class="tag">9탭 통합 OS</span>
+        <h3>Dashboard v5</h3>
+        <p>조직도(31에이전트·8그룹)·워크플로우·트렌드·클라 레이더·채용·브랜드 제안까지 9탭.</p>
+        <div class="foot"><span>조직도 · 워크플로우 · 지침</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 파이프라인·프로세스 -->
+  <div class="sec" id="pipeline">
+    <div class="sec-head"><h2>🧭 파이프라인 · 프로세스</h2><span class="c">2</span></div>
+    <div class="grid">
+      <a class="card brass" href="../library/brand-pipeline/_v3-source/hyojung_guided_agent_v3_board.html">
+        <span class="tag">Hyojung Guided</span>
+        <h3>브랜드 제안 파이프라인</h3>
+        <p>Intake → Research → POV → Visual → System → HTML Export. 단계별 질문 + 게이트 0~5.</p>
+        <div class="foot"><span>7단계 · 디자이너 렌즈</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card sig" href="./maxos-dashboard-v5.html">
+        <span class="tag">워크플로우 탭</span>
+        <h3>관장 체계 (워크플로우)</h3>
+        <p>제안 풀패키지·시안검수·발송게이트·검수 티어 등 명명된 워크플로우 6종. (v5 워크플로우 탭)</p>
+        <div class="foot"><span>허브 → 스킬 → 에이전트</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 프로젝트·회고 -->
+  <div class="sec" id="project">
+    <div class="sec-head"><h2>📁 프로젝트 · 회고</h2><span class="c">1</span></div>
+    <div class="grid">
+      <a class="card ok" href="../projects/202606_oliveyoung/RETROSPECTIVE.html">
+        <span class="tag">Retrospective</span>
+        <h3>올리브영 색조 PB 입찰 — 회고</h3>
+        <p>로직·개입 로드맵(디렉터가 어디서 어떤 관점으로 지시했나)·방법론·반복 패턴 6섹션.</p>
+        <div class="foot"><span>개입 5구간 · ax-architect 입력</span><span class="arrow">→</span></div>
+      </a>
+      <div class="card info">
+        <span class="tag">Convention</span>
+        <h3>프로젝트 폴더 규약</h3>
+        <p><code>.claude/projects/[클라_프로젝트]/</code> — STATUS.md + 산출물 + 회고. 완료 시 회고 자동 생성(예정).</p>
+        <div class="foot"><span>INDEX.md로 중복 점검</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 아카이브 -->
+  <div class="sec" id="archive">
+    <div class="sec-head"><h2>🗄 아카이브</h2><span class="c">이전 버전</span></div>
+    <div class="grid">
+      <a class="card" href="./maxos-dashboard-v2.1.html"><span class="tag">v2.1</span><h3>Dashboard v2.1</h3><p>4탭 · 구축 결과 반영 스냅샷.</p><div class="foot"><span>보존</span><span class="arrow">→</span></div></a>
+      <a class="card" href="./maxos-dashboard-v2.0.html"><span class="tag">v2.0</span><h3>Dashboard v2.0</h3><p>최초 통합 OS 설계 원본.</p><div class="foot"><span>보존</span><span class="arrow">→</span></div></a>
+    </div>
+  </div>
+
+  <div class="foot-note">
+    <strong>바로가기 인덱스입니다.</strong>&nbsp; 카드를 누르면 각 HTML로 이동합니다(같은 repo 내 상대 경로). 운영 규칙 원본은 repo 루트 <code>CLAUDE.md</code>, 프로젝트 목록은 <code>.claude/projects/INDEX.md</code>. · 모든 페이지 라이트모드 · 단가·PII 비노출.
+  </div>
+</div>
+
+</body>
+</html>

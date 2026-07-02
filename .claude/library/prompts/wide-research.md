@@ -1,6 +1,6 @@
 # 프롬프트 원형 — Wide Research (경쟁사 30 → 8속성 → 3그룹)
 
-> 출처: Manus/Runable 협업 자료 "[1단계] Wide research". `market-research` 에이전트의 기준 사양.
+> 출처: Hyojung guide/Hyojung guide 협업 자료 "[1단계] Wide research". `market-research` 에이전트의 기준 사양.
 > 재사용 시 `(우리 브랜드의 산업/제품군)`만 실제 값으로 바꿔 넣는다.
 
 ## 프롬프트

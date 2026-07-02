@@ -1,0 +1,44 @@
+name: Refresh dashboard data
+
+# 매일 Notion 2026 Project DB를 읽어 .claude/dashboard/dashboard-data.json 을 자동 갱신한다.
+# 예약(schedule)은 기본 브랜치(main) 기준으로만 동작 → PR #11 머지 후 활성화.
+# 수동 실행(workflow_dispatch)은 아무 브랜치에서나 가능.
+
+on:
+  schedule:
+    - cron: '7 0 * * *'   # 매일 00:07 UTC = 09:07 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-dashboard-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Notion → dashboard-data.json
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node .github/scripts/fetch-dashboard-data.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "maxos-dashboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if ! git diff --quiet -- .claude/dashboard/dashboard-data.json; then
+            git add .claude/dashboard/dashboard-data.json
+            git commit -m "chore: 대시보드 데이터 자동 갱신 (Notion)"
+            git push
+          else
+            echo "변경 없음 — 커밋 생략"
+          fi

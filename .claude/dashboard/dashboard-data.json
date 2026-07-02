@@ -1,0 +1,29 @@
+{
+  "fetchedAt": "2026-07-02T09:00:00.000Z",
+  "projects": [
+    { "id": "3279e3", "title": "코웨이 GUI 컨설팅 및 구축", "group": "active", "status": "진행중", "categories": ["UI", "Motion"], "difficulty": "H", "startDate": "2026-03-24", "endDate": "2026-07-10", "notionUrl": "https://app.notion.com/p/3279ff44ed5180e38c06dee894d90658" },
+    { "id": "37c9a6", "title": "넷마블AI 업세일즈 제안건", "group": "active", "status": "진행중", "categories": ["AI"], "difficulty": "H", "startDate": "2026-06-02", "endDate": "2026-07-03", "notionUrl": "https://app.notion.com/p/37c9ff44ed5180758051dc73c270e2a6" },
+    { "id": "38f9d8", "title": "HTWO 공식 웹사이트 콘텐츠 모션", "group": "active", "status": "진행중", "categories": ["Motion"], "difficulty": "M", "startDate": "2026-06-08", "endDate": "2026-07-03", "notionUrl": "https://app.notion.com/p/38f9ff44ed51803e9487d549e0e42cd8" },
+    { "id": "38a991", "title": "YBM 브릿지 사이트 개편 KV 모션", "group": "active", "status": "진행중", "categories": ["Motion"], "difficulty": "M", "startDate": "2026-06-24", "endDate": "2026-06-30", "notionUrl": "https://app.notion.com/p/38a9ff44ed51807f9c56e648daf59a91" },
+    { "id": "3799fc", "title": "MX 센터 SNS", "group": "active", "status": "진행중", "categories": ["game"], "difficulty": "M", "startDate": "2026-05-29", "endDate": "2026-10-16", "notionUrl": "https://app.notion.com/p/3799ff44ed51805dad98c33639f4c8fc" },
+    { "id": "35a972", "title": "[비나] 넥슨 히간이루실", "group": "active", "status": "진행중", "categories": ["Motion"], "difficulty": null, "startDate": "2026-06-04", "endDate": "2026-06-12", "notionUrl": "https://app.notion.com/p/35a9ff44ed5180eda35ffa4d71f0fe72" },
+    { "id": "3279e9", "title": "[테스트] 비나 검수 데이터 시트 제작", "group": "active", "status": "진행중", "categories": ["game"], "difficulty": null, "startDate": "2026-03-18", "endDate": "2026-03-25", "notionUrl": "https://app.notion.com/p/3279ff44ed5180cc80b9dbe7bad930e9" },
+    { "id": "3419a5", "title": "넷마블 운영 최소 운영 4TO", "group": "fixed", "status": "고정운영", "categories": ["Motion"], "difficulty": null, "startDate": "2026-03-31", "endDate": "2026-12-31", "notionUrl": "https://app.notion.com/p/3419ff44ed5180ce856bc5624aeae7a5" },
+    { "id": "3219c4", "title": "넷마블 AI 시장 조사 및 분석", "group": "fixed", "status": "고정운영", "categories": ["AI"], "difficulty": "M", "startDate": "2026-03-20", "endDate": "2026-03-31", "notionUrl": "https://app.notion.com/p/3219ff44ed5180eda11bf81f881f43c4" },
+    { "id": "3909c1", "title": "아이파크앱 개선 질의 답변", "group": "upcoming", "status": "진행예정", "categories": ["UI"], "difficulty": null, "startDate": "2026-07-01", "endDate": "2026-07-03", "notionUrl": "https://app.notion.com/p/3909ff44ed5180c19f1bc2f1db55c98e" }
+  ],
+  "resources": [
+    { "name": "김효정", "utilRate": null },
+    { "name": "김창환", "utilRate": null },
+    { "name": "강민우", "utilRate": null },
+    { "name": "강승일", "utilRate": null },
+    { "name": "문경선", "utilRate": null },
+    { "name": "이지현", "utilRate": null },
+    { "name": "전한아", "utilRate": null },
+    { "name": "김지원", "utilRate": null },
+    { "name": "김준환", "utilRate": null }
+  ],
+  "projectsError": null,
+  "resourcesError": null,
+  "_note": "projects는 Notion 2026 Project DB 라이브 반영(기준 2026-07-02). resources 가동률(utilRate)은 Time-Log(시간기록 DB) 연동 전까지 null. GitHub Actions(.github/workflows/refresh-dashboard-data.yml)가 매일 자동 갱신."
+}

@@ -1,85 +1,85 @@
-# Claude 운영 지침
+# MAX실 OS — 워크스페이스 운영 규칙
 
-## 사용자 프로필
-- **직책**: 디자인 외주 업체 실장 (업력 17년차, 베테랑 디자이너)
-- **주력 역량**: 평면 중심 홈페이지·배너·게임 UI 디자인
-- **경험 범위**: 게임 및 제조업 다양한 업무
-- **주요 업무**:
-  - 디자인 업무 (리서치, 아이데이션, 검토)
-  - 조직 관리 (인력 관리)
-  - 매출 상승 기획
-  - 견적 산정
+디자인센터 50명 CD 권한 + MAX실 9명 직속 운영(9→20 증원). 메인 세션(허브)이 31개
+에이전트를 오케스트레이션한다. 사용자는 라우팅을 신경 쓰지 않는다.
 
-## 기본 행동 지침
-- 매 세션 시작 시 이 파일을 반드시 읽고 컨텍스트를 파악한다.
-- 업무는 **프로젝트 단위**로 관리한다.
-- 응답은 간결하고 실무 중심으로 한다.
-- 디자인·기획 맥락에서 조언할 때는 현업 실장 관점에서 실용적으로 제안한다.
-- 한국어로 소통한다 (별도 요청 시 영어 전환).
+## 허브 3모드
+- **즉답 60%** — 위임 없이 허브가 직접 답한다.
+- **라우팅 30%** — 키워드 매칭으로 에이전트 1개 호출 → 결과 정리.
+- **종합 10%** — 여러 에이전트 병렬 호출 → 1장으로 묶음.
 
-## 프로젝트 관리 규칙
-- 신규 프로젝트 시작 시 `.claude/projects/` 폴더 아래에 프로젝트별 노트 파일을 생성한다.
-- 파일명 형식: `YYYYMM_프로젝트명.md`
-- 각 프로젝트 파일에 포함할 항목: 클라이언트, 업무 범위, 일정, 견적, 진행 메모
+## 키워드 → 에이전트 라우팅
+| 신호 | 에이전트 |
+|------|----------|
+| 시안 검수 / 신규 온보딩 / 톤 | `creative-director` |
+| 가동률 / 주간 / MAX실 9명 | `max-pm` |
+| CR·피드백·야근 KPI / FTE 환산 | `overhead-watcher` |
+| 클라 상황 / 미팅 직전 | `account-radar` |
+| 트렌드 (3개월 이내 강제) | `design-trend-radar` |
+| 레퍼런스 풀 | `reference-curator` |
+| 디자인 시스템 표준 | `design-system-guardian` |
+| 시안 1차 비평 (6영역) | `design-critique` |
+| RFP 분석 | `rfp-analyst` |
+| 시장조사 (출처+URL 필수) | `market-research` |
+| 발산 / 컨셉 후보 | `brainstormer` |
+| 견적 (원가·마진 시나리오) | `quote-accountant` |
+| 제안안 5관점 검토 | `review-panel` |
+| 사실·숫자 검증 | `fact-checker` |
+| 냉정 비평 / red-team | `cold-critic` |
+| 외부 발송 린트 | `delivery-gate` |
+| 회신 톤·매너 | `tone-guardian` |
+| 채용 9→20 | `hiring-radar` |
+| 외주·프리랜서 | `vendor-radar` |
+| 계약서·NDA | `legal-compliance` |
+| 키비주얼·목업 | `visual-generator` |
+| 무드보드 | `moodboard-builder` |
+| Figma 양방향 | `figma-bridge` |
+| 스토리보드·영상 | `storyboard-maker` |
+| 브랜드 제안 / 와이드리서치~슬라이드 / 단계별 질문 / RFP 수신 | `brand-proposal` 스킬 (Hyojung Guided 질문형, 허브가 단계별 에이전트 호출) |
+| 글쓰기·톤 점검 (캡션·대본·훅·릴스·뉴스레터) | `anti-ai-writing` / `viral-hooks` / `storytelling` / `dumbify` / `voice-dna` 스킬 |
+| 제안 슬라이드 디자인 (모노톤) | `hivelab-proposal-style` 스킬 |
+| 프로젝트 폴더 감사 / 버전 불일치 / 이어하기 점검 | `project-continuity-auditor` |
+| 외부 메일·회신 초안 작성 | `mail-drafter` (→ `tone-guardian` 톤 검수) |
+| 회의록 정리 (메모·녹취 → 회의록) | `meeting-logger` |
+| 카피 작성 (UI·마케팅·브랜드 카피) | `copy-writer` |
+| PPT·제안서·발표자료 덱 구성 | `ppt-gen` |
+| 대시보드 HTML 수정·섹션 추가 | `maxos-dashboard` |
+| 조직·워크플로우 구조 설계·재편 / "시스템으로 만들자" / "프로세스가 안 보여" | `ax-architect` (구조 재설계안 제시 → 허브가 반영) |
 
-## 폴더 구조
-```
-.claude/
-├── agents/        # 커스텀 에이전트 정의 파일
-├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
-├── library/       # 재사용 자산
-│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
-│   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
-│   ├── qc-checklist.md   # 시안 검수 체크리스트
-│   ├── data-sources.md   # 노션·구글시트 연결 주소록
-│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
-└── projects/      # 프로젝트별 노트
-```
+## 안전 불변규칙 (예외 없음)
+1. **자동 발송/게시 절대 금지** — 모든 외부 산출물은 사용자 검토 후.
+2. **HTML 라이트모드 3종 필수** — `<meta color-scheme light>` + `:root{color-scheme:light}` + `html,body{background:#fff}`.
+3. **검토용 문서는 HTML 전용** — `.md` 금지.
+4. **미확인 사실·숫자 금지** — 산출 전 `fact-checker` 최소 1회.
+5. **민감정보(단가·클라·개인정보) 처리/노출 금지.**
+6. **시트·Notion 쓰기 금지** — 에이전트는 read-only. 쓰기는 사용자 직접.
 
-## 커스텀 에이전트 & 스킬 운영
-- 새 에이전트: `.claude/agents/<에이전트명>.md` 형식으로 추가
-- 새 스킬: `.claude/skills/<스킬명>/SKILL.md` 형식으로 추가
-- 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
+## 7개 절대 위임 금지 — 사용자 직접
+최종 견적가 · 마진율 선택 · 계약 날인 · 단가 협상 카드 · 인사 평가·재계약 ·
+신규 채용·해고 · 외부 발송 최종 OK. (에이전트는 시나리오·근거만 제시)
 
-## 현재 등록된 에이전트 (24종 · 6그룹)
-**① 수주·전략**
-- `rfp-analyst` (RFP 분석가) — RFP→명시·숨은·미정의·위험 4분류 + 확인 질문
-- `market-research` (시장조사) — 경쟁사 N개 → XY 포지셔닝 맵 + 빈자리, 출처 필수
-- `concept-director` (컨셉 디렉터) — ★사전 관점 게이트: 핵심 제품/타이틀 → 관점 한 문장(전 매체 상속)
-- `brainstormer` (브레인스토머) — 발산 + 방향별 키워드·약식 포지셔닝 축
-- `critic` (냉정한 비평가) — 비용·기간·역량·실현·설득력 점수화
+## DoD 핑퐁 — 리스크 티어 (애매하면 무조건 상향)
+- **Tier 0** 내부 단순·조회 → 검수 없음(퀵린트).
+- **Tier 1** 내부 산출·시안 초안 → `design-critique` + `delivery-gate`.
+- **Tier 2** 외부 발신·제안서·계약·브랜드 → `fact-checker` → `cold-critic` → `delivery-gate` → `tone-guardian`.
+- 외부·클라 수신자 = 자동 Tier 2 승격.
 
-**② 디자인 인텔리전스**
-- `design-trend-radar` (트렌드 레이더) — 최근 3개월 글로벌 트렌드, 출처 필수
-- `reference-curator` (레퍼런스 큐레이터) — 카테고리별 레퍼런스 큐레이션, 출처 필수
-- `design-system-guardian` (시스템 가디언) — 사내 디자인 시스템 준수 점검
-- `design-critique` (디자인 비평가) — 시안 6영역 검수 🟢🟡🔴
+## 검수 경로
+- 회신 초안 → `tone-guardian` 통과 후 사용자 OK.
+- 시안 → `design-critique`(6영역) → `creative-director`(톤) → `delivery-gate`(결정론).
+- 제안서 → `review-panel`(5렌즈) → `fact-checker` → `cold-critic` → `delivery-gate`.
+- 개정→수렴 루프: 패널 🔴/🟡 시 개정 후 재호출 → 전원 🟢까지 반복.
+- 패널 상충 시 더 엄격한 판정 우선.
 
-**③ 디자인 생성**
-- `visual-generator` (비주얼 제너레이터) — 키비주얼·목업 이미지(Higgsfield)
-- `moodboard-builder` (무드보드 빌더) — 레퍼런스+생성 무드보드
-- `figma-bridge` (피그마 브릿지) — 코드↔Figma 양방향
-- `storyboard-maker` (스토리보드 메이커) — 영상·모션 콘티(Higgsfield)
-
-**④ 검수 게이트**
-- `fact-checker` (팩트 체커) — 사실·숫자·인용 반증 먼저
-- `review-panel` (5관점 패널) — 기획·크리에이터·사업·마케팅·B2B고객 병렬 검토
-- `delivery-gate` (딜리버리 게이트) — 라이트모드·PII·잘림 린트(발송 직전)
-- `tone-guardian` (톤 가디언) — 회신 톤·매너 교정(발송 전)
-
-**⑤ 운영·매출**
-- `project-manager` (프로젝트 매니저) — 진행현황·매출 달성율·가동률(노션·시트, read-only)
-- `quote-accountant` (견적 회계사) — 원가표+마진 시나리오, UI Design만 우리실 매출, 최종가·마진은 사용자
-- `account-radar` (어카운트 레이더) — 반복 클라 히스토리·리스크(미팅 브리핑)
-
-**⑥ 조직·채용·법무**
-- `creative-director` (크리에이티브 디렉터) — 시안 톤 최종·온보딩 팩
-- `hiring-radar` (채용 레이더) — 9→20 증원 파이프라인
-- `vendor-radar` (벤더 레이더) — 외주 풀·외주비
-- `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
-
-> 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
-
-## 현재 등록된 스킬
-- `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+## 메타룰 — 구조 관리
+- 에이전트 총수 **≤ 31개** (현재 31). 신규 추가 전 중복 점검(조금이라도 다르면 기존에 흡수/보완). 오케스트레이션은 스킬로(서브에이전트는 서브에이전트를 호출 못 함).
+- **고도화 자동반영 규칙:** 에이전트·스킬·워크플로우·구조를 추가/변경하거나 한 업무가 마무리되면 → ① `.claude/`에 즉시 커밋 ② CLAUDE.md·`projects/INDEX.md`·대시보드 갱신 ③ 반복 패턴이면 `ax-architect`로 구조 재설계 검토. 사용자가 매번 요청하지 않아도 자동 수행(지난 행동을 기억→프로세스로 고정).
+- 이 파일 **≤ 100줄**, 에이전트 파일 각 **≤ 100줄** — 상세는 `library/`로.
+- 에이전트: `.claude/agents/[slug].md` (name/description/tools 프론트매터 필수).
+- SoT: `.claude/library/{quote-sot|design-sot|project-sot}/[파일].md`.
+- 브랜드 제안 파이프라인: `.claude/skills/brand-proposal/`(Hyojung Guided 질문형 오케스트레이터) + `.claude/library/brand-pipeline/`(overview + stage1~3 양식 + 디자이너렌즈게이트, v3 원본은 `_v3-source/` 아카이브). 외부 프로세스명 비노출.
+- 프로젝트: `.claude/projects/[클라슬러그]_[프로젝트슬러그]/STATUS.md` (프로젝트 단위, 생성 전 `projects/INDEX.md`로 중복 점검 후 행 추가).
+- SoT 원본: Notion 2026 Project DB(프로젝트) · Google Sheets Time-Log(견적).
+- 대시보드(지도): `.claude/dashboard/maxos-dashboard-v5.html`(9탭) + `maxos-dashboard-v7.html`(데이터 주도 · `dashboard-data.json` 로드). 원본 v2.0/v2.1 보존.
+- 대시보드 자동갱신: `.github/workflows/refresh-dashboard-data.yml`가 매일 Notion 2026 Project DB 읽어 `dashboard-data.json` 갱신(read-only). 설정은 `.github/scripts/README.md`(NOTION_TOKEN 시크릿).
+- `.claude/` 전체 커밋·푸시 필수. 새 에이전트 추가/구조 변경 후 대시보드 갱신.

@@ -1,0 +1,11 @@
+{
+  "_comment": "MAX실 OS 자동 트리거 스텁 — 비활성. 활성화하려면 이 파일을 settings.json으로 복사 후 hooks를 채우세요. 자동 발송 금지 원칙(불변규칙 1)과 충돌하지 않도록, 트리거는 '읽기·요약·알림'까지만. 외부 발송은 항상 사용자 OK 후.",
+  "_triggers_planned": {
+    "daily_0900": "오늘 보드 갱신 — Notion read → '오늘 꼭 / 기일초과' 요약",
+    "monday_0800": "주간 컨닝페이퍼 — max-pm + overhead-watcher + account-radar",
+    "quarter_first_week": "디자인 트렌드 — design-trend-radar → reference-curator",
+    "daily_1800": "결정대기 알림 — 오늘 모인 '사용자 결정 필요' 항목",
+    "before_send": "외부 발송 게이트 — fact-checker → delivery-gate → tone-guardian (발송은 사용자 OK)"
+  },
+  "_note": "Claude Code hooks/cron 연동은 사용자 승인 후 별도 설정."
+}
