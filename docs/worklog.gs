@@ -280,10 +280,11 @@ function monthlySnapshot(){
 
 /* ══════════════ 김효정 탭 읽기 + index.html 갱신 ══════════════ */
 function readKimHyojungLog(){
-  var ss=SpreadsheetApp.getActive();
+  var SHEET_ID='1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0';
+  var ss=SpreadsheetApp.openById(SHEET_ID);
   var sh=ss.getSheetByName('김효정');
   if(!sh){
-    SpreadsheetApp.getUi().alert('김효정 탭을 찾을 수 없습니다.');
+    Logger.log('김효정 탭을 찾을 수 없습니다.');
     return [];
   }
   var last=sh.getLastRow(); if(last<2) return [];
