@@ -23,6 +23,7 @@
 
 ### v2 확정 사항 로그 (계속)
 | 2026-07-01 | critic 검증: 빅리빌 히어로샷 "보완 후 Go"(16/30) — 섞이는 순간을 "직전 순간"으로 재정의, 속도/거리/색상 스펙화 필요 | 14-critic-grotesque-check.md |
+| 2026-07-02 | project-continuity-auditor 실행 → 발견된 갭 수정: deck-v2.html 이종업계 섹션 v1 잔재 문구 3건 "(v1 기준, 재해석 필요)"로 재태깅, Graphic Motif Slide5 중복 이미지 교체(신규 ferrofluid 이미지 생성), v1 아카이브 5개 파일(03~07)에 폐기 고지 추가, 99-project-status.md를 구 MAX Lab 대시보드로 명시 폐기 | deck-v2.html, 03~07*.md, 99-project-status.md |
 
 ### v2 미해결 Director Decision
 - [ ] critic의 보완책 3가지(스펙화·재정의·리뷰게이트) 수용 여부
