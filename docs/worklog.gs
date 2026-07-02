@@ -59,6 +59,8 @@ function onOpen(){
       .addItem('대시보드 갱신', 'refreshDashboard')
       .addItem('투두 자동분류(빈 카테고리 채움)', 'classifyTodos')
       .addSeparator()
+      .addItem('🌐 웹대시보드 갱신', 'updateIndexHtml')
+      .addSeparator()
       .addItem('초기 설치(setup)', 'setup')
       .addToUi();
   }catch(e){ /* UI 없는 context에서는 무시 */ }
@@ -274,4 +276,58 @@ function monthlySnapshot(){
   var row=[pm, sum_(byCat)].concat(CATKEYS.map(function(k){return byCat[k];}));
   arc.appendRow(row);
   refreshDashboard();
+}
+
+/* ══════════════ 김효정 탭 읽기 + index.html 갱신 ══════════════ */
+function readKimHyojungLog(){
+  var ss=SpreadsheetApp.getActive();
+  var sh=ss.getSheetByName('김효정');
+  if(!sh){
+    SpreadsheetApp.getUi().alert('김효정 탭을 찾을 수 없습니다.');
+    return [];
+  }
+  var last=sh.getLastRow(); if(last<2) return [];
+  var data=sh.getRange(2,1,last-1,6).getValues(); // 날짜, 시간, 카테고리, 프로젝트, 메모, 실제여부
+  var log=[];
+  for(var i=0;i<data.length;i++){
+    var r=data[i];
+    var date=r[0]; if(!date) continue;
+    if(typeof date==='object') date=Utilities.formatDate(date,TZ,'yyyy-MM-dd');
+    var timeSlot=r[1]||''; // "10-12" → "10–12" (en dash)
+    if(timeSlot) timeSlot=timeSlot.replace(/\-/g,'–');
+    var cat=r[2]||'';
+    var proj=r[3]||'';
+    var memo=r[4]||'';
+    var actualFlag=r[5]||''; // empty→true(actual), "O"→false(waiting)
+    var actual=!actualFlag || actualFlag.trim()==='';
+    log.push({
+      date:date,
+      s:timeSlot,
+      cat:cat,
+      proj:proj,
+      memo:memo,
+      actual:actual
+    });
+  }
+  return log;
+}
+
+function updateIndexHtml(){
+  var log=readKimHyojungLog();
+  var logJson='var LOG='+JSON.stringify(log)+';';
+  // index.html 읽기
+  try{
+    var file=DriveApp.getFilesByName('index.html').next();
+    var content=file.getBlob().getAsString();
+    // LOG 배열 업데이트 (첫 번째 <script> 태그 내의 LOG 변수)
+    var match=content.match(/var LOG\s*=\s*\[[\s\S]*?\];/);
+    if(match){
+      content=content.replace(match[0], logJson);
+      file.setContent(content);
+      Logger.log('index.html 업데이트 완료: '+log.length+'개 로그');
+      SpreadsheetApp.getUi().alert('대시보드 업데이트 완료 ✅\n'+log.length+'개 로그');
+    }
+  }catch(e){
+    Logger.log('index.html 찾기 실패: '+e.message);
+  }
 }
