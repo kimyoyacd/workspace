@@ -37,12 +37,32 @@
 - 여러 파일 동시 생성 시 병렬 스크린샷 가능 (`&` 백그라운드)
 
 ### HTML 디자인 토큰 규칙 (프로젝트별 마스터 토큰 사용)
-- **다크 배경**: `#111111` 고정 — 갈색(#1C1410 등), 보라(#1A1A2E), 청록 절대 금지
-- **카드 배경(다크)**: `#1A1A1A` 고정
-- **accent 계층**: coral `#E8502A` 1차, brass `#B8860B` 2차 — 혼용 시 coral 우선
+- **테마는 프로젝트 내 전 파일 통일** — 라이트/다크 혼용 금지. 한 프로젝트 안에서 하나로 고정.
+- **라이트 테마** (클라이언트 제출용 시안·제안서·덱 기본값):
+  - 배경 `#EBEBEB` / 카드 `#FFFFFF` / 텍스트 `#111111`
+  - 출처 링크 색: `#2454C7` (WCAG AA 기준)
+- **다크 테마** (대시보드·내부 리포트):
+  - 배경 `#111111` 고정 — 갈색(#1C1410), 보라(#1A1A2E), 청록 절대 금지
+  - 카드 배경: `#1A1A1A` 고정
+  - 출처 링크 색: `#7EB3FF` (WCAG AA 기준)
+- **accent 계층**: coral `#E8502A` 1차, brass `#B8860B` 2차 — 혼용 시 coral 우선 (라이트·다크 공통)
 - **border-radius**: `var(--radius)` / `var(--radius-sm)` 사용 — 하드코딩 금지
 - **폰트**: `var(--sans)`, `var(--mono)` 사용 — 직접 기입 금지
 - 모든 HTML에 `:root` CSS 변수 블록을 상단에 정의하고 전체를 그 변수로 제어한다
+
+### 출처(citation) 인라인 규칙
+- 수치·통계·인용이 있는 HTML은 **반드시 출처를 해당 카드/섹션 바로 아래 최하위 위계**로 삽입
+- 별도 footnote/footer 블록 금지 — 정보와 출처는 항상 같은 카드 안에
+- CSS 패턴:
+  ```css
+  .stat-source { font-size: 10px; margin-top: 6px; }
+  .stat-source a { color: #2454C7; text-decoration: none; } /* 라이트 */
+  .stat-source a { color: #7EB3FF; text-decoration: none; } /* 다크 */
+  .stat-source a:hover { text-decoration: underline; }
+  ```
+- HTML 패턴: `<div class="stat-source"><a href="URL" target="_blank">출처명 ↗</a></div>`
+- 검증 불가 수치는 링크 대신 `<span>업계 추정 · 재검증 필요</span>`으로 표기
+- fact-checker 에이전트로 수치 검증 후 삽입 (파이프라인 C 활용)
 
 ## 프로젝트 관리 규칙
 - 신규 프로젝트 시작 시 `.claude/projects/` 폴더 아래에 프로젝트별 노트 파일을 생성한다.
@@ -101,10 +121,10 @@
 - `project-manager` (프로젝트 매니저) — 진행현황·매출 달성율·가동률(노션·시트, read-only)
 - `quote-accountant` (견적 회계사) — 원가표+마진 시나리오, UI Design만 우리실 매출, 최종가·마진은 사용자
 - `account-radar` (어카운트 레이더) — 반복 클라 히스토리·리스크(미팅 브리핑)
+- `project-index` (프로젝트 인덱스) — HTML 산출물 자동 탐색 → 인덱스 페이지 생성·커밋·링크 출력
 
 **⑥ 조직·채용·법무**
 - `creative-director` (크리에이티브 디렉터) — 시안 톤 최종·온보딩 팩
-- `project-index` (프로젝트 인덱스) — HTML 산출물 자동 탐색 → 인덱스 페이지 생성·커밋·링크 출력
 - `hiring-radar` (채용 레이더) — 9→20 증원 파이프라인
 - `vendor-radar` (벤더 레이더) — 외주 풀·외주비
 - `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
