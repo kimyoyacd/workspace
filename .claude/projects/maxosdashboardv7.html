@@ -204,12 +204,12 @@ body {
 .hub-core .role { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.55; margin-bottom: 20px; }
 .hub-modes { display: flex; flex-direction: column; gap: 8px; }
 .hub-mode { display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; border-radius: 5px; background: rgba(255,255,255,0.06); border-left: 2px solid; }
-.hub-mode.m1 { border-color: #6DCC8E; } .hub-mode.m2 { border-color: #6DA8E3; } .hub-mode.m3 { border-color: #E3B86D; }
+.hub-mode.m1 { border-color: rgba(255,255,255,0.6); } .hub-mode.m2 { border-color: rgba(255,255,255,0.35); } .hub-mode.m3 { border-color: rgba(255,255,255,0.2); }
 .hub-mode .pct { font-size: 13px; font-weight: 800; color: #fff; min-width: 28px; }
 .hub-mode .mname { font-size: 11px; font-weight: 700; color: #fff; }
 .hub-mode .mdesc { font-size: 10px; color: rgba(255,255,255,0.5); }
 .hub-triggers { padding: 20px 22px; border-right: 1px solid var(--border); }
-.hub-nodelegate { padding: 20px 22px; background: #FDFCF9; }
+.hub-nodelegate { padding: 20px 22px; background: var(--card); }
 .hub-section-h { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--ink3); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
 .hub-section-h::before { content: ''; width: 14px; height: 1px; background: var(--ink3); }
 .trigger { display: grid; grid-template-columns: 80px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); align-items: baseline; }
@@ -228,9 +228,9 @@ body {
 .flow-chain { display: grid; grid-template-columns: repeat(12, 1fr); gap: 5px; align-items: stretch; }
 .flow-step { background: var(--bg); border: 1px solid var(--border-soft); border-radius: 6px; padding: 7px 5px 8px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 72px; }
 .flow-step.user { background: #1A1A1A; color: #fff; border-color: #1A1A1A; }
-.flow-step.design { background: #FBE7F1; border-color: #F2C9DF; }
-.flow-step.panel { background: #E5F2E9; border-color: #BEDDC6; }
-.flow-step.gate  { background: #FAF1DC; border-color: #ECD9B0; }
+.flow-step.design { background: var(--border-soft); border-color: var(--border); }
+.flow-step.panel { background: var(--accent-soft); border-color: var(--border); }
+.flow-step.gate  { background: var(--border); border-color: var(--border-soft); }
 .flow-step .n { font-size: 8.5px; font-weight: 800; color: var(--ink3); margin-bottom: 2px; }
 .flow-step.user .n { color: rgba(255,255,255,0.45); }
 .flow-step .who { font-size: 9.5px; font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 2px; }
@@ -313,8 +313,8 @@ body {
 .project-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 2px solid var(--border); }
 .project-section-header h3 { font-size: 15px; font-weight: 900; color: var(--ink); margin: 0; }
 .section-badge { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; }
-.badge-design { background: #FBE7F1; color: #7A1F4A; }
-.badge-ops { background: var(--sig-soft); color: var(--sig); }
+.badge-design { background: var(--border-soft); color: var(--ink2); }
+.badge-ops { background: var(--accent-soft); color: var(--accent); }
 
 .kanban { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
 .kanban-col { background: var(--bg); border-radius: 10px; padding: 14px; }
@@ -345,7 +345,7 @@ body {
 .gantt-header-label { position: absolute; font-size: 10px; color: var(--ink4); white-space: nowrap; transform: translateX(-50%); }
 .gantt-row { display: flex; align-items: center; height: 28px; margin-bottom: 2px; }
 .gantt-row-label { width: 156px; min-width: 156px; font-size: 10.5px; color: var(--ink3); padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.gantt-track { flex: 1; height: 28px; position: relative; background: #f8fafc; border-radius: 4px; }
+.gantt-track { flex: 1; height: 28px; position: relative; background: var(--bg); border-radius: 4px; }
 .gantt-bar { position: absolute; height: 16px; top: 6px; border-radius: 4px; }
 .gantt-bar-wip  { background: var(--accent); }
 .gantt-bar-hold { background: repeating-linear-gradient(45deg, var(--ink3), var(--ink3) 4px, var(--border) 4px, var(--border) 8px); }
@@ -653,7 +653,7 @@ body {
             <div class="card-trig"><strong>호출:</strong> 트렌드 리서치 직후 / 시안 시작 전</div>
           </div>
           <div class="card">
-            <div class="card-name-row"><span class="card-name">팩트 체커</span><span style="font-size:9px;color:#B45309;margin-left:auto;">④ 자동</span></div>
+            <div class="card-name-row"><span class="card-name">팩트 체커</span><span style="font-size:9px;color:var(--ink3);margin-left:auto;">④ 자동</span></div>
             <div class="card-slug">fact-checker</div>
             <div class="card-role">사실·숫자·인용 반증 먼저. 리서치 완료 후 자동 발동.</div>
             <div class="card-trig"><strong>자동:</strong> 리서치 결과 / 제안서 수치 / 숫자가 포함된 산출물</div>
@@ -666,14 +666,14 @@ body {
         <div class="col-head">③ 아이데이션·발산<span class="count">2</span></div>
         <div class="col-tagline">관점 고정(concept-director) → 발산(brainstormer) 순서</div>
         <div class="col-body">
-          <div class="card" style="border-left-color:#059669;">
+          <div class="card" style="border-left-color:var(--accent);">
             <div class="card-name-row"><span class="card-name">컨셉 디렉터</span><span class="badge badge-core">★ 관점 게이트</span></div>
             <div class="card-slug">concept-director</div>
             <div class="card-role">핵심 제품/타이틀 → <strong>관점 한 문장</strong> 고정. 전 매체 상속. 무드보드 덱 §0 오프닝도 담당.</div>
             <div class="card-trig"><strong>호출:</strong> "관점 잡아줘" / 리서치 완료 후 / 제안 시작 전 반드시</div>
-            <div style="margin-top:6px;padding:5px 7px;background:#ECFDF5;border-radius:4px;font-size:9px;line-height:1.5;color:#065F46;">관점 확정 전까지 발산 진행 금지 — Gate 1</div>
+            <div style="margin-top:6px;padding:5px 7px;background:var(--accent-soft);border-radius:4px;font-size:9px;line-height:1.5;color:var(--accent);">관점 확정 전까지 발산 진행 금지 — Gate 1</div>
           </div>
-          <div class="card" style="border-left-color:#059669;">
+          <div class="card" style="border-left-color:var(--accent);">
             <div class="card-name-row"><span class="card-name">브레인스토머</span></div>
             <div class="card-slug">brainstormer</div>
             <div class="card-role">아이디어 발산 · 방향별 키워드·포지셔닝 축. 무드보드 퍼스널리티 슬라이더(MOODBOARD_MASTER_FRAMEWORK §5) 포함.</div>
@@ -687,25 +687,25 @@ body {
         <div class="col-head">④ 무드보드·비주얼 제작<span class="count">4</span></div>
         <div class="col-tagline">moodboard-builder 총괄 → visual-generator/figma-bridge/storyboard-maker 순환</div>
         <div class="col-body">
-          <div class="card" style="border-left-color:#7C3AED;">
-            <div class="card-name-row"><span class="card-name">무드보드 빌더</span><span class="badge" style="background:#EDE9FE;color:#6D28D9;">총괄</span></div>
+          <div class="card" style="border-left-color:var(--ink2);">
+            <div class="card-name-row"><span class="card-name">무드보드 빌더</span><span class="badge" style="background:var(--accent-soft);color:var(--accent);">총괄</span></div>
             <div class="card-slug">moodboard-builder</div>
             <div class="card-role">컨셉별 무드보드 총괄. 레퍼런스+생성 이미지 조합. MOODBOARD_MASTER_FRAMEWORK §1~§10 준수. 내부 조직은 §10 교차참조.</div>
             <div class="card-trig"><strong>호출:</strong> "무드보드" / 발산 직후 / Manus 2 진입 시</div>
           </div>
-          <div class="card" style="border-left-color:#9333EA;">
+          <div class="card" style="border-left-color:var(--ink3);">
             <div class="card-name-row"><span class="card-name">비주얼 제너레이터</span></div>
             <div class="card-slug">visual-generator</div>
             <div class="card-role">키비주얼·스타일프레임·목업. Higgsfield 이미지. 3×2 그리드 원칙 적용.</div>
             <div class="card-trig"><strong>호출:</strong> "키비주얼 뽑아" / "목업" / 스타일 앵커 확정 후</div>
           </div>
-          <div class="card" style="border-left-color:#9333EA;">
+          <div class="card" style="border-left-color:var(--ink3);">
             <div class="card-name-row"><span class="card-name">Figma 브릿지</span></div>
             <div class="card-slug">figma-bridge</div>
             <div class="card-role">코드 ↔ Figma 양방향. 디자인 시스템 동기화. 비주얼 확정 후 Figma 이관.</div>
             <div class="card-trig"><strong>호출:</strong> "Figma 보내" / "Figma 가져와" / 시스템화 단계</div>
           </div>
-          <div class="card" style="border-left-color:#9333EA;">
+          <div class="card" style="border-left-color:var(--ink3);">
             <div class="card-name-row"><span class="card-name">스토리보드 메이커</span></div>
             <div class="card-slug">storyboard-maker</div>
             <div class="card-role">영상·모션 콘티. Higgsfield 비디오 생성. 모션 확정 후 투입.</div>
@@ -717,7 +717,7 @@ body {
       <!-- ⑤ 디자인 검수 게이트 -->
       <div class="col col-5">
         <div class="col-head">⑤ 디자인 검수 게이트<span class="count">6</span></div>
-        <div class="col-tagline" style="color:#B23B3B;font-weight:700;">산출물 완성 후 → 납품 전 필수 경유</div>
+        <div class="col-tagline" style="color:var(--ink);font-weight:700;">산출물 완성 후 → 납품 전 필수 경유</div>
         <div class="col-body">
           <div class="card">
             <div class="card-name-row"><span class="card-name">디자인 비평가</span><span class="badge badge-core">1차</span></div>
@@ -736,9 +736,9 @@ body {
             <div class="card-slug">review-panel</div>
             <div class="card-role">기획·크리에이터·사업·마케팅·B2B 5관점 병렬 검토.</div>
             <div class="card-trig"><strong>호출:</strong> 발산 후 / 제안 셀렉 전</div>
-            <div style="margin-top:6px;padding:5px 7px;background:#E5F2E9;border-radius:4px;font-size:9px;line-height:1.5;color:#1F5A38;">① 기획 · ② 크리에이터 · ③ 사업 · ④ 마케팅 · ⑤ B2B고객</div>
+            <div style="margin-top:6px;padding:5px 7px;background:var(--border-soft);border-radius:4px;font-size:9px;line-height:1.5;color:var(--ink2);">① 기획 · ② 크리에이터 · ③ 사업 · ④ 마케팅 · ⑤ B2B고객</div>
           </div>
-          <div class="card" style="border-left-color:#7C3AED;">
+          <div class="card" style="border-left-color:var(--ink2);">
             <div class="card-name-row"><span class="card-name">연속성 감사관</span></div>
             <div class="card-slug">project-continuity-auditor</div>
             <div class="card-role">브랜드 프로젝트 버전 불일치·누락 결정 탐지. 창의적 판단 없이 기계적 검증.</div>
@@ -814,23 +814,23 @@ body {
             <div class="card-trig"><strong>호출:</strong> "계약서 검토" / 계약서 첨부</div>
             <div class="card-warn">🚨 법무 자문 대체 아님</div>
           </div>
-          <div class="card" style="border-left-color:#6366f1;background:#FAFAFE;">
-            <div class="card-name-row"><span class="card-name">AX 설계자</span><span class="badge" style="background:#E0E7FF;color:#4338CA;">메타</span></div>
+          <div class="card" style="border-left-color:var(--accent);background:var(--card);">
+            <div class="card-name-row"><span class="card-name">AX 설계자</span><span class="badge" style="background:var(--accent-soft);color:var(--accent);">메타</span></div>
             <div class="card-slug">ax-architect</div>
             <div class="card-role">"조직이 AI와 일하는 방식" 자체를 설계. 반복 패턴 관찰 → 구조 재설계 제안. 대시보드 드리프트 진단.</div>
             <div class="card-trig"><strong>호출:</strong> "워크플로우 정리해줘" / "에이전트 구조 다시 짜줘"</div>
           </div>
           <div class="card" style="opacity:0.45;border-style:dashed;">
-            <div class="card-name-row"><span class="card-name">채용 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-name-row"><span class="card-name">채용 레이더</span><span class="badge" style="background:var(--border-soft);color:var(--ink3);">🔘 대기</span></div>
             <div class="card-slug">hiring-radar</div>
             <div class="card-role">증원 파이프라인. JD·소싱·면접·오퍼.</div>
-            <div class="card-trig" style="color:#9ca3af;">비활성 — 필요 시 활성화</div>
+            <div class="card-trig" style="color:var(--ink4);">비활성 — 필요 시 활성화</div>
           </div>
           <div class="card" style="opacity:0.45;border-style:dashed;">
-            <div class="card-name-row"><span class="card-name">벤더 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
+            <div class="card-name-row"><span class="card-name">벤더 레이더</span><span class="badge" style="background:var(--border-soft);color:var(--ink3);">🔘 대기</span></div>
             <div class="card-slug">vendor-radar</div>
             <div class="card-role">외주·프리랜서 풀 관리. 외주비 산정.</div>
-            <div class="card-trig" style="color:#9ca3af;">비활성 — 필요 시 활성화</div>
+            <div class="card-trig" style="color:var(--ink4);">비활성 — 필요 시 활성화</div>
           </div>
         </div>
       </div>
@@ -913,10 +913,10 @@ body {
           </div>
           <div class="flow-legend">
             <div class="lg"><span class="sw" style="background:var(--bg);border:1px solid var(--border-soft);"></span>에이전트</div>
-            <div class="lg"><span class="sw" style="background:#FBE7F1;border:1px solid #F2C9DF;"></span>🎨 디자인</div>
+            <div class="lg"><span class="sw" style="background:var(--border-soft);border:1px solid var(--border);"></span>🎨 디자인</div>
             <div class="lg"><span class="sw" style="background:#1A1A1A;"></span>사용자 결정</div>
-            <div class="lg"><span class="sw" style="background:#E5F2E9;border:1px solid #BEDDC6;"></span>패널</div>
-            <div class="lg"><span class="sw" style="background:#FAF1DC;border:1px solid #ECD9B0;"></span>게이트</div>
+            <div class="lg"><span class="sw" style="background:var(--border-soft);border:1px solid var(--border);"></span>패널</div>
+            <div class="lg"><span class="sw" style="background:var(--border);border:1px solid var(--border-soft);"></span>게이트</div>
           </div>
         </div>
       </div>
@@ -963,9 +963,9 @@ body {
   <div class="gantt-wrap">
     <div class="gantt-title">간트차트 — MAX실 디자인 프로젝트 (6/1 ~ 9/30)</div>
     <div class="gantt-legend">
-      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#3b82f6;"></div>진행중</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:var(--accent);"></div>진행중</div>
       <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:repeating-linear-gradient(45deg,#f59e0b,#f59e0b 4px,#fde68a 4px,#fde68a 8px);"></div>홀딩/대기</div>
-      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#22c55e;opacity:0.5;"></div>완료</div>
+      <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:var(--ink4);opacity:0.8;"></div>완료</div>
       <div class="gantt-legend-item"><div style="width:12px;height:12px;border-left:2px dashed #ef4444;"></div>오늘(6/26)</div>
     </div>
     <div class="gantt-container">
@@ -979,23 +979,23 @@ body {
   <div class="project-section">
     <div class="project-section-header">
       <h3>AI 크리에이티브 실험 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· MAX Lab — 내부 브랜드 파이프라인 검증</span></h3>
-      <span class="section-badge" style="background:#EDE9FE;color:#6D28D9;border:1px solid #C4B5FD;">활성 1 (PR #25)</span>
+      <span class="section-badge" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--border);">활성 1 (PR #25)</span>
     </div>
     <div class="kanban">
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#7C3AED;"></span>진행중 — Manus 2 완료<span class="col-count">1</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink2);"></span>진행중 — Manus 2 완료<span class="col-count">1</span></div>
         <div class="project-item" style="border-left:3px solid #7C3AED;">
           <div class="project-item-title">202606_GRAIN — 호글라스 브랜드 (AI Creative Experiment)</div>
           <div class="project-item-desc">포지셔닝: Functional↔Emotional × Minimal↔Expressive 좌상단. 최종 2컨셉: <strong>Ritual Moment</strong> (9.5/10) + <strong>Gravity Well</strong> (9/10). 통합 메시지: "We don't sell hourglasses. We sell the weight of a moment." · 비주얼: Brushed Brass + Cloud Dancer + Charcoal. 다음: Runable 3 (최종 슬라이드 덱)</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
-            <span class="project-item-tag" style="background:#EDE9FE;color:#6D28D9;">Manus 1 ✅</span>
-            <span class="project-item-tag" style="background:#EDE9FE;color:#6D28D9;">Manus 2 ✅</span>
+            <span class="project-item-tag" style="background:var(--accent-soft);color:var(--accent);">Manus 1 ✅</span>
+            <span class="project-item-tag" style="background:var(--accent-soft);color:var(--accent);">Manus 2 ✅</span>
             <span class="project-item-tag tag-hold">Runable 3 대기</span>
           </div>
         </div>
       </div>
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#22c55e;"></span>완료 산출물<span class="col-count">9</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink2);"></span>완료 산출물<span class="col-count">9</span></div>
         <div class="project-item">
           <div class="project-item-title">경쟁사 30개 분석 + 포지셔닝 맵</div>
           <div class="project-item-desc"><code>01-competitor-matrix.md · 03-positioning-map.md</code></div>
@@ -1030,7 +1030,7 @@ body {
     </div>
     <div class="kanban">
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#3b82f6;"></span>활성 (실데이터 대기)<span class="col-count">1</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--accent);"></span>활성 (실데이터 대기)<span class="col-count">1</span></div>
         <div class="project-item">
           <div class="project-item-title">구글 시트 Time-Log 연동</div>
           <div class="project-item-desc">과거 프로젝트 시간 기록 → 견적 회계사 학습용. Google Sheets MCP 읽기 전용. SoT 스텁 생성됨 — 실데이터 연결 대기</div>
@@ -1038,7 +1038,7 @@ body {
         </div>
       </div>
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#f59e0b;"></span>홀딩<span class="col-count">1</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink3);"></span>홀딩<span class="col-count">1</span></div>
         <div class="project-item">
           <div class="project-item-title">settings.json 자동 트리거 활성화</div>
           <div class="project-item-desc">09:00/월08:00/18:00/분기 크론. <strong>스텁 생성됨</strong>(settings.json.example) — 자동 발송 금지 원칙 검토 후 사용자 승인 시 활성화</div>
@@ -1046,7 +1046,7 @@ body {
         </div>
       </div>
       <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#22c55e;"></span>완료<span class="col-count">5</span></div>
+        <div class="kanban-col-header"><span class="col-dot" style="background:var(--ink2);"></span>완료<span class="col-count">5</span></div>
         <div class="project-item">
           <div class="project-item-title">MAX실 Claude Code 워크스페이스 구축</div>
           <div class="project-item-desc">에이전트 24개 <code>.claude/agents/</code> + brand-proposal 스킬 실제 생성. CLI 등록 확인. GitHub PR #11(draft) 푸시</div>
@@ -1187,22 +1187,22 @@ body {
 
   <!-- ── 에이전트 트리거 전체표 ── -->
   <!-- 자동 실행 설명 -->
-  <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:16px 20px;margin:24px 0;">
-    <div style="font-size:13px;font-weight:800;color:#1D4ED8;margin-bottom:10px;">⚡ 에이전트 자동 실행 — 맞아, 자동으로 돌아가</div>
+  <div style="background:var(--card);border:1.5px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:16px 20px;margin:24px 0;">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px;">⚡ 에이전트 자동 실행 — 맞아, 자동으로 돌아가</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11px;line-height:1.7;">
       <div>
-        <div style="font-weight:700;color:#1D4ED8;margin-bottom:4px;">🤖 자동(Auto) 에이전트</div>
-        <div style="color:#1e40af;">Claude가 상황을 인식해 자동 호출. 별도 명령 불필요.</div>
+        <div style="font-weight:700;color:var(--accent);margin-bottom:4px;">🤖 자동(Auto) 에이전트</div>
+        <div style="color:var(--ink2);">Claude가 상황을 인식해 자동 호출. 별도 명령 불필요.</div>
         <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;">
-          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>fact-checker</code> — 리서치·수치 산출 후 자동</span>
-          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>tone-guardian</code> — 메일 초안 작성 후 자동</span>
-          <span style="font-size:10px;background:#DBEAFE;color:#1D4ED8;padding:2px 8px;border-radius:4px;display:inline-block;"><code>delivery-gate</code> — 외부 발송 직전 자동</span>
+          <span style="font-size:10px;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px;display:inline-block;"><code>fact-checker</code> — 리서치·수치 산출 후 자동</span>
+          <span style="font-size:10px;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px;display:inline-block;"><code>tone-guardian</code> — 메일 초안 작성 후 자동</span>
+          <span style="font-size:10px;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px;display:inline-block;"><code>delivery-gate</code> — 외부 발송 직전 자동</span>
         </div>
       </div>
       <div>
-        <div style="font-weight:700;color:#374151;margin-bottom:4px;">💬 호출(Manual) 에이전트</div>
-        <div style="color:#374151;">키워드를 입력하거나 에이전트 이름을 직접 불러야 작동.</div>
-        <div style="margin-top:6px;font-size:10px;color:#6B7280;line-height:1.8;">
+        <div style="font-weight:700;color:var(--ink2);margin-bottom:4px;">💬 호출(Manual) 에이전트</div>
+        <div style="">키워드를 입력하거나 에이전트 이름을 직접 불러야 작동.</div>
+        <div style="margin-top:6px;font-size:10px;color:var(--ink3);line-height:1.8;">
           "메일 써줘" → <code>mail-drafter</code><br>
           "시안 검수해줘" → <code>design-critique</code><br>
           "RFP 분석해줘" → <code>rfp-analyst</code><br>
@@ -1210,7 +1210,7 @@ body {
         </div>
       </div>
     </div>
-    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #BFDBFE;font-size:10.5px;color:#374151;">
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #BFDBFE;font-size:10.5px;">
       🚫 <strong>자동 발송은 절대 없음</strong> — 초안·결과물은 항상 사용자 확인 후 진행. 에이전트가 "발송"을 트리거하는 경우는 없음.
     </div>
   </div>
@@ -1233,34 +1233,34 @@ body {
         <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">market-research</td><td style="padding:7px 12px;color:var(--ink2);">"경쟁사 분석해줘" / "포지셔닝 맵 그려줘" / "시장조사"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-trend-radar</td><td style="padding:7px 12px;color:var(--ink2);">"요즘 트렌드 뭐야" / "디자인 트렌드 봐줘" / "분기 트렌드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
         <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">reference-curator</td><td style="padding:7px 12px;color:var(--ink2);">"레퍼런스 찾아줘" / "참고 사례 모아줘" / "벤치마크"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" · <strong style="color:#B45309;">자동: 리서치 결과 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" · <strong style="color:var(--ink3);">자동: 리서치 결과 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
         <!-- ② 전략·발산 -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:var(--ink2);">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:var(--ink2);">② 전략</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:var(--ink2);">② 전략</span></td></tr>
         <!-- ③ 비주얼 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">moodboard-builder</td><td style="padding:7px 12px;color:var(--ink2);">"무드보드 만들어줘" / "분위기 잡아줘" / "톤 보드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">figma-bridge</td><td style="padding:7px 12px;color:var(--ink2);">"Figma 보내줘" / "Figma 가져와" / "피그마 동기화"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">storyboard-maker</td><td style="padding:7px 12px;color:var(--ink2);">"스토리보드 짜줘" / "영상 콘티" / "모션 기획"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">moodboard-builder</td><td style="padding:7px 12px;color:var(--ink2);">"무드보드 만들어줘" / "분위기 잡아줘" / "톤 보드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">figma-bridge</td><td style="padding:7px 12px;color:var(--ink2);">"Figma 보내줘" / "Figma 가져와" / "피그마 동기화"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">③ 비주얼</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">storyboard-maker</td><td style="padding:7px 12px;color:var(--ink2);">"스토리보드 짜줘" / "영상 콘티" / "모션 기획"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">③ 비주얼</span></td></tr>
         <!-- ④ 검수 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-system-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"시스템 점검" / "가이드 맞나" · <strong style="color:#B45309;">자동: 시안 완성 시</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">review-panel</td><td style="padding:7px 12px;color:var(--ink2);">"5관점 검토해줘" / "다각도로 봐줘" / 발산 후 셀렉 전</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#6D28D9;font-weight:700;">project-continuity-auditor ★</td><td style="padding:7px 12px;color:var(--ink2);">"다 반영됐는지 확인" / "누락된 거 있나" / "전체 일관성 체크" · <strong style="color:#B45309;">자동: 버전 전환 직후 · Runable 3 진입 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-system-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"시스템 점검" / "가이드 맞나" · <strong style="color:var(--ink3);">자동: 시안 완성 시</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border);color:var(--ink2);">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border);color:var(--ink2);">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">review-panel</td><td style="padding:7px 12px;color:var(--ink2);">"5관점 검토해줘" / "다각도로 봐줘" / 발산 후 셀렉 전</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border);color:var(--ink2);">④ 검수</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--accent);font-weight:700;">project-continuity-auditor ★</td><td style="padding:7px 12px;color:var(--ink2);">"다 반영됐는지 확인" / "누락된 거 있나" / "전체 일관성 체크" · <strong style="color:var(--ink3);">자동: 버전 전환 직후 · Runable 3 진입 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border);color:var(--ink2);">④ 검수</span></td></tr>
         <!-- ⑤ 수주·재무 -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">⑤ 수주</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--border-soft);color:var(--ink2);">⑤ 수주</span></td></tr>
         <!-- ⑥ 조직관리 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑥ 조직</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑥ 조직</span></td></tr>
         <!-- ⑦ 커뮤니케이션 (신규) -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">copy-writer ✦</td><td style="padding:7px 12px;color:var(--ink2);">"카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구" / "말투 맞춰 써줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:#B45309;">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">delivery-gate</td><td style="padding:7px 12px;color:var(--ink2);">"발송 전 점검" / "딜리버리 체크" · <strong style="color:#B45309;">자동: 외부 발송 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">copy-writer ✦</td><td style="padding:7px 12px;color:var(--ink2);">"카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구" / "말투 맞춰 써줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:var(--ink3);">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑦ 커뮤니케이션</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">delivery-gate</td><td style="padding:7px 12px;color:var(--ink2);">"발송 전 점검" / "딜리버리 체크" · <strong style="color:var(--ink3);">자동: 외부 발송 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent);">⑦ 커뮤니케이션</span></td></tr>
         <!-- ⑧ AX 시스템 (신규) -->
         <tr style="background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#4338CA;font-weight:700;">ax-architect ★</td><td style="padding:7px 12px;color:var(--ink2);">"워크플로우 정리해줘" / "에이전트 구조 다시 짜줘" / "AX 관점에서 봐줘" / "프로세스가 안 보여" / "이거 시스템으로 만들자"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E0E7FF;color:#3730A3;">⑧ AX 시스템</span></td></tr>
       </tbody>
@@ -1360,19 +1360,19 @@ tools: Read, Glob, Grep, WebSearch
     <p><code>creative-director</code>가 브랜드 톤·매너, 클라별 주의사항, 디자인 시스템, QC 체크리스트가 담긴 1장 HTML 온보딩 팩을 만들어 줍니다.</p>
   </div>
   <div class="manual-scenario">
-    <h4>⑪ 채용 현황 → "VM 채용 지금 어디까지야?" <span style="font-size:10px;font-weight:400;color:#9CA3AF;">(🔘 대기 상태 — 활성화 필요 시 사용)</span></h4>
+    <h4>⑪ 채용 현황 → "VM 채용 지금 어디까지야?" <span style="font-size:10px;font-weight:400;color:var(--ink4);">(🔘 대기 상태 — 활성화 필요 시 사용)</span></h4>
     <p><code>hiring-radar</code>가 파이프라인 현황, JD 상태, 소싱 후보, 면접 일정을 요약해서 보여줍니다. 현재 비활성 — 필요 시 바로 호출 가능.</p>
   </div>
   <div class="manual-scenario">
     <h4>⑫ 계약서 검토 → "하이브 NDA 계약서 검토해줘"</h4>
     <p><code>legal-compliance</code>가 계약서 첨부를 받아 쟁점·리스크를 플래그. 단, 법무 자문을 대체하지 않습니다.</p>
   </div>
-  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
-    <h4>⑬ 메일 작성 → "코웨이 담당자한테 2차 시안 전달 메일 써줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+  <div class="manual-scenario" style="border-left-color:var(--accent);background:var(--card);">
+    <h4>⑬ 메일 작성 → "코웨이 담당자한테 2차 시안 전달 메일 써줘" <span style="font-size:10px;color:var(--accent);">✦ 신규</span></h4>
     <p><code>mail-drafter</code>가 수신자·목적·톤에 맞는 메일 초안을 생성 → <code>tone-guardian</code>이 자동으로 톤 체크 → 사용자가 최종 OK 후 발송. <strong>자동 발송은 절대 없음.</strong></p>
   </div>
-  <div class="manual-scenario" style="border-left-color:#3B82F6;background:#F0F9FF;">
-    <h4>⑭ 회의록 정리 → "오늘 넷마블 미팅 내용 회의록으로 정리해줘" <span style="font-size:10px;color:#3B82F6;">✦ 신규</span></h4>
+  <div class="manual-scenario" style="border-left-color:var(--accent);background:var(--card);">
+    <h4>⑭ 회의록 정리 → "오늘 넷마블 미팅 내용 회의록으로 정리해줘" <span style="font-size:10px;color:var(--accent);">✦ 신규</span></h4>
     <p><code>meeting-logger</code>가 메모·구두 설명을 받아 날짜·참석자·논의내용·결정사항·액션아이템(담당자+기한) 구조화 회의록 생성. 노션 저장은 사용자 확인 후.</p>
   </div>
 
@@ -1697,7 +1697,7 @@ tools: Read, Glob, Grep, WebSearch
   <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;">
     <div class="hub-section-h">권장 액션 (사용자 결정 필요)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
-      <div style="padding:12px;background:#FDECEC;border-radius:7px;">
+      <div style="padding:12px;background:var(--border);border-radius:7px;">
         <div style="font-size:10px;font-weight:800;color:var(--danger);text-transform:uppercase;margin-bottom:6px;">즉시 (이번 주)</div>
         <div style="font-size:11px;color:var(--ink2);line-height:1.55;">VM 시니어① 프로젝트 우선순위 재조정<br>코웨이 vs 넷마블 AI 중 1개 집중<br>→ <strong>사용자 결정 필요</strong></div>
       </div>
@@ -1915,9 +1915,9 @@ tools: Read, Glob, Grep, WebSearch
     </div>
     <div style="display:flex;gap:14px;font-size:10px;color:var(--ink3);">
       <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--sig);"></div>현재</div>
-      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#5B78B0;"></div>2026 Q3 +3명</div>
-      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#8BA3C7;"></div>2026 Q4 +3명</div>
-      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#B5C8E0;"></div>2027 +5명</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--accent);"></div>2026 Q3 +3명</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#3A4A60;"></div>2026 Q4 +3명</div>
+      <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#5A6A80;"></div>2027 +5명</div>
     </div>
     <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
       <div style="padding:10px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">
@@ -1939,7 +1939,7 @@ tools: Read, Glob, Grep, WebSearch
   <h3 style="font-size:14px;font-weight:800;margin:0 0 12px;letter-spacing:-0.3px;">📋 채용 파이프라인</h3>
   <div class="pipeline-grid">
     <div class="pipeline-col">
-      <div class="pipeline-col-h"><div class="dot" style="background:#94A3B8;"></div>소싱 중</div>
+      <div class="pipeline-col-h"><div class="dot" style="background:var(--ink3);"></div>소싱 중</div>
       <div class="pipeline-item">
         <div class="pipeline-pos">VM 시니어 (모션 리드)</div>
         <div class="pipeline-meta">자격: AE 5년+ · 모션 리드 경험<br>채널: 원티드 · 추천</div>
@@ -1951,7 +1951,7 @@ tools: Read, Glob, Grep, WebSearch
       </div>
     </div>
     <div class="pipeline-col">
-      <div class="pipeline-col-h"><div class="dot" style="background:#F59E0B;"></div>JD 작성 필요</div>
+      <div class="pipeline-col-h"><div class="dot" style="background:var(--ink3);"></div>JD 작성 필요</div>
       <div class="pipeline-item">
         <div class="pipeline-pos">VM 미드 (브랜딩)</div>
         <div class="pipeline-meta">아직 JD 미작성<br>"VM 미드 JD 뽑아줘" → hiring-radar</div>
@@ -1962,11 +1962,11 @@ tools: Read, Glob, Grep, WebSearch
       </div>
     </div>
     <div class="pipeline-col">
-      <div class="pipeline-col-h"><div class="dot" style="background:#3B82F6;"></div>면접 진행 중</div>
+      <div class="pipeline-col-h"><div class="dot" style="background:var(--accent);"></div>면접 진행 중</div>
       <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 진행 중인 면접 없음<br><br>소싱 완료 후 업데이트</div>
     </div>
     <div class="pipeline-col">
-      <div class="pipeline-col-h"><div class="dot" style="background:#22C55E;"></div>오퍼 · 입사 예정</div>
+      <div class="pipeline-col-h"><div class="dot" style="background:var(--ink2);"></div>오퍼 · 입사 예정</div>
       <div style="font-size:11px;color:var(--ink3);padding:8px;">현재 오퍼 없음<br><br>⚠️ 최종 채용 결정: 사용자 직접</div>
     </div>
   </div>
@@ -2028,20 +2028,20 @@ tools: Read, Glob, Grep, WebSearch
 
   <!-- 개념 가이드 -->
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
-    <div style="background:#F0F4FF;border:1.5px solid #C7D4F5;border-radius:10px;padding:16px 18px;">
-      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#3B5BDB;text-transform:uppercase;margin-bottom:8px;">① 에이전트</div>
+    <div style="background:var(--accent-soft);border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;">
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;">① 에이전트</div>
       <div style="font-size:13px;font-weight:800;margin-bottom:6px;">전문가 개인</div>
       <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"한 번 호출, 한 가지 일"<br>rfp-analyst, critic, moodboard-builder 등 29종.<br>각자 역할이 고정되어 있고, 허브(메인 세션)가 상황에 맞게 호출.</div>
       <div style="margin-top:10px;padding:6px 10px;background:#3B5BDB;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "RFP 분석해줘" → rfp-analyst 실행</div>
     </div>
     <div style="background:#F0FBF4;border:1.5px solid #B2DFC4;border-radius:10px;padding:16px 18px;">
-      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#2D7A4F;text-transform:uppercase;margin-bottom:8px;">② 스킬</div>
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--ink2);text-transform:uppercase;margin-bottom:8px;">② 스킬</div>
       <div style="font-size:13px;font-weight:800;margin-bottom:6px;">산출물 레시피</div>
       <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"어떻게 출력할 것인가"를 정의.<br>list-deck-design, anti-ai-writing 등 7종.<br><code>/스킬명</code>으로 호출하면 정해진 포맷으로 결과 생성.</div>
       <div style="margin-top:10px;padding:6px 10px;background:#2D7A4F;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "/list-deck-design" → 에디토리얼 리포트 HTML 생성</div>
     </div>
     <div style="background:#FDF8F0;border:1.5px solid #ECD9B0;border-radius:10px;padding:16px 18px;">
-      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:#C77A0F;text-transform:uppercase;margin-bottom:8px;">③ 워크플로우</div>
+      <div style="font-size:10px;font-weight:900;letter-spacing:1.2px;color:var(--ink3);text-transform:uppercase;margin-bottom:8px;">③ 워크플로우</div>
       <div style="font-size:13px;font-weight:800;margin-bottom:6px;">에이전트 파이프라인</div>
       <div style="font-size:11px;color:var(--ink2);line-height:1.65;">"누가 어떤 순서로 개입하는가"를 정의.<br>게이트(확인 포인트) 포함. 브랜드 트랙·UI/UX 트랙 2종.<br>brand-pipeline 에이전트가 전체 흐름 관리.</div>
       <div style="margin-top:10px;padding:6px 10px;background:#C77A0F;border-radius:6px;font-size:10px;color:#fff;font-weight:700;">호출: "브랜드 제안 시작" → brand-pipeline이 3단계 자동 진행</div>
@@ -2055,37 +2055,37 @@ tools: Read, Glob, Grep, WebSearch
     <!-- 라이팅 계열 -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#1E3A5F,#2D5A8E);padding:10px 16px;">
-        <div style="font-size:10px;font-weight:900;color:#90B4D4;letter-spacing:1px;text-transform:uppercase;">라이팅 계열 · 5종</div>
-        <div style="font-size:12px;color:#E2EEF7;margin-top:2px;">글을 쓰거나 점검할 때</div>
+        <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">라이팅 계열 · 5종</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px;">글을 쓰거나 점검할 때</div>
       </div>
       <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #3B5BDB;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#3B5BDB;">anti-ai-writing</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:var(--accent);">anti-ai-writing</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">AI가 쓴 티 나는 글 탈출. 모든 글의 최종 필터. 산문에 가장 강력.</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #7048B6;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#7048B6;">dumbify</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:rgba(255,255,255,0.8);">dumbify</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">설명형 콘텐츠 단순화. 빽빽한 초안·전문용어 → 누구나 따라가는 글.</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #C77A0F;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#C77A0F;">storytelling</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:var(--ink3);">storytelling</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">릴스·영상 대본. 훅 이후를 붙잡는 내러티브 구조 적용.</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #B23B3B;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#B23B3B;">viral-hooks</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:rgba(255,255,255,0.7);">viral-hooks</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">첫 문장 전용. 릴스 인트로·뉴스레터 제목·트윗 첫 줄.</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #2D7A4F;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#2D7A4F;">voice-dna</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:var(--ink2);">voice-dna</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">브랜드·개인 보이스 톤 추출 및 일관성 유지.</div>
           </div>
         </div>
@@ -2095,20 +2095,20 @@ tools: Read, Glob, Grep, WebSearch
     <!-- 디자인 계열 -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#3D1F6E,#6B3FA0);padding:10px 16px;">
-        <div style="font-size:10px;font-weight:900;color:#C4A8E8;letter-spacing:1px;text-transform:uppercase;">디자인 계열 · 2종</div>
-        <div style="font-size:12px;color:#EDE8F5;margin-top:2px;">산출물 포맷을 고정할 때</div>
+        <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">디자인 계열 · 2종</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px;">산출물 포맷을 고정할 때</div>
       </div>
       <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #6B3FA0;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#6B3FA0;">list-deck-design</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;color:rgba(255,255,255,0.85);">list-deck-design</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">에디토리얼 리포트 HTML 생성. stateofaidesign.com 스타일. 수치·데이터를 한 장 보고서로.</div>
             <div style="margin-top:5px;font-size:9.5px;color:var(--ink3);">트리거: "리포트로 정리" / "list deck" / "state of ~ 스타일"</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:#FAFAF9;border-radius:6px;border-left:3px solid #374151;">
           <div>
-            <div style="font-size:11px;font-weight:800;font-family:monospace;color:#374151;">hivelab-proposal-style</div>
+            <div style="font-size:11px;font-weight:800;font-family:monospace;">hivelab-proposal-style</div>
             <div style="font-size:10.5px;color:var(--ink2);margin-top:2px;line-height:1.5;">하이브랩 제안서 스타일 가이드. 제안 슬라이드 톤·레이아웃 기준.</div>
             <div style="margin-top:5px;font-size:9.5px;color:var(--ink3);">트리거: 하이브랩 관련 제안 진행 시</div>
           </div>
@@ -2116,7 +2116,7 @@ tools: Read, Glob, Grep, WebSearch
       </div>
 
       <!-- 스킬 연계 팁 -->
-      <div style="margin:0 12px 12px;padding:10px 12px;background:#F3EEF9;border-radius:7px;font-size:10.5px;color:#4A2080;line-height:1.65;">
+      <div style="margin:0 12px 12px;padding:10px 12px;background:#F3EEF9;border-radius:7px;font-size:10.5px;color:var(--accent);line-height:1.65;">
         <strong>💡 라이팅 스킬 연계 순서</strong><br>
         초안 작성 → <code>dumbify</code>(단순화) → <code>storytelling</code>(구조) → <code>anti-ai-writing</code>(필터)<br>
         첫 문장만: <code>viral-hooks</code> 단독 / 톤 기준 먼저: <code>voice-dna</code> 후 작성
@@ -2131,8 +2131,8 @@ tools: Read, Glob, Grep, WebSearch
   <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;">
     <div style="background:linear-gradient(135deg,#1A1A2E,#2D2D4E);padding:12px 20px;display:flex;align-items:center;gap:12px;">
       <div>
-        <div style="font-size:10px;font-weight:900;color:#818CF8;letter-spacing:1px;text-transform:uppercase;">디자인 제안 · 브랜드 트랙</div>
-        <div style="font-size:12px;color:#C7D2FE;margin-top:2px;">brand-pipeline 에이전트가 전체 흐름 관리 · GRAIN 실전 검증 완료</div>
+        <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">디자인 제안 · 브랜드 트랙</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px;">brand-pipeline 에이전트가 전체 흐름 관리 · GRAIN 실전 검증 완료</div>
       </div>
       <div style="margin-left:auto;padding:4px 10px;background:#4338CA;border-radius:12px;font-size:10px;color:#fff;font-weight:700;white-space:nowrap;">트리거: "브랜드 제안 시작"</div>
     </div>
@@ -2142,15 +2142,15 @@ tools: Read, Glob, Grep, WebSearch
         <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">브랜드 정보 수집</div>
         <div style="color:var(--ink4);font-size:16px;">→</div>
         <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Manus 1<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">경쟁사 30개·포지셔닝</div></div>
-        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 1<div style="font-size:8.5px;font-weight:500;">관점 한 문장 확정</div></div>
+        <div style="padding:5px 8px;background:var(--border);border:1.5px solid var(--border);border-radius:6px;font-size:9.5px;font-weight:800;color:var(--ink2);">Gate 1<div style="font-size:8.5px;font-weight:500;">관점 한 문장 확정</div></div>
         <div style="color:var(--ink4);font-size:16px;">→</div>
         <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Manus 2<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">비주얼 DNA·컨셉 발산</div></div>
-        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 2<div style="font-size:8.5px;font-weight:500;">Living System 확인</div></div>
+        <div style="padding:5px 8px;background:var(--border);border:1.5px solid var(--border);border-radius:6px;font-size:9.5px;font-weight:800;color:var(--ink2);">Gate 2<div style="font-size:8.5px;font-weight:500;">Living System 확인</div></div>
         <div style="color:var(--ink4);font-size:16px;">→</div>
         <div style="padding:6px 12px;background:#EEF2FF;border:1.5px solid #C7D2FE;border-radius:6px;font-size:10.5px;font-weight:700;color:#3730A3;">Runable 3<div style="font-size:9px;font-weight:500;color:#6366F1;margin-top:1px;">브랜드 시스템화</div></div>
-        <div style="padding:5px 8px;background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:6px;font-size:9.5px;font-weight:800;color:#92400E;">Gate 3<div style="font-size:8.5px;font-weight:500;">슬라이드 ready 확인</div></div>
+        <div style="padding:5px 8px;background:var(--border);border:1.5px solid var(--border);border-radius:6px;font-size:9.5px;font-weight:800;color:var(--ink2);">Gate 3<div style="font-size:8.5px;font-weight:500;">슬라이드 ready 확인</div></div>
         <div style="color:var(--ink4);font-size:16px;">→</div>
-        <div style="padding:6px 12px;background:#1A1A2E;border-radius:6px;font-size:10.5px;font-weight:700;color:#818CF8;">Final Deck<div style="font-size:9px;font-weight:500;color:#A5B4FC;margin-top:1px;">35~45장 슬라이드</div></div>
+        <div style="padding:6px 12px;background:#1A1A2E;border-radius:6px;font-size:10.5px;font-weight:700;color:rgba(255,255,255,0.5);">Final Deck<div style="font-size:9px;font-weight:500;color:#A5B4FC;margin-top:1px;">35~45장 슬라이드</div></div>
       </div>
       <!-- 규칙 -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:10.5px;">
@@ -2188,28 +2188,28 @@ tools: Read, Glob, Grep, WebSearch
   <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
     <div style="background:linear-gradient(135deg,#1F3B2F,#2D5A43);padding:12px 20px;display:flex;align-items:center;gap:12px;">
       <div>
-        <div style="font-size:10px;font-weight:900;color:#86EFAC;letter-spacing:1px;text-transform:uppercase;">제안서 풀패키지 워크플로우</div>
+        <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">제안서 풀패키지 워크플로우</div>
         <div style="font-size:12px;color:#BBF7D0;margin-top:2px;">허브에서 "제안 풀패키지 돌려" 1마디 → 12단계 자동</div>
       </div>
       <div style="margin-left:auto;padding:4px 10px;background:#16A34A;border-radius:12px;font-size:10px;color:#fff;font-weight:700;white-space:nowrap;">트리거: "제안 풀패키지 돌려"</div>
     </div>
     <div style="padding:14px 20px;">
       <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">① rfp-analyst</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">① rfp-analyst</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">② market-research</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">② market-research</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">③ trend-radar</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">③ trend-radar</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">④ concept-director</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">④ concept-director</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑤ brainstormer</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">⑤ brainstormer</div>
         <span style="color:var(--ink4);">→</span>
         <div style="padding:5px 9px;background:#1A1A1A;border-radius:5px;font-size:10px;font-weight:700;color:#fff;">⑥ 실장 셀렉</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑦ quote-accountant</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">⑦ quote-accountant</div>
         <span style="color:var(--ink4);">→</span>
-        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:#166534;">⑧ review-panel</div>
+        <div style="padding:5px 9px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:5px;font-size:10px;font-weight:700;color:var(--ink2);">⑧ review-panel</div>
         <span style="color:var(--ink4);">→</span>
         <div style="padding:5px 9px;background:#FEF9EC;border:1px solid #FCD34D;border-radius:5px;font-size:10px;font-weight:700;color:#92400E;">⑨ fact-checker</div>
         <span style="color:var(--ink4);">→</span>
@@ -2255,7 +2255,7 @@ tools: Read, Glob, Grep, WebSearch
       </div>
       <div style="font-size:18px;color:#3B4F7A;text-align:center;">→</div>
       <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:12px;text-align:center;">
-        <div style="font-size:9px;font-weight:700;color:#86EFAC;margin-bottom:5px;">RUNABLE 3</div>
+        <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:5px;">RUNABLE 3</div>
         <div style="font-size:11px;font-weight:800;color:#F0EDE8;">브랜드 시스템<br>헤드라인 · 최종 덱</div>
         <div style="font-size:9px;color:#6B7280;margin-top:6px;">→ Phase 3 추가 · 완성</div>
       </div>
@@ -2268,7 +2268,7 @@ tools: Read, Glob, Grep, WebSearch
 
   <!-- v8.1 업그레이드 원칙 박스 -->
   <div style="background:#1A1A2E;border-radius:12px;padding:18px 22px;margin-bottom:20px;color:#E2E8F0;">
-    <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#818CF8;text-transform:uppercase;margin-bottom:14px;">★ GRAIN 실전 검증으로 확정된 6개 워크플로우 원칙 (v8.1)</div>
+    <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:14px;">★ GRAIN 실전 검증으로 확정된 6개 워크플로우 원칙 (v8.1)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10.5px;line-height:1.65;">
       <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
         <div style="font-size:9px;font-weight:800;color:#A78BFA;letter-spacing:0.5px;margin-bottom:6px;">① MATERIALIZE — 글로만 끝내지 말 것</div>
@@ -2350,12 +2350,12 @@ tools: Read, Glob, Grep, WebSearch
     padding:14px 20px; display:flex; align-items:flex-start; gap:20px;
   }
   .hm-intake-badge {
-    font-size:8px; font-weight:900; letter-spacing:1.5px; color:#4338ca;
-    background:#c7d2fe; border-radius:4px; padding:3px 8px; white-space:nowrap; margin-top:2px;
+    font-size:8px; font-weight:900; letter-spacing:1.5px; color:var(--accent);
+    background:var(--accent-soft); border-radius:4px; padding:3px 8px; white-space:nowrap; margin-top:2px;
   }
-  .hm-intake-title { font-size:13px; font-weight:800; color:#3730a3; margin:0 0 4px; }
-  .hm-intake-md { font-size:9px; font-family:ui-monospace,monospace; color:#4338ca; margin:0 0 6px; }
-  .hm-intake-items { font-size:10px; color:#3730a3; line-height:1.7; margin:0; }
+  .hm-intake-title { font-size:13px; font-weight:800; color:var(--accent); margin:0 0 4px; }
+  .hm-intake-md { font-size:9px; font-family:ui-monospace,monospace; color:var(--accent); margin:0 0 6px; }
+  .hm-intake-items { font-size:10px; color:var(--accent); line-height:1.7; margin:0; }
 
   /* Phase row */
   .hm-phase-row { display:flex; align-items:stretch; gap:0; }
@@ -2384,7 +2384,7 @@ tools: Read, Glob, Grep, WebSearch
   .hm-card-body { padding:10px 14px; flex:1; }
   .hm-card-md {
     font-size:8.5px; font-family:ui-monospace,monospace; font-weight:700;
-    color:#4A3080; background:#F0EEF9; border-radius:3px;
+    color:var(--accent); background:var(--accent-soft); border-radius:3px;
     padding:2px 7px; display:block; margin-bottom:8px; line-height:1.5;
     word-break:break-all;
   }
@@ -2393,23 +2393,23 @@ tools: Read, Glob, Grep, WebSearch
     font-size:8px; font-weight:700; padding:2px 6px; border-radius:3px;
     background:#EEF1F7; color:var(--sig); font-family:ui-monospace,monospace;
   }
-  .hm-card-agent-warn { background:#FEF3C7; color:#92400E; }
+  .hm-card-agent-warn { background:var(--border); color:var(--ink2); }
   .hm-card-out { font-size:9.5px; color:var(--ink3); line-height:1.65; }
   .hm-card-out strong { color:var(--ink2); }
 
   /* Gate 카드 */
-  .hm-card-gate { background:#F0FAF3; border-color:#86efac; min-width:170px; max-width:190px; }
-  .hm-card-gate .hm-card-head { border-bottom-color:#bbf7d0; }
-  .hm-card-gate .hm-card-title { color:#15803d; }
-  .hm-card-gate .hm-card-out { font-family:ui-monospace,monospace; font-size:8.5px; color:#166534; line-height:1.8; }
+  .hm-card-gate { background:var(--accent-soft); border-color:var(--border); min-width:170px; max-width:190px; }
+  .hm-card-gate .hm-card-head { border-bottom-color:var(--border); }
+  .hm-card-gate .hm-card-title { color:var(--accent); }
+  .hm-card-gate .hm-card-out { font-family:ui-monospace,monospace; font-size:8.5px; color:var(--ink2); line-height:1.8; }
 
   /* 체크포인트 카드 */
-  .hm-card-cp { background:#FAFAF8; border-color:#d4d4d4; border-style:dashed; min-width:160px; max-width:180px; }
-  .hm-card-cp .hm-card-title { color:#555; }
+  .hm-card-cp { background:var(--card); border-color:var(--border); border-style:dashed; min-width:160px; max-width:180px; }
+  .hm-card-cp .hm-card-title { color:var(--ink2); }
 
   /* Final 카드 */
   .hm-card-final { background:#1A1A1A; border-color:#1A1A1A; min-width:200px; max-width:220px; }
-  .hm-card-final .hm-card-head { border-bottom-color:#333; }
+  .hm-card-final .hm-card-head { border-bottom-color:var(--ink); }
   .hm-card-final .hm-card-title { color:#fff; }
   .hm-card-final .hm-card-badge { background:#fff; color:#1A1A1A; }
   .hm-card-final .hm-card-md { background:#2a2a2a; color:#aaa; }
@@ -2429,10 +2429,10 @@ tools: Read, Glob, Grep, WebSearch
   }
 
   /* 배지 색상별 */
-  .badge-intake { background:#c7d2fe; color:#3730a3; }
+  .badge-intake { background:var(--accent-soft); color:var(--accent); }
   .badge-stage  { background:#FCE8E8; color:var(--sig); }
-  .badge-gate   { background:#bbf7d0; color:#15803d; }
-  .badge-cp     { background:#e5e5e5; color:#555; }
+  .badge-gate   { background:#bbf7d0; color:var(--accent); }
+  .badge-cp     { background:#e5e5e5; color:var(--ink2); }
   </style>
 
   <div class="hm-wrap">
@@ -2998,7 +2998,7 @@ function renderTodayBoard(projects) {
     html += '<div class="today-col overdue"><div class="today-col-h">🔴 마감 도래<span class="cnt">' + overdue.length + '</span></div>';
     overdue.forEach(p => {
       const cat = esc(p.categories[0] || p.status);
-      html += '<div class="today-item"><span class="ti-area" style="background:#FDECEC;color:#B23B3B;">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-do">종료 ' + (p.endDate||'') + '</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
+      html += '<div class="today-item"><span class="ti-area" style="background:#FDECEC;color:rgba(255,255,255,0.7);">' + cat + '</span><div class="ti-body"><div class="ti-title">' + esc(p.title) + '</div><div class="ti-meta"><span class="ti-type type-do">종료 ' + (p.endDate||'') + '</span>' + (p.difficulty ? ' · ' + p.difficulty : '') + '</div></div></div>';
     });
     html += '</div>';
   }
