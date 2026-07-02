@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>26년 색조 PB브랜드 상세페이지 제안서</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --hl-bg: rgba(62,90,108,0.08);
+    --gray-900: #111111;
+    --gray-700: #333333;
+    --gray-500: #666666;
+    --gray-300: #999999;
+    --gray-100: #E5E5E5;
+    --gray-50: #F5F5F5;
+
+    /* Single point color (only for accent elements) */
+    --accent: #3E5A6C;
+    --accent-light: #6A8FA3;
+    --accent-bg: #222222;
+
+    /* Monotone grayscale palette */
+    --neon-yellow: #FFFFFF;
+    --neon-pink: #CCCCCC;
+    --neon-cyan: #E0E0E0;
+    --neon-green: #BBBBBB;
+    --neon-purple: #999999;
+    --neon-orange: #AAAAAA;
+    --neon-blue: #888888;
+    --neon-rose: #DDDDDD;
+    --neon-lime: #C0C0C0;
+    --neon-mint: #B0B0B0;
+
+    --font-en: 'Inter', sans-serif;
+    --font-kr: 'Pretendard', sans-serif;
+
+    --slide-width: 1440px;
+    --slide-height: 810px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1A1A1A;
+    font-family: var(--font-kr);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .deck {
+    position: relative;
+    width: var(--slide-width);
+    height: var(--slide-height);
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 64px 72px;
+    display: none;
+    flex-direction: column;
+    background: var(--black);
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .slide.active { display: flex; }
+
+  .page-num {
+    position: absolute;
+    bottom: 32px;
+    right: 72px;
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray-500);
+    letter-spacing: 0.05em;
+  }
+
+  /* Typography */
+  .hero-stat {
+    font-family: var(--font-en);
+    font-weight: 800;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-stat-lg {
+    font-family: var(--font-en);
+    font-weight: 800;
+    font-size: 120px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .h1 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .h2 {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .body-text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-300);
+  }
+
+  .caption {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--gray-500);
+  }
+
+  .label {
+    font-family: var(--font-en);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-family: var(--font-en);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--gray-900);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .card-row > .card { flex: 1; }
+
+  /* Grid */
+  .split { display: flex; gap: 48px; flex: 1; }
+  .split-left { flex: 0 0 42%; display: flex; flex-direction: column; justify-content: center; }
+  .split-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+  .grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+  }
+
+  /* Accent Stripe */
+  .neon-stripe {
+    height: 3px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .slide.light .neon-stripe {
+    background: var(--accent);
+  }
+
+  .neon-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* Bar chart */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 200px;
+    padding-top: 16px;
+  }
+
+  .bar-chart .bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .bar-chart .bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.5s ease;
+  }
+
+  .bar-chart .bar-label {
+    font-family: var(--font-en);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gray-500);
+  }
+
+  /* Donut chart */
+  .donut-wrap {
+    position: relative;
+    width: 180px;
+    height: 180px;
+  }
+
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  /* Dot Matrix */
+  .dot-matrix {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+  }
+
+  .dot-matrix .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gray-700);
+  }
+
+  .dot-matrix .dot.active { background: var(--accent); }
+
+  /* Stacked Bar */
+  .stacked-bar {
+    height: 40px;
+    display: flex;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  /* Process */
+  .process-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  .process-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 12px;
+  }
+
+  .process-step .step-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-line {
+    position: absolute;
+    top: 7px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--gray-700);
+  }
+
+  /* Positioning map */
+  .pos-map {
+    position: relative;
+    width: 100%;
+    height: 260px;
+  }
+
+  .pos-map .axis-x {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gray-700);
+  }
+
+  .pos-map .axis-y {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--gray-700);
+  }
+
+  .pos-map .axis-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-500);
+  }
+
+  .pos-map .bubble {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* ========== SLIDE TOP BAR ========== */
+  .slide-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .slide-topbar .topbar-left { color: rgba(255,255,255,0.45); }
+  .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
+  .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
+
+  .slide.light .slide-topbar .topbar-left { color: var(--accent); opacity: 0.6; }
+  .slide.light .slide-topbar .topbar-center { color: var(--gray-500); }
+  .slide.light .slide-topbar .topbar-right { color: var(--gray-500); }
+
+  /* ========== DARK ACCENT (dividers) — monochrome ========== */
+  .slide.dark-accent {
+    background: #2A2A2A;
+    color: #FFFFFF;
+  }
+
+  .slide.dark-accent .slide-topbar .topbar-left { color: rgba(255,255,255,0.5); }
+  .slide.dark-accent .slide-topbar .topbar-center { color: rgba(255,255,255,0.35); }
+  .slide.dark-accent .slide-topbar .topbar-right { color: rgba(255,255,255,0.35); }
+
+  /* Cover — monochrome dark gradient */
+  .slide.cover-slide {
+    background: linear-gradient(160deg, #1A1A1A 0%, #2A2A2A 40%, #3D3D3D 70%, #4A4A4A 100%);
+  }
+
+  /* Index — now handled by inline styles on dark TOC slide */
+
+  /* ========== LIGHT MODE ========== */
+  .slide.light {
+    background: #FFFFFF;
+    color: #111111;
+
+    --black: #FFFFFF;
+    --white: #111111;
+    --gray-900: #F0F0F0;
+    --gray-700: #E0E0E0;
+    --gray-500: #909090;
+    --gray-300: #555555;
+    --gray-100: #CCCCCC;
+    --gray-50: #F8F8F8;
+
+    --neon-yellow: #222222;
+    --neon-cyan: #3E5A6C;
+    --neon-green: #555555;
+    --neon-mint: #666666;
+    --neon-pink: #333333;
+    --neon-orange: #666666;
+    --neon-purple: #777777;
+    --neon-blue: #555555;
+
+    --hl-bg: rgba(62,90,108,0.10);
+  }
+
+  /* Section Divider large background number */
+  .divider-bg-num {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-en);
+    font-weight: 900;
+    font-size: 280px;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #FFFFFF;
+    opacity: 0.06;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Slide transitions */
+  .slide { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Navigation */
+  .nav-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-en);
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.1em;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Sparkline SVG */
+  .sparkline { display: block; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="deck" id="deck">
+
+  <!-- ==================== SLIDE 01: COVER ==================== -->
+  <div class="slide active cover-slide" data-slide="1" style="padding:0;">
+    <div style="width:100%; height:100%; display:grid; grid-template-rows:80px 1fr 60px;">
+      <!-- Header -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px 80px 0; font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.05em; align-items:center;">
+        <span style="color:rgba(255,255,255,0.55);"><strong style="font-weight:700;">[고객사]</strong> X HIVELAB</span>
+        <span style="text-align:center; text-transform:uppercase; color:rgba(255,255,255,0.4);">PROPOSAL</span>
+        <span style="text-align:right; color:rgba(255,255,255,0.4);">2026</span>
+      </div>
+
+      <!-- Body -->
+      <div style="padding:0 80px; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:64px;">
+        <p style="font-family:var(--font-en); font-size:42px; font-weight:400; letter-spacing:-0.025em; line-height:1.15; color:rgba(255,255,255,0.75); margin-bottom:20px;">
+          Beauty PB Brand ·<br>Detail Page Partnership
+        </p>
+        <h1 style="font-family:var(--font-en); font-weight:700; font-size:160px; letter-spacing:-0.04em; line-height:0.9; color:#FFFFFF;">
+          PB BRAND<br>PROPOSAL
+        </h1>
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:0 80px 28px; display:flex; flex-direction:column; align-items:center; gap:6px;">
+        <span style="font-family:var(--font-en); font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.05em;">COPYRIGHT &copy; ALL RIGHTS RESERVED &middot; HIVELAB</span>
+        <span style="font-size:9px; color:rgba(255,255,255,0.25); line-height:1.5; text-align:center; max-width:680px; letter-spacing:0.01em;">본 문서는 HIVELAB의 자산입니다. 외부 공유·복제·인용·2차 가공은 사전 서면 동의가 필요하며, 무단 사용 시 관련 법령에 따른 책임이 발생할 수 있습니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 02: TABLE OF CONTENTS ==================== -->
+  <div class="slide" data-slide="2" style="padding:0; background:#111111; color:#FFFFFF;">
+    <div style="width:100%; height:100%; display:grid; grid-template-rows:80px 1fr 60px;">
+    <!-- Header -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px 80px 0; font-family:var(--font-en); font-size:11px; font-weight:500; letter-spacing:0.05em; align-items:center;">
+      <span style="color:rgba(255,255,255,0.45);"><strong style="font-weight:700;">[고객사]</strong> X HIVELAB</span>
+      <span style="text-align:center; text-transform:uppercase; color:rgba(255,255,255,0.35);">PROPOSAL</span>
+      <span style="text-align:right; color:rgba(255,255,255,0.35);">2026</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:48px 80px; display:grid; grid-template-columns:3fr 9fr; column-gap:64px;">
+      <!-- Left: Large Title -->
+      <h2 style="font-family:var(--font-en); font-weight:700; font-size:110px; letter-spacing:-0.03em; line-height:0.95; color:#FFFFFF; align-self:center;">
+        TABLE OF<br>CONTENTS
+      </h2>
+
+      <!-- Right: 2-column TOC -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:48px; row-gap:40px; align-content:center;">
+        <!-- Section 01 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">01</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Background & Purpose</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">01</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Opening &middot; 왜 이 제안인가</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">02</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Purpose &middot; 본 제안의 목적</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">03</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Goals &middot; 파트너십 KPI 목표</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">04</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Discovery &middot; 시작 전 질문</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 02 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">02</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Market & User Insight</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">05</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Market &middot; 시장 규모 & 성장률</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">06</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Conversion &middot; 채널별 전환율</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">07</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Behavior &middot; 소비자 구매 결정</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 03-04 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">03</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Differentiation</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">08</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Comparison &middot; 경쟁 모델 비교</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">09</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Key 4 &middot; HIVELAB 4대 차별점</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15); margin-top:24px;">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">04</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Capabilities</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">10</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">KPI &middot; 제작 실적 & 성과</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">11</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Portfolio &middot; 주요 제작 사례</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 05-06 -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15);">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">05</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Process</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">12</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Workflow &middot; 5단계 프로세스</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">13</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Positioning &middot; 경쟁 우위 맵</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.15); margin-top:24px;">
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.08em;">06</span>
+            <span style="font-family:var(--font-en); font-size:14px; font-weight:600; color:#FFFFFF; letter-spacing:0.1em; text-transform:uppercase;">Operation & Pricing</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:baseline; gap:14px;">
+              <span style="font-family:var(--font-en); font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; min-width:24px;">14</span>
+              <span style="font-size:14px; color:rgba(255,255,255,0.85);">Pricing &middot; 패키지별 견적</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:0 80px 24px; font-family:var(--font-en); font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.05em; display:flex; align-items:flex-end; justify-content:space-between;">
+      <span>[고객사] X HIVELAB &middot; PROPOSAL</span>
+      <span>2026</span>
+    </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 03: OPENING QUESTION ==================== -->
+  <div class="slide light" data-slide="3">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="label" style="color:var(--accent); margin-bottom:24px; margin-top:24px;">OPENING QUESTION</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:48px;">
+      <div>
+        <div style="font-family:var(--font-en); font-weight:300; font-size:140px; line-height:0.9; color:var(--accent); letter-spacing:-0.05em;">"</div>
+        <div class="h1" style="font-size:42px; letter-spacing:-0.03em; max-width:1100px; line-height:1.35; margin-top:-40px;">
+          소비자는 <span style="color:var(--neon-pink);">3초</span> 안에<br>
+          이 색조 제품이 <span style="color:var(--neon-cyan);">"내 것"</span>인지 결정합니다.<br>
+          그 3초 동안 무엇을 보여주시겠습니까?
+        </div>
+      </div>
+
+      <div style="display:flex; gap:48px; padding-top:32px; border-top:1px solid #E8E8E8;">
+        <div style="flex:1;">
+          <div class="label" style="margin-bottom:12px;">THE PROBLEM</div>
+          <div class="body-text" style="color:var(--gray-300);">색조 PB브랜드는 NB 대비 <strong style="color:var(--white);">브랜드 신뢰도가 낮고</strong>, 소비자는 상세페이지만으로 제품의 발색·텍스처·지속력을 판단합니다.</div>
+        </div>
+        <div style="flex:1;">
+          <div class="label" style="margin-bottom:12px;">THE CHALLENGE</div>
+          <div class="body-text" style="color:var(--gray-300);">26년 라인업 확대 시 <strong style="color:var(--white);">월 20건 이상의 신제품 상세페이지</strong>를 일관된 퀄리티로 빠르게 만들 파트너가 필요합니다.</div>
+        </div>
+        <div style="flex:1;">
+          <div class="label" style="margin-bottom:12px;">THE OPPORTUNITY</div>
+          <div class="body-text" style="color:var(--gray-300);">잘 만든 상세페이지 하나가 <strong style="color:var(--white);">광고비 30% 절감</strong>과 자사몰 전환율 2배 상승을 만듭니다.</div>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">03</span>
+  </div>
+
+  <!-- ==================== SLIDE 04: PURPOSE (목적) ==================== -->
+  <div class="slide light" data-slide="4">
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
+    <div class="h2" style="margin-bottom:40px;">본 제안의 목적</div>
+
+    <div style="flex:1; display:flex; gap:40px;">
+      <div style="flex:0 0 44%; display:flex; flex-direction:column; justify-content:center; gap:24px;">
+        <div class="h1" style="font-size:38px; letter-spacing:-0.03em; line-height:1.3;">
+          26년 색조 PB 라인업의<br>
+          <span style="color:var(--neon-yellow);">상세페이지 제작 전반</span>을<br>
+          전담할 협력사를 제안드립니다.
+        </div>
+        <div class="body-text" style="max-width:440px;">
+          단순 외주가 아닌, 브랜드의 색감과 톤을 일관되게 유지하면서 채널별 전환율을 최적화하는 <strong style="color:var(--white);">장기 파트너십 모델</strong>을 목표로 합니다.
+        </div>
+      </div>
+
+      <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
+        <div class="card" style="background:var(--gray-900); ">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-pink); line-height:1;">01</div>
+            <div>
+              <div class="h2" style="font-size:18px; margin-bottom:6px;">브랜드 톤 & 매너 일관성 확보</div>
+              <div class="body-text" style="font-size:13px;">26년 출시될 모든 색조 PB 제품의 상세페이지에서 동일한 비주얼 언어와 컬러 표현을 유지</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:var(--gray-900); ">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-cyan); line-height:1;">02</div>
+            <div>
+              <div class="h2" style="font-size:18px; margin-bottom:6px;">대량 제작 효율 & 납기 안정성</div>
+              <div class="body-text" style="font-size:13px;">월 20건+ 신제품의 동시 제작이 가능한 모듈형 시스템과 전담팀 운영 체계 구축</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:var(--gray-900); ">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:32px; color:var(--neon-green); line-height:1;">03</div>
+            <div>
+              <div class="h2" style="font-size:18px; margin-bottom:6px;">전환율 기반 성과 최적화</div>
+              <div class="body-text" style="font-size:13px;">제작 후 채널별 성과 데이터를 추적하고 A/B 테스트를 통한 지속적 개선 사이클 운영</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">04</span>
+  </div>
+
+  <!-- ==================== SLIDE 05: GOALS (목표) ==================== -->
+  <div class="slide light" data-slide="5">
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">SECTION 00 — BACKGROUND & PURPOSE</div>
+    <div class="h2" style="margin-bottom:32px;">파트너십 KPI 목표</div>
+
+    <div style="flex:1; display:flex; flex-direction:column; gap:24px;">
+
+      <div style="display:flex; gap:16px;">
+        <div class="card" style="flex:1; gap:8px;">
+          <div class="label">QUANTITY · 제작량</div>
+          <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-pink); line-height:1;">240<span style="font-size:24px; color:var(--gray-500);">건</span></div>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-pink); margin-bottom:8px;">연간</span>
+          </div>
+          <div class="caption" style="margin-top:auto;">월 평균 20건 / 분기당 60건의 안정적 제작 처리량</div>
+        </div>
+
+        <div class="card" style="flex:1; gap:8px;">
+          <div class="label">QUALITY · 전환율</div>
+          <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-cyan); line-height:1;">+25<span style="font-size:24px;">%</span></div>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-cyan); margin-bottom:8px;">YoY</span>
+          </div>
+          <div class="caption" style="margin-top:auto;">기존 상세페이지 대비 자사몰 평균 전환율 25% 이상 상승</div>
+        </div>
+
+        <div class="card" style="flex:1; gap:8px;">
+          <div class="label">SPEED · 납기</div>
+          <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-green); line-height:1;">10<span style="font-size:24px; color:var(--gray-500);">영업일</span></div>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-green); margin-bottom:8px;">표준</span>
+          </div>
+          <div class="caption" style="margin-top:auto;">기획 ~ 업로드까지 표준 10영업일 / 긴급건 5영업일</div>
+        </div>
+
+        <div class="card" style="flex:1; gap:8px;">
+          <div class="label">COST · 비용 효율</div>
+          <div style="display:flex; align-items:flex-end; gap:8px; margin-top:8px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:64px; color:var(--neon-yellow); line-height:1;">-30<span style="font-size:24px;">%</span></div>
+            <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-yellow); margin-bottom:8px;">절감</span>
+          </div>
+          <div class="caption" style="margin-top:auto;">개별 외주 대비 통합 운영 시 단가 30% 절감</div>
+        </div>
+      </div>
+
+      <div class="card" style="flex:1; padding:24px 32px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div class="h2" style="font-size:16px;">분기별 단계적 목표 로드맵</div>
+          <div class="caption">2026 Quarterly Plan</div>
+        </div>
+
+        <div style="display:flex; gap:0; flex:1; position:relative;">
+          <div style="flex:1; padding:16px 20px; ">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+              <div class="neon-dot" style="background:var(--neon-pink); width:10px; height:10px;"></div>
+              <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-pink);">Q1</span>
+            </div>
+            <div class="h2" style="font-size:14px; margin-bottom:8px;">파일럿 & 셋업</div>
+            <div class="body-text" style="font-size:12px;">초기 5건 시범 제작 / 템플릿 시스템 구축 / 워크플로우 합의</div>
+          </div>
+          <div style="flex:1; padding:16px 20px; ">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+              <div class="neon-dot" style="background:var(--neon-orange); width:10px; height:10px;"></div>
+              <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-orange);">Q2</span>
+            </div>
+            <div class="h2" style="font-size:14px; margin-bottom:8px;">스케일업</div>
+            <div class="body-text" style="font-size:12px;">월 15건 안정화 / 채널별 최적화 / A/B 테스트 시작</div>
+          </div>
+          <div style="flex:1; padding:16px 20px; ">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+              <div class="neon-dot" style="background:var(--neon-green); width:10px; height:10px;"></div>
+              <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-green);">Q3</span>
+            </div>
+            <div class="h2" style="font-size:14px; margin-bottom:8px;">풀 가동</div>
+            <div class="body-text" style="font-size:12px;">월 20건+ 풀 캐파 / 성과 데이터 기반 개선 사이클 가동</div>
+          </div>
+          <div style="flex:1; padding:16px 20px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+              <div class="neon-dot" style="background:var(--neon-cyan); width:10px; height:10px;"></div>
+              <span style="font-family:var(--font-en); font-weight:700; font-size:13px; color:var(--neon-cyan);">Q4</span>
+            </div>
+            <div class="h2" style="font-size:14px; margin-bottom:8px;">최적화 & 확장</div>
+            <div class="body-text" style="font-size:12px;">시즌 캠페인 통합 운영 / 27년 확장 모델 설계</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">05</span>
+  </div>
+
+  <!-- ==================== SLIDE 06: DISCOVERY QUESTIONS ==================== -->
+  <div class="slide light" data-slide="6">
+    <div class="label" style="color:var(--accent); margin-bottom:8px;">DISCOVERY QUESTIONS</div>
+    <div class="h2" style="margin-bottom:8px;">시작 전 확인이 필요한 4가지 질문</div>
+    <div class="body-text" style="margin-bottom:32px; max-width:720px;">본격적인 제작에 들어가기 전, 아래 질문에 대한 답변을 함께 정리하면 더 정확한 견적과 운영안을 설계할 수 있습니다.</div>
+
+    <div class="grid-2x2" style="flex:1;">
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:300; font-size:56px; color:var(--neon-pink); line-height:0.9;">Q1</div>
+            <div class="h2" style="font-size:18px; line-height:1.4; padding-top:8px;">26년 출시 예정<br>색조 라인업의 규모는?</div>
+          </div>
+          <div class="body-text" style="font-size:13px;">신제품 SKU 수, 카테고리(립/베이스/아이/네일), 시즌별 분포에 따라 제작 캐파와 모듈 시스템 설계가 달라집니다.</div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#SKU수</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#카테고리믹스</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#시즌일정</span>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:300; font-size:56px; color:var(--neon-cyan); line-height:0.9;">Q2</div>
+            <div class="h2" style="font-size:18px; line-height:1.4; padding-top:8px;">현재 상세페이지<br>운영 채널과 우선순위는?</div>
+          </div>
+          <div class="body-text" style="font-size:13px;">자사몰 / 쿠팡 / 네이버 / 올리브영 / SSG 등 채널별 비중과 핵심 KPI에 따라 디자인 가이드와 최적화 방향이 달라집니다.</div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#채널별매출</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#KPI우선순위</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#가이드라인</span>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:300; font-size:56px; color:var(--neon-green); line-height:0.9;">Q3</div>
+            <div class="h2" style="font-size:18px; line-height:1.4; padding-top:8px;">제품 촬영 & 모델<br>운영 방식은?</div>
+          </div>
+          <div class="body-text" style="font-size:13px;">자체 촬영 인하우스 보유 여부, 모델 풀, 스와치 표현 방식에 따라 협업 분장과 예산 구조가 결정됩니다.</div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#인하우스촬영</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#모델풀</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#스와치기준</span>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; align-items:flex-start; gap:16px; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:300; font-size:56px; color:var(--neon-yellow); line-height:0.9;">Q4</div>
+            <div class="h2" style="font-size:18px; line-height:1.4; padding-top:8px;">의사결정 & 승인<br>프로세스는?</div>
+          </div>
+          <div class="body-text" style="font-size:13px;">컨펌 단계 수, 담당 부서, 평균 리뷰 소요 시간에 따라 납기 일정과 수정 횟수 정책을 사전 정의합니다.</div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#컨펌단계</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#리뷰리드타임</span>
+          <span class="badge" style="background:var(--gray-900); color:var(--gray-300); font-size:11px;">#수정범위</span>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">06</span>
+  </div>
+
+  <!-- ==================== SLIDE 07: DIVIDER — SECTION 1 ==================== -->
+  <div class="slide dark-accent" data-slide="7">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">02</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">02</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Market &<br>User Insight
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">시장 현황 & 기회</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">시장 규모 & 성장률</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">채널별 전환율 비교</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">2.3</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">소비자 구매 결정 요인</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 08: HERO STAT — 시장 규모 ==================== -->
+  <div class="slide light" data-slide="8">
+    <div class="label" style="margin-bottom:12px;">BEAUTY PB MARKET SIZE 2026</div>
+    <div class="h2" style="color:var(--gray-300); margin-bottom:auto;">색조 PB브랜드 시장은 매년 두 자릿수 성장을 기록하고 있습니다</div>
+
+    <div style="display:flex; align-items:flex-end; gap:48px; margin-bottom:auto;">
+      <div>
+        <div class="hero-stat-lg" style="color:var(--neon-yellow);">3.2<span style="font-size:48px; font-weight:600;">조원</span></div>
+        <div class="body-text" style="margin-top:12px;">국내 색조 화장품 시장 규모 (2026E)</div>
+      </div>
+      <div>
+        <div class="hero-stat" style="color:var(--neon-cyan); font-size:72px;">+18.7<span style="font-size:36px;">%</span></div>
+        <div class="body-text" style="margin-top:12px;">PB브랜드 상세페이지 유입 전환율 상승</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:32px;">
+      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid #E8E8E8;">
+        자체 브랜드(PB) 화장품의 온라인 구매 비중이 전체 채널의 67%를 차지하며, 상세페이지 품질이 구매 결정의 핵심 요소로 부상
+      </div>
+      <div class="caption" style="flex:1; padding-top:16px; border-top:1px solid #E8E8E8;">
+        전문적으로 제작된 상세페이지는 일반 상세페이지 대비 체류 시간 2.4배, 전환율 18.7% 우위
+      </div>
+    </div>
+    <span class="page-num">08</span>
+  </div>
+
+  <!-- ==================== SLIDE 09: BAR CHART — 채널별 전환율 ==================== -->
+  <div class="slide light" data-slide="9">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px;">
+      <div>
+        <div class="label" style="margin-bottom:8px;">CONVERSION RATE BY CHANNEL</div>
+        <div class="h2">상세페이지 품질에 따른 채널별 전환율 비교</div>
+      </div>
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div style="display:flex; align-items:center; gap:6px;"><div class="neon-dot" style="background:var(--gray-500);"></div><span class="caption">일반 제작</span></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div class="neon-dot" style="background:var(--accent);"></div><span class="caption">전문 제작</span></div>
+      </div>
+    </div>
+
+    <div style="flex:1; display:flex; gap:40px;">
+      <!-- Chart -->
+      <div style="flex:1; position:relative;">
+        <div style="position:absolute; left:0; right:0; bottom:60px; top:0; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="border-bottom:1px dashed var(--gray-900); position:relative;"><span class="caption" style="position:absolute; left:-36px; top:-6px;">8%</span></div>
+          <div style="border-bottom:1px dashed var(--gray-900); position:relative;"><span class="caption" style="position:absolute; left:-36px; top:-6px;">6%</span></div>
+          <div style="border-bottom:1px dashed var(--gray-900); position:relative;"><span class="caption" style="position:absolute; left:-36px; top:-6px;">4%</span></div>
+          <div style="border-bottom:1px dashed var(--gray-900); position:relative;"><span class="caption" style="position:absolute; left:-36px; top:-6px;">2%</span></div>
+          <div style="position:relative;"><span class="caption" style="position:absolute; left:-36px; top:-6px;">0%</span></div>
+        </div>
+
+        <div style="position:absolute; bottom:0; left:40px; right:0; height:calc(100% - 20px); display:flex; align-items:flex-end; gap:12px; padding-bottom:60px;">
+
+          <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
+            <div style="width:36px; height:37.5%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
+            <div style="width:36px; height:75%; background:var(--neon-cyan); border-radius:3px 3px 0 0; position:relative;">
+              <span class="badge" style="background:var(--accent); color:#FFFFFF; position:absolute; top:-28px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:11px;">6.0%</span>
+            </div>
+            <div class="caption" style="position:absolute; bottom:-24px; text-align:center; width:80px; left:50%; transform:translateX(-50%);">자사몰</div>
+          </div>
+
+          <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
+            <div style="width:36px; height:31%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
+            <div style="width:36px; height:62%; background:var(--neon-cyan); border-radius:3px 3px 0 0;"></div>
+          </div>
+
+          <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
+            <div style="width:36px; height:25%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
+            <div style="width:36px; height:50%; background:var(--neon-cyan); border-radius:3px 3px 0 0;"></div>
+          </div>
+
+          <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
+            <div style="width:36px; height:18.75%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
+            <div style="width:36px; height:43.75%; background:var(--neon-cyan); border-radius:3px 3px 0 0;"></div>
+          </div>
+
+          <div style="flex:1; display:flex; gap:4px; align-items:flex-end; justify-content:center; height:100%;">
+            <div style="width:36px; height:15%; background:var(--gray-500); border-radius:3px 3px 0 0;"></div>
+            <div style="width:36px; height:37.5%; background:var(--neon-cyan); border-radius:3px 3px 0 0;"></div>
+          </div>
+        </div>
+
+        <div style="position:absolute; bottom:28px; left:40px; right:0; display:flex;">
+          <div style="flex:1; text-align:center;" class="caption">자사몰</div>
+          <div style="flex:1; text-align:center;" class="caption">쿠팡</div>
+          <div style="flex:1; text-align:center;" class="caption">네이버</div>
+          <div style="flex:1; text-align:center;" class="caption">올리브영</div>
+          <div style="flex:1; text-align:center;" class="caption">SSG</div>
+        </div>
+      </div>
+
+      <!-- Insight -->
+      <div style="flex:0 0 280px; display:flex; flex-direction:column; justify-content:center; gap:24px; padding-left:32px; ">
+        <div class="card" style="background:transparent; padding:0; gap:12px;">
+          <div class="h2" style="font-size:18px;">핵심 인사이트</div>
+          <div class="body-text">전문 제작 상세페이지 적용 시 모든 채널에서 전환율이 <strong style="color:var(--neon-cyan);">평균 2배</strong> 이상 상승</div>
+        </div>
+        <div class="card" style="background:transparent; padding:0; gap:8px;">
+          <div class="caption">자사몰 최고 효과</div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:28px; color:var(--neon-yellow);">×2.0</div>
+        </div>
+      </div>
+    </div>
+
+    <span class="page-num">09</span>
+  </div>
+
+  <!-- ==================== SLIDE 10: DOT MATRIX + STACKED BAR ==================== -->
+  <div class="slide light" data-slide="10">
+    <div class="label" style="margin-bottom:8px;">CONSUMER BEHAVIOR</div>
+    <div class="h2" style="margin-bottom:40px;">소비자 구매 결정 요인 분석</div>
+
+    <div class="split" style="flex:1;">
+      <div class="split-left" style="gap:32px;">
+        <div>
+          <div class="hero-stat" style="color:var(--neon-pink); font-size:80px;">73<span style="font-size:40px;">%</span></div>
+          <div class="body-text" style="margin-top:12px; max-width:320px;">색조 화장품 구매자 중 상세페이지를 "반드시 확인"한다고 응답한 비율</div>
+        </div>
+
+        <div class="dot-matrix" style="width:220px;">
+          <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="caption">10명 중 약 7명이 상세페이지 확인 후 구매 결정</div>
+      </div>
+
+      <div class="split-right" style="gap:28px;">
+        <div class="h2" style="font-size:16px; color:var(--gray-300);">구매 결정 시 중요도 순위</div>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="body-text" style="color:var(--white);">상세페이지 비주얼 품질</span>
+              <span style="font-family:var(--font-en); font-weight:600; font-size:14px; color:var(--neon-cyan);">73%</span>
+            </div>
+            <div class="stacked-bar">
+              <div style="width:73%; background:var(--neon-cyan);"></div>
+              <div style="width:27%; background:var(--gray-900);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="body-text" style="color:var(--white);">리뷰 & 스와치 이미지</span>
+              <span style="font-family:var(--font-en); font-weight:600; font-size:14px; color:var(--neon-green);">68%</span>
+            </div>
+            <div class="stacked-bar">
+              <div style="width:68%; background:var(--neon-green);"></div>
+              <div style="width:32%; background:var(--gray-900);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="body-text" style="color:var(--white);">가격 & 프로모션</span>
+              <span style="font-family:var(--font-en); font-weight:600; font-size:14px; color:var(--neon-yellow);">52%</span>
+            </div>
+            <div class="stacked-bar">
+              <div style="width:52%; background:var(--neon-yellow);"></div>
+              <div style="width:48%; background:var(--gray-900);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="body-text" style="color:var(--white);">브랜드 인지도</span>
+              <span style="font-family:var(--font-en); font-weight:600; font-size:14px; color:var(--neon-purple);">41%</span>
+            </div>
+            <div class="stacked-bar">
+              <div style="width:41%; background:var(--neon-purple);"></div>
+              <div style="width:59%; background:var(--gray-900);"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="body-text" style="color:var(--white);">성분 정보</span>
+              <span style="font-family:var(--font-en); font-weight:600; font-size:14px; color:var(--neon-orange);">38%</span>
+            </div>
+            <div class="stacked-bar">
+              <div style="width:38%; background:var(--neon-orange);"></div>
+              <div style="width:62%; background:var(--gray-900);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption" style="margin-top:auto;">Source: 내부 리서치 기반 / 2025 뷰티 이커머스 소비자 조사 (N=2,400)</div>
+      </div>
+    </div>
+
+    <span class="page-num">10</span>
+  </div>
+
+  <!-- ==================== SLIDE: DIVIDER — SECTION 3 (DIFFERENTIATION) ==================== -->
+  <div class="slide dark-accent" data-slide="11">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">03</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">03</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Differentiation
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">시장 내 차별화 포인트</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">3.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">경쟁 모델 비교 분석</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">3.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">HIVELAB 4대 차별점</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 12: DIFFERENTIATION COMPARISON ==================== -->
+  <div class="slide light" data-slide="12">
+    <div class="label" style="margin-bottom:8px;">MARKET COMPARISON</div>
+    <div class="h2" style="margin-bottom:24px;">기존 협력 모델 vs HIVELAB</div>
+
+    <div style="flex:1; display:flex; flex-direction:column;">
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:14px 20px; background:var(--gray-900); border-radius:8px 8px 0 0;">
+        <div class="label" style="color:var(--gray-300);">CRITERIA</div>
+        <div class="label" style="text-align:center;">종합 에이전시</div>
+        <div class="label" style="text-align:center;">뷰티 전문 스튜디오</div>
+        <div class="label" style="text-align:center;">프리랜서</div>
+        <div class="label" style="text-align:center; color:var(--neon-yellow);">HIVELAB</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
+        <div><div class="h2" style="font-size:14px;">뷰티/색조 전문성</div><div class="caption">색감 표현, 스와치 노하우</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--neon-cyan);">●●●●●</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
+        <div><div class="h2" style="font-size:14px;">대량 동시 제작 캐파</div><div class="caption">월 20건+ 동시 처리</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●○○○○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
+        <div><div class="h2" style="font-size:14px;">브랜드 톤 일관성</div><div class="caption">SKU 간 비주얼 통일성</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●○○○○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
+        <div><div class="h2" style="font-size:14px;">성과 데이터 기반 개선</div><div class="caption">A/B 테스트, 전환율 모니터링</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">○○○○○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--gray-900);">
+        <div><div class="h2" style="font-size:14px;">단가 효율성</div><div class="caption">건당 평균 단가</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr; gap:0; padding:16px 20px;">
+        <div><div class="h2" style="font-size:14px;">계약 유연성</div><div class="caption">건별/월정액/연단위 옵션</div></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●○○○</span></div>
+        <div style="text-align:center; align-self:center;"><span style="color:var(--gray-500);">●●●●○</span></div>
+        <div style="text-align:center; align-self:center; background:var(--hl-bg);"><span style="color:var(--neon-yellow);">●●●●●</span></div>
+      </div>
+    </div>
+
+    <div class="caption" style="margin-top:12px;">● 채움 = 강점 / 5점 만점 자체 평가 기준</div>
+    <span class="page-num">12</span>
+  </div>
+
+  <!-- ==================== SLIDE 13: 4 KEY DIFFERENTIATORS ==================== -->
+  <div class="slide light" data-slide="13">
+    <div class="label" style="margin-bottom:8px;">OUR 4 KEY DIFFERENTIATORS</div>
+    <div class="h2" style="margin-bottom:24px;">HIVELAB이 다른 4가지 이유</div>
+
+    <div class="grid-2x2" style="flex:1;">
+      <div class="card" style="justify-content:space-between; ">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-pink);">#01</div>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-pink); font-size:11px;">전문성</span>
+          </div>
+          <div class="h2" style="font-size:22px; margin-bottom:12px;">색조 전용 컬러 워크플로우</div>
+          <div class="body-text" style="font-size:13px;">립/아이/베이스 카테고리별 표준 촬영 라이팅·스와치 가이드를 보유, 실제 발색과 모니터/모바일 컬러 매칭 정확도 <strong style="color:var(--white);">ΔE 2.0 이하</strong>로 관리</div>
+        </div>
+        <div style="display:flex; gap:16px; padding-top:16px; ">
+          <div><div class="caption">컬러 정확도</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-pink);">ΔE&lt;2.0</div></div>
+          <div><div class="caption">전용 가이드</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">4종</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between; ">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-cyan);">#02</div>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-cyan); font-size:11px;">확장성</span>
+          </div>
+          <div class="h2" style="font-size:22px; margin-bottom:12px;">모듈형 템플릿 시스템</div>
+          <div class="body-text" style="font-size:13px;">12개의 검증된 섹션 블록을 자유 조합하여 신제품 상세페이지 <strong style="color:var(--white);">최소 3일 내 1차 시안</strong> 도출, 동시 처리 캐파 월 30건까지 확장 가능</div>
+        </div>
+        <div style="display:flex; gap:16px; padding-top:16px; ">
+          <div><div class="caption">검증 블록</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-cyan);">12종</div></div>
+          <div><div class="caption">월 최대 캐파</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">30건</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between; ">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-green);">#03</div>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-green); font-size:11px;">데이터</span>
+          </div>
+          <div class="h2" style="font-size:22px; margin-bottom:12px;">전환 데이터 기반 개선 사이클</div>
+          <div class="body-text" style="font-size:13px;">제작 후 <strong style="color:var(--white);">2주 단위 A/B 테스트</strong>와 채널별 전환율 트래킹, 월간 인사이트 리포트로 차기 상세페이지에 학습 반영</div>
+        </div>
+        <div style="display:flex; gap:16px; padding-top:16px; ">
+          <div><div class="caption">테스트 주기</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-green);">2주</div></div>
+          <div><div class="caption">리포트</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">월간</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between; ">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div style="font-family:var(--font-en); font-weight:800; font-size:24px; color:var(--neon-yellow);">#04</div>
+            <span class="badge" style="background:rgba(62,90,108,0.15); color:var(--neon-yellow); font-size:11px;">파트너십</span>
+          </div>
+          <div class="h2" style="font-size:22px; margin-bottom:12px;">전담팀 + 통합 단가 모델</div>
+          <div class="body-text" style="font-size:13px;">PB 전담 PM·디자이너·포토그래퍼로 구성된 <strong style="color:var(--white);">5인 전담팀</strong> 배치, 연단위 통합 계약 시 건당 단가 30% 절감</div>
+        </div>
+        <div style="display:flex; gap:16px; padding-top:16px; ">
+          <div><div class="caption">전담 인원</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px; color:var(--neon-yellow);">5명</div></div>
+          <div><div class="caption">단가 절감</div><div style="font-family:var(--font-en); font-weight:700; font-size:18px;">-30%</div></div>
+        </div>
+      </div>
+    </div>
+    <span class="page-num">13</span>
+  </div>
+
+  <!-- ==================== SLIDE: DIVIDER — SECTION 4 (CAPABILITIES) ==================== -->
+  <div class="slide dark-accent" data-slide="14">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">04</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">04</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Capabilities
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">역량 & 포트폴리오</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">4.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">제작 실적 & KPI</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">4.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">포트폴리오 하이라이트</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 15: KPI DASHBOARD ==================== -->
+  <div class="slide light" data-slide="15">
+    <div class="label" style="margin-bottom:8px;">KEY PERFORMANCE INDICATORS</div>
+    <div class="h2" style="margin-bottom:28px;">상세페이지 제작 실적 & 성과</div>
+
+    <div class="card-row" style="margin-bottom:16px;">
+      <div class="card" style="gap:16px;">
+        <div class="label">연간 제작량</div>
+        <div style="flex:1;"></div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">480<span style="font-size:20px; font-weight:500; color:var(--gray-500);">+건</span></div>
+          <svg class="sparkline" width="80" height="36" viewBox="0 0 80 36">
+            <polyline points="0,32 12,28 24,24 36,20 48,18 60,12 72,6 80,2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="80" cy="2" r="3" fill="var(--accent)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card" style="gap:16px;">
+        <div class="label">평균 전환율 개선</div>
+        <div style="flex:1;"></div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="font-family:var(--font-en); font-weight:800; font-size:44px; color:var(--neon-green);">+24<span style="font-size:24px;">%</span></div>
+          <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-green);">↑ 4.2%p</span>
+        </div>
+      </div>
+
+      <div class="card" style="gap:16px;">
+        <div class="label">클라이언트 재계약률</div>
+        <div style="flex:1;"></div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">92<span style="font-size:24px;">%</span></div>
+          <svg class="sparkline" width="80" height="36" viewBox="0 0 80 36">
+            <polyline points="0,20 16,18 32,16 48,10 64,8 80,4" fill="none" stroke="#888888" stroke-width="2"/>
+            <circle cx="80" cy="4" r="3" fill="#888888"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card" style="gap:16px;">
+        <div class="label">평균 납기 준수율</div>
+        <div style="flex:1;"></div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div style="font-family:var(--font-en); font-weight:800; font-size:44px;">98.5<span style="font-size:24px;">%</span></div>
+          <span class="badge" style="background:rgba(62,90,108,0.12); color:var(--neon-purple);">On-time</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="flex:1;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <div class="h2" style="font-size:16px;">월별 상세페이지 제작 건수 추이 (2025)</div>
+        <div class="caption">단위: 건</div>
+      </div>
+      <div style="flex:1; display:flex; align-items:flex-end; gap:10px; padding-top:8px;">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:45%; background:linear-gradient(180deg, #AAAAAA 0%, #D0D0D0 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jan</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:48%; background:linear-gradient(180deg, #AAAAAA 0%, #D0D0D0 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Feb</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:55%; background:linear-gradient(180deg, #999999 0%, #C8C8C8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Mar</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:62%; background:linear-gradient(180deg, #999999 0%, #C8C8C8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Apr</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:70%; background:linear-gradient(180deg, #777777 0%, #B8B8B8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">May</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:78%; background:linear-gradient(180deg, #777777 0%, #B8B8B8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jun</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:65%; background:linear-gradient(180deg, #666666 0%, #A8A8A8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Jul</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:72%; background:linear-gradient(180deg, #666666 0%, #A8A8A8 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Aug</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:85%; background:linear-gradient(180deg, #555555 0%, #999999 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Sep</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:92%; background:linear-gradient(180deg, #555555 0%, #999999 100%); border-radius:2px 2px 0 0; position:relative;">
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:11px; white-space:nowrap;">Peak 56</span>
+          </div><span class="caption">Oct</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:88%; background:linear-gradient(180deg, #444444 0%, #888888 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Nov</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+          <div style="width:100%; height:95%; background:linear-gradient(180deg, #444444 0%, #888888 100%); border-radius:2px 2px 0 0;"></div><span class="caption">Dec</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="page-num">15</span>
+  </div>
+
+  <!-- ==================== SLIDE 16: 2x2 GRID — 포트폴리오 ==================== -->
+  <div class="slide light" data-slide="16">
+    <div class="label" style="margin-bottom:8px;">PORTFOLIO HIGHLIGHTS</div>
+    <div class="h2" style="margin-bottom:20px;">주요 색조 브랜드 상세페이지 제작 사례</div>
+
+    <div class="grid-2x2" style="flex:1;">
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div class="label">BRAND A — 립 컬렉션</div>
+            <span class="badge" style="background:#333333; color:#FFFFFF; font-size:11px;">BEST</span>
+          </div>
+          <div class="body-text">프리미엄 립스틱 라인 12종 상세페이지 리뉴얼. 색감 표현에 집중한 스와치 촬영 + 인터랙티브 컬러 비교 모듈 적용</div>
+        </div>
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
+          <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-pink);">+31%</div></div>
+          <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×2.8</div></div>
+          <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">3주</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div class="label">BRAND B — 쿠션 파운데이션</div>
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; font-size:11px;">NEW</span>
+          </div>
+          <div class="body-text">신제품 론칭 상세페이지. 피부 밀착 텍스처 표현을 위한 마이크로 촬영 기법 + 비포/애프터 인터랙션</div>
+        </div>
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
+          <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-cyan);">+27%</div></div>
+          <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×2.3</div></div>
+          <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">2주</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div class="label">BRAND C — 아이 팔레트</div>
+          </div>
+          <div class="body-text">시즌 한정판 아이섀도우 팔레트. 컬러 스토리텔링 기반 상세페이지 + 360° 제품 뷰어</div>
+        </div>
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
+          <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-green);">+22%</div></div>
+          <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×1.9</div></div>
+          <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">2.5주</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div class="label">BRAND D — PB 베이스 라인</div>
+          </div>
+          <div class="body-text">유통사 PB 전용 베이스 메이크업 5종. 대량 제작 효율화 시스템 도입 + 모듈형 상세페이지 템플릿</div>
+        </div>
+        <div style="display:flex; gap:24px; margin-top:auto; padding-top:16px; ">
+          <div><div class="caption">전환율</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px; color:var(--neon-yellow);">+19%</div></div>
+          <div><div class="caption">체류시간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">×1.7</div></div>
+          <div><div class="caption">제작기간</div><div style="font-family:var(--font-en); font-weight:700; font-size:22px;">1.5주</div></div>
+        </div>
+      </div>
+    </div>
+
+    <span class="page-num">16</span>
+  </div>
+
+  <!-- ==================== SLIDE: DIVIDER — SECTION 5 (PROCESS) ==================== -->
+  <div class="slide dark-accent" data-slide="17">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">05</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">05</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Process
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">제작 프로세스 & 방법론</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">5.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">5단계 제작 워크플로우</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">5.2</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">포지셔닝 & 경쟁 우위</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 18: PROCESS ==================== -->
+  <div class="slide light" data-slide="18">
+    <div class="label" style="margin-bottom:8px;">PRODUCTION WORKFLOW</div>
+    <div class="h2" style="margin-bottom:48px;">5단계 상세페이지 제작 프로세스</div>
+
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="process-steps">
+        <div class="process-line"></div>
+
+        <div class="process-step">
+          <div class="step-dot" style="background:var(--neon-pink);"></div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; margin-bottom:4px; color:var(--neon-pink);">STEP 01</div>
+          <div class="h2" style="font-size:16px; margin-bottom:8px;">브랜드 분석</div>
+          <div class="body-text" style="font-size:13px;">PB브랜드 아이덴티티<br>타겟 소비자 리서치<br>경쟁 상세페이지 벤치마킹<br>핵심 소구점 도출</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-dot" style="background:var(--neon-orange);"></div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; margin-bottom:4px; color:var(--neon-orange);">STEP 02</div>
+          <div class="h2" style="font-size:16px; margin-bottom:8px;">기획 & 스토리</div>
+          <div class="body-text" style="font-size:13px;">컨텐츠 스토리보드<br>섹션 구성 & 와이어프레임<br>카피라이팅 초안<br>클라이언트 리뷰 #1</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-dot" style="background:var(--neon-yellow);"></div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; margin-bottom:4px; color:var(--neon-yellow);">STEP 03</div>
+          <div class="h2" style="font-size:16px; margin-bottom:8px;">디자인 & 촬영</div>
+          <div class="body-text" style="font-size:13px;">비주얼 디자인 시안<br>제품 촬영 디렉팅<br>스와치/텍스처 이미지<br>클라이언트 리뷰 #2</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-dot" style="background:var(--neon-green);"></div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; margin-bottom:4px; color:var(--neon-green);">STEP 04</div>
+          <div class="h2" style="font-size:16px; margin-bottom:8px;">퍼블리싱</div>
+          <div class="body-text" style="font-size:13px;">반응형 HTML 코딩<br>채널별 최적화 변환<br>이미지 경량화<br>QA 테스트</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-dot" style="background:var(--neon-cyan);"></div>
+          <div style="font-family:var(--font-en); font-weight:700; font-size:13px; margin-bottom:4px; color:var(--neon-cyan);">STEP 05</div>
+          <div class="h2" style="font-size:16px; margin-bottom:8px;">업로드 & 최적화</div>
+          <div class="body-text" style="font-size:13px;">채널별 상세페이지 등록<br>A/B 테스트 세팅<br>성과 모니터링<br>개선안 제안</div>
+        </div>
+      </div>
+
+      <div style="display:flex; margin-top:48px; gap:0;">
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.03); border-bottom:2px solid #CCCCCC;">
+          <span class="caption" style="color:var(--neon-pink);">D+1~3</span>
+        </div>
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.04); border-bottom:2px solid #AAAAAA;">
+          <span class="caption" style="color:var(--neon-orange);">D+3~5</span>
+        </div>
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.05); border-bottom:2px solid #888888;">
+          <span class="caption" style="color:var(--neon-yellow);">D+5~8</span>
+        </div>
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.06); border-bottom:2px solid #666666;">
+          <span class="caption" style="color:var(--neon-green);">D+8~10</span>
+        </div>
+        <div style="flex:1; text-align:center; padding:12px 0; background:rgba(0,0,0,0.07); border-bottom:2px solid #444444;">
+          <span class="caption" style="color:var(--neon-cyan);">D+10~14</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="page-num">18</span>
+  </div>
+
+  <!-- ==================== SLIDE 19: POSITIONING MAP ==================== -->
+  <div class="slide light" data-slide="19">
+    <div class="label" style="margin-bottom:8px;">COMPETITIVE POSITIONING</div>
+    <div class="h2" style="margin-bottom:32px;">상세페이지 제작 파트너 포지셔닝</div>
+
+    <div class="split" style="flex:1;">
+      <div class="split-left" style="flex:0 0 36%; gap:24px;">
+        <div class="body-text" style="max-width:300px;">
+          우리는 <strong style="color:var(--white);">뷰티 전문성</strong>과 <strong style="color:var(--white);">대량 제작 체계</strong>를 동시에 갖춘 유일한 포지션에 있습니다.
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="neon-dot" style="background:var(--accent); width:12px; height:12px;"></div>
+            <span class="body-text" style="color:var(--white);">HIVELAB (us)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="neon-dot" style="background:#999999; width:12px; height:12px;"></div>
+            <span class="caption">A사 — 대형 종합 에이전시</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="neon-dot" style="background:#777777; width:12px; height:12px;"></div>
+            <span class="caption">B사 — 뷰티 전문 스튜디오</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="neon-dot" style="background:#AAAAAA; width:12px; height:12px;"></div>
+            <span class="caption">C사 — 이커머스 대행사</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="neon-dot" style="background:var(--gray-500); width:12px; height:12px;"></div>
+            <span class="caption">D사 — 프리랜서 네트워크</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-right" style="justify-content:center;">
+        <div class="pos-map">
+          <div class="axis-x"></div>
+          <div class="axis-y"></div>
+          <div class="axis-label" style="right:0; top:calc(50% + 8px);">대량 제작 체계 →</div>
+          <div class="axis-label" style="left:0; top:calc(50% + 8px);">← 소량 맞춤</div>
+          <div class="axis-label" style="left:calc(50% + 8px); top:0;">뷰티 전문성 ↑</div>
+          <div class="axis-label" style="left:calc(50% + 8px); bottom:0;">범용 ↓</div>
+
+          <div class="bubble" style="width:52px; height:52px; background:var(--accent); top:18%; left:72%; font-size:11px; font-weight:700;">US</div>
+          <div class="bubble" style="width:40px; height:40px; background:#999999; top:60%; left:78%;">A</div>
+          <div class="bubble" style="width:36px; height:36px; background:#777777; top:22%; left:30%;">B</div>
+          <div class="bubble" style="width:36px; height:36px; background:#AAAAAA; top:58%; left:55%;">C</div>
+          <div class="bubble" style="width:32px; height:32px; background:var(--gray-500); top:72%; left:25%;">D</div>
+        </div>
+      </div>
+    </div>
+
+    <span class="page-num">19</span>
+  </div>
+
+  <!-- ==================== SLIDE: DIVIDER — SECTION 6 (OPERATION) ==================== -->
+  <div class="slide dark-accent" data-slide="20">
+    <div class="slide-topbar">
+      <span class="topbar-left">[고객사] X HIVELAB</span>
+      <span class="topbar-center">PROPOSAL</span>
+      <span class="topbar-right">2026</span>
+    </div>
+    <div class="divider-bg-num">06</div>
+    <div style="flex:1; display:flex; align-items:center; position:relative; z-index:1; padding-top:32px;">
+      <div style="flex:0 0 65%;">
+        <div style="font-family:var(--font-en); font-weight:300; font-size:72px; color:rgba(255,255,255,0.2); margin-bottom:8px;">06</div>
+        <div style="font-family:var(--font-en); font-weight:700; font-size:64px; line-height:1.05; letter-spacing:-0.03em; color:#FFFFFF;">
+          Operation &<br>Pricing
+        </div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.5); margin-top:20px;">운영 체계 & 견적</div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:16px; padding-left:40px;">
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <span style="font-family:var(--font-en); font-weight:700; font-size:14px; color:rgba(255,255,255,0.7);">6.1</span>
+          <span style="font-size:15px; color:rgba(255,255,255,0.6);">패키지별 견적 구조</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 21: PRICING TABLE ==================== -->
+  <div class="slide light" data-slide="21">
+    <div class="label" style="margin-bottom:8px;">PRICING STRUCTURE</div>
+    <div class="h2" style="margin-bottom:28px;">패키지별 견적 구조</div>
+
+    <div class="card-row" style="flex:1; align-items:stretch;">
+      <div class="card" style="justify-content:space-between; gap:20px; ">
+        <div>
+          <div class="label" style="color:var(--neon-green); margin-bottom:12px;">STANDARD</div>
+          <div class="h2" style="margin-bottom:4px;">기본 상세페이지</div>
+          <div class="caption">단품 제품 1종 기준</div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:800; font-size:36px;">
+          150<span style="font-size:18px; font-weight:500; color:var(--gray-500);">만원~</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="body-text" style="font-size:13px;">✓ 기획 + 디자인 + 퍼블리싱</div>
+          <div class="body-text" style="font-size:13px;">✓ 기본 제품컷 활용</div>
+          <div class="body-text" style="font-size:13px;">✓ 채널 1개 최적화</div>
+          <div class="body-text" style="font-size:13px;">✓ 수정 2회 포함</div>
+          <div class="body-text" style="font-size:13px;">✓ 납기 7영업일</div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between; gap:20px;  position:relative;">
+        
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="label" style="color:var(--neon-cyan); margin-bottom:12px;">PREMIUM</div>
+            <span class="badge" style="background:var(--accent); color:#FFFFFF; font-size:10px;">RECOMMEND</span>
+          </div>
+          <div class="h2" style="margin-bottom:4px;">프리미엄 상세페이지</div>
+          <div class="caption">단품 제품 1종 기준</div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:800; font-size:36px; color:var(--neon-cyan);">
+          280<span style="font-size:18px; font-weight:500; color:var(--gray-500);">만원~</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="body-text" style="font-size:13px;">✓ Standard 전체 포함</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 전문 제품 촬영 디렉팅</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 인터랙티브 모듈 적용</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 채널 3개 최적화</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 수정 무제한 / 납기 10영업일</div>
+        </div>
+      </div>
+
+      <div class="card" style="justify-content:space-between; gap:20px; ">
+        <div>
+          <div class="label" style="color:var(--neon-yellow); margin-bottom:12px;">ENTERPRISE</div>
+          <div class="h2" style="margin-bottom:4px;">대량 제작 패키지</div>
+          <div class="caption">월 20건 이상 기준</div>
+        </div>
+        <div style="font-family:var(--font-en); font-weight:800; font-size:36px;">
+          별도<span style="font-size:18px; font-weight:500; color:var(--gray-500);"> 협의</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="body-text" style="font-size:13px;">✓ Premium 전체 포함</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 전담팀 배치</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 모듈형 템플릿 시스템 구축</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 월간 성과 리포트</div>
+          <div class="body-text" style="font-size:13px; color:var(--white);">✓ 볼륨 디스카운트 적용</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caption" style="margin-top:16px;">* 촬영비, 모델비는 별도 / VAT 별도 / 상세 견적은 프로젝트 스코프에 따라 조정</div>
+    <span class="page-num">21</span>
+  </div>
+
+  <!-- ==================== SLIDE 22: CLOSING ==================== -->
+  <div class="slide light" data-slide="22">
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:32px;">
+      <div class="neon-stripe" style="width:80px; margin-bottom:8px;"></div>
+
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+        <div style="width:24px; height:2px; background:var(--accent);"></div>
+        <div class="label" style="color:var(--accent);">HIVELAB</div>
+        <div style="width:24px; height:2px; background:var(--accent);"></div>
+      </div>
+
+      <div class="h1" style="font-size:44px; max-width:600px; letter-spacing:-0.03em; line-height:1.25;">
+        색조의 감각을<br>구매의 확신으로
+      </div>
+      <div class="body-text" style="max-width:480px; margin-top:4px;">
+        브랜드의 색을 가장 정확하게 전달하는 상세페이지,<br>
+        HIVELAB이 함께 만들겠습니다.
+      </div>
+
+      <div style="display:flex; gap:0; margin-top:48px;  border-radius:10px; overflow:hidden; background:var(--gray-900);">
+        <div style="padding:20px 36px; text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Contact</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">proposal@hivelab.co.kr</div>
+        </div>
+        <div style="padding:20px 36px; text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Phone</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">02-0000-0000</div>
+        </div>
+        <div style="padding:20px 36px; text-align:left;">
+          <div class="caption" style="margin-bottom:6px;">Web</div>
+          <div style="font-size:14px; font-weight:500; color:var(--white);">www.hivelab.co.kr</div>
+        </div>
+      </div>
+
+      <div class="neon-stripe" style="width:280px; height:2px; margin-top:24px;"></div>
+      <div class="caption">HIVELAB © 2026. All Rights Reserved.</div>
+    </div>
+    <span class="page-num">22</span>
+  </div>
+
+</div>
+
+<div class="nav-hint">← → ARROW KEYS TO NAVIGATE</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = ((n % total) + total) % total;
+    slides[current].classList.add('active');
+    document.getElementById('progressBar').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); showSlide(total - 1); }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) showSlide(current + 1);
+    else showSlide(current - 1);
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>

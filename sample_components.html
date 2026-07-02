@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIVELAB Design System — Component Examples</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --slide-w: 1920px;
+    --slide-h: 1080px;
+    --margin: 80px;
+
+    --bg: #FFFFFF;
+    --bg-dark: #000000;
+    --bg-off: #ECECEC;
+
+    --ink: #000000;
+    --ink-2: #0A0A0A;
+    --ink-3: #525252;
+    --ink-4: #A8A6A0;
+
+    --lime: #AAFF45;
+    --violet: #7B4FFF;
+    --pink: #FF57D8;
+    --orange: #FF5714;
+
+    --f-display: 'Inter', 'Pretendard', -apple-system, system-ui, sans-serif;
+    --f-en: 'Inter', 'Pretendard', -apple-system, system-ui, sans-serif;
+    --f-kr: 'Pretendard', 'Inter', -apple-system, system-ui, sans-serif;
+
+    --r-card: 8px;
+    --r-pill: 999px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; background: #1a1a1a; }
+  body {
+    font-family: var(--f-kr);
+    color: var(--ink);
+    background: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .deck { position: relative; width: var(--slide-w); height: var(--slide-h); }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+  }
+  .slide.active { display: grid; }
+
+  /* Progress & Nav */
+  .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--ink); transition: width 0.3s ease; z-index: 9999; }
+  .nav-info {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    font-family: var(--f-en); font-size: 12px; color: rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.6); padding: 6px 16px; border-radius: 20px; z-index: 9999; pointer-events: none;
+  }
+
+  .slide { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="nav-info" id="navInfo">1 / 5</div>
+
+<div class="deck">
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDE 1: COVER
+       검은 배경, 좌측 하단 정렬, 미니멀 타이포
+       ════════════════════════════════════════════════════════ -->
+  <section class="slide active" style="background:#000; grid-template-rows:80px 1fr 60px;">
+    <!-- Header -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px var(--margin) 0; font-family:var(--f-en); font-size:11px; font-weight:500; letter-spacing:0.05em; color:rgba(255,255,255,0.55); align-items:center;">
+      <span style="text-align:left;"><strong style="color:#fff;">HIVELAB</strong> · Brand Consulting</span>
+      <span style="text-align:center;">PROPOSAL</span>
+      <span style="text-align:right;">2026</span>
+    </div>
+    <!-- Body -->
+    <div style="padding:0 var(--margin); display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:80px;">
+      <p style="font-family:var(--f-en); font-size:18px; font-weight:400; color:rgba(255,255,255,0.5); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:24px;">Redefining Digital Experience</p>
+      <h1 style="font-family:var(--f-display); font-size:140px; font-weight:700; letter-spacing:-0.04em; line-height:0.92; color:#FFFFFF;">BRAND<br>STRATEGY</h1>
+    </div>
+    <!-- Footer -->
+    <div style="padding:0 var(--margin) 28px; display:flex; align-items:flex-end; justify-content:space-between; font-family:var(--f-en); font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.05em;">
+      <span>COPYRIGHT © ALL RIGHTS RESERVED · HIVELAB</span>
+      <span style="font-family:var(--f-kr); font-size:9px; color:rgba(255,255,255,0.2);">이 문서는 HIVELAB의 자산입니다.</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDE 2: TOC — 좌측 대형 타이틀 + 우측 섹션 리스트
+       ════════════════════════════════════════════════════════ -->
+  <section class="slide" style="background:#000; grid-template-rows:80px 1fr 60px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:32px var(--margin) 0; font-family:var(--f-en); font-size:11px; font-weight:500; letter-spacing:0.05em; color:rgba(255,255,255,0.55); align-items:center;">
+      <span style="text-align:left;"><strong style="color:#fff;">HIVELAB</strong> · Brand Consulting</span>
+      <span style="text-align:center;">PROPOSAL</span>
+      <span style="text-align:right;">2026</span>
+    </div>
+    <div style="padding:0 var(--margin); display:grid; grid-template-columns:3fr 9fr; align-items:center;">
+      <h2 style="font-family:var(--f-display); font-size:100px; font-weight:700; letter-spacing:-0.03em; line-height:0.95; color:#FFFFFF;">TABLE<br>OF<br>CON&shy;TENTS</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:64px; row-gap:48px;">
+        <div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.12); margin-bottom:14px;">
+            <span style="font-family:var(--f-en); font-size:11px; font-weight:700; color:rgba(255,255,255,0.4);">01</span>
+            <span style="font-family:var(--f-en); font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.75);">Background</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">프로젝트 배경 · 시장 환경</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">고객사 현황 · 핵심 과제</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">추진 목적 · 기대 효과</span>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.12); margin-bottom:14px;">
+            <span style="font-family:var(--f-en); font-size:11px; font-weight:700; color:rgba(255,255,255,0.4);">02</span>
+            <span style="font-family:var(--f-en); font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.75);">Analysis</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">시장 규모 · 성장 추이</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">경쟁사 벤치마킹</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">사용자 인사이트</span>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.12); margin-bottom:14px;">
+            <span style="font-family:var(--f-en); font-size:11px; font-weight:700; color:rgba(255,255,255,0.4);">03</span>
+            <span style="font-family:var(--f-en); font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.75);">Strategy</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">브랜드 포지셔닝</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">디자인 방향성</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">실행 로드맵</span>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.12); margin-bottom:14px;">
+            <span style="font-family:var(--f-en); font-size:11px; font-weight:700; color:rgba(255,255,255,0.4);">04</span>
+            <span style="font-family:var(--f-en); font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.75);">Delivery</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">운영 체계 · 조직 구성</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">일정 · 투자 비용</span>
+            <span style="font-size:14px; color:rgba(255,255,255,0.7);">HIVELAB 역량 · 레퍼런스</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 var(--margin) 28px; display:flex; align-items:flex-end; justify-content:space-between; font-family:var(--f-en); font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.05em;">
+      <span>HIVELAB · BRAND STRATEGY PROPOSAL</span>
+      <span>Version 1.0 · 2026</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDE 3: CONTENT — 비대칭 분할 (좌 텍스트 + 우 컬러 면)
+       포인트 컬러: lime — 우측 면 블록으로만 사용
+       ════════════════════════════════════════════════════════ -->
+  <section class="slide" style="background:#FFFFFF; grid-template-columns:1fr 1fr; grid-template-rows:1fr;">
+    <!-- Left: 텍스트 영역 -->
+    <div style="padding:80px; display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <span style="font-family:var(--f-en); font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);">Market Overview</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:32px;">
+        <h1 style="font-family:var(--f-kr); font-size:42px; font-weight:700; line-height:1.25; letter-spacing:-0.02em; color:var(--ink);">뷰티 커머스 시장은<br>빠르게 성장 중</h1>
+        <p style="font-size:16px; font-weight:400; line-height:1.8; color:var(--ink-3); max-width:440px;">
+          국내 뷰티 커머스 시장은 전년 대비 24.3% 성장하며 12.8조 원 규모에 도달했습니다.
+          모바일 중심 구매 패턴이 가속화되고 MZ세대가 전체 소비의 63%를 차지합니다.
+        </p>
+      </div>
+      <div style="display:flex; gap:48px;">
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink); line-height:1;">12.8<span style="font-size:18px; font-weight:600;">조</span></div>
+          <div style="font-size:13px; color:var(--ink-4); margin-top:6px;">시장 규모</div>
+        </div>
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink); line-height:1;">78<span style="font-size:18px; font-weight:600;">%</span></div>
+          <div style="font-size:13px; color:var(--ink-4); margin-top:6px;">모바일 비중</div>
+        </div>
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:48px; color:var(--ink); line-height:1;">63<span style="font-size:18px; font-weight:600;">%</span></div>
+          <div style="font-size:13px; color:var(--ink-4); margin-top:6px;">MZ세대 점유</div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: 포인트 컬러 면 블록 + 차트 -->
+    <div style="background:var(--lime); display:flex; flex-direction:column; justify-content:flex-end; padding:64px;">
+      <div style="font-family:var(--f-en); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.5); margin-bottom:24px;">Annual Growth · 조원</div>
+      <div style="display:flex; align-items:flex-end; gap:12px; height:340px;">
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end;">
+          <span style="font-family:var(--f-en); font-size:13px; font-weight:700; color:rgba(0,0,0,0.7);">5.2</span>
+          <div style="width:100%; height:28%; background:rgba(0,0,0,0.15); border-radius:4px 4px 0 0;"></div>
+          <span style="font-family:var(--f-en); font-size:11px; color:rgba(0,0,0,0.45);">2021</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end;">
+          <span style="font-family:var(--f-en); font-size:13px; font-weight:700; color:rgba(0,0,0,0.7);">6.8</span>
+          <div style="width:100%; height:36%; background:rgba(0,0,0,0.2); border-radius:4px 4px 0 0;"></div>
+          <span style="font-family:var(--f-en); font-size:11px; color:rgba(0,0,0,0.45);">2022</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end;">
+          <span style="font-family:var(--f-en); font-size:13px; font-weight:700; color:rgba(0,0,0,0.7);">8.4</span>
+          <div style="width:100%; height:46%; background:rgba(0,0,0,0.25); border-radius:4px 4px 0 0;"></div>
+          <span style="font-family:var(--f-en); font-size:11px; color:rgba(0,0,0,0.45);">2023</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end;">
+          <span style="font-family:var(--f-en); font-size:13px; font-weight:700; color:rgba(0,0,0,0.7);">10.3</span>
+          <div style="width:100%; height:58%; background:rgba(0,0,0,0.3); border-radius:4px 4px 0 0;"></div>
+          <span style="font-family:var(--f-en); font-size:11px; color:rgba(0,0,0,0.45);">2024</span>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end;">
+          <span style="font-family:var(--f-en); font-size:13px; font-weight:800; color:rgba(0,0,0,0.9);">12.8</span>
+          <div style="width:100%; height:82%; background:var(--ink); border-radius:4px 4px 0 0;"></div>
+          <span style="font-family:var(--f-en); font-size:11px; font-weight:600; color:rgba(0,0,0,0.7);">2026</span>
+        </div>
+      </div>
+      <div style="font-size:11px; color:rgba(0,0,0,0.4); margin-top:16px;">출처: 통계청 온라인쇼핑동향, 2025</div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDE 4: CONTENT — 3열 그리드 (프로세스)
+       모노톤 기반, 포인트 컬러 없음 (중립 컨텐츠)
+       ════════════════════════════════════════════════════════ -->
+  <section class="slide" style="background:#FFFFFF; grid-template-rows:auto 1fr auto;">
+    <!-- Header -->
+    <div style="padding:64px var(--margin) 0; display:flex; flex-direction:column; gap:12px;">
+      <span style="font-family:var(--f-en); font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-4);">Execution Strategy</span>
+      <h1 style="font-family:var(--f-kr); font-size:42px; font-weight:700; line-height:1.25; letter-spacing:-0.02em;">브랜드 상세페이지 구축 프로세스</h1>
+    </div>
+    <!-- Body: 3열 풀하이트 -->
+    <div style="padding:48px var(--margin); display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+      <!-- Phase 01 -->
+      <div style="background:var(--bg-off); border-radius:var(--r-card); padding:48px 40px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:64px; color:var(--ink); line-height:1; opacity:0.12;">01</div>
+          <div style="margin-top:24px;">
+            <div style="font-family:var(--f-kr); font-size:24px; font-weight:700; color:var(--ink);">리서치 & 분석</div>
+            <div style="font-family:var(--f-en); font-size:13px; color:var(--ink-4); margin-top:4px;">Research & Analysis</div>
+          </div>
+          <div style="margin-top:24px; font-size:15px; line-height:1.8; color:var(--ink-3);">
+            브랜드 아이덴티티 진단<br>
+            타겟 사용자 리서치<br>
+            경쟁 상세페이지 벤치마킹
+          </div>
+        </div>
+        <div style="margin-top:40px; display:inline-flex; align-items:center; padding:8px 18px; background:rgba(0,0,0,0.06); border-radius:var(--r-pill); font-family:var(--f-en); font-size:13px; font-weight:600; color:var(--ink); width:fit-content;">3주</div>
+      </div>
+      <!-- Phase 02 -->
+      <div style="background:var(--bg-off); border-radius:var(--r-card); padding:48px 40px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:64px; color:var(--ink); line-height:1; opacity:0.12;">02</div>
+          <div style="margin-top:24px;">
+            <div style="font-family:var(--f-kr); font-size:24px; font-weight:700; color:var(--ink);">디자인 & 프로토타입</div>
+            <div style="font-family:var(--f-en); font-size:13px; color:var(--ink-4); margin-top:4px;">Design & Prototype</div>
+          </div>
+          <div style="margin-top:24px; font-size:15px; line-height:1.8; color:var(--ink-3);">
+            비주얼 디렉션 제안<br>
+            UI/UX 와이어프레임<br>
+            인터랙션 프로토타이핑
+          </div>
+        </div>
+        <div style="margin-top:40px; display:inline-flex; align-items:center; padding:8px 18px; background:rgba(0,0,0,0.06); border-radius:var(--r-pill); font-family:var(--f-en); font-size:13px; font-weight:600; color:var(--ink); width:fit-content;">4주</div>
+      </div>
+      <!-- Phase 03 -->
+      <div style="background:var(--ink); border-radius:var(--r-card); padding:48px 40px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-family:var(--f-en); font-weight:800; font-size:64px; color:#FFFFFF; line-height:1; opacity:0.15;">03</div>
+          <div style="margin-top:24px;">
+            <div style="font-family:var(--f-kr); font-size:24px; font-weight:700; color:#FFFFFF;">개발 & 런칭</div>
+            <div style="font-family:var(--f-en); font-size:13px; color:rgba(255,255,255,0.5); margin-top:4px;">Build & Launch</div>
+          </div>
+          <div style="margin-top:24px; font-size:15px; line-height:1.8; color:rgba(255,255,255,0.7);">
+            프론트엔드 개발<br>
+            성능 최적화 · QA<br>
+            런칭 · 성과 모니터링
+          </div>
+        </div>
+        <div style="margin-top:40px; display:inline-flex; align-items:center; padding:8px 18px; background:rgba(255,255,255,0.12); border-radius:var(--r-pill); font-family:var(--f-en); font-size:13px; font-weight:600; color:#FFFFFF; width:fit-content;">5주</div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div style="padding:0 var(--margin) 28px; display:flex; align-items:flex-end; justify-content:space-between; font-family:var(--f-en); font-size:10px; color:var(--ink-4); letter-spacing:0.05em;">
+      <span>HIVELAB · BRAND STRATEGY PROPOSAL</span>
+      <span>2026</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDE 5: CONTENT — 대형 수치 + 면 분할 (좌 다크 + 우 라이트)
+       포인트 컬러 없음 — 순수 모노톤 면 분할
+       ════════════════════════════════════════════════════════ -->
+  <section class="slide" style="background:#FFFFFF; grid-template-columns:5fr 7fr; grid-template-rows:1fr;">
+    <!-- Left: 다크 면 블록 — 핵심 수치 -->
+    <div style="background:var(--ink); padding:80px 64px; display:flex; flex-direction:column; justify-content:space-between;">
+      <span style="font-family:var(--f-en); font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Our Capabilities</span>
+      <div>
+        <div style="font-family:var(--f-en); font-weight:800; font-size:120px; color:#FFFFFF; line-height:1; letter-spacing:-0.03em;">85<span style="font-size:36px; font-weight:600;">건+</span></div>
+        <div style="font-size:16px; color:rgba(255,255,255,0.6); margin-top:12px;">상세페이지 프로젝트 수행</div>
+      </div>
+      <div style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.7; max-width:360px;">
+        HIVELAB은 브랜드 이해부터 개발·런칭까지 원스톱 서비스를 제공합니다.
+      </div>
+    </div>
+    <!-- Right: 라이트 면 — 2×2 KPI 그리드 -->
+    <div style="padding:80px 64px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:1px; background:var(--bg-off);">
+      <div style="background:#FFFFFF; padding:48px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:13px; color:var(--ink-4); margin-bottom:12px;">평균 전환율 개선</div>
+        <div style="font-family:var(--f-en); font-weight:800; font-size:56px; color:var(--ink); line-height:1;">+32<span style="font-size:20px; font-weight:600;">%</span></div>
+      </div>
+      <div style="background:#FFFFFF; padding:48px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:13px; color:var(--ink-4); margin-bottom:12px;">고객 재계약률</div>
+        <div style="font-family:var(--f-en); font-weight:800; font-size:56px; color:var(--ink); line-height:1;">94<span style="font-size:20px; font-weight:600;">%</span></div>
+      </div>
+      <div style="background:#FFFFFF; padding:48px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:13px; color:var(--ink-4); margin-bottom:12px;">평균 납기 준수율</div>
+        <div style="font-family:var(--f-en); font-weight:800; font-size:56px; color:var(--ink); line-height:1;">98<span style="font-size:20px; font-weight:600;">%</span></div>
+      </div>
+      <div style="background:#FFFFFF; padding:48px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:13px; color:var(--ink-4); margin-bottom:12px;">전담 팀 규모</div>
+        <div style="font-family:var(--f-en); font-weight:800; font-size:56px; color:var(--ink); line-height:1;">12<span style="font-size:20px; font-weight:600;">주</span></div>
+        <div style="font-size:13px; color:var(--ink-4); margin-top:8px;">6인 전담 투입</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  const navInfo = document.getElementById('navInfo');
+
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = ((n % total) + total) % total;
+    slides[current].classList.add('active');
+    document.getElementById('progressBar').style.width = ((current + 1) / total * 100) + '%';
+    navInfo.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); showSlide(total - 1); }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.clientX > window.innerWidth / 2) showSlide(current + 1);
+    else showSlide(current - 1);
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>
