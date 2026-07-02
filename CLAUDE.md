@@ -29,7 +29,16 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
 ├── library/       # 재사용 자산
-│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── prompts/
+│   │   ├── MOODBOARD_MASTER_FRAMEWORK.md  # 글로벌 탑티어 무드보드 가이드 (6버킷·슬라이더·4단계)
+│   │   ├── wide-research.md
+│   │   ├── brand-brief-template.md
+│   │   ├── brand-design-proposal.md
+│   │   ├── persona-directives.md
+│   │   ├── designer-lens-gates.md
+│   │   ├── manus-1-brand-planning.md
+│   │   ├── manus-2-visual-identity.md
+│   │   └── runable-3-brand-system.md
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
@@ -58,7 +67,7 @@
 
 **③ 디자인 생성**
 - `visual-generator` (비주얼 제너레이터) — 키비주얼·목업 이미지(Higgsfield)
-- `moodboard-builder` (무드보드 빌더) — 레퍼런스+생성 무드보드
+- `moodboard-builder` (무드보드 빌더) — 레퍼런스+생성 무드보드 (`MOODBOARD_MASTER_FRAMEWORK.md` 기반: 6버킷·퍼스널리티 슬라이더·4단계 파이프라인)
 - `figma-bridge` (피그마 브릿지) — 코드↔Figma 양방향
 - `storyboard-maker` (스토리보드 메이커) — 영상·모션 콘티(Higgsfield)
 
