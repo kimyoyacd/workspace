@@ -45,7 +45,7 @@
   - 배경 `#111111` 고정 — 갈색(#1C1410), 보라(#1A1A2E), 청록 절대 금지
   - 카드 배경: `#1A1A1A` 고정
   - 출처 링크 색: `#7EB3FF` (WCAG AA 기준)
-- **accent 계층**: coral `#E8502A` 1차, brass `#B8860B` 2차 — 혼용 시 coral 우선 (라이트·다크 공통)
+- **accent 계층**: coral `#E8502A` 1차 (헤딩·강조), magenta `#b7419a` 2차 (태그·레이블·보더) — 동일 위계 혼용 금지
 - **border-radius**: `var(--radius)` / `var(--radius-sm)` 사용 — 하드코딩 금지
 - **폰트**: `var(--sans)`, `var(--mono)` 사용 — 직접 기입 금지
 - 모든 HTML에 `:root` CSS 변수 블록을 상단에 정의하고 전체를 그 변수로 제어한다
