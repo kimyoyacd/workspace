@@ -1,5 +1,7 @@
 # GRAIN v2 · 에디토리얼 라벨 발산 — "타이포그래피가 스토리다" (CDG MAX RICHTER 01 레퍼런스)
 
+> ⚠️ **보류(2차 아이디어) — 2026-07-03.** 이 파일은 CDG 레퍼런스를 "라벨 문구 전략"으로 해석해서 만든 발산이지만, 사용자가 실제로 제시한 의도는 **프로스티드 유리 질감 참고**였음(`20-texture-form-wide-divergence.md` 항목1에 반영 완료). 이 라벨 아이디어 자체가 나쁘진 않아서 폐기하지 않고 남겨두지만, **현재 채택된 방향이 아니라 나중에 필요하면 꺼내볼 참고 아이디어**로만 취급한다.
+
 > 2026-07-03 · brainstormer 에이전트 산출
 > 레퍼런스: Comme des Garçons "MAX RICHTER 01" — 서리 유리 보틀 + 무심한 사무적 톤의 노트 리스트 타이포가 서사를 전달
 > 기준 문서: `10-gate1-v2-surreal-matter.md`(관점: Time Lies About What It's Made Of) / `20-texture-form-wide-divergence.md`(다공질·이끼·자개 발산)
