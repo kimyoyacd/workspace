@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKEMAKE × OliveYoung 상세페이지 리뉴얼 제안</title>
+<style>
+:root {
+  --bg: #EBEBEB;
+  --card: #FFFFFF;
+  --ink: #111111;
+  --ink2: rgba(0,0,0,0.55);
+  --ink3: rgba(0,0,0,0.35);
+  --border: rgba(0,0,0,0.09);
+  --coral: #E8502A;
+  --magenta: #b7419a;
+  --sans: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Mono', monospace;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── BASE ── */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 72px 40px 120px;
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 12px;
+}
+
+/* ── COVER ── */
+.cover {
+  padding: 80px 0 72px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 72px;
+}
+
+.cover-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 28px;
+}
+
+.cover-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.cover-title em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+.cover-sub {
+  font-size: 16px;
+  color: var(--ink2);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 48px;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cover-meta-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 0.10em;
+}
+.cover-meta-item strong { color: var(--ink); font-weight: 600; }
+
+/* ── POV BLOCK ── */
+.pov-block {
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+  margin-bottom: 72px;
+}
+
+.pov-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 16px;
+}
+
+.pov-text {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.55;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.pov-text em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+/* ── SECTION HEADER ── */
+.section-head {
+  margin-bottom: 28px;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* ── CTA CARD (primary) ── */
+.cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.16s;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--coral);
+}
+
+.cta-card:hover {
+  border-color: rgba(0,0,0,0.18);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.cta-card.magenta::before { background: var(--magenta); }
+
+.cta-left { flex: 1; }
+
+.cta-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 6px;
+}
+
+.cta-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cta-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+.cta-btn {
+  padding: 10px 20px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+}
+
+.cta-card.magenta .cta-btn { background: var(--magenta); }
+
+/* ── CONCEPT GRID ── */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.concept-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px 20px 20px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.16s;
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent, var(--coral));
+}
+
+.concept-card:hover {
+  border-color: rgba(0,0,0,0.16);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+
+.concept-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink3);
+  text-transform: uppercase;
+}
+
+.concept-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.concept-hook {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.concept-score {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral);
+  margin-top: 4px;
+}
+
+/* ── SUPPORT GRID ── */
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.support-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 22px 22px 18px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.16s;
+}
+
+.support-card:hover {
+  border-color: rgba(0,0,0,0.16);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.support-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.support-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.support-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+.support-arrow {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* ── DECISION BOX ── */
+.decision-box {
+  background: rgba(232,80,42,0.05);
+  border: 1px solid rgba(232,80,42,0.18);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+}
+
+.decision-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--coral);
+}
+
+.decision-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.decision-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.decision-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 80px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 0.10em;
+}
+
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink3);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ── COVER ── -->
+  <div class="cover">
+    <div class="cover-kicker">Design Proposal · 2026.07 · MX Design Studio</div>
+    <h1 class="cover-title">WAKEMAKE<br><em>색조 상세페이지</em><br>리뉴얼 제안</h1>
+    <p class="cover-sub">올리브영 온라인 채널 색조 본품 PDP 리뉴얼. 퍼스널컬러 피로를 넘어 "오늘의 색을 고르는 언어"로 포지셔닝을 전환한다.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>클라이언트</strong> · WAKEMAKE</div>
+      <div class="cover-meta-item"><strong>채널</strong> · 올리브영 온라인</div>
+      <div class="cover-meta-item"><strong>포맷</strong> · 정적 JPG 모바일 롱폼</div>
+      <div class="cover-meta-item"><strong>컨셉</strong> · 3안 제안</div>
+    </div>
+  </div>
+
+  <!-- ── POV ── -->
+  <div class="pov-block">
+    <div class="pov-label">Strategic POV</div>
+    <div class="pov-text">
+      퍼스널컬러는 나를 분류하는 공식이 아니라,<br>
+      <em>오늘의 나를 내가 고르는 언어다.</em>
+    </div>
+  </div>
+
+  <!-- ── 01. 최종 덱 ── -->
+  <div class="section-head">
+    <div class="section-num">01 · Final Deck</div>
+    <h2 class="section-title">전체 제안 슬라이드</h2>
+    <p class="section-desc">전략 배경부터 컨셉 3종·브랜드 시스템·실행 계획까지 41장 구성.</p>
+  </div>
+
+  <a class="cta-card" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-slide-deck.html" target="_blank">
+    <div class="cta-left">
+      <div class="cta-tag">Presentation · 41 Slides</div>
+      <div class="cta-title">WAKEMAKE 제안 덱</div>
+      <div class="cta-desc">시장 분석 → 전략 관점 → 컨셉 C01/C05/C04 → 비주얼 시스템 → 운영·견적</div>
+    </div>
+    <div class="cta-btn">열기 ↗</div>
+  </a>
+
+  <hr class="divider">
+
+  <!-- ── 02. 컨셉 PDP ── -->
+  <div class="section-head">
+    <div class="section-num">02 · Concept PDP</div>
+    <h2 class="section-title">컨셉 시안 3종</h2>
+    <p class="section-desc">전략 적합도 순 배치. C01이 1순위 권장안.</p>
+  </div>
+
+  <div class="concept-grid">
+    <a class="concept-card" style="--accent: var(--coral);" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-concept-c01.html" target="_blank">
+      <div class="concept-num">C01 · 권장 ★</div>
+      <div class="concept-name">오늘의 선택</div>
+      <div class="concept-hook">"바빠도 완성되는 메이크업" — 데일리 루틴 포지셔닝. Attention Hook + Benefit 레이어드.</div>
+      <div class="concept-score">전략 적합도 9 / 10</div>
+    </a>
+
+    <a class="concept-card" style="--accent: var(--magenta);" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-concept-c05.html" target="_blank">
+      <div class="concept-num">C05</div>
+      <div class="concept-name">색×기술</div>
+      <div class="concept-hook">피부톤 매칭 강조 — 기술적 근거로 신중형 구매자를 설득하는 구조.</div>
+      <div class="concept-score">전략 적합도 8.5 / 10</div>
+    </a>
+
+    <a class="concept-card" style="--accent: rgba(0,0,0,0.25);" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-concept-c04.html" target="_blank">
+      <div class="concept-num">C04</div>
+      <div class="concept-name">계절 감각</div>
+      <div class="concept-hook">시즌 컬러 내러티브 — urgency 유발 + 브랜드 세계관 강화.</div>
+      <div class="concept-score">전략 적합도 8 / 10</div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── 03. 브랜드 시스템 ── -->
+  <div class="section-head">
+    <div class="section-num">03 · Brand System</div>
+    <h2 class="section-title">브랜드 보드 & 목업</h2>
+    <p class="section-desc">컬러 토큰, 타이포, 카피 시스템, 밸류카드 VC01–VC04.</p>
+  </div>
+
+  <div class="support-grid">
+    <a class="support-card" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-brand-board.html" target="_blank">
+      <div class="support-tag">Brand Board</div>
+      <div class="support-title">브랜드 보드 + 밸류 카드</div>
+      <div class="support-desc">전략 POV · 핵심가치 4종 · 디자인 토큰 · 카피 시스템</div>
+      <div class="support-arrow">열기 ↗</div>
+    </a>
+
+    <a class="support-card" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-detail-mockup.html" target="_blank">
+      <div class="support-tag">UI Mockup</div>
+      <div class="support-title">모바일 상세페이지 목업</div>
+      <div class="support-desc">실제 화면 비율로 렌더한 모바일 프레임 확인용</div>
+      <div class="support-arrow">열기 ↗</div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── 04. 리서치 근거 ── -->
+  <div class="section-head">
+    <div class="section-num">04 · Research</div>
+    <h2 class="section-title">시장 리서치 & 제안 배경</h2>
+    <p class="section-desc">수치 팩트체크 + 출처 인라인 완료.</p>
+  </div>
+
+  <div class="support-grid">
+    <a class="support-card" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-state-of-deck.html" target="_blank">
+      <div class="support-tag">Market Research</div>
+      <div class="support-title">State of Market 2026</div>
+      <div class="support-desc">올리브영 H&B 점유율 · 색조 트렌드 데이터 · 경쟁 포지셔닝 맵 · 전 수치 출처 포함</div>
+      <div class="support-arrow">열기 ↗</div>
+    </a>
+
+    <a class="support-card" href="https://htmlpreview.github.io/?https://github.com/kimyoyacd/workspace/blob/claude/wakemaker-detail-redesign-1ukk61/.claude/projects/wakemake-proposal-2026.html" target="_blank">
+      <div class="support-tag">Proposal Overview</div>
+      <div class="support-title">제안 개요</div>
+      <div class="support-desc">프로젝트 배경 · 목표 · 전략 방향 총괄 (클라이언트 제출용)</div>
+      <div class="support-arrow">열기 ↗</div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── 05. 다음 단계 ── -->
+  <div class="section-head">
+    <div class="section-num">05 · Next Step</div>
+    <h2 class="section-title">다음 결정 사항</h2>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-title">실장님 확인 후 결정</div>
+    <div class="decision-list">
+      <div class="decision-item">
+        <div class="decision-dot"></div>
+        <div><strong>추천안 명시 여부</strong> — C01을 1순위로 명시 추천할지 / 3안 병렬 동등 제시 유지할지</div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-dot"></div>
+        <div><strong>견적 확정</strong> — 권장 35,000,000원 (B안·마진 약 21%). 컨셉 수·촬영 실비 포함 여부에 따라 조정</div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-dot"></div>
+        <div><strong>클라이언트 제출 방식</strong> — 슬라이드 덱 PDF 변환 또는 HTML 링크 직접 공유</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-left">WAKEMAKE × OliveYoung · 상세페이지 리뉴얼 제안 · 2026.07 · MX Design Studio</div>
+    <div class="footer-right">PR #27 · claude/wakemaker-detail-redesign-1ukk61</div>
+  </div>
+
+</div>
+</body>
+</html>
