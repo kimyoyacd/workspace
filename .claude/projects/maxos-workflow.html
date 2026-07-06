@@ -1,697 +1,658 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAX실 OS — 에이전트 워크플로우 맵</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAX실 OS v8 워크플로우 맵</title>
 <style>
 :root {
-  --bg:      #F5F5F5;
-  --surface: #FFFFFF;
-  --border:  #E4E4E4;
-  --border2: #CCCCCC;
-  --ink:     #1A1A1A;
-  --ink2:    #555555;
-  --ink3:    #999999;
-
-  --gate:        #D97706;
-  --gate-bg:     #FFFBF0;
-  --gate-border: #F5C842;
-  --gate-text:   #92400E;
-  --final:       #DC2626;
-  --final-bg:    #FFF5F5;
-  --final-border:#FECACA;
-  --final-text:  #991B1B;
-
-  --c-blue:   #1D4ED8;
-  --c-purple: #6D28D9;
-  --c-pink:   #BE185D;
-  --c-green:  #047857;
-  --c-gray:   #4B5563;
-
-  --ff: -apple-system,'Helvetica Neue','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff: -apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
   --ff-mono: 'SF Mono','Cascadia Code','Consolas','Menlo',monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:#161616; --surface:#202020; --border:#2C2C2C; --border2:#3A3A3A;
-    --ink:#F0F0F0; --ink2:#AAAAAA; --ink3:#606060;
-    --gate:#F59E0B; --gate-bg:#1C1500; --gate-border:#7A5A00; --gate-text:#FCD34D;
-    --final:#EF4444; --final-bg:#1C0000; --final-border:#7A2020; --final-text:#FCA5A5;
-    --c-blue:#3B82F6; --c-purple:#8B5CF6; --c-pink:#EC4899; --c-green:#10B981; --c-gray:#9CA3AF;
-  }
-}
-:root[data-theme="light"] {
-  --bg:#F5F5F5; --surface:#FFFFFF; --border:#E4E4E4; --border2:#CCCCCC;
-  --ink:#1A1A1A; --ink2:#555555; --ink3:#999999;
-  --gate:#D97706; --gate-bg:#FFFBF0; --gate-border:#F5C842; --gate-text:#92400E;
-  --final:#DC2626; --final-bg:#FFF5F5; --final-border:#FECACA; --final-text:#991B1B;
-  --c-blue:#1D4ED8; --c-purple:#6D28D9; --c-pink:#BE185D; --c-green:#047857; --c-gray:#4B5563;
-}
-:root[data-theme="dark"] {
-  --bg:#161616; --surface:#202020; --border:#2C2C2C; --border2:#3A3A3A;
-  --ink:#F0F0F0; --ink2:#AAAAAA; --ink3:#606060;
-  --gate:#F59E0B; --gate-bg:#1C1500; --gate-border:#7A5A00; --gate-text:#FCD34D;
-  --final:#EF4444; --final-bg:#1C0000; --final-border:#7A2020; --final-text:#FCA5A5;
-  --c-blue:#3B82F6; --c-purple:#8B5CF6; --c-pink:#EC4899; --c-green:#10B981; --c-gray:#9CA3AF;
+
+  --bg: #EEEAF8;
+
+  --mktr-hdr: #C2570A;
+  --mktr-bg:  #FEF3E2;
+  --mktr-bd:  #F59E4A;
+
+  --strt-hdr: #5B21B6;
+  --strt-bg:  #F3F0FF;
+  --strt-bd:  #A78BFA;
+
+  --dsgn-hdr: #1558A0;
+  --dsgn-bg:  #E8F4FF;
+  --dsgn-bd:  #60A5FA;
+
+  --drct-hdr: #065F46;
+  --drct-bg:  #ECFDF5;
+  --drct-bd:  #34D399;
+
+  --ops-hdr:  #374151;
+  --ops-bg:   #F3F4F6;
+  --ops-bd:   #9CA3AF;
+
+  --gate-amber: #D97706;
+  --gate-amber-bg: #FFFBEB;
+  --gate-amber-bd: #FBBF24;
+  --gate-red:   #DC2626;
+  --gate-red-bg: #FEF2F2;
+  --gate-red-bd: #FCA5A5;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg); color: var(--ink); font-family: var(--ff); }
-body { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--ff);
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 28px 24px 60px;
+}
 
 /* ── Header ── */
-.header {
-  margin-bottom: 32px; padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
-.header h1 { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
-.header p  { font-size: 12px; color: var(--ink3); margin-top: 4px; }
+.page-header { margin-bottom: 22px; }
+.page-header h1 { font-size: 18px; font-weight: 800; color: #1C1C1E; }
+.page-header p  { font-size: 13px; color: #6B7280; margin-top: 4px; }
 
-/* ── Section label ── */
-.sec-label {
-  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink3); font-family: var(--ff-mono);
-  margin-bottom: 8px; margin-top: 32px;
+/* ── Legend ── */
+.legend {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  margin-bottom: 22px;
+  font-size: 11.5px; color: #4B5563;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.l-rect {
+  width: 22px; height: 14px; border-radius: 3px;
+  background: #fff; border: 1.5px solid #9CA3AF;
+}
+.l-diamond {
+  width: 12px; height: 12px;
+  background: #FBBF24; transform: rotate(45deg); border-radius: 2px;
+}
+.l-diamond.red { background: #FCA5A5; }
+.l-line {
+  width: 22px; height: 0;
+  border-top: 1.5px dashed #9CA3AF;
+}
+
+/* ── Swimlane container ── */
+.swimlanes-wrap { overflow-x: auto; padding-bottom: 8px; }
+.swimlanes {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-width: 1340px;
+  position: relative;
 }
 
 /* ── Lane ── */
-.lane {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; margin-bottom: 8px;
-  overflow: hidden;
+.lane { flex: 0 0 200px; width: 200px; }
+
+.lane-header {
+  padding: 11px 14px;
+  border-radius: 8px 8px 0 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+
+.lane-body {
+  padding: 14px 10px;
+  border-radius: 0 0 8px 8px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.lane-side {
-  width: 76px; flex-shrink: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  padding: 18px 6px 18px; gap: 5px;
-  border-right: 1px solid var(--border);
+
+.lane.marketer .lane-header { background: var(--mktr-hdr); }
+.lane.marketer .lane-body   { background: var(--mktr-bg); border: 1.5px solid var(--mktr-bd); border-top: none; }
+.lane.marketer .node        { border-color: var(--mktr-bd); }
+
+.lane.strategist .lane-header { background: var(--strt-hdr); }
+.lane.strategist .lane-body   { background: var(--strt-bg); border: 1.5px solid var(--strt-bd); border-top: none; }
+.lane.strategist .node        { border-color: var(--strt-bd); }
+
+.lane.designer .lane-header { background: var(--dsgn-hdr); }
+.lane.designer .lane-body   { background: var(--dsgn-bg); border: 1.5px solid var(--dsgn-bd); border-top: none; }
+.lane.designer .node        { border-color: var(--dsgn-bd); }
+
+.lane.director .lane-header { background: var(--drct-hdr); }
+.lane.director .lane-body   { background: var(--drct-bg); border: 1.5px solid var(--drct-bd); border-top: none; }
+.lane.director .node        { border-color: var(--drct-bd); }
+
+.lane.operator .lane-header,
+.lane.hr-legal .lane-header { background: var(--ops-hdr); }
+.lane.operator .lane-body,
+.lane.hr-legal .lane-body   { background: var(--ops-bg); border: 1.5px solid var(--ops-bd); border-top: none; }
+.lane.operator .node,
+.lane.hr-legal .node        { border-color: var(--ops-bd); }
+
+/* ── Node ── */
+.node {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 11px;
+  text-align: center;
   position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
 }
-.lane-side::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-}
-.blue   .lane-side::before { background: var(--c-blue); }
-.purple .lane-side::before { background: var(--c-purple); }
-.pink   .lane-side::before { background: var(--c-pink); }
-.green  .lane-side::before { background: var(--c-green); }
-.gray   .lane-side::before { background: var(--c-gray); }
-
-.agent-badge {
-  font-size: 8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-  font-family: var(--ff-mono); color: #fff;
-  padding: 3px 6px; border-radius: 3px; text-align: center;
-}
-.blue   .agent-badge { background: var(--c-blue); }
-.purple .agent-badge { background: var(--c-purple); }
-.pink   .agent-badge { background: var(--c-pink); }
-.green  .agent-badge { background: var(--c-green); }
-.gray   .agent-badge { background: var(--c-gray); }
-
-.agent-name { font-size: 11px; font-weight: 600; text-align: center; line-height: 1.4; margin-top: 2px; }
-
-/* ── Lane body ── */
-.lane-body { flex: 1; padding: 0; }
-
-/* ── Sub-section ── */
-.sub-label {
-  font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ink3); font-family: var(--ff-mono);
-  padding: 10px 16px 6px;
-}
-.sub-divider { height: 1px; background: var(--border); margin: 4px 0; }
-
-/* ── Skill item ── */
-.skill-item {
-  display: grid;
-  grid-template-columns: 158px 1fr;
-  gap: 0 0;
-  border-bottom: 1px solid var(--border);
-  align-items: stretch;
-  min-height: 56px;
-}
-.skill-item:last-child { border-bottom: none; }
-
-.skill-left {
-  padding: 11px 12px 11px 16px;
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; justify-content: center;
-  gap: 3px;
-}
-.skill-name {
-  font-size: 12px; font-weight: 700; letter-spacing: -.01em;
+.node-name {
   font-family: var(--ff-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
 }
-.blue   .skill-name { color: var(--c-blue); }
-.purple .skill-name { color: var(--c-purple); }
-.pink   .skill-name { color: var(--c-pink); }
-.green  .skill-name { color: var(--c-green); }
-.gray   .skill-name { color: var(--c-gray); }
-
-.skill-tag {
-  font-size: 9px; color: var(--ink3); font-family: var(--ff-mono); letter-spacing: .02em;
-}
-.skill-right {
-  padding: 11px 16px 11px 14px;
-  display: flex; align-items: center;
-}
-.skill-desc {
-  font-size: 12px; color: var(--ink2); line-height: 1.7;
+.node-desc {
+  font-size: 10.5px;
+  color: #555;
+  line-height: 1.45;
 }
 
-/* ── Gate row ── */
-.gate-item {
-  display: grid;
-  grid-template-columns: 158px 1fr;
-  border-bottom: 1px solid var(--border);
-  align-items: stretch;
+/* ── Vertical arrow ── */
+.arr-v {
+  width: 2px;
+  height: 18px;
+  background: #C4C9D4;
+  margin: 0 auto;
+  position: relative;
+  flex-shrink: 0;
 }
-.gate-left {
-  padding: 12px 12px 12px 16px;
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; justify-content: center; gap: 3px;
+.arr-v::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid #C4C9D4;
 }
-.gate-badge-text {
-  font-size: 11px; font-weight: 800; font-family: var(--ff-mono); letter-spacing: .02em;
-}
-.gate-item.amber .gate-badge-text { color: var(--gate); }
-.gate-item.red   .gate-badge-text { color: var(--final); }
 
-.gate-round { font-size: 9px; font-family: var(--ff-mono); }
-.gate-item.amber .gate-round { color: var(--gate); }
-.gate-item.red   .gate-round { color: var(--final); }
-
-.gate-right {
-  padding: 12px 16px 12px 14px;
+/* loop arrow label */
+.loop-label {
+  font-size: 10px;
+  color: var(--gate-amber);
+  font-weight: 700;
+  margin: 2px 0 0;
+  text-align: center;
 }
+
+/* ── Gate diamond ── */
+.gate-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.gate {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  flex-shrink: 0;
+}
+.gate-inner {
+  position: absolute;
+  width: 66px; height: 66px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gate-text {
+  transform: rotate(-45deg);
+  font-size: 9.5px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.gate.amber .gate-inner { background: var(--gate-amber-bg); border: 2px solid var(--gate-amber-bd); }
+.gate.amber .gate-text  { color: var(--gate-amber); }
+.gate.red   .gate-inner { background: var(--gate-red-bg);   border: 2px solid var(--gate-red-bd); }
+.gate.red   .gate-text  { color: var(--gate-red); }
 .gate-desc {
-  font-size: 12px; line-height: 1.7;
+  font-size: 10px;
+  color: #6B7280;
+  text-align: center;
+  max-width: 180px;
+  line-height: 1.4;
+  margin-top: -6px;
 }
-.gate-item.amber { background: var(--gate-bg); }
-.gate-item.red   { background: var(--final-bg); }
-.gate-item.amber .gate-desc { color: var(--gate-text); }
-.gate-item.red   .gate-desc { color: var(--final-text); }
 
-/* ── Connector ── */
-.connector {
-  display: flex; align-items: center; gap: 8px;
-  margin: 3px 0 3px 88px;
-  padding: 6px 12px;
-  background: var(--surface); border: 1px dashed var(--border2);
-  border-radius: 7px; max-width: max-content;
-  font-size: 11px; color: var(--ink2);
+/* ── SVG overlay ── */
+#conn-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
 }
-.conn-pill {
-  font-size: 9px; font-weight: 700; font-family: var(--ff-mono);
-  padding: 2px 7px; border-radius: 3px; color: #fff; flex-shrink: 0;
-  white-space: nowrap;
-}
-.conn-arrow { color: var(--ink3); flex-shrink: 0; }
 
-/* ── Gate summary ── */
-.gate-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 8px; margin-top: 8px; }
-.gate-summary-card {
-  border-radius: 10px; padding: 16px;
-  border: 1px solid;
+/* ── Phase sub-nodes ── */
+.phase-group {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid var(--strt-bd);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
 }
-.gate-summary-card.amber { background: var(--gate-bg); border-color: var(--gate-border); }
-.gate-summary-card.red   { background: var(--final-bg); border-color: var(--final-border); }
-.gsc-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-.gsc-sub   { font-size: 10px; font-family: var(--ff-mono); margin-bottom: 8px; }
-.gsc-body  { font-size: 11px; line-height: 1.7; }
-.gsc-items { font-size: 10px; color: var(--ink3); margin-top: 6px; line-height: 1.8; }
-.gate-summary-card.amber .gsc-title { color: var(--gate); }
-.gate-summary-card.amber .gsc-sub   { color: var(--gate-text); }
-.gate-summary-card.amber .gsc-body  { color: var(--gate-text); }
-.gate-summary-card.red   .gsc-title { color: var(--final); }
-.gate-summary-card.red   .gsc-sub   { color: var(--final-text); }
-.gate-summary-card.red   .gsc-body  { color: var(--final-text); }
-
-/* ── Footer ── */
-footer {
-  margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--border);
-  font-size: 11px; color: var(--ink3); font-family: var(--ff-mono);
-  display: flex; gap: 20px; flex-wrap: wrap;
+.phase-group-header {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6D28D9;
+  padding: 5px 10px;
+  background: #EDE9FE;
+  border-bottom: 1px solid #DDD6FE;
+}
+.phase-row {
+  padding: 8px 10px;
+  font-size: 10.5px;
+  color: #374151;
+  border-bottom: 1px solid #EDE9FE;
+  line-height: 1.4;
+}
+.phase-row:last-child { border-bottom: none; }
+.phase-row strong {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+  color: #111;
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>MAX실 OS — 에이전트 워크플로우 맵</h1>
-  <p>v8 · 에이전트 7종 · 스킬 25종 · 검증 게이트 6개</p>
+<div class="page-header">
+  <h1>MAX실 OS v8 — 워크플로우 맵</h1>
+  <p>에이전트 6종 · 스킬 25종 · 검증 게이트 5곳의 전체 흐름</p>
 </div>
 
-<!-- ═══ MAIN PIPELINE ═══ -->
-<div class="sec-label">메인 파이프라인 — 브랜드 제안</div>
-
-<!-- MARKETER -->
-<div class="lane blue">
-  <div class="lane-side">
-    <div class="agent-badge">Marketer</div>
-    <div class="agent-name">시장·트렌드 리서치</div>
-  </div>
-  <div class="lane-body">
-
-    <div class="sub-label">시장조사</div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">market-research</div>
-        <div class="skill-tag">경쟁사 분석 · 포지셔닝</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">경쟁사 30곳을 8가지 항목으로 비교표에 정리한다. 타겟 고객이 SNS에서 실제로 쓰는 말, 앞으로 3~5년 안에 올 트렌드 신호, 다른 업계에서 빌려올 수 있는 아이디어도 함께 찾는다. 결과물: 우리가 들어갈 수 있는 빈 시장 자리.</div>
-      </div>
-    </div>
-
-    <div class="gate-item amber">
-      <div class="gate-left">
-        <div class="gate-badge-text">GATE A</div>
-        <div class="gate-round">↺ 최대 4라운드</div>
-      </div>
-      <div class="gate-right">
-        <div class="gate-desc">조사가 끝나면 10가지를 체크한다. 출처가 있는가? 고객이 실제로 쓰는 단어가 들어갔는가? 빈자리에 수요가 있는가? 하나라도 빠지면 그 항목만 다시 조사. 4번 안에 해결 못 하면 그냥 다음으로 넘어간다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">brainstorm</div>
-        <div class="skill-tag">아이디어 발산</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">리서치 결과를 바탕으로 방향 8~12개를 마구 쏟아낸다. 뻔한 것·과감한 것·엉뚱한 것을 일부러 섞는다. 다른 업계의 원리를 우리 프로젝트 언어로 번역하는 작업도 포함. 결과물: 나아갈 방향 3개 후보.</div>
-      </div>
-    </div>
-
-    <div class="sub-divider"></div>
-    <div class="sub-label">트렌드·레퍼런스</div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">design-trend</div>
-        <div class="skill-tag">글로벌 트렌드 스캔</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">최근 3개월 글로벌 디자인 트렌드를 스캔한다. 어떤 비주얼이 주목받고 어떤 스타일이 지고 있는지 파악. 출처 링크 포함. 결과물: Direction A·B·C 세 방향으로 정리해 무드보드 작업에 넘긴다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">reference-curator</div>
-        <div class="skill-tag">레퍼런스 큐레이션</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">프로젝트 주제에 맞는 레퍼런스 이미지·사례를 카테고리별로 모아준다. 모든 항목에 출처 링크 포함.</div>
-      </div>
-    </div>
-
-  </div>
+<div class="legend">
+  <div class="legend-item"><div class="l-rect"></div> 스킬 노드</div>
+  <div class="legend-item"><div class="l-diamond"></div> 검증 게이트 (앰버)</div>
+  <div class="legend-item"><div class="l-diamond red"></div> 최종 게이트 (레드)</div>
+  <div class="legend-item"><div class="l-line"></div> 에이전트 간 전달</div>
 </div>
 
-<div class="connector">
-  <span class="conn-pill" style="background:var(--c-blue)">Marketer</span>
-  <span class="conn-arrow">→</span>
-  <span class="conn-pill" style="background:var(--c-purple)">Strategist</span>
-  시사점 + 방향 3개 → concept-director 입력
-</div>
-<div class="connector">
-  <span class="conn-pill" style="background:var(--c-blue)">Marketer</span>
-  <span class="conn-arrow">→</span>
-  <span class="conn-pill" style="background:var(--c-pink)">Designer</span>
-  Direction A·B·C + 레퍼런스 → moodboard 입력
-</div>
+<div class="swimlanes-wrap">
+  <div class="swimlanes" id="swimlanes">
 
-<!-- STRATEGIST -->
-<div class="lane purple" style="margin-top:6px">
-  <div class="lane-side">
-    <div class="agent-badge">Strategist</div>
-    <div class="agent-name">전략·기획 브랜드 제안</div>
-  </div>
-  <div class="lane-body">
+    <!-- ══ MARKETER ══ -->
+    <div class="lane marketer">
+      <div class="lane-header">Marketer</div>
+      <div class="lane-body">
 
-    <div class="sub-label">단발 기획·제안</div>
+        <div class="node" id="n-market-research">
+          <div class="node-name">market-research</div>
+          <div class="node-desc">경쟁사 N개 분석 → XY 포지셔닝 맵 + 빈 자리 발견. 출처 필수.</div>
+        </div>
+        <div class="arr-v"></div>
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">rfp-analyst</div>
-        <div class="skill-tag">RFP 분석</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">클라이언트 요청서(RFP)를 읽고 네 가지로 나눈다. ① 분명히 요청한 것 ② 말은 안 했지만 원하는 것 ③ 아직 결정 안 된 것 ④ 나중에 문제 될 수 있는 것. 이 분류가 제안서 방향을 결정한다.</div>
+        <div class="gate-wrap">
+          <div class="gate amber" id="n-gate-a">
+            <div class="gate-inner">
+              <div class="gate-text">GATE A</div>
+            </div>
+          </div>
+          <div class="gate-desc">10항목 전부 통과해야 다음 단계로 간다. 최대 4라운드까지 재시도 가능.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-design-trend">
+          <div class="node-name">design-trend</div>
+          <div class="node-desc">최근 3개월 글로벌 트렌드 + 약신호 포착. 출처 필수.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-reference-curator">
+          <div class="node-name">reference-curator</div>
+          <div class="node-desc">카테고리별 레퍼런스 큐레이션. 방향별로 3~5개씩 정리.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-brainstorm">
+          <div class="node-name">brainstorm</div>
+          <div class="node-desc">방향별 키워드 발산 + 이종업계 아날로지 → 비주얼·카피 3방향 도출.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">concept-director</div>
-        <div class="skill-tag">핵심 관점 정의</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">이 프로젝트의 핵심을 한 문장으로 정한다. 이 문장이 없으면 디자인 방향도, 카피 방향도 시작할 수 없다. 제일 먼저, 제일 중요하게 처리하는 작업이다.</div>
+    <!-- ══ STRATEGIST ══ -->
+    <div class="lane strategist">
+      <div class="lane-header">Strategist</div>
+      <div class="lane-body">
+
+        <div class="node" id="n-rfp-analyst">
+          <div class="node-name">rfp-analyst</div>
+          <div class="node-desc">RFP → 명시·숨은·미정의·위험 4분류 + 확인 질문 목록.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-concept-director">
+          <div class="node-name">concept-director</div>
+          <div class="node-desc">핵심 관점을 한 문장으로 정한다. 이 문장이 없으면 디자인도, 카피도 시작할 수 없다.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="phase-group" id="n-brand-pipeline">
+          <div class="phase-group-header">brand-pipeline</div>
+          <div class="phase-row">
+            <strong>Manus 1 — 리서치</strong>
+            시장·경쟁·소비자 데이터로 브랜드 기반 잡기.
+          </div>
+          <div class="phase-row">
+            <strong>Manus 2 — 비주얼 아이덴티티</strong>
+            컬러·타이포·레이아웃 방향 3가지 제안.
+          </div>
+          <div class="phase-row" id="n-brand-pipeline-p3">
+            <strong>Runable 3 — 시스템+덱</strong>
+            브랜드 가이드라인 + 제안 덱 최종 완성.
+          </div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="gate-wrap">
+          <div class="gate amber" id="n-gate-bcd">
+            <div class="gate-inner">
+              <div class="gate-text">GATE B·C·D</div>
+            </div>
+          </div>
+          <div class="gate-desc">각 Phase 끝마다 통과 기준 충족 확인. 통과 못 하면 해당 Phase 재실행.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-review-panel">
+          <div class="node-name">review-panel</div>
+          <div class="node-desc">기획·크리에이터·사업·마케팅·B2B 고객 5관점 병렬 검토.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-critic">
+          <div class="node-name">critic</div>
+          <div class="node-desc">비용·기간·역량 3항목 점수화(/30). 30 미만이면 진행 재검토.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">critic</div>
-        <div class="skill-tag">수주 가능성 판정</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">이 프로젝트를 우리가 해야 하는지 현실적으로 점수 매긴다. 예산이 맞는가, 일정이 가능한가, 우리 팀 역량이 되는가. 30점 만점으로 판정한다.</div>
+    <!-- ══ DESIGNER ══ -->
+    <div class="lane designer">
+      <div class="lane-header">Designer</div>
+      <div class="lane-body">
+
+        <div class="node" id="n-moodboard">
+          <div class="node-name">moodboard</div>
+          <div class="node-desc">분위기·컬러·소재·타이포 등 6버킷으로 무드보드 구성. 방향별 1세트.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-visual-generator">
+          <div class="node-name">visual-generator</div>
+          <div class="node-desc">AI(Higgsfield)로 키비주얼·목업 이미지 생성. 프롬프트 → 사진급 결과물.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-storyboard">
+          <div class="node-name">storyboard</div>
+          <div class="node-desc">영상·모션 콘티 제작. 컷별 장면·텍스트·카메라 움직임 명시.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-figma-bridge">
+          <div class="node-name">figma-bridge</div>
+          <div class="node-desc">코드 ↔ Figma 양방향 연동. 컴포넌트 매핑 + 에셋 전달.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">review-panel</div>
-        <div class="skill-tag">5관점 병렬 검토</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">완성된 기획안을 5가지 시각으로 동시에 검토한다. 기획자·크리에이터·사업 담당·마케터·B2B 고객 입장에서 각각 다른 질문을 던진다.</div>
+    <!-- ══ DIRECTOR ══ -->
+    <div class="lane director">
+      <div class="lane-header">Director</div>
+      <div class="lane-body">
+
+        <div class="node" id="n-design-critique">
+          <div class="node-name">design-critique</div>
+          <div class="node-desc">시안 6영역 검수. 🟢통과 · 🟡보완 · 🔴재작업 3단계로 판정.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-creative-director">
+          <div class="node-name">creative-director</div>
+          <div class="node-desc">톤 최종 점검 + 온보딩 팩 생성. CD 관점에서 전체 일관성 확인.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-fact-checker">
+          <div class="node-name">fact-checker</div>
+          <div class="node-desc">사실·숫자·인용 반증 먼저. 의심스러우면 출처 확인 후 수정.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-tone-guardian">
+          <div class="node-name">tone-guardian</div>
+          <div class="node-desc">발송 전 회신 톤 교정. 너무 딱딱하거나 너무 가볍지 않게.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-design-system-guardian">
+          <div class="node-name">design-system-guardian</div>
+          <div class="node-desc">사내 디자인 시스템 준수 점검. 색상·컴포넌트·간격 기준 체크.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-delivery-gate">
+          <div class="node-name">delivery-gate</div>
+          <div class="node-desc">라이트모드·PII·글자 잘림 린트. 외부 발송 직전 마지막 점검.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="gate-wrap">
+          <div class="gate red" id="n-gate-final">
+            <div class="gate-inner">
+              <div class="gate-text">GATE FINAL</div>
+            </div>
+          </div>
+          <div class="gate-desc">전부 통과해야 외부 발송 가능. 하나라도 🔴이면 발송 중단.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="sub-divider"></div>
-    <div class="sub-label">브랜드 풀파이프라인 (brand-pipeline)</div>
+    <!-- ══ OPERATOR ══ -->
+    <div class="lane operator">
+      <div class="lane-header">Operator</div>
+      <div class="lane-body">
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">Manus 1</div>
-        <div class="skill-tag">Phase 1 · 리서치</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">브랜드 제안 첫 단계. 경쟁사 30개를 매트릭스로 정리하고 다른 업계 레퍼런스를 분석해 우리만의 포지셔닝 방향을 잡는다.</div>
+        <div class="node" id="n-project-manager">
+          <div class="node-name">project-manager</div>
+          <div class="node-desc">진행 현황·매출 달성율·가동률. 노션·구글시트 read-only 조회.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-quote-accountant">
+          <div class="node-name">quote-accountant</div>
+          <div class="node-desc">원가표 + 마진 시나리오 산출. UI Design만 우리 실 매출로 집계.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-account-radar">
+          <div class="node-name">account-radar</div>
+          <div class="node-desc">반복 클라 히스토리·리스크 정리. 미팅 전 브리핑으로 활용.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="gate-item amber">
-      <div class="gate-left">
-        <div class="gate-badge-text">GATE B</div>
-        <div class="gate-round">Strategic POV</div>
-      </div>
-      <div class="gate-right">
-        <div class="gate-desc">Phase 1이 끝난 뒤 확인한다. "우리만의 전략적 관점이 한 문장으로 잡혔는가?" 통과해야 Phase 2로 넘어간다.</div>
+    <!-- ══ HR·LEGAL ══ -->
+    <div class="lane hr-legal">
+      <div class="lane-header">HR · Legal</div>
+      <div class="lane-body">
+
+        <div class="node" id="n-hiring-radar">
+          <div class="node-name">hiring-radar</div>
+          <div class="node-desc">채용 파이프라인 관리. JD 작성 · 소싱 · 면접 · 오퍼 단계 추적.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-vendor-radar">
+          <div class="node-name">vendor-radar</div>
+          <div class="node-desc">외주 풀 관리 + 외주비 산출. 적합한 프리랜서 매칭.</div>
+        </div>
+        <div class="arr-v"></div>
+
+        <div class="node" id="n-legal-compliance">
+          <div class="node-name">legal-compliance</div>
+          <div class="node-desc">계약·NDA 쟁점 플래그. 법적 자문 대체가 아닌 위험 사전 포착.</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">Manus 2</div>
-        <div class="skill-tag">Phase 2 · 비주얼 아이덴티티</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">전략 방향을 비주얼 언어로 번역한다. 컬러·타입·이미지 방향을 잡고 컨셉 6개를 발산한다.</div>
-      </div>
-    </div>
+    <!-- SVG overlay for cross-lane arrows -->
+    <svg id="conn-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#C2570A"/>
+        </marker>
+        <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#5B21B6"/>
+        </marker>
+        <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#1558A0"/>
+        </marker>
+      </defs>
+    </svg>
 
-    <div class="gate-item amber">
-      <div class="gate-left">
-        <div class="gate-badge-text">GATE C</div>
-        <div class="gate-round">Lens Translation</div>
-      </div>
-      <div class="gate-right">
-        <div class="gate-desc">Phase 2가 끝난 뒤 확인한다. "비주얼 방향이 전략을 제대로 반영했는가?" 통과해야 슬라이드 덱 작업에 들어간다.</div>
-      </div>
-    </div>
+  </div><!-- /swimlanes -->
+</div><!-- /swimlanes-wrap -->
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">Runable 3</div>
-        <div class="skill-tag">Phase 3 · 브랜드 시스템</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">브랜드 시스템 전체를 완성하고 35~45장짜리 제안 슬라이드 덱을 만든다.</div>
-      </div>
-    </div>
+<script>
+(function() {
+  var CONNECTIONS = [
+    {
+      from: 'n-market-research',
+      to:   'n-concept-director',
+      label: '리서치 시사점',
+      color: '#C2570A',
+      marker: 'arr-orange',
+      dash: '6,3'
+    },
+    {
+      from: 'n-design-trend',
+      to:   'n-moodboard',
+      label: 'Direction A·B·C',
+      color: '#C2570A',
+      marker: 'arr-orange',
+      dash: '6,3'
+    },
+    {
+      from: 'n-brand-pipeline-p3',
+      to:   'n-design-critique',
+      label: 'Phase3 완료',
+      color: '#5B21B6',
+      marker: 'arr-purple',
+      dash: '6,3'
+    },
+    {
+      from: 'n-visual-generator',
+      to:   'n-design-critique',
+      label: '시안 완성',
+      color: '#1558A0',
+      marker: 'arr-blue',
+      dash: '6,3'
+    }
+  ];
 
-    <div class="gate-item amber">
-      <div class="gate-left">
-        <div class="gate-badge-text">GATE D</div>
-        <div class="gate-round">Human Touch &amp; Risk</div>
-      </div>
-      <div class="gate-right">
-        <div class="gate-desc">슬라이드 덱을 만들기 전 최종 확인. "사람 손이 더 필요한 곳이 있는가? 리스크는 없는가?"</div>
-      </div>
-    </div>
+  function draw() {
+    var svg = document.getElementById('conn-svg');
+    var wrap = document.getElementById('swimlanes');
+    var wRect = wrap.getBoundingClientRect();
+    var scrollX = wrap.scrollLeft || 0;
+    var scrollY = wrap.scrollTop || 0;
 
-  </div>
-</div>
+    // clear old paths
+    while (svg.childElementCount > 1) svg.removeChild(svg.lastChild);
 
-<div class="connector">
-  <span class="conn-pill" style="background:var(--c-purple)">Strategist</span>
-  <span class="conn-arrow">→</span>
-  <span class="conn-pill" style="background:var(--c-pink)">Designer</span>
-  concept-director 관점 한 문장 → 모든 비주얼의 기준점으로 상속
-</div>
-<div class="connector">
-  <span class="conn-pill" style="background:var(--c-purple)">Strategist</span>
-  <span class="conn-arrow">→</span>
-  <span class="conn-pill" style="background:var(--c-green)">Director</span>
-  Phase 3 완료 산출물 → 시안 검수 입력
-</div>
+    CONNECTIONS.forEach(function(c) {
+      var fromEl = document.getElementById(c.from);
+      var toEl   = document.getElementById(c.to);
+      if (!fromEl || !toEl) return;
 
-<!-- DESIGNER -->
-<div class="lane pink" style="margin-top:6px">
-  <div class="lane-side">
-    <div class="agent-badge">Designer</div>
-    <div class="agent-name">비주얼 생성·Figma</div>
-  </div>
-  <div class="lane-body">
+      var fRect = fromEl.getBoundingClientRect();
+      var tRect = toEl.getBoundingClientRect();
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">moodboard</div>
-        <div class="skill-tag">방향 시각화</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">정해진 비주얼 방향(Direction A·B·C)을 이미지로 보여주는 무드보드를 만든다. 분위기·컬러·소재·타이포 등 6가지 버킷으로 구성. 클라이언트에게 방향성을 설명할 때 쓴다.</div>
-      </div>
-    </div>
+      var x1 = fRect.right  - wRect.left + scrollX;
+      var y1 = fRect.top    + fRect.height / 2 - wRect.top + scrollY;
+      var x2 = tRect.left   - wRect.left + scrollX - 2;
+      var y2 = tRect.top    + tRect.height / 2 - wRect.top + scrollY;
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">visual-generator</div>
-        <div class="skill-tag">키비주얼·목업 생성</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">AI(Higgsfield)로 키비주얼·목업 이미지를 직접 만든다. 프롬프트를 넣으면 사진처럼 보이는 키비주얼이 나온다. 클라이언트에게 시안 방향을 보여줄 때 쓴다.</div>
-      </div>
-    </div>
+      var mx = (x1 + x2) / 2;
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">storyboard</div>
-        <div class="skill-tag">영상·모션 콘티</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">영상이나 모션 디자인의 장면별 흐름을 콘티로 그린다. AI로 참고 이미지도 함께 생성한다.</div>
-      </div>
-    </div>
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M ' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2);
+      path.setAttribute('stroke', c.color);
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('stroke-dasharray', c.dash);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('marker-end', 'url(#' + c.marker + ')');
+      svg.appendChild(path);
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">figma-bridge</div>
-        <div class="skill-tag">코드↔Figma 연결</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">코드로 만든 것을 Figma로 옮기거나, Figma 디자인을 코드로 가져온다. 양방향으로 연결된다.</div>
-      </div>
-    </div>
+      // Label background + text
+      var lx = mx;
+      var ly = (y1 + y2) / 2;
+      var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', lx - 38);
+      rect.setAttribute('y', ly - 9);
+      rect.setAttribute('width', '76');
+      rect.setAttribute('height', '16');
+      rect.setAttribute('rx', '4');
+      rect.setAttribute('fill', '#fff');
+      rect.setAttribute('stroke', c.color);
+      rect.setAttribute('stroke-width', '1');
+      rect.setAttribute('opacity', '0.9');
+      svg.appendChild(rect);
 
-  </div>
-</div>
+      var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', lx);
+      text.setAttribute('y', ly + 4);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '9.5');
+      text.setAttribute('font-family', '-apple-system,sans-serif');
+      text.setAttribute('font-weight', '600');
+      text.setAttribute('fill', c.color);
+      text.textContent = c.label;
+      svg.appendChild(text);
+    });
 
-<div class="connector">
-  <span class="conn-pill" style="background:var(--c-pink)">Designer</span>
-  <span class="conn-arrow">→</span>
-  <span class="conn-pill" style="background:var(--c-green)">Director</span>
-  완성 시안 → design-critique 검수 입력
-</div>
+    // update SVG size
+    var totalH = wrap.scrollHeight;
+    var totalW = wrap.scrollWidth;
+    svg.setAttribute('width', totalW);
+    svg.setAttribute('height', totalH);
+  }
 
-<!-- DIRECTOR -->
-<div class="lane green" style="margin-top:6px">
-  <div class="lane-side">
-    <div class="agent-badge">Director</div>
-    <div class="agent-name">시안 검수·최종 게이트</div>
-  </div>
-  <div class="lane-body">
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { requestAnimationFrame(draw); });
+  } else {
+    requestAnimationFrame(draw);
+  }
 
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">design-critique</div>
-        <div class="skill-tag">시안 6영역 검수</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">완성된 시안을 레이아웃·타이포·컬러·이미지·카피·일관성 6가지로 나눠 점검한다. 초록(통과)·노랑(수정 필요)·빨강(다시)으로 표시한다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">creative-director</div>
-        <div class="skill-tag">CD 최종 톤 확인</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">CD 입장에서 전체 톤을 최종 확인한다. 모든 페이지가 같은 목소리로 말하고 있는지 본다. 온보딩 자료도 여기서 만든다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">fact-checker</div>
-        <div class="skill-tag">수치·출처 검증</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">시안에 들어간 숫자·통계·인용문을 하나씩 확인한다. "맞겠지"가 아니라 "틀렸다 가정하고" 먼저 찾아본다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">tone-guardian</div>
-        <div class="skill-tag">발송 어투 교정</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">클라이언트에게 보내는 메일·답장·코멘트의 어투를 점검한다. 너무 딱딱하거나 너무 캐주얼하지 않은지 교정한다.</div>
-      </div>
-    </div>
-
-    <div class="gate-item red">
-      <div class="gate-left">
-        <div class="gate-badge-text">GATE FINAL</div>
-        <div class="gate-round">delivery-gate</div>
-      </div>
-      <div class="gate-right">
-        <div class="gate-desc">발송하기 직전 마지막 체크. ① 라이트 모드로 봤을 때 깨지는 곳이 없는지 ② 고객 이름·연락처 같은 개인정보가 실수로 들어가지 않았는지 ③ 텍스트가 잘린 곳은 없는지. 세 가지 모두 통과해야만 보낼 수 있다.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══ INDEPENDENT ═══ -->
-<div class="sec-label" style="margin-top:36px">독립 운영 에이전트 — 언제든 단독으로 호출 가능</div>
-
-<!-- OPERATOR -->
-<div class="lane gray">
-  <div class="lane-side">
-    <div class="agent-badge">Operator</div>
-    <div class="agent-name">프로젝트 운영·견적</div>
-  </div>
-  <div class="lane-body">
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">project-manager</div>
-        <div class="skill-tag">현황·매출·가동률</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">지금 진행 중인 프로젝트 현황, 이번 달 매출 달성률, 팀 가동률을 한눈에 보여준다. 노션·구글 시트 데이터를 읽어서 정리한다. 수정하지는 않는다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">quote-accountant</div>
-        <div class="skill-tag">견적·마진 시나리오</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">인건비·외주비를 계산해 원가를 낸 뒤, 마진을 다르게 설정한 시나리오 2~3개를 만들어준다. 최종 가격 결정은 실장님이 직접 한다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">account-radar</div>
-        <div class="skill-tag">클라 히스토리·브리핑</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">자주 함께 일하는 클라이언트의 성향·과거 이슈·리스크를 정리해준다. 미팅 전에 "이 클라이언트 어떤 사람이야?" 하고 물어보는 용도다.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- HR-LEGAL -->
-<div class="lane gray" style="margin-top:6px">
-  <div class="lane-side">
-    <div class="agent-badge">HR · Legal</div>
-    <div class="agent-name">채용·외주·법무</div>
-  </div>
-  <div class="lane-body">
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">hiring-radar</div>
-        <div class="skill-tag">채용 파이프라인</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">채용 전 과정을 관리한다. 채용공고(JD) 작성부터 소싱·면접·최종 오퍼까지. 현재 채용 파이프라인 현황도 보여준다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">vendor-radar</div>
-        <div class="skill-tag">외주 풀 관리</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">외주 가능한 프리랜서·에이전시 풀을 관리한다. 외주비 계산도 여기서 한다.</div>
-      </div>
-    </div>
-
-    <div class="skill-item">
-      <div class="skill-left">
-        <div class="skill-name">legal-compliance</div>
-        <div class="skill-tag">계약·NDA 검토</div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-desc">계약서·NDA에서 나중에 문제 될 수 있는 조항을 찾아서 표시해준다. 법률 전문가 자문을 대신하지는 않고, 검토해야 할 포인트를 짚어주는 용도다.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Gate summary -->
-<div class="sec-label" style="margin-top:36px">검증 게이트 요약</div>
-<div class="gate-summary">
-
-  <div class="gate-summary-card amber">
-    <div class="gsc-title">GATE A — market-research</div>
-    <div class="gsc-sub">Marketer 내부 · 최대 4라운드</div>
-    <div class="gsc-body">10가지를 체크한다. 하나라도 빠지면 그 항목만 다시 조사. 4번 안에 해결 못 하면 그냥 다음으로 넘어간다.</div>
-    <div class="gsc-items">브랜드 수 · 출처 · 8속성 · JTBD · 소비자 언어 · XY축 · 화이트스페이스 · 3그룹 · 이종업계 · 시사점</div>
-  </div>
-
-  <div class="gate-summary-card amber">
-    <div class="gsc-title">GATE B · C · D — brand-pipeline</div>
-    <div class="gsc-sub">Strategist 내부 · Phase별 통과 조건</div>
-    <div class="gsc-body">
-      <b>B</b> — 전략 관점이 잡혔는가? (Phase 2 진입 조건)<br>
-      <b>C</b> — 비주얼이 전략을 반영했는가? (덱 작업 진입 조건)<br>
-      <b>D</b> — 사람 손·리스크 최종 확인 (덱 생성 조건)
-    </div>
-  </div>
-
-  <div class="gate-summary-card red">
-    <div class="gsc-title">GATE FINAL — delivery-gate</div>
-    <div class="gsc-sub">Director 끝 · 발송 직전</div>
-    <div class="gsc-body">라이트 모드 깨짐·개인정보 노출·텍스트 잘림 세 가지를 린트한다. 통과해야만 외부 발송·납품이 가능하다. 최종 GO 결정은 실장님이 한다.</div>
-  </div>
-
-</div>
-
-<footer>
-  <span>MAX실 OS v8 · 에이전트 7종 · 스킬 25종</span>
-  <span>게이트 총 6개 (A + B·C·D + FINAL)</span>
-  <span>2026.07</span>
-</footer>
-
+  window.addEventListener('resize', draw);
+})();
+</script>
 </body>
 </html>
