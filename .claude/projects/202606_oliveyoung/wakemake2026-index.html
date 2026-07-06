@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKEMAKE 2026 — 프로젝트 인덱스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --bg: #111111;
+    --card: #1A1A1A;
+    --border: rgba(255,255,255,0.08);
+    --coral: #E8502A;
+    --brass: #b7419a;
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.45);
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Mono', monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--white); font-family: var(--sans); min-height: 100vh; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(17,17,17,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px; display: flex; align-items: center; gap: 0;
+    height: 52px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-logo { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--coral); white-space: nowrap; margin-right: 28px; flex-shrink: 0; font-family: var(--mono); }
+  .nav-divider { width: 1px; height: 16px; background: var(--border); margin-right: 28px; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    text-decoration: none; white-space: nowrap; transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.06); border-color: var(--border); }
+  .nav-link.active { color: var(--coral); background: rgba(232,80,42,0.10); border-color: rgba(232,80,42,0.25); }
+
+  /* HERO */
+  .hero { padding: 64px 40px 48px; max-width: 1200px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--coral); text-transform: uppercase; margin-bottom: 16px; font-family: var(--mono); }
+  .hero-title { font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .hero-title span { color: var(--coral); }
+  .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+  .hero-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+  .hero-meta-item strong { color: var(--white); font-weight: 600; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px 40px; }
+  .progress-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--muted); font-family: var(--mono); text-transform: uppercase; margin-bottom: 12px; }
+  .progress-steps { display: flex; gap: 0; }
+  .progress-step {
+    flex: 1; padding: 10px 16px;
+    font-size: 11px; font-weight: 600; font-family: var(--mono);
+    border: 1px solid var(--border); border-right: none;
+    color: var(--muted); text-align: center; letter-spacing: 0.06em;
+    position: relative;
+  }
+  .progress-step:first-child { border-radius: 6px 0 0 6px; }
+  .progress-step:last-child { border-radius: 0 6px 6px 0; border-right: 1px solid var(--border); }
+  .progress-step.done { background: rgba(232,80,42,0.15); border-color: rgba(232,80,42,0.3); color: var(--coral); }
+  .progress-step.active { background: rgba(232,80,42,0.25); border-color: var(--coral); color: var(--white); }
+
+  /* SECTION */
+  .section { max-width: 1200px; margin: 0 auto; padding: 0 40px 64px; }
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .section-title { font-size: 13px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); font-family: var(--mono); }
+  .section-count { font-size: 11px; color: var(--brass); font-family: var(--mono); }
+
+  /* CARD GRID */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+  .deck-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 22px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+    text-decoration: none; color: inherit; transition: all 0.18s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .deck-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent, transparent);
+    transition: opacity 0.18s; opacity: 0;
+  }
+  .deck-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .deck-card:hover::before { opacity: 1; }
+  .deck-card.coral { --accent: var(--coral); }
+  .deck-card.brass { --accent: var(--brass); }
+  .deck-card.blue  { --accent: #7EB3FF; }
+  .deck-card.locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+  .card-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); font-family: var(--mono); }
+  .card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .card-type { font-size: 10px; color: var(--muted); font-family: var(--mono); }
+  .card-arrow { font-size: 13px; color: var(--muted); transition: transform 0.15s, color 0.15s; }
+  .deck-card:hover .card-arrow { transform: translateX(3px); color: var(--white); }
+
+  .status-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 10px; margin-bottom: 4px;
+  }
+  .status-done { background: rgba(45,122,79,0.25); color: #6BCF93; border: 1px solid rgba(45,122,79,0.4); }
+  .status-wip  { background: rgba(232,80,42,0.2); color: var(--coral); border: 1px solid rgba(232,80,42,0.4); }
+  .status-next { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
+
+  /* FOOTER */
+  .footer { max-width: 1200px; margin: 0 auto; padding: 24px 40px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .footer-left { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+  .footer-right { font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">WAKEMAKE 2026</div>
+  <div class="nav-divider"></div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#research">리서치</a>
+    <a class="nav-link" href="#direction">방향</a>
+    <a class="nav-link" href="#concept">컨셉</a>
+    <a class="nav-link" href="#brand">브랜드</a>
+    <a class="nav-link" href="#deliverable">덱·제안서</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Project Index · 2026.07 · OliveYoung PB</div>
+  <h1 class="hero-title">WAKEMAKE <span>×</span> OliveYoung<br>상세페이지 리뉴얼 제안</h1>
+  <p class="hero-sub">올리브영 색조 PB 상세페이지 협력사 입찰 — 시장조사 → 디자인 방향 → 컨셉 → 브랜드 시스템 → 제안 덱</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>클라이언트</strong> · CJ올리브영 / 웨이크메이크</div>
+    <div class="hero-meta-item"><strong>타겟</strong> · 20-30대 여성</div>
+    <div class="hero-meta-item"><strong>포맷</strong> · 1020px 모바일 롱폼</div>
+    <div class="hero-meta-item"><strong>마감</strong> · 2026.06.19</div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-label">진행 단계</div>
+  <div class="progress-steps">
+    <div class="progress-step done">01 RFP 분석</div>
+    <div class="progress-step active">02 시장조사</div>
+    <div class="progress-step next">03 디자인 트렌드</div>
+    <div class="progress-step next">04 무드보드</div>
+    <div class="progress-step next">05 컨셉 PDP</div>
+    <div class="progress-step next">06 브랜드 시스템</div>
+    <div class="progress-step next">07 제안 덱</div>
+  </div>
+</div>
+
+<!-- SECTION 1: 리서치 -->
+<section class="section" id="research">
+  <div class="section-header">
+    <span class="section-title">리서치</span>
+    <span class="section-count">2 FILES</span>
+  </div>
+  <div class="card-grid">
+    <a class="deck-card coral" href="RFP_분석.md" target="_blank">
+      <span class="status-badge status-done">완료</span>
+      <div class="card-tag">RFP · 4분류 분석</div>
+      <div class="card-title">RFP 분석</div>
+      <div class="card-desc">명시 요구 · 숨은 니즈 · 미정의 · 위험. 과제가 승부처, AI 역량 차별화 전략.</div>
+      <div class="card-footer">
+        <span class="card-type">rfp-analyst</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+    <a class="deck-card coral" href="wakemake2026-market-research.html" target="_blank">
+      <span class="status-badge status-wip">진행중</span>
+      <div class="card-tag">시장조사 · 경쟁사 30개</div>
+      <div class="card-title">올리브영 색조<br>시장조사</div>
+      <div class="card-desc">경쟁 브랜드 30개 8속성 분석 · 20-30대 트렌드 · XY 포지셔닝 맵 · 화이트스페이스.</div>
+      <div class="card-footer">
+        <span class="card-type">market-research</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION 2: 방향 -->
+<section class="section" id="direction">
+  <div class="section-header">
+    <span class="section-title">디자인 방향</span>
+    <span class="section-count">2 FILES 예정</span>
+  </div>
+  <div class="card-grid">
+    <div class="deck-card brass locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">디자인 트렌드 · 3방향</div>
+      <div class="card-title">디자인 트렌드<br>Direction A·B·C</div>
+      <div class="card-desc">글로벌 색조 디자인 트렌드 5~8개 → 웨이크메이크 적용 3방향 도출.</div>
+      <div class="card-footer">
+        <span class="card-type">design-trend</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+    <div class="deck-card brass locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">무드보드 · A·B·C</div>
+      <div class="card-title">비주얼 무드보드<br>3방향</div>
+      <div class="card-desc">Direction A(추천) · B(하이리스크) · C(로우) 무드보드. 컬러 팔레트 · 키워드 · 레퍼런스.</div>
+      <div class="card-footer">
+        <span class="card-type">moodboard</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: 컨셉 PDP -->
+<section class="section" id="concept">
+  <div class="section-header">
+    <span class="section-title">컨셉 PDP</span>
+    <span class="section-count">3 FILES 예정</span>
+  </div>
+  <div class="card-grid">
+    <div class="deck-card blue locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">C01 · 추천</div>
+      <div class="card-title">컨셉 PDP A</div>
+      <div class="card-desc">Direction A 기반 상세페이지 컨셉. 키비주얼 후킹 + 구매전환 스토리라인.</div>
+      <div class="card-footer">
+        <span class="card-type">concept · 1020px longform</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+    <div class="deck-card blue locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">C02</div>
+      <div class="card-title">컨셉 PDP B</div>
+      <div class="card-desc">Direction B 기반 컨셉. 차별화 방향.</div>
+      <div class="card-footer">
+        <span class="card-type">concept · 1020px longform</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+    <div class="deck-card blue locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">C03</div>
+      <div class="card-title">컨셉 PDP C</div>
+      <div class="card-desc">Direction C 기반 컨셉. 안전한 선택지.</div>
+      <div class="card-footer">
+        <span class="card-type">concept · 1020px longform</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: 브랜드 시스템 -->
+<section class="section" id="brand">
+  <div class="section-header">
+    <span class="section-title">브랜드 시스템</span>
+    <span class="section-count">2 FILES 예정</span>
+  </div>
+  <div class="card-grid">
+    <div class="deck-card locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">Brand Board</div>
+      <div class="card-title">브랜드 보드</div>
+      <div class="card-desc">POV · 핵심가치 · 컬러 토큰 · 타이포 시스템.</div>
+      <div class="card-footer">
+        <span class="card-type">brand-pipeline</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+    <div class="deck-card locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">UI Mockup</div>
+      <div class="card-title">상세페이지 목업</div>
+      <div class="card-desc">모바일 실제 렌더 목업.</div>
+      <div class="card-footer">
+        <span class="card-type">visual-generator</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: 덱·제안서 -->
+<section class="section" id="deliverable">
+  <div class="section-header">
+    <span class="section-title">덱 · 제안서</span>
+    <span class="section-count">1 FILE 예정</span>
+  </div>
+  <div class="card-grid">
+    <div class="deck-card locked">
+      <span class="status-badge status-next">대기</span>
+      <div class="card-tag">Final Deck</div>
+      <div class="card-title">WAKEMAKE 2026<br>제안 슬라이드 덱</div>
+      <div class="card-desc">시장분석 · 전략방향 · 컨셉 3종 · 브랜드 시스템 · 실행계획 · 기대효과.</div>
+      <div class="card-footer">
+        <span class="card-type">brand-pipeline · runable 3</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-left">WAKEMAKE × OliveYoung · 2026.07 · 상세페이지 리뉴얼 · v8 스킬 파이프라인</div>
+  <div class="footer-right">MAX실 OS v8</div>
+</div>
+
+<script>
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
