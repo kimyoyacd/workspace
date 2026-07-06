@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<title>MAX실 OS Dashboard v7 · 실시간 연동</title>
+<title>MAX실 OS Dashboard v8 · 실시간 연동</title>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
 :root {
@@ -527,13 +527,13 @@ body {
 <!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <h1>MAX실 OS <span>· Dashboard v7</span></h1>
+    <h1>MAX실 OS <span>· Dashboard v8</span></h1>
     <div class="sub">디자인 센터 50명 CD 권한 + MAX실 9명 직속 운영 · <span id="sync-sub">노션/구글시트 실시간 연동 초기화 중...</span></div>
   </div>
   <div class="header-right">
-    <div class="head-stat"><div class="n">27</div><div class="l">에이전트</div></div>
+    <div class="head-stat"><div class="n">7</div><div class="l">역할에이전트</div></div>
     <div class="head-divider"></div>
-    <div class="head-stat"><div class="n">7</div><div class="l">스킬</div></div>
+    <div class="head-stat"><div class="n">25</div><div class="l">스킬</div></div>
     <div class="head-divider"></div>
     <div class="head-stat"><div class="n" id="stat-projects">—</div><div class="l">진행 프로젝트</div></div>
     <div class="head-divider"></div>
@@ -561,253 +561,168 @@ body {
 <!-- ══════════════ TAB 1: 조직도 ══════════════ -->
 <div id="sect-org" class="section active">
   <h2 class="section-title">에이전트 조직도</h2>
-  <p class="section-desc">메인 세션(허브) 아래 27개 에이전트 · 7그룹 (2 대기) + <strong>hyo-manus</strong> 스킬(HYO MANUS 브랜드 제안 자동화) + list-deck-design + AI 라이팅 스킬 5종(dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna). 아래 섹션은 클릭해서 펼치기.</p>
+  <p class="section-desc">v8 — 7종 역할 에이전트 × 스킬 25종 라우팅 구조. 에이전트에게 말하면 해당 스킬이 자동 호출됩니다. 아래 섹션은 클릭해서 펼치기.</p>
 
-  <div class="alert">
-    <span class="ic">✅</span>
-    <div><strong>v8 — copy-writer 에이전트 신규 추가 + AI 라이팅 스킬 5종 통합.</strong> <code>copy-writer</code>(카테고리별 카피라이팅, viral-hooks·storytelling·anti-ai-writing 내장) 신규. <code>dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna</code> 스킬 설치. <code>ux-writing.md</code> 라이브러리 생성(토스·refeeel 참조). 에이전트 총 27종 · 7그룹(2 대기). 탭 순서 정렬: 조직도→프로젝트현황→MAX실9명→추가투입위험→클라이언트레이더→트렌드→브랜드제안→지침→사용설명서.</div>
-  </div>
-  <div class="alert" style="background:#F0F9FF;border-color:#BAE6FD;border-left-color:#0284C7;margin-top:8px;">
-    <span class="ic">✅</span>
-    <div><strong>v6 — HYO MANUS 브랜드 제안 자동화 시스템 구축.</strong> <code>hyo-manus</code> 스킬 신규 등록 + HYO MANUS 1차/2차/3차 라이브러리 정비 + HTML 체크포인트 파이프라인. LUNE 브랜드 샘플 완성 (36슬라이드). GitHub <strong>PR #26</strong>(draft).</div>
-  </div>
-  <div class="alert" style="background:#F4F9F5;border-color:#D4E5D9;border-left-color:#2D7A4F;margin-top:0;">
-    <span class="ic">✅</span>
-    <div><strong>v5 — 9탭 통합 OS + 워크스페이스 구축 완료.</strong> 24개 에이전트 <code>.claude/agents/</code> 실제 생성 + CLAUDE.md 라우터 + SoT 3종 + brand-proposal 스킬. GitHub <strong>PR #11</strong>(draft). 9탭: 조직도·프로젝트·지침·사용설명서·트렌드·추가투입·클라·9명·채용. (7그룹 24에이전트)</div>
+  <div class="alert" style="background:#EFF6FF;border-color:#93C5FD;border-left-color:#2563EB;margin-top:0;">
+    <span class="ic">🚀</span>
+    <div><strong>v8 전면 개편 — 역할 에이전트 7종으로 통합.</strong> 기존 25종 에이전트를 7개 역할 에이전트(<code>marketer · designer · director · strategist · operator · hr-legal · maxos-dashboard</code>)로 재편. 에이전트는 라우팅만, 깊이는 스킬 25종이 담당. 각 역할 에이전트 호출 시 담당 스킬이 자동 실행됩니다.</div>
   </div>
 
   <div class="tree-wrap">
     <div class="hub-node">
       <div class="label">MAIN SESSION</div>
       <div class="name">허브 (김효정)</div>
-      <div class="sub">오케스트레이터 · 27명 에이전트 + 스킬 7종(hyo-manus·list-deck-design·dumbify·storytelling·viral-hooks·anti-ai-writing·voice-dna) 호출 허브</div>
+      <div class="sub">오케스트레이터 · 7종 역할 에이전트 + 스킬 25종 자동 라우팅 허브 (v8)</div>
     </div>
 
-    <div class="org-row">
-
-      <!-- ① 리서치 -->
-      <div class="col col-1">
-        <div class="col-head">① 리서치<span class="count">5</span></div>
-        <div class="col-tagline">정보 수집 · 검증 — 전략 진입 전 필수 게이트</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">RFP 분석가</span></div>
-            <div class="card-slug">rfp-analyst</div>
-            <div class="card-role">RFP → 명시·숨은·미정의·위험 4분류.</div>
-            <div class="card-trig"><strong>호출:</strong> RFP·과업지시서 수신 시</div>
+      <!-- v8 원칙 박스 -->
+      <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:16px 20px;margin:20px 0 0;">
+        <div style="font-size:12px;font-weight:800;color:#1D4ED8;margin-bottom:6px;">v8 OS 핵심 원칙 — 라우팅 에이전트 × 스킬 파일</div>
+        <div style="font-size:11.5px;color:#1e40af;line-height:1.7;margin-bottom:12px;font-style:italic;">"에이전트는 라우팅만, 깊이는 스킬 파일이 담당. 에이전트에게 말하면 적절한 스킬이 자동 호출된다."</div>
+        <div style="font-size:10px;font-weight:800;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">스킬 25종 — 4그룹</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:10px;line-height:1.7;">
+          <div style="padding:8px 10px;background:#fff;border-radius:6px;border:1px solid #BFDBFE;">
+            <div style="font-size:9px;font-weight:800;color:#1D4ED8;margin-bottom:4px;letter-spacing:0.3px;">MARKETER</div>
+            <div style="color:#374151;">market-research<br>design-trend<br>reference-curator<br>brainstorm</div>
           </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">시장조사</span></div>
-            <div class="card-slug">market-research</div>
-            <div class="card-role">경쟁사 N개 → XY 포지셔닝 맵 + 화이트스페이스. 출처 필수.</div>
-            <div class="card-trig"><strong>호출:</strong> "시장조사" / "포지셔닝 맵"</div>
+          <div style="padding:8px 10px;background:#fff;border-radius:6px;border:1px solid #BFDBFE;">
+            <div style="font-size:9px;font-weight:800;color:#1D4ED8;margin-bottom:4px;letter-spacing:0.3px;">STRATEGIST</div>
+            <div style="color:#374151;">rfp-analyst<br>concept-director<br>critic<br>brand-pipeline<br>review-panel</div>
           </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">디자인 트렌드 레이더</span><span class="badge badge-global">🌐</span></div>
-            <div class="card-slug">design-trend-radar</div>
-            <div class="card-role">최근 3개월 글로벌 트렌드. 출처 URL 필수.</div>
-            <div class="card-trig"><strong>호출:</strong> 분기 자동 / 제안 발산 직전</div>
-            <div style="margin-top:5px;font-size:9px;color:var(--ink3);padding:4px 6px;background:#FBE7F1;border-radius:3px;line-height:1.45;"><strong style="color:#8A2D5A;">소스:</strong> Awwwards · Brand New · FWA · Cannes · D&amp;AD</div>
+          <div style="padding:8px 10px;background:#fff;border-radius:6px;border:1px solid #BFDBFE;">
+            <div style="font-size:9px;font-weight:800;color:#1D4ED8;margin-bottom:4px;letter-spacing:0.3px;">DESIGNER</div>
+            <div style="color:#374151;">visual-generator<br>moodboard<br>storyboard<br>figma-bridge</div>
           </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">레퍼런스 큐레이터</span></div>
-            <div class="card-slug">reference-curator</div>
-            <div class="card-role">클라/카테고리별 레퍼런스. 출처 URL 필수.</div>
-            <div class="card-trig"><strong>호출:</strong> 시안 시작 / 발산 직전</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">팩트 체커</span></div>
-            <div class="card-slug">fact-checker</div>
-            <div class="card-role">사실·숫자·인용 반증 먼저. 시장조사·견적 후 자동.</div>
-            <div class="card-trig"><strong>자동:</strong> 리서치 결과 / 제안서 수치</div>
+          <div style="padding:8px 10px;background:#fff;border-radius:6px;border:1px solid #BFDBFE;">
+            <div style="font-size:9px;font-weight:800;color:#1D4ED8;margin-bottom:4px;letter-spacing:0.3px;">DIRECTOR · OPERATOR · HR</div>
+            <div style="color:#374151;">design-critique · creative-director · design-system-guardian · fact-checker · tone-guardian · delivery-gate · project-manager · quote-accountant · account-radar · hiring-radar · vendor-radar · legal-compliance</div>
           </div>
         </div>
       </div>
 
-      <!-- ② 전략·발산 -->
-      <div class="col col-2">
-        <div class="col-head">② 전략·발산<span class="count">3</span></div>
-        <div class="col-tagline">관점 고정 → 아이디어 발산 → 냉정 검증</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">컨셉 디렉터</span><span class="badge badge-core">★ 사전 게이트</span></div>
-            <div class="card-slug">concept-director</div>
-            <div class="card-role">핵심 제품/타이틀 → <strong>관점 한 문장</strong> 고정. 전 매체 상속.</div>
-            <div class="card-trig"><strong>호출:</strong> "관점 잡아줘" / 제안 시작 전</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">브레인스토머</span></div>
-            <div class="card-slug">brainstormer</div>
-            <div class="card-role">아이디어 발산 · 방향별 키워드·포지셔닝 축.</div>
-            <div class="card-trig"><strong>호출:</strong> "발산해줘" / "아이디어 줘"</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">냉정한 비평가</span></div>
-            <div class="card-slug">critic</div>
-            <div class="card-role">비용·기간·역량·실현·설득력 점수화. 결함 only.</div>
-            <div class="card-trig"><strong>호출:</strong> "냉정하게 봐줘" / "리스크 짚어줘"</div>
+      <div class="org-row">
+
+        <!-- marketer -->
+        <div class="col col-1">
+          <div class="col-head">marketer<span class="count">4스킬</span></div>
+          <div class="col-tagline">시장·경쟁·트렌드 리서치 · 아이디어 발산</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">마케터</span><span class="badge badge-global">ROLE</span></div>
+              <div class="card-slug">marketer</div>
+              <div class="card-role">시장·경쟁사 분석, 트렌드 리서치, 레퍼런스 수집, 아이디어 발산. 스킬 4종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "시장조사" / "트렌드" / "브레인스토밍" / "레퍼런스 찾아줘"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#EEF1F7;border-radius:4px;font-size:9px;line-height:1.6;color:var(--sig);">
+                <strong>스킬:</strong> market-research · design-trend · reference-curator · brainstorm
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ③ 비주얼 제작 -->
-      <div class="col col-3">
-        <div class="col-head">③ 비주얼 제작<span class="count">4</span></div>
-        <div class="col-tagline">컨셉 확정 후 실제로 만드는 손</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">비주얼 제너레이터</span></div>
-            <div class="card-slug">visual-generator</div>
-            <div class="card-role">키비주얼·스타일프레임·목업. Higgsfield 이미지.</div>
-            <div class="card-trig"><strong>호출:</strong> "키비주얼 뽑아" / "목업"</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">무드보드 빌더</span></div>
-            <div class="card-slug">moodboard-builder</div>
-            <div class="card-role">컨셉별 무드보드. 레퍼런스+생성 이미지 조합.</div>
-            <div class="card-trig"><strong>호출:</strong> "무드보드" / 발산 직후</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">Figma 브릿지</span></div>
-            <div class="card-slug">figma-bridge</div>
-            <div class="card-role">코드 ↔ Figma 양방향. 디자인 시스템 동기화.</div>
-            <div class="card-trig"><strong>호출:</strong> "Figma 보내" / "Figma 가져와"</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">스토리보드 메이커</span></div>
-            <div class="card-slug">storyboard-maker</div>
-            <div class="card-role">영상·모션 콘티. Higgsfield 비디오 생성.</div>
-            <div class="card-trig"><strong>호출:</strong> "스토리보드" / 영상 발산</div>
+        <!-- designer -->
+        <div class="col col-3">
+          <div class="col-head">designer<span class="count">4스킬</span></div>
+          <div class="col-tagline">비주얼 생성 · 무드보드 · 스토리보드 · Figma</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">디자이너</span><span class="badge badge-global">ROLE</span></div>
+              <div class="card-slug">designer</div>
+              <div class="card-role">키비주얼 생성, 무드보드, 스토리보드, Figma 연동. 스킬 4종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "이미지 생성" / "무드보드" / "Figma" / "스토리보드"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#C6DCEF;border-radius:4px;font-size:9px;line-height:1.6;color:#1B4F6D;">
+                <strong>스킬:</strong> visual-generator · moodboard · storyboard · figma-bridge
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ④ 검수 게이트 -->
-      <div class="col col-4">
-        <div class="col-head">④ 검수 게이트<span class="count">3</span></div>
-        <div class="col-tagline" style="color:#B23B3B;font-weight:700;">상황에 맞게 발동 — 어느 단계에서든 호출 가능</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">디자인 시스템 가디언</span></div>
-            <div class="card-slug">design-system-guardian</div>
-            <div class="card-role">사내 디자인 시스템 준수 점검. 신규 온보딩.</div>
-            <div class="card-trig"><strong>자동:</strong> 시안 완성 / 신규 입사자</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">디자인 비평가</span></div>
-            <div class="card-slug">design-critique</div>
-            <div class="card-role">시안 6영역 검수 🟢🟡🔴. UI·GUI·UA·상세·브랜딩.</div>
-            <div class="card-trig"><strong>호출:</strong> 시안 1차 완성 / CD 위임</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">5관점 패널</span><span class="badge badge-core">통합</span></div>
-            <div class="card-slug">review-panel</div>
-            <div class="card-role">기획·크리에이터·사업·마케팅·B2B 5관점 병렬 검토.</div>
-            <div class="card-trig"><strong>호출:</strong> 발산 후 / 제안 셀렉 전</div>
-            <div style="margin-top:6px;padding:5px 7px;background:#E5F2E9;border-radius:4px;font-size:9px;line-height:1.5;color:#1F5A38;">① 기획 · ② 크리에이터 · ③ 사업 · ④ 마케팅 · ⑤ B2B고객</div>
+        <!-- director -->
+        <div class="col col-4">
+          <div class="col-head">director<span class="count">6스킬</span></div>
+          <div class="col-tagline" style="color:#B23B3B;font-weight:700;">시안 검수 · 톤·팩트 점검 · 발송 게이트</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">디렉터</span><span class="badge badge-core">★ 검수</span></div>
+              <div class="card-slug">director</div>
+              <div class="card-role">시안 검수, 톤 점검, 팩트 확인, 발송 전 게이트. 스킬 6종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "시안 검수" / "팩트체크" / "발송 전 점검" / "톤 봐줘"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#BEDDC6;border-radius:4px;font-size:9px;line-height:1.6;color:#1A5234;">
+                <strong>스킬:</strong> design-critique · creative-director · design-system-guardian · fact-checker · tone-guardian · delivery-gate
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ⑤ 수주·재무 -->
-      <div class="col col-5">
-        <div class="col-head">⑤ 수주·재무<span class="count">3</span></div>
-        <div class="col-tagline">견적 · 클라 관리 · 매출·가동률</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">견적 회계사</span><span class="badge badge-urgent">급함</span></div>
-            <div class="card-slug">quote-accountant</div>
-            <div class="card-role">노임단가 원가표 + 마진 시나리오. UI Design만 우리실 매출.</div>
-            <div class="card-trig"><strong>호출:</strong> "○○ 견적" / 제안 착수</div>
-            <div class="card-warn">🚨 최종 마진율·날인은 사용자 직접</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">어카운트 레이더</span></div>
-            <div class="card-slug">account-radar</div>
-            <div class="card-role">반복 클라 히스토리·리스크. 미팅 전 브리핑.</div>
-            <div class="card-trig"><strong>호출:</strong> "코웨이 상황" / 미팅 직전</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">프로젝트 매니저</span></div>
-            <div class="card-slug">project-manager</div>
-            <div class="card-role">진행현황·매출 달성율·가동률. 노션·시트 read-only.</div>
-            <div class="card-trig"><strong>호출:</strong> "이번 주 현황" / "가동률"</div>
+        <!-- strategist -->
+        <div class="col col-2">
+          <div class="col-head">strategist<span class="count">5스킬</span></div>
+          <div class="col-tagline">전략 기획 · 브랜드 제안 풀파이프라인</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">전략가</span><span class="badge badge-core">★ 핵심</span></div>
+              <div class="card-slug">strategist</div>
+              <div class="card-role">RFP 분석, 컨셉 수립, 관점 고정, 브랜드 제안 풀파이프라인. 스킬 5종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "RFP 분석" / "관점 잡아줘" / "브랜드 제안 시작" / "냉정하게 봐줘"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#F2C9DF;border-radius:4px;font-size:9px;line-height:1.6;color:#7A1F4A;">
+                <strong>스킬:</strong> rfp-analyst · concept-director · critic · brand-pipeline · review-panel
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ⑥ 조직관리 -->
-      <div class="col col-6">
-        <div class="col-head">⑥ 조직관리<span class="count">2</span></div>
-        <div class="col-tagline">CD · 법무 (채용·외주 대기)</div>
-        <div class="col-body">
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">크리에이티브 디렉터</span><span class="badge badge-core">코어</span></div>
-            <div class="card-slug">creative-director</div>
-            <div class="card-role">시안 톤·퀄리티 최종 심사. 신규/외주 온보딩 표준 생성.</div>
-            <div class="card-trig"><strong>호출:</strong> "CD 검수" / "온보딩 만들어줘"</div>
-          </div>
-          <div class="card">
-            <div class="card-name-row"><span class="card-name">법무·컴플라이언스</span></div>
-            <div class="card-slug">legal-compliance</div>
-            <div class="card-role">계약·NDA 쟁점·리스크 플래그.</div>
-            <div class="card-trig"><strong>호출:</strong> "계약서 검토" / 계약서 첨부</div>
-            <div class="card-warn">🚨 법무 자문 대체 아님</div>
-          </div>
-          <div class="card" style="opacity:0.45;border-style:dashed;">
-            <div class="card-name-row"><span class="card-name">채용 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
-            <div class="card-slug">hiring-radar</div>
-            <div class="card-role">증원 파이프라인. JD·소싱·면접·오퍼.</div>
-            <div class="card-trig" style="color:#9ca3af;">현재 비활성 — 필요 시 활성화</div>
-          </div>
-          <div class="card" style="opacity:0.45;border-style:dashed;">
-            <div class="card-name-row"><span class="card-name">벤더 레이더</span><span class="badge" style="background:#e5e7eb;color:#6b7280;">🔘 대기</span></div>
-            <div class="card-slug">vendor-radar</div>
-            <div class="card-role">외주·프리랜서 풀 관리. 외주비 산정.</div>
-            <div class="card-trig" style="color:#9ca3af;">현재 비활성 — 필요 시 활성화</div>
+        <!-- operator -->
+        <div class="col col-5">
+          <div class="col-head">operator<span class="count">3스킬</span></div>
+          <div class="col-tagline">프로젝트 운영 · 견적 · 클라 관리</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">오퍼레이터</span><span class="badge badge-urgent">운영</span></div>
+              <div class="card-slug">operator</div>
+              <div class="card-role">프로젝트 현황, 견적 산정, 클라이언트 히스토리 관리. 스킬 3종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "이번 주 현황" / "견적" / "가동률" / "클라 상황"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#FAF1DC;border-radius:4px;font-size:9px;line-height:1.6;color:#7A5010;">
+                <strong>스킬:</strong> project-manager · quote-accountant · account-radar
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- ⑦ 커뮤니케이션 -->
-      <div class="col col-7">
-        <div class="col-head" style="background:linear-gradient(135deg,#1e40af,#3b82f6);">⑦ 커뮤니케이션<span class="count">5</span></div>
-        <div class="col-tagline">카피 · 메일 · 회의록 · 발송 QC</div>
-        <div class="col-body">
-          <div class="card" style="border-left-color:#3b82f6;">
-            <div class="card-name-row"><span class="card-name">카피라이터</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">✍ 신규</span></div>
-            <div class="card-slug">copy-writer</div>
-            <div class="card-role">카테고리·톤별 카피 작성. 핀테크·게임·B2B·감성 4종. viral-hooks·storytelling·anti-ai-writing 내장.</div>
-            <div class="card-trig"><strong>호출:</strong> "카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구"</div>
-          </div>
-          <div class="card" style="border-left-color:#3b82f6;">
-            <div class="card-name-row"><span class="card-name">메일 초안 작성</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">✉ 신규</span></div>
-            <div class="card-slug">mail-drafter</div>
-            <div class="card-role">외부 메일·회신·제안 메시지 초안 생성. 수신자·목적·톤 기반.</div>
-            <div class="card-trig"><strong>호출:</strong> "메일 써줘" / "회신 초안" / "제안 메일"</div>
-          </div>
-          <div class="card" style="border-left-color:#3b82f6;">
-            <div class="card-name-row"><span class="card-name">회의록 작성</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">📋 신규</span></div>
-            <div class="card-slug">meeting-logger</div>
-            <div class="card-role">메모·녹취→구조화 회의록. 액션 아이템·담당자·기한 추출.</div>
-            <div class="card-trig"><strong>호출:</strong> "회의록 써줘" / "미팅 정리" / "회의 요약"</div>
-          </div>
-          <div class="card" style="border-left-color:#3b82f6;">
-            <div class="card-name-row"><span class="card-name">톤 가디언</span></div>
-            <div class="card-slug">tone-guardian</div>
-            <div class="card-role">회신·메일 초안 톤·매너 교정.</div>
-            <div class="card-trig"><strong>자동:</strong> mail-drafter 완료 후 / 외부 발송 전</div>
-          </div>
-          <div class="card" style="border-left-color:#3b82f6;">
-            <div class="card-name-row"><span class="card-name">딜리버리 게이트</span></div>
-            <div class="card-slug">delivery-gate</div>
-            <div class="card-role">라이트모드·PII·텍스트잘림·링크 린트.</div>
-            <div class="card-trig"><strong>자동:</strong> 외부 발송 직전 최종 린트</div>
+        <!-- hr-legal -->
+        <div class="col col-6">
+          <div class="col-head">hr-legal<span class="count">3스킬</span></div>
+          <div class="col-tagline">채용 · 외주 · 법무</div>
+          <div class="col-body">
+            <div class="card">
+              <div class="card-name-row"><span class="card-name">HR·법무</span></div>
+              <div class="card-slug">hr-legal</div>
+              <div class="card-role">채용 파이프라인, 외주 벤더 관리, 계약·NDA 검토. 스킬 3종 자동 호출.</div>
+              <div class="card-trig"><strong>호출:</strong> "채용 상황" / "외주 찾자" / "계약서 검토"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#E2D5F0;border-radius:4px;font-size:9px;line-height:1.6;color:#4A2080;">
+                <strong>스킬:</strong> hiring-radar · vendor-radar · legal-compliance
+              </div>
+              <div class="card-warn">🚨 채용·해고 결정 · 날인은 사용자 직접</div>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div><!-- org-row -->
+        <!-- maxos-dashboard -->
+        <div class="col col-7">
+          <div class="col-head" style="background:linear-gradient(135deg,#1e40af,#3b82f6);">maxos-dashboard<span class="count">전담</span></div>
+          <div class="col-tagline">Dashboard v8 HTML 전담 편집</div>
+          <div class="col-body">
+            <div class="card" style="border-left:2px solid #3b82f6;">
+              <div class="card-name-row"><span class="card-name">대시보드 에이전트</span><span class="badge" style="background:#dbeafe;color:#1d4ed8;">전담</span></div>
+              <div class="card-slug">maxos-dashboard</div>
+              <div class="card-role">Dashboard v8 HTML 직접 편집. 에이전트 등록·섹션 추가·데이터 갱신·시나리오 추가.</div>
+              <div class="card-trig"><strong>호출:</strong> "대시보드 업데이트" / "에이전트 추가" / "섹션 추가"</div>
+              <div style="margin-top:6px;padding:5px 7px;background:#DBEAFE;border-radius:4px;font-size:9px;line-height:1.6;color:#1D4ED8;">
+                <strong>파일:</strong> .claude/projects/maxosdashboardv7.html
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- org-row -->
   </div><!-- tree-wrap -->
 
   <!-- HUB 디테일 -->
@@ -896,8 +811,9 @@ body {
   </div>
 
   <div class="footnote">
-    <strong>v6 — HYO MANUS 자동화 시스템 추가.</strong>&nbsp; hyo-manus 스킬(1차→Gate→2차→Gate→3차→Final Deck) + HTML 체크포인트 자동 생성. list-deck-design 스킬 기존 유지. 스킬 총 2개. 등록 에이전트 24개(캡 25, 잔여 1). GitHub PR #26(draft). ·&nbsp;
-    <strong>v5 — 9탭 통합 OS.</strong>&nbsp; 24개 에이전트 + 라우터 + SoT + brand-proposal(구버전 스킬). GitHub PR #11(draft).
+    <strong>v8 — 7종 역할 에이전트 전면 개편.</strong>&nbsp; 기존 25종 에이전트를 marketer · designer · director · strategist · operator · hr-legal · maxos-dashboard 7종으로 통합. 에이전트는 라우팅만, 깊이는 스킬 25종이 담당. ·&nbsp;
+    <strong>v7 — copy-writer 신규 + AI 라이팅 스킬 5종.</strong>&nbsp; 에이전트 27종 7그룹 구조. GitHub PR #26(draft). ·&nbsp;
+    <strong>v5~v6 — 9탭 통합 OS + HYO MANUS 자동화.</strong>&nbsp; hyo-manus 스킬 + 24→27 에이전트 구축.
   </div>
 </div><!-- /sect-org -->
 
@@ -1153,38 +1069,48 @@ body {
         </tr>
       </thead>
       <tbody>
-        <!-- ① 리서치 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">rfp-analyst</td><td style="padding:7px 12px;color:var(--ink2);">"RFP 분석해줘" / "과업지시서 봐줘" / "이 제안요청서 분석"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">market-research</td><td style="padding:7px 12px;color:var(--ink2);">"경쟁사 분석해줘" / "포지셔닝 맵 그려줘" / "시장조사"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-trend-radar</td><td style="padding:7px 12px;color:var(--ink2);">"요즘 트렌드 뭐야" / "디자인 트렌드 봐줘" / "분기 트렌드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">reference-curator</td><td style="padding:7px 12px;color:var(--ink2);">"레퍼런스 찾아줘" / "참고 사례 모아줘" / "벤치마크"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">fact-checker</td><td style="padding:7px 12px;color:var(--ink2);">"팩트체크해줘" / "이 숫자 맞아?" · <strong style="color:#B45309;">자동: 리서치 결과 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">① 리서치</span></td></tr>
-        <!-- ② 전략·발산 -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">concept-director</td><td style="padding:7px 12px;color:var(--ink2);">"관점 잡아줘" / "컨셉 정의해줘" / "이 타이틀 방향 잡아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">brainstormer</td><td style="padding:7px 12px;color:var(--ink2);">"아이디어 줘" / "발산해줘" / "방향 뽑아줘" / "뭐가 있을까"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">critic</td><td style="padding:7px 12px;color:var(--ink2);">"이거 현실적으로 돼?" / "냉정하게 봐줘" / "리스크 짚어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F0FDF4;color:#166534;">② 전략</span></td></tr>
-        <!-- ③ 비주얼 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">visual-generator</td><td style="padding:7px 12px;color:var(--ink2);">"키비주얼 뽑아줘" / "이미지 생성해줘" / "목업 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">moodboard-builder</td><td style="padding:7px 12px;color:var(--ink2);">"무드보드 만들어줘" / "분위기 잡아줘" / "톤 보드"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">figma-bridge</td><td style="padding:7px 12px;color:var(--ink2);">"Figma 보내줘" / "Figma 가져와" / "피그마 동기화"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">storyboard-maker</td><td style="padding:7px 12px;color:var(--ink2);">"스토리보드 짜줘" / "영상 콘티" / "모션 기획"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FBE7F1;color:#7A1F4A;">③ 비주얼</span></td></tr>
-        <!-- ④ 검수 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-system-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"시스템 점검" / "가이드 맞나" · <strong style="color:#B45309;">자동: 시안 완성 시</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">design-critique</td><td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "이 디자인 봐줘" / "QC 봐줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">review-panel</td><td style="padding:7px 12px;color:var(--ink2);">"5관점 검토해줘" / "다각도로 봐줘" / 발산 후 셀렉 전</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">④ 검수</span></td></tr>
-        <!-- ⑤ 수주·재무 -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">quote-accountant</td><td style="padding:7px 12px;color:var(--ink2);">"견적 뽑자" / "이거 얼마" / "단가 계산" / "원가표 만들어"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">account-radar</td><td style="padding:7px 12px;color:var(--ink2);">"코웨이 상황" / "넷마블 히스토리" / "미팅 브리핑해줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">project-manager</td><td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "매출 달성율"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E5F2E9;color:var(--ok);">⑤ 수주</span></td></tr>
-        <!-- ⑥ 조직관리 -->
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">creative-director</td><td style="padding:7px 12px;color:var(--ink2);">"CD 검수" / "톤 최종 점검" / "온보딩 만들어줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">legal-compliance</td><td style="padding:7px 12px;color:var(--ink2);">"계약서 검토해줘" / "NDA 봐줘" / "독소조항 찾아줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">⑥ 조직</span></td></tr>
-        <!-- ⑦ 커뮤니케이션 (신규) -->
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">copy-writer ✦</td><td style="padding:7px 12px;color:var(--ink2);">"카피 써줘" / "문구 뽑아줘" / "랜딩 카피" / "배너 문구" / "말투 맞춰 써줘"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">mail-drafter ✦</td><td style="padding:7px 12px;color:var(--ink2);">"메일 써줘" / "회신 초안" / "이 내용으로 메일 써줘" / "제안 메일"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">meeting-logger ✦</td><td style="padding:7px 12px;color:var(--ink2);">"회의록 써줘" / "미팅 정리해줘" / "오늘 회의 내용 정리"</td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr style="border-bottom:1px solid var(--border-soft);"><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">tone-guardian</td><td style="padding:7px 12px;color:var(--ink2);">"이 메일 톤 봐줘" / "회신 다듬어줘" · <strong style="color:#B45309;">자동: 메일 초안 후</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
-        <tr><td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">delivery-gate</td><td style="padding:7px 12px;color:var(--ink2);">"발송 전 점검" / "딜리버리 체크" · <strong style="color:#B45309;">자동: 외부 발송 직전</strong></td><td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">⑦ 커뮤니케이션</span></td></tr>
+        <!-- marketer -->
+        <tr style="border-bottom:1px solid var(--border-soft);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">marketer</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"시장조사" / "경쟁사 분석해줘" / "트렌드 봐줘" / "레퍼런스 찾아줘" / "브레인스토밍" / "아이디어 줘"</td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#EEF1F7;color:var(--sig);">리서치·발산</span><br><span style="font-size:9px;color:var(--ink3);">market-research · design-trend · reference-curator · brainstorm</span></td>
+        </tr>
+        <!-- designer -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">designer</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"이미지 생성해줘" / "무드보드 만들어줘" / "Figma 보내" / "스토리보드 짜줘" / "키비주얼 뽑아"</td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#C6DCEF;color:#1B4F6D;">비주얼 제작</span><br><span style="font-size:9px;color:var(--ink3);">visual-generator · moodboard · storyboard · figma-bridge</span></td>
+        </tr>
+        <!-- director -->
+        <tr style="border-bottom:1px solid var(--border-soft);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">director</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"시안 검수해줘" / "팩트체크" / "발송 전 점검" / "CD 검수" / "톤 봐줘" · <strong style="color:#B45309;">자동: 시안 완성·발송 직전</strong></td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#BEDDC6;color:#1A5234;">검수 게이트</span><br><span style="font-size:9px;color:var(--ink3);">design-critique · creative-director · design-system-guardian · fact-checker · tone-guardian · delivery-gate</span></td>
+        </tr>
+        <!-- strategist -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">strategist</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"RFP 분석해줘" / "관점 잡아줘" / "브랜드 제안 시작" / "냉정하게 봐줘" / "5관점 검토"</td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#F2C9DF;color:#7A1F4A;">전략·기획</span><br><span style="font-size:9px;color:var(--ink3);">rfp-analyst · concept-director · critic · brand-pipeline · review-panel</span></td>
+        </tr>
+        <!-- operator -->
+        <tr style="border-bottom:1px solid var(--border-soft);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">operator</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"이번 주 현황" / "가동률 어때" / "견적 뽑자" / "단가 계산" / "클라 상황" · <strong style="color:#B45309;">자동: 주간 현황</strong></td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#FAF1DC;color:#7A5010;">운영·매출</span><br><span style="font-size:9px;color:var(--ink3);">project-manager · quote-accountant · account-radar</span></td>
+        </tr>
+        <!-- hr-legal -->
+        <tr style="border-bottom:1px solid var(--border-soft);background:var(--bg);">
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:var(--sig);font-weight:700;">hr-legal</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"채용 상황" / "VM 미드 JD 뽑아줘" / "외주 찾자" / "계약서 검토해줘" / "NDA 봐줘"</td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#E2D5F0;color:#4A2080;">조직·법무</span><br><span style="font-size:9px;color:var(--ink3);">hiring-radar · vendor-radar · legal-compliance</span></td>
+        </tr>
+        <!-- maxos-dashboard -->
+        <tr>
+          <td style="padding:7px 12px;font-family:ui-monospace,monospace;color:#1D4ED8;font-weight:700;">maxos-dashboard</td>
+          <td style="padding:7px 12px;color:var(--ink2);">"대시보드 업데이트" / "에이전트 추가해줘" / "섹션 추가" / "트렌드 갱신" / "프로젝트 추가"</td>
+          <td style="padding:7px 12px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:#DBEAFE;color:#1D4ED8;">대시보드</span><br><span style="font-size:9px;color:var(--ink3);">전담 에이전트 — Dashboard v8 HTML</span></td>
+        </tr>
       </tbody>
     </table>
   </div>
