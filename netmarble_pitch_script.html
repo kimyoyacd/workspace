@@ -87,6 +87,34 @@
   .promises .p h3{margin:12px 0 6px;font-size:19px;font-weight:700}
   .promises .p p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
 
+  /* ── 목차 ── */
+  .toc{padding:60px 0;border-bottom:1px solid var(--rule);scroll-margin-top:80px}
+  .toc .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted)}
+  .toc-h{font-size:clamp(24px,3.4vw,36px);font-weight:800;letter-spacing:-.02em;
+    margin:14px 0 0;text-wrap:balance}
+  .toc-sub{margin:14px 0 34px;color:var(--ink-soft);font-size:16px;max-width:62ch}
+  .toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  @media(max-width:960px){.toc-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.toc-grid{grid-template-columns:1fr}}
+  .toc-ch{display:block;text-decoration:none;color:var(--ink);
+    border-top:2px solid var(--ink);padding-top:12px;margin-bottom:14px;
+    font-size:16px;font-weight:800;letter-spacing:-.01em;line-height:1.3}
+  .toc-ch .cn{font-family:var(--mono);color:var(--accent);margin-right:7px}
+  .toc-ch em{display:block;font-style:normal;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-top:4px}
+  .toc-ch:hover{color:var(--accent)}
+  .toc-ch:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .toc-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+  .toc-list a{display:flex;gap:9px;text-decoration:none;color:var(--ink-soft);
+    font-size:13.5px;line-height:1.4;padding:5px 6px;border-radius:6px;
+    align-items:baseline}
+  .toc-list a span{font-family:var(--mono);font-size:11px;color:var(--accent-ink);
+    flex-shrink:0}
+  .toc-list a:hover{background:var(--rule-soft);color:var(--ink)}
+  .toc-list a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
   /* ── Chapter divider ── */
   .chap{padding:70px 0 10px;scroll-margin-top:80px}
   .chap .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
@@ -198,6 +226,7 @@
     <div class="brandline">NETMARBLE <span style="color:var(--muted)">×</span> <b>HIVELAB</b> · 발표 대본</div>
     <nav aria-label="목차">
       <a href="#pro">00 오프닝</a>
+      <a href="#toc">목차</a>
       <a href="#ch1">01 왜 지금</a>
       <a href="#ch2">02 가진 것</a>
       <a href="#ch3">03 증거</a>
@@ -246,6 +275,63 @@
         “위에선 AI 덕분에 마케팅비 최소화·효율화 압박이 크시죠? 준비 중인 하반기 신작·라이브
         업데이트로 소재 수요는 더 늘어날 거고요. 저희가 어떤 방식으로 더 도울 수 있을지 몇 가지
         정리해왔습니다.” 로 문을 연다.</div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 목차 ═══════════ -->
+  <section class="toc" id="toc">
+    <div class="ey">Contents · 목차</div>
+    <h2 class="toc-h">오늘 다룰 순서 — 5막 24슬라이드</h2>
+    <p class="toc-sub">답(우리 툴)을 꺼내기 전에 넷마블의 현실부터. 상황 → 문제 → 질문 → 답 →
+      증거 → 이득 → 제안의 순서로 흐릅니다.</p>
+    <div class="toc-grid">
+      <div class="toc-col">
+        <a class="toc-ch" href="#ch1"><span class="cn">01</span> 왜 지금인가 <em>Why Now</em></a>
+        <ol class="toc-list">
+          <li><a href="#s-market"><span>S-01</span> 시장 현황 — 단가·수량·퍼포먼스 동시 압박</a></li>
+          <li><a href="#s-context"><span>S-02</span> 현황 — 수요는 치솟는데 단가는 그대로</a></li>
+          <li><a href="#s-volume"><span>S-03</span> 생산량 +67% (21,944→36,700건)</a></li>
+          <li><a href="#s-to"><span>S-04</span> TO −11.8% → 생산량 +67%</a></li>
+          <li><a href="#s-friction"><span>S-05</span> 데이터 파편화 — 소재는 쌓이는데 못 찾는다</a></li>
+        </ol>
+      </div>
+      <div class="toc-col">
+        <a class="toc-ch" href="#ch2"><span class="cn">02</span> 무엇으로 가능한가 <em>What We Have</em></a>
+        <ol class="toc-list">
+          <li><a href="#s-asis"><span>S-06</span> AS-IS 16단계 → TO-BE 3단계</a></li>
+          <li><a href="#s-have"><span>S-07</span> 우리가 가진 것 — 11년치 소재 자산</a></li>
+          <li><a href="#s-search"><span>S-08</span> ① AI UA 배너 검색 시스템</a></li>
+          <li><a href="#s-usecase"><span>S-09</span> 활용 시나리오 — 툴은 열려 있다</a></li>
+          <li><a href="#s-value"><span>S-10</span> 넷마블의 이득 3가지</a></li>
+          <li><a href="#s-noburden"><span>S-11</span> 도입 부담 0 — 새로 할 게 없다</a></li>
+          <li><a href="#s-plan"><span>S-12</span> ② AI 기획 3단계 — 방향을 먼저</a></li>
+        </ol>
+      </div>
+      <div class="toc-col">
+        <a class="toc-ch" href="#ch3"><span class="cn">03</span> 이미 되고 있다 <em>Proof</em></a>
+        <ol class="toc-list">
+          <li><a href="#s-daily"><span>S-13</span> 일상 작업에서 검증 중</a></li>
+          <li><a href="#s-adoption"><span>S-14</span> AI 활용 3월 21% → 6월 50%</a></li>
+          <li><a href="#s-mockup"><span>S-15</span> 아이데이션 목업 (RF ONLINE)</a></li>
+          <li><a href="#s-abtest"><span>S-16</span> 무제한 A/B 테스트 (첫사랑 미나)</a></li>
+          <li><a href="#s-keyart"><span>S-17</span> 키아트 생성 · 스타일 트랜스퍼</a></li>
+          <li><a href="#s-global"><span>S-18</span> 글로벌 시안 — 1종 → 국가별</a></li>
+          <li><a href="#s-limit"><span>S-19</span> 솔직한 한계 → 배너 시스템으로 보완</a></li>
+        </ol>
+      </div>
+      <div class="toc-col">
+        <a class="toc-ch" href="#ch4"><span class="cn">04</span> 넷마블의 이득 + 로드맵 <em>Value</em></a>
+        <ol class="toc-list">
+          <li><a href="#s-process"><span>S-20</span> AI 도입 효율화 프로세스 비교</a></li>
+          <li><a href="#s-example"><span>S-21</span> 기획 예시 (MMORPG)</a></li>
+          <li><a href="#s-pilot"><span>S-22</span> 단계별 확장 로드맵 — 두 지표만 연동</a></li>
+        </ol>
+        <a class="toc-ch" href="#epi" style="margin-top:22px"><span class="cn">05</span> 함께 만들 것 <em>The Ask</em></a>
+        <ol class="toc-list">
+          <li><a href="#s-ask"><span>S-23</span> 고객사 준비물 — IP 사용 권한</a></li>
+          <li><a href="#s-close"><span>S-24</span> 클로징 — 함께 그려갈 출발점</a></li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -880,7 +966,7 @@
   </div>
 
   <!-- closing -->
-  <div class="close">
+  <div class="close" id="s-close">
     <p class="k">S-24 · Closing</p>
     <h2>정해진 답을 들고 온 게 아닙니다.<br>함께 그려갈 출발점을 들고 왔습니다.</h2>
     <p>빠른 생산은 이제 기본으로 두겠습니다. 저희가 궁금한 건 그 다음입니다 —
