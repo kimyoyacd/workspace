@@ -1,39 +1,19 @@
 <title>NETMARBLE × HIVELAB · 발표 대본</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  :root{
-    --paper:#F5F3EF; --card:#FBFAF7; --ink:#17150F; --ink-soft:#3A3630;
-    --muted:#857F72; --rule:#E4DFD5; --rule-soft:#EFEBE2;
+  /* 라이트 모드 고정 — OS/뷰어 테마와 무관하게 항상 흰 배경 */
+  :root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"]{
+    --paper:#FFFFFF; --card:#F7F5F0; --ink:#17150F; --ink-soft:#3A3630;
+    --muted:#857F72; --rule:#E7E2D8; --rule-soft:#F1EDE5;
     --accent:#FF5A1F; --accent-ink:#C7410F; --accent-wash:#FDEDE4;
     --blue:#1B4DFF; --blue-wash:#E9EDFF; --blue-ink:#123ACB;
     --good:#0E7A4B;
     --shadow:0 1px 2px rgba(23,21,15,.04),0 8px 24px rgba(23,21,15,.05);
     --mono:ui-monospace,"SF Mono",Menlo,monospace;
     --kr:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
-  }
-  @media (prefers-color-scheme:dark){
-    :root{
-      --paper:#121110; --card:#1B1917; --ink:#F2EFE9; --ink-soft:#CFC9BE;
-      --muted:#948D7F; --rule:#2E2A25; --rule-soft:#252220;
-      --accent:#FF6A33; --accent-ink:#FF8B5C; --accent-wash:#2A1B12;
-      --blue:#6C88FF; --blue-wash:#161C33; --blue-ink:#9DB0FF;
-      --good:#4CC088;
-      --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="light"]{
-    --paper:#F5F3EF; --card:#FBFAF7; --ink:#17150F; --ink-soft:#3A3630;
-    --muted:#857F72; --rule:#E4DFD5; --rule-soft:#EFEBE2;
-    --accent:#FF5A1F; --accent-ink:#C7410F; --accent-wash:#FDEDE4;
-    --blue:#1B4DFF; --blue-wash:#E9EDFF; --blue-ink:#123ACB; --good:#0E7A4B;
-    --shadow:0 1px 2px rgba(23,21,15,.04),0 8px 24px rgba(23,21,15,.05);
-  }
-  :root[data-theme="dark"]{
-    --paper:#121110; --card:#1B1917; --ink:#F2EFE9; --ink-soft:#CFC9BE;
-    --muted:#948D7F; --rule:#2E2A25; --rule-soft:#252220;
-    --accent:#FF6A33; --accent-ink:#FF8B5C; --accent-wash:#2A1B12;
-    --blue:#6C88FF; --blue-wash:#161C33; --blue-ink:#9DB0FF; --good:#4CC088;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
+    color-scheme:light;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -266,7 +246,6 @@
       <a href="#ch3">03 증거</a>
       <a href="#ch4">04 이득</a>
       <a href="#epi">05 제안</a>
-      <button class="toggle" id="tg" type="button" aria-label="테마 전환">◐ 테마</button>
     </nav>
   </div>
 </header>
@@ -388,16 +367,16 @@
     <div class="screen">
       <div class="tag"><span class="sn">S-01</span><span class="ch">CH1</span> 시장 현황</div>
       <h4>단가·수량·퍼포먼스가 동시에 압박받는 시대</h4>
-      <div class="vis">더 빠르게 · 더 많이 · 예산 안에서 · 효율 좋은 소재로 — 네 개의 요구가
-        한꺼번에 걸린다.</div>
+      <div class="vis">지금 게임 마케팅은 <strong>네 가지를 한꺼번에</strong> 요구받습니다 —
+        더 빠르게, 더 많이, 정해진 예산 안에서, 그러면서 성과까지 좋은 소재로.</div>
     </div>
     <div class="script">
       <div class="lbl">발표 대본</div>
-      <p class="say">먼저 시장 얘기부터 짧게 하겠습니다. 지금 게임 마케팅은 네 가지가
-        <strong>동시에</strong> 조여옵니다. 더 빠르게, 더 많이, 정해진 예산 안에서, 그러면서
-        효율까지 좋은 소재로.</p>
-      <p class="say">예전 같으면 이 중 하나만 신경 쓰면 됐는데, 지금은 네 개가 한 줄에 걸립니다.
-        그리고 이건 넷마블만의 문제가 아니라 업계 전체가 같은 벽 앞에 있습니다.</p>
+      <p class="say">먼저 시장 얘기부터 짧게 하겠습니다. 지금 게임 마케팅은 <strong>네 가지를
+        한꺼번에 맞춰야 합니다.</strong> 더 빠르게, 더 많이, 정해진 예산 안에서, 그러면서 성과까지
+        좋은 소재로요.</p>
+      <p class="say">예전엔 이 중 하나만 잘하면 됐습니다. 지금은 네 개를 <strong>동시에</strong>
+        맞춰야 하고, 이건 넷마블만의 문제가 아니라 업계 전체가 같은 벽 앞에 있습니다.</p>
       <div class="note"><span class="k">전환</span>
         <div>“그래서 <b>더 적은 예산으로 해결할 방법은 없을까</b> — 그 질문을 저희도 계속
           던졌습니다. 본격적인 답 전에, 넷마블의 현재 숫자부터 같이 보시죠.”</div>
@@ -1086,17 +1065,3 @@
 
 </main>
 
-<script>
-  (function(){
-    var root=document.documentElement, btn=document.getElementById('tg');
-    function cur(){
-      var a=root.getAttribute('data-theme');
-      if(a) return a;
-      return matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    }
-    btn.addEventListener('click',function(){
-      var next=cur()==='dark'?'light':'dark';
-      root.setAttribute('data-theme',next);
-    });
-  })();
-</script>
