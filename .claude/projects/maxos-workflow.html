@@ -332,6 +332,101 @@ body {
   <div class="legend-item"><div class="l-line"></div> 에이전트 간 전달</div>
 </div>
 
+<style>
+/* ── Trigger row ── */
+.trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+.trigger-node {
+  background: #fff;
+  border: 1.5px solid #374151;
+  border-radius: 8px;
+  padding: 11px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+.trigger-label {
+  font-family: var(--ff);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 3px;
+}
+.trigger-node .node-name {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+.trigger-node .node-desc {
+  font-size: 10.5px;
+  color: #555;
+  line-height: 1.4;
+  text-align: center;
+}
+.trigger-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 8px;
+  gap: 2px;
+}
+.trigger-arrow-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #9CA3AF;
+}
+.trigger-arrow-line span {
+  width: 48px;
+  height: 0;
+  border-top: 1.5px solid #D1D5DB;
+  position: relative;
+}
+.trigger-arrow-line span::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -4px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #D1D5DB;
+}
+.trigger-arrow-label {
+  font-size: 9.5px;
+  color: #9CA3AF;
+  font-family: var(--ff);
+}
+</style>
+
+<div class="trigger-row">
+  <div class="trigger-node" id="n-rfp-analyst">
+    <div class="trigger-label">프로젝트 인입 · 시작점</div>
+    <div class="node-name">rfp-analyst</div>
+    <div class="node-desc">RFP → 명시·숨은·미정의·위험 4분류 + 타겟·범위·제약 확인 질문 도출.</div>
+  </div>
+  <div class="trigger-arrow">
+    <div class="trigger-arrow-line">
+      <span></span>
+      <div class="trigger-arrow-label">타겟·범위 → Marketer</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="trigger-arrow-line">
+      <span></span>
+      <div class="trigger-arrow-label">제약·위험 → Strategist</div>
+    </div>
+  </div>
+</div>
+
 <div class="swimlanes-wrap">
 <div class="swimlanes" id="swimlanes">
 
@@ -341,8 +436,9 @@ body {
     <div class="lane-body">
 
       <div class="node" id="n-market-research">
+        <div class="in-badge">rfp-analyst</div>
         <div class="node-name">market-research</div>
-        <div class="node-desc">경쟁사 N개 분석 → XY 포지셔닝 맵 + 빈 자리 발견. 출처 필수.</div>
+        <div class="node-desc">RFP 타겟·범위 기반으로 경쟁사 N개 분석 → XY 포지셔닝 맵 + 빈 자리 발견. 출처 필수.</div>
         <div class="out-badge">리서치 시사점</div>
       </div>
       <div class="arr-v"></div>
@@ -380,12 +476,6 @@ body {
   <div class="lane strategist">
     <div class="lane-header">Strategist</div>
     <div class="lane-body">
-
-      <div class="node" id="n-rfp-analyst">
-        <div class="node-name">rfp-analyst</div>
-        <div class="node-desc">RFP → 명시·숨은·미정의·위험 4분류 + 확인 질문 목록.</div>
-      </div>
-      <div class="arr-v"></div>
 
       <div class="node" id="n-concept-director">
         <div class="node-name">concept-director</div>
