@@ -1,0 +1,912 @@
+<title>NETMARBLE × HIVELAB · 발표 대본</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#F5F3EF; --card:#FBFAF7; --ink:#17150F; --ink-soft:#3A3630;
+    --muted:#857F72; --rule:#E4DFD5; --rule-soft:#EFEBE2;
+    --accent:#FF5A1F; --accent-ink:#C7410F; --accent-wash:#FDEDE4;
+    --blue:#1B4DFF; --blue-wash:#E9EDFF; --blue-ink:#123ACB;
+    --good:#0E7A4B;
+    --shadow:0 1px 2px rgba(23,21,15,.04),0 8px 24px rgba(23,21,15,.05);
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+    --kr:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#121110; --card:#1B1917; --ink:#F2EFE9; --ink-soft:#CFC9BE;
+      --muted:#948D7F; --rule:#2E2A25; --rule-soft:#252220;
+      --accent:#FF6A33; --accent-ink:#FF8B5C; --accent-wash:#2A1B12;
+      --blue:#6C88FF; --blue-wash:#161C33; --blue-ink:#9DB0FF;
+      --good:#4CC088;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#F5F3EF; --card:#FBFAF7; --ink:#17150F; --ink-soft:#3A3630;
+    --muted:#857F72; --rule:#E4DFD5; --rule-soft:#EFEBE2;
+    --accent:#FF5A1F; --accent-ink:#C7410F; --accent-wash:#FDEDE4;
+    --blue:#1B4DFF; --blue-wash:#E9EDFF; --blue-ink:#123ACB; --good:#0E7A4B;
+    --shadow:0 1px 2px rgba(23,21,15,.04),0 8px 24px rgba(23,21,15,.05);
+  }
+  :root[data-theme="dark"]{
+    --paper:#121110; --card:#1B1917; --ink:#F2EFE9; --ink-soft:#CFC9BE;
+    --muted:#948D7F; --rule:#2E2A25; --rule-soft:#252220;
+    --accent:#FF6A33; --accent-ink:#FF8B5C; --accent-wash:#2A1B12;
+    --blue:#6C88FF; --blue-wash:#161C33; --blue-ink:#9DB0FF; --good:#4CC088;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--kr);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"tnum";
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  @media(max-width:720px){.wrap{padding:0 18px}}
+
+  /* ── Masthead ── */
+  header.top{
+    border-bottom:1.5px solid var(--ink);
+    background:var(--paper);position:sticky;top:0;z-index:50;
+  }
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;gap:16px}
+  .brandline{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);font-weight:600}
+  .brandline b{color:var(--accent)}
+  .top nav{display:flex;gap:4px;flex-wrap:wrap}
+  .top nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:6px}
+  .top nav a:hover{color:var(--ink);background:var(--rule-soft)}
+  .top nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ── Hero ── */
+  .hero{padding:88px 0 64px;border-bottom:1px solid var(--rule)}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--accent-ink);margin:0 0 22px}
+  .hero h1{font-size:clamp(38px,6vw,74px);line-height:1.04;margin:0;
+    font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+  .hero h1 .q{color:var(--muted);font-weight:800}
+  .hero .lede{margin:30px 0 0;font-size:clamp(17px,2vw,21px);
+    max-width:60ch;color:var(--ink-soft)}
+  .hero .meta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--muted)}
+  .hero .meta span{border:1px solid var(--rule);padding:7px 12px;border-radius:99px}
+
+  /* ── 3 promises band ── */
+  .promises{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:16px;
+    overflow:hidden;margin:44px 0 8px}
+  @media(max-width:720px){.promises{grid-template-columns:1fr}}
+  .promises .p{background:var(--card);padding:26px 24px}
+  .promises .p .n{font-family:var(--mono);font-size:12px;color:var(--accent);
+    letter-spacing:.1em}
+  .promises .p h3{margin:12px 0 6px;font-size:19px;font-weight:700}
+  .promises .p p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
+
+  /* ── Chapter divider ── */
+  .chap{padding:70px 0 10px;scroll-margin-top:80px}
+  .chap .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted)}
+  .chap .ey b{color:var(--accent)}
+  .chap h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;
+    margin:14px 0 0;text-wrap:balance}
+  .chap .sub{margin:16px 0 0;color:var(--ink-soft);font-size:17px;max-width:62ch}
+  .chap-rule{height:3px;background:var(--ink);margin:26px 0 0;width:56px;border-radius:2px}
+
+  /* ── Slide block ── */
+  .slide{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);
+    gap:28px;padding:34px 0;border-bottom:1px solid var(--rule-soft);
+    scroll-margin-top:80px}
+  @media(max-width:860px){.slide{grid-template-columns:1fr;gap:18px}}
+  .screen{background:var(--card);border:1px solid var(--rule);border-radius:14px;
+    padding:22px 22px 24px;box-shadow:var(--shadow);align-self:start}
+  .screen .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .screen .tag .sn{background:var(--ink);color:var(--paper);border-radius:5px;
+    padding:2px 7px;font-weight:600}
+  .screen .tag .ch{color:var(--accent)}
+  .screen h4{margin:0 0 12px;font-size:21px;font-weight:800;letter-spacing:-.01em;
+    line-height:1.25;text-wrap:balance}
+  .screen .vis{font-size:14px;color:var(--ink-soft);line-height:1.6}
+  .screen ul{margin:12px 0 0;padding-left:0;list-style:none;display:grid;gap:7px}
+  .screen ul li{font-size:13.5px;color:var(--ink-soft);padding-left:18px;
+    position:relative;line-height:1.55}
+  .screen ul li::before{content:"";position:absolute;left:2px;top:9px;
+    width:6px;height:6px;border-radius:2px;background:var(--accent)}
+  .screen ul li.blue::before{background:var(--blue)}
+
+  .script{align-self:start}
+  .script .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-ink);margin:2px 0 12px;font-weight:600}
+  .script p{margin:0 0 14px;font-size:16.5px;color:var(--ink);line-height:1.72}
+  .script p.say{position:relative;padding-left:18px}
+  .script p.say::before{content:"";position:absolute;left:0;top:6px;bottom:6px;
+    width:3px;background:var(--accent);border-radius:2px}
+  .script strong{font-weight:700}
+  .script .num{font-family:var(--mono);font-weight:700;color:var(--accent-ink);
+    font-feature-settings:"tnum"}
+  .script .nm{color:var(--blue-ink);font-weight:700}
+
+  .note{margin-top:6px;background:var(--rule-soft);border-radius:10px;
+    padding:12px 15px;font-size:13px;color:var(--ink-soft);display:flex;gap:9px}
+  .note b{color:var(--ink);font-weight:700}
+  .note .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    color:var(--accent-ink);text-transform:uppercase;flex-shrink:0;padding-top:2px}
+
+  /* data table */
+  .tbl-wrap{overflow-x:auto;margin:14px 0 0;border:1px solid var(--rule);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:440px}
+  th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--rule-soft)}
+  thead th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);background:var(--rule-soft)}
+  tbody tr:last-child td{border-bottom:none}
+  td .up{color:var(--good);font-weight:700}
+  td .dn{color:var(--accent-ink);font-weight:700}
+  td .none{color:var(--good);font-weight:700}
+  .num-c{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* stat row */
+  .stats{display:flex;flex-wrap:wrap;gap:22px;margin:8px 0 0}
+  .stats .s{flex:1;min-width:120px}
+  .stats .s .v{font-size:30px;font-weight:800;letter-spacing:-.02em;
+    font-feature-settings:"tnum"}
+  .stats .s .v.acc{color:var(--accent)}
+  .stats .s .v.blue{color:var(--blue)}
+  .stats .s .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* pull quote slide */
+  .pull{padding:56px 0;border-bottom:1px solid var(--rule);text-align:left}
+  .pull .q{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-.02em;
+    line-height:1.1;margin:0;max-width:20ch;text-wrap:balance}
+  .pull .q .a{color:var(--accent)}
+  .pull .sn{font-family:var(--mono);font-size:12px;color:var(--muted);
+    letter-spacing:.1em;margin-bottom:20px}
+  .pull .after{margin:26px 0 0;font-size:17px;color:var(--ink-soft);max-width:54ch}
+
+  /* closing */
+  .close{background:var(--ink);color:var(--paper);border-radius:20px;
+    padding:56px 44px;margin:56px 0 80px}
+  @media(max-width:720px){.close{padding:40px 24px}}
+  .close .k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  .close h2{font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.15;
+    margin:0;letter-spacing:-.02em;text-wrap:balance;color:var(--paper)}
+  .close p{margin:22px 0 0;font-size:17px;color:#C9C4B9;max-width:58ch}
+  .close .sd{margin-top:26px;padding-left:18px;border-left:3px solid var(--accent);
+    font-size:16px;color:#E6E1D6}
+
+  footer{padding:0 0 70px;color:var(--muted);font-size:13px;
+    font-family:var(--mono);letter-spacing:.04em}
+
+  .toggle{background:var(--card);border:1px solid var(--rule);color:var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;cursor:pointer;
+    padding:6px 11px;border-radius:7px}
+  .toggle:hover{border-color:var(--accent)}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .tone{display:inline-block;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.06em;color:var(--accent-ink);background:var(--accent-wash);
+    padding:3px 8px;border-radius:6px;margin-right:6px;margin-bottom:6px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandline">NETMARBLE <span style="color:var(--muted)">×</span> <b>HIVELAB</b> · 발표 대본</div>
+    <nav aria-label="목차">
+      <a href="#pro">00 오프닝</a>
+      <a href="#ch1">01 왜 지금</a>
+      <a href="#ch2">02 가진 것</a>
+      <a href="#ch3">03 증거</a>
+      <a href="#ch4">04 이득</a>
+      <a href="#epi">05 제안</a>
+      <button class="toggle" id="tg" type="button" aria-label="테마 전환">◐ 테마</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="pro">
+    <p class="kicker">AI Creative Proposal · 2026</p>
+    <h1>12년을 함께한 파트너가,<br>이번엔 <span class="q">먼저 물어봅니다.</span></h1>
+    <p class="lede">“주시는 걸 잘 만드는” 파트너를 넘어, 저희 <strong>HIVELAB</strong>이 넷마블을
+      <strong>어떻게 더 도울 수 있을지</strong> 고민하고 또 고민한 자리입니다.
+      오늘 다루는 건 전부 <strong>넷마블이 가져갈 이득</strong>입니다.</p>
+    <div class="meta">
+      <span>발표 시간 ≈ 20분</span>
+      <span>슬라이드 5막 구성</span>
+      <span>데이터 출처 · 하이브랩 계약/제작 실적 + 공개 자료</span>
+    </div>
+
+    <div class="promises" role="list" aria-label="오늘의 세 가지 약속">
+      <div class="p" role="listitem">
+        <div class="n">이득 01</div>
+        <h3>같은 단가, 더 넓은 커버리지</h3>
+        <p>TO(투입 인원)를 늘리지 않고 소재 산출량과 A/B 테스트 범위를 확장합니다.</p>
+      </div>
+      <div class="p" role="listitem">
+        <div class="n">이득 02</div>
+        <h3>쌓인 소재가 자산이 된다</h3>
+        <p>11년치 넷마블 소재를 검색·태깅·재사용 가능한 데이터로. 감이 아니라 근거로.</p>
+      </div>
+      <div class="p" role="listitem">
+        <div class="n">이득 03</div>
+        <h3>넷마블은 새로 할 게 없다</h3>
+        <p>도입·데이터정리·학습 부담 0. 평소대로 발주하면 저희가 돌립니다.</p>
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px">
+      <span class="k">오프닝 톤</span>
+      <div><b>천천히, 눈 맞추며.</b> 첫 30초는 실적 자랑이 아니라 “당신들 얘기를 하려고 왔다”는 신호.
+        “위에선 AI 덕분에 마케팅비 최소화·효율화 압박이 크시죠? 준비 중인 하반기 신작·라이브
+        업데이트로 소재 수요는 더 늘어날 거고요. 저희가 어떤 방식으로 더 도울 수 있을지 몇 가지
+        정리해왔습니다.” 로 문을 연다.</div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CH1 ═══════════ -->
+  <section class="chap" id="ch1">
+    <div class="ey">Chapter <b>01</b> · Why Now</div>
+    <h2>왜 지금이어야 하는가</h2>
+    <p class="sub">답(우리 툴)을 꺼내기 전에, 넷마블이 매일 겪는 현실부터. “맞아, 우리 얘기네”가
+      먼저 나와야 뒤가 설득됩니다.</p>
+    <div class="chap-rule"></div>
+  </section>
+
+  <!-- slide: 시장 현황 -->
+  <div class="slide" id="s-market">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-01</span><span class="ch">CH1</span> 시장 현황</div>
+      <h4>단가·수량·퍼포먼스가 동시에 압박받는 시대</h4>
+      <div class="vis">더 빠르게 · 더 많이 · 예산 안에서 · 효율 좋은 소재로 — 네 개의 요구가
+        한꺼번에 걸린다.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">먼저 시장 얘기부터 짧게 하겠습니다. 지금 게임 마케팅은 네 가지가
+        <strong>동시에</strong> 조여옵니다. 더 빠르게, 더 많이, 정해진 예산 안에서, 그러면서
+        효율까지 좋은 소재로.</p>
+      <p class="say">예전 같으면 이 중 하나만 신경 쓰면 됐는데, 지금은 네 개가 한 줄에 걸립니다.
+        그리고 이건 넷마블만의 문제가 아니라 업계 전체가 같은 벽 앞에 있습니다.</p>
+      <div class="note"><span class="k">전환</span>
+        <div>“그래서 <b>더 적은 예산으로 해결할 방법은 없을까</b> — 그 질문을 저희도 계속
+          던졌습니다. 본격적인 답 전에, 넷마블의 현재 숫자부터 같이 보시죠.”</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 현황 배경 -->
+  <div class="slide" id="s-context">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-02</span><span class="ch">CH1</span> 현황</div>
+      <h4>수요는 치솟는데, 단가는 그대로</h4>
+      <div class="vis">2026 상반기 신작 출시 + 하반기 대기. 어라이즈 2주년, 세븐나이츠 GC 7주년 등
+        라이브 이벤트가 겹치며 소재 수요는 계속 늘어난다.</div>
+      <ul>
+        <li>글로벌·다국어 시안 수요 병행</li>
+        <li>이벤트·시즌 주기는 짧아지는데 제작 속도는 유한</li>
+        <li>수요는 늘지만 단가는 못 올리는 구조</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">2026년 상반기엔 신작이 나왔고, 하반기 라인업도 대기 중입니다. 여기에
+        나혼렙 어라이즈 2주년, 세븐나이츠 GC 7주년 같은 라이브 업데이트가 겹칩니다.</p>
+      <p class="say">정리하면 — <strong>소재 수요는 계속 늘어나는데, 단가는 못 올리는 구조</strong>입니다.
+        저희가 넷마블 소재를 직접 만들면서 이걸 숫자로 체감했습니다. 다음 장에서 보여드리죠.</p>
+      <div class="note"><span class="k">주의</span>
+        <div>넷마블 <b>내부 마케팅 수치는 언급 금지.</b> 여기서 쓰는 숫자는 전부 하이브랩의
+          <b>계약·제작 실적</b>과 공개 자료 범위 안.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 생산량 비교 -->
+  <div class="slide" id="s-volume">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-03</span><span class="ch">CH1</span> 데이터 · 수량</div>
+      <h4>25년 vs 26년 상반기 제작 수량</h4>
+      <div class="vis">1~6월 월별 총 제작 건수 비교 (이미지·영상·OOH·기획 포함). 막대 차트 +
+        상반기 합계 스트립.</div>
+      <div class="stats">
+        <div class="s"><div class="v">21,944</div><div class="c">25년 상반기 (건)</div></div>
+        <div class="s"><div class="v">36,700</div><div class="c">26년 상반기 (건)</div></div>
+        <div class="s"><div class="v acc">+67.2%</div><div class="c">YoY 증가</div></div>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">이게 저희가 만든 실제 물량입니다. 작년 상반기 <span class="num">21,944건</span>에서
+        올해 상반기 <span class="num">36,700건</span>. <strong>한 해 만에 67% 늘었습니다.</strong></p>
+      <p class="say">특히 3월, 4월은 두 배 넘게 뛰었죠. 신작·이벤트가 몰리면 이렇게 튑니다. 여기서
+        중요한 질문 하나 — <strong>이 물량을, 사람을 더 갈아 넣어서 만들었을까요?</strong></p>
+      <div class="note"><span class="k">호흡</span>
+        <div>여기서 <b>한 박자 멈춘다.</b> 질문을 던지고 다음 장으로. 청중이 “인원 늘렸겠지”를
+          예상하게 만든 뒤 뒤집는 게 포인트.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: TO 비교 -->
+  <div class="slide" id="s-to">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-04</span><span class="ch">CH1</span> 데이터 · TO</div>
+      <h4>TO 인원 −11.8% → 생산량 +67%</h4>
+      <div class="vis">월별 TO 발주 인원 표 + 카테고리별 상반기 제작량 비교.</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>구분</th><th>25년</th><th>26년</th><th>증감</th></tr></thead>
+          <tbody>
+            <tr><td>TO 월평균(명)</td><td class="num-c">42.3</td><td class="num-c">37.3</td><td class="num-c"><span class="dn">−11.8%</span></td></tr>
+            <tr><td>이미지 베리에이션</td><td class="num-c">15,100</td><td class="num-c">28,310</td><td class="num-c"><span class="up">+88%</span></td></tr>
+            <tr><td>영상 베리에이션</td><td class="num-c">5,270</td><td class="num-c">6,787</td><td class="num-c"><span class="up">+29%</span></td></tr>
+            <tr><td>이미지 신규</td><td class="num-c">873</td><td class="num-c">642</td><td class="num-c"><span class="dn">−27%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">답은 반대였습니다. 투입 인원은 오히려 <strong>12% 줄었습니다.</strong>
+        월평균 <span class="num">42.3명</span>에서 <span class="num">37.3명</span>으로요.</p>
+      <p class="say">인원은 줄었는데 생산량은 67% 늘었다 — 그 차이를 메운 게 뭘까요.
+        <strong>이미지 베리에이션이 88% 늘었습니다.</strong> 신규 원본은 오히려 줄고,
+        하나의 원본을 여러 버전으로 확장하는 작업이 폭발한 거죠. 이게 바로 <strong>AI 베리에이션이
+        이미 만들어낸 효과</strong>입니다.</p>
+      <div class="note"><span class="k">핵심 메시지</span>
+        <div><b>“인원 ↓, 생산 ↑”</b> 한 줄이 CH1의 정점. 이 대비를 또박또박.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULL: 데이터 파편화 -->
+  <section class="pull" id="s-friction">
+    <div class="sn">S-05 · CH1 · Friction Point</div>
+    <p class="q">소재는 쌓이는데,<br><span class="a">찾을 수가 없다.</span></p>
+    <p class="after">진짜 문제는 여기 있습니다. 3개월 전 잘 나갔던 소재를 다시 쓰려면 폴더를
+      뒤져야 하고, 뭐가 왜 잘 됐는지는 데이터가 아니라 <strong>담당자 머릿속</strong>에 있습니다.
+      기획 방향이 경험과 감에 의존하는 구조죠.</p>
+    <div class="slide" style="border-bottom:none;padding-bottom:0">
+      <div class="screen">
+        <div class="tag"><span class="sn">S-05</span><span class="ch">CH1</span> 데이터 파편화</div>
+        <h4>쌓인 자산이 자산이 아니게 되는 이유</h4>
+        <ul>
+          <li>“저번에 잘 된 배너 어떤 거였지?” — 3개월 전 소재를 폴더에서 뒤적</li>
+          <li>“왜 잘 됐는지”가 데이터로 안 남음 — 성과가 기록되지 않음</li>
+          <li>기획 방향이 담당자 경험과 감에 의존 — 인수인계 때마다 리셋</li>
+        </ul>
+      </div>
+      <div class="script">
+        <div class="lbl">발표 대본</div>
+        <p class="say">물량이 늘수록 역설적으로 이게 심해집니다. 소재는 계속 쌓이는데, 정작
+          <strong>필요할 때 못 찾습니다.</strong></p>
+        <p class="say">“저번에 잘 됐던 그 배너 어디 있지?” 하면 폴더를 뒤지고, 왜 잘 됐는지는
+          어디에도 안 적혀 있고, 결국 담당자가 바뀌면 그 감각이 통째로 사라집니다. 쌓인 게
+          자산이 아니라 <strong>짐</strong>이 되는 거죠.</p>
+        <div class="note"><span class="k">착지 질문</span>
+          <div>CH1을 닫는 한 문장 — <b>“그럼 어떻게 하면 TO를 유지하면서, 산출량과 적중률을
+            같이 올릴까? 같은 단가로 테스트 커버리지를 넓히는 것 —”</b> 이 질문을 CH2의 문으로.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CH2 ═══════════ -->
+  <section class="chap" id="ch2">
+    <div class="ey">Chapter <b>02</b> · What We Have</div>
+    <h2>무엇으로 가능한가</h2>
+    <p class="sub">이제 답입니다. 새로 사야 할 것도, 배워야 할 것도 아닌 — 넷마블이 이미
+      12년간 저희와 쌓아온 것에서 나옵니다.</p>
+    <div class="chap-rule"></div>
+  </section>
+
+  <!-- slide: AS-IS vs TO-BE -->
+  <div class="slide" id="s-asis">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-06</span><span class="ch">CH2</span> AS-IS vs TO-BE</div>
+      <h4>16단계 프로세스 → 3단계로</h4>
+      <div class="vis">RFP 접수부터 납품까지. 기획 5 + 디자인 6 + 영상 5 = 16단계(넷마블 검토 3회+)를,
+        키워드 입력 → AI 생성 → 납품 3단계로.</div>
+      <div class="stats">
+        <div class="s"><div class="v">16<span style="font-size:16px">단계</span></div><div class="c">AS-IS · 실무자 상시 개입</div></div>
+        <div class="s"><div class="v acc">3<span style="font-size:16px">단계</span></div><div class="c">TO-BE · 키워드 입력만</div></div>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">지금 넷마블 소재 한 건이 나오려면 <strong>16단계</strong>를 거칩니다. 기획 5,
+        디자인 6, 영상 5. 그 사이 넷마블 검토만 세 번 이상 들어가죠.</p>
+      <p class="say">저희가 제안하는 건 이걸 <strong>3단계</strong>로 줄이는 겁니다. 넷마블은
+        키워드만 던지고, AI가 생성하고, 저희가 납품합니다. <strong>넷마블은 일하지 않고,
+        하이브랩 시스템이 스스로 돌아가는</strong> 구조예요.</p>
+      <div class="note"><span class="k">시각 강조</span>
+        <div>−80% / ×3 / 0회 수치 스트립을 손으로 짚으며. 왼쪽(복잡)→오른쪽(단순) 시선 유도.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 우리가 가진 것 -->
+  <div class="slide" id="s-have">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-07</span><span class="ch">CH2</span> 우리가 가진 것</div>
+      <h4>11년치 넷마블 소재를, 검색 가능한 자산으로</h4>
+      <div class="vis">HIVELAB은 11년치 넷마블 광고 소재를 분류·태깅·검색 가능한 형태로 보유.
+        이 데이터 위에 세 가지를 준비했습니다.</div>
+      <ul>
+        <li>① AI UA 배너 <strong>검색</strong> 시스템</li>
+        <li>② AI 기획 <strong>3단계</strong> 프로세스</li>
+        <li>③ AI 스타일 <strong>베리에이션</strong></li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">그 답의 재료가 이겁니다. 하이브랩은 지난 <strong>11년치 넷마블 광고 소재</strong>를
+        그냥 쌓아둔 게 아니라, 분류하고 태깅해서 <strong>검색 가능한 형태</strong>로 갖고 있습니다.</p>
+      <p class="say">이 데이터 위에 세 가지를 준비했습니다. 쌓인 걸 <strong>찾게 하는</strong> 검색
+        시스템, 방향을 <strong>먼저 잡는</strong> AI 기획 3단계, 그리고 같은 단가로 커버리지를
+        <strong>넓히는</strong> 스타일 베리에이션. 하나씩 보여드리죠.</p>
+      <div class="note"><span class="k">구조</span>
+        <div>CH1의 세 통증(못 찾음 / 감 의존 / 커버리지 한계)과 세 시스템을 <b>1:1로 매칭</b>해서
+          말하면 논리가 딱 맞아떨어진다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: AI UA 검색 시스템 -->
+  <div class="slide" id="s-search">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-08</span><span class="ch">CH2 ①</span> AI UA 검색</div>
+      <h4>넷마블은 평소대로. 인수인계는 시스템이.</h4>
+      <div class="vis">배너 검색 시스템 데모 (STEP1 · 구현 진행 중). 11년치 인수인계를 대신하고,
+        HIVELAB은 그 데이터로 소재를 확장.</div>
+      <ul>
+        <li><strong>5초 검색</strong> — “세븐나이츠 겨울 이벤트” 자연어로 즉시</li>
+        <li><strong>성과 지표 연동</strong> — 소재별 성과 확인</li>
+        <li><strong>다차원 필터</strong> — 연도·게임·매체·국가 교차</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">첫 번째, AI UA 검색 시스템입니다. 핵심은 이겁니다 — <strong>넷마블은 평소대로
+        일하시면 됩니다.</strong> 담당자가 바뀌어도 11년치 인수인계를 이 시스템이 대신하고,
+        저희는 그 데이터로 소재를 확장합니다.</p>
+      <p class="say">“세븐나이츠 겨울 이벤트” 이렇게 자연어로 치면 <strong>5초 만에</strong> 과거
+        소재가 뜨고, 각 소재의 성과 지표까지 붙어 있습니다. 연도·게임·매체·국가로 교차 필터도
+        되고요.</p>
+      <div class="note"><span class="k">솔직함</span>
+        <div>“지금 <b>구현 진행 중</b>인 STEP 1”이라고 명시. 과장 대신 진행률을 보여주는 게
+          이 청중(개발사)에겐 더 신뢰가 간다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 활용 시나리오 -->
+  <div class="slide" id="s-usecase">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-09</span><span class="ch">CH2 ①</span> 활용 시나리오</div>
+      <h4>툴은 열려 있습니다. 활용은 미팅에서.</h4>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>활용 시점</th><th>DB 호출</th><th>베리에이션 확장</th></tr></thead>
+          <tbody>
+            <tr><td>1주년·N주년 이벤트</td><td>작년 동일 시점 배너 호출</td><td>톤·구도 유지, 메시지만 교체</td></tr>
+            <tr><td>신규 헌터·캐릭터 출시</td><td>과거 동일 클래스 배너 호출</td><td>검증된 레이아웃 재사용</td></tr>
+            <tr><td>콜라보·시즌 캠페인</td><td>과거 콜라보 시안 패턴 호출</td><td>컨텍스트만 교체해 즉시 확장</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">이 툴을 어떻게 쓸지는 넷마블 캠페인 흐름에 맞춰야 합니다. 예를 들어 —
+        1주년 이벤트면 작년 동일 시점 배너를 불러와서 <strong>톤과 구도는 그대로, 메시지만
+        교체</strong>합니다. 신규 캐릭터 출시면 과거 같은 클래스의 검증된 레이아웃을 재사용하고요.</p>
+      <p class="say">어느 캠페인에 어떤 깊이로 적용할지, 그 지점을 <strong>오늘 미팅에서 함께</strong>
+        정하고 싶습니다.</p>
+      <div class="note"><span class="k">톤</span>
+        <div><span class="tone">협업 신호</span> 일방 제안이 아니라 “같이 정하자”. 고객사가
+          결정권을 쥔 느낌을 준다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 넷마블이 가져갈 이득 -->
+  <div class="slide" id="s-value">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-10</span><span class="ch">CH2 ①</span> 넷마블의 이득</div>
+      <h4>이기는 패턴 기반 확장, 그래서 적중률이 다르다</h4>
+      <ul>
+        <li><strong>가치 1 · 내부 리소스 절감</strong> — 크리에이티브 섭외·관리·성과 분석을 HIVELAB이 일괄. 전략적 의사결정에 집중</li>
+        <li><strong>가치 2 · 성과 연동 과금</strong> — 성과가 높을수록 투자 대비 효율. 리스크 없는 구조로 시작</li>
+        <li><strong>가치 3 · 축적형 인사이트</strong> — 운영 기간이 길어질수록 데이터 정확도 상승. 더 정밀한 추천</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">이게 <span class="nm">넷마블</span>에게 뭘 남기느냐 — 세 가지입니다.
+        첫째, 섭외부터 성과 분석까지 저희가 맡으니 넷마블은 <strong>전략적 판단에 집중</strong>합니다.
+        둘째, <strong>성과 연동 과금</strong>이라 잘 될수록 효율이 좋아지는, 리스크 없는 시작입니다.</p>
+      <p class="say">셋째가 제일 중요한데요 — <strong>오래 돌릴수록 데이터가 정확해집니다.</strong>
+        담당자가 바뀌어도 데이터는 남으니까요. 그래서 정리해두면, 그게 다 <span class="nm">넷마블이
+        가져갈 이득</span>이 됩니다.</p>
+    </div>
+  </div>
+
+  <!-- slide: 넷마블이 새로 할 것 없도록 -->
+  <div class="slide" id="s-noburden">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-11</span><span class="ch">CH2 ①</span> 도입 부담 0</div>
+      <h4>넷마블이 새로 해야 할 것은 없도록</h4>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>항목</th><th>일반적 도입 부담</th><th>이 제안</th></tr></thead>
+          <tbody>
+            <tr><td>시스템 도입</td><td>신규 SaaS 계약·IT 보안·망 연동</td><td><span class="none">없음</span> — HIVELAB 사내 운영</td></tr>
+            <tr><td>데이터 준비</td><td>과거 소재 수집·태깅·메타 정리</td><td><span class="none">없음</span> — DB화 진행 중(11년치)</td></tr>
+            <tr><td>담당자 인수인계</td><td>전임자 기억·폴더 탐색</td><td><span class="none">없음</span> — 자연어 검색</td></tr>
+            <tr><td>발주 방식</td><td>새 양식·단가표 재협상</td><td><span class="none">없음</span> — 평소대로</td></tr>
+            <tr><td>학습 비용</td><td>도구 교육·매뉴얼</td><td><span class="none">없음</span> — 저희가 검색·활용</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">여기서 제일 자주 나오는 걱정 — “그거 도입하려면 우리가 뭘 해야 되냐” —
+        먼저 짚고 갈게요. <strong>넷마블이 새로 할 건 없습니다.</strong></p>
+      <p class="say">시스템 계약, 데이터 정리, 인수인계, 발주 방식 변경, 도구 교육 — 이 표의
+        모든 항목이 <strong>‘없음’</strong>입니다. 전부 저희 안에서 돌아갑니다. 넷마블은
+        <strong>평소대로 발주만</strong> 하시면 돼요.</p>
+      <div class="note"><span class="k">한 문장</span>
+        <div><b>“뭐 안 하셔도 됩니다. 저희가 하겠습니다.”</b> — 이 슬라이드의 전부. 표는
+          훑고, 이 한마디에 힘을 준다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: AI 기획 3단계 (STEP2) -->
+  <div class="slide" id="s-plan">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-12</span><span class="ch">CH2 ②</span> AI 기획 3단계</div>
+      <h4>제작 전에, 방향이 먼저 잡힙니다</h4>
+      <div class="vis">소재 패턴 + 성과 데이터. 기획자가 방향을 잡기 전에 시스템이 과거 고성과
+        패턴을 먼저 보여준다. — 세븐나이츠·하게 이벤트·META 기준 IP 기획 인텔리전스 리포트 예시.</div>
+      <ul>
+        <li><strong>고성과 패턴</strong> — 캐릭터 전면 노출+액션 컷 / 이벤트 날짜 타이머 / 골드·레드 배색</li>
+        <li><strong>피해야 할 패턴</strong> — 텍스트 과다 / 군집 캐릭터(포커스 분산) / 쿨톤 단독</li>
+        <li><strong>추천 방향</strong> — 원본 A×8 스타일 변형</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">두 번째, AI 기획 3단계입니다. 검색이 “쌓인 걸 찾는다”면, 이건 <strong>만들기
+        전에 방향을 잡아주는</strong> 겁니다.</p>
+      <p class="say">기획자가 감으로 방향을 정하기 전에, 시스템이 <strong>과거 고성과 패턴을 먼저
+        보여줍니다.</strong> “이런 구도가 잘 됐고, 이런 건 피하세요, 그러니 이 방향으로 8가지
+        변형을 가시죠” — 이런 리포트가 기획 첫 단계에 깔리는 거죠. 감이 아니라 <strong>근거로
+        시작</strong>하는 겁니다.</p>
+      <div class="note"><span class="k">연결</span>
+        <div>CH1의 “감·경험 의존” 통증을 정확히 되받는 슬라이드. “아까 그 문제, 여기서
+          풀립니다”를 명시.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CH3 ═══════════ -->
+  <section class="chap" id="ch3">
+    <div class="ey">Chapter <b>03</b> · Proof</div>
+    <h2>말이 아니라, 이미 되고 있다</h2>
+    <p class="sub">제안이 아니라 실측. 일상 작업에서 이미 검증 중인 결과물과, 솔직한 한계까지
+      같이 보여드립니다.</p>
+    <div class="chap-rule"></div>
+  </section>
+
+  <!-- slide: 일상 검증 -->
+  <div class="slide" id="s-daily">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-13</span><span class="ch">CH3</span> 일상 검증</div>
+      <h4>이미 일상 작업에서 검증 중인 AI 활용</h4>
+      <div class="vis">HIVELAB은 일상 작업에서 AI 테스트와 베리에이션 테스트를 반복하며 결과를 다음
+        작업에 반영하는 사이클을 운영 중. 하나의 키아트에서 다중 스타일 변형을 시도하고, 잘 되는
+        패턴을 다음 작업에 반영.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">여기서부터는 제안이 아니라 <strong>이미 하고 있는 것</strong>입니다. 저희는
+        매일의 작업에서 AI 테스트와 베리에이션을 돌리고, 잘 되는 패턴을 다음 작업에 반영하는
+        <strong>사이클</strong>을 이미 운영 중입니다.</p>
+      <p class="say">넷마블이 주시는 TO 원본 외에도, 저희가 DB 패턴을 활용해 소재를 <strong>추가로
+        확장</strong>하고 있고요. 실제 결과를 보여드리겠습니다.</p>
+    </div>
+  </div>
+
+  <!-- slide: AI 활용 현황 -->
+  <div class="slide" id="s-adoption">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-14</span><span class="ch">CH3</span> 활용 현황</div>
+      <h4>AI 활용은 계속 늘고 있습니다</h4>
+      <div class="vis">신규 제작의 AI 사용 비중이 반년 새 두 배 이상. 도구는 ChatGPT · Freepik AI ·
+        Kling · Midjourney 등 병행.</div>
+      <div class="stats">
+        <div class="s"><div class="v">21%</div><div class="c">3월 · 신규제작 AI 사용</div></div>
+        <div class="s"><div class="v acc">50%</div><div class="c">6월 · 신규제작 AI 사용</div></div>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">추세도 뚜렷합니다. 저희 신규 제작 중 AI를 쓴 비중이 3월 <span class="num">21%</span>
+        에서 6월 <span class="num">50%</span>로, 반년 만에 두 배가 넘었습니다.</p>
+      <p class="say">ChatGPT, Freepik, Kling, Midjourney 같은 도구를 상황에 맞게 조합해서요.
+        <strong>실험이 아니라 실무에 이미 들어와 있다</strong>는 얘깁니다.</p>
+    </div>
+  </div>
+
+  <!-- slide: 아이데이션 목업 -->
+  <div class="slide" id="s-mockup">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-15</span><span class="ch">CH3</span> 사례 · 아이데이션</div>
+      <h4>SB 분석 → AI 활용 목업 제작</h4>
+      <div class="vis">RF ONLINE 사례. 스토리보드 분석 후 ChatGPT·Seedance 조합으로 구도·타이포·CTA를
+        활용, 원컨티에서 다른 1차 시안 여러 개를 제작 → 전 단계에서 담당 도움.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">첫 사례, 아이데이션입니다. RF ONLINE 스토리보드를 분석한 뒤, 여러 AI 도구를
+        조합해서 <strong>하나의 콘티에서 서로 다른 1차 시안을 여러 개</strong> 뽑았습니다.</p>
+      <p class="say">예전 같으면 시안 하나 만들 시간에, 지금은 <strong>선택지 여러 개</strong>를
+        놓고 시작합니다. 기획 전 단계가 그만큼 두꺼워진 거죠.</p>
+    </div>
+  </div>
+
+  <!-- slide: A/B 테스트 -->
+  <div class="slide" id="s-abtest">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-16</span><span class="ch">CH3</span> 사례 · A/B</div>
+      <h4>무제한 A/B 테스트</h4>
+      <div class="vis">‘첫사랑 미나’ 사례. 마스터 시안 1종에서 톤·배색·무드 다른 베리에이션을 대량
+        생성. 매체·타깃·시즌별로 소재를 늘려 ROI를 끌어올린다.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">두 번째, A/B 테스트입니다. ‘첫사랑 미나’ 마스터 시안 <strong>하나</strong>에서
+        핑크·레드·블루·다크 톤으로 <strong>여러 버전</strong>을 만들었습니다.</p>
+      <p class="say">예전엔 소재가 부족해서 A/B를 못 돌렸다면, 지금은 <strong>같은 단가로 테스트
+        커버리지를 넓힐 수</strong> 있습니다. 앞에서 던진 질문 — “같은 단가로 커버리지 확장” —
+        이게 그 답입니다.</p>
+      <div class="note"><span class="k">콜백</span>
+        <div>CH1 착지 질문을 <b>그대로 인용</b>하며 답으로 연결. 청중이 “아 아까 그거” 하고
+          연결 짓게.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- slide: 키아트 생성 -->
+  <div class="slide" id="s-keyart">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-17</span><span class="ch">CH3</span> 사례 · 생성</div>
+      <h4>AI Resource / Keyart Creation</h4>
+      <div class="vis">프롬프트 → 결과물 실물. Art Nouveau 스타일 키비주얼, RF ONLINE 우주선 콕핏 씬,
+        키아트 생성·스타일 트랜스퍼. 단일 원본 리소스로부터 다채로운 스타일의 그래픽 예셋 확장.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">세 번째, 키아트 생성입니다. 여기 프롬프트와 실제 결과물을 나란히 놨는데요 —
+        아르누보 스타일 키비주얼, RF ONLINE 콕핏 씬, 이런 게 <strong>텍스트 지시 하나로</strong>
+        나옵니다.</p>
+      <p class="say">단일 원본에서 스타일 트랜스퍼로 <strong>퀄리티를 유지한 채</strong> 다양한
+        결을 뽑는 거죠. 원본 고유의 정체성은 지키면서요.</p>
+    </div>
+  </div>
+
+  <!-- slide: 글로벌 시안 -->
+  <div class="slide" id="s-global">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-18</span><span class="ch">CH3</span> 사례 · 글로벌</div>
+      <h4>글로벌 시안 대응 — 마스터 1종 → 국가별</h4>
+      <div class="vis">RF ONLINE 다국어. 마스터 시안 제작 후 AI로 국가별 시안(TW 등)을 확장. 메인
+        리소스 1종으로 각 국가 로컬라이징 진행. AI 영상 사례도 병행.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">네 번째, 글로벌입니다. 넷마블은 다국어 시안 수요가 크죠. 마스터 시안 하나를
+        만들면, AI로 <strong>국가별 버전을 확장</strong>합니다. RF ONLINE도 대만 등 여러 버전을
+        이렇게 뽑았습니다.</p>
+      <p class="say">메인 리소스 <strong>1종으로 여러 국가</strong>를 커버하니, 글로벌 캠페인
+        리드타임이 확 줄어듭니다.</p>
+    </div>
+  </div>
+
+  <!-- slide: 솔직한 한계 -->
+  <div class="slide" id="s-limit">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-19</span><span class="ch">CH3</span> 솔직한 한계</div>
+      <h4>AI의 한계 · IP의 한계 — 그래서 배너 시스템</h4>
+      <div class="vis">AI 베리에이션 시 캐릭터 변형·왜곡, 언어 베리 왜곡, 문구 정합 이슈(예: 뱀피르
+        VAMPIR 다국어)가 발생. AI로 만들 수 있는 소재는 한정적이고, IP로 진행이 어려운 케이스가
+        존재한다.</div>
+      <ul class="">
+        <li>캐릭터 수가 많거나 정밀한 형태 유지가 필요할 때 왜곡</li>
+        <li>다국어 문구·CTA 디테일이 어긋나는 이슈</li>
+        <li>IP 제약으로 AI 직접 생성이 어려운 케이스</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">여기서 솔직하게 말씀드려야 할 게 있습니다. AI가 만능은 아닙니다. 캐릭터가
+        많거나 정밀한 형태가 필요하면 <strong>왜곡이 생기고</strong>, 다국어 문구가 어긋나기도
+        합니다. IP 제약으로 아예 AI 생성이 어려운 케이스도 있고요.</p>
+      <p class="say">그래서 <strong>모든 걸 AI로 하겠다는 게 아닙니다.</strong> IP로 진행이 어려운
+        케이스는 앞서 보여드린 <strong>배너 검색 시스템</strong>으로 — 11년치 누적 건에서 검증된
+        패턴을 불러와 보완합니다. 구도·레이아웃은 매체별 패턴에 맞추고, 같은 캐릭터라도 카메라
+        각도로 다른 분위기를 만드는 식으로요.</p>
+      <div class="note"><span class="k">전략</span>
+        <div><span class="tone">신뢰 장치</span> 한계를 먼저 인정하면 앞의 성과가 더 믿긴다.
+          한계 → 보완책(배너 시스템)으로 <b>바로 되받아</b> 불안을 남기지 않는다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CH4 ═══════════ -->
+  <section class="chap" id="ch4">
+    <div class="ey">Chapter <b>04</b> · What's In It For You</div>
+    <h2>넷마블이 가져갈 이득, 그리고 로드맵</h2>
+    <p class="sub">본론의 착지. 지금 무엇이 좋아지는지, 다음 단계로 가려면 무엇만 하면 되는지.</p>
+    <div class="chap-rule"></div>
+  </section>
+
+  <!-- slide: 프로세스 비교 -->
+  <div class="slide" id="s-process">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-20</span><span class="ch">CH4</span> 효율화 비교</div>
+      <h4>AI 도입 효율화 — 일반 프로세스 비교</h4>
+      <div class="vis">AS-IS(수작업) vs AI 기획 시스템 3단계.</div>
+      <ul>
+        <li><strong>STEP 1 · AI 시장조사 리포트</strong> — 기획안 요청 이후 짧은 시간 내 불가능했던 시장상황·브랜드 이해도 증대</li>
+        <li><strong>STEP 2 · AI 카피 시안</strong> — 카피/비주얼 아이디어 퀄리티·방향성 확장</li>
+        <li><strong>STEP 3 · AI SB 이미지</strong> — 비슷한 이미지를 찾는 게 아니라, AI로 만들어 SB 이해도를 높이고 제작팀이 바로 활용</li>
+      </ul>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">방금 사례들을 프로세스로 정리하면 이렇게 됩니다. 기획안 요청이 오면 —
+        STEP 1에서 <strong>AI 시장조사 리포트</strong>가 짧은 시간에 나오고, STEP 2에서
+        <strong>카피 시안</strong>이 여러 방향으로 확장되고, STEP 3에서 <strong>SB 이미지</strong>를
+        직접 만들어 제작팀이 바로 씁니다.</p>
+      <p class="say">핵심은 STEP 3 — 비슷한 이미지를 <strong>찾는</strong> 작업이 아니라, AI로
+        <strong>만들어</strong> 쓰는 방식이라는 점입니다.</p>
+    </div>
+  </div>
+
+  <!-- slide: 기획 예시 -->
+  <div class="slide" id="s-example">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-21</span><span class="ch">CH4</span> 기획 예시</div>
+      <h4>기획 예시 이미지 — MMORPG(리니지라이크)</h4>
+      <div class="vis">시장 트렌드 조사 → 키워드 추출 → SB 이미지 예시까지 한 흐름. “천하를 지배하라!
+        피로 새긴 이름만이 남는다” 같은 카피와 고성과 비주얼을 세트로.</div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">실제로 한 흐름을 예로 들면 — MMORPG, 리니지라이크 장르로 시장 트렌드를
+        조사하고, 키워드를 뽑고, 그걸로 SB 이미지 예시까지 <strong>한 번에</strong> 나옵니다.</p>
+      <p class="say">카피부터 비주얼까지 <strong>세트로</strong> 떨어지니, 기획자가 빈 화면에서
+        시작하지 않습니다.</p>
+    </div>
+  </div>
+
+  <!-- PULL: 파일럿 -->
+  <section class="pull" id="s-pilot">
+    <div class="sn">S-22 · CH4 · 로드맵</div>
+    <p class="q">한 번 잘 맞으면,<br>이런 그림이 <span class="a">가능하지 않을까요?</span></p>
+    <p class="after">파일럿이 검증되면 단가·산출량·적중률이 <strong>같이 움직이는 루프</strong>가
+      형성됩니다. 그리고 누적되는 데이터는 — 외부 도구로는 옮길 수 없는 <strong>넷마블만의
+      고유 자산</strong>입니다.</p>
+    <div class="slide" style="border-bottom:none;padding-bottom:0">
+      <div class="screen">
+        <div class="tag"><span class="sn">S-22</span><span class="ch">CH4</span> 단계별 확장</div>
+        <h4>지금 → STEP 1(파일럿) → STEP 2(성과 합류)</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>단계</th><th>현재</th><th>STEP 1</th><th>STEP 2</th></tr></thead>
+            <tbody>
+              <tr><td>TO당 산출량</td><td>1건 원본</td><td>50건(AI 변형)</td><td>50건 + 성과순위</td></tr>
+              <tr><td>소재 검색</td><td>수작업(폴더)</td><td>자연어 5초</td><td>성과 기준 정렬</td></tr>
+              <tr><td>이긴 소재 재사용</td><td>담당자 기억</td><td>DB 즉시 제공</td><td>고성과 자동 태깅·추천</td></tr>
+              <tr><td>넷마블 자산화</td><td>분산 산출물</td><td>통합 DB</td><td>학습형 크리에이티브 IP</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="script">
+        <div class="lbl">발표 대본</div>
+        <p class="say">이걸 로드맵으로 그리면 이렇습니다. 지금은 TO 한 건에 원본 하나지만, STEP 1
+          파일럿에선 <strong>AI 변형으로 50건</strong>, STEP 2에선 거기에 <strong>성과 순위</strong>가
+          붙습니다.</p>
+        <p class="say">STEP 2로 가는 데 넷마블이 하실 건 딱 하나 — <strong>CTR과 전환율, 두 지표만
+          연동</strong>해 주시면 됩니다. 그러면 검색이 성과 기준으로 정렬되고, 소재가 쌓일수록
+          <strong>적중률이 올라가는 구조</strong>가 됩니다. 단가는 그대로, 산출량은 늘고, 적중률은
+          오르고 — 그리고 이 데이터는 통째로 <span class="nm">넷마블 고유 자산</span>이 됩니다.</p>
+        <div class="note"><span class="k">낮은 문턱</span>
+          <div><b>“두 지표만 연동”</b>을 강조. 큰 결단이 아니라 작은 한 걸음으로 다음 단계가
+            열린다는 인상.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ EPILOGUE ═══════════ -->
+  <section class="chap" id="epi">
+    <div class="ey">Epilogue · The Ask</div>
+    <h2>함께 만들 것</h2>
+    <p class="sub">일방적 제안의 끝이 아니라, 대화의 시작. 넷마블이 챙겨줄 것 하나와, 오늘의 진짜 목적.</p>
+    <div class="chap-rule"></div>
+  </section>
+
+  <!-- slide: 챙겨야 할 것 -->
+  <div class="slide" id="s-ask">
+    <div class="screen">
+      <div class="tag"><span class="sn">S-23</span><span class="ch">EPI</span> 고객사 준비물</div>
+      <h4>넷마블이 챙겨주시면 좋을 것 — IP 사용 권한</h4>
+      <div class="vis">IP를 AI로 적극 사용할 수 있으면 새로운 시도가 넓어진다. 데이터가 있으면,
+        또는 사전에 배너 검색 시스템만 세트로 만들어둬도 즉시 활용 가능.</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>구분</th><th>넷마블 예시</th><th>특징</th></tr></thead>
+          <tbody>
+            <tr><td>자체 IP</td><td>세븐나이츠·모두의마블·쿵야·몬스터길들이기·레이븐 등</td><td>원화·세계관 수정 자유도 높음</td></tr>
+            <tr><td>외부 IP</td><td>나혼렙·일곱개의대죄·신의탑·제2의나라 등</td><td>퀄리티는 강하나 수정 제약 큼</td></tr>
+            <tr><td>공동개발 IP</td><td>일부 NTP 공개작</td><td>협업 기반, 권리 구조가 중간 형태</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="script">
+      <div class="lbl">발표 대본</div>
+      <p class="say">그래서 넷마블에 딱 하나 부탁드릴 게 있습니다 — <strong>IP를 AI로 어디까지
+        쓸 수 있는지</strong>입니다. 데이터가 열려 있으면 시도할 수 있는 폭이 훨씬 넓어집니다.</p>
+      <p class="say">자체 IP는 수정 자유도가 높아 바로 갈 수 있고, 외부 IP는 제약이 크니 사전에
+        <strong>배너 검색 시스템 쪽으로</strong> 세트를 만들어두는 방법도 있습니다. 이 경계를
+        어디에 그을지, <strong>같이 정했으면</strong> 합니다.</p>
+      <div class="note"><span class="k">주의</span>
+        <div>IP 예시는 <b>공개된 넷마블 퍼블리싱 타이틀</b> 범위. 미공개 라인업·내부 계약
+          조건은 언급하지 않는다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- closing -->
+  <div class="close">
+    <p class="k">S-24 · Closing</p>
+    <h2>정해진 답을 들고 온 게 아닙니다.<br>함께 그려갈 출발점을 들고 왔습니다.</h2>
+    <p>빠른 생산은 이제 기본으로 두겠습니다. 저희가 궁금한 건 그 다음입니다 —
+      우리가 뭘 더 해드릴 수 있을지, 특히 <strong>어떤 판단을 함께 만들어갈지.</strong></p>
+    <div class="sd">“오늘 이 자리는 저희가 답을 발표하는 자리가 아니라,
+      넷마블의 얘기를 듣는 자리입니다. 어디를 함께 그려갈지, 지금부터 여쭙겠습니다.”</div>
+  </div>
+
+  <footer>
+    NETMARBLE × HIVELAB · AI Creative Proposal · 발표 대본 v1 · 5막 24슬라이드 ·
+    데이터는 하이브랩 계약/제작 실적 및 공개 자료 기준
+  </footer>
+
+</main>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tg');
+    function cur(){
+      var a=root.getAttribute('data-theme');
+      if(a) return a;
+      return matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    }
+    btn.addEventListener('click',function(){
+      var next=cur()==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+    });
+  })();
+</script>
