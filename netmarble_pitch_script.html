@@ -107,6 +107,20 @@
   .nm-arc b{color:var(--accent-ink);font-weight:700}
   .nm-arc .arrow{color:var(--accent);font-weight:800}
 
+  /* ── 브릿지 ── */
+  .bridge{padding:62px 0;border-bottom:1px solid var(--rule);scroll-margin-top:80px;
+    background:linear-gradient(180deg,var(--accent-wash),transparent 60%)}
+  .bridge .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent-ink)}
+  .bridge-h{font-size:clamp(27px,4.4vw,50px);font-weight:800;letter-spacing:-.02em;
+    line-height:1.1;margin:16px 0 0;max-width:24ch;text-wrap:balance}
+  .bridge-h .a{color:var(--accent)}
+  .bookq{margin:28px 0 8px;border-left:3px solid var(--accent);padding:2px 0 2px 20px;
+    max-width:60ch}
+  .bookq p{margin:0;font-size:18px;font-style:italic;color:var(--ink-soft);line-height:1.6}
+  .bookq cite{display:block;margin-top:10px;font-style:normal;font-family:var(--mono);
+    font-size:12px;letter-spacing:.06em;color:var(--muted)}
+
   /* ── 목차 ── */
   .toc{padding:60px 0;border-bottom:1px solid var(--rule);scroll-margin-top:80px}
   .toc .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;
@@ -302,9 +316,12 @@
   <!-- ═══════════ 목차 ═══════════ -->
   <section class="toc" id="toc">
     <div class="ey">Contents · 목차</div>
-    <h2 class="toc-h">오늘 다룰 순서 — 5막 24슬라이드</h2>
-    <p class="toc-sub">답(우리 툴)을 꺼내기 전에 넷마블의 현실부터. 상황 → 문제 → 질문 → 답 →
-      증거 → 이득 → 제안의 순서로 흐릅니다.</p>
+    <h2 class="toc-h">오늘 다룰 순서</h2>
+    <p class="toc-sub">넷마블이 지금 겪는 현실을 <strong>숫자로 먼저</strong> 보고(01), 그게 왜
+      ‘많이 만드는 문제’가 아니라 <strong>‘잘 고르는 문제’</strong>인지 짚습니다. 그다음
+      저희가 준비한 <strong>도구 3가지</strong>(02)와 <strong>실제 사례</strong>(03),
+      <strong>넷마블이 가져갈 이득</strong>(04), 마지막으로 <strong>함께 정할 것</strong>(05)
+      순으로 이어집니다.</p>
     <div class="toc-grid">
       <div class="toc-col">
         <a class="toc-ch" href="#ch1"><span class="cn">01</span> 왜 지금인가 <em>Why Now</em></a>
@@ -314,6 +331,7 @@
           <li><a href="#s-volume"><span>S-03</span> 생산량 +67% (21,944→36,700건)</a></li>
           <li><a href="#s-to"><span>S-04</span> TO −11.8% → 생산량 +67%</a></li>
           <li><a href="#s-friction"><span>S-05</span> 데이터 파편화 — 소재는 쌓이는데 못 찾는다</a></li>
+          <li><a href="#s-bridge"><span>↳</span> <em style="font-style:normal;color:var(--accent-ink)">브릿지 · 관점 전환 — 잘 만드는 시대에서 잘 고르는 시대로</em></a></li>
         </ol>
       </div>
       <div class="toc-col">
@@ -502,6 +520,45 @@
         <div class="note"><span class="k">착지 질문</span>
           <div>CH1을 닫는 한 문장 — <b>“그럼 어떻게 하면 TO를 유지하면서, 산출량과 적중률을
             같이 올릴까? 같은 단가로 테스트 커버리지를 넓히는 것 —”</b> 이 질문을 CH2의 문으로.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BRIDGE · 관점 전환 ═══════════ -->
+  <section class="bridge" id="s-bridge">
+    <div class="ey">Bridge · 관점 전환</div>
+    <p class="bridge-h">AI는 양을 무한히 만들어냅니다.<br>그럴수록 필요한 건 —
+      <span class="a">무엇을 남기고 무엇을 버릴지, 필터입니다.</span></p>
+    <blockquote class="bookq">
+      <p>“앞으로의 창작은 잘 만드는 능력보다, 무엇을 남기고 무엇을 버릴지 결정하는 과정 —
+        선택의 과정에 가까워질 거예요.”</p>
+      <cite>— 《AI가 나보다 일을 잘할 때》 중</cite>
+    </blockquote>
+
+    <div class="slide" style="border-bottom:none;padding-bottom:0">
+      <div class="screen">
+        <div class="tag"><span class="sn" style="background:var(--accent);color:#fff">BRIDGE</span><span class="ch">관점 전환</span> 잘 만드는 시대 → 잘 고르는 시대</div>
+        <h4>병목은 ‘만들기’에서 ‘고르기’로 옮겨갔습니다</h4>
+        <div class="vis">AI로 생성은 얼마든지 빠르게 — 단편적으로 보면 거의 공짜가 되는 구조입니다.
+          그래서 진짜 경쟁력은 그 많은 양에서 <strong>이길 걸 골라내는 필터</strong>로 이동합니다.
+          앞의 “소재는 쌓이는데 못 찾는다”는, 바로 그 필터가 없어서 생기는 증상입니다.</div>
+      </div>
+      <div class="script">
+        <div class="lbl">발표 대본 · 관점 전환</div>
+        <p class="say">방금 “소재는 쌓이는데 못 찾는다”고 말씀드렸는데요. 저는 이게 단순한
+          정리 문제는 아니라고 봅니다. AI가 들어오면서 소재는 얼마든지 빠르게 만들 수 있게
+          됐습니다. <strong>단편적으로 보면, 생성은 거의 공짜가 되는 구조일 겁니다.</strong></p>
+        <p class="say">그러면 경쟁력이 어디로 옮겨갈까요. 최근에 읽은 책에 이런 문장이
+          있었습니다 — <em>“앞으로는 잘 만드는 능력보다, 무엇을 남기고 무엇을 버릴지 고르는
+          선택의 과정이 중요해진다.”</em></p>
+        <p class="say">많이 만드는 건 이제 기본이고, 진짜 어려운 건 그 많은 양에서 이길 걸
+          골라내는 겁니다. 저희가 만들고 있는 게 <strong>바로 그 ‘고르는 도구’</strong>입니다.</p>
+        <div class="note"><span class="k">톤 · 주의</span>
+          <div>“단편적으로 보면 … 구조일 겁니다”는 <b>관찰조로만.</b> 우리 작업이 공짜란 뜻이
+            아니라 시장 흐름을 짚는 말 — 여기서 단정하면 단가 협상에 불리. 데이터 파트의 긴장을
+            잠깐 풀고 <b>한 톤 낮춰</b>, 책은 스치듯. 강조어 없이 “바로 그 고르는 도구입니다”로
+            담담히 닫고 CH2로.</div>
         </div>
       </div>
     </div>
