@@ -63,7 +63,7 @@
     background:var(--rule);border:1px solid var(--rule);border-radius:16px;
     overflow:hidden;margin:44px 0 8px}
   @media(max-width:720px){.promises{grid-template-columns:1fr}}
-  .promises .p{background:var(--card);padding:26px 24px}
+  .promises .p{background:#FFFFFF;padding:26px 24px}
   .promises .p .n{font-family:var(--mono);font-size:12px;color:var(--accent);
     letter-spacing:.1em}
   .promises .p h3{margin:12px 0 6px;font-size:19px;font-weight:700}
@@ -146,7 +146,7 @@
     gap:28px;padding:34px 0;border-bottom:1px solid var(--rule-soft);
     scroll-margin-top:80px}
   @media(max-width:860px){.slide{grid-template-columns:1fr;gap:18px}}
-  .screen{background:var(--card);border:1px solid var(--rule);border-radius:14px;
+  .screen{background:#FFFFFF;border:1px solid var(--rule);border-radius:14px;
     padding:22px 22px 24px;box-shadow:var(--shadow);align-self:start}
   .screen .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
     color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:14px}
@@ -175,7 +175,8 @@
     font-feature-settings:"tnum"}
   .script .nm{color:var(--blue-ink);font-weight:700}
 
-  .note{margin-top:6px;background:var(--rule-soft);border-radius:10px;
+  .note{margin-top:6px;background:transparent;border:1px solid var(--rule);
+    border-left:3px solid var(--accent);border-radius:8px;
     padding:12px 15px;font-size:13px;color:var(--ink-soft);display:flex;gap:9px}
   .note b{color:var(--ink);font-weight:700}
   .note .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
@@ -186,7 +187,8 @@
   table{border-collapse:collapse;width:100%;font-size:13px;min-width:440px}
   th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--rule-soft)}
   thead th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
-    text-transform:uppercase;color:var(--muted);background:var(--rule-soft)}
+    text-transform:uppercase;color:var(--muted);background:transparent;
+    border-bottom:1.5px solid var(--rule)}
   tbody tr:last-child td{border-bottom:none}
   td .up{color:var(--good);font-weight:700}
   td .dn{color:var(--accent-ink);font-weight:700}
@@ -306,7 +308,7 @@
           <li><a href="#s-market"><span>S-01</span> 시장 현황 — 단가·수량·퍼포먼스 동시 압박</a></li>
           <li><a href="#s-context"><span>S-02</span> 현황 — 수요는 치솟는데 단가는 그대로</a></li>
           <li><a href="#s-volume"><span>S-03</span> 생산량 +67% (21,944→36,700건)</a></li>
-          <li><a href="#s-to"><span>S-04</span> TO −11.8% → 생산량 +67%</a></li>
+          <li><a href="#s-to"><span>S-04</span> 인원 줄어도 생산량 +67%</a></li>
           <li><a href="#s-friction"><span>S-05</span> 데이터 파편화 — 소재는 쌓이는데 못 찾는다</a></li>
           <li><a href="#s-bridge"><span>↳</span> <em style="font-style:normal;color:var(--accent-ink)">브릿지 · 관점 전환 — 잘 만드는 시대에서 잘 고르는 시대로</em></a></li>
         </ol>
@@ -448,7 +450,7 @@
   <div class="slide" id="s-to">
     <div class="screen">
       <div class="tag"><span class="sn">S-04</span><span class="ch">CH1</span> 데이터 · TO</div>
-      <h4>TO 인원 −11.8% → 생산량 +67%</h4>
+      <h4>인원은 줄었는데, 생산량은 +67%</h4>
       <div class="vis">생산량이 67% 늘었는데, 투입 인원(TO)은 오히려 줄었습니다. 월평균 42.3명
         에서 37.3명으로 11.8% 감소했죠. 그 차이를 메운 건 이미지 베리에이션으로, 상반기 기준
         88% 늘었습니다. 반대로 신규 원본 제작은 27% 줄었고요. 하나의 원본을 여러 버전으로 확장하는
