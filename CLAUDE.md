@@ -20,7 +20,11 @@
 ## 프로젝트 관리 규칙
 - 신규 프로젝트 시작 시 `.claude/projects/` 폴더 아래에 프로젝트별 노트 파일을 생성한다.
 - 파일명 형식: `YYYYMM_프로젝트명.md`
-- 각 프로젝트 파일에 포함할 항목: 클라이언트, 업무 범위, 일정, 견적, 진행 메모
+- 신규 파일은 `.claude/library/prompts/project-note-template.md` 구조를 그대로 복사해서 시작한다.
+- 각 프로젝트 파일 구성: 헤더(클라이언트·업무 범위·일정·견적·상태) + **요약 섹션** + **원본 로그 섹션**
+  - **요약 섹션**: 항상 "최신 결정사항·근거·다음 액션"만 담고, 매 세션 종료 시 덮어써서 갱신한다.
+  - **원본 로그 섹션**: 세션의 논의·시행착오·버려진 대안을 날짜 헤더로 append만 한다 (절대 덮어쓰거나 삭제하지 않음).
+  - 요약만 남기면 결정 근거·뉘앙스가 유실되므로, 디테일은 로그에 보존하고 요약은 결론 위주로 압축한다.
 
 ## 폴더 구조
 ```
@@ -29,7 +33,7 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
 ├── library/       # 재사용 자산
-│   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── prompts/   # wide-research, brand-brief-template, project-note-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
