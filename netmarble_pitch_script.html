@@ -1,18 +1,20 @@
 <title>NETMARBLE × HIVELAB · 발표 대본</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  /* 라이트 모드 고정 — OS/뷰어 테마와 무관하게 항상 흰 배경 */
+  /* 라이트 모드 고정 · 제안서(v10) 디자인 토큰 그대로 사용 */
   :root,
   :root[data-theme="light"],
   :root[data-theme="dark"]{
-    --paper:#FFFFFF; --card:#F7F5F0; --ink:#17150F; --ink-soft:#3A3630;
-    --muted:#857F72; --rule:#E7E2D8; --rule-soft:#F1EDE5;
-    --accent:#FF5A1F; --accent-ink:#C7410F; --accent-wash:#FDEDE4;
-    --blue:#1B4DFF; --blue-wash:#E9EDFF; --blue-ink:#123ACB;
+    --paper:#FFFFFF; --card:#F5F1EA; --ink:#1A1A1A; --ink-soft:#463F35;
+    --muted:#6E665A; --rule:#E4DED2; --rule-soft:#F2EDE3;
+    --accent:#FF6B35; --accent-ink:#C0480E; --accent-wash:#FFF0E7;
+    /* 넷마블/데이터 강조 = 덱 퍼플 계열 (파랑 아님) */
+    --blue:#6E5FA6; --blue-wash:#EFEAF7; --blue-ink:#574A86;
+    --data:#C5BBDD; --data-strong:#A89BC8; --accent-soft:#FFD9C2;
     --good:#0E7A4B;
-    --shadow:0 1px 2px rgba(23,21,15,.04),0 8px 24px rgba(23,21,15,.05);
-    --mono:ui-monospace,"SF Mono",Menlo,monospace;
-    --kr:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
+    --shadow:0 1px 2px rgba(26,26,26,.04),0 8px 24px rgba(26,26,26,.06);
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --kr:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
     color-scheme:light;
   }
   *{box-sizing:border-box}
@@ -296,11 +298,7 @@
   <section class="toc" id="toc">
     <div class="ey">Contents · 목차</div>
     <h2 class="toc-h">오늘 다룰 순서</h2>
-    <p class="toc-sub">넷마블이 지금 겪는 현실을 <strong>숫자로 먼저</strong> 보고(01), 그게 왜
-      ‘많이 만드는 문제’가 아니라 <strong>‘잘 고르는 문제’</strong>인지 짚습니다. 그다음
-      저희가 준비한 <strong>도구 3가지</strong>(02)와 <strong>실제 사례</strong>(03),
-      <strong>넷마블이 가져갈 이득</strong>(04), 마지막으로 <strong>함께 정할 것</strong>(05)
-      순으로 이어집니다.</p>
+    <p class="toc-sub">많이 만드는 문제가 아니라, <strong>잘 고르는 문제입니다.</strong></p>
     <div class="toc-grid">
       <div class="toc-col">
         <a class="toc-ch" href="#ch1"><span class="cn">01</span> 왜 지금인가 <em>Why Now</em></a>
