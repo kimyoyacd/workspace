@@ -75,7 +75,7 @@
 | `strategist` | 전략 기획, 브랜드 제안 풀파이프라인 | rfp-analyst · concept-director · critic · brand-pipeline · review-panel |
 | `operator` | 프로젝트 운영, 견적, 클라 관리 | project-manager · quote-accountant · account-radar |
 | `hr-legal` | 채용, 외주, 법무 | hiring-radar · vendor-radar · legal-compliance |
-| `maxos-dashboard` | Dashboard v7 HTML 전담 편집 | (전담 에이전트, 스킬 없음) |
+| `maxos-dashboard` | Dashboard v8 HTML 전담 편집 | (전담 에이전트, 스킬 없음) |
 
 ### 스킬 25종 (`.claude/skills/<스킬명>/SKILL.md`)
 
