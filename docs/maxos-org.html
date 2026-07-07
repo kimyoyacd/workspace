@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAX실 OS v8 워크플로우 맵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ff:      'Geist', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --ff-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+  --ff-serif:'Instrument Serif', Georgia, serif;
+
+  /* Brand palette */
+  --rosa:    #ff86f6;
+  --azul:    #2f53f9;
+  --naranja: #ff6e23;
+  --neon:    #c5ff79;
+  --verde:   #01524d;
+
+  --bg: #FFFFFF;
+
+  /* Marketer — Naranja */
+  --mktr-hdr: #ff6e23;
+  --mktr-hdr-txt: #000;
+  --mktr-bg:  #fff7f3;
+  --mktr-bd:  #ffb690;
+  --mktr-txt: #7a2e00;
+
+  /* Strategist — Azul */
+  --strt-hdr: #2f53f9;
+  --strt-hdr-txt: #fff;
+  --strt-bg:  #f2f5ff;
+  --strt-bd:  #94a8fd;
+  --strt-txt: #1a3acc;
+
+  /* Designer — Rosa */
+  --dsgn-hdr: #ff86f6;
+  --dsgn-hdr-txt: #000;
+  --dsgn-bg:  #fff3fe;
+  --dsgn-bd:  #ffb6fb;
+  --dsgn-txt: #8b007e;
+
+  /* Director — Verde */
+  --drct-hdr: #01524d;
+  --drct-hdr-txt: #fff;
+  --drct-bg:  #f0faf9;
+  --drct-bd:  #5aada6;
+  --drct-txt: #01524d;
+
+  /* Operator — Verde neon */
+  --ops-hdr:  #c5ff79;
+  --ops-hdr-txt: #000;
+  --ops-bg:   #f8ffec;
+  --ops-bd:   #9fd94e;
+  --ops-txt:  #2d5500;
+
+  /* HR·Legal — Black */
+  --hr-hdr:   #000000;
+  --hr-hdr-txt: #fff;
+  --hr-bg:    #f5f5f5;
+  --hr-bd:    #888;
+
+  --gate-amber:    #ff6e23;
+  --gate-amber-bg: #fff7f3;
+  --gate-amber-bd: #ffb690;
+  --gate-red:      #e0004d;
+  --gate-red-bg:   #fff0f5;
+  --gate-red-bd:   #ff80a8;
+
+  --arr: #D1D5DB;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--ff);
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 32px 24px 72px;
+}
+
+/* ── Page header ── */
+.page-header { margin-bottom: 24px; }
+.page-header h1 {
+  font-family: var(--ff-serif);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+.page-header p {
+  font-family: var(--ff);
+  font-size: 12.5px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+/* ── Legend ── */
+.legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-size: 11.5px; color: #6B7280;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.l-rect {
+  width: 20px; height: 13px; border-radius: 3px;
+  background: #fff; border: 1px solid #C4C9D4;
+}
+.l-diamond {
+  width: 11px; height: 11px;
+  background: #FBBF24; transform: rotate(45deg); border-radius: 2px;
+}
+.l-diamond.red { background: #FCA5A5; }
+.l-line {
+  width: 22px; height: 0;
+  border-top: 1.5px dashed #C4C9D4;
+}
+
+/* ── Swimlane wrap ── */
+.swimlanes-wrap { overflow-x: auto; padding-bottom: 12px; }
+.swimlanes {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-width: 1360px;
+  position: relative;
+}
+
+/* ── Lane ── */
+.lane { flex: 0 0 204px; width: 204px; }
+
+.lane-header {
+  padding: 11px 12px;
+  border-radius: 8px 8px 0 0;
+  font-family: var(--ff);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+
+.lane-body {
+  padding: 12px 8px;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lane.marketer  .lane-header { background: var(--mktr-hdr); color: var(--mktr-hdr-txt); }
+.lane.marketer  .lane-body   { background: var(--mktr-bg); border: 1px solid var(--mktr-bd); border-top: none; }
+.lane.marketer  .node        { border-color: var(--mktr-bd); }
+.lane.marketer  .out-badge   { background: #fff; color: var(--mktr-txt); border-color: var(--mktr-bd); }
+
+.lane.strategist .lane-header { background: var(--strt-hdr); color: var(--strt-hdr-txt); }
+.lane.strategist .lane-body   { background: var(--strt-bg); border: 1px solid var(--strt-bd); border-top: none; }
+.lane.strategist .node        { border-color: var(--strt-bd); }
+.lane.strategist .out-badge   { background: #fff; color: var(--strt-txt); border-color: var(--strt-bd); }
+
+.lane.designer .lane-header { background: var(--dsgn-hdr); color: var(--dsgn-hdr-txt); }
+.lane.designer .lane-body   { background: var(--dsgn-bg); border: 1px solid var(--dsgn-bd); border-top: none; }
+.lane.designer .node        { border-color: var(--dsgn-bd); }
+.lane.designer .out-badge   { background: #fff; color: var(--dsgn-txt); border-color: var(--dsgn-bd); }
+
+.lane.director .lane-header { background: var(--drct-hdr); color: var(--drct-hdr-txt); }
+.lane.director .lane-body   { background: var(--drct-bg); border: 1px solid var(--drct-bd); border-top: none; }
+.lane.director .node        { border-color: var(--drct-bd); }
+
+.lane.operator .lane-header { background: var(--ops-hdr); color: var(--ops-hdr-txt); }
+.lane.operator .lane-body   { background: var(--ops-bg); border: 1px solid var(--ops-bd); border-top: none; }
+.lane.operator .node        { border-color: var(--ops-bd); }
+
+.lane.hr-legal .lane-header { background: var(--hr-hdr); color: var(--hr-hdr-txt); }
+.lane.hr-legal .lane-body   { background: var(--hr-bg); border: 1px solid var(--hr-bd); border-top: none; }
+.lane.hr-legal .node        { border-color: var(--hr-bd); }
+
+/* ── Node ── */
+.node {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 10px 10px 8px;
+  text-align: center;
+  position: relative;
+}
+.node-name {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 4px;
+}
+.node-desc {
+  font-size: 10.5px;
+  color: #555;
+  line-height: 1.45;
+}
+
+/* ── Out-badge (cross-lane connection indicator) ── */
+.out-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 7px;
+  font-family: var(--ff);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+.out-badge::after { content: ' →'; }
+
+/* ── In-badge (incoming connection indicator) ── */
+.in-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 6px;
+  font-family: var(--ff);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: #F9FAFB;
+  border: 1px dashed #9CA3AF;
+  color: #6B7280;
+}
+.in-badge::before { content: '← '; }
+
+/* ── Vertical arrow ── */
+.arr-v {
+  width: 1px;
+  height: 16px;
+  background: var(--arr);
+  margin: 0 auto;
+  position: relative;
+  flex-shrink: 0;
+}
+.arr-v::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid var(--arr);
+}
+
+/* ── Gate diamond ── */
+.gate-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.gate {
+  width: 88px; height: 88px;
+  position: relative; flex-shrink: 0;
+}
+.gate-inner {
+  position: absolute;
+  width: 62px; height: 62px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+.gate-text {
+  transform: rotate(-45deg);
+  font-family: var(--ff);
+  font-size: 9px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+}
+.gate.amber .gate-inner { background: var(--gate-amber-bg); border: 1.5px solid var(--gate-amber-bd); }
+.gate.amber .gate-text  { color: var(--gate-amber); }
+.gate.red   .gate-inner { background: var(--gate-red-bg);   border: 1.5px solid var(--gate-red-bd); }
+.gate.red   .gate-text  { color: var(--gate-red); }
+.gate-desc {
+  font-size: 10px;
+  color: #6B7280;
+  text-align: center;
+  max-width: 184px;
+  line-height: 1.4;
+  margin-top: -6px;
+}
+
+/* ── Phase group (brand-pipeline) ── */
+.phase-group {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--strt-bd);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.phase-group-header {
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #2f53f9;
+  padding: 5px 10px;
+  background: #f2f5ff;
+  border-bottom: 1px solid #c6d1fd;
+}
+.phase-row {
+  padding: 8px 10px;
+  font-size: 10.5px;
+  color: #374151;
+  border-bottom: 1px solid #f2f5ff;
+  line-height: 1.4;
+}
+.phase-row:last-child { border-bottom: none; }
+.phase-row strong {
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+  color: #111;
+}
+
+/* ── SVG overlay ── */
+#conn-svg {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>MAX실 OS v8 — 워크플로우 맵</h1>
+  <p>에이전트 6종 · 스킬 25종 · 검증 게이트 5곳의 전체 흐름</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="l-rect"></div> 스킬 노드</div>
+  <div class="legend-item"><div class="l-diamond"></div> 검증 게이트 (앰버)</div>
+  <div class="legend-item"><div class="l-diamond red"></div> 최종 게이트 (레드)</div>
+  <div class="legend-item"><div class="l-line"></div> 에이전트 간 전달</div>
+</div>
+
+<style>
+/* ── Trigger row ── */
+.trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+.trigger-node {
+  background: #fff;
+  border: 1.5px solid #374151;
+  border-radius: 8px;
+  padding: 11px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+.trigger-label {
+  font-family: var(--ff);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 3px;
+}
+.trigger-node .node-name {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+.trigger-node .node-desc {
+  font-size: 10.5px;
+  color: #555;
+  line-height: 1.4;
+  text-align: center;
+}
+.trigger-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 8px;
+  gap: 2px;
+}
+.trigger-arrow-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #9CA3AF;
+}
+.trigger-arrow-line span {
+  width: 48px;
+  height: 0;
+  border-top: 1.5px solid #D1D5DB;
+  position: relative;
+}
+.trigger-arrow-line span::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -4px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #D1D5DB;
+}
+.trigger-arrow-label {
+  font-size: 9.5px;
+  color: #9CA3AF;
+  font-family: var(--ff);
+}
+</style>
+
+<div class="trigger-row">
+  <div class="trigger-node" id="n-rfp-analyst">
+    <div class="trigger-label">프로젝트 인입 · 시작점</div>
+    <div class="node-name">rfp-analyst</div>
+    <div class="node-desc">RFP → 명시·숨은·미정의·위험 4분류 + 타겟·범위·제약 확인 질문 도출.</div>
+  </div>
+  <div class="trigger-arrow">
+    <div class="trigger-arrow-line">
+      <span></span>
+      <div class="trigger-arrow-label">타겟·범위 → Marketer</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="trigger-arrow-line">
+      <span></span>
+      <div class="trigger-arrow-label">제약·위험 → Strategist</div>
+    </div>
+  </div>
+</div>
+
+<div class="swimlanes-wrap">
+<div class="swimlanes" id="swimlanes">
+
+  <!-- ══ MARKETER ══ -->
+  <div class="lane marketer">
+    <div class="lane-header">Marketer</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-market-research">
+        <div class="in-badge">rfp-analyst</div>
+        <div class="node-name">market-research</div>
+        <div class="node-desc">RFP 타겟·범위 기반으로 경쟁사 N개 분석 → XY 포지셔닝 맵 + 빈 자리 발견. 출처 필수.</div>
+        <div class="out-badge">리서치 시사점</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="gate-wrap">
+        <div class="gate amber" id="n-gate-a">
+          <div class="gate-inner"><div class="gate-text">GATE A</div></div>
+        </div>
+        <div class="gate-desc">10항목 전부 통과해야 다음으로 간다. 최대 4라운드까지 재시도 가능.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-design-trend">
+        <div class="node-name">design-trend</div>
+        <div class="node-desc">최근 3개월 글로벌 트렌드 + 약신호 포착. 출처 필수.</div>
+        <div class="out-badge">Direction A·B·C</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-reference-curator">
+        <div class="node-name">reference-curator</div>
+        <div class="node-desc">카테고리별 레퍼런스 큐레이션. 방향별로 3~5개씩 정리.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-brainstorm">
+        <div class="node-name">brainstorm</div>
+        <div class="node-desc">방향별 키워드 발산 + 이종업계 아날로지 → 비주얼·카피 3방향 도출.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ STRATEGIST ══ -->
+  <div class="lane strategist">
+    <div class="lane-header">Strategist</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-concept-director">
+        <div class="node-name">concept-director</div>
+        <div class="node-desc">핵심 관점을 한 문장으로 정한다. 이 문장이 없으면 디자인도, 카피도 시작할 수 없다.</div>
+        <div class="in-badge">market-research</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="phase-group" id="n-brand-pipeline">
+        <div class="phase-group-header">brand-pipeline</div>
+        <div class="phase-row">
+          <strong>Manus 1 — 리서치</strong>
+          시장·경쟁·소비자 데이터로 브랜드 기반 잡기.
+        </div>
+        <div class="phase-row">
+          <strong>Manus 2 — 비주얼 아이덴티티</strong>
+          컬러·타이포·레이아웃 방향 3가지 제안.
+        </div>
+        <div class="phase-row" id="n-brand-pipeline-p3">
+          <strong>Runable 3 — 시스템+덱</strong>
+          브랜드 가이드라인 + 제안 덱 최종 완성.
+          <div class="out-badge" style="margin-top:6px;">Phase3 완료</div>
+        </div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="gate-wrap">
+        <div class="gate amber" id="n-gate-bcd">
+          <div class="gate-inner"><div class="gate-text">GATE B·C·D</div></div>
+        </div>
+        <div class="gate-desc">각 Phase 끝마다 통과 기준 충족 확인. 통과 못 하면 해당 Phase 재실행.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-review-panel">
+        <div class="node-name">review-panel</div>
+        <div class="node-desc">기획·크리에이터·사업·마케팅·B2B 고객 5관점 병렬 검토.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-critic">
+        <div class="node-name">critic</div>
+        <div class="node-desc">비용·기간·역량 3항목 점수화(/30). 30 미만이면 진행 재검토.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ DESIGNER ══ -->
+  <div class="lane designer">
+    <div class="lane-header">Designer</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-moodboard">
+        <div class="node-name">moodboard</div>
+        <div class="node-desc">분위기·컬러·소재·타이포 등 6버킷으로 무드보드 구성. 방향별 1세트.</div>
+        <div class="in-badge">design-trend</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-visual-generator">
+        <div class="node-name">visual-generator</div>
+        <div class="node-desc">AI(Higgsfield)로 키비주얼·목업 이미지 생성. 프롬프트 → 사진급 결과물.</div>
+        <div class="out-badge">시안 완성</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-storyboard">
+        <div class="node-name">storyboard</div>
+        <div class="node-desc">영상·모션 콘티 제작. 컷별 장면·텍스트·카메라 움직임 명시.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-figma-bridge">
+        <div class="node-name">figma-bridge</div>
+        <div class="node-desc">코드 ↔ Figma 양방향 연동. 컴포넌트 매핑 + 에셋 전달.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ DIRECTOR ══ -->
+  <div class="lane director">
+    <div class="lane-header">Director</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-design-critique">
+        <div class="node-name">design-critique</div>
+        <div class="node-desc">시안 6영역 검수. 🟢통과 · 🟡보완 · 🔴재작업 3단계로 판정.</div>
+        <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-top:6px;">
+          <div class="in-badge" style="font-size:9px;">brand-pipeline</div>
+          <div class="in-badge" style="font-size:9px;">visual-generator</div>
+        </div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-creative-director">
+        <div class="node-name">creative-director</div>
+        <div class="node-desc">톤 최종 점검 + 온보딩 팩 생성. CD 관점에서 전체 일관성 확인.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-fact-checker">
+        <div class="node-name">fact-checker</div>
+        <div class="node-desc">사실·숫자·인용 반증 먼저. 의심스러우면 출처 확인 후 수정.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-tone-guardian">
+        <div class="node-name">tone-guardian</div>
+        <div class="node-desc">발송 전 회신 톤 교정. 너무 딱딱하거나 너무 가볍지 않게.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-design-system-guardian">
+        <div class="node-name">design-system-guardian</div>
+        <div class="node-desc">사내 디자인 시스템 준수 점검. 색상·컴포넌트·간격 기준 체크.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-delivery-gate">
+        <div class="node-name">delivery-gate</div>
+        <div class="node-desc">라이트모드·PII·글자 잘림 린트. 외부 발송 직전 마지막 점검.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="gate-wrap">
+        <div class="gate red" id="n-gate-final">
+          <div class="gate-inner"><div class="gate-text">GATE FINAL</div></div>
+        </div>
+        <div class="gate-desc">전부 통과해야 외부 발송 가능. 하나라도 🔴이면 발송 중단.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ OPERATOR ══ -->
+  <div class="lane operator">
+    <div class="lane-header">Operator</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-project-manager">
+        <div class="node-name">project-manager</div>
+        <div class="node-desc">진행 현황·매출 달성율·가동률. 노션·구글시트 read-only 조회.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-quote-accountant">
+        <div class="node-name">quote-accountant</div>
+        <div class="node-desc">원가표 + 마진 시나리오 산출. UI Design만 우리 실 매출로 집계.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-account-radar">
+        <div class="node-name">account-radar</div>
+        <div class="node-desc">반복 클라 히스토리·리스크 정리. 미팅 전 브리핑으로 활용.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ HR·LEGAL ══ -->
+  <div class="lane hr-legal">
+    <div class="lane-header">HR · Legal</div>
+    <div class="lane-body">
+
+      <div class="node" id="n-hiring-radar">
+        <div class="node-name">hiring-radar</div>
+        <div class="node-desc">채용 파이프라인 관리. JD 작성 · 소싱 · 면접 · 오퍼 단계 추적.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-vendor-radar">
+        <div class="node-name">vendor-radar</div>
+        <div class="node-desc">외주 풀 관리 + 외주비 산출. 적합한 프리랜서 매칭.</div>
+      </div>
+      <div class="arr-v"></div>
+
+      <div class="node" id="n-legal-compliance">
+        <div class="node-name">legal-compliance</div>
+        <div class="node-desc">계약·NDA 쟁점 플래그. 법적 자문 대체가 아닌 위험 사전 포착.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SVG: cross-lane arrows only, no text labels -->
+  <svg id="conn-svg" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr-orange" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#ff6e23"/>
+      </marker>
+      <marker id="arr-purple" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#2f53f9"/>
+      </marker>
+      <marker id="arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L7,3 z" fill="#e04fd4"/>
+      </marker>
+    </defs>
+  </svg>
+
+</div><!-- /swimlanes -->
+</div><!-- /swimlanes-wrap -->
+
+<!-- ── Cross-lane connection key ── -->
+<div style="margin-top:28px;padding:16px 20px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;max-width:680px;">
+  <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#9CA3AF;margin-bottom:10px;">에이전트 간 전달 흐름</div>
+  <div style="display:flex;flex-direction:column;gap:6px;font-size:11.5px;font-family:'Geist',sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="width:32px;height:0;border-top:1.5px dashed #ff6e23;display:inline-block;flex-shrink:0;"></span>
+      <span style="color:#6B7280;">Marketer <strong style="color:#111;">market-research</strong> → Strategist <strong style="color:#111;">concept-director</strong> &nbsp;·&nbsp; 리서치 시사점 전달</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="width:32px;height:0;border-top:1.5px dashed #ff6e23;display:inline-block;flex-shrink:0;"></span>
+      <span style="color:#6B7280;">Marketer <strong style="color:#111;">design-trend</strong> → Designer <strong style="color:#111;">moodboard</strong> &nbsp;·&nbsp; Direction A·B·C 전달</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="width:32px;height:0;border-top:1.5px dashed #2f53f9;display:inline-block;flex-shrink:0;"></span>
+      <span style="color:#6B7280;">Strategist <strong style="color:#111;">brand-pipeline Phase3</strong> → Director <strong style="color:#111;">design-critique</strong> &nbsp;·&nbsp; Phase3 완료 전달</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="width:32px;height:0;border-top:1.5px dashed #e04fd4;display:inline-block;flex-shrink:0;"></span>
+      <span style="color:#6B7280;">Designer <strong style="color:#111;">visual-generator</strong> → Director <strong style="color:#111;">design-critique</strong> &nbsp;·&nbsp; 시안 완성 전달</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var CONNECTIONS = [
+    { from: 'n-market-research',   to: 'n-concept-director',   color: '#ff6e23', marker: 'arr-orange' },
+    { from: 'n-design-trend',      to: 'n-moodboard',          color: '#ff6e23', marker: 'arr-orange' },
+    { from: 'n-brand-pipeline-p3', to: 'n-design-critique',    color: '#2f53f9', marker: 'arr-purple' },
+    { from: 'n-visual-generator',  to: 'n-design-critique',    color: '#e04fd4', marker: 'arr-blue'   }
+  ];
+
+  function draw() {
+    var svg  = document.getElementById('conn-svg');
+    var wrap = document.getElementById('swimlanes');
+    var wRect = wrap.getBoundingClientRect();
+
+    // remove old paths (keep defs)
+    var children = Array.prototype.slice.call(svg.children);
+    children.forEach(function(c) { if (c.tagName !== 'defs') svg.removeChild(c); });
+
+    CONNECTIONS.forEach(function(c) {
+      var fromEl = document.getElementById(c.from);
+      var toEl   = document.getElementById(c.to);
+      if (!fromEl || !toEl) return;
+
+      var fRect = fromEl.getBoundingClientRect();
+      var tRect = toEl.getBoundingClientRect();
+
+      var x1 = fRect.right  - wRect.left;
+      var y1 = fRect.top    + fRect.height * 0.5 - wRect.top;
+      var x2 = tRect.left   - wRect.left - 2;
+      var y2 = tRect.top    + tRect.height * 0.5 - wRect.top;
+
+      var mx = (x1 + x2) / 2;
+
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M'+x1+' '+y1+' C'+mx+' '+y1+','+mx+' '+y2+','+x2+' '+y2);
+      path.setAttribute('stroke', c.color);
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('stroke-dasharray', '5,3');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('marker-end', 'url(#'+c.marker+')');
+      svg.appendChild(path);
+    });
+
+    svg.setAttribute('width',  wrap.scrollWidth);
+    svg.setAttribute('height', wrap.scrollHeight);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { requestAnimationFrame(draw); });
+  } else {
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', draw);
+})();
+</script>
+</body>
+</html>
