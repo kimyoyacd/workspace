@@ -17,6 +17,13 @@
 
 - DB 페이지 URL: https://app.notion.com/p/2e79ff44ed51817a9138eac149de9f21
 
+## 💡 아이디어 인박스 (쓰기 허용 ⭐)
+- **용도**: 비즈니스·디자인 아이디어 저장 → 요청 시 브레인스토밍 확장(brainstormer 발산 + critic 평가 + 다음 고민 포인트)
+- data source: `5743f3f4-3245-4b3f-b430-805242ba321c` · DB URL: https://app.notion.com/p/9fcfbc1405ad44f389032383a73debab
+- 위치: 개인 "2026" 페이지 (https://app.notion.com/p/98ea12621d0441fe9bfd01f48c16ade7) 아래
+- 속성: 아이디어(title) · 유형(비즈니스/디자인/서비스·상품/자동화·AI/조직·운영) · 상태(씨앗→고민중→확장완료→실행검토→실행중/보류) · 출처 · 관련 클라 · 한 줄 요약 · 다음 고민 포인트 · 등록일(자동)
+- ⚠️ 읽기 전용 규칙의 **예외** — 이 DB만 Claude가 생성·수정 가능. 확장 결과는 각 아이디어 페이지 본문에 누적.
+
 ## 2026 Project DB 주요 속성
 - **업무 명**(title) · **상태**(select) · **난이도**(L/M/H) · **카테고리**(multi) · **날짜/종료 날짜** · **진행률(수식)**
 - **고객사명**(relation) · **조직구성원**(relation) · **팀명**(rollup: VX/VM/실)
