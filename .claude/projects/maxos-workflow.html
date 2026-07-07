@@ -13,39 +13,62 @@
   --ff-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
   --ff-serif:'Instrument Serif', Georgia, serif;
 
+  /* Brand palette */
+  --rosa:    #ff86f6;
+  --azul:    #2f53f9;
+  --naranja: #ff6e23;
+  --neon:    #c5ff79;
+  --verde:   #01524d;
+
   --bg: #FFFFFF;
 
-  --mktr-hdr: #C2570A;
-  --mktr-bg:  #FEF3E2;
-  --mktr-bd:  #F59E4A;
-  --mktr-txt: #92400E;
+  /* Marketer — Naranja */
+  --mktr-hdr: #ff6e23;
+  --mktr-hdr-txt: #000;
+  --mktr-bg:  #fff7f3;
+  --mktr-bd:  #ffb690;
+  --mktr-txt: #7a2e00;
 
-  --strt-hdr: #5B21B6;
-  --strt-bg:  #F3F0FF;
-  --strt-bd:  #A78BFA;
-  --strt-txt: #4C1D95;
+  /* Strategist — Azul */
+  --strt-hdr: #2f53f9;
+  --strt-hdr-txt: #fff;
+  --strt-bg:  #f2f5ff;
+  --strt-bd:  #94a8fd;
+  --strt-txt: #1a3acc;
 
-  --dsgn-hdr: #1558A0;
-  --dsgn-bg:  #EFF6FF;
-  --dsgn-bd:  #60A5FA;
-  --dsgn-txt: #1E40AF;
+  /* Designer — Rosa */
+  --dsgn-hdr: #ff86f6;
+  --dsgn-hdr-txt: #000;
+  --dsgn-bg:  #fff3fe;
+  --dsgn-bd:  #ffb6fb;
+  --dsgn-txt: #8b007e;
 
-  --drct-hdr: #065F46;
-  --drct-bg:  #ECFDF5;
-  --drct-bd:  #34D399;
-  --drct-txt: #065F46;
+  /* Director — Verde */
+  --drct-hdr: #01524d;
+  --drct-hdr-txt: #fff;
+  --drct-bg:  #f0faf9;
+  --drct-bd:  #5aada6;
+  --drct-txt: #01524d;
 
-  --ops-hdr:  #374151;
-  --ops-bg:   #F9FAFB;
-  --ops-bd:   #D1D5DB;
-  --ops-txt:  #374151;
+  /* Operator — Verde neon */
+  --ops-hdr:  #c5ff79;
+  --ops-hdr-txt: #000;
+  --ops-bg:   #f8ffec;
+  --ops-bd:   #9fd94e;
+  --ops-txt:  #2d5500;
 
-  --gate-amber:    #D97706;
-  --gate-amber-bg: #FFFBEB;
-  --gate-amber-bd: #FBBF24;
-  --gate-red:      #DC2626;
-  --gate-red-bg:   #FEF2F2;
-  --gate-red-bd:   #FCA5A5;
+  /* HR·Legal — Black */
+  --hr-hdr:   #000000;
+  --hr-hdr-txt: #fff;
+  --hr-bg:    #f5f5f5;
+  --hr-bd:    #888;
+
+  --gate-amber:    #ff6e23;
+  --gate-amber-bg: #fff7f3;
+  --gate-amber-bd: #ffb690;
+  --gate-red:      #e0004d;
+  --gate-red-bg:   #fff0f5;
+  --gate-red-bd:   #ff80a8;
 
   --arr: #D1D5DB;
 }
@@ -130,31 +153,32 @@ body {
   align-items: center;
 }
 
-.lane.marketer  .lane-header { background: var(--mktr-hdr); }
+.lane.marketer  .lane-header { background: var(--mktr-hdr); color: var(--mktr-hdr-txt); }
 .lane.marketer  .lane-body   { background: var(--mktr-bg); border: 1px solid var(--mktr-bd); border-top: none; }
 .lane.marketer  .node        { border-color: var(--mktr-bd); }
-.lane.marketer  .out-badge   { background: #FEF3E2; color: var(--mktr-txt); border-color: var(--mktr-bd); }
+.lane.marketer  .out-badge   { background: #fff; color: var(--mktr-txt); border-color: var(--mktr-bd); }
 
-.lane.strategist .lane-header { background: var(--strt-hdr); }
+.lane.strategist .lane-header { background: var(--strt-hdr); color: var(--strt-hdr-txt); }
 .lane.strategist .lane-body   { background: var(--strt-bg); border: 1px solid var(--strt-bd); border-top: none; }
 .lane.strategist .node        { border-color: var(--strt-bd); }
-.lane.strategist .out-badge   { background: #EDE9FE; color: var(--strt-txt); border-color: var(--strt-bd); }
+.lane.strategist .out-badge   { background: #fff; color: var(--strt-txt); border-color: var(--strt-bd); }
 
-.lane.designer .lane-header { background: var(--dsgn-hdr); }
+.lane.designer .lane-header { background: var(--dsgn-hdr); color: var(--dsgn-hdr-txt); }
 .lane.designer .lane-body   { background: var(--dsgn-bg); border: 1px solid var(--dsgn-bd); border-top: none; }
 .lane.designer .node        { border-color: var(--dsgn-bd); }
-.lane.designer .out-badge   { background: #DBEAFE; color: var(--dsgn-txt); border-color: var(--dsgn-bd); }
+.lane.designer .out-badge   { background: #fff; color: var(--dsgn-txt); border-color: var(--dsgn-bd); }
 
-.lane.director .lane-header { background: var(--drct-hdr); }
+.lane.director .lane-header { background: var(--drct-hdr); color: var(--drct-hdr-txt); }
 .lane.director .lane-body   { background: var(--drct-bg); border: 1px solid var(--drct-bd); border-top: none; }
 .lane.director .node        { border-color: var(--drct-bd); }
 
-.lane.operator .lane-header,
-.lane.hr-legal .lane-header { background: var(--ops-hdr); }
-.lane.operator .lane-body,
-.lane.hr-legal .lane-body   { background: var(--ops-bg); border: 1px solid var(--ops-bd); border-top: none; }
-.lane.operator .node,
-.lane.hr-legal .node        { border-color: var(--ops-bd); }
+.lane.operator .lane-header { background: var(--ops-hdr); color: var(--ops-hdr-txt); }
+.lane.operator .lane-body   { background: var(--ops-bg); border: 1px solid var(--ops-bd); border-top: none; }
+.lane.operator .node        { border-color: var(--ops-bd); }
+
+.lane.hr-legal .lane-header { background: var(--hr-hdr); color: var(--hr-hdr-txt); }
+.lane.hr-legal .lane-body   { background: var(--hr-bg); border: 1px solid var(--hr-bd); border-top: none; }
+.lane.hr-legal .node        { border-color: var(--hr-bd); }
 
 /* ── Node ── */
 .node {
@@ -287,16 +311,16 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #5B21B6;
+  color: #2f53f9;
   padding: 5px 10px;
-  background: #EDE9FE;
-  border-bottom: 1px solid #DDD6FE;
+  background: #f2f5ff;
+  border-bottom: 1px solid #c6d1fd;
 }
 .phase-row {
   padding: 8px 10px;
   font-size: 10.5px;
   color: #374151;
-  border-bottom: 1px solid #EDE9FE;
+  border-bottom: 1px solid #f2f5ff;
   line-height: 1.4;
 }
 .phase-row:last-child { border-bottom: none; }
@@ -666,13 +690,13 @@ body {
   <svg id="conn-svg" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <marker id="arr-orange" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L7,3 z" fill="#C2570A"/>
+        <path d="M0,0 L0,6 L7,3 z" fill="#ff6e23"/>
       </marker>
       <marker id="arr-purple" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L7,3 z" fill="#5B21B6"/>
+        <path d="M0,0 L0,6 L7,3 z" fill="#2f53f9"/>
       </marker>
       <marker id="arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L7,3 z" fill="#1558A0"/>
+        <path d="M0,0 L0,6 L7,3 z" fill="#e04fd4"/>
       </marker>
     </defs>
   </svg>
@@ -685,19 +709,19 @@ body {
   <div style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#9CA3AF;margin-bottom:10px;">에이전트 간 전달 흐름</div>
   <div style="display:flex;flex-direction:column;gap:6px;font-size:11.5px;font-family:'Geist',sans-serif;">
     <div style="display:flex;align-items:center;gap:8px;">
-      <span style="width:32px;height:0;border-top:1.5px dashed #C2570A;display:inline-block;flex-shrink:0;"></span>
+      <span style="width:32px;height:0;border-top:1.5px dashed #ff6e23;display:inline-block;flex-shrink:0;"></span>
       <span style="color:#6B7280;">Marketer <strong style="color:#111;">market-research</strong> → Strategist <strong style="color:#111;">concept-director</strong> &nbsp;·&nbsp; 리서치 시사점 전달</span>
     </div>
     <div style="display:flex;align-items:center;gap:8px;">
-      <span style="width:32px;height:0;border-top:1.5px dashed #C2570A;display:inline-block;flex-shrink:0;"></span>
+      <span style="width:32px;height:0;border-top:1.5px dashed #ff6e23;display:inline-block;flex-shrink:0;"></span>
       <span style="color:#6B7280;">Marketer <strong style="color:#111;">design-trend</strong> → Designer <strong style="color:#111;">moodboard</strong> &nbsp;·&nbsp; Direction A·B·C 전달</span>
     </div>
     <div style="display:flex;align-items:center;gap:8px;">
-      <span style="width:32px;height:0;border-top:1.5px dashed #5B21B6;display:inline-block;flex-shrink:0;"></span>
+      <span style="width:32px;height:0;border-top:1.5px dashed #2f53f9;display:inline-block;flex-shrink:0;"></span>
       <span style="color:#6B7280;">Strategist <strong style="color:#111;">brand-pipeline Phase3</strong> → Director <strong style="color:#111;">design-critique</strong> &nbsp;·&nbsp; Phase3 완료 전달</span>
     </div>
     <div style="display:flex;align-items:center;gap:8px;">
-      <span style="width:32px;height:0;border-top:1.5px dashed #1558A0;display:inline-block;flex-shrink:0;"></span>
+      <span style="width:32px;height:0;border-top:1.5px dashed #e04fd4;display:inline-block;flex-shrink:0;"></span>
       <span style="color:#6B7280;">Designer <strong style="color:#111;">visual-generator</strong> → Director <strong style="color:#111;">design-critique</strong> &nbsp;·&nbsp; 시안 완성 전달</span>
     </div>
   </div>
@@ -706,10 +730,10 @@ body {
 <script>
 (function() {
   var CONNECTIONS = [
-    { from: 'n-market-research',   to: 'n-concept-director',   color: '#C2570A', marker: 'arr-orange' },
-    { from: 'n-design-trend',      to: 'n-moodboard',          color: '#C2570A', marker: 'arr-orange' },
-    { from: 'n-brand-pipeline-p3', to: 'n-design-critique',    color: '#5B21B6', marker: 'arr-purple' },
-    { from: 'n-visual-generator',  to: 'n-design-critique',    color: '#1558A0', marker: 'arr-blue'   }
+    { from: 'n-market-research',   to: 'n-concept-director',   color: '#ff6e23', marker: 'arr-orange' },
+    { from: 'n-design-trend',      to: 'n-moodboard',          color: '#ff6e23', marker: 'arr-orange' },
+    { from: 'n-brand-pipeline-p3', to: 'n-design-critique',    color: '#2f53f9', marker: 'arr-purple' },
+    { from: 'n-visual-generator',  to: 'n-design-critique',    color: '#e04fd4', marker: 'arr-blue'   }
   ];
 
   function draw() {
