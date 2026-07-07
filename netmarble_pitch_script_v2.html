@@ -237,6 +237,31 @@
   .tone{display:inline-block;font-family:var(--mono);font-size:10.5px;
     letter-spacing:.06em;color:var(--accent-ink);background:var(--accent-wash);
     padding:3px 8px;border-radius:6px;margin-right:6px;margin-bottom:6px}
+
+  /* ── 부록: 발표 흐름과 분리된 준비용 자료 ── */
+  .appendix{margin-top:64px;padding-top:44px;border-top:3px dashed var(--rule)}
+  .appendix-flag{display:inline-block;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    background:var(--rule-soft);border:1px solid var(--rule);border-radius:99px;
+    padding:6px 14px;margin-bottom:18px}
+  .appendix h2{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:0}
+  .appendix .lede{color:var(--muted);font-size:14px;margin:10px 0 34px;max-width:64ch}
+  .appendix h3{font-size:15px;font-weight:800;margin:36px 0 14px;
+    display:flex;align-items:center;gap:8px}
+  .appendix h3::before{content:"";width:14px;height:2px;background:var(--accent)}
+
+  .pace-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px}
+  .pace-table th,.pace-table td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule-soft)}
+  .pace-table thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted)}
+  .pace-table td.min{font-family:var(--mono);color:var(--accent-ink);font-weight:700;white-space:nowrap}
+
+  .qa{border:1px solid var(--rule);border-radius:10px;padding:16px 18px;margin-bottom:12px;
+    background:var(--card)}
+  .qa .q{font-weight:700;font-size:14.5px;margin:0 0 8px;display:flex;gap:8px}
+  .qa .q .qmark{color:var(--accent);flex-shrink:0}
+  .qa .a{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+  .qa .a b{color:var(--ink)}
 </style>
 
 <header class="top">
@@ -1176,8 +1201,72 @@
       넷마블의 얘기를 듣는 자리입니다. 어디를 함께 그려갈지, 지금부터 여쭙겠습니다.”</div>
   </div>
 
+  <!-- ═══════════ 부록 (발표 중엔 다루지 않음, 준비용) ═══════════ -->
+  <section class="appendix" id="appendix">
+    <div class="appendix-flag">부록 · 발표 중엔 보여주지 않음 — 실장님 준비용</div>
+    <h2>발표 전 마지막 점검</h2>
+    <p class="lede">여기부터는 미팅 자리에서 넘기는 슬라이드가 아니라, 준비 단계에서만 보는
+      참고 자료입니다. 시간 배분과, 나올 법한 질문에 미리 답을 정해둡니다.</p>
+
+    <h3>시간 배분 (총 20분 기준)</h3>
+    <div class="tbl-wrap">
+      <table class="pace-table">
+        <thead><tr><th>구간</th><th>배분</th><th>속도 가이드</th></tr></thead>
+        <tbody>
+          <tr><td>오프닝 + 첫 인사</td><td class="min">1분</td><td>천천히, 표지 띄운 채 구두로만</td></tr>
+          <tr><td>왜 지금 (S-01)</td><td class="min">1분</td><td>짧게 — 아는 얘기는 인정만 하고 지나감</td></tr>
+          <tr><td>CH1 · 가져갈 것 (S-02~03)</td><td class="min">3분</td><td>결론이라 천천히, 여기서 완전히 이해시킬 것</td></tr>
+          <tr><td>CH2 · 증거 (S-04~14)</td><td class="min">7분</td><td>데이터·사례가 몰린 구간 — 제일 김. 늘어지지 않게 숫자 위주로 속도감 있게</td></tr>
+          <tr><td>CH3 · 어떻게 (S-15~20)</td><td class="min">5분</td><td>배너 시스템 데모(S-17) 여기서 실제로 검색 한 번 보여줄 것</td></tr>
+          <tr><td>CH4 · 할 것 (S-21~23)</td><td class="min">2분</td><td>부담 없다는 안도 → IP 하나 부탁 순서 지킬 것</td></tr>
+          <tr><td>CH5 · 함께 + 클로징</td><td class="min">1분</td><td>담담하게, 질문 던지듯 마무리</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>나올 법한 질문 — 미리 정해둔 답</h3>
+
+    <div class="qa">
+      <p class="q"><span class="qmark">Q.</span> UA 성과(설치·ROAS·CTR)가 실제로 좋아지는 근거가 있나요?</p>
+      <p class="a">지금 보여드린 수치는 <b>하이브랩의 생산 실적</b>입니다. 넷마블의 실제 UA 성과
+        데이터는 저희가 갖고 있지 않아서, 이 부분은 <b>파일럿으로 함께 확인</b>하는 게 정직한
+        방법이라고 생각합니다. CTR·전환율 두 지표만 연동해 주시면, 그다음부터는 실제 성과로
+        말씀드릴 수 있습니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q"><span class="qmark">Q.</span> 11년치 소재 데이터, 계약이 끝나면 누구 것인가요?</p>
+      <p class="a">오늘 이 자리에서 결정할 부분은 아니라고 생각합니다. 다만 <b>데이터 소유·이관
+        조건은 계약서에 명확히</b> 정리해서, 넷마블이 원하실 때 언제든 확인하실 수 있게 하겠습니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q"><span class="qmark">Q.</span> 만드는 회사가 성과까지 측정하면 이해상충 아닌가요?</p>
+      <p class="a">그 점 저희도 인지하고 있습니다. 성과 지표는 <b>넷마블 쪽 CTR·전환율 데이터를
+        그대로 연동</b>해서 보는 구조라, 저희가 임의로 만드는 숫자가 아닙니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q"><span class="qmark">Q.</span> 다른 곳도 AI 쓰는데, 왜 하이브랩인가요?</p>
+      <p class="a"><b>11년치 넷마블 전용 데이터</b> — 이게 다른 곳엔 없는 부분입니다. AI를
+        잘 써서가 아니라, 넷마블과 함께 쌓아온 데이터가 저희만 가진 자산이라서입니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q"><span class="qmark">Q.</span> 도입하면 정확히 얼마 아끼고 얼마 버나요?</p>
+      <p class="a">정직하게 말씀드리면, 지금은 정확한 금액을 약속드리기 어렵습니다. 대신
+        <b>파일럿으로 먼저 확인</b>하고, 그 결과를 근거로 다음 단계를 함께 정하고 싶습니다.</p>
+    </div>
+
+    <div class="note" style="margin-top:20px">
+      <span class="k">절대 금지</span>
+      <div>CPI·CTR 등 <b>넷마블 실제 성과 수치는 절대 지어내거나 인용하지 않는다.</b> 확실하지
+        않은 숫자는 “파일럿으로 확인하겠다”로 답할 것 — 추측성 숫자보다 이게 훨씬 신뢰를 준다.</div>
+    </div>
+  </section>
+
   <footer>
-    NETMARBLE × HIVELAB · AI Creative Proposal · 발표 대본 v1 · 5막 25슬라이드 ·
+    NETMARBLE × HIVELAB · AI Creative Proposal · 발표 대본 v2 · 5막 25슬라이드 + 부록 ·
     데이터는 하이브랩 계약/제작 실적 및 공개 자료 기준
   </footer>
 
