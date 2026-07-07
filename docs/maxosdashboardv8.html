@@ -565,7 +565,7 @@ body {
   <p class="section-desc">v8 — 7종 역할 에이전트 × 스킬 25종 라우팅 구조. 에이전트에게 말하면 해당 스킬이 자동 호출됩니다. 에이전트별 담당 스킬과 검증 게이트를 레인 구조로 표시.</p>
 
   <div style="margin-top:4px;">
-    <iframe src="maxos-org.html" style="width:100%;height:80vh;border:1px solid #E5E7EB;border-radius:10px;background:#fff;" title="에이전트 조직도 — 에이전트 6레인 × 스킬 맵"></iframe>
+    <iframe src="maxos-org.html" class="autosize-frame" scrolling="no" style="width:100%;height:80vh;border:1px solid #E5E7EB;border-radius:10px;background:#fff;overflow:hidden;" title="에이전트 조직도 — 에이전트 6레인 × 스킬 맵"></iframe>
     <div style="margin-top:6px;font-size:11px;"><a href="maxos-org.html" target="_blank" style="color:#6B7280;">새 탭에서 크게 보기 →</a></div>
   </div>
 
@@ -2207,7 +2207,7 @@ tools: Read, Glob, Grep, WebSearch
 <div id="sect-workflow" class="section">
   <h2 class="section-title">MAX실 OS v8 워크플로우 맵</h2>
   <p class="section-desc">가로 타임라인 — 프로젝트 인입(rfp-analyst)부터 발송까지 5단계. 시간이 왼쪽에서 오른쪽으로 흐르고, 각 단계에 어떤 에이전트·스킬이 투입되는지 보여준다. Operator·HR·Legal은 하단 상시 운영으로 분리.</p>
-  <iframe src="maxos-workflow.html" style="width:100%; height:80vh; border:none; border-radius:8px;"></iframe>
+  <iframe src="maxos-workflow.html" class="autosize-frame" scrolling="no" style="width:100%; height:80vh; border:none; border-radius:8px; overflow:hidden;"></iframe>
   <div style="margin-top:10px; font-size:12px; color:var(--ink3);">
     <a href="maxos-workflow.html" target="_blank" style="color:var(--sig); text-decoration:none; font-weight:600;">새 탭에서 열기 →</a>
   </div>
@@ -2511,6 +2511,28 @@ buildGantt('gantt-max', [
   // 진행중 [M] game — MX 센터 SNS (9/4~10/1, 9/30 클립)
   { name: 'MX 센터 SNS (9/4~10/1, M)',                start: 96, dur: 27, type: 'wip'  },
 ]);
+</script>
+<script>
+// iframe 내부 스크롤 제거 — 콘텐츠 전체 높이로 자동 확장
+function fitFrame(f) {
+  try {
+    var doc = f.contentDocument || f.contentWindow.document;
+    if (!doc || !doc.body) return;
+    var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+    if (h > 100) f.style.height = (h + 24) + 'px';
+  } catch (e) {}
+}
+document.querySelectorAll('.autosize-frame').forEach(function(f) {
+  f.addEventListener('load', function() {
+    fitFrame(f);
+    setTimeout(function(){ fitFrame(f); }, 400);   // 폰트 로드 후 재측정
+    setTimeout(function(){ fitFrame(f); }, 1200);
+  });
+  if (f.contentDocument && f.contentDocument.readyState === 'complete') fitFrame(f);
+});
+window.addEventListener('resize', function() {
+  document.querySelectorAll('.autosize-frame').forEach(fitFrame);
+});
 </script>
 </body>
 </html>
