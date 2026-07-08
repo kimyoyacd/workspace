@@ -36,7 +36,7 @@
 
 ### 스타일 (공통)
 
-Clean surreal kids fashion editorial mood, simple pastel studio background, bold tactile objects, oversized knitted or fuzzy props, vivid but tasteful color accents, playful graphic patterns, soft matte 3D storybook character style, warm gentle lighting, minimal composition, not cluttered, not realistic, not glossy plastic.
+Clean surreal kids fashion editorial mood, bold saturated solid-color studio wall (not washed-out pastel), a flat graphic art backdrop panel behind the character like a photo studio set piece, a patterned or colorful floor (confetti print, checkered rug, or color-block flooring — never a plain unpatterned carpet), bold tactile objects, oversized knitted or fuzzy props, vivid but tasteful color accents, playful graphic patterns, soft matte 3D storybook character style, warm gentle lighting, minimal but visually rich composition, not cluttered, not realistic, not glossy plastic, not flat/empty/static-looking.
 
 ### 캐릭터 (반드시 기준 이미지 기반)
 
@@ -52,9 +52,11 @@ Clean surreal kids fashion editorial mood, simple pastel studio background, bold
 
 ### 배경 및 공간
 
-[배경 컬러 또는 요소]  
-[배경이 간결하고 심플함을 강조]  
-[넓은 여백이 있는 구성]
+**REQUIRED — 벽과 바닥을 분리해서 명시할 것** (둘 다 무지 파스텔이면 재작업 대상):
+- 벽: 채도 높은 쨍한 단색 [예: bold butter yellow / cobalt blue / sage green — NOT washed-out pastel]
+- (권장) 캐릭터 뒤에 flat graphic art backdrop panel (추상 색면/식물 모티프, 스튜디오 세트처럼 인공적으로) — 오브제 컬러와 연결되는 팔레트
+- 바닥: [컨페티 패턴 / 체크 러그 / 컬러 블록 바닥] 중 하나 필수 — 무지 카펫만 쓰지 않기
+- 넓은 여백은 유지하되 "밋밋함"과는 다름 — 여백이 있어도 벽/바닥의 색·패턴은 강할 것
 
 ### 오브제 (Clean Surreal 무드)
 
