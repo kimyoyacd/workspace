@@ -62,8 +62,8 @@ Clean surreal kids fashion editorial mood, simple pastel studio background, bold
 [오브제 2]: [크기, 위치, 질감, 색상] (선택적)  
 [오브제 3]: [크기, 위치, 질감, 색상] (선택적)
 
-Tactile textures: matte clay, knitted fabric, fuzzy textile, felt, soft wool  
-Object scale: oversized or similar size to character to create surreal mood
+Tactile textures: chunky knitted fabric, soft felt, fuzzy textile, corduroy, soft wool — matte, never shiny, never painted wood/hard clay  
+Object scale: **REQUIRED — object(s) must be equal to or larger than the character**, e.g. "roughly two-thirds of [캐릭터명]'s height" or "taller than [캐릭터명]." This surreal scale-contrast is the single most important visual signature of the show (see `00_Brand_Bible/visual-tone-bible.md` §2/§7). Do NOT default to toy-scale or hand-sized objects — that reads as flat/static/generic pastel, not "Clean Surreal Fashion Playground."
 
 ### 카메라 및 프레이밍
 
@@ -154,3 +154,7 @@ Object scale: oversized or similar size to character to create surreal mood
 3. **배경의 역할**: 배경은 캐릭터를 돋보이게 하기 위한 스테이지 (주인공이 아님)
 4. **색 대비**: 포인트 컬러 2-3개로 제한 (배경 60%, 캐릭터 25%, 패턴 10%, 악센트 5%)
 5. **카메라**: 빠른 움직임보다 느린 줌인이나 부드러운 패닝이 스토리북 무드를 살림
+6. **오브제 스케일 = 생명선**: "child-hand-sized", "small block" 같은 표현을 쓰면 결과물이 정적이고 밋밋한 파스텔 사진처럼 나온다. 오브제는 항상 캐릭터와 비슷하거나 더 크게(예: "two-thirds of [캐릭터]'s height", "taller than [캐릭터]") 명시할 것 — 이게 "Clean Surreal Fashion Playground"를 실제로 보이게 만드는 핵심 장치다.
+7. **질감 지정 필수**: "matte clay/wood texture"만 쓰면 장난감처럼 밋밋해진다. 오브제에는 항상 "chunky knitted fabric", "soft felt", "visible yarn stitching" 같은 촉각적 질감 키워드를 넣을 것.
+8. **"static"이라는 단어를 프롬프트에 쓰지 말 것**: 카메라가 고정이어도 "static shot"이라 쓰면 결과물이 정말 정적으로 나온다. "fixed camera, energetic/alive composition" 식으로 표현할 것.
+9. **여백 관리**: 배경 여백은 좋지만, 오브제가 작으면 여백이 "텅 빈 느낌"으로 읽힌다. 오브제를 크게 키우면 자연스럽게 해결됨 (팁 6 참고).
