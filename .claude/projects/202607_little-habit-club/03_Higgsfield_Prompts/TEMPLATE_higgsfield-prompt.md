@@ -1,0 +1,156 @@
+# Higgsfield 프롬프트 템플릿 (Little Habit Club)
+
+> **사용법**: 이 템플릿을 복사해서 각 컷의 프롬프트를 작성합니다.
+> - 컷 시간: 4-6초
+> - 해상도: 1080x1920 (9:16 Shorts)
+> - 핵심: 스타일 문장 필수, 캐릭터 외형 반복 명시, 네거티브 프롬프트 추가
+
+---
+
+## 컷 1 — [행동 요약] (4-6초)
+
+### 메타데이터
+
+**에피소드**: [에피소드명]  
+**컷번호**: 1 / 6  
+**캐릭터명**: [Juni / Doni / Teo / Tei]  
+**의상**: [기준 이미지 기반 정확한 설명]  
+
+### 장면 구성
+
+**배경**: [단일 컬러 또는 단순 배경]  
+**오브제**: [1-3개, 생활습관 문제 상징하는 것]  
+**조명**: 따뜻한 스튜디오 조명  
+**분위기**: [시정/조용함/창피함 등]
+
+### 캐릭터 행동
+
+**상황**: [생활 습관 문제 구체적 설명]  
+**행동**: [4-6초 동안의 구체적 행동 시퀀스]  
+**표정**: [표정 및 감정 상태]  
+**카메라**: [고정 / 천천히 줌인 / 부드러운 패닝 등]
+
+---
+
+## Higgsfield 프롬프트
+
+### 스타일 (공통)
+
+Clean surreal kids fashion editorial mood, simple pastel studio background, bold tactile objects, oversized knitted or fuzzy props, vivid but tasteful color accents, playful graphic patterns, soft matte 3D storybook character style, warm gentle lighting, minimal composition, not cluttered, not realistic, not glossy plastic.
+
+### 캐릭터 (반드시 기준 이미지 기반)
+
+[캐릭터 이름] is a [연령대] Korean child character with:
+- Face shape: [정확한 얼굴형]
+- Hair: [머리 스타일/색상]
+- Eyes: [눈의 형태/색상]
+- Clothing: [의상 색상/패턴/질감]
+- Overall proportions: [신체 비율]
+- Facial expression: [표정]
+
+**Base reference**: [캐릭터 이름]_reference_01.png (maintain EXACT appearance, DO NOT modify facial features, hair, clothing colors, or proportions)
+
+### 배경 및 공간
+
+[배경 컬러 또는 요소]  
+[배경이 간결하고 심플함을 강조]  
+[넓은 여백이 있는 구성]
+
+### 오브제 (Clean Surreal 무드)
+
+[오브제 1]: [크기, 위치, 질감, 색상]  
+[오브제 2]: [크기, 위치, 질감, 색상] (선택적)  
+[오브제 3]: [크기, 위치, 질감, 색상] (선택적)
+
+Tactile textures: matte clay, knitted fabric, fuzzy textile, felt, soft wool  
+Object scale: oversized or similar size to character to create surreal mood
+
+### 카메라 및 프레이밍
+
+[카메라 타입]: [고정 / 천천히 줌인 5% / 부드러운 패닝 등]  
+캐릭터 배치: 화면 중심 또는 3분할 지점  
+프레이밍: 깨끗하고 단순한 구성, 강력한 시각적 임팩트
+
+### 질감 및 느낌
+
+- Matte finish on all surfaces
+- Soft, touchable quality (not plastic, not glossy)
+- Warm, gentle lighting with soft shadows
+- Handmade storybook aesthetic
+- Inviting and cozy atmosphere
+
+---
+
+## 네거티브 프롬프트
+
+```
+## 절대 금지 사항 (MUST NOT):
+
+❌ Character appearance:
+- Modify character's facial features (face shape, eyes, nose, mouth proportions)
+- Change hair style or color from reference image
+- Alter clothing colors, patterns, or silhouette
+- Make character look younger or older than [연령대]
+- Glossy plastic-like texture on character
+- Hyper-realistic skin texture
+
+❌ Clothing & Details:
+- Change [캐릭터명]'s outfit colors or patterns
+- Add new accessories not in reference image
+- Modern sportswear or fashion runway look
+- Over-decorated costume
+
+❌ Background & Environment:
+- Complex, detailed, realistic backgrounds
+- Classroom-like educational setting
+- Cluttered environments with many objects
+- Photo-realistic natural landscapes
+- Busy city, forest, or detailed landscapes
+- Toys scattered everywhere like a nursery
+
+❌ Visual Style:
+- Glossy or shiny plastic quality
+- Metallic or reflective surfaces
+- Hyper-realistic rendering
+- Hard toy figure look
+- Anime or cartoon style
+- Glass-like reflective eyes
+- Fluorescent neon colors
+
+❌ Other:
+- Readable text, letters, numbers, logos, branding in image
+- YouTube title cards or captions
+- Subtitles or speech bubbles
+- Background music or sound (image only)
+- Similar to famous existing characters
+
+## 권장 유지사항 (MUST KEEP):
+✅ Soft matte 3D storybook aesthetic
+✅ Clean, minimal composition
+✅ Warm, gentle lighting
+✅ Tactile, touchable quality (fabric, felt, clay)
+✅ Playful but not childish mood for 8-12 year-olds
+✅ Character's exact appearance from reference image
+```
+
+---
+
+## 생성 후 QC 체크
+
+- [ ] 캐릭터 외형이 기준 이미지와 정확히 일치하는가?
+- [ ] 의상 색상/패턴이 유지되었는가?
+- [ ] 배경이 단순하고 깨끗한가?
+- [ ] 오브제가 1-3개만 사용되었는가?
+- [ ] 글자나 로고가 없는가?
+- [ ] 조명이 따뜻하고 부드러운가?
+- [ ] 4-6초 분량이 적절한가?
+
+---
+
+## 팁 (Claude 작성 시 참고)
+
+1. **캐릭터 일관성**: 같은 캐릭터가 다른 에피소드에 나올 때 절대 외형 변경 금지
+2. **오브제 활용**: 생활습관 문제를 직접 설명하지 말고, 상징하는 오브제로 보여주기
+3. **배경의 역할**: 배경은 캐릭터를 돋보이게 하기 위한 스테이지 (주인공이 아님)
+4. **색 대비**: 포인트 컬러 2-3개로 제한 (배경 60%, 캐릭터 25%, 패턴 10%, 악센트 5%)
+5. **카메라**: 빠른 움직임보다 느린 줌인이나 부드러운 패닝이 스토리북 무드를 살림
