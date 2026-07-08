@@ -1,5 +1,5 @@
 """
-Little Habit Club — 월간 유튜브 트렌드 스캔 스크립트
+Little Try Club — 월간 유튜브 트렌드 스캔 스크립트
 
 사용법:
   pip install yt-dlp
@@ -18,7 +18,7 @@ Little Habit Club — 월간 유튜브 트렌드 스캔 스크립트
 """
 import subprocess, json, sys, urllib.parse
 
-# 니치에 맞게 매월 조정 가능 — Little Habit Club 패턴: 캐릭터 기반 3D/클레이 애니메이션,
+# 니치에 맞게 매월 조정 가능 — Little Try Club 패턴: 캐릭터 기반 3D/클레이 애니메이션,
 # 습관·감정·다시시도 미니 스토리, Shorts 포맷
 QUERIES = [
     "kids habit shorts animation character",

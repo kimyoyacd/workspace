@@ -1,6 +1,6 @@
 # Higgsfield 크레딧 관리 시스템
 
-> **목적**: Little Habit Club 제작에 사용되는 Higgsfield 생성 비용을 추적하고 관리합니다.
+> **목적**: Little Try Club 제작에 사용되는 Higgsfield 생성 비용을 추적하고 관리합니다.
 > **사용 시점**: 매번 Higgsfield로 영상/이미지를 생성할 때마다 기록합니다.
 > **중요**: 크레딧이 막 사용되지 않도록 효율적으로 관리합니다.
 

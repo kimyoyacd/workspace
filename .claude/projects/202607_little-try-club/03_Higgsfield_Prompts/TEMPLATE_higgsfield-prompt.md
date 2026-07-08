@@ -1,4 +1,4 @@
-# Higgsfield 프롬프트 템플릿 (Little Habit Club)
+# Higgsfield 프롬프트 템플릿 (Little Try Club)
 
 > **사용법**: 이 템플릿을 복사해서 각 컷의 프롬프트를 작성합니다.
 > - 컷 시간: 4-6초

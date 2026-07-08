@@ -1,4 +1,4 @@
-# Little Habit Club Visual Tone Bible
+# Little Try Club Visual Tone Bible
 ## Clean Surreal Fashion Playground
 ---
 

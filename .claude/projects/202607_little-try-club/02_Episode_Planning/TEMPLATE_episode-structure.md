@@ -1,4 +1,4 @@
-# 에피소드 구성표 템플릿 (Little Habit Club)
+# 에피소드 구성표 템플릿 (Little Try Club)
 
 > **사용법**: 새 에피소드마다 이 템플릿을 복사해서 채웁니다.
 > - 총 길이: 30초 (YouTube Shorts, 9:16)

@@ -54,7 +54,7 @@ The Rhyme Ring, Zigloo, Mama Bobo Toons, DAG.Cartoon, Gubbare Tunes 모두 "Clea
 
 ### 3. "다시 시도하기 / 포기하지 않기" 클러스터가 독립적으로 존재한다
 
-ReValor Kids, muhay animasi 외에도 (이번 달 필터 밖이지만) Mr. BrainBloom "Never Stop Trying", Wonder World Kids Plus "The Small Seed That Believed", Media Rookies World "Mistakes Help Us Grow" 같은 채널들이 "실수해도 다시 도전"을 주제로 반복 생산 중 → **Little Habit Club의 핵심 가치(다시 시도하기)와 정확히 일치하는 검증된 시장**.
+ReValor Kids, muhay animasi 외에도 (이번 달 필터 밖이지만) Mr. BrainBloom "Never Stop Trying", Wonder World Kids Plus "The Small Seed That Believed", Media Rookies World "Mistakes Help Us Grow" 같은 채널들이 "실수해도 다시 도전"을 주제로 반복 생산 중 → **Little Try Club의 핵심 가치(다시 시도하기)와 정확히 일치하는 검증된 시장**.
 
 ### 4. 클레이메이션 스타일이 소형 채널에서 특히 잘 먹힌다
 
