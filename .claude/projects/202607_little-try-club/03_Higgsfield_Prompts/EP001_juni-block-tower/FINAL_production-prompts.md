@@ -22,7 +22,7 @@
 ## 🔒 고정 스타일 블록 (모든 스틸 프롬프트에 그대로 포함)
 
 ```
-Clean surreal kids fashion editorial mood. A bold saturated butter-yellow solid studio wall (vivid, not pastel), with a flat graphic art backdrop panel standing behind the character like a photo-studio set piece — abstract overlapping color-block shapes and simple leaf/tulip motifs in cobalt blue, tomato red, and soft pink, printed flat like a poster. The floor is a colorful confetti-print rug (small scattered dots and shapes in cobalt blue, tomato red, butter yellow, sage green on a cream base). Juni, an 8-10 year old Korean boy character with a soft round face, slightly tousled light sandy-brown hair (matching the reference image exactly — NOT dark brown, NOT black), warm gentle BLUE eyes, coral blush on both cheeks, wearing a cobalt blue knitted vest over a cream-and-cobalt striped long-sleeve top, cobalt blue shorts, cream socks, ivory sneakers, soft matte 3D storybook character style. Maintain his EXACT appearance from the reference image - do not change his face, hair, eye color, or clothing. All blocks: chunky knitted fabric with visible yarn stitching, matte, never shiny; each block roughly two-thirds of Juni's height — this oversized surreal scale is required. No readable text, no logos, no subtitles.
+Clean surreal kids fashion editorial mood. A bold saturated butter-yellow solid studio wall (vivid, not pastel), with a flat graphic art backdrop panel standing behind the character like a photo-studio set piece — abstract overlapping color-block shapes and simple leaf/tulip motifs ONLY in cobalt blue, tomato red, and soft pink, printed flat like a poster — absolutely no numbers, letters, or typography of any kind in the backdrop design. The floor is a colorful confetti-print rug (small scattered dots and shapes in cobalt blue, tomato red, butter yellow, sage green on a cream base). Juni, an 8-10 year old Korean boy character with a soft round face, slightly tousled light sandy-brown hair (matching the reference image exactly — NOT dark brown, NOT black), warm gentle BLUE eyes, coral blush on both cheeks, wearing a cobalt blue knitted vest over a cream-and-cobalt striped long-sleeve top, cobalt blue shorts, cream socks, ivory sneakers, soft matte 3D storybook character style. Maintain his EXACT appearance from the reference image - do not change his face, hair, eye color, or clothing. All blocks: chunky knitted fabric with visible yarn stitching, matte, never shiny; each block roughly two-thirds of Juni's height — this oversized surreal scale is required. No readable text, no logos, no subtitles.
 ```
 
 **Base reference media**: `juni_reference_01.png` (media_id: `977862ef-8717-4e95-8145-ddd30be19b32`)
@@ -115,7 +115,7 @@ Juni gives a warm satisfied smile, a small proud nod, and a tiny happy bounce on
 |---|---|---|---|---|
 | 1 | 2 | 6 (+6 재생성) | ✅ 승인 | 슬로우모션 1차 실수 → 재생성으로 수정 |
 | 2 | 2 | 6 | ✅ 승인 | 체크리스트 통과, 정상속도 확인 |
-| 3 | - | - | 대기 | |
+| 3 | 2+2 | 6 | ✅ 승인 | 백드롭에 숫자"5" 드리프트 발견→재생성. 고정블록에 "no numbers/letters" 강화 반영 완료 |
 | 4 | - | - | 대기 | |
 | 5 | - | - | 대기 | |
 | 6 | - | - | 대기 | |
