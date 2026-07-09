@@ -160,3 +160,4 @@ Object scale: **REQUIRED — object(s) must be equal to or larger than the chara
 7. **질감 지정 필수**: "matte clay/wood texture"만 쓰면 장난감처럼 밋밋해진다. 오브제에는 항상 "chunky knitted fabric", "soft felt", "visible yarn stitching" 같은 촉각적 질감 키워드를 넣을 것.
 8. **"static"이라는 단어를 프롬프트에 쓰지 말 것**: 카메라가 고정이어도 "static shot"이라 쓰면 결과물이 정말 정적으로 나온다. "fixed camera, energetic/alive composition" 식으로 표현할 것.
 9. **여백 관리**: 배경 여백은 좋지만, 오브제가 작으면 여백이 "텅 빈 느낌"으로 읽힌다. 오브제를 크게 키우면 자연스럽게 해결됨 (팁 6 참고).
+10. **영상 모션 프롬프트에 "soft/subtle/gentle motion"만 쓰지 말 것 (2026.07 컷1에서 실제로 발생한 실수)**: image-to-video 단계에서 "soft natural motion, subtle breathing/idle movement" 식으로만 쓰면 모델이 슬로우모션처럼 느리게 움직인다. 반드시 **"at a normal, natural real-time pace, NOT slow motion"**을 명시하고, 행동이 클립 길이(4-6초) 안에 자연스럽게 끝나도록 구체적 타이밍을 함께 적을 것 (예: "completes the motion within about 2 seconds, at everyday walking-pace speed").
