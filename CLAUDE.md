@@ -27,9 +27,11 @@
 .claude/
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── copywriter/       # 기출문제(RAG) 기반 카피라이팅
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── copy-corpus/      # 카피라이팅 RAG 기출 코퍼스 (카테고리별 JSONL)
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
@@ -83,3 +85,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `copywriter` — 카피 코퍼스(`.claude/library/copy-corpus/`)를 grep 검색해 기출문제 기반으로 카피 작성. 기준은 "누르고 싶은 문구"
