@@ -46,6 +46,7 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   └── list-deck-design/
 ├── library/       # 재사용 자산
+│   ├── deck-template.html # 무드보드 덱 HTML 골격(빈 템플릿) — 새 프로젝트는 이걸 복사해서 시작
 │   ├── prompts/   # design-deck-wireframe, brand-design-proposal, wide-research,
 │   │              # runable-3-slide-templates, MOODBOARD_MASTER_FRAMEWORK,
 │   │              # designer-lens-gates, brand-brief-template, persona-directives …
@@ -72,6 +73,7 @@
 
 **재사용 시 유의할 것**
 1. 새 프로젝트를 시작하면 그 프로젝트 폴더에 `00-project-index.md`부터 만든다(GRAIN 프로젝트의 패턴을 그대로 복제). 이 인덱스가 있어야 다음 세션에서도 "현재 뭐가 맞는지"를 바로 파악할 수 있다.
+1-1. 무드보드/제안 덱을 HTML로 만들 땐 매번 CSS부터 새로 짜지 않는다 — **`.claude/library/deck-template.html`을 그 프로젝트 폴더에 `deck.html`로 복사한 뒤 `[대괄호]` 자리만 채운다.** GRAIN에서 실제로 쓰인 디자인 시스템(고정 16:9 `slide16` + 자유높이 `cat-card` 두 체계, 컬러 토큰, 오프닝→리서치→슬라이더→키비주얼→마무리 순서)이 그대로 들어있다.
 2. 가이드 파일 자체를 프로젝트를 실제로 돌리면서 계속 고도화한다 — 이번 GRAIN 세션처럼 실무 중 발견된 빈틈(이미지 그리드 규격, 슬라이드 압축 금지 등)은 그때그때 해당 라이브러리 파일에 바로 반영해 다음 프로젝트부터 자동 적용되게 한다. 즉 "지침 파일 업데이트"는 매번 새로 하는 별도 작업이 아니라, 프로젝트 진행 자체의 부산물로 취급한다.
 3. 프로젝트별 특수 사정(예: GRAIN만의 3라인 구조)은 프로젝트 인덱스에 남기고, **범용적으로 재사용 가능한 규칙만** 라이브러리 파일로 승격한다. 이 구분이 흐려지면 다음 프로젝트에 GRAIN 전용 내용이 잘못 섞여 들어간다.
 
