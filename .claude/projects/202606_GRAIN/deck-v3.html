@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAIN v3 — Moodboard Rebuild (MOODBOARD_MASTER_FRAMEWORK)</title>
+<style>
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+    --safe: #2454C7;
+    --wild: #B23B3B;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, sans-serif; background: var(--bg); margin: 0; color: var(--ink); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .top-note { text-align:center; font-size:12px; color:#888; margin-bottom:24px; }
+  .top-note b { color:#333; }
+
+  /* ===== 16:9 White Slide System (재사용, deck-v2.html과 동일 규격) ===== */
+  .slide16 { background:#fff; aspect-ratio:16/9; width:100%; margin-bottom:24px; border-radius:8px; padding:44px 52px; position:relative; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; flex-direction:column; }
+  .slide16-head { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #E5E5E5; padding-bottom:12px; margin-bottom:20px; }
+  .slide16-label { font-size:15px; font-weight:800; }
+  .slide16-note { font-size:11px; color:#999; }
+
+  /* ===== §0 Opening slides ===== */
+  .pov-slide { justify-content:center; align-items:center; text-align:center; }
+  .pov-slide .pov-eyebrow { font-size:12px; font-weight:700; color:#999; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:18px; }
+  .pov-slide .pov-en { font-size:36px; font-weight:800; letter-spacing:-0.02em; max-width:820px; margin-bottom:10px; }
+  .pov-slide .pov-kr { font-size:19px; color:#555; margin-bottom:28px; }
+  .pov-reasons { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; text-align:left; max-width:920px; }
+  .pov-reasons div { font-size:12px; line-height:1.55; color:#444; }
+  .pov-reasons b { display:block; font-size:12.5px; font-weight:800; color:#111; margin-bottom:6px; }
+
+  .def-slide { justify-content:center; }
+  .def-kw { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+  .def-kw span { font-size:12px; font-weight:700; border:1px solid #ddd; border-radius:20px; padding:5px 14px; }
+  .def-mockup { font-size:14px; line-height:1.7; color:#333; max-width:880px; }
+
+  .msg-slide { justify-content:center; align-items:center; text-align:center; }
+  .msg-emotion { font-size:44px; font-weight:800; margin-bottom:10px; }
+  .msg-sub { font-size:14px; color:#777; margin-bottom:24px; }
+  .msg-action { font-size:15px; color:#333; max-width:640px; line-height:1.6; }
+
+  .route-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; flex:1; }
+  .route-card { border-radius:10px; padding:22px 24px; display:flex; flex-direction:column; }
+  .route-card.safe { background:#EEF2FC; border:1px solid #CBD8F5; }
+  .route-card.wild { background:#FBEEEE; border:1px solid #F0CDCD; }
+  .route-tag { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+  .route-card.safe .route-tag { color:var(--safe); }
+  .route-card.wild .route-tag { color:var(--wild); }
+  .route-summary { font-size:13.5px; line-height:1.6; color:#333; }
+
+  .note-slide { }
+  .note-body { font-size:13px; line-height:1.7; color:#333; }
+  .note-body b { color:#111; }
+  .unresolved { margin-top:auto; padding-top:16px; border-top:1px dashed #ddd; font-size:11.5px; color:#999; }
+  .unresolved li { margin-bottom:4px; }
+
+  /* ===== §1 Personality Slider slides ===== */
+  .slider-slide-title { font-size:26px; font-weight:800; margin-bottom:4px; }
+  .slider-slide-sub { font-size:12.5px; color:#888; margin-bottom:26px; }
+  .slider-track { position:relative; height:6px; background:#E8E8E8; border-radius:4px; margin:34px 0 46px; }
+  .slider-track .mark { position:absolute; top:-9px; width:24px; height:24px; border-radius:50%; transform:translateX(-50%); display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:800; color:#fff; }
+  .slider-track .mark.avg { background:#999; }
+  .slider-track .mark.safe { background:var(--safe); }
+  .slider-track .mark.wild { background:var(--wild); }
+  .slider-labels { display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:#333; margin-top:-38px; margin-bottom:40px; }
+  .slider-legend { display:flex; gap:18px; font-size:10.5px; color:#666; margin-bottom:28px; }
+  .slider-legend span { display:flex; align-items:center; gap:5px; }
+  .slider-legend i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .slider-reason { font-size:12.5px; color:#444; line-height:1.6; max-width:900px; }
+  .slider-reason b { color:#111; }
+  .slider-sources { display:flex; gap:10px; margin-top:auto; padding-top:14px; border-top:1px dashed #ddd; }
+  .slider-sources span { font-size:9.5px; color:#999; background:#F5F5F5; border-radius:5px; padding:3px 9px; }
+
+  /* ===== Mindmap slide (reuse-style) ===== */
+  .mm5 { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; flex:1; }
+  .mm5-col { border-left:1px solid #eee; padding-left:14px; display:flex; flex-direction:column; gap:8px; }
+  .mm5-col:first-child { border-left:none; padding-left:0; }
+  .mm5-axis { font-size:11px; font-weight:800; margin-bottom:4px; }
+  .mm5-kw { font-size:10.5px; color:#555; background:#F5F5F5; border-radius:5px; padding:5px 8px; line-height:1.35; }
+
+  /* ===== 경쟁사 카드 — deck.html 원본 스펙 그대로(회색 라운드 카드, 자유높이) ===== */
+  /* deck.html은 두 카드 체계를 의도적으로 공존시킨다: 리서치/전략 섹션=cat-card(자유높이, 회색), Runable 3 최종 슬라이드=slide16(고정 16:9, 흰색). 둘 다 같은 컬러토큰·타이포 스케일을 공유하는 하나의 디자인 시스템이다 — cat-card를 slide16으로 강제 변환하지 않는다. */
+  .cat-card { background: var(--bg); border-radius: 16px; padding: 40px 44px 48px; margin-bottom: 40px; position: relative; }
+  .cat-label { font-size: 13px; font-weight: 700; color: var(--ink2); margin-bottom: 8px; }
+  .cat-title { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 16px; }
+  .cat-bullets { margin-bottom: 28px; }
+  .cat-bullets div { font-size: 14px; color: var(--ink2); margin-bottom: 4px; }
+  .cat-bullets div::before { content: "· "; }
+  .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .brand-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; position: relative; }
+  .brand-mark { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; padding-right: 40px; }
+  .brand-meta { font-size: 10.5px; color: var(--ink3); line-height: 1.5; }
+  .brand-meta b { color: var(--ink2); font-weight: 700; }
+  .brand-desc { font-size: 11px; color: var(--ink2); line-height: 1.45; margin-top: 2px; }
+  .brand-source { font-size: 10px; margin-top: 6px; }
+  .brand-source a { color: #2454C7; text-decoration: none; }
+  .tier-badge { font-size: 8.5px; font-weight: 700; color: #fff; background: #999; border-radius: 8px; padding: 2px 7px; position: absolute; top: 16px; right: 16px; }
+  .tier-1 { background: #2D7A4F; } .tier-2 { background: #C77A0F; } .tier-3 { background: #999; } .tier-4 { background: #B23B3B; }
+  @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top-note">GRAIN v3 · 무드보드 새 버전 — 방향을 정한 이유와 근거를 순서대로 보여드립니다. 내용을 요약하거나 줄이지 않고, 나온 내용은 전부 한 장씩 그대로 담았습니다</div>
+
+  <!-- Slide 1: POV -->
+  <div class="slide16 pov-slide">
+    <div class="pov-eyebrow">왜 이 방향인가</div>
+    <div class="pov-en">Time Lies About What It's Made Of.</div>
+    <div class="pov-kr">시간은 자신이 무엇으로 이루어졌는지 거짓말한다.</div>
+    <div class="pov-reasons">
+      <div><b>핵심가치</b>진짜 프리미엄은 재료의 정직함이 아니라, 재료가 스스로의 정체성을 배반하는 순간의 경이다. 모래시계는 "시간의 물성"을 눈으로 보게 만든 유일한 오브젝트이고, GRAIN은 그 물성 자체가 물리 법칙을 배신하게 만든다.</div>
+      <div><b>진짜 문제</b>경쟁사는 모두 "정밀함=신뢰" 문법 안에서 경쟁한다. 이 문법 안에서는 결국 "더 정확한 계측기" 경쟁으로 수렴한다. GRAIN은 반대로 믿는다 — 물질이 예측 가능할수록, 오브젝트는 시간에 대해 아무것도 말해주지 않는다.</div>
+      <div><b>대상</b>Gen Z + 예술적 감성을 가진 성인 콜렉터. 기능(시간 측정)이 아니라 조형 작품으로서의 소장욕구로 움직이는, 리미티드 아트토이·콜렉터블 시장의 구매자.</div>
+    </div>
+  </div>
+
+  <!-- Slide 2: 결과물 정의 -->
+  <div class="slide16 def-slide">
+    <div class="slide16-head"><span class="slide16-label">무엇을 만들 것인가</span><span class="slide16-note">무엇을 만들기로 했는가</span></div>
+    <div class="def-kw">
+      <span>변형(Transmutation)</span><span>불신(Uncanny Doubt)</span><span>경이(Wonder)</span>
+      <span>미친 소재, 침착한 크래프트</span><span>9번째 요소 = 소리(ASMR)</span>
+    </div>
+    <div class="def-mockup">비대칭 3단 적층 실루엣(위·아래는 크고 가운데만 작게 낀 형태) — 원목 캡이 상하부를 감싸고, 챔버 내부는 라인마다 다른 물성이 흐른다: <b>Slow</b>는 젤리처럼 웨블링하는 앰버빛 반투명, <b>Fast</b>는 리퀴드 크롬이 표면을 거울처럼 반사하며 낙하, <b>Heavy</b>는 검은 페로플루이드가 중력을 거스르듯 스파이크로 솟아오른다. 손에 쥐면 원목의 온기가 먼저 느껴지지만, 안에서 벌어지는 물리는 그 온기와 무관하게 낯설다 — "믿을 수 있는 겉과 믿을 수 없는 속"이 한 손 안에 동시에 존재하는 오브젝트.</div>
+  </div>
+
+  <!-- Slide 3: 메시지 -->
+  <div class="slide16 msg-slide">
+    <div class="pov-eyebrow">고객이 느껴야 할 감정</div>
+    <div class="msg-emotion">불안한데 자꾸 눈이 가는 느낌</div>
+    <div class="msg-sub">고객이 이걸 보고 느껴야 할 감정</div>
+    <div class="msg-action"><b>행동: 소장(Collect)</b> — "이게 뭘로 만들어진 거지?"라는 첫 반응이 "내 공간에 두고 매일 다시 확인하고 싶다"는 반복 관찰 욕구로 전환되어, 결국 구매·SNS 공유·컬렉션 완성(3라인 전부 소장)으로 이어진다.</div>
+  </div>
+
+  <!-- Slide 4: 두 루트 예고 -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">두 가지 방향 미리보기 — 무난한 안 / 과감한 안</span><span class="slide16-note">얼마나 과감하게 갈지에 따른 두 가지 시안</span></div>
+    <div class="route-grid">
+      <div class="route-card safe">
+        <div class="route-tag">무난한 안</div>
+        <div class="route-summary">폼은 전체 공통 3단 적층(구조 언어 하나로 통일)으로 안전하게 가되, 캡 소재는 라인별로 차등 — Slow·Heavy는 원목, Fast는 기존 메탈 계열 유지로 톤 충돌 리스크를 없앤다.</div>
+      </div>
+      <div class="route-card wild">
+        <div class="route-tag">과감한 안</div>
+        <div class="route-summary">비대칭 3단(가운데만 캡슐형)으로 "모래시계의 좌우대칭"이라는 문법 자체를 형태로 배신하고, 원목 캡을 전 라인 공통 적용해 "자연 소재가 초자연적 내용물을 감싼다"는 이중신뢰 구조를 컬렉션 전체의 정체성으로 확정한다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: 통합 메모 + 미해결 -->
+  <div class="slide16 note-slide">
+    <div class="slide16-head"><span class="slide16-label">새로 나온 아이디어가 왜 이 방향에 힘을 실어주는가</span><span class="slide16-note">아이디어 확장 회의 정리</span></div>
+    <div class="note-body">
+      <p><b>비대칭 3단 폼</b> — 기존 모래시계의 "완벽한 좌우대칭"은 곧 "물리 법칙은 예측 가능하다"는 무언의 약속이었다. 그 대칭을 가운데 벌브 하나로 깨뜨리는 순간, 오브젝트는 눈에 보이는 구조 단계에서부터 이미 "정직하지 않다"고 선언한다.</p>
+      <p><b>원목 캡 도입</b> — 원목은 GRAIN이 한 번도 쓰지 않은 "정직하고 예측 가능한" 자연 소재다. 손에 닿는 캡이 신뢰할 만큼 따뜻하고 정직할수록, 그 안에서 벌어지는 변형의 배신감이 더 크게 산다. "겉은 믿게 하고 속은 의심하게 한다"는 처음 정한 방향을 소재 대비 하나로 표현한 것.</p>
+    </div>
+    <ul class="unresolved">
+      <li>미해결 — 벌브 단수: 전체공통 3단 vs 라인별 차등(Heavy만 3단 등)</li>
+      <li>미해결 — 캡 소재 배분: 원목 전면적용 vs 라인별 차등(Fast는 메탈 유지 의견)</li>
+    </ul>
+  </div>
+
+  <!-- Research divider -->
+  <div class="slide16 pov-slide">
+    <div class="pov-eyebrow">이 방향을 뒷받침하는 근거 자료</div>
+    <div class="pov-en" style="font-size:28px;">경쟁사 조사 · 최신 트렌드 · 고객이 관심 있어 하는 것</div>
+    <div class="pov-kr">뒤에 나올 5가지 방향 비교표의 근거가 되는 자료 — 3가지로 나눠 먼저 확인해 드립니다</div>
+  </div>
+
+  <!-- Research ① 경쟁/포지셔닝 — 전체 필드 카드 원칙 준수 (deck-v2.html과 동일 카드를 재수록, 요약 텍스트로 대체하지 않음) -->
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁사 조사 — Category A</div>
+    <h1 class="cat-title">장인·소재가 말하는 럭셔리</h1>
+    <div class="cat-bullets">
+      <div>카피보다 소재·공정 자체가 가격을 정당화한다</div>
+      <div>"장인정신 서사"가 프리미엄가의 근거</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Assouline — Mirage Hourglass</div>
+        <div class="brand-meta"><b>국가</b> 미국/프랑스 · <b>가격대</b> $375–475<br><b>타깃</b> 40-60대 상위소득, 서재 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 기술적 정교함과 공예미의 결합. 가장 직접적인 경쟁(가죽+유리 모래시계)</div>
+        <div class="brand-source"><a href="https://www.assouline.com/products/mirage-hourglass-brown-pebbled-leather" target="_blank">assouline.com ↗</a> · <a href="https://www.harrods.com/en-us/p/assouline-mirage-hourglass-000000000007773188" target="_blank">harrods.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Hermès Home</div>
+        <div class="brand-meta"><b>국가</b> 프랑스 · <b>가격대</b> $500–5000+<br><b>타깃</b> 최상위 소득층, 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 메종의 장인정신을 오브제로 확장. 부티크 전용 유통(GRAIN D2C엔 적용 불가)</div>
+        <div class="brand-source"><a href="https://www.hermes.com/us/en/category/home/objects/" target="_blank">hermes.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">L'Objet</div>
+        <div class="brand-meta"><b>국가</b> 미국(뉴욕) · <b>가격대</b> $100–1000+<br><b>타깃</b> 40-60대 하이엔드 인테리어 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> 장인정신과 신화적 모티프의 결합, 금박·에나멜. 장식성 강해 실용 기능 부재</div>
+        <div class="brand-source">공식 URL 미확보 — 추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Georg Jensen</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $150–2000+<br><b>타깃</b> 40-60대 전통 럭셔리 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 100년 이상 은세공 헤리티지. 올드머니 이미지</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">놋담 (NOTDAM)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 추정 $50-300<br><b>타깃</b> 30-50대 전통공예·혼수 시장</div>
+        <div class="brand-desc"><b>핵심메시지</b> 전통 방짜유기의 현대적 리빙화. 홈쇼핑/혼수 이미지로 올드함</div>
+        <div class="brand-source"><a href="https://notdam.com/" target="_blank">notdam.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">광명유기공방</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨<br><b>타깃</b> 40-60대 전통공예 애호가</div>
+        <div class="brand-desc"><b>핵심메시지</b> 전통 방짜유기 제작 기법 계승. 이커머스형 사이트로 세련도 낮음</div>
+        <div class="brand-source"><a href="https://www.gmykmall.com/" target="_blank">gmykmall.com ↗</a></div></div>
+    </div>
+  </div>
+
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁사 조사 — Category B</div>
+    <h1 class="cat-title">기능이 곧 즐거움인 정밀 오브젝트</h1>
+    <div class="cat-bullets">
+      <div>오브젝트가 '작동'하는 순간(회전·잠금·촉각)이 브랜드 경험의 핵심</div>
+      <div>장식이 아니라 메커니즘이 매력</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Craighill</div>
+        <div class="brand-meta"><b>국가</b> 미국(브루클린) · <b>가격대</b> $35–120<br><b>타깃</b> 30-40대 도시 남성 미니멀리스트</div>
+        <div class="brand-desc"><b>핵심메시지</b> "일상의 사소한 짜증을 해결하는 정교한 도구". 소재(브라스 패티나)가 스토리 주인공</div>
+        <div class="brand-source"><a href="https://craighill.co/" target="_blank">craighill.co ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">MetaEDC</div>
+        <div class="brand-meta"><b>국가</b> 미국 · <b>가격대</b> $50–300+<br><b>타깃</b> 20-40대 남성 콜렉터, EDC 커뮤니티</div>
+        <div class="brand-desc"><b>핵심메시지</b> "가보가 될 만한 아이템". 촉각+수집 감성 이미 검증, 웰니스 언어는 없음</div>
+        <div class="brand-source"><a href="https://meta-edc.com/" target="_blank">meta-edc.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">Wanwu / Lautie</div>
+        <div class="brand-meta"><b>국가</b> 중국(글로벌 온라인) · <b>가격대</b> $60–250<br><b>타깃</b> 20-30대 남성 얼리어답터 콜렉터</div>
+        <div class="brand-desc"><b>핵심메시지</b> 정밀 기계식 잠금·회전 메커니즘의 만족감. 드롭 상품 중심, 브랜드 서사 약함</div>
+        <div class="brand-source"><a href="https://lautie.com/product-tag/haptic-coin/" target="_blank">lautie.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Tom Dixon</div>
+        <div class="brand-meta"><b>국가</b> 영국 · <b>가격대</b> $80–500<br><b>타깃</b> 30-50대 하이엔드 인테리어 애호가</div>
+        <div class="brand-desc"><b>핵심메시지</b> 대담한 금속 조형과 인더스트리얼 미학</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Studio Neat류</div>
+        <div class="brand-meta"><b>국가</b> 미국 · <b>가격대</b> $40–150<br><b>타깃</b> 30-45대 기능·엔지니어링 감성</div>
+        <div class="brand-desc"><b>핵심메시지</b> 정밀 엔지니어링 미학. "효율" 언어에 가까움 — GRAIN이 피해야 할 축</div>
+        <div class="brand-source">Hypothesis, 재검증 권장</div></div>
+    </div>
+  </div>
+
+  <div class="cat-card">
+    <div class="cat-label">① 경쟁사 조사 — Category C</div>
+    <h1 class="cat-title">감성 리추얼의 접근 가능한 웰니스</h1>
+    <div class="cat-bullets">
+      <div>가격 접근성을 유지하며 '작은 의식'을 일상에 심는 톤</div>
+      <div>대부분 생산성/미니멀 언어에 갇혀 있음 — GRAIN이 피할 지점</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card"><span class="tier-badge tier-1">T1</span><div class="brand-mark">Ferm Living</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $40–400<br><b>타깃</b> 30-50대 스칸디 미학 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 중세기 미학의 현대적 재해석. 가구/데코 중심 — 리추얼 오브젝트 없음. <b style="color:#B23B3B;">18번 트렌드 파일에서 원목×메탈 믹스 사례로 재인용됨</b></div>
+        <div class="brand-source"><a href="https://fermliving.us/products/sector-desk-oakbrass" target="_blank">fermliving.us ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">챕터원 (CHAPTER1)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨(추정 $30-80)<br><b>타깃</b> 30-40대 인테리어 감도 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> "공예와 산업 사회 라이프스타일의 접점". 소모품 중심 비즈니스</div>
+        <div class="brand-source"><a href="https://chapterone.kr/" target="_blank">chapterone.kr ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">헤이딘 (HEJDIN)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 추정 $20-60<br><b>타깃</b> 20-40대 지속가능성 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> "자연에 한 걸음 더 가까운 일상". 제주 화산석, 향 확산 목적(GRAIN과 소재축 다름)</div>
+        <div class="brand-source"><a href="https://hejdin.com/" target="_blank">hejdin.com ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-2">T2</span><div class="brand-mark">힐홉</div>
+        <div class="brand-meta"><b>국가</b> 한국(2022 론칭) · <b>가격대</b> 확인 안됨<br><b>타깃</b> 20-40대 웰니스·명상 관심층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 명상을 중심에 둔 라이프스타일</div>
+        <div class="brand-source"><a href="https://design.co.kr/article/43510" target="_blank">design.co.kr ↗</a></div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">Menu (Audo Copenhagen)</div>
+        <div class="brand-meta"><b>국가</b> 덴마크 · <b>가격대</b> $30–300<br><b>타깃</b> 30-45대 미니멀 디자인 선호층</div>
+        <div class="brand-desc"><b>핵심메시지</b> 협업 기반 시대를 초월한 디자인. '리추얼 오브젝트' 카테고리 자체 없음</div>
+        <div class="brand-source">추가 검증 필요</div></div>
+
+      <div class="brand-card"><span class="tier-badge tier-3">T3</span><div class="brand-mark">위켄드랩 (Weekend Lab)</div>
+        <div class="brand-meta"><b>국가</b> 한국 · <b>가격대</b> 확인 안됨<br><b>타깃</b> 20-30대 감성 리빙 소비자</div>
+        <div class="brand-desc"><b>핵심메시지</b> 인센스 홀더, 독특한 로컬 소재(자개) 활용</div>
+        <div class="brand-source"><a href="https://seoulbund.com/" target="_blank">seoulbund.com(판매처) ↗</a></div></div>
+    </div>
+  </div>
+
+  <div class="slide16 note-slide">
+    <div class="slide16-head"><span class="slide16-label">① 경쟁사 조사 — 아직 아무도 안 한 것 다시 확인</span><span class="slide16-note">경쟁사 30곳 전체 목록은 별도 자료에 보관되어 있습니다</span></div>
+    <div class="note-body">
+      <p>위 Category A/B/C 카드가 이번 v3 슬라이더 5축의 "업계 평균" 위치 산출 근거다. <b>재확인된 화이트스페이스</b>: (1) 카테고리 전체가 메탈 단일 소재 언어에 편중(축1 근거) (2) 전원 투명 글라스가 표준(축2 근거) (3) 전원 단정형 카피 문법(축3 근거) (4) 전원 좌우대칭 실루엣(축4 근거) (5) 소리를 브랜드 자산으로 쓰는 사례 전무(축5 근거).</p>
+      <p><b>주의</b>: `03-positioning-map.md`의 X/Y축(장식적↔기능적 × 일상소재↔리추얼소재)은 v1 전용이라 그대로 못 쓴다 — v3에서는 위 5축이 v1 포지셔닝 맵을 대체하는 역할. 나머지 카테고리(기타·추가조사 대상, 30개 전체)는 지면상 여기 다 옮기지 않고 원본 파일 그대로 유지 — 필요시 `deck-v2.html`에서 바로 확인.</p>
+    </div>
+  </div>
+
+  <!-- Research ② 디자인 트렌드 -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">② 최신 디자인 트렌드 (1/2)</span><span class="slide16-note">2026년 상반기 기준 조사, 출처 명시</span></div>
+    <div class="mm5" style="grid-template-columns:repeat(2,1fr);">
+      <div class="mm5-col">
+        <div class="mm5-axis">만지고 싶은 질감 트렌드</div>
+        <div class="mm5-kw">유광·왁시·하이퍼리얼 질감 검색량 YoY 30%↑ · 출처: Creative Bloq · GRAIN 관계: 젤리·크롬 벌브의 "만지고 싶은 표면"이 이 흐름의 3D 오브제 버전</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">말랑하고 살짝 비틀린 형태</div>
+        <div class="mm5-kw">"실제 같은데 뒤틀린" 콜라주 확산 · 출처: It's Nice That · GRAIN 관계: Slow 라인(젤리 웨블링)의 말랑함+비틀림과 정확히 일치</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">액체 금속 느낌의 마감(피규어 업계)</div>
+        <div class="mm5-kw">리퀴드메탈 마감 문의 YoY 42%↑, 수율 20% 미만→희소성 가치 · 출처: Muse123 Foundry(재검증 필요) · GRAIN 관계: Fast 라인이 이미 "희소성=수공 편차"로 팔리는 시장과 일치</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">손으로 만든 티가 나는 게 오히려 고급스러움</div>
+        <div class="mm5-kw">45세 미만 하이넷워스 63%가 "보이는 제작과정"을 구매동기로 응답 · 출처: Monde Singulier · GRAIN 관계: "매번 다른 침전/사운드 패턴"을 결함이 아닌 에디션 유일성으로 카피화</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">② 최신 디자인 트렌드 (2/2)</span><span class="slide16-note">2026년 상반기 기준 조사, 출처 명시</span></div>
+    <div class="mm5" style="grid-template-columns:repeat(2,1fr);">
+      <div class="mm5-col">
+        <div class="mm5-axis">나무와 금속·돌을 섞는 조합</div>
+        <div class="mm5-kw">원목+메탈/레진 혼합 구조 확산, "기능적 디자인과 순수예술 경계 붕괴" · 출처: Monde Singulier · GRAIN 관계: 원목 캡+세미매트 젤리 벌브 방향이 이 트렌드 정중앙 — ⚠️ 아래 "충돌 플래그" 슬라이드 참조</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">거친 질감을 겹쳐 쓰는 편집 스타일</div>
+        <div class="mm5-kw">스캔질감 레이어드 콜라주가 2026 에디토리얼 확산 · 출처: It's Nice That · GRAIN 관계: 무드보드 배경을 단색 대신 스캔질감 레이어로 짜면 톤 강화</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">소리를 브랜드 특징으로 쓰는 흐름</div>
+        <div class="mm5-kw">Audio UX·The Futz Butler 등 사운드 아이덴티티 정식 자산화 사례 확산 · 출처: Audio UX, The Futz Butler(1차 소스, 신뢰도 높음) · GRAIN 관계: "소리를 9번째 요소로 넣는다"는 결정이 요즘 흐름과 맞아떨어짐</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">요즘 안 먹히는 것 — "무광 미니멀=고급"이라는 예전 공식</div>
+        <div class="mm5-kw">"handmade가 pristine uniformity를 대체" · 출처: Monde Singulier(컬렉터블 시장 리포트) · GRAIN 관계: v1(Instrument Grade) 폐기 자체가 이미 이 트렌드 방향과 일치했음을 재확인</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research ③ 타깃 관심사 -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">③ 고객이 관심 있어 하는 것</span><span class="slide16-note">타깃: 2030 + 예술적 감각을 중시하는 성인 수집가, 각 항목마다 근거 확인 여부 표시</span></div>
+    <div class="mm5" style="grid-template-columns:repeat(2,1fr);">
+      <div class="mm5-col">
+        <div class="mm5-axis">① 피규어가 매진되고 웃돈까지 붙는 이유 <span style="font-weight:400;color:#999;">— 부분검증</span></div>
+        <div class="mm5-kw">KAWS·Arsham류는 "소재/질감 자체가 서사"인 오브제가 완판 견인 · 출처: Artsy · 리셀가 정량비교(StockX 등)는 미확보 → 정량 인과관계는 가설</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">② ASMR을 즐기는 습관 <span style="font-weight:400;color:#2D7A4F;">— 강하게 검증</span></div>
+        <div class="mm5-kw">Gen Z 63% ASMR 검색, 83% YouTube 안정콘텐츠 탐색, #ASMR TikTok 7,850억 뷰 · 출처: WifiTalents, Psychreg, Think with Google · 사운드 자산화 결정의 근거 탄탄</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">③ "묘하게 낯선" 느낌에 대한 반응 <span style="font-weight:400;color:#999;">— 부분검증(타 카테고리)</span></div>
+        <div class="mm5-kw">Gen Z에서 uncanny는 거부감보다 매력·바이럴 요소로 소비(뷰티 카테고리 근거) · 출처: Accio · 오브제 카테고리 직접 근거는 추가조사 필요</div>
+      </div>
+      <div class="mm5-col" style="background:#FBEEEE; border-left-color:#F0CDCD;">
+        <div class="mm5-axis" style="color:#B23B3B;">④ 나무·천연 소재를 선호하는 흐름 <span style="font-weight:700;">— 가설(미검증) · 반대근거 발견</span></div>
+        <div class="mm5-kw">"Gen Z가 원목으로 이동 중"이라는 근거는 못 찾음. 오히려 확보된 근거는 <b>"인공적 초현실 소재의 인위성 자체가 매력"</b>이라는 반대 방향(80s luxury 검색 225%↑, 미니멀 피로) · 출처: Forbes, Fortune</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚠️ 충돌 플래그 — 원목 결정에 직접 영향 -->
+  <div class="slide16 note-slide" style="border:2px solid #B23B3B;">
+    <div class="slide16-head"><span class="slide16-label" style="color:#B23B3B;">⚠️ 자료 간 엇갈리는 부분 — 결정이 필요합니다</span><span class="slide16-note">트렌드 자료와 고객 반응 자료가 서로 다른 이야기를 함</span></div>
+    <div class="note-body">
+      <p><b>충돌 내용</b>: 트렌드 조사에서는 "나무와 금속을 섞는 조합이 요즘 뜬다"고 나왔지만(가구·인테리어 업계 기준), 고객 조사에서는 "젊은 세대가 나무·천연 소재로 옮겨간다는 직접적인 근거는 못 찾았고, 오히려 인공적이고 낯선 소재를 더 좋아한다"는 반대 근거(복고풍 화려한 스타일 검색이 크게 늘어남)가 나왔다.</p>
+      <p><b>왜 이런 차이가 생겼나</b>: 트렌드 자료는 <u>가구·인테리어 업계 전반</u>에서, 반대 근거는 <u>젊은 세대의 소비 태도 전반</u>(패션·라이프스타일)에서 나온 것 — 즉 서로 다른 업계 자료다. GRAIN이 속한 "예술적 피규어·수집품" 시장에서 나무 소재가 실제로 통하는지에 대한 직접 근거는 양쪽 다 없다.</p>
+      <p><b>이게 "방향 1(자연스러움 ↔ 인공적임)" 결정에 미치는 영향</b>: 슬라이더의 ""과감한 안"이 정한 자연 소재 쪽 끝(나무를 전 라인에 다 쓰는 것)" 위치는 트렌드 근거(②)에만 기대고 있었는데, 그 근거가 타깃 근거(③)로 뒷받침되지 않는다는 게 확인됐다 — 슬라이더 자체를 무효화하지는 않지만, 과감한 안을 그대로 쓸 경우 리스크가 기존 표기보다 높다는 뜻.</p>
+      <p><b>권장 처리</b>: 원목을 완전히 버리기보다, 무난한 안 수준(일부 라인에만 적용)으로 리스크를 낮추고, 전 라인에 나무를 쓰는 과감한 안은, 실제 고객 반응을 먼저 확인(설문·시제품 반응 조사)한 뒤에 최종 결정하는 것을 권합니다. 최종 판단 부탁드립니다.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- §5 [1단계] 퍼스널리티 슬라이더 — 축마다 별도 슬라이드 (압축 금지 원칙) -->
+  <!-- ============================================================ -->
+
+  <!-- Slider 1: 자연 ↔ 인공 -->
+  <div class="slide16">
+    <div class="slider-slide-title">방향 1 · 자연스러운 느낌 ↔ 인공적인 느낌</div>
+    <div class="slider-slide-sub">근거: 경쟁사 30곳 대부분 금속 소재 위주 · 아이디어 확장 회의 결과 · 수집가들의 개봉 문화(아직 확실친 않음)</div>
+    <div class="slider-track">
+      <div class="mark avg" style="left:75%;">평</div>
+      <div class="mark safe" style="left:60%;">S</div>
+      <div class="mark wild" style="left:17%;">W</div>
+    </div>
+    <div class="slider-labels"><span>자연스러운 느낌</span><span>인공적인 느낌</span></div>
+    <div class="slider-legend">
+      <span><i style="background:#999;"></i>업계 평균 75%</span>
+      <span><i style="background:var(--safe);"></i>무난한 안 60%</span>
+      <span><i style="background:var(--wild);"></i>과감한 안 17%</span>
+    </div>
+    <div class="slider-reason"><b>근거</b> — 대부분의 경쟁사가 놋쇠·티타늄·스테인리스 같은 금속 한 가지로만 만든다. 나무를 쓰는 브랜드(Ferm Living)는 가구 쪽에만 있고, 모래시계 쪽엔 없다 — 아직 아무도 안 해본 자리라는 뜻. 무난한 안은 일부 라인만 나무, 과감한 안은 전체 라인 나무 + 유리까지 뿌옇게 처리해서 "자연스러운데 속은 안 보이는" 방향으로 최대한 밀어붙임.</div>
+    <div class="slider-sources"><span>01-competitor-matrix</span><span>15-form-material-expansion</span></div>
+  </div>
+
+  <!-- Slider 2: 투명 ↔ 은폐 -->
+  <div class="slide16">
+    <div class="slider-slide-title">방향 2 · 속이 다 보임 ↔ 속이 안 보임</div>
+    <div class="slider-slide-sub">근거: 경쟁사 대부분 속이 다 보이는 유리 사용 · 아직 아무도 안 한 조합 발견 · "이게 뭘로 만들어졌지?"라는 궁금증이 핵심 포인트</div>
+    <div class="slider-track">
+      <div class="mark avg" style="left:75%;">평</div>
+      <div class="mark safe" style="left:60%;">S</div>
+      <div class="mark wild" style="left:15%;">W</div>
+    </div>
+    <div class="slider-labels"><span>속이 다 보임</span><span>속이 안 보임</span></div>
+    <div class="slider-legend">
+      <span><i style="background:#999;"></i>업계 평균 75%</span>
+      <span><i style="background:var(--safe);"></i>무난한 안 60%</span>
+      <span><i style="background:var(--wild);"></i>과감한 안 15%</span>
+    </div>
+    <div class="slider-reason"><b>근거</b> — 경쟁사 대부분(Assouline의 수제 유리, Craighill 등)이 "속이 보여야 고급스럽다"고 전제하고 있다. 무난한 안은 반투명하게 색이 번지는 캡슐 형태로 절충, 과감한 안은 완전히 무광으로 만들어 속을 거의 안 보이게 — "안 보여서 더 의심스럽다"는 역발상으로, 처음 정한 방향과 정확히 연결.</div>
+    <div class="slider-sources"><span>01-competitor-matrix</span><span>15-form-material-expansion §6</span></div>
+  </div>
+
+  <!-- Slider 3: 확신 ↔ 의문 -->
+  <div class="slide16">
+    <div class="slider-slide-title">방향 3 · 단정적인 말투 ↔ 궁금증을 남기는 말투</div>
+    <div class="slider-slide-sub">근거: 경쟁사 전부 "정확하다·믿을 수 있다"는 식으로 단정적으로 말함 · 이번 방향은 그 공식을 일부러 깸 · 궁금함이 결국 소장 욕구로 이어짐</div>
+    <div class="slider-track">
+      <div class="mark avg" style="left:80%;">평</div>
+      <div class="mark safe" style="left:50%;">S</div>
+      <div class="mark wild" style="left:20%;">W</div>
+    </div>
+    <div class="slider-labels"><span>단정적인 말투</span><span>궁금증을 남기는 말투</span></div>
+    <div class="slider-legend">
+      <span><i style="background:#999;"></i>업계 평균 80%</span>
+      <span><i style="background:var(--safe);"></i>무난한 안 50%</span>
+      <span><i style="background:var(--wild);"></i>과감한 안 20%</span>
+    </div>
+    <div class="slider-reason"><b>근거</b> — 경쟁사 전부 "정교한 도구다", "장인정신이 진짜다"처럼 단정적으로 말한다. 무난한 안은 문구는 절제된 고급스러운 톤을 유지하고("미친 소재, 침착한 만듦새") 이미지·영상에서만 궁금증을 남긴다. 과감한 안은 문구 자체를 질문형으로("이게 뭘로 만들어진 거지?") 바꿔서 단정적인 문장을 아예 없앤다.</div>
+    <div class="slider-sources"><span>01-competitor-matrix</span><span>10-gate1-v2-surreal-matter</span></div>
+  </div>
+
+  <!-- Slider 4: 대칭 ↔ 비대칭 -->
+  <div class="slide16">
+    <div class="slider-slide-title">방향 4 · 좌우 대칭(전통적) ↔ 비대칭(파격적)</div>
+    <div class="slider-slide-sub">근거: 이 제품군은 원래 다 좌우 대칭 · 비대칭 구조가 아이디어 확장 회의에서 1순위로 추천됨 · 그래도 "모래시계"로는 알아볼 수 있어야 함</div>
+    <div class="slider-track">
+      <div class="mark avg" style="left:85%;">평</div>
+      <div class="mark safe" style="left:65%;">S</div>
+      <div class="mark wild" style="left:20%;">W</div>
+    </div>
+    <div class="slider-labels"><span>좌우 대칭</span><span>비대칭</span></div>
+    <div class="slider-legend">
+      <span><i style="background:#999;"></i>업계 평균 85%</span>
+      <span><i style="background:var(--safe);"></i>무난한 안 65%</span>
+      <span><i style="background:var(--wild);"></i>과감한 안 20%</span>
+    </div>
+    <div class="slider-reason"><b>근거</b> — 모래시계라는 물건 자체가 원래 좌우·상하로 완벽하게 대칭인 게 기본이다. 무난한 안은 대칭은 유지하되 3단 구조로만 바꾼다(추천①). 과감한 안은 가운데만 캡슐 모양으로 다르게 만든 비대칭 3단 구조(추천③) — "완벽한 대칭"이라는 이 제품군의 오랜 관습 자체를 깬다.</div>
+    <div class="slider-sources"><span>01-competitor-matrix</span><span>15-form-material-expansion §1·§5</span></div>
+  </div>
+
+  <!-- Slider 5: 침묵 ↔ 사운드 -->
+  <div class="slide16">
+    <div class="slider-slide-title">방향 5 · 조용한 물건 ↔ 소리가 특징인 물건</div>
+    <div class="slider-slide-sub">근거: 경쟁사 전부 정지된 제품 사진만 씀, 소리를 브랜드 특징으로 쓴 사례 없음 · 이번에 처음 소리를 핵심 요소로 넣기로 함 · 젊은 세대의 ASMR 소비 습관(아직 확실친 않음)</div>
+    <div class="slider-track">
+      <div class="mark avg" style="left:90%;">평</div>
+      <div class="mark safe" style="left:50%;">S</div>
+      <div class="mark wild" style="left:15%;">W</div>
+    </div>
+    <div class="slider-labels"><span>조용함</span><span>소리</span></div>
+    <div class="slider-legend">
+      <span><i style="background:#999;"></i>업계 평균 90%</span>
+      <span><i style="background:var(--safe);"></i>무난한 안 50%</span>
+      <span><i style="background:var(--wild);"></i>과감한 안 15%</span>
+    </div>
+    <div class="slider-reason"><b>근거</b> — 조사한 경쟁사 30곳 전부 SNS에 멈춰있는 제품 사진만 올리고, 소리를 브랜드 특징으로 쓰는 곳은 하나도 없다(비슷한 업계 두 곳만 살짝 근접). 무난한 안은 ASMR을 보조 콘텐츠로만 쓰고, 과감한 안은 자막·음악 없는 순수 ASMR 영상을 메인 콘텐츠로 쓴다 — 이번 방향에서 이미 정한 "소리를 9번째 요소로 넣는다"는 결정 그대로.</div>
+    <div class="slider-sources"><span>01-competitor-matrix</span><span>10-gate1-v2-surreal-matter</span></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- §1 3중 리서치 — 경쟁사 조사 · 최신 트렌드 · 고객이 관심 있어 하는 것 -->
+  <!-- ============================================================ -->
+
+  <!-- Slider 6: 5축 종합 키워드 마인드맵 -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">5가지 방향 · 핵심 키워드 정리</span><span class="slide16-note">각 방향에서 뽑은 실제로 쓸 키워드</span></div>
+    <div class="mm5">
+      <div class="mm5-col">
+        <div class="mm5-axis">자연↔인공</div>
+        <div class="mm5-kw">원목 캡 / 오일 피니시</div>
+        <div class="mm5-kw">메탈 인레이</div>
+        <div class="mm5-kw">자연×인공 이중신뢰</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">투명↔은폐</div>
+        <div class="mm5-kw">그라데이션 캡슐</div>
+        <div class="mm5-kw">무광 벌브</div>
+        <div class="mm5-kw">"안 보여서 더 의심"</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">확신↔의문</div>
+        <div class="mm5-kw">역설문 카피</div>
+        <div class="mm5-kw">"확신 정지" 이미지 톤</div>
+        <div class="mm5-kw">질문형 태그라인</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">대칭↔비대칭</div>
+        <div class="mm5-kw">3단 적층</div>
+        <div class="mm5-kw">가운데 캡슐 벌브</div>
+        <div class="mm5-kw">"완벽한 대칭이란 합의" 배신</div>
+      </div>
+      <div class="mm5-col">
+        <div class="mm5-axis">침묵↔사운드</div>
+        <div class="mm5-kw">ASMR 루프</div>
+        <div class="mm5-kw">라인별 소리(젤리/크롬/유체)</div>
+        <div class="mm5-kw">촉각→소장욕 전환 콘텐츠</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §5 2단계: Safe/Wild Card 키비주얼 (6패널 그리드, Higgsfield 생성) -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">무난한 안 — 실제 이미지</span><span class="slide16-note">좌우 대칭 3단 구조 + 나무 마감(일부 라인만) — 6컷 모음</span></div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260702_112841_b9ee64ff-23fb-4b8b-b0ad-c36a4e8fab96.png" style="max-height:100%; max-width:100%; border-radius:4px;">
+    </div>
+  </div>
+
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">과감한 안 — 실제 이미지</span><span class="slide16-note">비대칭 3단 구조(가운데만 캡슐 모양) + 나무 마감(전 라인) — 6컷 모음</span></div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260702_112851_81d4d858-30ce-4693-a747-25366f8c0d02.png" style="max-height:100%; max-width:100%; border-radius:4px;">
+    </div>
+  </div>
+
+  <!-- Slide: 프로스티드 질감 참고 (CDG 레퍼런스 — 질감 확인용) -->
+  <div class="slide16">
+    <div class="slide16-head"><span class="slide16-label">질감 참고 — 프로스티드(서리 낀 무광) 유리</span><span class="slide16-note">Comme des Garçons 향수병 레퍼런스 · 표면 마감 확인용, 6컷 모음</span></div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260703_100422_0647f59e-2d3b-4e0c-b9ad-7c06ab11e719.png" style="max-height:100%; max-width:100%; border-radius:4px;">
+    </div>
+  </div>
+
+  <div class="slide16 note-slide">
+    <div class="slide16-head"><span class="slide16-label">이 질감이 어디에 해당하는가</span><span class="slide16-note">20-texture-form-wide-divergence.md 항목1과 동일</span></div>
+    <div class="note-body">
+      <p>이 레퍼런스는 표면 마감(서리 낀 듯한 무광 유리) 참고였습니다. 앞서 정리한 표면 질감 후보 중 <b>"프로스티드 새틴"</b>과 정확히 같은 방향이라, 별도 아이디어가 아니라 그 후보를 실제 이미지로 다시 한번 확인한 것입니다.</p>
+    </div>
+  </div>
+
+  <!-- Slide: 다음 단계 -->
+  <div class="slide16 note-slide">
+    <div class="slide16-head"><span class="slide16-label">다음 단계 — 확인 부탁드립니다</span><span class="slide16-note">실제 이미지까지 완성했습니다 — 아래 내용을 확인해 주시면 다음 단계(스토리 다듬기)로 넘어가겠습니다</span></div>
+    <div class="note-body">
+      <p>1. 5축을 그대로 확정할지, 3~4개로 압축할지(예: 확신↔의문 + 침묵↔사운드를 "감각적 도발" 한 축으로 통합)</p>
+      <p>2. 각 방향의 "과감한 안"을 실제 제품 옵션으로 열어둘지, 무드보드 참고용으로만 남길지</p>
+      <p>3. 벌브 단수(전체공통 3단 vs 라인별 차등)와 캡 소재 배분(원목 전면 vs 라인별 차등) 확정 — 위 두 키비주얼 중 어느 쪽이 더 맞는지로 판단해도 됨</p>
+      <p>4. 자료 간 엇갈리는 부분(나무 소재 트렌드 vs 고객 반응 반대 근거)을 감안해서, 나무를 전 라인에 다 쓰는 과감한 안을 그대로 밀지, 무난한 안 수준으로 낮출지</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
