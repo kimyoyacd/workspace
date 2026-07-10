@@ -17,6 +17,13 @@
 - 디자인·기획 맥락에서 조언할 때는 현업 실장 관점에서 실용적으로 제안한다.
 - 한국어로 소통한다 (별도 요청 시 영어 전환).
 
+## HTML 생성 시작 의식 (세션이 달라도 반드시 이 순서)
+1. `.claude/library/tokens.css` 읽기 → `:root` 블록을 새 파일 상단에 복사
+2. 프로젝트 노트 (`.claude/projects/YYYYMM_프로젝트명.md`) 읽기 → 테마·accent 색 확인
+3. 테마 결정: 라이트(제안·덱·시안) / 다크(대시보드·내부) — 프로젝트 내 혼용 금지
+4. accent 하드코딩 금지 — 반드시 `var(--coral)`, `var(--magenta)` 변수 사용
+5. 이후: 파일 생성 → 스크린샷 → design-critique → 수정 → 커밋 → 링크 출력
+
 ## HTML 산출물 규칙 (필수)
 - HTML 파일을 만든 후 **반드시 커밋·푸시**하고, 아래 형식의 **htmlpreview 링크**를 채팅에 바로 출력한다.
 - `SendUserFile` (로컬 파일 첨부) 방식은 사용하지 않는다.
@@ -82,6 +89,7 @@
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
 │   ├── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   ├── tokens.css        # 마스터 디자인 토큰 (라이트·다크 :root 블록)
 │   └── index-template.html  # 프로젝트 인덱스 골조 (재사용 템플릿)
 └── projects/      # 프로젝트별 노트
 ```
