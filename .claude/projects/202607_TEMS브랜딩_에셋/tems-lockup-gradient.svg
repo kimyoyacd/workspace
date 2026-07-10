@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90" width="300" height="90">
+  <!-- 그라데이션 표현형 락업 — 마케팅 표지·소셜 프로필 등 예외 사용 전용 (본 사용은 모노크롬 락업). -->
+  <defs>
+    <linearGradient id="temsSparkGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF7A59"/>
+      <stop offset="50%" stop-color="#C64FE0"/>
+      <stop offset="100%" stop-color="#4B6BFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M40,15 C42,32 55,45 72,47 C55,49 42,62 40,79 C38,62 25,49 8,47 C25,45 38,32 40,15 Z" fill="url(#temsSparkGradient)"/>
+  <text x="94" y="52" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="800" font-size="34" letter-spacing="-0.5" fill="#0F0F10">tems</text>
+  <text x="95" y="70" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="400" font-size="12" letter-spacing="2.2" fill="#666666">intelligence</text>
+</svg>
