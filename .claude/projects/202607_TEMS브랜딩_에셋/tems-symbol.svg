@@ -1,10 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-  <!-- TEMS Intelligence — 계단 스템 T 심볼 (정색: Ink Navy #0E2A47 + Amber #E8A13D)
-       그리드: 14u 계단 모듈, 크로스바 h18 고정. 증식 규칙: 계단만 3→5→7단 세분화, 크로스바 불변.
-       클리어스페이스: 크로스바 높이(18u) 사방 확보. 최소 사용 크기: 인쇄 8mm / 화면 24px (이하는 파비콘 락업 사용) -->
-  <rect x="18" y="18" width="84" height="18" fill="#0E2A47"/>
-  <rect x="39" y="84" width="14" height="18" fill="#0E2A47"/>
-  <rect x="53" y="60" width="14" height="42" fill="#0E2A47"/>
-  <rect x="67" y="36" width="14" height="66" fill="#0E2A47"/>
-  <rect x="53" y="36" width="14" height="14" fill="#E8A13D"/>
+  <!-- TEMS Intelligence — Orbit T 심볼 (v0.3, 정색: Electric Blue #2B4EFF)
+       구체 위 두 궤도 커브가 네거티브 스페이스로 T를 새긴다.
+       수평 궤도 = 판단의 지평(5가지 판단축), 하강 커브 = 케이스가 자산으로 쌓이는 흐름.
+       클리어스페이스: 반경(44u)의 25% 사방 확보. 최소 사용 크기: 인쇄 6mm / 화면 20px (이하는 파비콘 전용 락업 사용) -->
+  <defs>
+    <mask id="temsOrbitMask">
+      <circle cx="60" cy="60" r="44" fill="#fff"/>
+      <g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round">
+        <path d="M 8,50 Q 60,34 112,50"/>
+        <path d="M 63,42 Q 70,78 52,112"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="60" cy="60" r="44" fill="#2B4EFF" mask="url(#temsOrbitMask)"/>
 </svg>

@@ -1,18 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 50" width="360" height="200">
-  <!-- 명함 앞면 — 실치수 90×50mm (1u=1mm, 재단선 기준 / 도련 +3mm 별도).
-       사양: 비코팅 크림 450gsm 듀플렉스 · 네이비 1도 · 심볼 레터프레스 · 앰버 노드 = 샴페인 골드 포일 별색
+  <!-- 명함 앞면 v0.3 — 실치수 90×50mm (1u=1mm, 재단선 기준 / 도련 +3mm 별도).
+       사양: 450gsm 듀플렉스 · 소프트터치 라미네이트 · 딥 스페이스 바탕 + 화이트 실크 인쇄(심볼·워드마크)
        인적사항은 더미 — 실데이터 교체 후 아웃라인 처리 -->
-  <rect width="90" height="50" fill="#F7F3EA"/>
-  <g transform="translate(8,7) scale(0.10)">
-    <rect x="0" y="0" width="84" height="18" fill="#0E2A47"/>
-    <rect x="21" y="66" width="14" height="18" fill="#0E2A47"/>
-    <rect x="35" y="42" width="14" height="42" fill="#0E2A47"/>
-    <rect x="49" y="18" width="14" height="66" fill="#0E2A47"/>
-    <rect x="35" y="18" width="14" height="14" fill="#E8A13D"/>
-  </g>
-  <text x="21" y="12.2" font-family="Avenir Next,Helvetica Neue,Arial,sans-serif" font-weight="700" font-size="6" letter-spacing="1.4" fill="#0E2A47">TEMS</text>
-  <text x="21" y="16.6" font-family="Avenir Next,Helvetica Neue,Arial,sans-serif" font-weight="300" font-size="2.9" letter-spacing="0.8" fill="#0E2A47" opacity=".82">Intelligence</text>
-  <text x="8" y="38" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-weight="700" font-size="3.6" fill="#0E2A47">김템스 <tspan font-weight="400" font-size="2.6" opacity=".75">대표 · CEO</tspan></text>
-  <text x="8" y="42.6" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.4" fill="#0E2A47" opacity=".72">kim@tems-intelligence.ai · 010-0000-0000</text>
-  <text x="8" y="45.8" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.4" fill="#0E2A47" opacity=".72">tems-intelligence.ai</text>
+  <defs>
+    <radialGradient id="frontBg" cx="85%" cy="-10%" r="120%">
+      <stop offset="0%" stop-color="#14297A"/><stop offset="45%" stop-color="#0A1330"/><stop offset="100%" stop-color="#05070E"/>
+    </radialGradient>
+    <mask id="frontSym"><circle cx="13.5" cy="12.5" r="6.6" fill="#fff"/>
+      <g stroke="#000" stroke-width="1.6" fill="none" stroke-linecap="round">
+        <path d="M 5.7,11 Q 13.5,8.6 21.3,11"/><path d="M 14,9.8 Q 15,15.2 12.3,20.3"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="90" height="50" fill="url(#frontBg)"/>
+  <circle cx="13.5" cy="12.5" r="6.6" fill="#FFFFFF" mask="url(#frontSym)"/>
+  <text x="24.5" y="14" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="7" letter-spacing="-0.1" fill="#FFFFFF">TEMS</text>
+  <text x="24.7" y="18" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="2.3" letter-spacing="0.9" fill="#FFFFFF" opacity=".6">INTELLIGENCE</text>
+  <text x="8" y="38.5" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-weight="700" font-size="3.4" fill="#F2F5FF">김템스 <tspan font-weight="400" font-size="2.5" opacity=".7">대표 · CEO</tspan></text>
+  <text x="8" y="42.8" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.3" fill="#F2F5FF" opacity=".62">kim@tems-intelligence.ai · 010-0000-0000</text>
+  <text x="8" y="46" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.3" fill="#F2F5FF" opacity=".62">tems-intelligence.ai</text>
 </svg>

@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-  <!-- 1도 버전 — 앰버 노드도 네이비로. 형태만으로 성립 (팩스·도장·흑백 문서용).
-       흑백 반전 시 fill을 #FFFFFF로 일괄 치환 -->
-  <rect x="18" y="18" width="84" height="18" fill="#0E2A47"/>
-  <rect x="39" y="84" width="14" height="18" fill="#0E2A47"/>
-  <rect x="53" y="60" width="14" height="42" fill="#0E2A47"/>
-  <rect x="67" y="36" width="14" height="66" fill="#0E2A47"/>
-  <rect x="53" y="36" width="14" height="14" fill="#0E2A47"/>
+  <!-- 화이트 버전 — 다크/블루 배경용 단색. 흑백 인쇄 시 fill을 #000000으로 치환 -->
+  <defs>
+    <mask id="temsOrbitMaskMono">
+      <circle cx="60" cy="60" r="44" fill="#fff"/>
+      <g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round">
+        <path d="M 8,50 Q 60,34 112,50"/>
+        <path d="M 63,42 Q 70,78 52,112"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="60" cy="60" r="44" fill="#FFFFFF" mask="url(#temsOrbitMaskMono)"/>
 </svg>

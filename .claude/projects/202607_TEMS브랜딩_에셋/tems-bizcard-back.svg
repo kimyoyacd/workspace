@@ -1,27 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 50" width="360" height="200">
-  <!-- 명함 뒷면 — 실치수 90×50mm. 네이비 배경 + 증식 패턴(재단선 밖으로 잘림 = "카드보다 큰 축적") + QR→데모.
-       QR은 더미 플레이스홀더 — 실제 QR 아트웍 교체 필요 -->
-  <rect width="90" height="50" fill="#0E2A47"/>
-  <g opacity=".26" fill="#F7F3EA">
-    <rect x="61" y="38" width="6" height="9" rx="0.4"/>
-    <rect x="68" y="38" width="6" height="9" rx="0.4"/>
-    <rect x="68" y="28" width="6" height="9" rx="0.4"/>
-    <rect x="75" y="28" width="6" height="9" rx="0.4"/>
-    <rect x="75" y="18" width="6" height="9" rx="0.4"/>
-    <rect x="82" y="18" width="6" height="9" rx="0.4"/>
-    <rect x="82" y="8" width="6" height="9" rx="0.4"/>
-    <rect x="89" y="8" width="6" height="9" rx="0.4"/>
-  </g>
-  <rect x="61" y="48" width="6" height="3" rx="0.4" fill="#E8A13D"/>
-  <g transform="translate(8,8)">
-    <rect x="0" y="0" width="12" height="12" rx="0.6" fill="#F7F3EA"/>
-    <g fill="#0E2A47">
-      <rect x="1.5" y="1.5" width="3" height="3"/><rect x="7.5" y="1.5" width="3" height="3"/>
-      <rect x="1.5" y="7.5" width="3" height="3"/><rect x="7.5" y="7.5" width="1.2" height="1.2"/>
-      <rect x="9.3" y="9.3" width="1.2" height="1.2"/><rect x="7.5" y="9.3" width="1.2" height="1.2"/>
-    </g>
-  </g>
-  <text x="8" y="25.5" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.6" fill="#F7F3EA" opacity=".85">3분 데모 — 판단 시뮬레이션 체험</text>
-  <text x="8" y="41" font-family="Avenir Next,Helvetica Neue,Arial,sans-serif" font-weight="700" font-size="3.6" letter-spacing="0.7" fill="#F7F3EA">TEMS <tspan font-weight="300" letter-spacing="0.5" opacity=".8">Intelligence</tspan></text>
-  <text x="8" y="45.2" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.1" fill="#F7F3EA" opacity=".6">실무 판단을 학습·측정·검증하며 축적하는 Decision Intelligence System</text>
+  <!-- 명함 뒷면 v0.3 — 실치수 90×50mm. 일렉트릭 블루 풀블리드 + 심볼이 재단선 밖으로 크롭("카드보다 큰 궤도") -->
+  <defs>
+    <mask id="backSym"><circle cx="72" cy="40" r="34" fill="#fff"/>
+      <g stroke="#000" stroke-width="8" fill="none" stroke-linecap="round">
+        <path d="M 32,32 Q 72,20 112,32"/><path d="M 74.5,26 Q 80,54 66,80"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="90" height="50" fill="#2B4EFF"/>
+  <circle cx="72" cy="40" r="34" fill="#FFFFFF" opacity=".92" mask="url(#backSym)"/>
+  <text x="8" y="13" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="5" letter-spacing="-0.1" fill="#FFFFFF">TEMS</text>
+  <text x="8" y="18.2" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.4" fill="#FFFFFF" opacity=".85">실무 판단을 축적하는 Decision Intelligence</text>
 </svg>
