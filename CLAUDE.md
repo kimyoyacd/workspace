@@ -27,7 +27,8 @@
 .claude/
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── brand-guideline-deck/   # 확정 BI → 한글 브랜드 가이드라인 HTML 덱 (18페이지 표준 구조)
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
@@ -83,3 +84,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `brand-guideline-deck` — 확정된 BI(전략+심볼+컬러)를 한글 브랜드 가이드라인 HTML 덱으로 제작. 피그마 가이드 템플릿 구조(Cover→Strategy→Logo→Color&Type→Applications) 참고, 프로젝트마다 재사용. TEMS Intelligence 프로젝트에서 최초 완성.
