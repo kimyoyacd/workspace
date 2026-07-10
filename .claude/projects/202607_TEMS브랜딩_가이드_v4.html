@@ -4,7 +4,7 @@
   --ink:#0F0F10; --gray1:#333333; --gray2:#666666; --gray3:#9A9A9A; --gray4:#BDBDBD; --gray5:#E6E6E6; --gray6:#F2F2F2;
   --line:#DADAD7; --paper:#FFFFFF;
   --warm:#FF7A59; --mid:#C64FE0; --cool:#4B6BFF; --gold:#FFB86B;
-  --sky:#AFCEEF; --pastelmid:#ECEBE7; --cream2:#F6EEDB; --pill:#F4DE55;
+  --sky:#4FC3E8; --pastelmid:#F0C24A; --cream2:#FBF3DC; --pill:#F2C94E;
   --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
 *{box-sizing:border-box}
@@ -14,7 +14,7 @@ body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Ne
 .page{background:var(--paper);aspect-ratio:16/9;width:100%;position:relative;overflow:hidden;margin-bottom:18px;
   box-shadow:0 2px 14px rgba(0,0,0,.12);display:flex;flex-direction:column;padding:3.6% 4.2% 4.4%;}
 .page.dark{background:var(--ink);color:#fff;}
-.page.pastel{background:linear-gradient(175deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);color:var(--ink);}
+.page.pastel{background:linear-gradient(60deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);color:var(--ink);}
 .page.nopad{padding:0;}
 
 /* ===== Page header (matches Figma template proportions: 210/1080 canvas) ===== */
@@ -91,7 +91,7 @@ body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Ne
 .igmock .stats b{display:block;font-size:12px;}
 .igmock .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:10px;}
 .igmock .grid3 div{aspect-ratio:1;background:var(--gray5);}
-.mixcard{border-radius:14px;overflow:hidden;position:relative;padding:26px;background:linear-gradient(165deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);}
+.mixcard{border-radius:14px;overflow:hidden;position:relative;padding:26px;background:linear-gradient(60deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);}
 .mixcard .float{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 14px 30px rgba(0,0,0,.14);display:inline-flex;align-items:center;gap:10px;max-width:230px;}
 .mixcard .float .pill{font-family:var(--mono);font-size:8.5px;font-weight:700;background:var(--pill);color:#3a3200;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;}
 .mixcard .float .ttl{font-size:11.5px;font-weight:700;line-height:1.35;}
@@ -339,7 +339,7 @@ body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Ne
       <div style="background:var(--gray6);border-radius:8px;padding:22px;display:flex;align-items:center;justify-content:center;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M60,8 L80,8 L80,28 L60,28 Z M60,40 L80,40 L80,130 L60,130 Z M60,140 L80,140 L80,160 L60,160 Z M14,75 L100,75 L100,95 L14,95 Z" fill="#0F0F10"/></svg></div>
       <div style="background:var(--ink);border-radius:8px;padding:22px;display:flex;align-items:center;justify-content:center;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M60,8 L80,8 L80,28 L60,28 Z M60,40 L80,40 L80,130 L60,130 Z M60,140 L80,140 L80,160 L60,160 Z M14,75 L100,75 L100,95 L14,95 Z" fill="#fff"/></svg></div>
       <div style="background:linear-gradient(135deg,#FF7A59,#C64FE0,#4B6BFF);border-radius:8px;padding:22px;display:flex;align-items:center;justify-content:center;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M60,8 L80,8 L80,28 L60,28 Z M60,40 L80,40 L80,130 L60,130 Z M60,140 L80,140 L80,160 L60,160 Z M14,75 L100,75 L100,95 L14,95 Z" fill="#fff"/></svg></div>
-      <div style="background:linear-gradient(175deg,var(--sky),var(--cream2));border-radius:8px;padding:22px;display:flex;align-items:center;justify-content:center;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M60,8 L80,8 L80,28 L60,28 Z M60,40 L80,40 L80,130 L60,130 Z M60,140 L80,140 L80,160 L60,160 Z M14,75 L100,75 L100,95 L14,95 Z" fill="#0F0F10"/></svg></div>
+      <div style="background:linear-gradient(60deg,var(--sky),var(--pastelmid),var(--cream2));border-radius:8px;padding:22px;display:flex;align-items:center;justify-content:center;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M60,8 L80,8 L80,28 L60,28 Z M60,40 L80,40 L80,130 L60,130 Z M60,140 L80,140 L80,160 L60,160 Z M14,75 L100,75 L100,95 L14,95 Z" fill="#0F0F10"/></svg></div>
     </div>
   </div>
   <div class="pfoot"><span>TEMS INTELLIGENCE · LOGO GUIDELINES</span><span>14</span></div>
@@ -404,11 +404,12 @@ body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Ne
     </div>
     <div style="margin-top:14px;">
       <p style="font-family:var(--mono);font-size:9.5px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px;">Atmosphere Gradient — 공간의 온도</p>
-      <div style="height:28px;border-radius:5px;background:linear-gradient(90deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);margin-bottom:8px;"></div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-        <div class="swatchcard"><div class="c" style="background:var(--sky)"></div><div class="t"><b>Sky</b><span>#AFCEEF</span></div></div>
-        <div class="swatchcard"><div class="c" style="background:var(--cream2)"></div><div class="t"><b>Cream</b><span>#F6EEDB</span></div></div>
-        <div class="swatchcard"><div class="c" style="background:var(--pill)"></div><div class="t"><b>Pill Yellow</b><span>#F4DE55 · 태그 포인트</span></div></div>
+      <div style="height:28px;border-radius:5px;background:linear-gradient(60deg,var(--sky) 0%,var(--pastelmid) 55%,var(--cream2) 100%);margin-bottom:8px;"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+        <div class="swatchcard"><div class="c" style="background:var(--sky)"></div><div class="t"><b>Sky</b><span>#4FC3E8</span></div></div>
+        <div class="swatchcard"><div class="c" style="background:var(--pastelmid)"></div><div class="t"><b>Gold</b><span>#F0C24A</span></div></div>
+        <div class="swatchcard"><div class="c" style="background:var(--cream2)"></div><div class="t"><b>Cream</b><span>#FBF3DC</span></div></div>
+        <div class="swatchcard"><div class="c" style="background:var(--pill)"></div><div class="t"><b>Pill Yellow</b><span>#F2C94E · 태그 포인트</span></div></div>
       </div>
     </div>
   </div>
@@ -610,7 +611,7 @@ body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Ne
       <div class="grid3">
         <div style="background:linear-gradient(135deg,#FF7A59,#C64FE0);"></div>
         <div style="background:var(--ink);"></div>
-        <div style="background:linear-gradient(175deg,var(--sky),var(--cream2));"></div>
+        <div style="background:linear-gradient(60deg,var(--sky),var(--pastelmid),var(--cream2));"></div>
         <div style="background:var(--gray5);"></div>
         <div style="background:linear-gradient(135deg,#C64FE0,#4B6BFF);"></div>
         <div style="background:var(--gray5);"></div>
