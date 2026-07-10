@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" width="340" height="70">
+  <!-- 가로 락업 (심볼 좌 + 워드마크 우) — 웹 헤더·이메일 시그니처·문서 상단용.
+       ※ 레터폼은 커스텀 드로잉 전 드래프트 — 납품 시 아웃라인 처리 필요 -->
+  <g transform="translate(10,8)">
+    <rect x="0" y="0" width="42" height="9" fill="#0E2A47"/>
+    <rect x="10.5" y="33" width="7" height="9" fill="#0E2A47"/>
+    <rect x="17.5" y="21" width="7" height="21" fill="#0E2A47"/>
+    <rect x="24.5" y="9" width="7" height="33" fill="#0E2A47"/>
+    <rect x="17.5" y="9" width="7" height="7" fill="#E8A13D"/>
+  </g>
+  <text x="72" y="36" font-family="Avenir Next,Helvetica Neue,Arial,sans-serif"
+    font-weight="700" font-size="26" letter-spacing="6" fill="#0E2A47">TEMS</text>
+  <text x="72" y="56" font-family="Avenir Next,Helvetica Neue,Arial,sans-serif"
+    font-weight="300" font-size="12.5" letter-spacing="4" fill="#0E2A47" opacity=".82">Intelligence</text>
+</svg>

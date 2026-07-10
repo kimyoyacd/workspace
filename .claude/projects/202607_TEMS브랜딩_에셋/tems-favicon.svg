@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- 16px 전용 헤비 락업 — 본 심볼의 축소 사용 금지, 이 파일을 사용.
+       계단 3단 유지하되 획을 헤비로, 앰버 노드 생략 (16px에서 소멸) -->
+  <rect x="8" y="14" width="104" height="24" fill="#0E2A47"/>
+  <rect x="36" y="86" width="20" height="20" fill="#0E2A47"/>
+  <rect x="56" y="62" width="20" height="44" fill="#0E2A47"/>
+  <rect x="76" y="38" width="20" height="68" fill="#0E2A47"/>
+</svg>
