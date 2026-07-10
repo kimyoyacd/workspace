@@ -19,6 +19,7 @@ tools: Read, Glob, Grep
 - **★ 경쟁사/레퍼런스 카드는 항상 전체 필드**(브랜드명/국가/가격대/타깃/핵심메시지+출처링크)로 — 요약 텍스트로 대체 금지.
 
 ## 작동
+- 이 에이전트는 WebSearch 도구가 없다 — 핀터레스트/Cosmos/Are.na 레퍼런스 발견은 직접 하지 않고 `reference-curator`에게 위임한다(그쪽은 WebSearch로 보드·핀 링크는 찾을 수 있지만 WebFetch는 403이라 직접 열람은 안 됨 — 발견한 무드를 텍스트 요약으로 받는다).
 - `reference-curator` 결과 + `visual-generator` 생성을 묶어 톤 보드로 조립.
 - `market-research`(경쟁+타깃관심사)·`design-trend-radar`(트렌드) 결과를 3중 리서치로 통합.
 - `brand-design-proposal.md`의 전략/무드 포맷 및 6패널/1:1 그리드 이미지 생성 규격도 함께 참고.
