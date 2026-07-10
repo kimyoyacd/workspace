@@ -1,279 +1,181 @@
-<title>TEMS Intelligence — BI v0.3</title>
+<title>TEMS Intelligence — BI v0.5 (통합본)</title>
 <style>
 :root{
-  --blue:#2B4EFF; --blue2:#6C86FF; --space:#05070E; --panel:#0A1124; --panel2:#0D1630;
-  --fg:#F2F5FF; --muted:#8FA3D9; --faint:#5A6B99; --line:#1B2A55;
+  --ink:#0F0F10; --gray1:#333333; --gray2:#666666; --gray3:#9A9A9A; --gray4:#BDBDBD; --gray5:#E6E6E6; --gray6:#F2F2F2;
+  --line:#E4E4E4; --paper:#FFFFFF;
+  --warm:#FF7A59; --mid:#C64FE0; --cool:#4B6BFF; --gold:#FFB86B;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--space);color:var(--fg);
-  font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",Helvetica,Arial,sans-serif;
-  line-height:1.65;font-size:15.5px;}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Neo",sans-serif;
+  line-height:1.65;font-size:15px;}
 .wrap{max-width:1040px;margin:0 auto;padding:0 28px 110px;}
-.grain{position:relative;}
-.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;border-radius:inherit;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
-header.hero{min-height:520px;display:flex;flex-direction:column;justify-content:center;gap:26px;
-  border-radius:0 0 20px 20px;padding:80px 56px 64px;margin:0 -28px 20px;overflow:hidden;
-  background:radial-gradient(120% 120% at 78% -10%,#1a3fd6 0%,#0c1c52 42%,#05070E 78%);}
-.eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue2);margin:0;font-weight:700;}
-h1{font-size:clamp(30px,5vw,52px);line-height:1.16;margin:0;font-weight:800;letter-spacing:-0.02em;text-wrap:balance;}
-.hero .sub{color:var(--muted);margin:0;max-width:36em;font-size:16px;}
-section{margin-top:88px;}
-.secno{font-size:11.5px;letter-spacing:.2em;color:var(--blue2);font-weight:700;text-transform:uppercase;margin:0 0 8px;}
-h2{font-size:26px;font-weight:800;margin:0 0 8px;letter-spacing:-0.01em;}
-.lede{color:var(--muted);margin:0 0 26px;max-width:46em;}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;}
-.card h3{margin:0 0 8px;font-size:14.5px;font-weight:700;}
-.card p{margin:0;font-size:13px;color:var(--muted);line-height:1.6;}
-.card .src{font-size:11px;margin-top:10px;}
-.card .src a{color:var(--blue2);text-decoration:none;}
-.badge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;border-radius:9px;padding:2px 8px;margin-left:6px;vertical-align:2px;}
-.b1{background:#1E7A4F;color:#fff;} .b2{background:#B07514;color:#fff;} .b3{background:#44507A;color:#fff;}
-.rulelist{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;padding:0;margin:0;list-style:none;}
-.rulelist li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:13.5px;color:var(--muted);}
-.rulelist li b{color:var(--fg);display:block;margin-bottom:4px;font-size:14px;}
-.symstage{border-radius:16px;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.bgA{background:radial-gradient(120% 100% at 22% 8%,#16307f 0%,#0a1236 48%,#05070E 100%);}
-.bgB{background:radial-gradient(120% 110% at 80% 15%,#1a3fd6 0%,#0c1c52 45%,#05070E 100%);}
-.bgC{background:radial-gradient(130% 100% at 50% 115%,#153b8f 0%,#0a1a45 52%,#05070E 100%);}
-.bgLight{background:linear-gradient(160deg,#F4F6FF 0%,#DDE6FF 100%);}
-.label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 10px;font-weight:700;}
-.strip{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;}
-.strip .cell{flex:1 1 130px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
-  padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;min-height:120px;justify-content:center;}
-.cell .cap{font-size:10.5px;color:var(--faint);letter-spacing:.04em;text-align:center;line-height:1.5;}
-.white-cell{background:#F4F6FF !important;}
-table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;}
-th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
-th{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700;}
-td a{color:var(--blue2);text-decoration:none;font-size:11.5px;}
-.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 14px;}
-.cards-mock{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
-.bizcard{aspect-ratio:9/5;border-radius:10px;position:relative;overflow:hidden;box-shadow:0 16px 44px rgba(0,0,0,.5);}
-.bizcard svg{display:block;width:100%;height:100%;}
-.mockcap{font-size:12px;color:var(--faint);margin-top:10px;}
-.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
-.sw{border-radius:12px;border:1px solid var(--line);overflow:hidden;}
-.sw .c{height:60px;}
-.sw .t{padding:10px 12px;font-size:11.5px;background:var(--panel);}
-.sw .t b{display:block;font-size:12.5px;color:var(--fg);}
-.sw .t span{color:var(--faint);}
-.verdict{border-left:3px solid var(--blue);padding:14px 18px;background:var(--panel);border-radius:0 12px 12px 0;font-size:13.5px;color:var(--muted);margin-top:22px;}
-.verdict b{color:var(--fg);}
-ol.next{margin:0;padding-left:20px;font-size:14px;color:var(--muted);}
+header.hero{padding:64px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:16px;}
+.eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);margin:0 0 18px;font-weight:700;}
+.statuspill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-left:10px;vertical-align:2px;background:var(--gold);color:#3a2400;}
+h1{font-size:clamp(28px,4.6vw,46px);line-height:1.2;margin:16px 0 14px;font-weight:800;letter-spacing:-0.01em;text-wrap:balance;}
+.hero .sub{color:var(--gray2);margin:0;max-width:40em;font-size:15.5px;}
+section{margin-top:64px;}
+.secno{font-size:11px;letter-spacing:.18em;color:var(--gray3);font-weight:700;text-transform:uppercase;margin:0 0 8px;}
+h2{font-size:22px;font-weight:800;margin:0 0 10px;letter-spacing:-0.01em;}
+.lede{color:var(--gray2);margin:0 0 22px;max-width:48em;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.card{background:var(--gray6);border:1px solid var(--line);border-radius:10px;padding:18px 20px;}
+.card h3{margin:0 0 6px;font-size:13.5px;font-weight:700;}
+.card p{margin:0;font-size:12.5px;color:var(--gray2);line-height:1.65;}
+.infotable{width:100%;border-collapse:collapse;font-size:13.5px;}
+.infotable th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray3);font-weight:700;padding:10px 16px 10px 0;vertical-align:top;white-space:nowrap;width:120px;}
+.infotable td{padding:10px 0;border-top:1px solid var(--line);color:var(--gray1);}
+.infotable tr:first-child td, .infotable tr:first-child th{border-top:none;}
+.placeholder{border:1.5px dashed var(--gray4);border-radius:12px;padding:44px 24px;text-align:center;background:var(--gray6);}
+.placeholder .icn{font-size:34px;margin-bottom:12px;opacity:.35;}
+.placeholder b{display:block;font-size:14px;margin-bottom:6px;}
+.placeholder p{font-size:12.5px;color:var(--gray3);margin:0;max-width:34em;margin-left:auto;margin-right:auto;}
+.wordmark-box{background:var(--ink);border-radius:12px;padding:48px;display:flex;align-items:center;justify-content:center;}
+.wordmark-box .t1{font-size:52px;font-weight:800;letter-spacing:-1px;color:#fff;line-height:1;}
+.wordmark-box .t2{font-size:16px;font-weight:400;letter-spacing:2.6px;color:#B9B9BC;margin-top:8px;}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;}
+.sw{border-radius:10px;border:1px solid var(--line);overflow:hidden;}
+.sw .c{height:52px;}
+.sw .t{padding:8px 10px;font-size:10.5px;background:var(--gray6);}
+.sw .t b{display:block;font-size:11.5px;}
+.sw .t span{color:var(--gray3);font-size:9.5px;}
+.gradband{height:48px;border-radius:8px;background:linear-gradient(90deg,var(--warm) 0%,var(--mid) 52%,var(--cool) 100%);margin:14px 0;}
+.kwrow{display:flex;flex-direction:column;gap:10px;}
+.kw{display:flex;align-items:center;gap:12px;}
+.kw .dot{width:26px;height:26px;border:1px solid var(--ink);border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.kw .tx b{display:block;font-size:12.5px;}
+.kw .tx span{font-size:10.5px;color:var(--gray3);}
+.timeline{border-left:2px solid var(--line);margin-left:6px;padding-left:22px;display:flex;flex-direction:column;gap:22px;}
+.tlitem{position:relative;}
+.tlitem::before{content:"";position:absolute;left:-27.5px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--ink);}
+.tlitem.dead::before{background:var(--gray4);}
+.tlitem.live::before{background:var(--warm);}
+.tlitem .v{font-size:12px;font-weight:700;letter-spacing:.02em;}
+.tlitem .v .st{font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:10px;margin-left:8px;}
+.st-dead{background:var(--gray5);color:var(--gray2);}
+.st-live{background:var(--gold);color:#3a2400;}
+.tlitem p{margin:4px 0 0;font-size:12.5px;color:var(--gray2);}
+ol.next{margin:0;padding-left:20px;font-size:13.5px;color:var(--gray1);}
 ol.next li{margin-bottom:8px;}
-footer{margin-top:90px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--faint);}
-@media (prefers-reduced-motion: no-preference){
-  section{animation:rise .5s ease both;}
-  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-}
+.warn{border-left:3px solid var(--gold);padding:14px 18px;background:var(--gray6);border-radius:0 10px 10px 0;font-size:13px;color:var(--gray1);margin-top:20px;}
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--gray3);}
 </style>
 
 <div class="wrap">
 
-<header class="hero grain">
-  <p class="eyebrow">TEMS Intelligence · BI v0.3 · 2026-07-10</p>
-  <svg width="320" height="86" viewBox="0 0 340 90">
-    <defs><mask id="hm"><circle cx="45" cy="45" r="33" fill="#fff"/>
-      <g stroke="#000" stroke-width="8" fill="none" stroke-linecap="round">
-        <path d="M 6,37.5 Q 45,25.5 84,37.5"/><path d="M 47.3,31.5 Q 52.5,58.5 39,84"/>
-      </g></mask></defs>
-    <circle cx="45" cy="45" r="33" fill="#2B4EFF" mask="url(#hm)"/>
-    <text x="100" y="58" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="40" letter-spacing="-0.5" fill="#F2F5FF">TEMS</text>
-  </svg>
-  <h1>판단은 재능이 아니라,<br>축적되는 자산이다.</h1>
-  <p class="sub">Judgment Compounds. — 관점은 유지한다. 표현은 디렉터 지정 무드(유기적 심볼 × 컨피던트 그로테스크 × 딥블루 애트모스피어)로 전면 재설계했다. v0.2의 계단·블록·크림지 인쇄 톤은 전량 폐기.</p>
+<header class="hero">
+  <p class="eyebrow">TEMS Intelligence · BI v0.5 (통합본) · 2026-07-10<span class="statuspill">심볼 확정 대기</span></p>
+  <h1>지금까지 논의된 모든 것을<br>하나로 정리한 BI 현황판</h1>
+  <p class="sub">v0.1~v0.4까지 흩어져 있던 방향(계단 스템 T → Orbit T → Spark)을 정리하고, 디렉터가 최종 확정한 방향(t-프래그먼트 심볼 · 소문자 워드마크 · 모노크롬+그라데이션 이원 컬러)만 남긴 단일 현재 상태 문서. 심볼 조형만 원본 파일 수신 대기 중이며 나머지는 확정.</p>
 </header>
 
 <section>
-  <p class="secno">01 — Mood Code</p>
-  <h2>디렉터 지정 무드 5장 해부</h2>
-  <p class="lede">첨부 레퍼런스(Globex · Radeos Labs · Collision · Neuron AI · Parloa)에서 추출한 공통 문법. 이것이 v0.3의 헌법이다.</p>
-  <ul class="rulelist">
-    <li><b>① 심볼 필수, 좌측 수평 락업</b>컴팩트한 추상 마크 + 워드마크. 심볼 없는 워드마크 단독은 이 무드가 아님</li>
-    <li><b>② 유기·기하 하이브리드 심볼</b>구체(Globex)·리플(Radeos)·페블(Collision)·스파크(Neuron)·리본(Parloa). 곡선이 주인공, 직각 블록·격자 없음, 단색 1컬러</li>
-    <li><b>③ 모던 그로테스크, 볼드, 타이트 자간</b>Title Case 우세(5중 4). 와이드 레터스페이싱은 서브 라인 전용(Radeos)</li>
-    <li><b>④ 일렉트릭 블루 × 딥 다크 × 화이트</b>로고는 단색, 컬러는 배경이 담당</li>
-    <li><b>⑤ 배경이 브랜드의 절반</b>그레인 그라디언트·글라스·실사 애트모스피어. 플랫 단색 아님</li>
-    <li><b>⑥ 스크린 퍼스트, 키노트 에너지</b>레터프레스·크림지·포일의 인쇄 공예 감성 아님</li>
-  </ul>
+  <p class="secno">00 — Brand Brief</p>
+  <h2>브랜드 기본 정보</h2>
+  <table class="infotable">
+    <tr><th>브랜드명</th><td>TEMS Intelligence</td></tr>
+    <tr><th>하는 일</th><td>AI 시대에 적합한 인재를 발굴하는 <b>Decision Intelligence 기반 HR 플랫폼</b>. AI 인터뷰로 지식이 아니라 업무 맥락·전문성·실제 판단 행동을 질문하고, 학습된 우수 사례(벤치마크 케이스) 대비로 검증해 인재를 선발한다.</td></tr>
+    <tr><th>타깃</th><td>기업 인사담당자·경영진(결재권자) · 대학교(1차 영업 채널) · 인재채용 실무 라인</td></tr>
+    <tr><th>산업군</th><td>AI / HR Tech / B2B SaaS</td></tr>
+    <tr><th>브랜드 인상</th><td>미래형 인재의 성장 가능성 · 신뢰 · 스마트 · 사람 중심 · 정제됨 · 실리콘밸리 테크</td></tr>
+  </table>
 </section>
 
 <section>
-  <p class="secno">02 — Research</p>
-  <h2>실리콘밸리 AI 기업 로고 실물 분석</h2>
-  <p class="lede">2023~2025 리브랜딩 현행판 기준, 공식 브랜드 페이지·디자인 매체 직접 관찰. 누락됐던 단계를 보강한 결과다.</p>
-
-  <div class="grid3">
-    <div class="card"><h3>Anthropic <span class="badge b1">T1</span></h3><p>워드마크 단독. Styrene 네오 그로테스크 대문자, "I"→백슬래시(ANTHROP\C) — 의미 있는 개입은 단 1개. 아이보리 배경+러스트 오렌지.</p><p class="src"><a href="https://type.today/en/journal/anthropic">type.today ↗</a></p></div>
-    <div class="card"><h3>OpenAI <span class="badge b1">T1 · 2025 리브랜드</span></h3><p>전용서체 OpenAI Sans(ABC Dinamo), 타이트 자간. blossom 심볼을 균일 선굵기로 리파인 — 심볼 단순화·워드마크 격상.</p><p class="src"><a href="https://openai.com/brand/">openai.com/brand ↗</a> · <a href="https://www.creativereview.co.uk/openai-brand-refresh/">Creative Review ↗</a></p></div>
-    <div class="card"><h3>Google DeepMind <span class="badge b1">T1</span></h3><p>파란 동심 스파이럴 — 사고의 순환을 한 획으로 추상화. 뇌·뉴런을 그리지 않고 AI를 말하는 대표 사례.</p><p class="src"><a href="https://deepmind.google">deepmind.google ↗</a></p></div>
-    <div class="card"><h3>Claude <span class="badge b1">서브브랜드</span></h3><p>커스텀 세리프 + 방사형 스파크 심볼. 유기적 손맛의 기하 — '동료로서의 AI' 문법.</p><p class="src"><a href="https://claude.ai">claude.ai ↗</a></p></div>
-    <div class="card"><h3>Perplexity <span class="badge b2">T2</span></h3><p>FK Grotesk 소문자 + 아이소메트릭 매듭 심볼. Offblack+틸+페이퍼 화이트 — 블루 SaaS와 결별한 지적 뉴트럴.</p><p class="src"><a href="https://medium.com/smith-diction/branding-perplexity-ai-70eb2cb2ef48">Smith &amp; Diction ↗</a></p></div>
-    <div class="card"><h3>Cohere <span class="badge b2">T2</span></h3><p>세포 3개가 추상 C 형성(Pentagram) — 유기+기하 하이브리드의 교과서. 자연 은유로 AI 냉기 제거.</p><p class="src"><a href="https://www.pentagram.com/work/cohere">Pentagram ↗</a></p></div>
-    <div class="card"><h3>Cursor <span class="badge b2">T2</span></h3><p>Kimera 제작 커스텀 서체 + 아이소메트릭 큐브. 전용 서체 투자가 티어를 가른다는 증거.</p><p class="src"><a href="https://the-brandidentity.com/project/how-kimera-built-cursors-identity-around-a-custom-typeface-system">The Brand Identity ↗</a></p></div>
-    <div class="card"><h3>Harvey <span class="badge b2">T2 · 버티컬</span></h3><p>TWK Ghost 하이콘트라스트 세리프 — 리걸의 시각 언어를 그대로 입은 버티컬 AI 모델.</p><p class="src"><a href="https://fontsinuse.com/uses/77027/harvey">Fonts In Use ↗</a></p></div>
-    <div class="card"><h3>Mercor <span class="badge b3">T3 · HR AI 직접 경쟁군</span></h3><p><b style="color:var(--fg)">Inter + Tailwind 기본 인디고(#4F46E5)</b> — 전용 자산 투자 없는 제네릭 BI. TEMS가 심볼·컬러 하나로 앞설 수 있는 빈자리.</p><p class="src"><a href="https://www.mercor.com/brand/">mercor.com/brand ↗</a></p></div>
-  </div>
-
-  <div class="verdict"><b>공통 문법 7:</b> ①워드마크 중심(심볼은 리파인·보조 격하) ②세리프는 신뢰 버티컬·서브브랜드용, 본체는 그로테스크 ③소문자=친근/대문자=권위로 전략 분기 ④타이트 자간·큰 x-height ⑤채도 낮춘 단일 액센트 ⑥심볼은 '유기 기하 추상' — <b>AI를 직접 그리지 않는다</b>(뇌·회로·로봇 전무) ⑦전용 서체가 티어를 가른다.<br><br>
-  <b>죽은 문법:</b> 컨셉 없는 픽셀/블록 모듈(v0.2가 폐기된 바로 그 이유 · 유일한 반례 Mistral은 '고양이+레트로 게임' 서사가 받친 예외) · 육각형/노드 네트워크/회로 뇌 · 블루→퍼플 그라디언트+순백 배경 · 3D 메탈릭.</div>
-</section>
-
-<section>
-  <p class="secno">03 — Synthesis</p>
-  <h2>디렉터 무드 × 리서치 문법 = TEMS 설계 규칙</h2>
-  <p class="lede">리서치가 제안한 '웜 뉴트럴+세리프'(Anthropic·Harvey 노선)와 디렉터 무드(블루 애트모스피어+그로테스크)가 갈리는 지점은 <b>디렉터 무드 우선</b>. 리서치에서는 문법만 가져온다.</p>
-  <div class="grid3">
-    <div class="card"><h3>심볼</h3><p>유기 기하 추상 1개, 단색. AI·뇌·회로 직접 묘사 금지. 앱아이콘·파비콘까지 한 형태로 생존해야 함.</p></div>
-    <div class="card"><h3>워드마크</h3><p>볼드 그로테스크 "TEMS", 타이트 자간(−1~−2%), Title/대문자 케이싱. 'Intelligence'는 서브 라인으로 분리.</p></div>
-    <div class="card"><h3>컬러</h3><p>Electric Blue #2B4EFF + Deep Space #05070E + White. Mercor 인디고(#4F46E5, 보라 기운)와 달리 순블루 축 — 직접 경쟁군과 색상환에서 분리.</p></div>
+  <p class="secno">01 — Perspective</p>
+  <h2>관점 — 축적에서 발견으로</h2>
+  <p class="lede">기존 관점 "판단은 재능이 아니라, 축적되는 자산이다"(Judgment Compounds)는 제품의 데이터 플라이휠을 설명한다. 이번 라운드에서 디렉터가 지정한 무드는 같은 시스템을 사용자가 체감하는 순간으로 옮긴다.</p>
+  <div class="grid2">
+    <div class="card"><h3>축적 — 엔진 (기존, 유지)</h3><p>케이스×판단축 데이터가 쌓인다. 판단은 재능이 아니라 시스템에 축적되는 자산이다.</p></div>
+    <div class="card"><h3>발견 — 순간 (신규, 심볼의 서사)</h3><p>쌓인 판단 기준 위에서, 다수의 지원자 중 맞는 사람을 스파크처럼 짚어낸다.</p></div>
   </div>
 </section>
 
 <section>
-  <p class="secno">04 — Symbol</p>
-  <h2>주력 — Orbit T</h2>
-  <p class="lede">구체(완결된 신뢰) 위를 지나는 두 개의 궤도 커브가 네거티브 스페이스로 <b>T</b>를 새긴다. 수평 궤도 = 판단의 지평(5가지 판단축), 하강 커브 = 케이스가 자산으로 내려와 쌓이는 흐름. 구체·궤도 문법(Globex) 안에서 이니셜과 서사를 동시에 해결.</p>
+  <p class="secno">02 — Wordmark</p>
+  <h2>워드마크 — 확정</h2>
+  <p class="lede">대문자 Title Case(v0.1~v0.3)에서 디렉터가 직접 완성한 소문자 워드마크로 전환. 이후 전 매체 공통.</p>
+  <div class="wordmark-box"><div><div class="t1">tems</div><div class="t2">intelligence</div></div></div>
+  <p class="lede" style="margin-top:14px;">※ 레터폼은 커스텀 서체 전 시스템 드래프트. 전용 서체 승격 필요(리서치 결론: "전용 서체가 티어를 가른다" — Anthropic·OpenAI·Cursor 전부 전용/라이선스 서체 사용).</p>
+</section>
 
+<section>
+  <p class="secno">03 — Symbol</p>
+  <h2>심볼 — 확정 대기 <span style="font-size:13px;color:var(--gray3);font-weight:400;">파일 수신 후 즉시 반영</span></h2>
+  <p class="lede">디렉터가 't' 레터폼의 훅 프래그먼트를 직접 해체·재조합해 최종 심볼을 완성함(구성 원리: 훅 프래그먼트 추출 → 회전·정렬 → 윤곽 통합 → 최종 형태). 다만 최종 이미지가 대화창에 인라인으로만 첨부되어 파일로 저장되지 않았고, 시각 기억만으로 재구성한 근사치는 정확도가 낮아 <b style="color:var(--ink)">이 문서에는 반영하지 않는다</b> — 잘못된 형태를 "확정"으로 오인시키는 것이 가장 큰 리스크이기 때문.</p>
+  <div class="placeholder">
+    <div class="icn">◻</div>
+    <b>심볼 자산 대기 중</b>
+    <p>원본 파일(PNG/AI/SVG 등) 첨부 시 픽셀 단위로 정밀 벡터화해 이 자리를 채웁니다. v0.3 Orbit T, v0.4 TEMS Spark는 모두 디렉터의 실제 최종 방향과 달라 폐기되었습니다 — 아래 04 버전 히스토리 참조.</p>
+  </div>
+</section>
+
+<section>
+  <p class="secno">04 — Version History</p>
+  <h2>버전 히스토리 — 왜 여기까지 왔는가</h2>
+  <div class="timeline">
+    <div class="tlitem dead"><div class="v">v0.1~0.2 — 계단 스템 T <span class="v st st-dead">폐기</span></div><p>크림지·앰버 팔레트, 계단/블록 조형. 디렉터 피드백: "퀄리티가 올드하다, SV 기업 로고 분석이 누락됐다."</p></div>
+    <div class="tlitem dead"><div class="v">v0.3 — Orbit T <span class="v st st-dead">폐기</span></div><p>디렉터 무드보드(Globex 등 5장) + SV 로고 리서치 통합, 딥블루 애트모스피어 + 구체 궤도 심볼. 디렉터가 이후 직접 t-프래그먼트 탐색을 진행하며 대체됨.</p></div>
+    <div class="tlitem dead"><div class="v">v0.4 — TEMS Spark <span class="v st st-dead">폐기</span></div><p>모노크롬 Brand Sheet 포맷 + 4점 스파크 심볼. 디렉터의 실제 완성 심볼(H-브라켓형)과 불일치해 폐기.</p></div>
+    <div class="tlitem live"><div class="v">v0.5 — 통합본 <span class="v st st-live">현재</span></div><p>워드마크·컬러·관점·타깃은 확정. 심볼만 원본 파일 수신 대기. 본 문서.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="secno">05 — Color System</p>
+  <h2>컬러 — 모노크롬(로고) × 그라데이션(브랜드 월드)</h2>
+  <p class="lede">로고·심볼은 재현성을 위해 모노크롬 고정. 브랜드가 말을 거는 표면(배경·프레젠테이션·소셜)에서는 온기(사람)와 다양성(다채로운 인재)이 만나 발견(스파크)으로 수렴하는 그라데이션을 운용한다.</p>
   <div class="grid2">
     <div>
-      <p class="label">Primary — Deep Atmosphere</p>
-      <div class="symstage bgA grain">
-        <svg width="200" height="200" viewBox="0 0 120 120">
-          <defs><mask id="p1"><circle cx="60" cy="60" r="44" fill="#fff"/>
-            <g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round">
-              <path d="M 8,50 Q 60,34 112,50"/><path d="M 63,42 Q 70,78 52,112"/>
-            </g></mask></defs>
-          <circle cx="60" cy="60" r="44" fill="#2B4EFF" mask="url(#p1)"/>
-        </svg>
+      <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;">Mono — 로고 기본 체계</p>
+      <div class="swatches">
+        <div class="sw"><div class="c" style="background:#0F0F10"></div><div class="t"><b>Ink</b><span>#0F0F10</span></div></div>
+        <div class="sw"><div class="c" style="background:#333333"></div><div class="t"><b>Gray 1</b><span>#333333</span></div></div>
+        <div class="sw"><div class="c" style="background:#666666"></div><div class="t"><b>Gray 2</b><span>#666666</span></div></div>
+        <div class="sw"><div class="c" style="background:#BDBDBD"></div><div class="t"><b>Gray 4</b><span>#BDBDBD</span></div></div>
+        <div class="sw"><div class="c" style="background:#F2F2F2"></div><div class="t"><b>Gray 6</b><span>#F2F2F2</span></div></div>
       </div>
     </div>
     <div>
-      <p class="label">Horizontal Lockup</p>
-      <div class="symstage bgB grain">
-        <svg width="330" height="90" viewBox="0 0 340 90">
-          <defs><mask id="p2"><circle cx="45" cy="45" r="33" fill="#fff"/>
-            <g stroke="#000" stroke-width="8" fill="none" stroke-linecap="round">
-              <path d="M 6,37.5 Q 45,25.5 84,37.5"/><path d="M 47.3,31.5 Q 52.5,58.5 39,84"/>
-            </g></mask></defs>
-          <circle cx="45" cy="45" r="33" fill="#FFFFFF" mask="url(#p2)"/>
-          <text x="100" y="53" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="36" letter-spacing="-0.5" fill="#FFFFFF">TEMS</text>
-          <text x="101" y="72" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="400" font-size="11" letter-spacing="3.2" fill="#FFFFFF" opacity=".66">INTELLIGENCE</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <div class="strip">
-    <div class="cell"><svg width="42" height="42" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="24" fill="#2B4EFF"/><defs><mask id="ai1"><rect width="120" height="120" fill="#000"/><circle cx="60" cy="60" r="34" fill="#fff"/><g stroke="#000" stroke-width="8.5" fill="none" stroke-linecap="round"><path d="M 20,52 Q 60,40 100,52"/><path d="M 62,46 Q 68,74 54,100"/></g></mask></defs><circle cx="60" cy="60" r="34" fill="#fff" mask="url(#ai1)"/></svg><span class="cap">앱 아이콘</span></div>
-    <div class="cell"><svg width="16" height="16" viewBox="0 0 120 120"><defs><mask id="f1"><circle cx="60" cy="60" r="52" fill="#fff"/><g stroke="#000" stroke-width="14" fill="none" stroke-linecap="round"><path d="M 0,48 Q 60,30 120,48"/><path d="M 64,40 Q 72,80 50,120"/></g></mask></defs><circle cx="60" cy="60" r="52" fill="#6C86FF" mask="url(#f1)"/></svg><span class="cap">16px 파비콘<br>(전용 헤비 컷)</span></div>
-    <div class="cell white-cell"><svg width="54" height="54" viewBox="0 0 120 120"><defs><mask id="m1"><circle cx="60" cy="60" r="44" fill="#fff"/><g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round"><path d="M 8,50 Q 60,34 112,50"/><path d="M 63,42 Q 70,78 52,112"/></g></mask></defs><circle cx="60" cy="60" r="44" fill="#2B4EFF" mask="url(#m1)"/></svg><span class="cap" style="color:#5A6B99">라이트 배경<br>(블루 단색)</span></div>
-    <div class="cell"><svg width="54" height="54" viewBox="0 0 120 120"><defs><mask id="m2"><circle cx="60" cy="60" r="44" fill="#fff"/><g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round"><path d="M 8,50 Q 60,34 112,50"/><path d="M 63,42 Q 70,78 52,112"/></g></mask></defs><circle cx="60" cy="60" r="44" fill="#F2F5FF" mask="url(#m2)"/></svg><span class="cap">다크 배경<br>(화이트 단색)</span></div>
-  </div>
-
-  <div class="grid2" style="margin-top:26px;">
-    <div>
-      <p class="label">보조 후보 — Strata (상승 지층 + 다음 판단의 점)</p>
-      <div class="symstage bgC grain" style="min-height:240px;">
-        <svg width="150" height="150" viewBox="0 0 120 120">
-          <g transform="rotate(-14 60 60)" fill="#fff">
-            <rect x="30" y="34" width="56" height="10" rx="5"/>
-            <rect x="20" y="54" width="80" height="12" rx="6"/>
-            <rect x="26" y="76" width="68" height="14" rx="7"/>
-          </g>
-          <circle cx="97" cy="30" r="6.5" fill="#2B4EFF"/>
-        </svg>
-      </div>
-    </div>
-    <div>
-      <p class="label">판정 메모</p>
-      <div class="card" style="min-height:240px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
-        <p><b style="color:var(--fg)">Orbit T (주력)</b> — T 판독·앱아이콘·16px 생존 전부 통과. 구체=신뢰라는 무드 문법과 관점(축적의 궤도)을 동시에 만족.</p>
-        <p><b style="color:var(--fg)">Strata (보조)</b> — 상승 에너지는 좋으나 이니셜이 없고 소형에서 점이 소실. 웹 모션·보조 그래픽 요소로 강등 권장.</p>
-        <p><b style="color:var(--fg)">Pebble 안 (탈락)</b> — 렌더 검증 결과 쉼표/달로 오독. 폐기.</p>
+      <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;">Gradient — 브랜드 월드 전용</p>
+      <div class="gradband"></div>
+      <div class="swatches">
+        <div class="sw"><div class="c" style="background:#FF7A59"></div><div class="t"><b>Warm Coral</b><span>#FF7A59 · 사람·온기</span></div></div>
+        <div class="sw"><div class="c" style="background:#C64FE0"></div><div class="t"><b>Discovery Violet</b><span>#C64FE0 · 전환의 순간</span></div></div>
+        <div class="sw"><div class="c" style="background:#4B6BFF"></div><div class="t"><b>Signal Indigo</b><span>#4B6BFF · 판단·신뢰</span></div></div>
+        <div class="sw"><div class="c" style="background:#FFB86B"></div><div class="t"><b>Spark Gold</b><span>#FFB86B · 발견의 포인트</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section>
-  <p class="secno">05 — Color · Type</p>
-  <h2>컬러 · 타이포 시스템</h2>
-  <div class="swatches">
-    <div class="sw"><div class="c" style="background:#2B4EFF"></div><div class="t"><b>Electric Blue</b><span>#2B4EFF · 심볼·액센트</span></div></div>
-    <div class="sw"><div class="c" style="background:#05070E"></div><div class="t"><b>Deep Space</b><span>#05070E · 프라이머리 그라운드</span></div></div>
-    <div class="sw"><div class="c" style="background:#0C1C52"></div><div class="t"><b>Abyss Blue</b><span>#0C1C52 · 그라디언트 중간층</span></div></div>
-    <div class="sw"><div class="c" style="background:#F2F5FF"></div><div class="t"><b>Ice White</b><span>#F2F5FF · 로고·텍스트</span></div></div>
-    <div class="sw"><div class="c" style="background:#6C86FF"></div><div class="t"><b>Sky Accent</b><span>#6C86FF · 소형·보조 위계</span></div></div>
-  </div>
-  <p class="lede" style="margin-top:20px;">타이포 — 워드마크: 볼드 그로테스크, 타이트 자간(현재 시스템 서체 드래프트 → 커스텀/라이선스 서체로 승격 권장: 리서치 결론 "전용 서체가 티어를 가른다"). 서브 라인 'INTELLIGENCE'는 와이드 스페이스드 캡스(Radeos 문법). 국문 본문 Pretendard. <b style="color:var(--fg)">배경 운용 규칙:</b> 그레인 그라디언트(딥 스페이스→블루)가 기본 무대, 로고는 항상 단색(화이트 or 블루).</p>
-</section>
-
-<section>
-  <p class="secno">06 — Application</p>
-  <h2>명함 재설계 <span style="font-size:13px;color:var(--faint);font-weight:400;">90×50mm · 무드 전환: 크림지 → 딥 컬러</span></h2>
-  <p class="lede">앞면 딥 스페이스 소프트터치 + 화이트 실크 인쇄, 뒷면 일렉트릭 블루 풀블리드에 심볼 크롭. 촉각 전략(450gsm 듀플렉스·소프트터치 라미네이트)은 유지하되 세계관을 스크린 무드와 일치시킨다. 인적사항 더미.</p>
-  <div class="cards-mock">
-    <div>
-      <div class="bizcard grain">
-        <svg viewBox="0 0 90 50">
-          <defs>
-            <radialGradient id="bcg" cx="85%" cy="-10%" r="120%">
-              <stop offset="0%" stop-color="#14297A"/><stop offset="45%" stop-color="#0A1330"/><stop offset="100%" stop-color="#05070E"/>
-            </radialGradient>
-            <mask id="bc1"><circle cx="13.5" cy="12.5" r="6.6" fill="#fff"/>
-              <g stroke="#000" stroke-width="1.6" fill="none" stroke-linecap="round">
-                <path d="M 5.7,11 Q 13.5,8.6 21.3,11"/><path d="M 14,9.8 Q 15,15.2 12.3,20.3"/>
-              </g></mask>
-          </defs>
-          <rect width="90" height="50" fill="url(#bcg)"/>
-          <circle cx="13.5" cy="12.5" r="6.6" fill="#FFFFFF" mask="url(#bc1)"/>
-          <text x="24.5" y="14" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="7" letter-spacing="-0.1" fill="#FFFFFF">TEMS</text>
-          <text x="24.7" y="18" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="2.3" letter-spacing="0.9" fill="#FFFFFF" opacity=".6">INTELLIGENCE</text>
-          <text x="8" y="38.5" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-weight="700" font-size="3.4" fill="#F2F5FF">김템스 <tspan font-weight="400" font-size="2.5" opacity=".7">대표 · CEO</tspan></text>
-          <text x="8" y="42.8" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.3" fill="#F2F5FF" opacity=".62">kim@tems-intelligence.ai · 010-0000-0000</text>
-          <text x="8" y="46" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.3" fill="#F2F5FF" opacity=".62">tems-intelligence.ai</text>
-        </svg>
-      </div>
-      <p class="mockcap">앞면 — 딥 스페이스 · 소프트터치 라미네이트 · 화이트 실크</p>
-    </div>
-    <div>
-      <div class="bizcard grain">
-        <svg viewBox="0 0 90 50">
-          <defs><mask id="bc2"><circle cx="72" cy="40" r="34" fill="#fff"/>
-            <g stroke="#000" stroke-width="8" fill="none" stroke-linecap="round">
-              <path d="M 32,32 Q 72,20 112,32"/><path d="M 74.5,26 Q 80,54 66,80"/>
-            </g></mask></defs>
-          <rect width="90" height="50" fill="#2B4EFF"/>
-          <circle cx="72" cy="40" r="34" fill="#FFFFFF" opacity=".92" mask="url(#bc2)"/>
-          <text x="8" y="13" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="700" font-size="5" letter-spacing="-0.1" fill="#FFFFFF">TEMS</text>
-          <text x="8" y="18.2" font-family="Pretendard,Apple SD Gothic Neo,sans-serif" font-size="2.4" fill="#FFFFFF" opacity=".85">실무 판단을 축적하는 Decision Intelligence</text>
-        </svg>
-      </div>
-      <p class="mockcap">뒷면 — 일렉트릭 블루 풀블리드 · 심볼 재단선 크롭("카드보다 큰 궤도")</p>
-    </div>
+  <p class="secno">06 — Keywords</p>
+  <h2>키워드 — 5개 축</h2>
+  <div class="kwrow">
+    <div class="kw"><div class="dot">?</div><div class="tx"><b>질문 Question</b><span>지식이 아니라 행동을 묻는다</span></div></div>
+    <div class="kw"><div class="dot">△</div><div class="tx"><b>관점 Perspective</b><span>업무 맥락의 각도에서 판단한다</span></div></div>
+    <div class="kw"><div class="dot">◎</div><div class="tx"><b>다양성 Spectrum</b><span>다채로운 인재 스펙트럼을 있는 그대로 본다</span></div></div>
+    <div class="kw"><div class="dot">✦</div><div class="tx"><b>발견 Discovery</b><span>그 속에서 맞는 사람을 스파크처럼 찾아낸다</span></div></div>
+    <div class="kw"><div class="dot">✓</div><div class="tx"><b>신뢰 Trust</b><span>검증된 판단 데이터 위에서 결정한다</span></div></div>
   </div>
 </section>
 
 <section>
   <p class="secno">07 — Next</p>
-  <h2>폐기 · 유지 · 남은 작업</h2>
-  <div class="grid3">
-    <div class="card"><h3>❌ 폐기 (v0.2)</h3><p>계단/블록/픽셀 조형 · 크림지·앰버 팔레트 · 레터프레스 인쇄 서사 · '폐곡선 배제' 규칙</p></div>
-    <div class="card"><h3>✅ 유지</h3><p>관점 문장(Judgment Compounds) · 타겟 이중 구조(결재권자/학생) · 워드마크 웨이트 위계 · 촉각 명함 전략</p></div>
-    <div class="card"><h3>◻ 남은 작업</h3><p>워드마크 전용 서체 선정·커스텀 디테일 1개 설계 → 심볼 곡률 정밀 튜닝(일러) → 명함 인쇄 데이터화</p></div>
-  </div>
-  <ol class="next" style="margin-top:24px;">
-    <li>워드마크 서체 승격 — 시스템 드래프트 → 그로테스크 라이선스/커스텀 (리서치: "전용 서체가 티어를 가른다")</li>
-    <li>Orbit T 곡률·컷 두께 옵티컬 튜닝 + 라이트/다크/블루 3배경 정식 락업 세트</li>
-    <li>명함 실데이터 + 소프트터치 사양 인쇄 데이터화</li>
-    <li>웹·제안서 표지용 그레인 그라디언트 배경 시스템 (Strata 요소는 모션 그래픽으로 재활용)</li>
+  <h2>다음 단계</h2>
+  <ol class="next">
+    <li><b>심볼 원본 파일 수신</b> — PNG/AI/SVG 첨부 (대화 인라인 이미지는 트레이싱 불가)</li>
+    <li>수신 즉시 픽셀 단위 정밀 벡터화 → 03 섹션 플레이스홀더 교체 → v0.6 확정</li>
+    <li>워드마크 전용 서체 승격</li>
+    <li>v0.6 확정 후 <b>브랜드 가이드라인 문서</b> 착수(피그마 템플릿 구조 참고, 한글 신규 페이지)</li>
   </ol>
+  <div class="warn"><b>원칙:</b> 확인되지 않은 형태를 "확정"으로 표기하지 않는다. 이 문서의 심볼 자리는 원본 수신 전까지 플레이스홀더로 유지한다.</div>
 </section>
 
-<footer>TEMS Intelligence BI v0.3 · 무료 지원 건 · 워드마크 서체는 커스텀 전 드래프트 · 인적사항 더미 · 리서치 출처는 02 섹션 각 카드 참조</footer>
+<footer>TEMS Intelligence BI v0.5(통합본) · 무료 지원 건 · 이전 버전(v0.1~v0.4) 산출물은 과정 기록으로 프로젝트 폴더에 보존 · 워드마크는 커스텀 서체 전 드래프트</footer>
 
 </div>
