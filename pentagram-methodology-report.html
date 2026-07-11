@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pentagram 방법론 리포트 — TwelveLabs & 카테고리별 디자인 접근법</title>
+
+<!-- Pretendard Variable (가변 폰트, 100~900) -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<!-- 수치·메타 라벨용 모노스페이스 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #FFFFFF;
+    --bg-card:   #F5F1EA;
+    --ink:       #1A1A1A;
+    --muted:     #6E665A;
+    --rule:      #E4DED2;
+    --chip:      #F2EDE3;
+
+    --accent:        #FF6B35;
+    --accent-soft:   #FFD9C2;
+
+    --data:          #C5BBDD;
+    --data-strong:   #A89BC8;
+
+    --sans: "Pretendard Variable", Pretendard, -apple-system,
+            BlinkMacSystemFont, system-ui, "Segoe UI",
+            Roboto, "Helvetica Neue", "Apple SD Gothic Neo",
+            "Noto Sans KR", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw: 1200px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+  html { background-color: #FFFFFF; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* ---------- top nav ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; font-size: 13px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+  }
+  .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); }
+  .nav { display: flex; gap: 24px; color: var(--muted); }
+  .nav a { text-decoration: none; font-weight: 500; }
+  .nav a:hover { color: var(--ink); }
+  .nav .current { color: var(--ink); }
+
+  /* ---------- layout ---------- */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    padding: 56px 0 120px;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+    .sidenav { position: static !important; }
+  }
+
+  /* ---------- side nav ---------- */
+  .sidenav {
+    position: sticky; top: 80px; align-self: start;
+    font-size: 13px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+  .sidenav .label {
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sidenav ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+  .sidenav li {
+    counter-increment: toc;
+    padding: 8px 0; border-bottom: 1px dashed var(--rule);
+    display: flex; gap: 10px;
+  }
+  .sidenav li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); padding-top: 2px;
+  }
+  .sidenav a { text-decoration: none; line-height: 1.35; font-weight: 500; }
+  .sidenav li.active a { color: var(--accent); font-weight: 700; }
+
+  /* ---------- chapter intro ---------- */
+  .crumb {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted); letter-spacing: 0.04em;
+    display: flex; gap: 14px; align-items: center;
+    margin-bottom: 28px;
+  }
+  .crumb .pill {
+    background: var(--accent); color: #fff;
+    padding: 4px 10px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.08em;
+  }
+  h1.chapter-title {
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 0 0 32px;
+  }
+  h1.chapter-title em {
+    font-style: normal;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .lede {
+    font-weight: 500;
+    font-size: 22px; line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 62ch;
+    margin: 0 0 48px;
+  }
+
+  /* ---------- hero stat strip ---------- */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
+    margin: 0 0 72px;
+  }
+  @media (max-width: 700px) { .stat-strip { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    padding: 28px 24px 24px;
+    border-right: 1px dashed var(--rule);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat .num {
+    font-weight: 700;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .stat .num .unit { font-size: 0.4em; color: var(--muted); font-weight: 500; }
+  .stat .delta {
+    display: inline-block;
+    font-family: var(--mono); font-size: 11px;
+    margin-top: 10px; padding: 2px 8px; border-radius: 4px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .stat .label {
+    margin-top: 14px;
+    font-size: 13px; color: var(--muted); line-height: 1.4;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 88px; scroll-margin-top: 96px; }
+  .section-head {
+    border-top: 1px dashed var(--rule);
+    padding-top: 24px;
+    margin-bottom: 32px;
+  }
+  .section-head h2 {
+    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.15; letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .section-head h2 .no {
+    color: var(--ink);
+    margin-right: 12px;
+  }
+  .section-head h2 em { font-style: normal; color: var(--accent); }
+  .section-head .deck {
+    font-size: 16px; color: var(--muted);
+    margin-top: 12px; max-width: 60ch;
+  }
+  .prose p { max-width: 68ch; margin: 0 0 18px; }
+  .prose p .hl { background: linear-gradient(180deg, transparent 55%, var(--accent-soft) 55%); padding: 0 2px; }
+  .prose strong { font-weight: 700; }
+
+  /* ---------- two-column block ---------- */
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .two { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ---------- bar chart ---------- */
+  .chart {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    border-radius: 0;
+    padding: 24px;
+  }
+  .chart .ch-title {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px; font-weight: 700;
+  }
+  .chart .ch-sub {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.015em;
+    margin-bottom: 20px;
+  }
+  .bars { display: grid; gap: 12px; }
+  .bar-row {
+    display: grid; grid-template-columns: 150px 1fr 64px;
+    align-items: center; gap: 12px; font-size: 13px;
+  }
+  .bar-track { background: var(--chip); border-radius: 3px; height: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--data); border-radius: 3px; }
+  .bar-fill.strong { background: var(--data-strong); }
+  .bar-fill.accent { background: var(--accent); }
+  .bar-row .val {
+    font-family: var(--mono); font-size: 12px; text-align: right; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .bar-row .name { color: var(--ink); font-weight: 500; }
+
+  /* ---------- pullquote ---------- */
+  .pull {
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
+    padding: 40px 0;
+    margin: 56px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+  }
+  .pull .no { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .pull blockquote {
+    margin: 0;
+    font-weight: 500;
+    font-size: clamp(24px, 2.8vw, 36px);
+    line-height: 1.3; letter-spacing: -0.02em;
+  }
+  .pull blockquote em { color: var(--accent); font-style: normal; font-weight: 700; }
+  .pull cite {
+    display: block; margin-top: 18px;
+    font-style: normal; font-size: 13px; color: var(--muted);
+  }
+
+  /* ---------- tool grid ---------- */
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .tools { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .tools { grid-template-columns: 1fr; } }
+  .tool { background: var(--bg); padding: 24px; display: flex; flex-direction: column; gap: 8px; min-height: 190px; }
+  .tool .rank { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .tool .name { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .tool .verb {
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+  }
+  .tool .verb b { color: var(--accent); }
+  .tool .note { font-size: 13px; color: var(--muted); margin-top: auto; line-height: 1.45; }
+
+  /* ---------- donut ---------- */
+  .donut-wrap { display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: center; }
+  .donut {
+    --p: 68;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--chip) 0);
+    display: grid; place-items: center;
+    position: relative;
+  }
+  .donut::after {
+    content: ""; width: 110px; height: 110px; border-radius: 50%;
+    background: var(--bg); position: absolute;
+  }
+  .donut .pct {
+    position: relative; z-index: 1;
+    font-weight: 700; font-size: 30px; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .donut-legend { font-size: 14px; }
+  .donut-legend ul { list-style: none; padding: 0; margin: 0; }
+  .donut-legend li {
+    display: flex; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px dashed var(--rule);
+  }
+  .donut-legend li b {
+    font-family: var(--mono); font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--ink); color: var(--bg);
+    border-radius: 6px; padding: 28px 32px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 28px; align-items: center;
+    margin: 32px 0;
+  }
+  .callout h3 { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .callout p { margin: 0; color: #cfc8b7; font-size: 14px; max-width: 62ch; }
+  .callout .big {
+    font-size: 56px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+  .callout .big small { display:block; font-size: 13px; color:#cfc8b7; font-weight:500; letter-spacing: 0; margin-top: 8px; }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 32px 0 56px;
+    font-size: 12px; color: var(--muted);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+
+  /* ---------- chip ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; }
+  .chips span {
+    background: var(--chip); border-radius: 999px;
+    padding: 4px 10px; font-size: 12px; color: var(--ink); font-weight: 500;
+  }
+
+  /* ---------- spec list (identity system) ---------- */
+  .spec { border-top: 1px dashed var(--rule); }
+  .spec .row {
+    display: grid; grid-template-columns: 150px 1fr;
+    gap: 20px; padding: 16px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  @media (max-width: 600px){ .spec .row { grid-template-columns: 1fr; gap: 4px; } }
+  .spec .k { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .spec .v { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .spec .v em { font-style: normal; color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner wrap">
+    <div class="brand"><span class="dot"></span> Pentagram Method Study</div>
+    <nav class="nav">
+      <a href="#twelvelabs" class="current">Case · TwelveLabs</a>
+      <a href="#principles">공통 원칙</a>
+      <a href="#categories">카테고리별</a>
+      <a href="#steal">우리가 훔칠 것</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid">
+
+    <aside class="sidenav">
+      <div class="label">In this report</div>
+      <ol>
+        <li class="active"><a href="#twelvelabs">TwelveLabs 케이스</a></li>
+        <li><a href="#system">아이덴티티 시스템</a></li>
+        <li><a href="#principles">관통하는 공통 원칙</a></li>
+        <li><a href="#categories">카테고리별 방법론</a></li>
+        <li><a href="#partners">파트너별 시그니처</a></li>
+        <li><a href="#steal">우리가 훔칠 3가지</a></li>
+      </ol>
+    </aside>
+
+    <article>
+
+      <div class="crumb">
+        <span class="pill">METHOD STUDY</span>
+        <span>2026 · Pentagram × TwelveLabs · 카테고리별 접근법</span>
+      </div>
+
+      <h1 class="chapter-title">펜타그램은 디자인을 <em>어떻게</em> 푸는가.</h1>
+
+      <p class="lede">
+        하나의 개념에서 출발해 원칙을 시스템으로 짓고, 그 시스템을 매체마다 상속시킨다. TwelveLabs 케이스를 해부하고, 그 방법론이 카테고리별로 어떻게 변주되는지 정리했다 — 스타일 카탈로그가 아니라 문제 푸는 순서로.
+      </p>
+
+      <!-- ===================== TWELVELABS ===================== -->
+      <section id="twelvelabs">
+        <div class="stat-strip">
+          <div class="stat">
+            <div class="num">1</div>
+            <div class="delta">single idea</div>
+            <div class="label">전 매체를 지배한 관점: “영상은 타임라인이 아니라 볼륨”</div>
+          </div>
+          <div class="stat">
+            <div class="num">12</div>
+            <div class="delta">layers</div>
+            <div class="label">질주하는 말 심볼의 레이어 수 = 사명(TwelveLabs)</div>
+          </div>
+          <div class="stat">
+            <div class="num">2</div>
+            <div class="delta">models</div>
+            <div class="label">Marengo(인코더) · Pegasus(추론) — 이미 말 이름이던 내부 자산</div>
+          </div>
+          <div class="stat">
+            <div class="num">1887</div>
+            <div class="delta">origin</div>
+            <div class="label">Muybridge 말 연속사진 — 모션의 기원을 심볼로 인용</div>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <h2><span class="no">1.</span>기술의 본질을 <em>한 문장</em>으로 승격시킨다.</h2>
+          <p class="deck">Pentagram(파트너 Jody Hudson-Powell & Luke Powell)이 TwelveLabs를 푼 순서 — 관점 → 시스템 → 상속.</p>
+        </div>
+
+        <div class="prose two">
+          <div>
+            <p><strong>Step 1 · 관점 고정.</strong> TwelveLabs의 기술은 영상을 순차적 시간축이 아니라 <span class="hl">공간적·다차원 데이터 블록</span>으로 인코딩한다. 이 사실을 “What if video isn’t a timeline, but a volume?”이라는 한 문장으로 승격시켜 브랜드 전체의 조직 원리로 삼았다.</p>
+            <p><strong>Step 2 · 자산 발굴.</strong> 로고를 새로 발명하지 않고, 클라이언트에 이미 있던 서사에서 캤다 — 모델명이 이미 말(Marengo·Pegasus)이었기에 Muybridge의 질주하는 말이 억지가 아니다.</p>
+            <p><strong>Step 3 · 시스템화.</strong> 스레드(thread) 다이어그램으로 보이지 않는 AI 내부를 <em>visible · graspable · legible</em> 하게. 프레임→라이브러리, 클립→개념까지 스케일 확장.</p>
+          </div>
+
+          <div class="chart">
+            <div class="ch-title">방법론 무게중심</div>
+            <div class="ch-sub">어디에 힘이 실렸나</div>
+            <div class="bars">
+              <div class="bar-row"><span class="name">관점 정의</span><span class="bar-track"><span class="bar-fill accent" style="width:100%"></span></span><span class="val">CORE</span></div>
+              <div class="bar-row"><span class="name">시스템·다이어그램</span><span class="bar-track"><span class="bar-fill accent" style="width:88%"></span></span><span class="val">HIGH</span></div>
+              <div class="bar-row"><span class="name">모션(의도형)</span><span class="bar-track"><span class="bar-fill strong" style="width:66%"></span></span><span class="val">MED</span></div>
+              <div class="bar-row"><span class="name">타이포·컬러</span><span class="bar-track"><span class="bar-fill" style="width:48%"></span></span><span class="val">MED</span></div>
+              <div class="bar-row"><span class="name">정적 로고</span><span class="bar-track"><span class="bar-fill" style="width:26%"></span></span><span class="val">LOW</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== IDENTITY SYSTEM ===================== -->
+      <section id="system">
+        <div class="section-head">
+          <h2><span class="no">2.</span>아이덴티티 시스템 — <em>상반된 것</em>을 붙인다.</h2>
+          <p class="deck">전형적 AI 브랜딩의 양극단(무균질 기업형 ↔ 산만한 플레이풀)을 모두 피하고 대립항을 통합했다.</p>
+        </div>
+
+        <div class="spec">
+          <div class="row"><div class="k">심볼</div><div class="v"><em>질주하는 말</em> · Muybridge 모션 스터디 인용 · 12 레이어 · 정지가 아니라 화면을 가로지르는 모션 심볼로 사용</div></div>
+          <div class="row"><div class="k">시스템</div><div class="v"><em>스레드 다이어그램</em> · Marengo(인코딩)·Pegasus(추론)를 도식화 · 검색 결과 = 답이 아니라 시공간에 배열된 관계</div></div>
+          <div class="row"><div class="k">모션</div><div class="v"><em>의도를 가진 움직임</em> · 장식적 루프 금지 · 구조를 드러내고 이해를 강화하는 목적형만</div></div>
+          <div class="row"><div class="k">타이포그래피</div><div class="v">기계적 구조(mechanical) + 인간적 부드러움(softness)의 <em>균형</em></div></div>
+          <div class="row"><div class="k">컬러</div><div class="v">논리(logic)에 기반 · 적용은 <em>표현적(expressive)</em></div></div>
+          <div class="row"><div class="k">레이아웃</div><div class="v">스레드·타임라인 그리드 · <em>로젠지(lozenge)</em> 형태 인터페이스가 비디오 데이터 구조를 미러링</div></div>
+        </div>
+      </section>
+
+      <div class="pull">
+        <div class="no">QUOTE 01</div>
+        <blockquote>
+          “맥락 있는 지능, <em>느낌 있는 명료함</em>, 의미 있는 움직임.”
+          <cite>— Pentagram, TwelveLabs 브랜드 철학 (Intelligence with context, clarity with feeling, movement with meaning)</cite>
+        </blockquote>
+      </div>
+
+      <!-- ===================== COMMON PRINCIPLES ===================== -->
+      <section id="principles">
+        <div class="section-head">
+          <h2><span class="no">3.</span>전 카테고리를 <em>관통하는</em> 4원칙.</h2>
+          <p class="deck">파트너 연합체라 “단일 방법론”은 없지만, 모든 작업에 흐르는 공통 문법은 있다.</p>
+        </div>
+
+        <div class="tools">
+          <div class="tool">
+            <div class="rank">PRINCIPLE 01</div>
+            <div class="name">아이디어 주도</div>
+            <div class="verb">Idea-driven, <b>not style</b></div>
+            <div class="note">스타일이 아니라 하나의 개념에서 출발. 로고가 아니라 로고를 정당화하는 ‘생각’을 판다.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PRINCIPLE 02</div>
+            <div class="name">부분보다 원칙</div>
+            <div class="verb">Principles <b>before parts</b></div>
+            <div class="note">에셋·룰 리스트가 아니라 원칙 시스템을 먼저. 브랜드는 청중 머릿속 연상의 집합.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PRINCIPLE 03</div>
+            <div class="name">실행으로 증명</div>
+            <div class="verb">Prove by <b>execution</b></div>
+            <div class="note">“화이트보드 위 합의된 단어”를 거부. 전략의 모든 원칙이 실제 디자인으로 구현되는지로 검증.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PRINCIPLE 04</div>
+            <div class="name">균일 아닌 일관</div>
+            <div class="verb">Consistent, <b>not uniform</b></div>
+            <div class="note">신뢰할 수 있으면서 놀랍고, 균일하지 않으면서 일관된. 클라가 유지하기 쉬운 시스템.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PRINCIPLE 05</div>
+            <div class="name">복잡성의 가독화</div>
+            <div class="verb">Make it <b>legible</b></div>
+            <div class="note">딥테크·B2B의 보이지 않는 작동을 다이어그램 시스템으로 보이게. 예쁨보다 이해.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PRINCIPLE 06</div>
+            <div class="name">방법론의 함정 경계</div>
+            <div class="verb">Method <b>≠ goal</b></div>
+            <div class="note">페르소나·저니맵이 결과와 연결 안 되면 버린다. (N. Jen: “Design Thinking is bullshit”)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CATEGORIES ===================== -->
+      <section id="categories">
+        <div class="section-head">
+          <h2><span class="no">4.</span>카테고리별로 <em>어떤 동사</em>로 푸느냐.</h2>
+          <p class="deck">같은 뼈대(개념→시스템→상속)가 매체에 따라 다른 동사로 변주된다.</p>
+        </div>
+
+        <div class="prose two">
+          <div>
+            <p><strong>① 브랜드 전략 — 증명한다(prove).</strong> art & science. 페르소나·경쟁분석을 목적이 아닌 수단으로. 산출물은 문서가 아니라 “결정적 행동을 이끄는 구체적 아이디어”.</p>
+            <p><strong>② 아이덴티티 — 시스템화한다.</strong> 브랜드가 어디서 경험되는지 파악 → 일관성이 임팩트 낼 지점 식별 → 그 지점에 시스템을 심어 자동 유지.</p>
+            <p><strong>③ 디지털·UI — legible하게 만든다.</strong> “복잡한 기술을 이해 가능하게 하는 시각적·공간적 시스템.” 다이어그램·데이터 시각화가 핵심 무기. 효율뿐 아니라 <span class="hl">humane(인간적)</span> 인터랙션을 책임으로 규정.</p>
+          </div>
+          <div>
+            <p><strong>④ 에디토리얼 — 조직한다(structure).</strong> 그리드·타이포 시스템이 곧 방법론. 정보 위계를 드러내는 조판 논리. “읽히는 것”이 성패.</p>
+            <p><strong>⑤ 패키징 — 번역한다.</strong> 아이덴티티 원칙을 3D·소재·구조로. 셸프 차별화 + 시스템의 물리적 연장.</p>
+            <p><strong>⑥ 환경·사이니지 — 스케일에 맞춘다(scale).</strong> 웨어러블부터 도시 블록까지, 스케일에 따라 접근을 바꾼다. 공간 정보 위계·동선·가독성.</p>
+            <p><strong>⑦ 모션·제너레이티브 — 살아 움직이게 한다.</strong> 데이터·코드로 끊임없이 진화하는 아이덴티티(Barbican·Cytora). 의도 없는 움직임 금지.</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div>
+            <h3>딥테크·B2B의 승부처는 ‘다이어그램 시스템’</h3>
+            <p>TwelveLabs·Cytora 패턴 — 예쁜 키비주얼보다 “복잡성을 legible하게 만드는 도식”이 차별화의 축이다. 만질 수 없는 기술일수록 시스템으로 번역한다.</p>
+          </div>
+          <div class="big">B2B<small>frontier-tech 전문</small></div>
+        </div>
+      </section>
+
+      <!-- ===================== PARTNERS ===================== -->
+      <section id="partners">
+        <div class="section-head">
+          <h2><span class="no">5.</span>같은 뼈대, <em>다른 손</em> — 파트너별 시그니처.</h2>
+          <p class="deck">Pentagram은 1972년 설립, 파트너가 각자 팀·클라·손익을 독립 운영하는 연합체. 그래서 톤이 갈린다.</p>
+        </div>
+
+        <div class="tools">
+          <div class="tool">
+            <div class="rank">PARTNER</div>
+            <div class="name">Jody & Luke<br>Hudson-Powell</div>
+            <div class="note">컴퓨테이션 + 크래프트. 코드·제너레이티브로 살아 움직이는 아이덴티티(TwelveLabs·Barbican).</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PARTNER</div>
+            <div class="name">Natasha Jen</div>
+            <div class="note">AR/VR·양자·AI·바이오·크립토 등 ‘프론티어 기술’ 전문. 만질 수 없는 기술을 공간·시스템으로 번역.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PARTNER</div>
+            <div class="name">Michael Bierut</div>
+            <div class="note">순수 아이디어 주도(Hillary ‘H’, MIT Media Lab). 리서치보다 직관과 개념.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PARTNER</div>
+            <div class="name">Paula Scher</div>
+            <div class="note">타이포그래피가 곧 아이덴티티. 표현적·대담한 레터링(Public Theater).</div>
+          </div>
+          <div class="tool">
+            <div class="rank">PARTNER</div>
+            <div class="name">Marina Willer<br>· Harry Pearce</div>
+            <div class="note">스토리와 크래프트 중심. 서사·의미의 결을 다듬는 접근.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">MODEL</div>
+            <div class="name">파트너십 구조</div>
+            <div class="note">25명 안팎 파트너 = 동등 지분. 독립 운영 + 공용 브랜드. 이 구조가 톤 다양성의 근원.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="pull">
+        <div class="no">QUOTE 02</div>
+        <blockquote>
+          “전략을 위한 전략을 경계하라. 우리가 발전시킨 모든 원칙이 <em>디자인으로 생생하게 구현</em>될 수 있음을 증명하는 것 — 그게 전부다.”
+          <cite>— Pentagram, Brand Strategy 방법론 요지 (의역)</cite>
+        </blockquote>
+      </div>
+
+      <!-- ===================== STEAL ===================== -->
+      <section id="steal">
+        <div class="section-head">
+          <h2><span class="no">6.</span>우리 실이 <em>훔칠</em> 3가지.</h2>
+          <p class="deck">17년차 실장 관점 — 제안·수주·온보딩에 바로 이식할 수 있는 것만.</p>
+        </div>
+
+        <div class="prose">
+          <p><strong>1 · 관점 게이트가 곧 일관성의 비밀.</strong> “타임라인 아닌 볼륨” 한 문장이 로고·모션·UI·타이포를 전부 상속시킨다. <span class="hl">우리 <code>concept-director</code>(사전 관점 게이트)와 정확히 같은 구조</span> — 제안 착수 전 이 한 문장부터 고정한다.</p>
+          <p><strong>2 · 심볼은 클라 내부의 lore에서 캔다.</strong> 모델명이 이미 말이었기에 Muybridge가 설득력을 가진다. 리서치 단계에서 <span class="hl">클라이언트 안에 이미 존재하는 서사</span>부터 파는 게 제안 설득력의 핵심.</p>
+          <p><strong>3 · 딥테크·B2B는 다이어그램 시스템으로 승부.</strong> 예쁜 시안보다 “복잡성을 legible하게” 만드는 도식 체계가 진짜 차별점. 제안서에서 프로세스 도식을 남발하되(방법론 함정) 결과와 연결 안 되면 버린다.</p>
+        </div>
+
+        <div class="stat-strip" style="margin-top:40px;">
+          <div class="stat">
+            <div class="num">개념</div>
+            <div class="label">착수 전 한 문장으로 고정 — 전 매체 상속</div>
+          </div>
+          <div class="stat">
+            <div class="num">자산</div>
+            <div class="label">클라 내부 서사(lore)에서 심볼 발굴</div>
+          </div>
+          <div class="stat">
+            <div class="num">시스템</div>
+            <div class="label">복잡성을 legible하게 만드는 다이어그램</div>
+          </div>
+          <div class="stat">
+            <div class="num">증명</div>
+            <div class="label">전략은 실행으로 검증, 방법론 자체는 목적 아님</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>Pentagram Method Study · TwelveLabs & 카테고리별 접근법 · 2026 · 내부 레퍼런스</div>
+        <div>출처: pentagram.com · Creative Review · Design Week · Creative Boom · BP&amp;O · Dezeen</div>
+      </footer>
+
+    </article>
+  </div>
+</main>
+
+</body>
+</html>
