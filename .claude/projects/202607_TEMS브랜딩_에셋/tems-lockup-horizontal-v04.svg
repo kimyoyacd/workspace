@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 90" width="340" height="90">
+  <!-- 가로형 락업 v0.4 — 라이트 배경 기본형. 심볼(스파크)+워드마크(소문자 tems / intelligence 서브라인).
+       ※ 워드마크는 커스텀 서체 전 시스템 드래프트 -->
+  <path d="M45,10 C46.8,28 34.4,41 18,43 C34.4,45 46.8,58 45,76 C43.2,58 55.6,45 72,43 C55.6,41 43.2,28 45,10 Z" fill="#0F0F10"/>
+  <text x="94" y="56" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="800" font-size="38" letter-spacing="-0.6" fill="#0F0F10">tems</text>
+  <text x="95" y="76" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="400" font-size="12" letter-spacing="2.4" fill="#666666">intelligence</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- 16~24px 전용 헤비 락업 — 본 심볼(tems-symbol.svg)의 축소 사용 금지, 이 파일을 사용.
+       커브 두께를 14u로 증량 + 반경 확대(52u)해 소형에서도 T 판독 유지 -->
+  <defs>
+    <mask id="temsFaviconMask">
+      <circle cx="60" cy="60" r="52" fill="#fff"/>
+      <g stroke="#000" stroke-width="14" fill="none" stroke-linecap="round">
+        <path d="M 0,48 Q 60,30 120,48"/>
+        <path d="M 64,40 Q 72,80 50,120"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="60" cy="60" r="52" fill="#2B4EFF" mask="url(#temsFaviconMask)"/>
+</svg>

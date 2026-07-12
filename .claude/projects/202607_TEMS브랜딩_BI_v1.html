@@ -1,0 +1,181 @@
+<title>TEMS Intelligence — BI v1</title>
+<style>
+:root{
+  --ink:#0F0F10; --gray1:#333333; --gray2:#666666; --gray3:#9A9A9A; --gray4:#BDBDBD; --gray5:#E6E6E6; --gray6:#F2F2F2;
+  --line:#E4E4E4; --paper:#FFFFFF;
+  --warm:#FF7A59; --mid:#C64FE0; --cool:#4B6BFF; --gold:#FFB86B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Neo",sans-serif;
+  line-height:1.65;font-size:15px;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px 110px;}
+header.hero{padding:64px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:16px;}
+.eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray2);margin:0 0 18px;font-weight:700;}
+.statuspill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-left:10px;vertical-align:2px;background:var(--gold);color:#3a2400;}
+h1{font-size:clamp(28px,4.6vw,46px);line-height:1.2;margin:16px 0 14px;font-weight:800;letter-spacing:-0.01em;text-wrap:balance;}
+.hero .sub{color:var(--gray2);margin:0;max-width:40em;font-size:15.5px;}
+section{margin-top:64px;}
+.secno{font-size:11px;letter-spacing:.18em;color:var(--gray3);font-weight:700;text-transform:uppercase;margin:0 0 8px;}
+h2{font-size:22px;font-weight:800;margin:0 0 10px;letter-spacing:-0.01em;}
+.lede{color:var(--gray2);margin:0 0 22px;max-width:48em;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.card{background:var(--gray6);border:1px solid var(--line);border-radius:10px;padding:18px 20px;}
+.card h3{margin:0 0 6px;font-size:13.5px;font-weight:700;}
+.card p{margin:0;font-size:12.5px;color:var(--gray2);line-height:1.65;}
+.infotable{width:100%;border-collapse:collapse;font-size:13.5px;}
+.infotable th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray3);font-weight:700;padding:10px 16px 10px 0;vertical-align:top;white-space:nowrap;width:120px;}
+.infotable td{padding:10px 0;border-top:1px solid var(--line);color:var(--gray1);}
+.infotable tr:first-child td, .infotable tr:first-child th{border-top:none;}
+.placeholder{border:1.5px dashed var(--gray4);border-radius:12px;padding:44px 24px;text-align:center;background:var(--gray6);}
+.placeholder .icn{font-size:34px;margin-bottom:12px;opacity:.35;}
+.placeholder b{display:block;font-size:14px;margin-bottom:6px;}
+.placeholder p{font-size:12.5px;color:var(--gray3);margin:0;max-width:34em;margin-left:auto;margin-right:auto;}
+.wordmark-box{background:var(--ink);border-radius:12px;padding:48px;display:flex;align-items:center;justify-content:center;}
+.wordmark-box .t1{font-size:52px;font-weight:800;letter-spacing:-1px;color:#fff;line-height:1;}
+.wordmark-box .t2{font-size:16px;font-weight:400;letter-spacing:2.6px;color:#B9B9BC;margin-top:8px;}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;}
+.sw{border-radius:10px;border:1px solid var(--line);overflow:hidden;}
+.sw .c{height:52px;}
+.sw .t{padding:8px 10px;font-size:10.5px;background:var(--gray6);}
+.sw .t b{display:block;font-size:11.5px;}
+.sw .t span{color:var(--gray3);font-size:9.5px;}
+.gradband{height:48px;border-radius:8px;background:linear-gradient(90deg,var(--warm) 0%,var(--mid) 52%,var(--cool) 100%);margin:14px 0;}
+.kwrow{display:flex;flex-direction:column;gap:10px;}
+.kw{display:flex;align-items:center;gap:12px;}
+.kw .dot{width:26px;height:26px;border:1px solid var(--ink);border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.kw .tx b{display:block;font-size:12.5px;}
+.kw .tx span{font-size:10.5px;color:var(--gray3);}
+.timeline{border-left:2px solid var(--line);margin-left:6px;padding-left:22px;display:flex;flex-direction:column;gap:22px;}
+.tlitem{position:relative;}
+.tlitem::before{content:"";position:absolute;left:-27.5px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--ink);}
+.tlitem.dead::before{background:var(--gray4);}
+.tlitem.live::before{background:var(--warm);}
+.tlitem .v{font-size:12px;font-weight:700;letter-spacing:.02em;}
+.tlitem .v .st{font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:10px;margin-left:8px;}
+.st-dead{background:var(--gray5);color:var(--gray2);}
+.st-live{background:var(--gold);color:#3a2400;}
+.tlitem p{margin:4px 0 0;font-size:12.5px;color:var(--gray2);}
+ol.next{margin:0;padding-left:20px;font-size:13.5px;color:var(--gray1);}
+ol.next li{margin-bottom:8px;}
+.warn{border-left:3px solid var(--gold);padding:14px 18px;background:var(--gray6);border-radius:0 10px 10px 0;font-size:13px;color:var(--gray1);margin-top:20px;}
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--gray3);}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">TEMS Intelligence · BI v1 · 2026-07-10<span class="statuspill">심볼 확정 대기</span></p>
+  <h1>지금까지 논의된 모든 것을<br>하나로 정리한 BI 현황판</h1>
+  <p class="sub">v0.1~v0.4까지 흩어져 있던 방향(계단 스템 T → Orbit T → Spark)을 정리하고, 디렉터가 최종 확정한 방향(t-프래그먼트 심볼 · 소문자 워드마크 · 모노크롬+그라데이션 이원 컬러)만 남긴 단일 현재 상태 문서. 심볼 조형만 원본 파일 수신 대기 중이며 나머지는 확정.</p>
+</header>
+
+<section>
+  <p class="secno">00 — Brand Brief</p>
+  <h2>브랜드 기본 정보</h2>
+  <table class="infotable">
+    <tr><th>브랜드명</th><td>TEMS Intelligence</td></tr>
+    <tr><th>하는 일</th><td>AI 시대에 적합한 인재를 발굴하는 <b>Decision Intelligence 기반 HR 플랫폼</b>. AI 인터뷰로 지식이 아니라 업무 맥락·전문성·실제 판단 행동을 질문하고, 학습된 우수 사례(벤치마크 케이스) 대비로 검증해 인재를 선발한다.</td></tr>
+    <tr><th>타깃</th><td>기업 인사담당자·경영진(결재권자) · 대학교(1차 영업 채널) · 인재채용 실무 라인</td></tr>
+    <tr><th>산업군</th><td>AI / HR Tech / B2B SaaS</td></tr>
+    <tr><th>브랜드 인상</th><td>미래형 인재의 성장 가능성 · 신뢰 · 스마트 · 사람 중심 · 정제됨 · 실리콘밸리 테크</td></tr>
+  </table>
+</section>
+
+<section>
+  <p class="secno">01 — Perspective</p>
+  <h2>관점 — 축적에서 발견으로</h2>
+  <p class="lede">기존 관점 "판단은 재능이 아니라, 축적되는 자산이다"(Judgment Compounds)는 제품의 데이터 플라이휠을 설명한다. 이번 라운드에서 디렉터가 지정한 무드는 같은 시스템을 사용자가 체감하는 순간으로 옮긴다.</p>
+  <div class="grid2">
+    <div class="card"><h3>축적 — 엔진 (기존, 유지)</h3><p>케이스×판단축 데이터가 쌓인다. 판단은 재능이 아니라 시스템에 축적되는 자산이다.</p></div>
+    <div class="card"><h3>발견 — 순간 (신규, 심볼의 서사)</h3><p>쌓인 판단 기준 위에서, 다수의 지원자 중 맞는 사람을 스파크처럼 짚어낸다.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="secno">02 — Wordmark</p>
+  <h2>워드마크 — 확정</h2>
+  <p class="lede">대문자 Title Case(v0.1~v0.3)에서 디렉터가 직접 완성한 소문자 워드마크로 전환. 이후 전 매체 공통.</p>
+  <div class="wordmark-box"><div><div class="t1">tems</div><div class="t2">intelligence</div></div></div>
+  <p class="lede" style="margin-top:14px;">※ 레터폼은 커스텀 서체 전 시스템 드래프트. 전용 서체 승격 필요(리서치 결론: "전용 서체가 티어를 가른다" — Anthropic·OpenAI·Cursor 전부 전용/라이선스 서체 사용).</p>
+</section>
+
+<section>
+  <p class="secno">03 — Symbol</p>
+  <h2>심볼 — 확정 대기 <span style="font-size:13px;color:var(--gray3);font-weight:400;">파일 수신 후 즉시 반영</span></h2>
+  <p class="lede">디렉터가 't' 레터폼의 훅 프래그먼트를 직접 해체·재조합해 최종 심볼을 완성함(구성 원리: 훅 프래그먼트 추출 → 회전·정렬 → 윤곽 통합 → 최종 형태). 다만 최종 이미지가 대화창에 인라인으로만 첨부되어 파일로 저장되지 않았고, 시각 기억만으로 재구성한 근사치는 정확도가 낮아 <b style="color:var(--ink)">이 문서에는 반영하지 않는다</b> — 잘못된 형태를 "확정"으로 오인시키는 것이 가장 큰 리스크이기 때문.</p>
+  <div class="placeholder">
+    <div class="icn">◻</div>
+    <b>심볼 자산 대기 중</b>
+    <p>원본 파일(PNG/AI/SVG 등) 첨부 시 픽셀 단위로 정밀 벡터화해 이 자리를 채웁니다. v0.3 Orbit T, v0.4 TEMS Spark는 모두 디렉터의 실제 최종 방향과 달라 폐기되었습니다 — 아래 04 버전 히스토리 참조.</p>
+  </div>
+</section>
+
+<section>
+  <p class="secno">04 — Version History</p>
+  <h2>버전 히스토리 — 왜 여기까지 왔는가</h2>
+  <div class="timeline">
+    <div class="tlitem dead"><div class="v">v0.1~0.2 — 계단 스템 T <span class="v st st-dead">폐기</span></div><p>크림지·앰버 팔레트, 계단/블록 조형. 디렉터 피드백: "퀄리티가 올드하다, SV 기업 로고 분석이 누락됐다."</p></div>
+    <div class="tlitem dead"><div class="v">v0.3 — Orbit T <span class="v st st-dead">폐기</span></div><p>디렉터 무드보드(Globex 등 5장) + SV 로고 리서치 통합, 딥블루 애트모스피어 + 구체 궤도 심볼. 디렉터가 이후 직접 t-프래그먼트 탐색을 진행하며 대체됨.</p></div>
+    <div class="tlitem dead"><div class="v">v0.4 — TEMS Spark <span class="v st st-dead">폐기</span></div><p>모노크롬 Brand Sheet 포맷 + 4점 스파크 심볼. 디렉터의 실제 완성 심볼(H-브라켓형)과 불일치해 폐기.</p></div>
+    <div class="tlitem live"><div class="v">BI v1 — 통합본 <span class="v st st-live">현재</span></div><p>워드마크·컬러·관점·타깃은 확정. 심볼만 원본 파일 수신 대기. 본 문서. (이 시점부터 버전 표기를 v1·v2·v3…으로 일원화 — 덮어쓰지 않고 매번 새 파일로 저장)</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="secno">05 — Color System</p>
+  <h2>컬러 — 모노크롬(로고) × 그라데이션(브랜드 월드)</h2>
+  <p class="lede">로고·심볼은 재현성을 위해 모노크롬 고정. 브랜드가 말을 거는 표면(배경·프레젠테이션·소셜)에서는 온기(사람)와 다양성(다채로운 인재)이 만나 발견(스파크)으로 수렴하는 그라데이션을 운용한다.</p>
+  <div class="grid2">
+    <div>
+      <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;">Mono — 로고 기본 체계</p>
+      <div class="swatches">
+        <div class="sw"><div class="c" style="background:#0F0F10"></div><div class="t"><b>Ink</b><span>#0F0F10</span></div></div>
+        <div class="sw"><div class="c" style="background:#333333"></div><div class="t"><b>Gray 1</b><span>#333333</span></div></div>
+        <div class="sw"><div class="c" style="background:#666666"></div><div class="t"><b>Gray 2</b><span>#666666</span></div></div>
+        <div class="sw"><div class="c" style="background:#BDBDBD"></div><div class="t"><b>Gray 4</b><span>#BDBDBD</span></div></div>
+        <div class="sw"><div class="c" style="background:#F2F2F2"></div><div class="t"><b>Gray 6</b><span>#F2F2F2</span></div></div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;">Gradient — 브랜드 월드 전용</p>
+      <div class="gradband"></div>
+      <div class="swatches">
+        <div class="sw"><div class="c" style="background:#FF7A59"></div><div class="t"><b>Warm Coral</b><span>#FF7A59 · 사람·온기</span></div></div>
+        <div class="sw"><div class="c" style="background:#C64FE0"></div><div class="t"><b>Discovery Violet</b><span>#C64FE0 · 전환의 순간</span></div></div>
+        <div class="sw"><div class="c" style="background:#4B6BFF"></div><div class="t"><b>Signal Indigo</b><span>#4B6BFF · 판단·신뢰</span></div></div>
+        <div class="sw"><div class="c" style="background:#FFB86B"></div><div class="t"><b>Spark Gold</b><span>#FFB86B · 발견의 포인트</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="secno">06 — Keywords</p>
+  <h2>키워드 — 5개 축</h2>
+  <div class="kwrow">
+    <div class="kw"><div class="dot">?</div><div class="tx"><b>질문 Question</b><span>지식이 아니라 행동을 묻는다</span></div></div>
+    <div class="kw"><div class="dot">△</div><div class="tx"><b>관점 Perspective</b><span>업무 맥락의 각도에서 판단한다</span></div></div>
+    <div class="kw"><div class="dot">◎</div><div class="tx"><b>다양성 Spectrum</b><span>다채로운 인재 스펙트럼을 있는 그대로 본다</span></div></div>
+    <div class="kw"><div class="dot">✦</div><div class="tx"><b>발견 Discovery</b><span>그 속에서 맞는 사람을 스파크처럼 찾아낸다</span></div></div>
+    <div class="kw"><div class="dot">✓</div><div class="tx"><b>신뢰 Trust</b><span>검증된 판단 데이터 위에서 결정한다</span></div></div>
+  </div>
+</section>
+
+<section>
+  <p class="secno">07 — Next</p>
+  <h2>다음 단계</h2>
+  <ol class="next">
+    <li><b>심볼 원본 파일 수신</b> — PNG/AI/SVG 첨부 (대화 인라인 이미지는 트레이싱 불가)</li>
+    <li>수신 즉시 픽셀 단위 정밀 벡터화 → 03 섹션 플레이스홀더 교체 → BI v2로 확정</li>
+    <li>워드마크 전용 서체 승격</li>
+    <li>v2 확정 후 <b>브랜드 가이드라인 문서</b> 착수(피그마 템플릿 구조 참고, 한글 신규 페이지)</li>
+  </ol>
+  <div class="warn"><b>원칙:</b> 확인되지 않은 형태를 "확정"으로 표기하지 않는다. 이 문서의 심볼 자리는 원본 수신 전까지 플레이스홀더로 유지한다. <b>버전 정책:</b> 이후 모든 문서 업데이트는 기존 파일을 덮어쓰지 않고 v1→v2→v3… 신규 파일로 저장한다.</div>
+</section>
+
+<footer>TEMS Intelligence BI v1 · 무료 지원 건 · 이전 산출물(v0.1~v0.4 명칭 단계)은 과정 기록으로 프로젝트 폴더에 보존 · 워드마크는 커스텀 서체 전 드래프트 · 다음 버전: BI v2</footer>
+
+</div>

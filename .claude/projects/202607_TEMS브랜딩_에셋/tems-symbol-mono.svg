@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- 화이트 버전 — 다크/블루 배경용 단색. 흑백 인쇄 시 fill을 #000000으로 치환 -->
+  <defs>
+    <mask id="temsOrbitMaskMono">
+      <circle cx="60" cy="60" r="44" fill="#fff"/>
+      <g stroke="#000" stroke-width="10.5" fill="none" stroke-linecap="round">
+        <path d="M 8,50 Q 60,34 112,50"/>
+        <path d="M 63,42 Q 70,78 52,112"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="60" cy="60" r="44" fill="#FFFFFF" mask="url(#temsOrbitMaskMono)"/>
+</svg>

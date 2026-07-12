@@ -1,0 +1,360 @@
+<title>TEMS Intelligence — Brand Guidelines v1</title>
+<style>
+:root{
+  --ink:#0F0F10; --gray1:#333333; --gray2:#666666; --gray3:#9A9A9A; --gray4:#BDBDBD; --gray5:#E6E6E6; --gray6:#F2F2F2;
+  --line:#E4E4E4; --paper:#FFFFFF;
+  --warm:#FF7A59; --mid:#C64FE0; --cool:#4B6BFF; --gold:#FFB86B;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#DADADA;}
+body{font-family:"Helvetica Neue",Helvetica,Arial,Pretendard,"Apple SD Gothic Neo",sans-serif;color:var(--ink);}
+.deck{max-width:1180px;margin:0 auto;padding:24px 0 60px;}
+.page{background:var(--paper);aspect-ratio:16/9;width:100%;position:relative;overflow:hidden;margin-bottom:18px;
+  box-shadow:0 2px 14px rgba(0,0,0,.12);display:flex;flex-direction:column;padding:4.2% 4.4%;}
+.page.dark{background:var(--ink);color:#fff;}
+.page.gradbg{background:radial-gradient(120% 130% at 15% 0%,#3a2a55 0%,#1c1830 45%,#0F0F10 100%);color:#fff;}
+.phead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid currentColor;padding-bottom:10px;margin-bottom:0;font-size:13px;}
+.phead .l b{font-weight:800;letter-spacing:.04em;text-transform:uppercase;}
+.phead .l span{color:var(--gray3);text-transform:uppercase;letter-spacing:.04em;margin-left:8px;font-size:12px;}
+.page.dark .phead .l span, .page.gradbg .phead .l span{color:#B9B9BC;}
+.phead .num{font-variant-numeric:tabular-nums;font-size:13px;}
+.pfoot{position:absolute;left:4.4%;right:4.4%;bottom:3.6%;display:flex;justify-content:space-between;
+  border-top:1px solid var(--line);padding-top:10px;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--gray3);}
+.page.dark .pfoot, .page.gradbg .pfoot{border-top-color:rgba(255,255,255,.2);color:#9C9CA0;}
+.pbody{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;padding-top:2%;}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray3);margin:0 0 14px;font-weight:700;}
+.page.dark .eyebrow, .page.gradbg .eyebrow{color:#B9B9BC;}
+h1.cover{font-size:clamp(30px,4.4vw,54px);font-weight:800;letter-spacing:-0.01em;line-height:1.14;margin:0;text-wrap:balance;}
+h2.sectitle{font-size:clamp(26px,3.6vw,42px);font-weight:800;margin:0;letter-spacing:-0.01em;}
+h2.pt{font-size:22px;font-weight:800;margin:0 0 4px;}
+.sub{color:var(--gray2);font-size:14px;margin:10px 0 0;max-width:38em;}
+.page.dark .sub, .page.gradbg .sub{color:#C9C9CC;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:5%;height:100%;align-items:center;}
+.cols{display:grid;gap:4%;flex:1;align-content:center;}
+.c2{grid-template-columns:1fr 1fr;}
+.c5{grid-template-columns:repeat(5,1fr);}
+.pillar{border-top:2px solid var(--ink);padding-top:12px;}
+.pillar .idx{font-size:11px;color:var(--gray3);font-weight:700;letter-spacing:.06em;}
+.pillar h3{font-size:15px;margin:6px 0 8px;font-weight:800;}
+.pillar p{font-size:12px;color:var(--gray2);line-height:1.6;margin:0;}
+.trait{border:1px solid var(--line);border-radius:8px;padding:16px 8px;text-align:center;font-size:13px;font-weight:700;}
+.quote-blk{font-size:clamp(20px,2.6vw,30px);font-weight:700;line-height:1.5;letter-spacing:-0.005em;max-width:24em;}
+.quote-blk .label{display:block;font-size:11px;letter-spacing:.18em;color:var(--gray3);text-transform:uppercase;margin-bottom:14px;font-weight:700;}
+.toc-col{display:flex;flex-direction:column;gap:22px;}
+.toc-item .n{font-size:11px;color:var(--gray3);font-weight:700;}
+.toc-item .t{font-size:16px;font-weight:800;margin-top:2px;}
+.toc-item .p{font-size:11px;color:var(--gray3);margin-top:2px;}
+.clearspace-box{border:1px dashed #4FC3D9;position:relative;display:inline-flex;align-items:center;justify-content:center;padding:36px 50px;}
+.xmark{position:absolute;font-size:11px;color:#0FA3C7;font-weight:700;}
+table.tv{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.tv th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray3);padding:0 0 8px;border-bottom:1px solid var(--ink);}
+table.tv td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--gray1);}
+.swatchcard{border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+.swatchcard .c{height:70px;}
+.swatchcard .t{padding:8px 10px;background:var(--gray6);font-size:10.5px;}
+.swatchcard .t b{display:block;font-size:11.5px;}
+.swatchcard .t span{color:var(--gray3);}
+.wordbig{font-size:88px;font-weight:800;letter-spacing:-2px;line-height:1;}
+.wordsub{font-size:20px;font-weight:400;letter-spacing:3px;color:var(--gray2);margin-top:6px;}
+.bizmini{aspect-ratio:9/5;border-radius:8px;position:relative;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.25);}
+.bizmini svg{display:block;width:100%;height:100%;}
+.tonegrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.tonecard{border-radius:10px;padding:18px 20px;}
+.tonecard.do{background:#F0F7F1;border:1px solid #CFE6D3;}
+.tonecard.dont{background:#FBF0EF;border:1px solid #F0D3D0;}
+.tonecard h3{margin:0 0 10px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;}
+.tonecard ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--gray1);line-height:1.8;}
+.warnbox{border-left:3px solid var(--gold);background:var(--gray6);padding:10px 16px;font-size:11.5px;color:var(--gray1);border-radius:0 8px 8px 0;margin-top:14px;}
+</style>
+
+<div class="deck">
+
+<!-- 01 COVER -->
+<section class="page dark">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b></div><div class="num">01</div></div>
+  <div class="pbody" style="justify-content:flex-end;gap:24px;">
+    <svg width="64" height="77" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#fff"/></svg>
+    <h1 class="cover">Brand Identity<br>Guidelines</h1>
+    <p class="sub">TEMS Intelligence — Decision Intelligence 기반 HR 플랫폼 브랜드 가이드라인. v1 · 2026-07-10</p>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence</span><span>Version 1 · 2026-07-10</span></div>
+</section>
+
+<!-- 02 WELCOME -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Welcome</span></div><div class="num">02</div></div>
+  <div class="pbody">
+    <div class="quote-blk"><span class="label">시작하며</span>TEMS Intelligence의 브랜드에 오신 것을 환영합니다.<br>이 문서는 우리가 왜 이런 이름, 이런 심볼, 이런 색을 선택했는지 — 그리고 그것을 앞으로 어떻게 일관되게 지켜나갈지에 대한 약속입니다.</div>
+    <p class="sub" style="margin-top:26px;max-width:44em;">스펙이 아니라 판단으로 사람을 알아보는 일. 이 브랜드가 만들어가는 모든 접점 — 로고, 명함, 제안서, 제품 화면 — 은 이 하나의 믿음 위에 서 있어야 합니다.</p>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Welcome</span><span>02</span></div>
+</section>
+
+<!-- 03 TOC -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Contents</span></div><div class="num">03</div></div>
+  <div class="pbody" style="display:grid;grid-template-columns:1fr 1fr;gap:6%;">
+    <div class="toc-col">
+      <div class="toc-item"><div class="n">01</div><div class="t">Brand Strategy</div><div class="p">미션 · 비전 · 포지셔닝 · 핵심가치 · 퍼스낼리티 · 톤앤보이스</div></div>
+      <div class="toc-item"><div class="n">02</div><div class="t">Logo</div><div class="p">구성 논리 · 클리어스페이스 · 락업 · 최소 크기 · 컬러 배리에이션</div></div>
+    </div>
+    <div class="toc-col">
+      <div class="toc-item"><div class="n">03</div><div class="t">Color &amp; Typography</div><div class="p">모노크롬·그라데이션 이원 체계 · 워드마크</div></div>
+      <div class="toc-item"><div class="n">04</div><div class="t">Applications</div><div class="p">명함 · 다음 단계</div></div>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Contents</span><span>03</span></div>
+</section>
+
+<!-- 04 SECTION: STRATEGY -->
+<section class="page gradbg">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>01</span></div><div class="num">04</div></div>
+  <div class="pbody"><h2 class="sectitle">Brand Strategy</h2></div>
+  <div class="pfoot"><span>TEMS Intelligence · Brand Strategy</span><span>04</span></div>
+</section>
+
+<!-- 05 MISSION/VISION/POSITIONING -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Mission · Vision · Positioning</span></div><div class="num">05</div></div>
+  <div class="pbody" style="gap:30px;">
+    <div><p style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray3);font-weight:700;margin:0 0 8px;">Mission</p><p style="font-size:22px;font-weight:700;margin:0;max-width:30em;">모든 조직이 스펙이 아니라 판단으로 사람을 알아보게 한다.</p></div>
+    <div><p style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray3);font-weight:700;margin:0 0 8px;">Vision</p><p style="font-size:22px;font-weight:700;margin:0;max-width:30em;">AI가 대신 결정하는 세상이 아니라, AI가 더 나은 발견의 순간을 만들어주는 세상.</p></div>
+    <div><p style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray3);font-weight:700;margin:0 0 8px;">Positioning</p><p style="font-size:14px;color:var(--gray1);line-height:1.7;margin:0;max-width:44em;">TEMS Intelligence는 지식이 아니라 업무 맥락과 판단 행동을 기준으로 인재를 평가하는 Decision Intelligence 플랫폼이다. 스펙 중심 채용이 놓치는 '일 잘하는 사람'의 신호를, 이미 검증된 우수 사례와의 비교를 통해 데이터로 드러낸다.</p></div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Brand Strategy</span><span>05</span></div>
+</section>
+
+<!-- 06 PILLARS -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Brand Pillars</span></div><div class="num">06</div></div>
+  <div class="pbody">
+    <h2 class="pt">브랜드 핵심가치</h2>
+    <div class="cols c5" style="margin-top:18px;">
+      <div class="pillar"><div class="idx">01</div><h3>맥락 우선</h3><p>정답이 아니라 이유를 본다. 같은 결정도 어떤 맥락에서 내렸는지가 진짜 역량을 말해준다.</p></div>
+      <div class="pillar"><div class="idx">02</div><h3>근거 있는 판단</h3><p>모든 평가는 검증된 우수 사례 대비로 이루어진다. 감이 아니라 데이터로 신뢰를 만든다.</p></div>
+      <div class="pillar"><div class="idx">03</div><h3>다양성 속의 발견</h3><p>하나의 정답형 인재상을 강요하지 않는다. 다채로운 배경 속에서 맞는 신호를 찾는다.</p></div>
+      <div class="pillar"><div class="idx">04</div><h3>사람 중심 설계</h3><p>채용은 숫자 게임이 아니다. AI는 그 만남을 더 공정하고 따뜻하게 만드는 도구다.</p></div>
+      <div class="pillar"><div class="idx">05</div><h3>정제된 신뢰</h3><p>화려한 약속 대신 검증 가능한 결과로 말한다.</p></div>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Brand Strategy</span><span>06</span></div>
+</section>
+
+<!-- 07 PERSONALITY + TONE -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Personality · Tone of Voice</span></div><div class="num">07</div></div>
+  <div class="pbody">
+    <h2 class="pt">브랜드 퍼스낼리티</h2>
+    <div class="cols c5" style="margin-top:12px;margin-bottom:24px;">
+      <div class="trait">정제된</div><div class="trait">사려 깊은</div><div class="trait">예리한</div><div class="trait">따뜻한</div><div class="trait">명료한</div>
+      <div class="trait">진취적인</div><div class="trait">신뢰할 수 있는</div><div class="trait">겸손한</div><div class="trait">대담한</div><div class="trait">사람 중심의</div>
+    </div>
+    <div class="tonegrid">
+      <div class="tonecard do"><h3>Do</h3><ul><li>구체적 근거·수치로 말한다</li><li>절제된 확신 — 단정하되 겸손하게</li><li>사람을 주어로 쓴다</li></ul></div>
+      <div class="tonecard dont"><h3>Don't</h3><ul><li>과장된 확신("100% 정확")</li><li>차가운 기술 용어 남발</li><li>지원자를 숫자로 취급하는 표현</li></ul></div>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Brand Strategy</span><span>07</span></div>
+</section>
+
+<!-- 08 SECTION: LOGO -->
+<section class="page gradbg">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>02</span></div><div class="num">08</div></div>
+  <div class="pbody"><h2 class="sectitle">Logo</h2></div>
+  <div class="pfoot"><span>TEMS Intelligence · Logo</span><span>08</span></div>
+</section>
+
+<!-- 09 LOGO CONSTRUCTION -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Logo Guidelines</span></div><div class="num">09</div></div>
+  <div class="pbody" style="display:grid;grid-template-columns:1fr 1.2fr;gap:6%;align-items:center;">
+    <div>
+      <h2 class="pt">구성 논리</h2>
+      <p class="sub">심볼은 't' 레터폼을 해체·재조합해 완성한 두 개의 수직 스템이 마주보며 곡선으로 이어지는 형태다.</p>
+      <ul style="font-size:12.5px;color:var(--gray1);line-height:1.9;padding-left:18px;margin-top:16px;">
+        <li><b>두 수직 스템</b> — 기업과 인재, 대칭적으로 마주하는 두 축</li>
+        <li><b>곡선 조인트</b> — 딱딱한 데이터가 아니라 맥락 속에서 흐르듯 이어지는 판단</li>
+        <li><b>소문자 워드마크</b> — 평가하는 자가 아닌, 함께 찾아가는 파트너의 톤</li>
+      </ul>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;background:var(--gray6);border-radius:12px;padding:40px;">
+      <svg width="150" height="180" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Logo Guidelines</span><span>09</span></div>
+</section>
+
+<!-- 10 CLEAR SPACE & LOCKUP -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Logo Guidelines</span></div><div class="num">10</div></div>
+  <div class="pbody" style="display:grid;grid-template-columns:0.85fr 1.4fr;gap:5%;align-items:start;padding-top:1%;">
+    <div>
+      <h2 class="pt" style="font-size:26px;">Clear Space<br>&amp; Lockup</h2>
+      <p class="sub" style="font-size:12.5px;">클리어스페이스는 TEMS Intelligence 로고가 다른 요소·텍스트·모서리로부터 자유로운 상태에서 가독성과 임팩트를 유지하도록 보장합니다. 승인된 락업만 사용하며 심볼과 워드마크의 비례·간격·관계를 임의로 바꾸지 않습니다.</p>
+      <p style="font-size:11.5px;color:var(--gray2);margin-top:18px;"><b>클리어스페이스</b><br>여백 단위는 "x"로 정의합니다. 어떤 텍스트·그래픽·모서리도 이 영역을 침범할 수 없습니다.</p>
+      <p style="font-size:11.5px;color:var(--gray2);margin-top:14px;"><b>락업 간격</b><br>심볼과 워드마크 사이 간격은 1x로 고정합니다. 임의로 조정하지 않습니다.</p>
+    </div>
+    <div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray3);margin:0 0 10px;">1. Horizontal Lockup</p>
+      <div style="border:1px dashed #4FC3D9;padding:26px 34px;display:flex;align-items:center;justify-content:center;position:relative;">
+        <svg width="60" height="15" viewBox="0 0 340 90" style="position:absolute;top:6px;left:50%;transform:translateX(-50%);"></svg>
+        <div style="display:flex;align-items:center;gap:22px;">
+          <svg width="70" height="84" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg>
+          <div><div style="font-size:46px;font-weight:800;letter-spacing:-1px;">tems</div><div style="font-size:16px;color:var(--gray2);letter-spacing:2px;margin-top:2px;">intelligence</div></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+        <div>
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray3);margin:0 0 10px;">2. Vertical Lockup</p>
+          <div style="border:1px dashed #4FC3D9;padding:20px;display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;"><svg width="52" height="62" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg><div style="font-size:24px;font-weight:800;margin-top:6px;">tems</div><div style="font-size:9px;letter-spacing:1.6px;color:var(--gray2);">INTELLIGENCE</div></div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray3);margin:0 0 10px;">3. Lockup Spacing</p>
+          <div style="border:1px dashed #4FC3D9;padding:20px;display:flex;align-items:center;justify-content:center;height:calc(100% - 30px);">
+            <div style="display:flex;align-items:center;gap:12px;"><svg width="40" height="48" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg><div style="width:1px;height:40px;background:#4FC3D9;"></div><div style="font-size:26px;font-weight:800;">tems</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Logo Guidelines</span><span>10</span></div>
+</section>
+
+<!-- 11 MINIMUM SIZE -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Logo Guidelines</span></div><div class="num">11</div></div>
+  <div class="pbody">
+    <h2 class="pt">Minimum Size</h2>
+    <p class="sub">아래 크기 미만에서는 전용 심볼 단독 락업(파비콘·앱아이콘)을 사용합니다. 가로형 락업을 임의로 축소하지 않습니다.</p>
+    <div style="display:flex;gap:60px;align-items:center;margin-top:26px;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <svg width="34" height="41" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg>
+        <span style="font-size:12px;color:var(--gray2);">Print: 10mm height</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <svg width="20" height="24" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg>
+        <span style="font-size:12px;color:var(--gray2);">Digital: 30px height</span>
+      </div>
+    </div>
+    <div class="warnbox">16px 이하 파비콘은 별도 헤비 락업이 필요합니다 — 원본 벡터 확정 후 전용 파일 제작.</div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Logo Guidelines</span><span>11</span></div>
+</section>
+
+<!-- 12 COLOR VARIATIONS -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Logo Guidelines</span></div><div class="num">12</div></div>
+  <div class="pbody">
+    <h2 class="pt">로고 컬러 배리에이션</h2>
+    <div class="cols c2" style="margin-top:10px;">
+      <div style="background:var(--gray6);border-radius:10px;padding:30px;display:flex;align-items:center;justify-content:center;"><svg width="56" height="67" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/></svg><span style="position:absolute;margin-top:80px;font-size:11px;color:var(--gray3);"></span></div>
+      <div style="background:var(--ink);border-radius:10px;padding:30px;display:flex;align-items:center;justify-content:center;"><svg width="56" height="67" viewBox="0 0 140 168"><path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#fff"/></svg></div>
+    </div>
+    <div style="display:flex;gap:40px;margin-top:12px;font-size:12px;color:var(--gray2);">
+      <span>라이트 배경 — Ink 단색</span><span>다크 배경 — White 단색</span>
+    </div>
+    <p class="sub" style="margin-top:16px;">그라데이션 배경 위에서는 항상 화이트 단색을 사용합니다. 심볼 자체에 그라데이션을 입히는 것은 마케팅 표지 등 예외 상황에서만 허용합니다.</p>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Logo Guidelines</span><span>12</span></div>
+</section>
+
+<!-- 13 SECTION: COLOR & TYPE -->
+<section class="page gradbg">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>03</span></div><div class="num">13</div></div>
+  <div class="pbody"><h2 class="sectitle">Color &amp; Typography</h2></div>
+  <div class="pfoot"><span>TEMS Intelligence · Color &amp; Typography</span><span>13</span></div>
+</section>
+
+<!-- 14 COLOR SYSTEM -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Color System</span></div><div class="num">14</div></div>
+  <div class="pbody">
+    <div class="cols c2">
+      <div>
+        <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;font-weight:700;">Mono — 로고 기본 체계</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div class="swatchcard"><div class="c" style="background:#0F0F10"></div><div class="t"><b>Ink</b><span>#0F0F10</span></div></div>
+          <div class="swatchcard"><div class="c" style="background:#666666"></div><div class="t"><b>Gray 2</b><span>#666666</span></div></div>
+          <div class="swatchcard"><div class="c" style="background:#F2F2F2"></div><div class="t"><b>Gray 6</b><span>#F2F2F2</span></div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:11px;color:var(--gray3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;font-weight:700;">Gradient — 브랜드 월드 전용</p>
+        <div style="height:36px;border-radius:6px;background:linear-gradient(90deg,#FF7A59 0%,#C64FE0 52%,#4B6BFF 100%);margin-bottom:10px;"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <div class="swatchcard"><div class="c" style="background:#FF7A59"></div><div class="t"><b>Warm Coral</b><span>#FF7A59</span></div></div>
+          <div class="swatchcard"><div class="c" style="background:#C64FE0"></div><div class="t"><b>Discovery Violet</b><span>#C64FE0</span></div></div>
+          <div class="swatchcard"><div class="c" style="background:#4B6BFF"></div><div class="t"><b>Signal Indigo</b><span>#4B6BFF</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Color System</span><span>14</span></div>
+</section>
+
+<!-- 15 TYPOGRAPHY -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Typography</span></div><div class="num">15</div></div>
+  <div class="pbody">
+    <div class="wordbig">tems</div>
+    <div class="wordsub">intelligence</div>
+    <p class="sub" style="margin-top:24px;">워드마크 — 소문자, 볼드. 국문 본문은 Pretendard. ※ 레터폼은 커스텀 서체 전 시스템 드래프트. 전용 서체 승격 권장.</p>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Typography</span><span>15</span></div>
+</section>
+
+<!-- 16 SECTION: APPLICATIONS -->
+<section class="page gradbg">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>04</span></div><div class="num">16</div></div>
+  <div class="pbody"><h2 class="sectitle">Applications</h2></div>
+  <div class="pfoot"><span>TEMS Intelligence · Applications</span><span>16</span></div>
+</section>
+
+<!-- 17 BUSINESS CARD -->
+<section class="page">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Business Card</span></div><div class="num">17</div></div>
+  <div class="pbody" style="display:grid;grid-template-columns:1fr 1fr;gap:5%;align-items:center;">
+    <div class="bizmini">
+      <svg viewBox="0 0 90 50">
+        <rect width="90" height="50" fill="#F7F7F7"/>
+        <g transform="translate(8,9) scale(0.052)">
+          <path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#0F0F10"/>
+        </g>
+        <text x="17.5" y="15.5" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="800" font-size="6" letter-spacing="-0.1" fill="#0F0F10">tems</text>
+        <text x="17.6" y="19.6" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="2.3" letter-spacing="1" fill="#666">intelligence</text>
+        <text x="8" y="37" font-family="Pretendard,sans-serif" font-weight="700" font-size="3.4" fill="#0F0F10">김템스 <tspan font-weight="400" font-size="2.4" fill="#666">대표 · CEO</tspan></text>
+        <text x="8" y="41.6" font-family="Pretendard,sans-serif" font-size="2.2" fill="#666">kim@tems-intelligence.ai · 010-0000-0000</text>
+      </svg>
+    </div>
+    <div class="bizmini">
+      <svg viewBox="0 0 90 50">
+        <defs><linearGradient id="bgG" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FF7A59"/><stop offset="52%" stop-color="#C64FE0"/><stop offset="100%" stop-color="#4B6BFF"/></linearGradient></defs>
+        <rect width="90" height="50" fill="url(#bgG)"/>
+        <g transform="translate(8,8) scale(0.09)">
+          <path d="M14,10 L48,10 L48,64 A22,22 0 0 0 70,86 L92,86 L92,10 L126,10 L126,158 L92,158 L92,104 A22,22 0 0 0 70,82 L48,82 L48,158 L14,158 Z" fill="#fff"/>
+        </g>
+        <text x="8" y="44" font-family="Pretendard,sans-serif" font-size="2.4" fill="#fff" opacity=".9">실무 판단을 축적하는 Decision Intelligence</text>
+      </svg>
+    </div>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Applications</span><span>17</span></div>
+</section>
+
+<!-- 18 CLOSING -->
+<section class="page dark">
+  <div class="phead"><div class="l"><b>TEMS Intelligence</b><span>Next</span></div><div class="num">18</div></div>
+  <div class="pbody">
+    <h2 class="sectitle" style="font-size:30px;">다음 단계</h2>
+    <ol style="font-size:14px;line-height:2;margin-top:16px;padding-left:20px;max-width:36em;">
+      <li>심볼 원본 벡터 파일(AI/SVG) 수신 → 09~12 페이지 정밀 교체</li>
+      <li>워드마크 전용 서체 확정</li>
+      <li>Imagery/Moodboard, 소셜 아이콘, 추가 응용 페이지 확장 (v2)</li>
+    </ol>
+    <p class="sub" style="margin-top:20px;">이 문서는 v1입니다. 다음 업데이트는 이 파일을 덮어쓰지 않고 <b style="color:#fff">가이드_v2.html</b>로 저장됩니다.</p>
+  </div>
+  <div class="pfoot"><span>TEMS Intelligence · Brand Guidelines</span><span>18 / 18</span></div>
+</section>
+
+</div>
