@@ -12,14 +12,18 @@ body{background:#E9E8E4;color:var(--ink);font-family:var(--kr);-webkit-font-smoo
 .wrap{max-width:1040px;margin:0 auto;background:var(--white);}
 .pg{padding:52px 60px;border-bottom:1px solid #DEDDD8;position:relative;}
 .pg.cream{background:var(--bg);} .pg.ink{background:var(--ink);color:var(--white);}
+.pg.sec1{border-top:6px solid var(--ink);} .pg.sec2{border-top:6px solid var(--orange);}
 .pn{position:absolute;top:22px;right:34px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink3);}
 .ink .pn{color:rgba(255,255,255,.28);}
 .lbl{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+.secbadge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
+.secbadge.report{background:var(--ink);color:#fff;}
+.secbadge.opinion{background:var(--orange);color:#fff;}
 h1{font-family:var(--sans);font-size:42px;font-weight:700;line-height:1.1;letter-spacing:-.03em;}
 h2{font-family:var(--sans);font-size:27px;font-weight:700;line-height:1.15;letter-spacing:-.02em;}
 h3{font-size:17px;font-weight:700;margin-bottom:6px;}
 .sub{font-size:15px;color:var(--ink2);margin-top:12px;} .ink .sub{color:rgba(255,255,255,.66);}
-.frame{border-left:3px solid var(--orange);padding:18px 22px;background:rgba(255,107,53,.05);border-radius:0 var(--R) var(--R) 0;margin-top:22px;font-size:17px;font-weight:600;line-height:1.55;}
+.frame{border-left:3px solid var(--orange);padding:18px 22px;background:rgba(255,107,53,.05);border-radius:0 var(--R) var(--R) 0;margin-top:22px;font-size:16.5px;font-weight:600;line-height:1.55;}
 .ink .frame{background:rgba(255,255,255,.06);}
 .mt{margin-top:26px;} .mt2{margin-top:38px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;} .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;} .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
@@ -34,7 +38,7 @@ th{text-align:left;font-family:var(--sans);font-size:10px;font-weight:700;letter
 td{padding:11px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
 td strong{font-weight:700;} .num{font-family:var(--mono);font-weight:700;color:var(--orange);white-space:nowrap;}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--ink);color:#fff;letter-spacing:.05em;}
-.pill.o{background:var(--orange);} .pill.l{background:var(--lav);color:var(--ink);} .pill.b{background:var(--blue);} .pill.g{background:var(--green);} .pill.r{background:var(--red);}
+.pill.o{background:var(--orange);} .pill.l{background:var(--lav);color:var(--ink);}
 .dash{border:none;border-top:1px dashed var(--ink3);margin:26px 0;}
 ul.tight{margin:14px 0 0 0;padding-left:0;list-style:none;}
 ul.tight li{position:relative;padding-left:22px;margin-bottom:9px;font-size:14.5px;line-height:1.55;color:var(--ink2);}
@@ -42,17 +46,10 @@ ul.tight li::before{content:'';position:absolute;left:2px;top:9px;width:6px;heig
 ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgba(255,255,255,.72);} .ink ul.tight li strong{color:#fff;}
 .step{display:flex;gap:16px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
 .step .no{font-family:var(--sans);font-size:20px;font-weight:700;color:var(--orange);min-width:50px;}
-.warn li::before{background:var(--red);}
 .foot{font-size:11px;color:var(--ink3);margin-top:20px;font-family:var(--mono);letter-spacing:.04em;}
 .code{background:var(--ink);color:#D8D3C8;border-radius:10px;padding:16px 20px;font-family:var(--mono);font-size:12px;line-height:1.8;margin-top:14px;white-space:pre-wrap;}
-.bavs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:18px;}
-.bavs .arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--orange);font-weight:700;}
-.bavs .box{border-radius:var(--R);padding:20px;font-size:13px;line-height:1.65;}
-.bavs .before{background:var(--accent-wash,rgba(229,72,77,.06));border:1px solid rgba(229,72,77,.25);}
-.bavs .after{background:rgba(12,122,67,.06);border:1px solid rgba(12,122,67,.25);}
-.bavs b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
-.bavs .before b{color:var(--red);} .bavs .after b{color:var(--green);}
-@media(max-width:760px){.bavs{grid-template-columns:1fr;}.bavs .arrow{transform:rotate(90deg);}}
+.aside{margin-top:20px;background:rgba(10,10,10,.04);border-radius:12px;padding:18px 22px;font-size:13px;color:var(--ink2);line-height:1.7;}
+.aside b{color:var(--ink);}
 </style>
 
 <div class="wrap">
@@ -61,171 +58,153 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
 <div class="pg ink">
   <span class="pn">MAX실 · 2026.07.13</span>
   <div class="lbl">부대표 미팅 · 60분</div>
-  <h1>AI 성과 리뷰 &<br>조직·프로세스·단가 재설계</h1>
-  <div class="frame">넷마블은 우리 실력을 의심한 게 아니라 <span style="color:var(--orange)">'구조'가 뒤처졌다</span>고 말했습니다. 이미지·영상·기획을 쪼갠 TO 구조, 사람 시간 총합으로 매기는 단가 구조 — 우리 SoT에 그대로 박혀 있습니다. 개인기(200~400% 절감)는 증명했으니, 이제 <span style="color:var(--orange)">프로세스와 단가표 자체</span>를 다시 설계할 차례입니다.</div>
-  <div class="g4 mt2">
-    <div class="c"><div class="ct">주제 ①</div><h3 style="color:#fff">성과 리뷰</h3><div class="cx">개인 대표사례 → 6월 시스템화 → 7월 넷마블 실전 검증</div></div>
-    <div class="c"><div class="ct">주제 ②-1</div><h3 style="color:#fff">프로세스 재설계</h3><div class="cx">TO 템플릿 자체를 다시</div></div>
-    <div class="c"><div class="ct">주제 ②-2</div><h3 style="color:#fff">단가 재설계</h3><div class="cx">패스트트랙 상품화</div></div>
-    <div class="c"><div class="ct">확장</div><h3 style="color:#fff">일반 업계</h3><div class="cx">올리브영·현대·코웨이</div></div>
+  <h1>AI 성과 리뷰 &<br>향후 조직 방향에 대한 의견</h1>
+  <div class="frame">지난 5개월간 개인 역량만으로 공수 <span style="color:var(--orange)">200~400% 절감</span>. 6월부터는 이걸 실이 쓰는 시스템으로 옮기기 시작했습니다. 오늘 전반부는 <b>성과를 있는 그대로 보고</b>드리고, 후반부는 넷마블 방문에서 얻은 인사이트를 계기로 <b>AI 시대 조직에 대한 제 의견</b>을 나눕니다.</div>
+  <div class="g2 mt2">
+    <div class="c"><div class="secbadge report">주제 ① 성과 보고</div><h3 style="color:#fff">본인이 진행한 AI 성과 리뷰</h3><div class="cx">코웨이·배민·QQ Poker 대표사례 → 6월 올리브영·MAX실 OS</div></div>
+    <div class="c"><div class="secbadge opinion">주제 ② 제 의견</div><h3 style="color:#fff">AI 시대 조직에 대한 제안</h3><div class="cx">Litmus AIOS 참고 + 프로세스·단가 재설계 아이디어</div></div>
   </div>
 </div>
 
-<!-- TOPIC 1-A -->
-<div class="pg">
-  <span class="pn">01 / 성과</span>
-  <div class="lbl">주제 ① · 개인 레벨 (~5월)</div>
-  <h2>직무 경계 파괴 + 공수 200~400% 절감은<br>이미 증명 완료</h2>
+<!-- ============ TOPIC 1 ============ -->
+
+<div class="pg sec1">
+  <span class="pn">01 / 주제①</span>
+  <span class="secbadge report">성과 보고</span>
+  <div class="lbl">대표 사례 (~5월)</div>
+  <h2>직무 경계를 깨고 공수 200~400% 절감</h2>
   <table>
     <tr><th>사례</th><th>해결한 업무</th><th>AI 파이프라인</th><th>절감</th></tr>
     <tr><td><strong>코웨이<br>안마의자</strong></td><td>7인치 터치 GUI 전략 100% + 시안 80%. 비전공 <strong>3D 해체·인체 맵핑</strong>까지 단독</td><td>NotebookLM → Claude → Midjourney·Higgsfield</td><td class="num">300%+</td></tr>
     <tr><td><strong>배달의민족</strong></td><td>아이콘+카피+<strong>브랜드 영상</strong>까지 1인 100%</td><td>ChatGPT → Midjourney → CapCut</td><td class="num">400%+</td></tr>
     <tr><td><strong>QQ Poker</strong></td><td>GUI 메인+서브안+<strong>3D 오브제 80%</strong>+제작가이드</td><td>ChatGPT → Midjourney</td><td class="num">200%+</td></tr>
   </table>
-  <ul class="tight mt"><li><strong>"TF 3~5인 → 디렉터 1인"</strong>이 반복 재현. 절감의 본질은 인건비가 아니라 <strong>제안 경쟁력</strong>. 한계는 <strong>"김효정 개인기"</strong> — 재현·전파가 사람 1인에 묶임.</li></ul>
+  <ul class="tight mt"><li><strong>"TF 3~5인 → 디렉터 1인"</strong>이 반복 재현. 절감의 본질은 인건비가 아니라 <strong>제안 경쟁력</strong> — 완성형 3D/영상 아웃풋을 선제 제시해 경쟁 PT의 온도 차를 없앰.</li></ul>
 </div>
 
-<!-- TOPIC 1-B -->
-<div class="pg cream">
-  <span class="pn">02 / 성과</span>
-  <div class="lbl">주제 ① · 6월 변곡점</div>
-  <h2>개인기를 '시스템'으로 — 올리브영 + MAX실 OS</h2>
+<div class="pg sec1 cream">
+  <span class="pn">02 / 주제①</span>
+  <span class="secbadge report">성과 보고</span>
+  <div class="lbl">6월 — 개인기를 '시스템'으로 넓히기 시작</div>
+  <h2>올리브영 입찰 + MAX실 OS 구축</h2>
   <div class="g2 mt">
     <div class="c"><div class="ct">올리브영 색조 PB 입찰</div><h3>순발력 → 재현 가능한 프로세스</h3>
-      <ul class="tight"><li><strong>rfp-analyst 파이프라인</strong>으로 리스크 8건 선제 도출</li><li><strong>AI를 차별화 카드로 전략화</strong> — 발색컷은 컴플라이언스 금지선</li><li>최저단가 준용+라이선스 무기한 → <strong>단가가 이미 통제불가 변수</strong></li></ul></div>
+      <ul class="tight"><li><strong>rfp-analyst 파이프라인</strong>으로 리스크 8건 선제 도출</li><li><strong>AI를 차별화 카드로 전략화</strong> — 발색컷은 컴플라이언스 금지선으로 구분해 신뢰 가점 설계</li></ul></div>
     <div class="c"><div class="ct">MAX실 OS 구축</div><h3>개인 역량의 조직 자산화</h3>
-      <ul class="tight"><li><strong>에이전트 24종</strong>, 자동화 트리거 맵, 리스크 티어 0/1/2</li><li>노션·구글시트·견적 SoT 데이터 연결</li><li>견적·계약·최종 OK는 항상 사람(절대위임금지)</li></ul></div>
+      <ul class="tight"><li><strong>에이전트 24종 / 6그룹</strong> + 자동화 트리거 맵 + 리스크 티어 0/1/2</li><li>노션·구글시트·견적 SoT 데이터 연결</li><li><strong>절대위임금지</strong> — 견적·계약·최종 OK는 항상 사람</li></ul></div>
   </div>
+  <div class="frame mt2">5개월 만에 <strong>"개인기 → 재현 가능한 시스템"</strong>으로 한 단계 넘어왔습니다. 이 흐름을 실 전체와 신규 인력(9→20)까지 어떻게 넓힐지가 다음 화두 — 여기서부터는 <strong>제 의견</strong>입니다.</div>
 </div>
 
-<!-- TOPIC 1-C NETMARBLE -->
-<div class="pg">
-  <span class="pn">03 / 성과</span>
-  <div class="lbl">주제 ① · 신규 · 2026.07.10</div>
-  <h2>넷마블 실전 피드백 — 시스템화가 필요하다는 확증</h2>
-  <div class="frame">퀄리티·신뢰는 항상 최상위. 그런데 <strong>AI 항목만 타 파트너사 대비 최하위</strong> — 실력이 아니라 구조의 문제.</div>
-  <table>
-    <tr><th style="width:20%">원인</th><th>내용</th><th style="width:34%">실제 발언</th></tr>
-    <tr><td><strong>① 안 보이게 씀</strong></td><td>배경·리소스에 AI 이미 사용, 알리지 않아 수작업으로 보임</td><td class="cx">"AI가 적용됐는지조차 알 수가 없다"</td></tr>
-    <tr><td><strong>② TO 분절</strong> <span class="pill r">최다반복</span></td><td>기획·이미지·영상 TO 분리 → 검수 핑퐁 → 급한 건은 타사로</td><td class="cx">"그 손길이 점점 줄고 있다"</td></tr>
-    <tr><td><strong>③ 타사 속도</strong></td><td>키워드 한 줄 → SB 없이 2~3일 내 완성물</td><td class="cx">"영상이 왔다, 리소스도 안 줬는데"</td></tr>
-    <tr><td><strong>④ 심리적 장벽</strong></td><td>"AI=별도 기획TO 필요"라는 오해</td><td class="cx">"기획 TO가 필요할 것 같다"</td></tr>
-  </table>
-  <div class="frame" style="margin-top:20px">"지키다가 놓쳤습니다"보다 "해보다가 실수했습니다"가 더 쉬운 대화다 — <span style="color:var(--orange)">선집행, 후보완.</span> (넷마블 본부장)</div>
+<!-- ============ TOPIC 2 ============ -->
+
+<div class="pg sec2">
+  <span class="pn">03 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">계기 · 참고 자료</div>
+  <h2>넷마블에서 확인한 것 → 제 생각의 출발점</h2>
+  <div class="aside">7/10 넷마블 피드백 미팅 요약 — 우리를 향한 비판이라기보다 <b>AI 시대에 클라이언트가 무엇을 기대하는지</b> 보여준 사례로 참고했습니다.<br><br>
+  "퀄리티·신뢰는 항상 최상위, AI 항목만 타 파트너사 대비 낮음 — ① AI를 안 보이게 씀 ② 기획·이미지·영상 TO가 쪼개져 느림 ③ 타사는 '키워드 한 줄 → 2~3일 완성물' ④ 'AI=별도 기획 필요'라는 인식."</div>
+  <div class="frame">이건 넷마블만의 이야기가 아니라 <strong>시장 전체가 향하는 방향</strong>이라고 봤습니다. 우리 자체 TO 템플릿을 다시 보니, 기획·디자인·영상을 직군별로 쪼개 순차 진행하는 구조가 우리에게도 그대로 있었습니다. <span style="color:var(--orange)">그래서 오늘 드리는 의견은 "에이전트를 더 만들자"가 아니라, 프로세스·단가 구조 자체를 다시 설계하자는 것</span>입니다.</div>
 </div>
 
-<!-- TOPIC 1-C WEAPONS -->
-<div class="pg cream">
-  <span class="pn">04 / 성과</span>
-  <div class="lbl">넷마블이 요구한 4가지 무기 — 그대로 우리 실행안</div>
-  <h2>A. AI 전담팀 · B. 통합TO · C. 보이게 · D. 알파</h2>
+<div class="pg sec2 cream">
+  <span class="pn">04 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">참고 모델</div>
+  <h2>리트머스의 'AIOS(AI Operating System)'</h2>
   <div class="g2 mt">
-    <div class="c"><div class="ct" style="color:var(--orange)">A · ★대표지시</div><h3>AI 전담팀</h3><div class="cx">키워드만 받으면 결과물까지. 고난이도(시네마틱)=순차 TF / 저난이도(UA·라이브)=<strong>당일~2일 출고</strong></div></div>
-    <div class="c"><div class="ct">B</div><h3>통합 TO · 원스톱</h3><div class="cx">창구 하나+PM 1명이 내부 배분. <strong>SB 생략</strong> — 결과물 3~5초 단위 피드백 시대</div></div>
-    <div class="c"><div class="ct">C</div><h3>AI를 "보이게"</h3><div class="cx">납품 시 AI 생성/변형 부분 역으로 명시 태깅. <strong>비용 거의 0, 즉효</strong></div></div>
-    <div class="c"><div class="ct">D</div><h3>알파 — 2단계 도약</h3><div class="cx">1단계(경쟁사 속도) 확보 후 넷마블 10년 눈높이를 얹는다. 지금은 <strong>보여줄 무대가 없는 상태</strong></div></div>
+    <div class="c"><div class="ct">컨설턴트화</div><div class="cx">세일즈·PM·디자이너 경계 붕괴, 모두가 AI로 메타 관점 솔루션 제안 — <strong>생산성 3배</strong></div></div>
+    <div class="c"><div class="ct">넥서스(가드레일)</div><div class="cx">롤별 정보 범위 제한 + 격리 프로필·API 토큰으로 보안·정확도 동시 확보</div></div>
+    <div class="c"><div class="ct">워크벤치+메모리</div><div class="cx">미팅 로그·협의 내용을 맥락으로 저장, 에이전트가 검색·참조</div></div>
+    <div class="c"><div class="ct">파운드리</div><div class="cx">대량 티켓 처리 + 결과물 레이팅·피드백으로 공동 고도화</div></div>
   </div>
-  <div class="warn" style="margin-top:18px"><ul class="tight warn"><li><strong>경고</strong> — 넷마블 내부 제작팀도 AI로 키컷·키영상 제작 시작. 넷마블을 가장 잘 아는 내부 경쟁자.</li></ul></div>
+  <div class="sub">우리 BBD 철학, AI 스터디 그룹, Design Gatekeeper 실험과 결합하면 한 단계 격상시킬 수 있다고 봅니다.</div>
 </div>
 
-<!-- TOPIC 2-A/B -->
-<div class="pg">
-  <span class="pn">05 / 조직</span>
-  <div class="lbl">주제 ② · 문제 정의</div>
-  <h2>넷마블은 신호탄이다 — 일반 업계도 같은 니즈</h2>
-  <div class="frame">넷마블의 "AI 최하위" 원인 4가지 중 3가지는 올리브영·현대·코웨이에도 그대로 반복될 문제. 진짜 바꿀 것은 에이전트 개수가 아니라 <strong>프로세스·단가표 자체.</strong></div>
-  <table class="mt">
-    <tr><th style="width:16%"></th><th>게임 (넷마블)</th><th>일반 기업 (올리브영·현대·코웨이)</th></tr>
-    <tr><td><strong>니즈</strong></td><td>키워드→영상, UA 속도전</td><td><strong>동일</strong> — 시즌 물량·채널별 베리에이션</td></tr>
-    <tr><td><strong>제약</strong></td><td>IP 캐릭터 변형 금지</td><td>모델 초상권·제품 정확성·브랜드 가이드</td></tr>
-    <tr><td><strong>AI 쓰는 곳</strong></td><td>배경·이펙트(캐릭터 외)</td><td>배경·공간(제품·모델 외) — <strong>구조 동일</strong></td></tr>
-  </table>
-  <div class="g3 mt2">
-    <div class="c"><div class="ct">올리브영</div><div class="cx">시즌 물량전 → AI 배경 최적. 단, 제품 왜곡 금지+표시광고법</div></div>
-    <div class="c"><div class="ct">현대</div><div class="cx">로케이션 AI 대체(촬영비 절감). 단, 차량 형상 왜곡 절대금지</div></div>
-    <div class="c"><div class="ct">코웨이</div><div class="cx">라이프스타일 AI 확장. 단, 제품 정확성+모델 초상권</div></div>
+<div class="pg sec2">
+  <span class="pn">05 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">제안 액션 4가지 — 조직 인프라</div>
+  <h2>Gatekeeper 공용화 · 메모리 · 세일즈 시각화 · 가드레일</h2>
+  <div class="g2 mt">
+    <div class="c"><div class="ct" style="color:var(--orange)">액션 1</div><h3>Design Gatekeeper 공용화</h3><div class="cx">BBD 가이드라인(밀러·피츠 법칙) 중앙 주입 + Good/Bad 피드백 루프 → 매주 목요일 스터디에서 공동 튜닝</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">액션 2</div><h3>프로젝트 '디자인 메모리'</h3><div class="cx">미팅·협의 중 정책 변경을 시멘틱 요약으로 적재 → 프롬프트·초안 시 MCP로 호출</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">액션 3</div><h3>제안·세일즈 BBD 시각화</h3><div class="cx">인바운드 리서치 팩 자동 생성 + 질의서 자동생성 + AI 와이어프레임 데모 — 수주율 직결</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">액션 4</div><h3>역할별 가드레일+온보딩</h3><div class="cx">신규=조회·생성 / 시니어=최종승인. "워크벤치에서 물어보며 작업" — 증원 직결</div></div>
   </div>
 </div>
 
-<!-- TOPIC 2-C PROCESS -->
-<div class="pg cream">
-  <span class="pn">06 / 조직</span>
-  <div class="lbl">주제 ②-1 · 신규 핵심</div>
-  <h2>프로젝트 프로세스 재설계</h2>
-  <div class="sub">넷마블이 지적한 "TO 분절"이 바로 우리 자체 견적 SoT에 코드화되어 있습니다.</div>
+<div class="pg sec2 cream">
+  <span class="pn">06 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">프로세스 재설계</div>
+  <h2>고객 니즈에 맞춰 프로세스를 고를 수 있게</h2>
   <div class="code">TO-01 UI/UX: VM시니어 80% + VM주니어 60% + VX시니어 40% + 실장 20%
 TO-02 모션/영상: VM시니어 100% + VM주니어 80% + 실장 10%
-TO-04 브랜드ID: VM시니어 80% + VM주니어 60% + VX시니어 40% + 실장 30%
-→ 전부 직군별 %분리 + 순차진행. "AI 없던 시대의 관행" 그대로.</div>
-  <div class="bavs">
-    <div class="box before"><b>Before</b>기획·이미지·영상 TO가 쪼개져 순차 진행. 클라이언트가 어느 TO에 넣을지 스스로 판단해야 함.</div>
-    <div class="arrow">→</div>
-    <div class="box after"><b>After — 난이도 이원화</b><strong>패스트트랙(신규 TO-06)</strong>: 창구+PM 1명 즉시 라우팅, SB 생략, AI전담이 당일~2일 출고<br><strong>정교트랙(기존 유지)</strong>: 시네마틱·브랜드는 기존 TF 순차 — 여기가 알파를 파는 자리</div>
-  </div>
-</div>
-
-<!-- TOPIC 2-D PRICING -->
-<div class="pg">
-  <span class="pn">07 / 조직</span>
-  <div class="lbl">주제 ②-2 · 신규 핵심</div>
-  <h2>단가 경쟁력 재설계</h2>
-  <div class="sub">`unit-rates.md`는 사람-시간 총합 기준. 타사는 "키워드→2~3일" 다른 셈법으로 경쟁 중입니다.</div>
-  <div class="bavs">
-    <div class="box before"><b>Before</b>시간당 단가 × TO 배분율 × 기간 = 견적. 등급(Standard/Preferred/Strategic)은 <strong>관계 연차</strong>로만 우대율 차등, 속도와 무관.</div>
-    <div class="arrow">→</div>
-    <div class="box after"><b>After</b><strong>패스트트랙 건단가</strong> 신설(결과물 단위) + 등급에 <strong>AI 대응 속도(SLA)</strong> 추가 축 + 반복 물량은 <strong>구독형</strong> 옵션</div>
-  </div>
+→ 기획·디자인·영상을 직군별로 쪼개 순차 진행하는 구조. 반복 소재까지
+   매번 같은 속도로 도는 게 문제라고 봅니다.</div>
   <table class="mt2">
-    <tr><th>등급</th><th>기존(관계)</th><th>추가할 SLA(속도)</th></tr>
-    <tr><td><span class="pill o">Strategic</span></td><td>별도 협의</td><td class="num">당일 출고 포함</td></tr>
-    <tr><td><span class="pill">Preferred</span></td><td>표준 90~95%</td><td class="num">2일 이내</td></tr>
-    <tr><td><span class="pill l">Standard</span></td><td>표준 100%</td><td class="num">표준 기간</td></tr>
+    <tr><th>트랙</th><th>대상</th><th>처리 방식</th></tr>
+    <tr><td><span class="pill o">패스트트랙(TO-06 제안)</span></td><td>반복 배너·베리에이션·시즌 소재</td><td>창구+PM 1명 즉시 라우팅, SB 생략 가능, 당일~2일 출고</td></tr>
+    <tr><td><span class="pill">정교트랙(기존 유지)</span></td><td>브랜드 아이덴티티·하이엔드 캠페인</td><td>기존 순차 TF 방식 — 우리 강점(퀄리티)을 파는 자리</td></tr>
   </table>
-  <div class="warn" style="margin-top:18px"><ul class="tight warn"><li><strong>알파는 시간단가로 방어</strong> — 정교트랙(시네마틱·브랜드)은 기존 단가 유지. 패스트트랙 저가 경쟁에 전체 단가가 끌려가지 않도록 두 상품을 명확히 분리해서 판다.</li><li><strong>올리브영이 이미 경고</strong> — 최저단가 준용+라이선스 무기한 조건. 하한선을 미리 정하지 않으면 협상에서 끌려간다.</li></ul></div>
 </div>
 
-<!-- ROADMAP -->
-<div class="pg cream">
-  <span class="pn">08 / 로드맵</span>
-  <div class="lbl">통합 실행 로드맵</div>
-  <h2>즉시 · 2주 · 30~60일 · 60~90일</h2>
+<div class="pg sec2">
+  <span class="pn">07 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">단가 경쟁력 재설계</div>
+  <h2>패스트트랙은 새 상품, 정교트랙 단가는 그대로 방어</h2>
+  <ul class="tight mt">
+    <li><strong>패스트트랙은 건단가로</strong> — 결과물 단위 상품화, 시간당 단가와 분리</li>
+    <li><strong>등급에 속도(SLA) 축 추가</strong> — 관계뿐 아니라 속도로도 상위 등급을 정당화</li>
+    <li><strong>반복 물량 고객엔 구독형 옵션</strong> — 예측 가능한 매출 구조</li>
+    <li><strong>정교트랙 단가는 그대로 방어</strong> — 패스트트랙 저가 경쟁에 전체 단가가 끌려가지 않도록 두 상품을 분리</li>
+  </ul>
+  <div class="aside">올리브영 입찰에서 이미 겪었듯 최저단가 준용 구조가 들어오면 하한선을 미리 정해두지 않으면 끌려갑니다. 패스트트랙 상품화가 이런 협상의 방어선이 될 수 있다고 봅니다.</div>
+</div>
+
+<div class="pg sec2 cream">
+  <span class="pn">08 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">확장 기회 · 조직 함의</div>
+  <h2>일반 업계 확장 + 9→20 증원</h2>
+  <div class="g3 mt">
+    <div class="c"><div class="ct">올리브영</div><div class="cx">시즌 물량전 → AI 배경 최적. 제품 왜곡 금지+표시광고법</div></div>
+    <div class="c"><div class="ct">현대</div><div class="cx">로케이션 AI 대체(촬영비 절감). 차량 형상 왜곡 절대금지</div></div>
+    <div class="c"><div class="ct">코웨이</div><div class="cx">라이프스타일 AI 확장. 제품 정확성+모델 초상권</div></div>
+  </div>
+  <ul class="tight mt2">
+    <li><strong>패스트트랙 전담 라인이 증원의 형태</strong> — 신규 인력을 기존 TF보다 패스트트랙에 우선 배치, 온보딩 즉시 실전 투입</li>
+    <li><strong>롤 재정의</strong> — 세일즈/PM/디자이너 → AI 레버리지 컨설턴트</li>
+    <li><strong>거버넌스는 강화</strong> — 절대위임금지 라인 유지 + 롤별 데이터 격리</li>
+    <li><strong>매출 연결</strong> — 패스트트랙(볼륨) + 정교트랙(프리미엄) 두 상품으로 다각화</li>
+  </ul>
+</div>
+
+<div class="pg sec2">
+  <span class="pn">09 / 주제②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">실행 로드맵</div>
+  <h2>0~30일 · 30~60일 · 60~90일</h2>
   <div class="mt">
-    <div class="step"><div class="no">01</div><div><h3>즉시 · 이번 주</h3><div class="cx" style="color:var(--ink2)">AI 보이게 태깅 시행(비용 0) · AI 전담팀 신설안 초안 · 클라이언트별 AI 허용범위 표 · <strong>TO-06 패스트트랙 템플릿 초안</strong></div></div></div>
-    <div class="step"><div class="no">02</div><div><h3>단기 · 2주</h3><div class="cx" style="color:var(--ink2)">창구 통합 설계(PM 라우팅) · 넷마블 원스톱 파일럿 준비(4주 시범) · <strong>패스트트랙 건단가 초안</strong> · 일반업계 심의 체크리스트</div></div></div>
-    <div class="step"><div class="no">03</div><div><h3>30~60일</h3><div class="cx" style="color:var(--ink2)">패스트트랙 실전 프로젝트 1건 적용·검증 · 일반업계 업종별 데모(가상 브랜드) · SLA 계약 조항 시범 반영</div></div></div>
-    <div class="step" style="border-bottom:none"><div class="no">04</div><div><h3>60~90일</h3><div class="cx" style="color:var(--ink2)">기존 고객 AI 제안서 발송 · 정교트랙 알파 무대 확보(2단계 도약) · 증원 온보딩에 패스트/정교 구조 적용</div></div></div>
+    <div class="step"><div class="no">01</div><div><h3>0~30일</h3><div class="cx" style="color:var(--ink2)">액션 1(Gatekeeper 공용화, 이번 주 목요일 착수) · TO-06 패스트트랙 초안 · AI 보이게 태깅 시행</div></div></div>
+    <div class="step"><div class="no">02</div><div><h3>30~60일</h3><div class="cx" style="color:var(--ink2)">액션 2(디자인 메모리) 진행 프로젝트 1건 적용·검증 · 패스트트랙 건단가 초안 · 액션 4 롤 권한 초안</div></div></div>
+    <div class="step" style="border-bottom:none"><div class="no">03</div><div><h3>60~90일</h3><div class="cx" style="color:var(--ink2)">액션 3(BBD 세일즈 시각화) 신규 인바운드 1건 실전 · 일반업계 데모 1건 · 증원 온보딩 시스템 적용</div></div></div>
   </div>
-</div>
-
-<!-- ORG + DECISIONS -->
-<div class="pg">
-  <span class="pn">09 / 조직</span>
-  <div class="lbl">조직 함의 · 이 자리에서 결정할 것</div>
-  <h2>9→20 증원 + 4개 안건</h2>
-  <div class="g2 mt">
-    <div class="c"><div class="ct">AI 전담팀 = 증원의 형태</div><div class="cx" style="color:var(--ink2)">신규 인력을 기존 TF가 아닌 <strong>패스트트랙 전담 라인</strong>에 우선 배치 → 온보딩 즉시 실전 투입.</div></div>
-    <div class="c"><div class="ct">PM 역할 재정의</div><div class="cx" style="color:var(--ink2)">"라우팅 판단자"— 고/저난이도 즉시 분류하는 명확한 역할.</div></div>
-  </div>
-  <table class="mt2">
-    <tr><th style="width:28%">안건</th><th style="width:44%">선택지</th><th>추천</th></tr>
-    <tr><td><strong>① 패스트트랙 첫 적용처</strong></td><td>(a) 넷마블 (b) 올리브영 (c) 동시</td><td class="num">(a)</td></tr>
-    <tr><td><strong>② AI전담팀 리소스 배분</strong></td><td>(a) 게임우선 (b) 비율고정 (c) 시즌유동</td><td class="num">(a)→전환</td></tr>
-    <tr><td><strong>③ 패스트트랙 과금</strong></td><td>(a) TO형 (b) 건별 (c) 구독형</td><td class="num">(b)→(c)</td></tr>
-    <tr><td><strong>④ 정교트랙 단가 방어선</strong></td><td>(a) 유지 (b) 인하</td><td class="num">(a) 유지</td></tr>
-  </table>
 </div>
 
 <!-- CLOSE -->
 <div class="pg ink">
   <span class="pn">10 / 합의</span>
   <div class="lbl">미팅 종료 시 얻어야 할 것</div>
-  <h2 style="color:#fff">승인 3건 확정</h2>
-  <div class="g3 mt2">
-    <div class="c"><div class="ct" style="color:var(--orange)">승인 ①</div><h3 style="color:#fff">AI 전담팀 신설안</h3><div class="cx">고/저난이도 라인 분리 착수</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">승인 ②</div><h3 style="color:#fff">패스트트랙 상품 신설</h3><div class="cx">TO-06 + 건단가 검토 착수</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">승인 ③</div><h3 style="color:#fff">안건 ①③ 확정</h3><div class="cx">첫 적용처 + 과금 방식</div></div>
+  <h2 style="color:#fff">승인 2건 확정</h2>
+  <div class="g2 mt2">
+    <div class="c"><div class="ct" style="color:var(--orange)">승인 ①</div><h3 style="color:#fff">목요일 AI 스터디에서 액션 1 착수</h3><div class="cx">Design Gatekeeper 공용화 + BBD 모듈 중앙 주입</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">승인 ②</div><h3 style="color:#fff">패스트트랙(TO-06 + 건단가) 검토 착수</h3><div class="cx">프로세스·단가 재설계 인프라 승인</div></div>
   </div>
-  <div class="foot">MAX실 OS · 개인기 → 조직·프로세스·단가 재설계 · 2026.07.13 부대표 미팅</div>
+  <div class="foot">MAX실 · 성과 보고 + 조직 방향 의견 · 2026.07.13 부대표 미팅</div>
 </div>
 
 </div>
