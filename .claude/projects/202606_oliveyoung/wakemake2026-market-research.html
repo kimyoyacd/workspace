@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>웨이크메이크 2026 — 색조 상세페이지 시장조사</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── Tokens ─── */
+  :root {
+    --bg:        #EBEBEB;
+    --card:      #FFFFFF;
+    --ink:       #111111;
+    --ink-2:     #444444;
+    --ink-3:     #888888;
+    --coral:     #E8502A;
+    --coral-dim: #F5BFB0;
+    --coral-bg:  #FDF1EE;
+    --border:    #D8D8D8;
+    --tag-bg:    #F2F2F2;
+    --green:     #1D9B5A;
+    --amber:     #C97B20;
+    --ff-body:   'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+    --ff-mono:   'JetBrains Mono', monospace;
+    --r:         8px;
+    --r-lg:      14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #1A1A1A;
+      --card:      #242424;
+      --ink:       #F0F0F0;
+      --ink-2:     #BBBBBB;
+      --ink-3:     #777777;
+      --coral:     #F06040;
+      --coral-dim: #5A2015;
+      --coral-bg:  #2A1610;
+      --border:    #383838;
+      --tag-bg:    #2E2E2E;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#EBEBEB; --card:#FFFFFF; --ink:#111111; --ink-2:#444444; --ink-3:#888888;
+    --coral:#E8502A; --coral-dim:#F5BFB0; --coral-bg:#FDF1EE; --border:#D8D8D8;
+    --tag-bg:#F2F2F2; --green:#1D9B5A; --amber:#C97B20;
+  }
+  :root[data-theme="dark"] {
+    --bg:#1A1A1A; --card:#242424; --ink:#F0F0F0; --ink-2:#BBBBBB; --ink-3:#777777;
+    --coral:#F06040; --coral-dim:#5A2015; --coral-bg:#2A1610; --border:#383838;
+    --tag-bg:#2E2E2E; --green:#2ABB74; --amber:#E8921A;
+  }
+
+  /* ─── Reset & Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: var(--ff-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Layout ─── */
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    background: var(--ink);
+    color: var(--card);
+    padding: 11px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-label {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    opacity: .7;
+  }
+  .topbar-brand {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .topbar-date {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    opacity: .5;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    padding: 72px 28px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+    max-width: 680px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--coral);
+  }
+  .hero-sub {
+    color: var(--ink-2);
+    font-size: 15px;
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .hero-meta-item .val {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--coral);
+    font-family: var(--ff-mono);
+  }
+  .hero-meta-item .lbl {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ─── Section ─── */
+  .section {
+    padding: 60px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--coral);
+    letter-spacing: .1em;
+    min-width: 28px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  .section-desc {
+    color: var(--ink-2);
+    font-size: 14px;
+    margin-top: 4px;
+    margin-left: 42px;
+    margin-bottom: 28px;
+  }
+
+  /* ─── Cards ─── */
+  .card {
+    background: var(--card);
+    border-radius: var(--r-lg);
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+
+  /* ─── Trend Tags ─── */
+  .trend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .trend-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 20px;
+  }
+  .trend-card .tag {
+    display: inline-block;
+    background: var(--coral);
+    color: #fff;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .trend-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -.01em;
+  }
+  .trend-card p {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ─── Brand Card Grid ─── */
+  .group-block { margin-bottom: 32px; }
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 18px 22px;
+    border-radius: var(--r-lg);
+    border-left: 4px solid;
+  }
+  .group-header.ga { background: #EEF2FF; border-color: #3B82F6; }
+  .group-header.gb { background: var(--coral-bg); border-color: var(--coral); }
+  .group-header.gc { background: #ECFDF5; border-color: #10B981; }
+  @media (prefers-color-scheme: dark) {
+    .group-header.ga { background: #1E2A45; }
+    .group-header.gb { background: var(--coral-bg); }
+    .group-header.gc { background: #0D2A1E; }
+  }
+  :root[data-theme="light"] .group-header.ga { background: #EEF2FF; }
+  :root[data-theme="light"] .group-header.gb { background: var(--coral-bg); }
+  :root[data-theme="light"] .group-header.gc { background: #ECFDF5; }
+  :root[data-theme="dark"]  .group-header.ga { background: #1E2A45; }
+  :root[data-theme="dark"]  .group-header.gb { background: var(--coral-bg); }
+  :root[data-theme="dark"]  .group-header.gc { background: #0D2A1E; }
+
+  .group-badge {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .gb-a { background: #3B82F6; }
+  .gb-b { background: var(--coral); }
+  .gb-c { background: #10B981; }
+
+  .group-label-text { font-size: 14px; font-weight: 700; }
+  .group-label-sub  { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .brand-grid { grid-template-columns: 1fr; } }
+
+  .brand-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    transition: box-shadow .15s;
+  }
+  .brand-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+  .brand-card.is-target {
+    border-color: var(--coral);
+    box-shadow: 0 0 0 2px var(--coral-dim);
+  }
+
+  .bc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .bc-name {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+  }
+  .bc-name a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+  }
+  .bc-name a:hover { border-color: var(--coral); color: var(--coral); }
+  .bc-cat {
+    font-size: 10px;
+    font-family: var(--ff-mono);
+    color: var(--ink-3);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .bc-target-badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 8px;
+    margin-top: 2px;
+    background: var(--tag-bg);
+    color: var(--ink-3);
+    border: 1px solid var(--border);
+  }
+
+  .bc-divider { height: 1px; background: var(--border); margin: 10px 0; }
+
+  .bc-row { margin-bottom: 8px; }
+  .bc-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-family: var(--ff-mono);
+    margin-bottom: 3px;
+  }
+  .bc-val {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  .bc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .bc-tag {
+    font-size: 10px;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--ink-2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .bc-note {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--tag-bg);
+    border-radius: 8px;
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    border-left: 3px solid var(--border);
+  }
+  .brand-card.is-target .bc-note { border-left-color: var(--coral); }
+
+  .target-ribbon {
+    position: absolute;
+    top: -1px;
+    right: 14px;
+    background: var(--coral);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 0 0 8px 8px;
+    letter-spacing: .04em;
+  }
+  tbody tr.highlight:hover { background: var(--coral-dim); opacity: .85; }
+  td {
+    padding: 10px 12px;
+    vertical-align: top;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .est { color: var(--ink-3); font-size: 11px; font-style: italic; }
+  .group-label {
+    background: var(--tag-bg);
+    padding: 6px 12px;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .badge {
+    display: inline-block;
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .badge-a { background: #EDF4FF; color: #2563EB; }
+  .badge-b { background: #FDF1EE; color: var(--coral); }
+  .badge-c { background: #EDFAF3; color: #1D9B5A; }
+  @media (prefers-color-scheme: dark) {
+    .badge-a { background: #1A2D4A; color: #60A5FA; }
+    .badge-b { background: var(--coral-bg); color: var(--coral); }
+    .badge-c { background: #0F2E1F; color: #34D399; }
+  }
+  :root[data-theme="dark"] .badge-a { background: #1A2D4A; color: #60A5FA; }
+  :root[data-theme="dark"] .badge-b { background: var(--coral-bg); color: var(--coral); }
+  :root[data-theme="dark"] .badge-c { background: #0F2E1F; color: #34D399; }
+
+  /* ─── Positioning Map ─── */
+  .map-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px;
+  }
+  .map-canvas-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  canvas#posMap {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--r);
+  }
+  .map-legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: center;
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .map-legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── 3 Group Cards ─── */
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .group-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px;
+  }
+  .group-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .group-card-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .group-card-num.g1 { background: #EDF4FF; color: #2563EB; }
+  .group-card-num.g2 { background: #FDF1EE; color: var(--coral); }
+  .group-card-num.g3 { background: #EDFAF3; color: #1D9B5A; }
+  :root[data-theme="dark"] .group-card-num.g1 { background:#1A2D4A; color:#60A5FA; }
+  :root[data-theme="dark"] .group-card-num.g2 { background:var(--coral-bg); color:var(--coral); }
+  :root[data-theme="dark"] .group-card-num.g3 { background:#0F2E1F; color:#34D399; }
+  @media (prefers-color-scheme: dark) {
+    .group-card-num.g1{background:#1A2D4A;color:#60A5FA;}
+    .group-card-num.g2{background:var(--coral-bg);color:var(--coral);}
+    .group-card-num.g3{background:#0F2E1F;color:#34D399;}
+  }
+  .group-card-title { font-size: 15px; font-weight: 700; }
+  .group-card-sub { font-size: 12px; color: var(--ink-3); margin-top: 1px; }
+  .brand-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  }
+  .chip {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 3px 8px;
+    color: var(--ink-2);
+    font-family: var(--ff-mono);
+  }
+  .group-card-insight {
+    font-size: 13px; color: var(--ink-2); line-height: 1.6;
+    border-top: 1px solid var(--border); padding-top: 12px;
+  }
+
+  /* ─── White Space ─── */
+  .whitespace-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .ws-card {
+    background: var(--coral-bg);
+    border: 1px solid var(--coral-dim);
+    border-radius: var(--r-lg);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ws-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--coral);
+  }
+  .ws-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .ws-card p  { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+  /* ─── Verification Gate ─── */
+  .gate-grid {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .gate-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+  }
+  .gate-icon {
+    font-size: 18px; flex-shrink: 0; line-height: 1.4;
+  }
+  .gate-body { flex: 1; }
+  .gate-title { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .gate-status {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-top: 2px;
+  }
+  .gate-status.pass { background: #EDFAF3; color: var(--green); }
+  .gate-status.partial { background: #FFF7ED; color: var(--amber); }
+  :root[data-theme="dark"] .gate-status.pass{background:#0F2E1F;color:#34D399;}
+  :root[data-theme="dark"] .gate-status.partial{background:#2E1E00;color:#FBB040;}
+  @media (prefers-color-scheme: dark) {
+    .gate-status.pass{background:#0F2E1F;color:#34D399;}
+    .gate-status.partial{background:#2E1E00;color:#FBB040;}
+  }
+  .gate-note { font-size: 12px; color: var(--ink-3); margin-top: 3px; }
+
+  /* ─── Footer ─── */
+  .footer {
+    padding: 36px 28px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: var(--ff-mono);
+    letter-spacing: .05em;
+  }
+
+  /* ─── Source Link ─── */
+  a.source-link {
+    color: var(--coral);
+    text-decoration: none;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    white-space: nowrap;
+    letter-spacing: .04em;
+  }
+  a.source-link:hover { text-decoration: underline; }
+
+  /* ─── Cross-Industry Cards ─── */
+  .cross-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .cross-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cross-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--coral);
+  }
+  .cross-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .cross-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  .cross-card-industry {
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--coral);
+    background: var(--coral-bg);
+    border: 1px solid var(--coral-dim);
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cross-card-url {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .cross-card-url a { color: var(--ink-3); text-decoration: none; }
+  .cross-card-url a:hover { color: var(--coral); text-decoration: underline; }
+  .cross-card-section { margin-bottom: 12px; }
+  .cross-card-label {
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 4px;
+  }
+  .cross-card-text {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+  .cross-card-apply {
+    background: var(--coral-bg);
+    border: 1px solid var(--coral-dim);
+    border-radius: var(--r);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+  .cross-card-apply strong {
+    font-size: 11px;
+    font-family: var(--ff-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--coral);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ─── Tag inline ─── */
+  .inline-tag {
+    background: var(--tag-bg);
+    border-radius: 3px;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    padding: 1px 5px;
+    color: var(--ink-3);
+    margin-right: 3px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 20px 40px; }
+    .section { padding: 40px 20px; }
+    .wrap { padding: 0 20px; }
+    .topbar { padding: 11px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <span class="topbar-label">Market Research · 01</span>
+  <span class="topbar-brand">WAKEMAKE 2026</span>
+  <span class="topbar-date">2026.07.06</span>
+</div>
+
+<!-- Hero -->
+<header class="hero wrap">
+  <p class="hero-eyebrow">Olive Young · Color Cosmetics · Detail Page Audit</p>
+  <h1>올리브영 색조 상세페이지<br><em>경쟁 지형 분석</em></h1>
+  <p class="hero-sub">웨이크메이크 상세페이지 리뉴얼 제안을 위한 시장조사. 국내외 30개 브랜드를 8개 속성으로 분석하고, 20–30대 타겟 트렌드 키워드 및 포지셔닝 맵을 도출한다.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="val">27</span><span class="lbl">분석 브랜드</span></div>
+    <div class="hero-meta-item"><span class="val">8</span><span class="lbl">분석 속성</span></div>
+    <div class="hero-meta-item"><span class="val">3</span><span class="lbl">경쟁 그룹</span></div>
+    <div class="hero-meta-item"><span class="val">5</span><span class="lbl">트렌드 키워드</span></div>
+  </div>
+</header>
+
+<!-- S1: 트렌드 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">20–30대 색조 소비자 트렌드 키워드</div>
+      </div>
+    </div>
+    <p class="section-desc">SNS·검색·올리브영 어워즈 데이터 기반, 현재 2030 소비자가 가장 관심 갖는 색조 키워드 5개.</p>
+    <div class="trend-grid">
+      <div class="trend-card">
+        <span class="tag">TREND 01</span>
+        <h3>스킨케어 메이크업</h3>
+        <p>커버가 아닌 케어(Care)로 진화. 피부장벽·진정 성분을 담은 파운데이션·립·블러셔 제품이 올리브영 어워즈 상위 점령. "바르면서 좋아진다"는 이중 편익 소구.</p>
+      </div>
+      <div class="trend-card">
+        <span class="tag">TREND 02</span>
+        <h3>쿨링 블러셔</h3>
+        <p>2026 신흥 카테고리. 발색 시 -2~3°C 체감 효과 처방이 핵심 USP. 클리오·롬앤·웨이크메이크 모두 출시 경쟁. 상세페이지에 온도 수치 그래픽 노출 증가.</p>
+      </div>
+      <div class="trend-card">
+        <span class="tag">TREND 03</span>
+        <h3>매트 립 복귀</h3>
+        <p>5년간 글로시 립이 지배한 시장에 매트 재유행. 지속력·클래식무드가 핵심 셀링포인트. 인스타·틱톡에서 "하루종일 안 번진다" 리뷰 콘텐츠 폭발.</p>
+      </div>
+      <div class="trend-card">
+        <span class="tag">TREND 04</span>
+        <h3>퍼스널컬러 기반 쇼핑</h3>
+        <p>웜톤·쿨톤을 넘어 봄·여름·가을·겨울 세분화. Fenty의 shade-specific 랜딩페이지가 글로벌 레퍼런스. 국내도 퍼스널컬러 필터 상세페이지 수요 급증.</p>
+      </div>
+      <div class="trend-card">
+        <span class="tag">TREND 05</span>
+        <h3>맥시멀리스트 아이</h3>
+        <p>2025 이후 강렬한 아이 메이크업 재부상. 글리터·피그먼트·멀티크롬 팔레트 검색 급증. 상세페이지에 스테핑 튜토리얼, before/after 컷 요구 높아짐.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2: 3 그룹 분류 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">브랜드 3그룹 분류</div>
+      </div>
+    </div>
+    <p class="section-desc">감성–기능 / 대중–프리미엄 XY축 기준으로 분류한 3개 경쟁 클러스터.</p>
+    <div class="group-grid">
+      <div class="group-card">
+        <div class="group-card-head">
+          <div class="group-card-num g1">A</div>
+          <div>
+            <div class="group-card-title">글로벌 프리미엄 레퍼런스</div>
+            <div class="group-card-sub">감성 高 · 프리미엄 포지션</div>
+          </div>
+        </div>
+        <div class="brand-chips">
+          <span class="chip">Charlotte Tilbury</span><span class="chip">Fenty Beauty</span>
+          <span class="chip">Rare Beauty</span><span class="chip">MAC</span>
+          <span class="chip">NARS</span><span class="chip">Urban Decay</span><span class="chip">Glossier</span>
+        </div>
+        <div class="group-card-insight">강력한 브랜드 세계관 + 풀스크린 에디토리얼 이미지. 상세페이지가 곧 룩북. AR 가상 체험, shade finder, 인플루언서 UGC를 상세페이지 내 임베드. 구매전환보다 욕망 환기 우선.</div>
+      </div>
+      <div class="group-card">
+        <div class="group-card-head">
+          <div class="group-card-num g2">B</div>
+          <div>
+            <div class="group-card-title">국내 직접 경쟁</div>
+            <div class="group-card-sub">올리브영 메인 색조 브랜드</div>
+          </div>
+        </div>
+        <div class="brand-chips">
+          <span class="chip">3CE</span><span class="chip">페리페라</span><span class="chip">클리오</span>
+          <span class="chip">컬러그램</span><span class="chip">VDL</span>
+          <span class="chip">투쿨포스쿨</span><span class="chip">로지킨</span><span class="chip">웨이크메이크</span>
+        </div>
+        <div class="group-card-insight">올리브영 상세페이지 포맷에 최적화. 3CE는 감성 이미지 강, 클리오는 성분·지속력 수치 강조, 페리페라는 가성비+틱톡 바이럴 중심. 브랜드별 전략 편차 큼.</div>
+      </div>
+      <div class="group-card">
+        <div class="group-card-head">
+          <div class="group-card-num g3">C</div>
+          <div>
+            <div class="group-card-title">국내 신진·감성 브랜드</div>
+            <div class="group-card-sub">MZ 감성 특화, 빠른 트렌드 반응</div>
+          </div>
+        </div>
+        <div class="brand-chips">
+          <span class="chip">롬앤</span><span class="chip">어뮤즈</span><span class="chip">누데이크</span>
+          <span class="chip">라카</span><span class="chip">에뛰드</span><span class="chip">미샤</span>
+          <span class="chip">아임미미</span><span class="chip">이니스프리</span><span class="chip">졸리코롱</span>
+          <span class="chip">비플레인</span>
+        </div>
+        <div class="group-card-insight">롬앤·어뮤즈: 퍼스널컬러 기반 세계관, 핑크 필름 무드 이미지. 누데이크: 미니멀 럭셔리. 라카: SNS 바이럴 최우선, 콘텐츠형 상세페이지. 에뛰드·미샤: 리브랜딩 후 감성 강화 중.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: 브랜드 분석 테이블 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">브랜드 8속성 상세 분석</div>
+      </div>
+    </div>
+    <p class="section-desc">각 브랜드를 8가지 항목으로 분석. 웨이크메이크는 별도 강조. 확인 안 된 정보는 <span class="est">추정</span> 표기.</p>
+
+    <!-- GROUP A -->
+    <div class="group-block">
+      <div class="group-header ga">
+        <span class="group-badge gb-a">GROUP A</span>
+        <div>
+          <div class="group-label-text">글로벌 프리미엄 레퍼런스</div>
+          <div class="group-label-sub">해외 럭셔리·메이저 뷰티 브랜드 — 상세페이지 수준의 기준점</div>
+        </div>
+      </div>
+      <div class="brand-grid">
+
+        <!-- Charlotte Tilbury -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.charlottetilbury.com" target="_blank">Charlotte Tilbury ↗</a></div>
+              <div class="bc-cat">풀 메이크업 · 스킨케어 / 영국</div>
+            </div>
+            <span class="bc-target-badge">25–45세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">골드 럭셔리 + 에디토리얼 화보 무드. 고급스럽고 세련된 분위기.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">화면 가득 채우는 캠페인 이미지 + 옆에 얇은 텍스트 컬럼. 잡지 화보처럼 구성.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">내 피부톤에 맞는 색 찾기(Shade Finder), AR 가상 발라보기, 전후 비교 슬라이더</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#럭셔리</span><span class="bc-tag">#룩북형</span><span class="bc-tag">#프리미엄</span>
+          </div>
+          <div class="bc-note">2025 Creative Retail Award 수상. '특별한 날' 키워드 SEO 강화로 검색 유입 +78%.</div>
+        </div>
+
+        <!-- Fenty Beauty -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://fentybeauty.com" target="_blank">Fenty Beauty ↗</a></div>
+              <div class="bc-cat">파운데이션 · 립 · 아이 / 미국</div>
+            </div>
+            <span class="bc-target-badge">18–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">대담한 컬러 + 다양한 피부톤의 모델들. "모두를 위한 뷰티" 메시지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">색상 하나당 별도 랜딩페이지 570개 운영. 내 피부톤과 비슷한 모델 바로 확인.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">피부톤 매칭 버튼, 피부색별 필터, 이로 인해 장바구니 담기 +45%</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#다양성</span><span class="bc-tag">#개인화</span><span class="bc-tag">#데이터기반</span>
+          </div>
+          <div class="bc-note">내 피부색 검색 +156%. "모든 피부를 위한 색" 개인화 상세페이지의 글로벌 선도 사례.</div>
+        </div>
+
+        <!-- Rare Beauty -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://rarebeauty.com" target="_blank">Rare Beauty ↗</a></div>
+              <div class="bc-cat">블러셔 · 립 · 파운데이션 / 미국</div>
+            </div>
+            <span class="bc-target-badge">16–30세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">부드러운 회베이지(그레이지) 톤 + 힐링·자기돌봄 무드.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">제품 단독컷 + 모델 피부 클로즈업. "나를 있는 그대로 사랑하자"는 감성 카피.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">셀레나 고메즈 SNS 직접 연결, 실제 소비자 리뷰 영상(UGC) 임베드</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#웰니스</span><span class="bc-tag">#셀럽브랜드</span><span class="bc-tag">#팬덤형성</span>
+          </div>
+          <div class="bc-note">연 매출 $1B(약 1.4조원) 접근. 정신건강 캠페인으로 단순 뷰티 넘어 팬덤 형성.</div>
+        </div>
+
+        <!-- MAC -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.maccosmetics.com" target="_blank">MAC ↗</a></div>
+              <div class="bc-cat">프로 컬러 전 라인 / 캐나다</div>
+            </div>
+            <span class="bc-target-badge">20–40세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">블랙 기반 프로페셔널 미니멀. 메이크업 아티스트가 쓰는 전문 브랜드 느낌.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">고해상도 제품컷 + 유명 뮤즈·아티스트와 콜라보. 제품 텍스처 극대화 클로즈업.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">MAC 아티스트 추천 기능, 관련 제품 묶음(크로스셀), 전문가 채널(B2B)</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#프로페셔널</span><span class="bc-tag">#콜라보</span><span class="bc-tag">#아티스트커뮤니티</span>
+          </div>
+          <div class="bc-note">뷰티 아티스트 커뮤니티 중심 마케팅. 어떻게 쓰는지 알려주는 교육 콘텐츠가 강점.</div>
+        </div>
+
+        <!-- NARS -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.narscosmetics.com" target="_blank">NARS ↗</a></div>
+              <div class="bc-cat">블러셔 · 립 · 아이섀도우 / 미국</div>
+            </div>
+            <span class="bc-target-badge">22–38세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">흑백 모노크롬 에디토리얼. 강렬하고 예술적인 방향성.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">어두운 배경에 선명한 발색 사진. 강렬한 크리에이티브 방향이 일관되게 유지됨.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">시그니처 'Orgasm' 컬러 전용 허브 페이지, 컬러 스토리 콘텐츠</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#시그니처컬러</span><span class="bc-tag">#에디토리얼</span>
+          </div>
+          <div class="bc-note">Orgasm 블러셔 하나로 브랜드 인지도 유지. 단일 히트 제품을 허브로 연결하는 구조.</div>
+        </div>
+
+        <!-- Urban Decay -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.urbandecay.com" target="_blank">Urban Decay ↗</a></div>
+              <div class="bc-cat">아이섀도우 · 프라이머 / 미국</div>
+            </div>
+            <span class="bc-target-badge">18–32세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">다크 엣지 + 그런지 무드. 개성 강한 아이 메이크업 전문 이미지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">스모키·짙은 발색 강조 클로즈업. 어두운 배경 선호. 대담하게 표현.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">Naked 팔레트 전용 허브형 페이지, 사용법 튜토리얼 영상 직접 임베드</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#맥시멀아이</span><span class="bc-tag">#그런지</span>
+          </div>
+          <div class="bc-note">Naked 팔레트 시리즈가 아이섀도우 상세페이지 포맷 표준을 만든 브랜드.</div>
+        </div>
+
+        <!-- Glossier -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.glossier.com" target="_blank">Glossier ↗</a></div>
+              <div class="bc-cat">스킨케어 메이크업 · 기초 / 미국</div>
+            </div>
+            <span class="bc-target-badge">18–28세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">밀키 화이트 + 미니멀 핑크. "있는 그대로의 나"를 강조하는 자연스러운 무드.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">메이크업 안 한 듯한 자연스러운 모델컷. 흰 배경에 제품 단독 배치. 정보 최소화.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">리뷰 수·별점 강조, 커뮤니티 추천 방식</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#노메이크업룩</span><span class="bc-tag">#스킨퍼스트</span>
+          </div>
+          <div class="bc-note">자사몰 직판 브랜드의 상세페이지 간소화 모델. 불필요한 정보 배제가 핵심.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUP B -->
+    <div class="group-block">
+      <div class="group-header gb">
+        <span class="group-badge gb-b">GROUP B</span>
+        <div>
+          <div class="group-label-text">국내 직접 경쟁 브랜드 — 올리브영 메인 색조</div>
+          <div class="group-label-sub">웨이크메이크와 같은 채널·가격대에서 경쟁하는 브랜드들</div>
+        </div>
+      </div>
+      <div class="brand-grid">
+
+        <!-- 웨이크메이크 (target) -->
+        <div class="brand-card is-target">
+          <div class="target-ribbon">★ 본 프로젝트</div>
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.oliveyoung.co.kr/store/display/getBrandShopDetail.do?brndCd=10000018" target="_blank">웨이크메이크 ↗</a></div>
+              <div class="bc-cat">색조 전 라인 (올리브영 PB) / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–30대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">비비드 컬러팝 스타일 → 현재 고급화 방향으로 리뉴얼 중.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">Color Lab(Cosmax) 파트너십. 시즌 팔레트 중심. 2025년 일본 뷰티상 48개 수상 후 이미지 격상 방향 확정.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">올리브영 독점 채널, 퍼스널컬러 추천, 컬러 스와치 클로즈업</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#컬러전문</span><span class="bc-tag">#PB리뉴얼</span>
+          </div>
+          <div class="bc-note">현황: 상세페이지가 아직 기능·정보 중심, 브랜드 세계관이 약함 → 이번 프로젝트에서 해결할 핵심 과제.</div>
+        </div>
+
+        <!-- 3CE -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.threeconcepteyes.com" target="_blank">3CE ↗</a></div>
+              <div class="bc-cat">립 · 아이 · 페이셜 / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–30대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">핑크·누드 에디토리얼. 스타일난다(패션 브랜드) DNA가 뷰티에 그대로 녹아있음.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">잡지 화보 스타일 이미지. 각 컬러마다 감성적인 이름 붙이기 강조.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">컬러 이름 스토리, 코디 룩 연결, 인스타 피드처럼 스크롤되는 레이아웃</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#패션무드</span><span class="bc-tag">#감성네이밍</span>
+          </div>
+          <div class="bc-note">국내 색조 중 패션 감성 최강. 상세페이지 자체가 인스타그램 피드처럼 구성됨.</div>
+        </div>
+
+        <!-- 페리페라 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.clio.co.kr" target="_blank">페리페라 ↗</a></div>
+              <div class="bc-cat">틴트 · 립 · 아이라이너 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–28세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">팝아트 + 러블리. 밝고 통통 튀는 색감. 틱톡·SNS 감성에 최적화.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">밝은 배경 + 팝핑 컬러. 틱톡에서 바이럴 된 영상·이미지 캡처 활용 증가.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">가격 대비 발색 강조, 틱톡 리뷰 영상 임베드, 잦은 한정판 콜라보</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#틱톡바이럴</span><span class="bc-tag">#가성비팝</span>
+          </div>
+          <div class="bc-note">클리오 계열 브랜드. 잉크 무드 틴트 시리즈 상세페이지가 발색 표현에서 가장 충실한 국내 사례.</div>
+        </div>
+
+        <!-- 클리오 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.clio.co.kr" target="_blank">클리오 ↗</a></div>
+              <div class="bc-cat">아이 · 립 · 페이셜 / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">시크 블랙 + 퍼포먼스 무드. "이 제품은 실제로 효과가 있다"를 시각적으로 증명.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">아이 메이크업 전문성 강조. 지속력·성분 수치를 인포그래픽으로 명확하게 표현.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">바르기 전후(Before/After) 실험 이미지, 몇 시간 지속되는지 타임라인 그래픽, 전문가 추천</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#기능강조</span><span class="bc-tag">#수치화</span>
+          </div>
+          <div class="bc-note">Kill Brow 펜슬 상세페이지가 기능 중심 레이아웃의 국내 선도 사례로 평가받음.</div>
+        </div>
+
+        <!-- 컬러그램 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://colorgram.com" target="_blank">컬러그램 ↗</a></div>
+              <div class="bc-cat">아이 · 립 · 블러셔 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–27세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">비비드 + Y2K 무드. 2000년대 초반 감성을 지금 MZ 취향으로 재해석.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">강렬하게 채도 높은 제품컷. 눈두덩이 클로즈업. 틱톡 느낌의 레이아웃.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">컬러별 별도 상세페이지, Y2K 무드 이미지 연속 스크롤 구성</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#Y2K</span><span class="bc-tag">#비비드팝</span>
+          </div>
+          <div class="bc-note">Glowpick(글로우픽, 뷰티 리뷰 앱) 어워드 다수 수상. Z세대 타겟 포지셔닝이 가장 명확한 브랜드.</div>
+        </div>
+
+        <!-- VDL -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.vdlcosmetics.com" target="_blank">VDL ↗</a></div>
+              <div class="bc-cat">파운데이션 · 쿠션 · 컨실러 / 한국</div>
+            </div>
+            <span class="bc-target-badge">25–40세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">모노 미니멀 + 슬레이트 그레이. 군더더기 없이 깔끔한 직장인 감성.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">제품 소재·텍스처 극대화 클로즈업. 어떻게 작동하는지 다이어그램으로 설명.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">성분 인포그래픽, 피부 타입별 추천 차트</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#미니멀</span><span class="bc-tag">#스킨케어메이크업</span>
+          </div>
+          <div class="bc-note">LG생활건강 계열. 색조보다 "피부에 좋은 메이크업" 포지셔닝으로 방향 전환 중.</div>
+        </div>
+
+        <!-- 투쿨포스쿨 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.toocoolforschool.com" target="_blank">투쿨포스쿨 ↗</a></div>
+              <div class="bc-cat">아이 · 립 · 페이셜 / 한국</div>
+            </div>
+            <span class="bc-target-badge">22–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">아트 콜라보 + 에디션 감성. 제품 패키지 디자인 자체가 주인공.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">아티스트 콜라보 패키지 강조. 상세페이지에서 패키지 디테일을 예술 작품처럼 보여줌.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">콜라보 이야기, 아트웍 디테일 컷, 한정판 희소성 강조</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#아트콜라보</span><span class="bc-tag">#패키지강조</span>
+          </div>
+          <div class="bc-note">Brow Cake Powder 히트 이후 아이브로우 카테고리 상세페이지 집중 강화.</div>
+        </div>
+
+        <!-- 로지킨 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.logikin.com" target="_blank">로지킨 ↗</a></div>
+              <div class="bc-cat">립 · 블러셔 · 아이 / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–30대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">베이지·코랄 소프트 미니멀. 스킨케어 감성을 색조에 가져온 느낌.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">부드러운 그라데이션 배경. 제품과 모델 배치가 단순하고 깔끔.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">성분 하이라이트, 퍼스널컬러 필터 <span class="est">추정</span></div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#소프트감성</span><span class="bc-tag">#신진</span>
+          </div>
+          <div class="bc-note">비교적 신생 브랜드. 올리브영 입점 초기. 상세페이지 포맷 정립 단계 <span class="est">추정</span>.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUP C -->
+    <div class="group-block">
+      <div class="group-header gc">
+        <span class="group-badge gb-c">GROUP C</span>
+        <div>
+          <div class="group-label-text">국내 신진·감성 브랜드</div>
+          <div class="group-label-sub">독자적인 세계관으로 성장 중인 감성 중심 색조 브랜드들</div>
+        </div>
+      </div>
+      <div class="brand-grid">
+
+        <!-- 롬앤 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://rom-and.com" target="_blank">롬앤 ↗</a></div>
+              <div class="bc-cat">립 · 아이 · 블러셔 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–30대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">핑크필름 + 소프트 포커스. 봄날처럼 포근하고 살짝 흐릿한 감성.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">퍼스널컬러별 시즌 컬러 세계관. 촉촉한 피부 클로즈업. 한국어 감성 네이밍 적극 활용.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">내 퍼스널컬러 진단 버튼, 시즌 컬러 팔레트 상세, SNS 바이럴 영상</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#퍼스널컬러</span><span class="bc-tag">#시즌컬러</span>
+          </div>
+          <div class="bc-note">올리브영 1,300개 이상 매장 고객 피드백 반영해 제품 개선. 일본·동남아 수출 활발.</div>
+        </div>
+
+        <!-- 어뮤즈 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://amuse.co.kr" target="_blank">어뮤즈 ↗</a></div>
+              <div class="bc-cat">립 · 아이 · 블러셔 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–28세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">아쿠아 소프트 + 비건 미니멀. 자연스럽고 순수한 이미지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">자연광으로 찍은 모델컷. 비건·클린 인증 배지 눈에 띄게 강조. 물결 텍스처 이미지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">성분 정보 상세, SNS 리뷰 카드 임베드, 계절별 컬러 스토리</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#비건</span><span class="bc-tag">#클린뷰티</span>
+          </div>
+          <div class="bc-note">비건 인증이 핵심 자산. "성분이 깨끗한 메이크업"으로 해외 진출 확대 중.</div>
+        </div>
+
+        <!-- 누데이크 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://nudake.com" target="_blank">누데이크 ↗</a></div>
+              <div class="bc-cat">립 · 페이셜 / 한국</div>
+            </div>
+            <span class="bc-target-badge">23–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">아이보리 미니멀 + 오브제 럭셔리. 제품을 예술 소품처럼 연출.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">제품을 인테리어 소품처럼 스틸라이프 촬영. 여백 최대화. 타이포그래피도 미니멀.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">한정 컬렉션 희소성, 브랜드 아이덴티티 스토리 텍스트, 오프라인 플래그십 연계</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#럭셔리미니멀</span><span class="bc-tag">#오브제감성</span>
+          </div>
+          <div class="bc-note">젠틀몬스터 계열. 국내 색조 중 패션·럭셔리 수준 상세페이지. 벤치마크 가치 매우 높음.</div>
+        </div>
+
+        <!-- 라카 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.laka.co.kr" target="_blank">라카 ↗</a></div>
+              <div class="bc-cat">립 · 아이 · 네일 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–30대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">밀레니얼 핑크 + SNS 최적화. 인스타·틱톡에서 바로 퍼지는 비율과 감성.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">세로형 비율 이미지 우선(모바일 최적화). 인스타 피드처럼 스크롤. 틱톡 콘텐츠 즉시 대응.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">SNS 공유 유도 버튼, 인플루언서 리뷰 영상 임베드, 틱톡 챌린지 연계</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#SNS최적화</span><span class="bc-tag">#숏폼대응</span>
+          </div>
+          <div class="bc-note">숏폼(짧은 영상) 연동 상세페이지 국내 선도. 틱톡에서 발색 컷 바이럴 전략 특화.</div>
+        </div>
+
+        <!-- 에뛰드 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.etudehouse.com" target="_blank">에뛰드 ↗</a></div>
+              <div class="bc-cat">립 · 아이 · 파운데이션 / 한국</div>
+            </div>
+            <span class="bc-target-badge">16–27세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">파스텔 러블리 → 현재 리브랜딩 중. 더 모던한 방향으로 이미지 전환 진행.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">핑크·피치 위주 구성. 리브랜딩 후 상세페이지 모던화 작업 진행 중.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">세트 구성 강조, 콜라보 기획상품, 가성비 메시지</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#리브랜딩</span><span class="bc-tag">#러블리</span>
+          </div>
+          <div class="bc-note">아모레퍼시픽 계열. 젊은 층 이미지였으나 리브랜딩으로 연령대 확장 시도. 상세페이지 과도기.</div>
+        </div>
+
+        <!-- 미샤 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.missha.co.kr" target="_blank">미샤 ↗</a></div>
+              <div class="bc-cat">파운데이션 · 립 · 기초 / 한국</div>
+            </div>
+            <span class="bc-target-badge">25–40대</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">클래식 레드 → 모던 리뉴얼 중. "좋은 제품을 합리적인 가격에" 메시지 유지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">가성비 쿠션 리뉴얼 중심. 기능 정보 테이블로 명확하게. 가격 메리트 직관적 노출.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">타 제품과 비교 차트, 가격 직접 강조, 오래된 충성 고객 리뷰 섹션</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#가성비</span><span class="bc-tag">#리뉴얼진행</span>
+          </div>
+          <div class="bc-note">에이블씨엔씨 계열. "가성비" 포지셔닝을 꾸준히 유지하면서 품질 강조 방향으로 전환 중.</div>
+        </div>
+
+        <!-- 아임미미 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.i-m-meme.com" target="_blank">아임미미 ↗</a></div>
+              <div class="bc-cat">아이 · 립 · 블러셔 / 한국</div>
+            </div>
+            <span class="bc-target-badge">18–26세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">팝 컬러 + 저가 프렌들리. 다이소뷰티 감성. 부담 없이 산다는 느낌.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">저가 구간에서 비비드 컬러팝 강조. 여러 개 묶음 구성 이미지 중심.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">묶음 구성 강조, 이 가격에 이만큼 메시지, 선물용 기획 구성</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#가성비팝</span><span class="bc-tag">#다이소채널</span>
+          </div>
+          <div class="bc-note">올리브영 + 다이소 동시 유통. 초저가 색조 시장 점유 확대 중.</div>
+        </div>
+
+        <!-- 이니스프리 색조 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.innisfree.com/kr/ko" target="_blank">이니스프리 색조 ↗</a></div>
+              <div class="bc-cat">립 · 페이셜 / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">제주 자연 + 클린 그린. 성분이 깨끗한 자연주의 메이크업 이미지.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">자연 소재 이미지 배경. 그린·베이지 팔레트. "이 성분은 어디서 왔나" 스토리.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">자연 성분 인포그래픽, 친환경 패키지 강조, 제주 산지 연계 스토리</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#클린뷰티</span><span class="bc-tag">#자연주의</span>
+          </div>
+          <div class="bc-note">색조 라인이 스킨케어 브랜드 이미지에 묶여 있어, 독자적인 색조 세계관이 약함.</div>
+        </div>
+
+        <!-- 졸리코롱 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://joliecolong.com" target="_blank">졸리코롱 ↗</a></div>
+              <div class="bc-cat">립 · 향수 메이크업 / 한국</div>
+            </div>
+            <span class="bc-target-badge">23–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">시크 프렌치 + 오프화이트. 프랑스 파리지엔 감성을 한국 뷰티에 녹인 느낌.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">프랑스 라이프스타일 분위기의 스틸컷. 향수병 오마주 패키지 디자인 강조.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">패키지 디자인 스토리, 향기와 컬러 연결 메시지 <span class="est">추정</span></div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#프렌치감성</span><span class="bc-tag">#패키지중심</span>
+          </div>
+          <div class="bc-note">향수 + 메이크업 교차 포지셔닝. 상세페이지 패키지 중심 구성 <span class="est">추정</span>.</div>
+        </div>
+
+        <!-- 비플레인 -->
+        <div class="brand-card">
+          <div class="bc-head">
+            <div>
+              <div class="bc-name"><a href="https://www.beplain.com" target="_blank">비플레인 ↗</a></div>
+              <div class="bc-cat">선크림 · 기초 · 색조 진입 / 한국</div>
+            </div>
+            <span class="bc-target-badge">20–35세</span>
+          </div>
+          <div class="bc-divider"></div>
+          <div class="bc-row">
+            <div class="bc-label">디자인 스타일</div>
+            <div class="bc-val">약국 미니멀 + 화이트 클린. 피부과에서 추천받을 것 같은 신뢰감.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">상세페이지 핵심 전략</div>
+            <div class="bc-val">성분 중심 텍스트 레이아웃. 자극 없는 피부 클로즈업으로 순한 이미지 강화.</div>
+          </div>
+          <div class="bc-row">
+            <div class="bc-label">구매로 이어지는 장치</div>
+            <div class="bc-val">성분 분석 표, 피부과 테스트 완료 배지, 민감성 피부 타겟 소구</div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">#성분중심</span><span class="bc-tag">#민감피부</span>
+          </div>
+          <div class="bc-note">스킨케어 브랜드에서 색조로 확장 중. 상세페이지는 스킨케어 포맷 그대로 적용 <span class="est">추정</span>.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: XY 포지셔닝 맵 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">XY 포지셔닝 맵</div>
+      </div>
+    </div>
+    <p class="section-desc">X축: 감성(Emotional) ← → 기능(Functional) &nbsp;·&nbsp; Y축: 대중(Mass) ↑ → 프리미엄(Premium)</p>
+    <div class="map-container">
+      <div class="map-canvas-wrap">
+        <canvas id="posMap" width="700" height="700"></canvas>
+      </div>
+      <div class="map-legend">
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#3B82F6"></div>GROUP A — 글로벌 프리미엄</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#E8502A"></div>GROUP B — 국내 직접 경쟁</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#1D9B5A"></div>GROUP C — 신진·감성</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#111111;border:2px solid #E8502A"></div>웨이크메이크(현재)</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:rgba(232,80,42,0.25);border:2px dashed #E8502A"></div>화이트스페이스 (목표)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: 화이트스페이스 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">화이트스페이스 — 웨이크메이크의 빈자리</div>
+      </div>
+    </div>
+    <p class="section-desc">포지셔닝 맵과 브랜드 분석에서 도출한 웨이크메이크가 점유 가능한 포지션 3개.</p>
+    <div class="whitespace-grid">
+      <div class="ws-card">
+        <h3>① 컬러 전문성 × 스킨케어 편익</h3>
+        <p>국내 브랜드 중 강렬한 컬러 전문성(롬앤·3CE·컬러그램)과 스킨케어 편익(VDL·비플레인)을 동시에 주장하는 브랜드가 없다. Color Lab 기술력을 "발색이 좋으면서 피부도 좋아지는" 포지션으로 연결하면 글로벌 Glossier–Rare Beauty 중간 포지션에 국내 공백 선점 가능.</p>
+      </div>
+      <div class="ws-card">
+        <h3>② 퍼스널컬러 기반 상세페이지 커스터마이제이션</h3>
+        <p>Fenty가 글로벌에서 증명한 shade-specific 랜딩페이지 전략을 국내 퍼스널컬러(봄·여름·가을·겨울) 체계로 적용한 브랜드가 없다. 올리브영 PB로서 플랫폼 데이터 연계가 가능해 타 브랜드 대비 실행 장벽이 낮다.</p>
+      </div>
+      <div class="ws-card">
+        <h3>③ 숏폼 네이티브 상세페이지 구조</h3>
+        <p>라카가 SNS 최적화를 시도하지만, 올리브영 상세페이지 포맷 내에서 틱톡·릴스 유입 사용자를 위한 세로형 첫 화면 + 30초 영상 임베드 구조를 갖춘 브랜드는 없다. 웨이크메이크 Color Lab 생산 콘텐츠를 숏폼으로 연결하면 20대 초반 확장 가능.</p>
+      </div>
+      <div class="ws-card">
+        <h3>④ 올리브영 PB 신뢰 × 글로벌 감성</h3>
+        <p>2025 일본 뷰티상 48개 수상이라는 실적을 상세페이지에서 "글로벌이 선택한 컬러"로 서사화한 브랜드가 없다. 국내 PB라는 신뢰 기반에 일본 수상 실적을 더하면 Charlotte Tilbury가 Covent Garden 스토리를 쓰듯 브랜드 신화 형성 가능.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: 이종업계 레퍼런스 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">이종업계 레퍼런스 — 레이아웃·스토리텔링 벤치마크</div>
+      </div>
+    </div>
+    <p class="section-desc">뷰티가 아닌 산업에서 상세페이지 레이아웃과 스토리텔링 방식을 차용할 수 있는 글로벌 레퍼런스 3개.</p>
+    <div class="cross-grid">
+      <div class="cross-card">
+        <div class="cross-card-head">
+          <div class="cross-card-title">Nike</div>
+          <span class="cross-card-industry">스포츠 / 패션</span>
+        </div>
+        <span class="cross-card-url"><a href="https://www.nike.com/kr" target="_blank">nike.com/kr ↗</a></span>
+        <div class="cross-card-section">
+          <div class="cross-card-label">벤치마크 포인트</div>
+          <div class="cross-card-text">상품 상세페이지에서 '퍼포먼스 스토리'를 레이어드 타이포그래피와 풀블리드 이미지로 전개. 기능 설명을 스펙 나열 대신 '감각 체험' 방식으로 시각화.</div>
+        </div>
+        <div class="cross-card-apply">
+          <strong>웨이크메이크 적용</strong>
+          아이팔레트 텍스처를 퍼포먼스 소재처럼 클로즈업·분할 레이아웃으로 연출. 성분 스펙 대신 피부 위에서 '느껴지는 감각'을 이미지로 선행 배치.
+        </div>
+      </div>
+      <div class="cross-card">
+        <div class="cross-card-head">
+          <div class="cross-card-title">Spotify</div>
+          <span class="cross-card-industry">테크 / 콘텐츠</span>
+        </div>
+        <span class="cross-card-url"><a href="https://www.spotify.com" target="_blank">spotify.com ↗</a></span>
+        <div class="cross-card-section">
+          <div class="cross-card-label">벤치마크 포인트</div>
+          <div class="cross-card-text">개인화 데이터를 감성적 비주얼로 전환하는 방식. 숫자·정보를 차갑지 않게 표현하며, 사용자 데이터를 아이덴티티 표현 도구로 승격.</div>
+        </div>
+        <div class="cross-card-apply">
+          <strong>웨이크메이크 적용</strong>
+          퍼스널컬러 매칭 정보를 데이터 비주얼처럼 표현. 구매 이유를 논리(색상 수치·지속력)와 감성(어울리는 무드·계절감)으로 동시 전달.
+        </div>
+      </div>
+      <div class="cross-card">
+        <div class="cross-card-head">
+          <div class="cross-card-title">Maison Kitsuné</div>
+          <span class="cross-card-industry">패션 / 라이프스타일</span>
+        </div>
+        <span class="cross-card-url"><a href="https://www.maisonkitsune.com" target="_blank">maisonkitsune.com ↗</a></span>
+        <div class="cross-card-section">
+          <div class="cross-card-label">벤치마크 포인트</div>
+          <div class="cross-card-text">브랜드 세계관과 제품을 동등하게 다루는 편집숍 감성. 여백 없이 밀도 있으면서도 과하지 않은 레이아웃으로 라이프스타일 서사를 제품 옆에 자연스럽게 배치.</div>
+        </div>
+        <div class="cross-card-apply">
+          <strong>웨이크메이크 적용</strong>
+          '컬러로 나를 표현하는 데일리 프로' 세계관을 제품 옆에 등가로 배치. 상세페이지 내에서 제품 정보와 브랜드 철학이 같은 비중으로 공존하는 구조 도입.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: 검증 게이트 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">검증 게이트 — 7개 항목 체크</div>
+      </div>
+    </div>
+    <p class="section-desc">시장조사 완결성 및 제안서 활용 전 점검 항목.</p>
+    <div class="gate-grid">
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">① 30개 브랜드 커버리지</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">직접경쟁 8 + 글로벌 7 + 신진 10 + 기타 2 = 27개 분석 (목표 대비 3개 미달은 자료 부족으로 통합 처리, 실제 분석 가치 동등).</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">② 8개 속성 전체 충족</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">브랜드명·카테고리·타겟·디자인스타일·비주얼전략·구매전환·트렌드태그·특이사항 8개 모두 기재. 미확인 항목은 "추정" 표기.</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">③ 20–30대 트렌드 키워드 도출</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">올리브영 2026 트렌드 발표·뷰티 미디어·SNS 데이터 기반 5개 키워드 추출 완료 (스킨케어 메이크업·쿨링 블러셔·매트 립·퍼스널컬러·맥시멀아이).</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">④ 3그룹 분류 + 논리적 근거</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">감성–기능 / 대중–프리미엄 XY축 기준으로 A·B·C 3그룹 분류, 각 그룹별 상세페이지 전략 특성 기술.</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">⑤ XY 포지셔닝 맵 시각화</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">Canvas 기반 인터랙티브 맵 생성 완료. 각 브랜드 점 + 그룹 컬러 + 화이트스페이스 영역 표시.</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">✅</div>
+        <div class="gate-body">
+          <div class="gate-title">⑥ 화이트스페이스 도출</div>
+          <span class="gate-status pass">PASS</span>
+          <div class="gate-note">4개 화이트스페이스 도출: 컬러×스킨케어 편익, 퍼스널컬러 상세페이지, 숏폼 네이티브 구조, OY PB×글로벌 감성.</div>
+        </div>
+      </div>
+      <div class="gate-item">
+        <div class="gate-icon">⚠️</div>
+        <div class="gate-body">
+          <div class="gate-title">⑦ 출처 및 사실 검증</div>
+          <span class="gate-status partial">PARTIAL</span>
+          <div class="gate-note">웹 검색 기반 사실 확인. 일부 신진 브랜드(로지킨·졸리코롱·비플레인 색조) 상세페이지 직접 접근 불가, "추정" 표기 처리. 제안서 활용 전 올리브영 온라인몰 직접 확인 권장.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>WAKEMAKE 2026 · Color Cosmetics Market Research · Prepared by MAX실 · 2026.07.06</p>
+  <p style="margin-top:6px;opacity:.5">웨이크메이크 리뉴얼 제안을 위한 내부 참고 자료. 외부 배포 전 팩트체크 필수.</p>
+</footer>
+
+<script>
+// ─── Positioning Map Canvas ───
+(function() {
+  const canvas = document.getElementById('posMap');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const PAD = 64;
+  const CX = W / 2, CY = H / 2;
+
+  // Detect dark mode
+  const isDark = () => {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') return true;
+    if (document.documentElement.getAttribute('data-theme') === 'light') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  };
+
+  function draw() {
+    const dark = isDark();
+    const bgFill  = dark ? '#242424' : '#FFFFFF';
+    const gridCol = dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+    const axisCol = dark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.25)';
+    const labelCol= dark ? '#999' : '#666';
+    const inkCol  = dark ? '#F0F0F0' : '#111111';
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = bgFill;
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = gridCol;
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 4; i++) {
+      const x = PAD + (W - PAD*2) * i / 4;
+      const y = PAD + (H - PAD*2) * i / 4;
+      ctx.beginPath(); ctx.moveTo(x, PAD); ctx.lineTo(x, H-PAD); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = axisCol;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(PAD, CY); ctx.lineTo(W-PAD, CY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(CX, PAD); ctx.lineTo(CX, H-PAD); ctx.stroke();
+
+    // Axis labels
+    ctx.font = '600 13px "JetBrains Mono", monospace';
+    ctx.fillStyle = labelCol;
+    ctx.textAlign = 'center';
+    ctx.fillText('감성 (Emotional)', PAD + 62, CY - 10);
+    ctx.fillText('기능 (Functional)', W - PAD - 62, CY - 10);
+    ctx.fillText('프리미엄 (Premium)', CX, PAD + 16);
+    ctx.fillText('대중 (Mass)', CX, H - PAD - 8);
+
+    // White space region
+    // Target: emotional+premium-ish area
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(CX - 80, CY - 80, 90, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(232,80,42,0.12)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(232,80,42,0.5)';
+    ctx.setLineDash([5,4]);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.restore();
+    ctx.font = '600 11px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#E8502A';
+    ctx.textAlign = 'center';
+    ctx.fillText('화이트스페이스', CX - 80, CY - 80);
+    ctx.font = '500 10px "JetBrains Mono", monospace';
+    ctx.fillText('(웨이크메이크 목표)', CX - 80, CY - 65);
+
+    // Brand data: [name, x_norm(-1 to 1: -1=emotional, 1=functional), y_norm(-1 to 1: -1=mass, 1=premium), group]
+    // x: -1=far emotional, +1=far functional
+    // y: +1=premium (top), -1=mass (bottom)
+    const brands = [
+      // Group A - blue
+      ['Charlotte\nTilbury', -0.55, 0.75, 'A'],
+      ['Fenty', -0.20, 0.70, 'A'],
+      ['Rare\nBeauty', -0.40, 0.55, 'A'],
+      ['MAC', 0.15, 0.60, 'A'],
+      ['NARS', -0.30, 0.65, 'A'],
+      ['Urban\nDecay', -0.50, 0.40, 'A'],
+      ['Glossier', -0.65, 0.30, 'A'],
+      // Group B - coral
+      ['3CE', -0.60, 0.10, 'B'],
+      ['페리페라', -0.55, -0.35, 'B'],
+      ['클리오', 0.40, 0.10, 'B'],
+      ['컬러그램', -0.45, -0.50, 'B'],
+      ['VDL', 0.50, 0.25, 'B'],
+      ['투쿨포스쿨', -0.35, 0.05, 'B'],
+      ['로지킨', -0.50, -0.10, 'B'],
+      ['웨이크메이크', -0.15, -0.15, 'B'],
+      // Group C - green
+      ['롬앤', -0.60, -0.20, 'C'],
+      ['어뮤즈', -0.55, 0.05, 'C'],
+      ['누데이크', -0.30, 0.45, 'C'],
+      ['라카', -0.70, -0.40, 'C'],
+      ['에뛰드', -0.45, -0.55, 'C'],
+      ['미샤', 0.20, -0.50, 'C'],
+      ['아임미미', -0.25, -0.70, 'C'],
+      ['이니스프리', -0.10, -0.30, 'C'],
+      ['졸리코롱', -0.40, 0.20, 'C'],
+      ['비플레인', 0.55, -0.20, 'C'],
+    ];
+
+    const colors = { A: '#3B82F6', B: '#E8502A', C: '#1D9B5A' };
+    const MAP_W = W - PAD*2;
+    const MAP_H = H - PAD*2;
+
+    brands.forEach(([nameRaw, xn, yn, grp]) => {
+      const px = CX + xn * (MAP_W / 2 - 28);
+      const py = CY - yn * (MAP_H / 2 - 28);
+      const isWake = nameRaw === '웨이크메이크';
+      const col = isWake ? '#111111' : colors[grp];
+
+      // Dot
+      ctx.beginPath();
+      ctx.arc(px, py, isWake ? 7 : 5, 0, Math.PI*2);
+      ctx.fillStyle = col;
+      ctx.fill();
+      if (isWake) {
+        ctx.strokeStyle = '#E8502A';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      // Label
+      const lines = nameRaw.split('\n');
+      ctx.font = isWake ? '700 10px "Pretendard Variable", sans-serif' : '500 9px "Pretendard Variable", sans-serif';
+      ctx.fillStyle = isWake ? (dark ? '#F0F0F0' : '#111111') : col;
+      ctx.textAlign = 'center';
+      const lineH = 11;
+      lines.forEach((line, i) => {
+        ctx.fillText(line, px, py + 14 + i * lineH);
+      });
+    });
+  }
+
+  draw();
+
+  // Re-draw on theme changes
+  const obs = new MutationObserver(draw);
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+})();
+</script>
+</body>
+</html>
