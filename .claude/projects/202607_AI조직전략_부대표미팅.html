@@ -48,6 +48,20 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
 .code{background:var(--ink);color:#D8D3C8;border-radius:10px;padding:16px 20px;font-family:var(--mono);font-size:12px;line-height:1.8;margin-top:14px;white-space:pre-wrap;}
 .aside{margin-top:20px;background:rgba(10,10,10,.04);border-radius:12px;padding:18px 22px;font-size:13px;color:var(--ink2);line-height:1.7;}
 .aside b{color:var(--ink);}
+.diagram{margin-top:22px;}
+.diagram-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+.asis-row{display:flex;align-items:center;gap:8px;}
+.asis-box{flex:1;background:var(--bg);border:1.5px dashed var(--ink3);border-radius:10px;padding:14px;text-align:center;}
+.asis-box .t{font-weight:700;font-size:13px;} .asis-box .s{font-size:11px;color:var(--ink3);margin-top:4px;}
+.asis-arrow{font-family:var(--mono);color:var(--ink3);font-size:16px;}
+.asis-note{font-size:11.5px;color:var(--ink3);margin-top:8px;text-align:center;}
+.tobe-box{border:2px solid var(--blue);border-radius:14px;padding:20px;margin-top:8px;}
+.tobe-head{font-family:var(--sans);font-weight:700;font-size:14px;color:var(--blue);margin-bottom:4px;}
+.tobe-sub{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+.tobe-lane{border-radius:10px;padding:12px 16px;margin-top:10px;font-size:12.5px;line-height:1.6;}
+.tobe-lane.craft{background:rgba(10,10,10,.04);}
+.tobe-lane.fast{background:rgba(255,107,53,.07);}
+.tobe-lane b{display:block;font-size:11px;letter-spacing:.04em;margin-bottom:3px;}
 </style>
 
 <div class="wrap">
@@ -96,6 +110,7 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
     <tr><td>파는 것</td><td>디자인 잘하는 AI 대행사</td><td><strong>브랜드 히스토리를 가장 깊게 보유한 AI 파트너</strong></td></tr>
     <tr><td>방어선</td><td>사람의 숙련도</td><td>데이터(고객별 맥락) — 복제 불가</td></tr>
   </table>
+  <div class="frame">"제작(Production)의 가치는 빠르게 0으로 수렴하지만, 디자인이 비즈니스 문제를 해결하는 방식의 가치는 그 어느 때보다 비싸지고 있습니다." 고객도 미드저니·피그마 AI를 압니다 — <strong>"AI 쓰면 하루면 되잖아요"</strong>라는 단가 압박(Commodity Trap)이 이미 시작됐습니다. 우리가 팔아야 하는 건 제작이 아니라 이 브랜드에 맞는 문제 해결입니다.</div>
   <div class="aside"><b>남편분의 "결국 MCP로 가야 한다"에 대한 제 답</b> — MCP는 그릇, 데이터 자산이 내용물입니다. 데이터 없이 그릇부터 만들면 또 하나의 범용 툴이 됩니다. 순서는 데이터 축적 먼저, MCP는 그다음.</div>
 </div>
 
@@ -104,13 +119,14 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
   <span class="pn">03 / ②</span>
   <span class="secbadge opinion">제 의견</span>
   <div class="lbl">왜 지금인가 — 신호 세 가지</div>
-  <h2>넷마블 · 업계 재편 · 회사 안의 신호</h2>
+  <h2>넷마블 · Deploy vs Reshape · 회사 안의 신호</h2>
   <div class="g3 mt">
     <div class="c"><div class="ct">넷마블 (7/10)</div><div class="cx">퀄리티 최상위, AI 항목만 낮음 — AI를 안 보이게 씀 + TO 분절. 타사는 "키워드→2~3일"</div></div>
-    <div class="c"><div class="ct">업계 재편</div><div class="cx">토스 디자인 직무 6→2 통합. WPP·Publicis 재구축. Forrester: 美 광고업 인력 <strong class="num">15%↓</strong> 전망</div></div>
+    <div class="c"><div class="ct">'Deploy'가 아니라 'Reshape' (BCG)</div><div class="cx">기존 흐름에 AI만 끼우는 게 Deploy, 일하는 순서·조직을 바꾸는 게 Reshape. 골드만삭스는 100여개 파편적 PoC 실패 후 핵심 가치사슬 5~6개로 압축 투입. 저희 에이전트 24종도 지금은 Deploy — 이번 제안이 저희의 Reshape</div></div>
     <div class="c"><div class="ct">회사 안의 신호</div><div class="cx">4주 전 특허(PSD 자산 자동생성, 브랜드 톤 유지) — 오늘 제안과 R&D 방향 일치 <span style="font-size:10px">(재확인 필요)</span></div></div>
   </div>
   <div class="frame">결론은 하나 — 에이전트를 더 만드는 게 아니라, <span style="color:var(--orange)">조직 구조·프로세스·단가를 다시 설계</span>해야 합니다.</div>
+  <div class="foot">출처: EO Korea "AI는 수단입니다... BCG 다큐멘터리" · BCG Henderson Institute "AI Will Reshape More Jobs Than It Replaces"</div>
 </div>
 
 <!-- ② 핵심제안: 통합유닛 -->
@@ -120,12 +136,30 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
   <div class="lbl">기획·디자인·영상을 하나의 유닛으로</div>
   <h2>TO 분절 구조를 통합 유닛으로</h2>
   <div class="sub">지금 TO 구조(VM/VX/실장 %분리, 순차 진행)가 넷마블이 지적한 "분절"입니다. 기획·디자인·영상이 하나의 유닛으로 묶여야 합니다.</div>
-  <table class="mt">
-    <tr><th>트랙</th><th>대상</th><th>처리</th></tr>
-    <tr><td><span class="pill o">패스트</span></td><td>반복 배너·베리에이션</td><td>창구+PM 즉시 라우팅, 당일~2일 출고</td></tr>
-    <tr><td><span class="pill">정교</span></td><td>브랜드ID·하이엔드</td><td>기획-디자인-영상 붙어서 순차 — 퀄리티를 파는 자리</td></tr>
-  </table>
-  <div class="aside"><b>작동 예시</b> — 전화 요청→녹음 업로드→AI 자동분류+레퍼런스+초안 방향→담당자 자동 배정. PM이 미팅 마치고 오면 이미 착수 상태. AI 초안 5~6개→사람이 선택·디벨롭(AI 80%+사람 20%).</div>
+
+  <div class="diagram">
+    <div class="diagram-lbl">AS-IS</div>
+    <div class="asis-row">
+      <div class="asis-box"><div class="t">기획팀</div><div class="s">리더 A</div></div>
+      <div class="asis-arrow">→</div>
+      <div class="asis-box"><div class="t">디자인팀</div><div class="s">리더 B</div></div>
+      <div class="asis-arrow">→</div>
+      <div class="asis-box"><div class="t">영상팀</div><div class="s">리더 C</div></div>
+    </div>
+    <div class="asis-note">순차 핸드오프, 팀마다 대기열 → TO 분절 → 느림</div>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-lbl">TO-BE</div>
+    <div class="tobe-box">
+      <div class="tobe-head">통합 유닛 (리더 1명 = 디렉터)</div>
+      <div class="tobe-sub">기획 + 디자인 + 영상이 한 팀으로 운영</div>
+      <div class="tobe-lane craft"><b style="color:var(--ink)">정교트랙 · 고난이도</b>리뷰어·디렉터 중심, AI는 보조 — 브랜드ID·하이엔드 캠페인</div>
+      <div class="tobe-lane fast"><b style="color:var(--orange)">패스트트랙 · 반복·저난이도</b>AI가 <strong>60~70%</strong> 처리 + 신입·주니어(빌더)가 <strong>30~40%</strong> 마무리·검수</div>
+    </div>
+  </div>
+
+  <div class="aside"><b>작동 예시</b> — 전화 요청→녹음 업로드→AI 자동분류+레퍼런스+초안 방향→담당자 자동 배정. PM이 미팅 마치고 오면 이미 착수 상태.</div>
 </div>
 
 <div class="pg sec2 cream">
@@ -134,14 +168,15 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
   <div class="lbl">유닛을 지탱하는 것</div>
   <h2>성장 경로 + 인프라 + 단가</h2>
   <div class="g3 mt">
-    <div class="c"><div class="ct">빌더</div><div class="cx">신입 — AI로 실행. 패스트트랙 실무</div></div>
+    <div class="c"><div class="ct">빌더</div><div class="cx">신입 — 패스트트랙에서 AI 결과물 마무리·검수하며 실전으로 배움</div></div>
     <div class="c"><div class="ct">리뷰어</div><div class="cx">시니어 — 브랜드 각색 검수, Gatekeeper 운영</div></div>
     <div class="c"><div class="ct">디렉터</div><div class="cx">저 — 방향·최종 판단. 기획+디자인 경계를 넘나드는 인재상, 저부터 그런 사람이어야 합니다</div></div>
   </div>
+  <div class="aside">BCG는 AI 트랜스포메이션 성공의 <strong>70%가 기술이 아니라 사람의 일하는 방식</strong>에 달려있다고 봅니다. 신입이 하던 초안·리서치를 AI가 흡수하면서 "도제식 성장 사다리"가 무너질 위험도 경고합니다 — 패스트트랙에 신입을 의도적으로 배치하는 이유입니다.</div>
   <ul class="tight mt2">
-    <li><strong>Design Gatekeeper 공용화</strong> — BBD 가이드라인 + 피드백 루프(목요일 스터디). 검수 로그가 데이터 자산의 첫 벽돌</li>
+    <li><strong>Design Gatekeeper 공용화</strong> — BBD 가이드라인 + 10년간 쌓은 타이포·그리드 규칙(=Enterprise IQ의 실체) + 피드백 루프(목요일 스터디)</li>
     <li><strong>디자인 메모리</strong> — 정책 변경을 시멘틱 요약으로 적재 + AI-사람 경계 기록</li>
-    <li><strong>단가 재설계</strong> — 패스트트랙은 건단가+각색 프리미엄, 정교트랙 단가는 그대로 방어(두 상품 분리가 핵심)</li>
+    <li><strong>단가 재설계</strong> — 패스트트랙 건단가+각색 프리미엄, 정교트랙은 방어. 더 먼 지향점은 "파이프라인 구축·전환율 솔루션" 단위의 컨설팅형 과금</li>
   </ul>
 </div>
 
@@ -165,7 +200,7 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
   <div class="lbl">기술이 아니라 조직·권한의 문제</div>
   <h2>제가 계속 고도화해도, 조직이 안 바뀌면 소용없습니다</h2>
   <ul class="tight mt">
-    <li><strong>①</strong> 이 유닛 구조를 실행할 권한은 어디에 있나요? — 영업·계약과도 얽힙니다</li>
+    <li><strong>①</strong> 이 유닛 구조를 실행할 권한은 어디에 있나요? — 영업·계약과도 얽힙니다. BCG는 이런 변화를 실무 리더 한 명이 아니라 경영진이 직접 챙겨야 한다고 봅니다</li>
     <li><strong>②</strong> 회사가 원하는 성과가 정확히 뭔가요? — 비용절감/매출성장/밸류에이션, 셋은 다른 우선순위</li>
     <li><strong>③</strong> MAX실만 바뀌면 되나요, 전사 프로세스여야 하나요?</li>
     <li><strong>④</strong> 조직 차원에서 뭐가 먼저 바뀌어야 할까요? — 오늘 가장 답을 듣고 싶은 질문</li>
