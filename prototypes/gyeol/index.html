@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>풍사전 — 디자인 키워드 번역기</title>
+<title>결 gyeol — 무드 번역기</title>
 </head>
 <body>
 <style>
-  /* Cosmos.so 레퍼런스 — 다크 단일 테마에 의도적으로 커밋 */
+  /* cosmos.so 레퍼런스 — 순수 블랙, 보더리스 이미지 퍼스트, 세리프 디스플레이 */
   :root, :root[data-theme="light"], :root[data-theme="dark"] {
-    --bg: #0C0C0D;
-    --surface: #151517;
-    --surface-2: #1C1C1F;
-    --ink: #F2F1ED;
-    --ink-2: rgba(242, 241, 237, 0.60);
-    --ink-3: rgba(242, 241, 237, 0.38);
-    --line: rgba(242, 241, 237, 0.10);
-    --line-soft: rgba(242, 241, 237, 0.06);
+    --bg: #0A0A0B;
+    --surface: #141416;
+    --ink: #F0EFEB;
+    --ink-2: rgba(240, 239, 235, 0.62);
+    --ink-3: rgba(240, 239, 235, 0.36);
+    --line: rgba(240, 239, 235, 0.12);
+    --line-soft: rgba(240, 239, 235, 0.07);
     --m-photo: #6FCDB9;
     --m-type: #B9A3EF;
     --m-video: #E5B36F;
@@ -35,210 +34,256 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px 96px; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 36px 110px; }
 
-  /* ── 헤더 ─────────────────────────── */
+  /* ── 헤더 — 로워케이스 세리프 워드마크 ── */
   header {
-    display: flex; align-items: baseline; justify-content: space-between;
-    padding: 30px 0; flex-wrap: wrap; gap: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0; flex-wrap: wrap; gap: 8px;
   }
-  .brand { display: flex; align-items: baseline; gap: 14px; }
-  .brand h1 { font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: 0.01em; margin: 0; }
-  .brand .sub { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.12em; }
-  .ver { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.1em; }
+  .brand { display: flex; align-items: baseline; gap: 12px; }
+  .brand h1 {
+    font-family: var(--serif); font-size: 23px; font-weight: 500; margin: 0;
+    letter-spacing: 0.02em;
+  }
+  .brand h1 em { font-style: italic; font-weight: 400; color: var(--ink-2); margin-left: 7px; font-size: 19px; }
+  .ver { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.14em; }
 
-  /* ── 검색 (센터드 히어로) ────────────── */
-  .search-band { padding: 72px 0 12px; max-width: 720px; margin: 0 auto; text-align: center; }
-  .search-tagline {
-    font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink-2);
-    margin-bottom: 26px; letter-spacing: 0.01em;
+  /* ── 히어로 + 검색 필 ─────────────── */
+  .search-band { padding: 88px 0 10px; max-width: 760px; margin: 0 auto; text-align: center; }
+  .hero-line {
+    font-family: var(--serif); font-size: 42px; font-weight: 500; line-height: 1.3;
+    letter-spacing: -0.01em; text-wrap: balance; margin: 0 0 12px;
   }
-  .search-row { display: flex; align-items: stretch; border-bottom: 1px solid var(--line); }
-  .search-row:focus-within { border-bottom-color: rgba(242, 241, 237, 0.45); }
+  .hero-line em { font-style: italic; font-weight: 400; }
+  .hero-sub { font-size: 14px; color: var(--ink-3); margin: 0 0 34px; }
+  .search-row {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); border-radius: 100px;
+    padding: 7px 7px 7px 26px; transition: border-color 0.2s ease;
+    background: rgba(240, 239, 235, 0.02);
+  }
+  .search-row:focus-within { border-color: rgba(240, 239, 235, 0.4); }
   #kw-input {
     flex: 1; border: 0; outline: 0; background: transparent;
-    font-family: var(--serif); font-size: 32px; font-weight: 500;
-    color: var(--ink); padding: 8px 4px 16px; min-width: 0; text-align: center;
+    font-family: var(--serif); font-size: 19px;
+    color: var(--ink); padding: 8px 0; min-width: 0;
   }
-  #kw-input::placeholder { color: var(--ink-3); font-style: italic; font-size: 24px; }
+  #kw-input::placeholder { color: var(--ink-3); font-style: italic; }
   #kw-btn {
-    border: 0; background: transparent; cursor: pointer;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
-    color: var(--ink-2); padding: 0 6px 12px;
+    border: 0; cursor: pointer; border-radius: 100px;
+    background: var(--ink); color: var(--bg);
+    font-family: var(--sans); font-size: 13.5px; font-weight: 650;
+    padding: 10px 22px; transition: opacity 0.15s ease;
   }
-  #kw-btn:hover, #kw-btn:focus-visible { color: var(--ink); }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 22px 0 0; justify-content: center; }
+  #kw-btn:hover { opacity: 0.85; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 24px 0 0; justify-content: center; }
   .chip {
     border: 1px solid var(--line); background: transparent; color: var(--ink-2);
     font-family: var(--sans); font-size: 13px; padding: 6px 15px; border-radius: 100px;
     cursor: pointer; transition: all 0.15s ease;
   }
-  .chip:hover { border-color: rgba(242, 241, 237, 0.4); color: var(--ink); }
+  .chip:hover { border-color: rgba(240, 239, 235, 0.4); color: var(--ink); }
   .chip.active { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 600; }
   .chip .t { font-family: var(--mono); font-size: 10px; opacity: 0.6; margin-left: 5px; }
 
   .notfound {
     margin: 28px auto 0; max-width: 560px; padding: 18px 22px;
-    border: 1px dashed var(--line); border-radius: 12px;
+    border: 1px dashed var(--line); border-radius: 18px;
     color: var(--ink-2); font-size: 13.5px; text-align: center;
   }
   .notfound strong { color: var(--ink); }
 
-  /* ── 결과 헤더 (센터드) ─────────────── */
-  .result-head { text-align: center; padding: 64px 0 6px; }
+  /* ── 결과 헤더 ────────────────────── */
+  .result-head { text-align: center; padding: 72px 0 4px; }
   .result-head .kw {
-    font-family: var(--serif); font-size: 58px; font-weight: 600;
+    font-family: var(--serif); font-size: 56px; font-weight: 500;
     letter-spacing: -0.01em; line-height: 1.15; text-wrap: balance; display: block;
   }
   .result-head .meta { margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 12px; }
-  .result-head .en { font-family: var(--mono); font-size: 13px; color: var(--ink-2); letter-spacing: 0.06em; }
+  .result-head .en { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink-2); letter-spacing: 0.02em; }
   .pos-badge {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
     border: 1px solid var(--line); color: var(--ink-2);
-    padding: 2.5px 9px; border-radius: 100px;
+    padding: 2.5px 10px; border-radius: 100px;
   }
-  .pos-badge.onomat { border-color: rgba(242, 241, 237, 0.45); color: var(--ink); }
+  .pos-badge.onomat { border-color: rgba(240, 239, 235, 0.45); color: var(--ink); }
 
   /* 확장 키워드 — 인라인 글로서리 */
   .exp-flow {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px;
-    max-width: 860px; margin: 26px auto 0; padding-bottom: 8px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px;
+    max-width: 880px; margin: 28px auto 0; padding-bottom: 8px;
   }
   .exp-item { text-align: center; }
   .exp-item .ko { font-family: var(--serif); font-size: 17px; color: var(--ink); }
   .exp-item .tbadge {
     font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--ink-3);
-    border: 1px solid var(--line); padding: 1px 5px; border-radius: 100px; margin-left: 6px; vertical-align: 2px;
+    border: 1px solid var(--line); padding: 1px 6px; border-radius: 100px; margin-left: 6px; vertical-align: 2px;
   }
-  .exp-item .en { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 1px; }
+  .exp-item .en { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--ink-3); margin-top: 1px; }
 
-  /* ── 탭 (센터드 필) ─────────────────── */
-  .tabs {
-    display: flex; justify-content: center; gap: 4px; flex-wrap: wrap;
-    margin: 36px 0 30px;
-  }
+  /* ── 탭 ──────────────────────────── */
+  .tabs { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin: 40px 0 38px; }
   .tab {
-    border: 0; background: transparent; cursor: pointer;
+    border: 1px solid transparent; background: transparent; cursor: pointer;
     font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink-2);
-    padding: 7px 16px; border-radius: 100px;
+    padding: 7px 17px; border-radius: 100px;
     display: flex; align-items: center; gap: 7px; transition: all 0.15s ease;
   }
-  .tab:hover { color: var(--ink); background: var(--surface); }
-  .tab.active { background: var(--surface-2); color: var(--ink); font-weight: 600; }
+  .tab:hover { color: var(--ink); border-color: var(--line); }
+  .tab.active { background: var(--ink); color: var(--bg); font-weight: 600; }
+  .tab.active .cnt { color: var(--bg); opacity: 0.6; }
   .tab .sw { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
   .tab .cnt { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
 
-  /* ── 마소니 카드 ───────────────────── */
-  .cards { columns: 3 340px; column-gap: 18px; }
+  /* ── 마소니 카드 — 보더리스, 이미지 퍼스트 ── */
+  .cards { columns: 3 340px; column-gap: 22px; }
   .card {
-    background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px;
-    overflow: hidden; margin-bottom: 18px;
-    break-inside: avoid; display: flex; flex-direction: column;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    break-inside: avoid; margin-bottom: 40px;
+    display: flex; flex-direction: column;
   }
-  .card:hover { border-color: var(--line); transform: translateY(-2px); }
 
-  /* 무드 스와치 — 생성 이미지가 붙을 자리 */
+  /* 무드 영역 — 이미지 업로드/URL 교체 가능 */
   .mood {
     aspect-ratio: 8 / 5; position: relative; display: flex; align-items: flex-end;
+    overflow: hidden; border-radius: 16px;
+    transition: transform 0.25s ease;
+  }
+  .card:hover .mood { transform: scale(1.012); }
+  .mood img.mood-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
   .mood .mood-label {
-    position: absolute; top: 12px; left: 14px;
+    position: absolute; top: 13px; left: 15px; z-index: 1;
     font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em;
     color: rgba(255, 255, 255, 0.85); mix-blend-mode: difference;
   }
   .mood .mood-kw {
+    position: relative; z-index: 1;
     font-family: var(--serif); font-style: italic; font-size: 22px;
     color: rgba(255, 255, 255, 0.92); mix-blend-mode: difference;
-    padding: 0 14px 10px;
+    padding: 0 15px 11px;
   }
+  .mood-controls {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s ease;
+  }
+  .card:hover .mood-controls, .mood:focus-within .mood-controls { opacity: 1; }
+  @media (hover: none) { .mood-controls { opacity: 1; } }
+  .mbtn {
+    background: rgba(10, 10, 11, 0.72); border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #F0EFEB; font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em;
+    padding: 4px 11px; border-radius: 100px; cursor: pointer;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  .mbtn:hover { background: rgba(10, 10, 11, 0.92); border-color: rgba(255, 255, 255, 0.5); }
+  .mood.dragover { outline: 2px dashed rgba(255, 255, 255, 0.65); outline-offset: -8px; }
+  .url-form { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 3; display: flex; gap: 6px; }
+  .url-form[hidden] { display: none; }
+  .url-form input {
+    flex: 1; min-width: 0; border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 100px;
+    background: rgba(10, 10, 11, 0.85); color: #F0EFEB; outline: 0;
+    font-family: var(--mono); font-size: 11px; padding: 6px 13px;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  .url-form input:focus { border-color: rgba(255, 255, 255, 0.6); }
 
-  .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; }
+  /* 카드 본문 — 박스 없이 블랙 위에 직접 */
+  .card-body { padding: 15px 4px 0; display: flex; flex-direction: column; gap: 13px; }
   .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .mode-tag {
     display: inline-flex; align-items: center; gap: 7px;
-    font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
   }
-  .mode-tag .sw { width: 8px; height: 8px; border-radius: 50%; }
+  .mode-tag .sw { width: 7px; height: 7px; border-radius: 50%; }
   .card-head .btns { display: flex; gap: 6px; }
   .cbtn {
     border: 1px solid var(--line); background: transparent; cursor: pointer;
     font-family: var(--mono); font-size: 10.5px; color: var(--ink-2);
-    padding: 4px 11px; border-radius: 100px; transition: all 0.15s ease;
+    padding: 4px 12px; border-radius: 100px; transition: all 0.15s ease;
   }
-  .cbtn:hover { border-color: rgba(242, 241, 237, 0.4); color: var(--ink); }
+  .cbtn:hover { border-color: rgba(240, 239, 235, 0.45); color: var(--ink); }
   .cbtn.done, .cbtn.saved { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 
   .prompt {
     font-family: var(--mono); font-size: 12px; line-height: 1.8;
-    color: var(--ink-2); background: var(--bg);
-    padding: 13px 15px; border-radius: 10px; border: 1px solid var(--line-soft);
-    overflow-x: auto;
+    color: var(--ink-2); overflow-x: auto; margin: 0;
   }
+  .ko-toggle {
+    align-self: flex-start; border: 0; background: transparent; cursor: pointer;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--ink-3); padding: 0; margin-top: -5px;
+  }
+  .ko-toggle:hover { color: var(--ink); }
+  .prompt-ko {
+    font-size: 13px; line-height: 1.75; color: var(--ink-2);
+    border-left: 1px solid var(--line); padding-left: 13px; margin: -3px 0 0;
+  }
+
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
-    font-family: var(--mono); font-size: 10.5px; padding: 3px 9px; border-radius: 100px;
-    border: 1px solid var(--line); color: var(--ink-2);
+    font-family: var(--mono); font-size: 10.5px; padding: 3px 10px; border-radius: 100px;
+    border: 1px solid var(--line-soft); color: var(--ink-3);
   }
-  .tag.origin { border-color: rgba(242, 241, 237, 0.35); color: var(--ink); }
+  .tag.origin { border-color: var(--line); color: var(--ink-2); }
 
   /* AI 툴 궁합 */
-  .tools { border-top: 1px dashed var(--line); padding-top: 11px; display: flex; flex-direction: column; gap: 7px; }
-  .tools-lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; color: var(--ink-3); }
+  .tools { border-top: 1px solid var(--line-soft); padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .tools-lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--ink-3); }
   .tool-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
   .tool-name { font-size: 13px; font-weight: 650; letter-spacing: -0.01em; }
   .fit-badge {
     font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-    padding: 1.5px 7px; border-radius: 100px;
+    padding: 1.5px 8px; border-radius: 100px;
     border: 1px solid var(--line); color: var(--ink-2);
   }
   .fit-badge.best { background: var(--ink); border-color: var(--ink); color: var(--bg); }
   .tool-why { font-size: 11.5px; color: var(--ink-3); }
 
-  .spec { margin: 0; border-top: 1px dashed var(--line); padding-top: 11px; }
-  .spec-row { display: grid; grid-template-columns: 86px 1fr; gap: 10px; padding: 3px 0; font-size: 12px; }
+  .spec { margin: 0; border-top: 1px solid var(--line-soft); padding-top: 12px; }
+  .spec-row { display: grid; grid-template-columns: 88px 1fr; gap: 10px; padding: 3px 0; font-size: 12px; }
   .spec-row dt { color: var(--ink-3); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; padding-top: 1px; }
   .spec-row dd { margin: 0; color: var(--ink-2); }
 
   .saved-group-title {
-    column-span: all; font-family: var(--serif); font-size: 19px; font-weight: 600;
-    padding: 14px 0 14px; display: flex; align-items: baseline; gap: 10px;
+    column-span: all; font-family: var(--serif); font-size: 20px; font-weight: 500;
+    padding: 16px 0 16px; display: flex; align-items: baseline; gap: 10px;
   }
-  .saved-group-title .en { font-family: var(--mono); font-size: 11px; color: var(--ink-3); font-weight: 400; }
-  .empty-saved { column-span: all; padding: 56px 0; text-align: center; color: var(--ink-3); font-size: 14px; }
+  .saved-group-title .en { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--ink-3); font-weight: 400; }
+  .empty-saved { column-span: all; padding: 60px 0; text-align: center; color: var(--ink-3); font-size: 14px; }
 
   footer {
-    margin-top: 88px; padding-top: 22px; border-top: 1px solid var(--line);
+    margin-top: 96px; padding-top: 24px; border-top: 1px solid var(--line-soft);
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     font-size: 12px; color: var(--ink-3); line-height: 1.7;
   }
-  footer .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; }
+  footer .mono { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; }
 
   @media (prefers-reduced-motion: no-preference) {
-    .card { animation: rise 0.3s ease both; }
-    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .card { animation: rise 0.32s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   }
   @media (prefers-reduced-motion: reduce) {
-    .card, .card:hover { transform: none; transition: none; }
+    .card, .card:hover .mood { animation: none; transform: none; transition: none; }
   }
-  :focus-visible { outline: 2px solid rgba(242, 241, 237, 0.6); outline-offset: 2px; }
+  :focus-visible { outline: 2px solid rgba(240, 239, 235, 0.6); outline-offset: 2px; }
 </style>
 
 <div class="wrap">
   <header>
     <div class="brand">
-      <h1>풍사전</h1>
-      <span class="sub">PUNG·DICT — 디자인 키워드 번역기</span>
+      <h1>결<em>gyeol</em></h1>
     </div>
-    <span class="ver">PROTOTYPE v0.2 · 10 KEYWORDS</span>
+    <span class="ver">MOOD → PROMPT · PROTOTYPE v0.4</span>
   </header>
 
   <section class="search-band">
-    <p class="search-tagline">느낌은 있는데, 말이 안 나올 때.</p>
+    <p class="hero-line">느낌은 있는데,<br /><em>말이 안 나올 때.</em></p>
+    <p class="hero-sub">무드의 결을 사진 · 타이포 · 영상 프롬프트로 번역합니다</p>
     <div class="search-row">
       <input id="kw-input" list="kw-list" placeholder="우아한, 반짝반짝, 쓸쓸한…" autocomplete="off" />
       <datalist id="kw-list"></datalist>
-      <button id="kw-btn">번역 →</button>
+      <button id="kw-btn">번역</button>
     </div>
     <div class="chip-row" id="chip-row"></div>
     <div class="notfound" id="notfound" hidden></div>
@@ -256,10 +301,11 @@
     <nav class="tabs" id="tabs"></nav>
     <div class="cards" id="cards"></div>
   </section>
+  <input type="file" id="file-input" accept="image/*" hidden />
 
   <footer>
-    <span>프로토타입 사양 — 키워드 10종 × 3모달(사진·타이포·영상) 수동 큐레이션. AI 툴 궁합은 실무 체감 기준 초깃값. 실서비스에서는 LLM이 임의 키워드를 실시간 번역·확장.</span>
-    <span class="mono">MX STUDIO INTERNAL TOOL</span>
+    <span>프로토타입 — 키워드 10종 × 3모달 수동 큐레이션. 이미지는 업로드(자동 압축, 브라우저 저장) 또는 URL로 첨부. AI 툴 궁합은 실무 체감 기준 초깃값. 실서비스에서는 LLM이 임의 키워드를 실시간 번역·확장.</span>
+    <span class="mono">GYEOL — MX STUDIO INTERNAL TOOL</span>
   </footer>
 </div>
 
@@ -270,7 +316,7 @@ const MODES = {
   video: { label: "MOTION 영상", color: "var(--m-video)" },
 };
 
-/* 키워드별 무드 스와치 — 추후 생성 이미지로 교체될 자리 */
+/* 키워드별 무드 스와치 — 이미지 첨부 전 기본값 */
 const GRADS = {
   "우아한":   "linear-gradient(135deg,#E9E2D5 0%,#CFC5B4 55%,#8F8574 100%)",
   "몽환적인": "linear-gradient(135deg,#C9B8E8 0%,#F2C9DC 50%,#9DB8E8 100%)",
@@ -332,16 +378,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Elegant editorial portrait, soft directional window light from camera left, muted ivory and bone palette, silk fabric in gentle motion, shallow depth of field, medium-format rendering — Hasselblad 907X, 80mm f/1.9, ISO 100",
+        ko: "우아한 에디토리얼 인물 사진, 카메라 왼쪽에서 들어오는 부드러운 창가 확산광, 뮤트된 아이보리·본 팔레트, 살랑이는 실크 원단, 얕은 심도, 중형 카메라 질감 — 핫셀블라드 907X, 80mm f/1.9, ISO 100",
         tags: ["톤-아이보리", "조명-확산사이드", "심도-얕음", "무드-절제"],
         spec: [["카메라", "Hasselblad 907X (중형)"], ["렌즈", "80mm f/1.9"], ["조명", "북향 창 확산광"], ["톤", "저채도 웜 아이보리"]],
       },
       type: {
         prompt: "High-contrast Didone serif wordmark, hairline serifs, generous letter-spacing, lowercase-led setting, wide margins on off-white ground",
+        ko: "고대비 디돈 세리프 워드마크, 헤어라인 세리프, 넉넉한 자간, 소문자 중심 조판, 오프화이트 바탕의 넓은 여백",
         tags: ["계열-디돈세리프", "대비-극한", "자간-넓게", "여백-넉넉"],
         spec: [["분류", "디돈(Didone) 세리프"], ["참고 서체", "Didot, Canela, Noto Serif KR Light"], ["자간", "+2~4%"], ["웨이트", "Light–Regular"]],
       },
       video: {
         prompt: "Slow 24fps dolly-in on a single subject, long takes over 6 seconds, soft focus pulls, dissolve transitions, no handheld shake",
+        ko: "단일 피사체를 향한 느린 24fps 돌리 인, 6초 이상의 롱테이크, 부드러운 포커스 풀, 디졸브 전환, 핸드헬드 흔들림 없음",
         tags: ["무브-슬로우돌리", "컷-롱테이크", "전환-디졸브", "프레임-24fps"],
         spec: [["프레임", "24fps"], ["카메라 무브", "슬로우 돌리 인"], ["평균 컷 길이", "6초 이상"], ["전환", "디졸브"]],
       },
@@ -360,16 +409,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Dreamlike scene in low fog, strong backlight halation and bloom, tungsten glow on CineStill 800T, soft pastel haze, out-of-focus foreground layers",
+        ko: "낮게 깔린 안개 속 몽환적인 장면, 강한 역광의 할레이션과 블룸, 시네스틸 800T 특유의 텅스텐 글로우, 은은한 파스텔 헤이즈, 초점 나간 전경 레이어",
         tags: ["톤-파스텔헤이즈", "조명-역광", "필름-CineStill800T", "효과-할레이션"],
         spec: [["필름/룩", "CineStill 800T"], ["렌즈", "50mm f/1.2 최대 개방"], ["조명", "역광 + 포그"], ["효과", "블룸, 할레이션"]],
       },
       type: {
         prompt: "Soft low-contrast rounded sans, wide leading, letters slightly blurred at the edges as if seen through frosted glass",
+        ko: "부드럽고 대비 낮은 라운드 산스, 넓은 행간, 젖빛 유리 너머로 보이는 듯 가장자리가 살짝 번진 글자",
         tags: ["계열-라운드산스", "대비-낮음", "행간-넓게", "효과-프로스트블러"],
         spec: [["분류", "라운드 산스"], ["참고 서체", "Quicksand, 카페24 써라운드 에어"], ["행간", "180% 이상"], ["효과", "가장자리 소프트 블러"]],
       },
       video: {
         prompt: "Shot at 60fps conformed to 24, drifting handheld float, gaussian glow overlay, long overlapping dissolves, slow drifting particles",
+        ko: "60fps로 촬영해 24fps로 컨폼, 떠다니는 핸드헬드 플로팅, 가우시안 글로우 오버레이, 길게 겹치는 디졸브, 천천히 흩날리는 파티클",
         tags: ["속도-슬로모션", "무브-플로팅", "전환-오버랩디졸브", "효과-글로우"],
         spec: [["촬영", "60fps → 24fps 컨폼"], ["무브", "핸드헬드 플로팅"], ["전환", "2초 이상 오버랩"], ["효과", "가우시안 글로우"]],
       },
@@ -388,16 +440,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Intense direct-flash portrait, hard on-camera flash, crushed blacks and blown highlights, red and black palette, 24mm wide shot from below, aggressive framing",
+        ko: "강렬한 직광 플래시 인물 사진, 온카메라 하드 플래시, 뭉개진 블랙과 날아간 하이라이트, 레드·블랙 팔레트, 아래에서 올려 찍은 24mm 광각, 공격적인 프레이밍",
         tags: ["조명-직광플래시", "톤-레드블랙", "앵글-로우", "대비-극한"],
         spec: [["렌즈", "24mm 근접"], ["조명", "온카메라 다이렉트 플래시"], ["톤", "고대비 레드/블랙"], ["앵글", "로우앵글"]],
       },
       type: {
         prompt: "Ultra-black compressed grotesque, all caps, tracking tightened until letters almost collide, oversized headline breaking the grid",
+        ko: "울트라 블랙 컴프레스드 그로테스크, 올캡스, 글자가 부딪히기 직전까지 조인 자간, 그리드를 깨고 나가는 초대형 헤드라인",
         tags: ["계열-컴프레스드그로테스크", "웨이트-울트라블랙", "케이스-올캡스", "자간-타이트"],
         spec: [["분류", "컴프레스드 그로테스크"], ["참고 서체", "Druk, Anton, 검은고딕"], ["자간", "-2~-4%"], ["스케일", "그리드 브레이크"]],
       },
       video: {
         prompt: "Whip pans and hard cuts on impact frames, 12fps stutter inserts, strobe light hits, bass-synced cut rhythm under 1 second",
+        ko: "임팩트 프레임마다 휩팬과 하드컷, 12fps 스터터 인서트, 스트로브 라이트, 1초 미만의 베이스 싱크 컷 리듬",
         tags: ["컷-하드컷", "무브-휩팬", "속도-스터터", "리듬-비트싱크"],
         spec: [["평균 컷 길이", "1초 미만"], ["무브", "휩팬"], ["효과", "12fps 스터터, 스트로브"], ["편집", "비트 싱크"]],
       },
@@ -416,16 +471,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Cozy interior at dusk, single warm tungsten lamp, steam rising from a mug, soft film grain, 35mm f/1.4 at ISO 1600, honey-brown palette",
+        ko: "해질녘의 아늑한 실내, 따뜻한 텅스텐 램프 하나, 머그잔에서 피어오르는 김, 부드러운 필름 그레인, 35mm f/1.4 ISO 1600, 허니브라운 팔레트",
         tags: ["조명-텅스텐램프", "톤-허니브라운", "그레인-필름", "시간-해질녘"],
         spec: [["렌즈", "35mm f/1.4"], ["조명", "텅스텐 단일광"], ["톤", "웜 허니브라운"], ["감도", "ISO 1600 그레인"]],
       },
       type: {
         prompt: "Warm humanist serif with round terminals, generous leading, small comfortable text blocks like a well-set book page",
+        ko: "터미널이 둥근 따뜻한 휴머니스트 세리프, 넉넉한 행간, 잘 조판된 책 페이지 같은 아담한 글 덩어리",
         tags: ["계열-휴머니스트세리프", "터미널-라운드", "행간-넉넉", "판형-북스타일"],
         spec: [["분류", "휴머니스트 세리프"], ["참고 서체", "Freight Text, 리디바탕"], ["행간", "170%"], ["단폭", "좁게 (북 스타일)"]],
       },
       video: {
         prompt: "Locked-off tripod interior shots, warm amber LUT, slow 3-second crossfades, ambient room tone, nothing moves fast",
+        ko: "삼각대 고정 실내 숏, 웜 앰버 LUT, 3초의 느린 크로스페이드, 앰비언트 룸톤, 빠르게 움직이는 것은 아무것도 없음",
         tags: ["무브-픽스", "톤-앰버LUT", "전환-크로스페이드", "사운드-룸톤"],
         spec: [["무브", "픽스 (삼각대)"], ["LUT", "웜 앰버"], ["전환", "3초 크로스페이드"], ["사운드", "앰비언트 룸톤"]],
       },
@@ -444,16 +502,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Cold minimal still life on brushed steel, overcast softbox light, desaturated steel-blue palette, vast negative space, perfect symmetry",
+        ko: "브러시드 스틸 위 차가운 미니멀 정물, 흐린 날 광질의 소프트박스, 저채도 스틸블루 팔레트, 광활한 네거티브 스페이스, 완벽한 대칭",
         tags: ["톤-스틸블루", "조명-오버캐스트", "여백-네거티브스페이스", "구도-대칭"],
         spec: [["조명", "대형 소프트박스 (흐린 날 광질)"], ["톤", "저채도 스틸블루"], ["구도", "중앙 대칭"], ["배경", "브러시드 스틸"]],
       },
       type: {
         prompt: "Light-weight geometric sans, all-caps micro labels with extreme letter-spacing, thin hairline rules, clinical grid",
+        ko: "가는 웨이트의 지오메트릭 산스, 극단적 자간의 올캡스 마이크로 라벨, 얇은 헤어라인 괘선, 클리니컬한 그리드",
         tags: ["계열-지오메트릭산스", "웨이트-라이트", "자간-극한확장", "그리드-클리니컬"],
         spec: [["분류", "지오메트릭 산스"], ["참고 서체", "Futura Light, 스포카 한 산스 Thin"], ["자간", "+8~12%"], ["케이스", "올캡스 마이크로"]],
       },
       video: {
         prompt: "Locked-off symmetrical wide shots, desaturated teal grade, movements slowed to 80%, cuts only on stillness, faint cold hum",
+        ko: "고정된 대칭 와이드 숏, 채도를 뺀 틸 그레이드, 80%로 늦춘 움직임, 정적인 프레임에서만 컷, 희미하고 차가운 험 사운드",
         tags: ["구도-대칭와이드", "톤-틸그레이드", "속도-80%", "사운드-저음험"],
         spec: [["구도", "대칭 와이드"], ["그레이드", "디새추레이티드 틸"], ["속도", "80% 슬로우"], ["컷", "정적 프레임에서만"]],
       },
@@ -472,16 +533,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "A lone figure small in the frame, vast empty landscape at blue-hour dusk, 135mm compression, muted grey-blue palette, fine film grain",
+        ko: "화면 속 작게 놓인 외로운 인물, 블루아워의 텅 빈 광활한 풍경, 135mm 원근 압축, 뮤트된 그레이블루 팔레트, 고운 필름 그레인",
         tags: ["구도-원경고독", "시간-블루아워", "렌즈-135mm압축", "톤-그레이블루"],
         spec: [["렌즈", "135mm (원근 압축)"], ["시간", "블루아워"], ["구도", "피사체 화면의 5% 이하"], ["톤", "뮤트 그레이블루"]],
       },
       type: {
         prompt: "Narrow light serif, loose leading, short ragged-right lines, tiny text placed low on a mostly empty page",
+        ko: "폭 좁은 라이트 세리프, 느슨한 행간, 짧은 왼끝맞춤 행, 거의 빈 지면 하단에 놓인 아주 작은 텍스트",
         tags: ["계열-내로우세리프", "정렬-래그드라이트", "배치-하단소형", "여백-과잉"],
         spec: [["분류", "내로우 세리프 라이트"], ["정렬", "왼끝맞춤 래그드"], ["배치", "지면 하단 1/5"], ["여백", "80% 이상"]],
       },
       video: {
         prompt: "Single long static wide shot over 10 seconds, natural ambient sound only, no music, slow fade to black at the end",
+        ko: "10초가 넘는 단 하나의 정적인 와이드 롱테이크, 자연 앰비언트 사운드만, 음악 없음, 마지막은 느린 페이드 투 블랙",
         tags: ["컷-롱테이크10초", "무브-정적", "사운드-앰비언트온리", "전환-페이드투블랙"],
         spec: [["컷 길이", "10초 이상"], ["무브", "완전 정적"], ["사운드", "자연음만 (무음악)"], ["엔딩", "페이드 투 블랙"]],
       },
@@ -499,16 +563,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Macro shot of light catching faceted glass, starburst flares at f/16, glitter bokeh field behind, jewel-toned highlights on black",
+        ko: "각진 유리에 맺힌 빛의 매크로 숏, f/16 스타버스트 플레어, 뒤로 펼쳐진 글리터 보케 필드, 블랙 위의 주얼톤 하이라이트",
         tags: ["기법-매크로", "조리개-f16스타버스트", "보케-글리터", "톤-주얼톤"],
         spec: [["렌즈", "100mm 매크로"], ["조리개", "f/16 (스타버스트)"], ["배경", "글리터 보케"], ["톤", "블랙 + 주얼 하이라이트"]],
       },
       type: {
         prompt: "Chrome metallic display lettering, high-shine bevels, specular highlight sweeps, set on deep black ground",
+        ko: "크롬 메탈릭 디스플레이 레터링, 하이샤인 베벨, 스펙큘러 하이라이트 스윕, 딥 블랙 바탕",
         tags: ["질감-크롬메탈릭", "효과-스펙큘러", "배경-딥블랙", "계열-디스플레이"],
         spec: [["분류", "크롬 디스플레이 레터링"], ["질감", "메탈릭 베벨"], ["효과", "하이라이트 스윕"], ["배경", "딥 블랙"]],
       },
       video: {
         prompt: "120fps micro slow-motion of light glints, rack-focus bokeh pulls, anamorphic lens flares, fine particle overlays",
+        ko: "빛 글린트의 120fps 마이크로 슬로모션, 랙포커스 보케 풀, 아나모픽 렌즈 플레어, 미세한 파티클 오버레이",
         tags: ["속도-120fps", "효과-아나모픽플레어", "보케-랙포커스", "파티클-미세입자"],
         spec: [["촬영", "120fps"], ["렌즈", "아나모픽 (수평 플레어)"], ["포커스", "랙포커스 보케 풀"], ["오버레이", "파티클"]],
       },
@@ -526,16 +593,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "High-key close-up of plush wool texture, wrap-around diffused light with no hard shadows, pastel cream and baby-pink palette",
+        ko: "포근한 양모 텍스처의 하이키 클로즈업, 그림자 없이 감싸는 확산광, 파스텔 크림·베이비핑크 팔레트",
         tags: ["키-하이키", "조명-랩어라운드확산", "질감-울클로즈업", "톤-파스텔"],
         spec: [["키", "하이키 (밝은 배경)"], ["조명", "무영 확산광"], ["피사체", "텍스처 클로즈업"], ["톤", "크림 / 베이비핑크"]],
       },
       type: {
         prompt: "Inflated bubble lettering with soft rounded volume, gentle drop shadows, pillowy 3D surface, no sharp corners",
+        ko: "부드럽게 부푼 버블 레터링, 은은한 드롭 섀도, 베개처럼 푹신한 3D 표면, 날카로운 모서리 없음",
         tags: ["계열-버블레터링", "입체-소프트3D", "모서리-라운드", "그림자-소프트"],
         spec: [["분류", "인플레이티드(버블) 레터링"], ["입체", "소프트 볼륨"], ["모서리", "풀 라운드"], ["참고 서체", "Baloo, 쿠키런체"]],
       },
       video: {
         prompt: "Soft-body bounce animation, cushioned ease-in-out on every movement, slow squash and stretch, pastel gradient background",
+        ko: "소프트바디 바운스 애니메이션, 모든 움직임에 쿠션감 있는 ease-in-out, 느린 스쿼시&스트레치, 파스텔 그라디언트 배경",
         tags: ["모션-소프트바디", "이징-쿠션", "원칙-스쿼시스트레치", "배경-파스텔그라디언트"],
         spec: [["모션", "소프트바디 물리"], ["이징", "강한 ease-in-out"], ["원칙", "스쿼시 & 스트레치"], ["배경", "파스텔 그라디언트"]],
       },
@@ -553,16 +623,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Wistful scene on expired 35mm film, light leaks at frame edges, faded warm cast, out-of-focus foreground grass, a summer afternoon long ago",
+        ko: "기한 지난 35mm 필름로 찍은 아련한 장면, 프레임 가장자리의 라이트 리크, 빛바랜 웜 캐스트, 초점 나간 전경의 풀, 오래전 여름 오후",
         tags: ["필름-기한만료35mm", "효과-라이트리크", "톤-빛바랜웜", "전경-아웃포커스"],
         spec: [["필름", "기한 만료 35mm"], ["효과", "라이트 리크"], ["톤", "페이디드 웜"], ["전경", "아웃포커스 레이어"]],
       },
       type: {
         prompt: "Worn serif with letterpress impression, unevenly faded ink, slightly rotated baseline like an old ticket stub",
+        ko: "레터프레스 압인이 남은 낡은 세리프, 고르지 않게 바랜 잉크, 오래된 티켓처럼 살짝 돌아간 베이스라인",
         tags: ["질감-레터프레스", "잉크-페이디드", "베이스라인-미세회전", "무드-빈티지"],
         spec: [["분류", "올드스타일 세리프"], ["질감", "레터프레스 압인"], ["잉크", "불균일 페이드"], ["참고 서체", "Caslon, 마루부리"]],
       },
       video: {
         prompt: "Super-8 film texture with gate flicker, heavy vignette, warm faded grade, 18fps cadence, slow fades between memories",
+        ko: "게이트 플리커가 있는 슈퍼8 필름 텍스처, 진한 비네트, 따뜻하게 바랜 그레이드, 18fps 케이던스, 기억 사이를 잇는 느린 페이드",
         tags: ["텍스처-슈퍼8", "프레임-18fps", "효과-게이트플리커", "전환-슬로우페이드"],
         spec: [["룩", "슈퍼8 필름"], ["프레임", "18fps 케이던스"], ["효과", "플리커 + 비네트"], ["전환", "슬로우 페이드"]],
       },
@@ -580,16 +653,19 @@ const DICT = [
     modes: {
       photo: {
         prompt: "Hard noon sunlight, deep crisp shadows, fully saturated primary colors, polarizer-deep blue sky, sharp edge-to-edge focus at f/8",
+        ko: "정오의 강한 직사광, 깊고 선명한 그림자, 최대 채도의 원색, 편광필터로 깊어진 파란 하늘, f/8 구석까지 쨍한 초점",
         tags: ["조명-정오직사광", "채도-최대", "하늘-편광딥블루", "초점-팬포커스"],
         spec: [["조명", "정오 직사광"], ["필터", "편광 (PL)"], ["조리개", "f/8 팬포커스"], ["톤", "고채도 원색"]],
       },
       type: {
         prompt: "Solid black geometric sans, flat primary-color blocks, thick sticker outline, no gradients, poster-scale composition",
+        ko: "묵직한 블랙 지오메트릭 산스, 플랫한 원색 블록, 두꺼운 스티커 아웃라인, 그라디언트 없음, 포스터 스케일 구성",
         tags: ["계열-지오메트릭블랙", "컬러-원색플랫", "외곽-스티커아웃라인", "스케일-포스터"],
         spec: [["분류", "지오메트릭 산스 블랙"], ["컬러", "플랫 원색"], ["효과", "스티커 아웃라인"], ["참고 서체", "Futura Bold, G마켓 산스 Bold"]],
       },
       video: {
         prompt: "Hard cuts exactly on the beat, crash zooms, fully saturated grade, graphic color blocks as transitions, snappy 6-frame moves",
+        ko: "비트에 정확히 맞춘 하드컷, 크래시 줌, 최대 채도 그레이드, 그래픽 컬러 블록 전환, 6프레임의 스냅 모션",
         tags: ["컷-비트정박", "무브-크래시줌", "전환-컬러블록", "속도-스냅6f"],
         spec: [["편집", "비트 정박 컷"], ["무브", "크래시 줌"], ["전환", "그래픽 컬러 블록"], ["모션", "6프레임 스냅"]],
       },
@@ -601,10 +677,19 @@ const DICT = [
 let curIdx = 0;
 let curTab = "all"; // all | photo | type | video | saved
 let saved = [];
-try { saved = JSON.parse(localStorage.getItem("pungdict-saved") || "[]"); } catch (e) { saved = []; }
+try { saved = JSON.parse(localStorage.getItem("gyeol-saved") || "[]"); } catch (e) { saved = []; }
 
 function persistSaved() {
-  try { localStorage.setItem("pungdict-saved", JSON.stringify(saved)); } catch (e) {}
+  try { localStorage.setItem("gyeol-saved", JSON.stringify(saved)); } catch (e) {}
+}
+
+/* 카드별 첨부 이미지 — { "키워드:모달": {type:"url"|"data", src} } */
+let media = {};
+try { media = JSON.parse(localStorage.getItem("gyeol-media") || "{}"); } catch (e) { media = {}; }
+
+function persistMedia() {
+  try { localStorage.setItem("gyeol-media", JSON.stringify(media)); return true; }
+  catch (e) { return false; } // 용량 초과 등
 }
 
 const $ = (id) => document.getElementById(id);
@@ -659,6 +744,24 @@ function toolsHTML(d, modeKey) {
   );
 }
 
+function moodHTML(d, modeKey) {
+  const id = d.kw + ":" + modeKey;
+  const m = media[id];
+  return (
+    '<div class="mood" data-mid="' + esc(id) + '" style="background:' + (GRADS[d.kw] || "var(--surface)") + '">' +
+      (m ? '<img class="mood-img" src="' + esc(m.src) + '" alt="' + esc(d.kw) + ' 무드 이미지" onerror="this.remove()" />' : "") +
+      '<span class="mood-label">' + (m ? "MOOD" : "MOOD — 드래그 · 업로드 · URL로 이미지 추가") + "</span>" +
+      '<span class="mood-kw">' + esc(d.kw) + "</span>" +
+      '<div class="mood-controls">' +
+        '<button class="mbtn up-btn">업로드</button>' +
+        '<button class="mbtn url-btn">URL</button>' +
+        (m ? '<button class="mbtn rm-btn">제거</button>' : "") +
+      "</div>" +
+      '<div class="url-form" hidden><input type="text" placeholder="https:// 이미지 주소 붙여넣기" /><button class="mbtn apply-btn">적용</button></div>' +
+    "</div>"
+  );
+}
+
 function cardHTML(d, modeKey, idxInDict) {
   const m = MODES[modeKey];
   const md = d.modes[modeKey];
@@ -666,10 +769,7 @@ function cardHTML(d, modeKey, idxInDict) {
   const isSaved = saved.includes(id);
   return (
     '<article class="card">' +
-      '<div class="mood" style="background:' + (GRADS[d.kw] || "var(--surface-2)") + '">' +
-        '<span class="mood-label">MOOD — 생성 이미지 자리</span>' +
-        '<span class="mood-kw">' + esc(d.kw) + "</span>" +
-      "</div>" +
+      moodHTML(d, modeKey) +
       '<div class="card-body">' +
         '<div class="card-head">' +
           '<span class="mode-tag" style="color:' + m.color + '"><span class="sw" style="background:' + m.color + '"></span>' + esc(m.label) + "</span>" +
@@ -678,7 +778,9 @@ function cardHTML(d, modeKey, idxInDict) {
             '<button class="cbtn copy-btn" data-prompt="' + esc(md.prompt) + '">복사</button>' +
           "</div>" +
         "</div>" +
-        '<div class="prompt">' + esc(md.prompt) + "</div>" +
+        '<p class="prompt">' + esc(md.prompt) + "</p>" +
+        '<button class="ko-toggle">한국어 번역 ▾</button>' +
+        '<p class="prompt-ko" hidden>' + esc(md.ko) + "</p>" +
         '<div class="tags">' +
           '<span class="tag origin">#원본-' + esc(d.kw) + "</span>" +
           md.tags.map((t) => '<span class="tag">#' + esc(t) + "</span>").join("") +
@@ -691,6 +793,9 @@ function cardHTML(d, modeKey, idxInDict) {
     "</article>"
   );
 }
+
+/* ── 카드 인터랙션 ─────────────────── */
+let pendingMediaId = null;
 
 function bindCardButtons(container) {
   container.querySelectorAll(".copy-btn").forEach((b) => {
@@ -711,6 +816,78 @@ function bindCardButtons(container) {
       render();
     };
   });
+  container.querySelectorAll(".ko-toggle").forEach((b) => {
+    b.onclick = () => {
+      const ko = b.nextElementSibling;
+      ko.hidden = !ko.hidden;
+      b.textContent = ko.hidden ? "한국어 번역 ▾" : "한국어 번역 ▴";
+    };
+  });
+  container.querySelectorAll(".mood").forEach((mood) => {
+    const id = mood.dataset.mid;
+    const urlForm = mood.querySelector(".url-form");
+    const urlInput = urlForm.querySelector("input");
+
+    mood.querySelector(".up-btn").onclick = () => { pendingMediaId = id; $("file-input").click(); };
+    mood.querySelector(".url-btn").onclick = () => { urlForm.hidden = false; urlInput.focus(); };
+    const rm = mood.querySelector(".rm-btn");
+    if (rm) rm.onclick = () => { delete media[id]; persistMedia(); render(); };
+
+    const applyUrl = () => {
+      const u = urlInput.value.trim();
+      if (!u) { urlForm.hidden = true; return; }
+      media[id] = { type: "url", src: u };
+      persistMedia();
+      render();
+    };
+    urlForm.querySelector(".apply-btn").onclick = applyUrl;
+    urlInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") applyUrl();
+      if (e.key === "Escape") urlForm.hidden = true;
+    });
+
+    mood.addEventListener("dragover", (e) => { e.preventDefault(); mood.classList.add("dragover"); });
+    mood.addEventListener("dragleave", () => mood.classList.remove("dragover"));
+    mood.addEventListener("drop", (e) => {
+      e.preventDefault();
+      mood.classList.remove("dragover");
+      const f = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f && f.type.startsWith("image/")) attachFile(f, id);
+    });
+  });
+}
+
+$("file-input").addEventListener("change", (e) => {
+  const f = e.target.files && e.target.files[0];
+  if (f && pendingMediaId) attachFile(f, pendingMediaId);
+  e.target.value = "";
+});
+
+/* 파일 → 캔버스 리사이즈 → dataURL 저장 (localStorage 부담 최소화) */
+function attachFile(file, id) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 1000;
+      const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+      const cv = document.createElement("canvas");
+      cv.width = Math.round(img.width * scale);
+      cv.height = Math.round(img.height * scale);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      media[id] = { type: "data", src: cv.toDataURL("image/jpeg", 0.82) };
+      if (!persistMedia()) {
+        delete media[id];
+        const nf = $("notfound");
+        nf.hidden = false;
+        nf.textContent = "브라우저 저장 공간이 가득 찼습니다. 다른 카드의 이미지를 제거하거나 더 작은 이미지를 사용해 주세요.";
+        return;
+      }
+      render();
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
 }
 
 function fallbackCopy(text, done) {
