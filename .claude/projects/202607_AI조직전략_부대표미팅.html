@@ -5,45 +5,39 @@
 :root{
   --ink:#0A0A0A; --ink2:rgba(10,10,10,0.58); --ink3:rgba(10,10,10,0.30);
   --bg:#F7F6F3; --white:#FFFFFF; --line:rgba(10,10,10,0.10);
-  --orange:#FF6B35; --lav:#C5BBDD; --blue:#0044FF; --green:#0C7A43; --red:#E5484D; --R:14px;
+  --orange:#FF6B35; --lav:#C5BBDD; --blue:#0044FF; --R:14px;
   --sans:'Space Grotesk','Pretendard',sans-serif; --kr:'Pretendard','Space Grotesk',sans-serif; --mono:'Space Mono',monospace;
 }
 body{background:#E9E8E4;color:var(--ink);font-family:var(--kr);-webkit-font-smoothing:antialiased;line-height:1.6;}
 .wrap{max-width:1040px;margin:0 auto;background:var(--white);}
 .pg{padding:52px 60px;border-bottom:1px solid #DEDDD8;position:relative;}
 .pg.cream{background:var(--bg);} .pg.ink{background:var(--ink);color:var(--white);}
-.pg.sec1{border-top:6px solid var(--ink);} .pg.sec2{border-top:6px solid var(--orange);}
-.pg.thesis{border-top:6px solid var(--blue);}
+.pg.sec1{border-top:6px solid var(--ink);} .pg.sec2{border-top:6px solid var(--orange);} .pg.thesis{border-top:6px solid var(--blue);}
 .pn{position:absolute;top:22px;right:34px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink3);}
 .ink .pn{color:rgba(255,255,255,.28);}
 .lbl{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
 .secbadge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
-.secbadge.report{background:var(--ink);color:#fff;}
-.secbadge.opinion{background:var(--orange);color:#fff;}
-.secbadge.thesis{background:var(--blue);color:#fff;}
+.secbadge.report{background:var(--ink);color:#fff;} .secbadge.opinion{background:var(--orange);color:#fff;} .secbadge.thesis{background:var(--blue);color:#fff;}
 h1{font-family:var(--sans);font-size:42px;font-weight:700;line-height:1.1;letter-spacing:-.03em;}
 h2{font-family:var(--sans);font-size:27px;font-weight:700;line-height:1.15;letter-spacing:-.02em;}
 h3{font-size:17px;font-weight:700;margin-bottom:6px;}
 .sub{font-size:15px;color:var(--ink2);margin-top:12px;} .ink .sub{color:rgba(255,255,255,.66);}
-.frame{border-left:3px solid var(--orange);padding:18px 22px;background:rgba(255,107,53,.05);border-radius:0 var(--R) var(--R) 0;margin-top:22px;font-size:16.5px;font-weight:600;line-height:1.55;}
+.frame{border-left:3px solid var(--orange);padding:18px 22px;background:rgba(255,107,53,.05);border-radius:0 var(--R) var(--R) 0;margin-top:22px;font-size:16px;font-weight:600;line-height:1.55;}
 .ink .frame{background:rgba(255,255,255,.06);}
 .frame.blue{border-left-color:var(--blue);background:rgba(0,68,255,.05);}
 .mt{margin-top:26px;} .mt2{margin-top:38px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;} .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;} .g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
-.g5{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;} .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;} .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .c{padding:20px;border-radius:var(--R);background:var(--bg);border:1px solid var(--line);}
 .ink .c{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);}
 .ct{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px;}
 .ink .ct{color:rgba(255,255,255,.5);}
-.cv{font-family:var(--sans);font-size:32px;font-weight:700;line-height:1;color:var(--orange);letter-spacing:-.02em;}
 .cx{font-size:13px;color:var(--ink2);margin-top:8px;line-height:1.6;} .ink .cx{color:rgba(255,255,255,.62);}
 table{width:100%;border-collapse:collapse;margin-top:18px;font-size:13.5px;}
 th{text-align:left;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);padding:9px 11px;border-bottom:1.5px solid var(--ink);}
 td{padding:11px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
-td strong{font-weight:700;} .num{font-family:var(--mono);font-weight:700;color:var(--orange);white-space:nowrap;}
+.num{font-family:var(--mono);font-weight:700;color:var(--orange);white-space:nowrap;}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--ink);color:#fff;letter-spacing:.05em;}
-.pill.o{background:var(--orange);} .pill.l{background:var(--lav);color:var(--ink);} .pill.b{background:var(--blue);}
-.dash{border:none;border-top:1px dashed var(--ink3);margin:26px 0;}
+.pill.o{background:var(--orange);}
 ul.tight{margin:14px 0 0 0;padding-left:0;list-style:none;}
 ul.tight li{position:relative;padding-left:22px;margin-bottom:9px;font-size:14.5px;line-height:1.55;color:var(--ink2);}
 ul.tight li::before{content:'';position:absolute;left:2px;top:9px;width:6px;height:6px;background:var(--orange);border-radius:2px;}
@@ -61,271 +55,134 @@ ul.tight li strong{color:var(--ink);font-weight:700;} .ink ul.tight li{color:rgb
 <!-- COVER -->
 <div class="pg ink">
   <span class="pn">MAX실 · 2026.07.13</span>
-  <div class="lbl">부대표 미팅 · 60분</div>
+  <div class="lbl">부대표 미팅 · 60분 · 두 꼭지</div>
   <h1>AI 성과 리뷰 &<br>향후 조직 방향에 대한 의견</h1>
-  <div class="frame">지난 5개월간 개인 역량만으로 공수 <span style="color:var(--orange)">200~400% 절감</span>. 6월부터는 이걸 실이 쓰는 시스템으로 옮기기 시작했습니다. 오늘 전반부는 <b>성과를 있는 그대로 보고</b>드리고, 후반부는 <b>"결국 우리는 무엇을 파는 회사인가"</b>라는 포지셔닝 질문에서 출발해 제 의견을 나눕니다.</div>
+  <div class="frame">지난 5개월간 개인 역량만으로 공수 <span style="color:var(--orange)">200~400% 절감</span>. 후반부는 <b>"결국 우리는 무엇을 파는 회사인가"</b>에서 출발해 제 의견을 나눕니다.</div>
   <div class="g2 mt2">
-    <div class="c"><div class="secbadge report">주제 ① 성과 보고</div><h3 style="color:#fff">본인이 진행한 AI 성과 리뷰</h3><div class="cx">코웨이·배민·QQ Poker 대표사례 → 6월 올리브영·MAX실 OS</div></div>
-    <div class="c"><div class="secbadge opinion">주제 ② 제 의견</div><h3 style="color:#fff">AI 시대 조직에 대한 제안</h3><div class="cx">포지셔닝 → 업계 동향 → 프로세스·단가 재설계</div></div>
+    <div class="c"><div class="secbadge report">① 성과 보고</div><h3 style="color:#fff">본인이 진행한 AI 성과 리뷰</h3><div class="cx">코웨이·배민·QQ Poker → 6월 올리브영·MAX실 OS</div></div>
+    <div class="c"><div class="secbadge opinion">② 제 의견</div><h3 style="color:#fff">AI 시대 조직에 대한 제안</h3><div class="cx">포지셔닝 → 기획·디자인·영상 통합 유닛</div></div>
   </div>
 </div>
 
-<!-- ============ TOPIC 1 ============ -->
-
+<!-- ① 성과 -->
 <div class="pg sec1">
-  <span class="pn">01 / 주제①</span>
+  <span class="pn">01 / ①</span>
   <span class="secbadge report">성과 보고</span>
-  <div class="lbl">대표 사례 (~5월)</div>
+  <div class="lbl">대표 사례 (~5월) → 6월 시스템화</div>
   <h2>직무 경계를 깨고 공수 200~400% 절감</h2>
   <table>
-    <tr><th>사례</th><th>해결한 업무</th><th>AI 파이프라인</th><th>절감</th></tr>
-    <tr><td><strong>코웨이<br>안마의자</strong></td><td>7인치 터치 GUI 전략 100% + 시안 80%. 비전공 <strong>3D 해체·인체 맵핑</strong>까지 단독</td><td>NotebookLM → Claude → Midjourney·Higgsfield</td><td class="num">300%+</td></tr>
-    <tr><td><strong>배달의민족</strong></td><td>아이콘+카피+<strong>브랜드 영상</strong>까지 1인 100%</td><td>ChatGPT → Midjourney → CapCut</td><td class="num">400%+</td></tr>
-    <tr><td><strong>QQ Poker</strong></td><td>GUI 메인+서브안+<strong>3D 오브제 80%</strong>+제작가이드</td><td>ChatGPT → Midjourney</td><td class="num">200%+</td></tr>
+    <tr><th>사례</th><th>해결한 업무</th><th>절감</th></tr>
+    <tr><td><strong>코웨이</strong></td><td>7인치 터치 GUI 전략+시안. 비전공 3D 해체·인체 맵핑까지 단독</td><td class="num">300%+</td></tr>
+    <tr><td><strong>배달의민족</strong></td><td>아이콘+카피+브랜드 영상까지 1인 100%</td><td class="num">400%+</td></tr>
+    <tr><td><strong>QQ Poker</strong></td><td>GUI 메인+서브안+3D 오브제 80%</td><td class="num">200%+</td></tr>
   </table>
-  <ul class="tight mt"><li><strong>"TF 3~5인 → 디렉터 1인"</strong>이 반복 재현. 절감의 본질은 인건비가 아니라 <strong>제안 경쟁력</strong> — 완성형 3D/영상 아웃풋을 선제 제시해 경쟁 PT의 온도 차를 없앰.</li></ul>
-</div>
-
-<div class="pg sec1 cream">
-  <span class="pn">02 / 주제①</span>
-  <span class="secbadge report">성과 보고</span>
-  <div class="lbl">6월 — 개인기를 '시스템'으로 넓히기 시작</div>
-  <h2>올리브영 입찰 + MAX실 OS 구축</h2>
-  <div class="g2 mt">
-    <div class="c"><div class="ct">올리브영 색조 PB 입찰</div><h3>순발력 → 재현 가능한 프로세스</h3>
-      <ul class="tight"><li><strong>rfp-analyst 파이프라인</strong>으로 리스크 8건 선제 도출</li><li><strong>AI를 차별화 카드로 전략화</strong> — 발색컷은 컴플라이언스 금지선으로 구분해 신뢰 가점 설계</li></ul></div>
-    <div class="c"><div class="ct">MAX실 OS 구축</div><h3>개인 역량의 조직 자산화</h3>
-      <ul class="tight"><li><strong>에이전트 24종 / 6그룹</strong> + 자동화 트리거 맵 + 리스크 티어 0/1/2</li><li>노션·구글시트·견적 SoT 데이터 연결</li><li><strong>절대위임금지</strong> — 견적·계약·최종 OK는 항상 사람</li></ul></div>
+  <div class="g2 mt2">
+    <div class="c"><div class="ct">올리브영 (6월)</div><div class="cx">RFP 분석 에이전트로 리스크 8건 선제 도출, AI를 차별화 카드로 전략화</div></div>
+    <div class="c"><div class="ct">MAX실 OS (6월)</div><div class="cx">에이전트 24종·트리거 맵·견적 SoT. 절대위임금지(견적·계약·최종OK는 사람)</div></div>
   </div>
-  <div class="frame mt2">5개월 만에 <strong>"개인기 → 재현 가능한 시스템"</strong>으로 한 단계 넘어왔습니다. 이 흐름을 실 전체와 신규 인력(9→20)까지 어떻게 넓힐지가 다음 화두 — 여기서부터는 <strong>제 의견</strong>입니다.</div>
+  <div class="frame">5개월 만에 <strong>개인기 → 재현 가능한 시스템</strong>으로 넘어왔습니다. 이걸 실 전체·신규 인력(9→20)까지 넓히는 게 다음 화두 — 여기서부터 제 의견입니다.</div>
 </div>
 
-<!-- ============ TOPIC 2 ============ -->
-
+<!-- ② 포지셔닝 -->
 <div class="pg thesis">
-  <span class="pn">03 / 주제② · 뼈대</span>
-  <span class="secbadge thesis">포지셔닝부터</span>
+  <span class="pn">02 / ② · 뼈대</span>
+  <span class="secbadge thesis">포지셔닝</span>
   <div class="lbl">결국 우리는 무엇을 파는 회사인가</div>
-  <h2>기술 얘기 전에, 성과·시장 얘기부터</h2>
-  <div class="sub">지금부터 나올 액션들(Gatekeeper, 메모리, 패스트트랙, 단가)은 다 "기술·프로세스"처럼 들릴 수 있습니다. 근데 회사는 이익집단이니, <strong>이 기술로 어떤 성과·시너지를 낼지, 어떤 시장 포지셔닝으로 먹힐지</strong>부터 정리하고 싶습니다. 나머지는 전부 이걸 실행하는 방법입니다.</div>
+  <h2>기술이 아니라 성과·시장 얘기부터</h2>
+  <div class="sub">"AI를 잘 쓴다"는 방어가 안 됩니다 — 범용 템플릿 업체도 AI를 쓰고, 제일기획도 배너 자동화로 제작비 90%를 절감했습니다.</div>
+  <div class="frame blue">우리의 진짜 자산은 넷마블·코웨이·아모레퍼시픽·올리브영과 10년 넘게 쌓은 "이 브랜드는 이런 걸 좋아하고 이런 건 안 된다"는 맥락 데이터입니다. 문제는 이게 담당자 머릿속·개인 폴더에 흩어져 <strong>적재적소에 모이지 못하고 나열만 되는</strong> 상태라는 것.</div>
   <table class="mt">
-    <tr><th></th><th>지금 (암묵적)</th><th>앞으로 (제안)</th></tr>
-    <tr><td><strong>우리가 파는 것</strong></td><td>디자인 잘하고 AI도 쓰는 대행사</td><td><strong>고객사 브랜드 히스토리를 가장 깊게 보유한 AI 파트너</strong></td></tr>
-    <tr><td><strong>경쟁 상대</strong></td><td>다른 디자인 대행사들</td><td>범용 AI 템플릿 업체 — 애초에 싸우는 지점이 다름</td></tr>
-    <tr><td><strong>방어선</strong></td><td>사람의 숙련도</td><td><strong>데이터(고객별 맥락)</strong> — 아무도 복제 못 함</td></tr>
-    <tr><td><strong>성과 지표</strong></td><td>제작 건수·매출</td><td>+ <strong>고객 락인, 데이터 자산의 회사 가치화</strong></td></tr>
+    <tr><th></th><th>지금</th><th>앞으로</th></tr>
+    <tr><td>파는 것</td><td>디자인 잘하는 AI 대행사</td><td><strong>브랜드 히스토리를 가장 깊게 보유한 AI 파트너</strong></td></tr>
+    <tr><td>방어선</td><td>사람의 숙련도</td><td>데이터(고객별 맥락) — 복제 불가</td></tr>
   </table>
-  <div class="frame blue">우리의 진짜 자산은 넷마블·코웨이·아모레퍼시픽·올리브영과 10년 넘게 쌓은 "이 브랜드는 이런 걸 좋아하고 이런 건 절대 안 된다"는 맥락 데이터입니다. 문제는 이게 각 담당자 머릿속과 개인 폴더에 흩어져 <strong>적재적소에 모이지 못하고 나열만 되고 있다</strong>는 것 — 오늘 제안(디자인 메모리·워크벤치)은 이 흩어진 자산을 회사 데이터로 모으는 인프라 투자입니다.</div>
-  <div class="aside"><b>남편분이 물었던 "결국 MCP로 가야 한다"에 대한 제 답</b> — MCP는 그릇이고, 담을 내용물은 이 데이터 자산입니다. 데이터 없이 MCP부터 만들면 또 하나의 범용 AI 툴이 됩니다. 순서는 ① 지금 제안으로 데이터 축적 → ② 그다음 MCP화. 이 순서가 바뀌면 안 된다고 봅니다.</div>
+  <div class="aside"><b>남편분의 "결국 MCP로 가야 한다"에 대한 제 답</b> — MCP는 그릇, 데이터 자산이 내용물입니다. 데이터 없이 그릇부터 만들면 또 하나의 범용 툴이 됩니다. 순서는 데이터 축적 먼저, MCP는 그다음.</div>
 </div>
 
+<!-- ② 왜 지금 -->
 <div class="pg sec2">
-  <span class="pn">04 / 주제②</span>
+  <span class="pn">03 / ②</span>
   <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">계기 · 검증된 근거</div>
-  <h2>넷마블 사례 + 시장 데이터 검증 → 제 생각의 출발점</h2>
-  <div class="aside">① 7/10 넷마블 피드백 — "퀄리티·신뢰는 최상위, AI 항목만 타사 대비 낮음. AI를 안 보이게 씀 + TO가 쪼개져 느림 + 타사는 '키워드→2~3일 완성물'."</div>
-  <table class="mt">
-    <tr><th style="width:30%">구분</th><th>확인된 사례</th></tr>
-    <tr><td><strong>대형 대행사 실전 배포</strong></td><td><strong>제일기획 × 드랩</strong> 배너 자동화 '베리에이드' — 매체별 배너 AI 자동 생성, <strong class="num">건당 제작비 90%+ 절감</strong> (한국경제 보도)</td></tr>
-    <tr><td><strong>상세페이지 자동화 상용화</strong></td><td>제디터(가비아) 2026.6 "AI 상품상세 3.0" · 드랩아트 사진1장→HTML+GIF 자동 · 셀러캔버스 이미지→카피 자동</td></tr>
-    <tr><td><strong>템플릿을 상품으로 판매</strong></td><td>키위스냅 템플릿 2,000종 · 상세뚝딱 AI 템플릿 64종 — "프로젝트"가 아니라 "상품"으로 파는 구조</td></tr>
-    <tr><td><strong>해외 동일 방향</strong></td><td>PagePilot.ai(링크→10초 상품페이지) · Colgate·eBay·Newegg 등 기업 채택</td></tr>
-  </table>
-  <div class="frame">가장 무거운 신호는 <strong>제일기획 사례</strong> — 우리와 직접 경쟁하는 대형 대행사가 이미 배너 제작비 90%를 절감하는 자동화를 실전 배포했습니다. 넷마블 사례 + 이 검증된 시장 데이터를 겹쳐보면, <span style="color:var(--orange)">"에이전트를 더 만들자"가 아니라 프로세스·단가 구조 자체를 다시 설계해야 한다</span>는 결론에 도달했습니다.</div>
-  <div class="foot">출처: 한국경제(제일기획·베리에이드) · aieditor.gabia.com · draph.art · draph.ai · pagepilot.ai · netguru.com</div>
-</div>
-
-<div class="pg sec2">
-  <span class="pn">05 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">업계 동향 · 검증된 근거</div>
-  <h2>업계는 이미 조직·직무를 다시 짜는 중</h2>
-  <div class="g2 mt">
-    <div class="c"><div class="ct">글로벌 지주사</div><div class="cx"><strong>WPP·Publicis·Accenture Song</strong> 등 전부 재구축 중. Publicis는 AI플랫폼 'Marcel'로 9만명 연결. Accenture Song 2025 매출 <strong class="num">약 200억달러</strong> — 컨설팅사가 에이전시 영역 잠식</div></div>
-    <div class="c"><div class="ct">역설적 신호</div><div class="cx">2025 전세계 광고비 <strong class="num">+8.6%</strong>인데 지주사 매출은 <strong class="num">-1.2%</strong>. Forrester: 2026년 말까지 美 광고업 인력 <strong class="num">15% 감소</strong> 전망(반복 실행 직무 중심)</div></div>
-    <div class="c"><div class="ct">토스 (국내 실전)</div><div class="cx">2026.4.1 디자인 직무 <strong class="num">6개→2개</strong> 통합. "디자인을 만드는 사람"→"AI가 더 잘 만들게 원칙·시스템을 짜는 사람". AI Contest 현업 반응: "내가 1.5명 된 느낌"</div></div>
-    <div class="c"><div class="ct">"빌더 vs 리뷰어"</div><div class="cx">LangChain CEO — 빌더=AI에이전트로 아이디어→배포를 혼자 끄는 사람, 리뷰어=시스템적 검토자. EPD 조직이 이 두 축으로 재편</div></div>
-  </div>
-  <div class="frame">Fast Company "Frankenjobs" (Designer Fund·Foundation Capital, 60개국 900+명 서베이, Stripe·Framer·Notion·Anthropic 등 참여) — <strong>Design Engineer, AI Experience Designer, Computational Designer, Prompt Designer</strong> 등 하이브리드 직무가 이미 채용 중. AI스킬 요구 공고 2023 대비 <span style="color:var(--orange)">3배</span>, AI 능숙 전제 역할군 2년새 <span style="color:var(--orange)">100만→700만(7배)</span>.</div>
-  <div class="foot">출처: storyboard18.com · adage.com · digiday.com · bostoninstituteofanalytics.org · toss.tech · digitaltoday.co.kr · fastcompany.com</div>
-</div>
-
-<div class="pg sec2 cream">
-  <span class="pn">06 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">직무 재정의</div>
-  <h2>우리가 재정의할 디자이너의 역할</h2>
-  <table class="mt">
-    <tr><th>역할</th><th>업계 개념</th><th>MAX실 적용</th></tr>
-    <tr><td><span class="pill o">빌더</span></td><td>AI 에이전트로 아이디어→배포를 혼자 진행</td><td><strong>신규·주니어</strong> — 패스트트랙 실무, AI 파이프라인 직접 운용</td></tr>
-    <tr><td><span class="pill">리뷰어/오케스트레이터</span></td><td>시스템적 사고로 복잡한 것을 검토·설계</td><td><strong>시니어·파트장</strong> — Gatekeeper 운영, 정교트랙 리드+품질기준 설계</td></tr>
-    <tr><td><span class="pill l">디렉터</span></td><td>관점·의미·방향을 설계</td><td><strong>실장/리드</strong> — 클라이언트 관점 정의, 최종 판단</td></tr>
-  </table>
-  <div class="frame">지금 우리 조직도(VM/VX 기능 분리)는 <strong>"실행자 중심"</strong> 설계인데, 업계는 <strong style="color:var(--orange)">"판단자 중심"</strong>으로 넘어가고 있습니다. 이 구조는 액션4(가드레일)와 그대로 연결되고, <strong>신규 채용 JD도 이 프레임으로 다시 써야 한다</strong>고 봅니다 — "OO 디자이너"가 아니라 "빌더/리뷰어"로 공고를 내는 회사들이 이미 있습니다.</div>
-</div>
-
-<div class="pg thesis">
-  <span class="pn">07 / 주제②</span>
-  <span class="secbadge thesis">리더십 관점</span>
-  <div class="lbl">인재를 어떻게 키울 것인가</div>
-  <h2>역할은 라벨이 아니라 성장 경로입니다</h2>
-  <div class="sub">빌더 → 리뷰어 → 디렉터는 채용 시점에 고정되는 라벨이 아니라, 신입이 AI 피드백 루프(액션1)를 거치며 판단력을 기르고 기획까지 넘나들게 되는 <strong>커리어 패스</strong>입니다.</div>
-  <div class="frame blue">중요한 건 이 인재상이 <strong>"기획과 디자인의 경계를 넘나드는 사람"</strong>이라는 것 — AI가 실행을 도울수록 기획적 판단력·비즈니스 감각이 더 중요해집니다. <strong>그리고 저부터 그런 사람이어야 한다고 생각합니다.</strong> 주제①의 성과(코웨이·배민·QQ Poker)가 이미 이 인재상의 첫 사례입니다.</div>
-  <ul class="tight mt2">
-    <li><strong>성장 경로 명문화</strong> — 각 단계 필요 역량·통과 기준 정의(액션4와 연결)</li>
-    <li><strong>AI 스터디를 육성 장치로</strong> — 목요일 스터디가 Gatekeeper 피드백 루프를 통한 실습장이 되도록</li>
-    <li><strong>채용 기준 갱신</strong> — 툴 숙련도보다 "기획-디자인 경계를 넘나드는 잠재력"</li>
-    <li><strong>리더 스스로의 투자</strong> — 저도 계속 성장하려면 실무에만 매몰되지 않을 학습·실험 시간이 필요합니다 (부대표님께 드리는 부탁)</li>
-  </ul>
-</div>
-
-<div class="pg sec2">
-  <span class="pn">08 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">예측이 아니라 '대비'</div>
-  <h2>확신이 아니라 이 이유로 제안합니다</h2>
-  <div class="sub">AI가 시장을 정확히 어떻게 바꿀지는 저도 예측할 수 없습니다. 그래서 오늘 제안은 "이렇게 될 것"이 아니라 <strong>"어떻게 흘러가든 손해 없는 것"</strong> — 무후회(no-regret) 옵션 위주로 골랐습니다.</div>
-  <table class="mt">
-    <tr><th>시나리오</th><th>자동화가...</th><th>오늘 제안의 위치</th></tr>
-    <tr><td><span class="pill">보수적</span></td><td>예상보다 느리게 확산</td><td>정교트랙이 매출 대부분, 패스트트랙은 소규모 실험 — 손해 없음</td></tr>
-    <tr><td><span class="pill o">기본(현재 추세)</span></td><td>지금 속도로 꾸준히 확산</td><td>패스트트랙·정교트랙 이원화 + 각색 레이어가 정확히 맞아떨어짐</td></tr>
-    <tr><td><span class="pill l">공격적</span></td><td>넷마블·제일기획처럼 급속 상용화</td><td>이미 만든 구조(빌더/리뷰어/디렉터, 각색 방어선) 덕분에 선점 우위</td></tr>
-  </table>
-  <div class="frame">어느 시나리오든 유효한 것: <strong>① 디자인 메모리 ② 빌더·리뷰어·디렉터 역할 구조 ③ "각색"을 파는 포지셔닝.</strong> 반대로 특정 AI 벤더 전속, 대규모 선제 인력 재편처럼 <strong>베팅에 가까운 건 오늘 제안에 넣지 않았습니다.</strong></div>
-</div>
-
-<div class="pg sec2 cream">
-  <span class="pn">09 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">회사 안의 신호 · 오늘의 갈림길</div>
-  <h2>우리 특허가 보여주는 것 + 효율화냐 제품화냐</h2>
-  <div class="aside">최근(약 4주 전) 회사가 낸 특허 — <strong>"PSD 콘텐츠 원본 기반 자산 자동 생성 장치 및 방법."</strong> PSD 레이어를 데이터 단위로 분석해 다양한 규격 자산을 자동 생성하고, 색감·스타일·무드를 메타데이터로 추출해 브랜드 톤을 유지한 채 AI가 스스로 버전을 업그레이드하는 기술. 오늘 제 제안(3페이지 포지셔닝, 브랜드 각색, 디자인 메모리)이 <strong>회사 R&D 방향과 이미 정합된다</strong>는 뜻입니다. <span style="font-size:11px;color:var(--ink3)">(⚠ 사내 대화 중 나온 관찰 — 공식 자료 재확인 필요)</span></div>
-  <table class="mt">
-    <tr><th>모델</th><th>내용</th><th>우리 위치</th></tr>
-    <tr><td><span class="pill o">A. 효율화</span></td><td>지금 하는 일을 AI로 빠르고 싸게 — 사람이 중심, AI는 레버리지</td><td>이미 착수(오늘 제안 기본선)</td></tr>
-    <tr><td><span class="pill">B. 제품화</span></td><td>고객사 전담 1명만 배정, 산출은 고객이 셀프서브 — 우리 서비스를 MCP처럼 소비</td><td>더 먼 지향점, 아직 요원</td></tr>
-  </table>
-  <div class="frame">제 잠정적인 입장은 <strong>A 먼저</strong>입니다 — 데이터 자산 없이 B(MCP화)로 바로 가면 우리도 범용 템플릿 업체와 다를 게 없어집니다. A를 다지며 쌓는 데이터가 B를 방어 가능하게 만드는 전제조건입니다. 오늘 결론을 내자는 게 아니라 <span style="color:var(--orange)">화두로 열어두고 싶습니다.</span></div>
-</div>
-
-<div class="pg sec2">
-  <span class="pn">10 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">참고 모델</div>
-  <h2>리트머스의 'AIOS(AI Operating System)'</h2>
-  <div class="g2 mt">
-    <div class="c"><div class="ct">컨설턴트화</div><div class="cx">세일즈·PM·디자이너 경계 붕괴, 모두가 AI로 메타 관점 솔루션 제안 — <strong>생산성 3배</strong></div></div>
-    <div class="c"><div class="ct">넥서스(가드레일)</div><div class="cx">롤별 정보 범위 제한 + 격리 프로필·API 토큰으로 보안·정확도 동시 확보</div></div>
-    <div class="c"><div class="ct">워크벤치+메모리</div><div class="cx">미팅 로그·협의 내용을 맥락으로 저장, 에이전트가 검색·참조</div></div>
-    <div class="c"><div class="ct">파운드리</div><div class="cx">대량 티켓 처리 + 결과물 레이팅·피드백으로 공동 고도화</div></div>
-  </div>
-  <div class="sub">우리 BBD 철학, AI 스터디 그룹, Design Gatekeeper 실험과 결합하면 한 단계 격상시킬 수 있다고 봅니다.</div>
-</div>
-
-<div class="pg sec2 cream">
-  <span class="pn">11 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">제안 액션 4가지 — 조직 인프라</div>
-  <h2>Gatekeeper 공용화 · 메모리 · 세일즈 시각화 · 가드레일</h2>
-  <div class="g2 mt">
-    <div class="c"><div class="ct" style="color:var(--orange)">액션 1</div><h3>Design Gatekeeper 공용화</h3><div class="cx">BBD 가이드라인(밀러·피츠 법칙) 중앙 주입 + Good/Bad 피드백 루프 → 매주 목요일 스터디에서 공동 튜닝. <strong>→ 검수 로그가 데이터 자산의 첫 벽돌.</strong></div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">액션 2</div><h3>프로젝트 '디자인 메모리'</h3><div class="cx">미팅·협의 중 정책 변경을 시멘틱 요약으로 적재 → 프롬프트·초안 시 MCP로 호출. <strong>→ 3페이지 포지셔닝의 핵심 인프라.</strong></div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">액션 3</div><h3>제안·세일즈 BBD 시각화</h3><div class="cx">인바운드 리서치 팩 자동 생성 + 질의서 자동생성 + AI 와이어프레임 데모 — 수주율 직결</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">액션 4</div><h3>역할별 가드레일+온보딩</h3><div class="cx">신규=조회·생성 / 시니어=최종승인. "워크벤치에서 물어보며 작업" — 증원 직결</div></div>
-  </div>
-</div>
-
-<div class="pg sec2">
-  <span class="pn">12 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">프로세스 재설계</div>
-  <h2>고객 니즈에 맞춰 프로세스를 고를 수 있게</h2>
-  <div class="code">TO-01 UI/UX: VM시니어 80% + VM주니어 60% + VX시니어 40% + 실장 20%
-TO-02 모션/영상: VM시니어 100% + VM주니어 80% + 실장 10%
-→ 기획·디자인·영상을 직군별로 쪼개 순차 진행하는 구조. 반복 소재까지
-   매번 같은 속도로 도는 게 문제라고 봅니다.</div>
-  <table class="mt2">
-    <tr><th>트랙</th><th>대상</th><th>처리 방식</th></tr>
-    <tr><td><span class="pill o">패스트트랙(TO-06 제안)</span></td><td>반복 배너·베리에이션·시즌 소재</td><td>창구+PM 1명 즉시 라우팅, SB 생략 가능, 당일~2일 출고 + 리뷰어 각색 검수</td></tr>
-    <tr><td><span class="pill">정교트랙(기존 유지)</span></td><td>브랜드 아이덴티티·하이엔드 캠페인</td><td>기존 순차 TF 방식 — 우리 강점(퀄리티)을 파는 자리</td></tr>
-  </table>
-  <div class="aside"><b>작동 시나리오</b> — ① 클라이언트 전화 요청(예: 이벤트 페이지) → 통화 녹음 업로드 ② AI가 자동 분류 + 유사사례·레퍼런스 정리 + 초안 방향까지 잡아 담당자 자동 배정 ③ PM이 미팅 마치고 오면 담당 디자이너는 이미 착수 상태(구두설명 불필요) ④ AI가 컨셉 초안 5~6개 → 사람이 선택·디벨롭(AI 80%+사람 마무리 20%). 단, 회의·통화 녹음 습관과 협업툴의 MCP/API 연동이 전제조건입니다.</div>
-</div>
-
-<div class="pg sec2 cream">
-  <span class="pn">13 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">단가 경쟁력 재설계</div>
-  <h2>패스트트랙은 새 상품, 정교트랙 단가는 그대로 방어</h2>
-  <ul class="tight mt">
-    <li><strong>패스트트랙은 건단가로</strong> — 결과물 단위 상품화, 시간당 단가와 분리</li>
-    <li><strong>등급에 속도(SLA) 축 추가</strong> — 관계뿐 아니라 속도로도 상위 등급을 정당화</li>
-    <li><strong>반복 물량 고객엔 구독형 옵션</strong> — 예측 가능한 매출 구조</li>
-    <li><strong>정교트랙 단가는 그대로 방어</strong> — 패스트트랙 저가 경쟁에 전체 단가가 끌려가지 않도록 두 상품을 분리</li>
-  </ul>
-  <div class="aside">올리브영 입찰에서 이미 겪었듯 최저단가 준용 구조가 들어오면 하한선을 미리 정해두지 않으면 끌려갑니다. 패스트트랙 상품화가 이런 협상의 방어선이 될 수 있다고 봅니다.</div>
-</div>
-
-<div class="pg sec2">
-  <span class="pn">14 / 주제②</span>
-  <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">확장 기회 · 조직 함의</div>
-  <h2>일반 업계 확장 + 9→20 증원</h2>
+  <div class="lbl">왜 지금인가 — 신호 세 가지</div>
+  <h2>넷마블 · 업계 재편 · 회사 안의 신호</h2>
   <div class="g3 mt">
-    <div class="c"><div class="ct">올리브영</div><div class="cx">시즌 물량전 → AI 배경 최적. 제품 왜곡 금지+표시광고법</div></div>
-    <div class="c"><div class="ct">현대</div><div class="cx">로케이션 AI 대체(촬영비 절감). 차량 형상 왜곡 절대금지</div></div>
-    <div class="c"><div class="ct">코웨이</div><div class="cx">라이프스타일 AI 확장. 제품 정확성+모델 초상권</div></div>
+    <div class="c"><div class="ct">넷마블 (7/10)</div><div class="cx">퀄리티 최상위, AI 항목만 낮음 — AI를 안 보이게 씀 + TO 분절. 타사는 "키워드→2~3일"</div></div>
+    <div class="c"><div class="ct">업계 재편</div><div class="cx">토스 디자인 직무 6→2 통합. WPP·Publicis 재구축. Forrester: 美 광고업 인력 <strong class="num">15%↓</strong> 전망</div></div>
+    <div class="c"><div class="ct">회사 안의 신호</div><div class="cx">4주 전 특허(PSD 자산 자동생성, 브랜드 톤 유지) — 오늘 제안과 R&D 방향 일치 <span style="font-size:10px">(재확인 필요)</span></div></div>
   </div>
-  <ul class="tight mt2">
-    <li><strong>패스트트랙 전담 라인이 증원의 형태</strong> — 신규 인력을 기존 TF보다 패스트트랙에 우선 배치, 온보딩 즉시 실전 투입</li>
-    <li><strong>롤 재정의</strong> — 세일즈/PM/디자이너 → AI 레버리지 컨설턴트</li>
-    <li><strong>거버넌스는 강화</strong> — 절대위임금지 라인 유지 + 롤별 데이터 격리</li>
-    <li><strong>매출 연결</strong> — 패스트트랙(볼륨) + 정교트랙(프리미엄) 두 상품으로 다각화</li>
-  </ul>
+  <div class="frame">결론은 하나 — 에이전트를 더 만드는 게 아니라, <span style="color:var(--orange)">조직 구조·프로세스·단가를 다시 설계</span>해야 합니다.</div>
+</div>
+
+<!-- ② 핵심제안: 통합유닛 -->
+<div class="pg thesis">
+  <span class="pn">04 / ② · 핵심</span>
+  <span class="secbadge thesis">핵심 제안</span>
+  <div class="lbl">기획·디자인·영상을 하나의 유닛으로</div>
+  <h2>TO 분절 구조를 통합 유닛으로</h2>
+  <div class="sub">지금 TO 구조(VM/VX/실장 %분리, 순차 진행)가 넷마블이 지적한 "분절"입니다. 기획·디자인·영상이 하나의 유닛으로 묶여야 합니다.</div>
+  <table class="mt">
+    <tr><th>트랙</th><th>대상</th><th>처리</th></tr>
+    <tr><td><span class="pill o">패스트</span></td><td>반복 배너·베리에이션</td><td>창구+PM 즉시 라우팅, 당일~2일 출고</td></tr>
+    <tr><td><span class="pill">정교</span></td><td>브랜드ID·하이엔드</td><td>기획-디자인-영상 붙어서 순차 — 퀄리티를 파는 자리</td></tr>
+  </table>
+  <div class="aside"><b>작동 예시</b> — 전화 요청→녹음 업로드→AI 자동분류+레퍼런스+초안 방향→담당자 자동 배정. PM이 미팅 마치고 오면 이미 착수 상태. AI 초안 5~6개→사람이 선택·디벨롭(AI 80%+사람 20%).</div>
 </div>
 
 <div class="pg sec2 cream">
-  <span class="pn">15 / 주제②</span>
+  <span class="pn">05 / ②</span>
   <span class="secbadge opinion">제 의견</span>
-  <div class="lbl">실행 로드맵</div>
-  <h2>0~30일 · 30~60일 · 60~90일</h2>
-  <div class="mt">
-    <div class="step"><div class="no">01</div><div><h3>0~30일</h3><div class="cx" style="color:var(--ink2)">액션 1(Gatekeeper 공용화, 이번 주 목요일 착수) · TO-06 패스트트랙 초안 · AI 보이게 태깅 시행 · <strong>협업툴 MCP/API 지원 점검</strong>(전제조건)</div></div></div>
-    <div class="step"><div class="no">02</div><div><h3>30~60일</h3><div class="cx" style="color:var(--ink2)">액션 2(디자인 메모리) 진행 프로젝트 1건 적용·검증 · 패스트트랙 건단가 초안 · 액션 4 롤 권한 초안</div></div></div>
-    <div class="step" style="border-bottom:none"><div class="no">03</div><div><h3>60~90일</h3><div class="cx" style="color:var(--ink2)">액션 3(BBD 세일즈 시각화) 신규 인바운드 1건 실전 · 일반업계 데모 1건 · 증원 온보딩 시스템 적용</div></div></div>
+  <div class="lbl">유닛을 지탱하는 것</div>
+  <h2>성장 경로 + 인프라 + 단가</h2>
+  <div class="g3 mt">
+    <div class="c"><div class="ct">빌더</div><div class="cx">신입 — AI로 실행. 패스트트랙 실무</div></div>
+    <div class="c"><div class="ct">리뷰어</div><div class="cx">시니어 — 브랜드 각색 검수, Gatekeeper 운영</div></div>
+    <div class="c"><div class="ct">디렉터</div><div class="cx">저 — 방향·최종 판단. 기획+디자인 경계를 넘나드는 인재상, 저부터 그런 사람이어야 합니다</div></div>
+  </div>
+  <ul class="tight mt2">
+    <li><strong>Design Gatekeeper 공용화</strong> — BBD 가이드라인 + 피드백 루프(목요일 스터디). 검수 로그가 데이터 자산의 첫 벽돌</li>
+    <li><strong>디자인 메모리</strong> — 정책 변경을 시멘틱 요약으로 적재 + AI-사람 경계 기록</li>
+    <li><strong>단가 재설계</strong> — 패스트트랙은 건단가+각색 프리미엄, 정교트랙 단가는 그대로 방어(두 상품 분리가 핵심)</li>
+  </ul>
+</div>
+
+<!-- ② 대비 + 로드맵 + 역질문 -->
+<div class="pg sec2">
+  <span class="pn">06 / ②</span>
+  <span class="secbadge opinion">제 의견</span>
+  <div class="lbl">예측이 아니라 대비 · 로드맵</div>
+  <h2>어떻게 흘러가든 손해 없는 설계</h2>
+  <div class="sub">AI가 시장을 어떻게 바꿀지 저도 예측할 수 없습니다. 느리게 확산돼도 정교트랙이 매출을 담당하고, 지금 속도면 두 트랙이 맞고, 빨라져도 이미 준비된 구조라 유리합니다. 효율화(지금 제안)가 먼저, 제품화(MCP)는 그다음이라는 게 제 입장입니다.</div>
+  <div class="mt2">
+    <div class="step"><div class="no">01</div><div><h3>0~30일</h3><div class="cx" style="color:var(--ink2)">Gatekeeper 공용화 착수 · 패스트트랙 초안 · AI 보이게 태깅 · 협업툴 MCP 지원 점검</div></div></div>
+    <div class="step"><div class="no">02</div><div><h3>30~60일</h3><div class="cx" style="color:var(--ink2)">디자인 메모리 실전 적용·검증 · 건단가 초안 · 역할별 권한 초안</div></div></div>
+    <div class="step" style="border-bottom:none"><div class="no">03</div><div><h3>60~90일</h3><div class="cx" style="color:var(--ink2)">세일즈 시각화 실전 · 일반업계 데모 · 증원 온보딩에 유닛 구조 적용</div></div></div>
   </div>
 </div>
 
 <div class="pg thesis">
-  <span class="pn">16 / 주제② · 역질문</span>
+  <span class="pn">07 / ② · 역질문</span>
   <span class="secbadge thesis">제가 여쭤보고 싶은 것</span>
   <div class="lbl">기술이 아니라 조직·권한의 문제</div>
   <h2>제가 계속 고도화해도, 조직이 안 바뀌면 소용없습니다</h2>
-  <div class="sub">그래서 오늘은 제안뿐 아니라 몇 가지 여쭤보고 싶습니다 — 이 답에 따라 제가 다음에 집중할 우선순위가 달라집니다.</div>
   <ul class="tight mt">
-    <li><strong>① 이 변화를 실행할 권한은 어디에 있나요?</strong> — TO 통합·패스트트랙은 MAX실 혼자 결정할 범위를 넘어섭니다. 영업·계약·타 실과 얽히는데 오너십이 누구에게 있나요.</li>
-    <li><strong>② 회사가 원하는 성과가 정확히 뭔가요?</strong> — 비용 절감 / 매출 성장 / 상장 밸류에이션 스토리. 이 셋은 서로 다른 우선순위를 만듭니다.</li>
-    <li><strong>③ MAX실만 바뀌면 되나요, 전사 프로세스여야 하나요?</strong> — 저희만 바뀌면 병목이 다른 실·영업·계약 단계로 옮겨갈 뿐입니다.</li>
-    <li><strong>④ 회사의 기존 R&D(PSD 특허 등)와 저희 시도는 어떻게 연결되나요?</strong> — 중복 투자인지, 저희가 실전 테스트베드가 돼야 하는지.</li>
-    <li><strong>⑤ 조직 차원에서 뭐가 먼저 바뀌어야 할까요?</strong> — 오늘 가장 답을 듣고 싶은 질문입니다.</li>
+    <li><strong>①</strong> 이 유닛 구조를 실행할 권한은 어디에 있나요? — 영업·계약과도 얽힙니다</li>
+    <li><strong>②</strong> 회사가 원하는 성과가 정확히 뭔가요? — 비용절감/매출성장/밸류에이션, 셋은 다른 우선순위</li>
+    <li><strong>③</strong> MAX실만 바뀌면 되나요, 전사 프로세스여야 하나요?</li>
+    <li><strong>④</strong> 조직 차원에서 뭐가 먼저 바뀌어야 할까요? — 오늘 가장 답을 듣고 싶은 질문</li>
   </ul>
-  <div class="frame blue">방어적으로 던지는 질문이 아닙니다. <strong>제가 앞으로 뭘 우선순위에 둘지 정하기 위해</strong> 필요합니다. 답을 못 받아도 괜찮지만, 화두로는 반드시 남기고 싶습니다.</div>
+  <div class="frame blue">방어적 질문이 아닙니다. 제가 앞으로 뭘 우선순위에 둘지 정하기 위해 필요합니다.</div>
 </div>
 
 <!-- CLOSE -->
 <div class="pg ink">
-  <span class="pn">17 / 합의</span>
+  <span class="pn">08 / 합의</span>
   <div class="lbl">미팅 종료 시 얻어야 할 것</div>
-  <h2 style="color:#fff">승인·공감·답변 7건 확정</h2>
-  <div class="g5 mt2">
+  <h2 style="color:#fff">4가지</h2>
+  <div class="g4 mt2">
     <div class="c"><div class="ct" style="color:var(--blue)">공감 ①</div><h3 style="color:#fff">포지셔닝</h3><div class="cx">브랜드 히스토리 AI 파트너</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">승인 ②</div><h3 style="color:#fff">액션 1 착수</h3><div class="cx">목요일 스터디 · Gatekeeper 공용화</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">승인 ③</div><h3 style="color:#fff">패스트트랙 검토 착수</h3><div class="cx">TO-06 + 건단가</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">공감 ④</div><h3 style="color:#fff">역할 재정의</h3><div class="cx">JD·승진 기준 반영</div></div>
-    <div class="c"><div class="ct" style="color:var(--orange)">화두 ⑤</div><h3 style="color:#fff">효율화 먼저, 제품화는 그다음</h3><div class="cx">회사 지향점 공유</div></div>
-    <div class="c"><div class="ct" style="color:var(--blue)">답변 ⑥</div><h3 style="color:#fff">역질문 5개</h3><div class="cx">권한·성과정의·범위·R&D연결</div></div>
-    <div class="c"><div class="ct" style="color:var(--blue)">공감 ⑦</div><h3 style="color:#fff">인재 육성 경로</h3><div class="cx">빌더→리뷰어→디렉터 + 제 학습시간</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">승인 ②</div><h3 style="color:#fff">통합 유닛</h3><div class="cx">Gatekeeper 착수 + 패스트트랙 검토</div></div>
+    <div class="c"><div class="ct" style="color:var(--orange)">공감 ③</div><h3 style="color:#fff">성장 경로</h3><div class="cx">빌더→리뷰어→디렉터, JD 반영</div></div>
+    <div class="c"><div class="ct" style="color:var(--blue)">답변 ④</div><h3 style="color:#fff">역질문 4개</h3><div class="cx">권한·성과정의·범위·우선순위</div></div>
   </div>
   <div class="foot">MAX실 · 성과 보고 + 조직 방향 의견 · 2026.07.13 부대표 미팅</div>
 </div>
