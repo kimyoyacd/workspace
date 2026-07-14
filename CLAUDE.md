@@ -34,6 +34,9 @@
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
 │   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+├── data/          # 개인 데이터 허브 (흩어진 데이터 → AI가 쓰는 형태)
+│   ├── data-inventory.md # 소스 맵 (노션 미팅DB·Gmail 라벨·드라이브)
+│   └── clients/   # 클라이언트별 히스토리 (_index, coway, netmarble …)
 └── projects/      # 프로젝트별 노트
 ```
 
