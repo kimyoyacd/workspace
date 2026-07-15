@@ -1,0 +1,303 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+:root{
+  --bg:#FFFFFF; --bg-card:#F5F1EA; --ink:#1A1A1A; --muted:#6E665A;
+  --rule:#E4DED2; --chip:#F2EDE3;
+  --accent:#FF6B35; --accent-soft:#FFD9C2;
+  --data:#C5BBDD;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;font-size:16px;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 18px;}}
+
+nav.top{position:sticky;top:0;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink);z-index:10;}
+nav.top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;gap:12px;flex-wrap:wrap;}
+.brand{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;}
+.brand b{color:var(--accent);}
+nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);text-decoration:none;border:1px solid var(--rule);border-radius:20px;padding:5px 13px;}
+nav.top a:hover{color:var(--ink);border-color:var(--ink);}
+.navlinks{display:flex;gap:8px;flex-wrap:wrap;}
+
+.hero{padding:72px 0 0;}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#fff;border-radius:20px;padding:5px 14px;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;margin-left:12px;}
+h1.chapter{font-size:clamp(42px,6vw,78px);font-weight:800;letter-spacing:-.04em;line-height:1.0;margin:26px 0 0;text-wrap:balance;}
+h1.chapter em{font-style:italic;color:var(--accent);}
+.lede{font-size:21px;font-weight:500;letter-spacing:-.01em;line-height:1.5;max-width:60ch;margin:28px 0 0;}
+.hl{background:linear-gradient(180deg,transparent 55%,var(--accent-soft) 55%);padding:0 2px;font-weight:600;}
+
+/* chain */
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:44px 0 0;}
+@media(max-width:760px){.chain{grid-template-columns:1fr 1fr;}}
+.chain .c{background:var(--bg-card);border:1px dashed var(--rule);padding:18px;position:relative;}
+.chain .c .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;}
+.chain .c .t{font-size:14.5px;font-weight:700;margin-top:8px;line-height:1.4;}
+
+/* toc */
+.toc{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:56px 0 0;}
+.toc .row{display:grid;grid-template-columns:56px 1fr 90px;gap:16px;padding:18px 8px;border-bottom:1px dashed var(--rule);align-items:baseline;}
+.toc .row:last-child{border-bottom:0;}
+.toc .no{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--accent);}
+.toc .tt{font-size:17px;font-weight:700;}
+.toc .tt small{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:3px;}
+.toc .tm{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;}
+
+section.sec{border-top:1px dashed var(--rule);margin-top:88px;padding-top:52px;}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);border-radius:20px;padding:4px 13px;margin-bottom:18px;}
+h2.shead{font-size:clamp(27px,3.2vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.12;text-wrap:balance;}
+h2.shead .no{color:var(--muted);margin-right:14px;}
+h2.shead em{font-style:italic;color:var(--accent);}
+.deck{font-size:17px;font-weight:500;color:var(--muted);margin:14px 0 0;max-width:64ch;line-height:1.55;}
+.body-p{margin:22px 0 0;max-width:70ch;}
+
+/* case list */
+.case{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:30px 0;border-bottom:1px dashed var(--rule);}
+@media(max-width:700px){.case{grid-template-columns:1fr;gap:8px;}}
+.case .ck{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;padding-top:5px;}
+.case .ck b{display:block;font-size:26px;font-weight:700;color:var(--accent);font-feature-settings:"tnum";font-family:var(--sans);letter-spacing:-.02em;margin-top:6px;}
+.case h4{font-size:19px;font-weight:700;letter-spacing:-.01em;}
+.case p{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.65;max-width:66ch;}
+.case p b{color:var(--ink);font-weight:600;}
+.case .why{margin-top:10px;font-size:13.5px;color:var(--ink);background:var(--bg-card);border-left:3px solid var(--accent);padding:10px 14px;max-width:66ch;}
+
+/* insight grid */
+.grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:32px;}
+.g3{grid-template-columns:repeat(3,1fr);} .g2{grid-template-columns:1fr 1fr;}
+@media(max-width:760px){.g3,.g2{grid-template-columns:1fr;}}
+.card{background:var(--bg-card);padding:24px;}
+.card .rank{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;}
+.card h4{font-size:16.5px;font-weight:700;margin-top:8px;letter-spacing:-.01em;}
+.card p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.6;}
+.card p b{color:var(--ink);font-weight:600;}
+.card .big{font-size:30px;font-weight:700;color:var(--accent);font-feature-settings:"tnum";margin-top:6px;}
+
+/* process diagram */
+.proc{display:grid;grid-template-columns:1.15fr auto 1fr;gap:0;margin-top:32px;border:1px solid var(--ink);}
+@media(max-width:700px){.proc{grid-template-columns:1fr;}}
+.proc .stage{padding:26px;}
+.proc .stage.sr{background:var(--bg-card);}
+.proc .arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);padding:0 6px;border-left:1px dashed var(--rule);border-right:1px dashed var(--rule);}
+@media(max-width:700px){.proc .arrow{transform:rotate(90deg);padding:8px 0;border:none;}}
+.proc .who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+.proc .pct{font-size:34px;font-weight:800;letter-spacing:-.02em;font-feature-settings:"tnum";margin-top:6px;}
+.proc h4{font-size:16px;font-weight:700;margin-top:10px;}
+.proc p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.6;}
+.proc p b{color:var(--ink);}
+
+/* org chart */
+.diag{margin-top:36px;}
+.diag-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.asis{display:flex;align-items:center;gap:10px;}
+.asis .box{flex:1;border:1px dashed var(--muted);background:var(--bg);padding:18px 12px;text-align:center;}
+.asis .box .t{font-weight:700;font-size:14.5px;}
+.asis .box .s{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;}
+.asis .arr{font-family:var(--mono);color:var(--muted);font-size:17px;}
+.asis-note{font-size:13px;color:var(--muted);margin-top:12px;text-align:center;font-family:var(--mono);letter-spacing:.02em;}
+.tobe{border:1px solid var(--ink);background:var(--bg-card);padding:28px;margin-top:14px;}
+.tobe .th{font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.tobe .ts{font-size:13px;color:var(--muted);margin-top:4px;}
+.lane{margin-top:14px;padding:16px 18px;background:var(--bg);border:1px dashed var(--rule);}
+.lane .lt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.lane .lt.acc{color:var(--accent);}
+.lane .ld{font-size:14px;margin-top:6px;line-height:1.6;color:var(--ink);}
+.lane .ld b{font-weight:700;}
+
+.note{background:var(--bg-card);border:1px dashed var(--rule);padding:20px 24px;margin-top:28px;font-size:14.5px;line-height:1.65;max-width:78ch;}
+.note b{font-weight:700;}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;}
+
+/* asks */
+ol.asks{margin:32px 0 0;padding:0;list-style:none;counter-reset:a;}
+ol.asks li{counter-increment:a;display:grid;grid-template-columns:64px 1fr;gap:18px;padding:24px 0;border-bottom:1px dashed var(--rule);}
+ol.asks li::before{content:"0" counter(a);font-family:var(--mono);font-size:22px;font-weight:500;color:var(--accent);font-feature-settings:"tnum";}
+ol.asks li .q{font-size:19px;font-weight:700;letter-spacing:-.01em;}
+ol.asks li .a{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.65;max-width:66ch;}
+
+.dark{background:var(--ink);color:var(--bg);margin-top:44px;padding:36px 40px;}
+.dark .dtag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.dark p{font-size:17px;line-height:1.65;color:rgba(255,255,255,.88);max-width:70ch;}
+.dark p b{color:var(--accent);}
+
+footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;line-height:1.8;}
+</style>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand"><b>MAX실</b> · 부대표님·센터장님 보고 · 2026.07</div>
+    <div class="navlinks">
+      <a href="#cases">1 사례</a>
+      <a href="#insights">2 인사이트</a>
+      <a href="#org">3 조직 제안</a>
+      <a href="#asks">4 요청</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 표지 -->
+<div class="hero">
+  <span class="pill">Briefing</span><span class="meta">김효정 · MAX실 · 약 35분 + Q&A</span>
+  <h1 class="chapter">AI 성과 리뷰 &<br>조직 구조 <em>제안</em></h1>
+  <p class="lede">저 혼자 빨라진 건 증명이 끝났습니다. 이제 회사가 빨라질 차례인데, <span class="hl">그건 회사 세팅을 바꿔야 하는 일</span>이라 두 분의 결정이 필요합니다.</p>
+
+  <div class="chain">
+    <div class="c"><div class="n">01</div><div class="t">AI가 아무리 해도<br>사람 손은 반드시 탄다</div></div>
+    <div class="c"><div class="n">02</div><div class="t">시니어가 만들고<br>주니어가 마무리하는 공정</div></div>
+    <div class="c"><div class="n">03</div><div class="t">기획·PM·디자인·영상이<br>한 유닛일 때 가장 잘 돈다</div></div>
+    <div class="c"><div class="n">04</div><div class="t">이 세팅은<br>결정권자만 바꿀 수 있다</div></div>
+  </div>
+
+  <!-- 목차 -->
+  <div class="toc">
+    <div class="row"><div class="no">1</div><div class="tt">프로젝트 사례<small>다양하게 진행했지만, 오늘은 5개만 말씀드립니다</small></div><div class="tm">10분</div></div>
+    <div class="row"><div class="no">2</div><div class="tt">얻은 인사이트<small>시장·업계·회사 안팎에서 확인한 것 5가지</small></div><div class="tm">8분</div></div>
+    <div class="row"><div class="no">3</div><div class="tt">조직 구조 제안<small>공정 분담과 유닛, 전사 그림 초안</small></div><div class="tm">12분</div></div>
+    <div class="row"><div class="no">4</div><div class="tt">요청<small>두 분의 결정이 필요한 것 3가지</small></div><div class="tm">5분+Q&A</div></div>
+  </div>
+</div>
+
+<!-- 1. 사례 -->
+<section class="sec" id="cases">
+  <span class="badge">1 · 프로젝트 사례</span>
+  <h2 class="shead"><span class="no">1.</span>다양하지만, 오늘은 <em>5개</em>만 말씀드립니다</h2>
+  <p class="deck">앞의 셋은 "제가 빨라진 이야기", 뒤의 둘은 "시스템이 되기 시작한 이야기"입니다.</p>
+
+  <div class="case">
+    <div class="ck">CASE 01<b>3배</b></div>
+    <div>
+      <h4>코웨이 프리미엄 안마의자 — 영역 확장</h4>
+      <p>7인치 터치 GUI 시각화 전략 수립 + 시안 80% 직접 제작. 저는 2D 디자이너인데 <b>3D 기기 해체 구조와 인체 맵핑까지 직접</b> 만들었습니다. 원래 3D 전문가 서너 명이 몇 주 하던 일.</p>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="ck">CASE 02<b>4배</b></div>
+    <div>
+      <h4>배달의민족 아이콘 콘텐츠 — 1인 완결</h4>
+      <p>아이콘 리뉴얼 기획부터 카피, <b>브랜드 영상 제작까지 혼자 100%</b>. 기획-카피-디자인-영상, 원래 네 직군이 붙는 일입니다.</p>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="ck">CASE 03<b>80%</b></div>
+    <div>
+      <h4>QQ Poker GUI — 방향 수립까지</h4>
+      <p>메인 안 + 서브 안 + 3D 오브제까지 8할을 혼자 진행하고, <b>제작 가이드라인까지 세워 내부에 전달.</b> 함께한 담당자들이 이 영역 전문가가 아니었는데도 방향이 서니 일이 돌았습니다.</p>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="ck">CASE 04<b>8건</b></div>
+    <div>
+      <h4>올리브영 입찰 — 사전 방향을 확실하게 잡아주는 것</h4>
+      <p>제안요청서·설명회 녹취·단가표를 AI로 분석해 <b>위험 요소 8건을 착수 전에</b> 찾았습니다 — 문서엔 "2개 브랜드 제출", 설명회에선 "1개만"이라는 모순 같은 것들. 발주 담당자가 AI 활용을 환영한다는 신호를 잡아 <b>AI를 차별화 카드로 쓰되 발색컷 AI는 금지선</b>이라는 전략까지 세워 팀에 넘겼습니다.</p>
+      <div class="why">의미 — 일을 시작하기 전에 <b>사전 방향을 확실하게 잡아서 팀에 줄 수 있습니다.</b> 방향이 서 있으면 뒷공정의 재작업이 줄어듭니다. 3부에서 말씀드릴 "시니어가 앞단을 잡는다"의 실제 모습입니다.</div>
+    </div>
+  </div>
+
+  <div class="case" style="border-bottom:1px solid var(--ink);">
+    <div class="ck">CASE 05<b>몇 시간</b></div>
+    <div>
+      <h4>올리브영 모델 이미지 — 시스템의 예고편</h4>
+      <p>모델의 얼굴·체형·피부톤 정의 → AI로 포즈·표정 여러 벌 테스트 → 상세페이지용 컷 셀렉. 촬영·누끼·합성으로 며칠 걸리던 일이 몇 시간에 끝났고, <b>이 순서대로면 저 아니어도 같은 결과가 나옵니다.</b> 여기서 나온 이미지로 <b>영상은 내부 담당자가 이어받아 제작</b> — 오늘 제안할 유닛 구조가 이 건에서 이미 작게 한 번 돌아갔습니다. 제작 후기는 케이스북에 정리.</p>
+    </div>
+  </div>
+
+  <div class="note"><span class="nt">5개 사례를 한 줄로</span>처음 셋 — 제 손이 빨라졌다 (3~4배). 뒤의 둘 — <b>누가 해도 되는 순서와 방향으로 만들기 시작했다.</b> 다음 순서는 이걸 회사 구조로 만드는 것.</div>
+</section>
+
+<!-- 2. 인사이트 -->
+<section class="sec" id="insights">
+  <span class="badge">2 · 얻은 인사이트</span>
+  <h2 class="shead"><span class="no">2.</span>안팎에서 확인한 것 <em>5가지</em></h2>
+
+  <div class="grid g3">
+    <div class="card"><div class="rank">01 · 넷마블 7/10</div><h4>다 1등인데 AI만 최하위</h4><p>실력이 아니라 구조 문제. AI를 쓰면서 티를 안 냈고, 기획·이미지·영상 팀이 쪼개져 있어 느려 보였습니다. 타사는 <b>"키워드 한 줄 → 2~3일 완성물"</b>.</p></div>
+    <div class="card"><div class="rank">02 · 시장</div><h4>만드는 값이 떨어지고 있다</h4><p>제일기획이 배너 자동화로 제작비 <b>10분의 1</b>. 고객도 "AI 쓰면 하루면 되죠?"라며 단가를 깎으려 듭니다. 만드는 것의 값은 0으로, <b>"이 브랜드에 뭐가 맞는지 아는 것"</b>의 값은 위로.</p></div>
+    <div class="card"><div class="rank">03 · BCG·골드만삭스</div><h4>판을 다시 짜야 바뀐다</h4><p>하던 방식에 AI만 끼워 넣는 회사는 못 바뀌고 <b>일하는 판을 다시 짜는 회사만</b> 바뀝니다. 골드만삭스도 실험 100여 개 → 핵심 대여섯 개로 전환. 성공의 70%는 기술이 아니라 사람의 일하는 방식.</p></div>
+    <div class="card"><div class="rank">04 · MIT</div><h4>개인이 빨라져도 회사는 그대로</h4><div class="big">95%</div><p>기업 8할이 AI를 도입했지만 95%는 손익 개선으로 이어지지 않았습니다. <b>제 3~4배 성과도 같습니다</b> — 저 혼자 빨라진 거지, 회사가 빨라진 게 아닙니다.</p></div>
+    <div class="card"><div class="rank">05 · 회사 내부</div><h4>방향은 이미 맞닿아 있다</h4><p>회사가 최근 낸 특허(포토샵 파일 분석, 브랜드 느낌 유지하며 자산 자동 생성)가 오늘 제안과 같은 방향. <i>(공식 자료 재확인 필요)</i></p></div>
+    <div class="card"><div class="rank">—</div><h4>다섯을 겹치면</h4><p><b>시장은 빠르게 압축되는데, 회사는 저절로 안 바뀝니다.</b> 이 간극을 메우는 게 3부의 제안입니다.</p></div>
+  </div>
+</section>
+
+<!-- 3. 조직 제안 -->
+<section class="sec" id="org">
+  <span class="badge">3 · 조직 구조 제안</span>
+  <h2 class="shead"><span class="no">3.</span>시니어가 만들고, 주니어가 마무리하는 <em>한 팀</em></h2>
+  <p class="deck">전제 — AI가 아무리 발전해도 사람 손은 반드시 탑니다. 질문은 "AI가 사람을 대체하나"가 아니라 "사람 손이 꼭 필요한 공정을 어떻게 다시 짜나"입니다.</p>
+
+  <div class="diag">
+    <div class="diag-lbl">공정 분담</div>
+    <div class="proc">
+      <div class="stage sr">
+        <div class="who">시니어</div>
+        <div class="pct">5~60%</div>
+        <h4>AI를 부려 방향을 잡고 핵심을 만든다</h4>
+        <p>판단이 필요한 앞단 — 방향·핵심 비주얼·뼈대. <b>사례 4의 "사전 방향 잡기"가 이것.</b></p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="stage">
+        <div class="who" style="color:var(--muted)">신입 · 주니어</div>
+        <div class="pct" style="color:var(--muted)">나머지</div>
+        <h4>방향성에 맞게 디테일을 챙기고 마무리한다</h4>
+        <p>이 과정이 곧 실전 훈련 — AI가 신입 일을 다 가져가면 몇 년 뒤 시니어가 안 나오는데, <b>이 구조면 성장 사다리가 삽니다.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="diag-lbl">전사 — 지금 (기능별 조직)</div>
+    <div class="asis">
+      <div class="box"><div class="t">기획 조직</div><div class="s">리더 A</div></div>
+      <div class="arr">→</div>
+      <div class="box"><div class="t">디자인 조직</div><div class="s">리더 B</div></div>
+      <div class="arr">→</div>
+      <div class="box"><div class="t">영상 조직</div><div class="s">리더 C</div></div>
+    </div>
+    <div class="asis-note">일이 조직 사이를 릴레이로 통과 → 조직마다 대기열 → 느림</div>
+  </div>
+
+  <div class="diag">
+    <div class="diag-lbl">전사 — 제안 초안 (고객 중심 유닛 · 같이 그릴 그림)</div>
+    <div class="tobe">
+      <div class="th">대표·부대표 — 전환을 직접 챙김</div>
+      <div class="ts">이 그림은 제 권한 밖이라, 결정이 아니라 초안으로 가져왔습니다</div>
+      <div class="lane"><div class="lt acc">고객 유닛 A·B·C — 게임(넷마블) / 뷰티·리테일(올리브영) / 가전·제조(코웨이·현대)</div><div class="ld">유닛 = <b>기획+PM+디자인+영상, 리더 1명.</b> 인력 리소스가 유닛 안에서 내재화 — 영상 붙이려 다른 팀 일정을 빌리거나 3D를 외주 줄 일이 없어집니다. 사례 5가 이 모습.</div></div>
+      <div class="lane"><div class="lt">AI·데이터 기반팀</div><div class="ld">공용 도구 · 브랜드 데이터 · <b>회사 특허 기술</b> · 보안 통로 — 유닛들이 공유하는 밑바탕.</div></div>
+      <div class="lane"><div class="lt">영업·계약 / 경영지원·보안</div><div class="ld">접수 창구 일원화, 계약 방식 전환 담당.</div></div>
+    </div>
+  </div>
+
+  <div class="note"><span class="nt">보안 — 지금 방침 그대로</span>라인웍스 등 기존 툴을 바꾸자는 게 아닙니다. 보안 최우선은 맞는 방향입니다 — 진짜 재산이 브랜드 데이터라면 더 지켜야 합니다. 기존 툴은 그대로 두고, <b>회사가 통제하는 통로 하나만 보안 검토 아래</b> 내는 방향입니다.</div>
+</section>
+
+<!-- 4. 요청 -->
+<section class="sec" id="asks">
+  <span class="badge">4 · 요청</span>
+  <h2 class="shead"><span class="no">4.</span>결정이 필요한 것 <em>3가지</em></h2>
+  <p class="deck">제가 도구를 아무리 만들어도 회사 세팅이 안 바뀌면 회사 돈이 되지 않습니다.</p>
+
+  <ol class="asks">
+    <li><div><div class="q">시범 유닛 하나, 만들어봐도 될까요?</div><div class="a">기획·PM·디자인·영상 담당자를 묶어 프로젝트 1건만. 계약 방식까지 얽힌 부분은 제 권한 밖이니, 어디까지 제가 해도 되는지 선을 그어주세요.</div></div></li>
+    <li><div><div class="q">평가 기준을 정해주세요.</div><div class="a">비용 절감 / 신규 수주 / 상장 준비용 스토리 — 무엇을 보시는지에 따라 힘 쏟을 곳이 달라집니다.</div></div></li>
+    <li><div><div class="q">하나만 먼저 한다면, 뭐부터 시키시겠습니까?</div><div class="a">오늘 가장 듣고 싶은 답입니다.</div></div></li>
+  </ol>
+
+  <div class="dark">
+    <div class="dtag">덧붙여</div>
+    <p>고객 미팅 녹음의 <b>보안 검토 창구</b>가 어디인지, 그리고 이게 <b>우리 실 파일럿인지 전사 그림인지</b>도 방향을 듣고 싶습니다.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">MAX실 · 부대표님·센터장님 보고 · 2026.07<br>근거 — 넷마블 7/10 회의록 · 올리브영 RFP 분석 · 케이스북 제작 후기(aicoo.imweb.me) · 제일기획 배너 자동화(한국경제) · BCG 다큐멘터리(EO Korea) · MIT GenAI Divide 2025 · 회사 특허(재확인 필요)</div>
+</footer>
