@@ -140,11 +140,25 @@ h2.shead em{font-style:italic;color:var(--accent);}
 .org .side{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
 .org .side .s{font-size:12.5px;color:var(--muted);border:1px solid var(--rule);border-radius:8px;padding:8px 16px;background:var(--bg);}
 .org .side .s b{color:var(--ink);font-weight:600;}
+/* 전사 상위 레이어 (AI·LLM 자동화 결합 구조) */
+.org .toplayer{background:var(--ink);color:var(--bg);border-radius:10px;padding:16px 22px;text-align:left;}
+.org .toplayer .tl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.org .toplayer .td{font-size:13.5px;color:rgba(255,255,255,.82);margin-top:6px;line-height:1.55;}
+.org .toplayer .td b{color:#fff;}
+/* 센터 컨테이너 */
+.org .center{border:1.5px solid var(--ink);border-radius:12px;padding:22px;text-align:center;background:var(--bg);}
+.org .center-head{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.org .center-head .cn{font-size:16px;font-weight:800;letter-spacing:-.01em;}
+.org .center-head .ct{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.03em;}
+.org .center-sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
+.org .others{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px;letter-spacing:.02em;}
+.org .others b{color:var(--ink);font-weight:600;}
 @media(max-width:700px){
   .org .lvl{flex-direction:column;align-items:center;gap:14px;}
   .org .cell{padding:14px 0 0;}
   .org .cell::before,.org .cell::after{display:none;}
   .org .lvl.stacked-line .cell{border-top:1.5px dashed var(--rule);}
+  .unit{max-width:100%;}
 }
 
 /* asks */
@@ -186,7 +200,7 @@ footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-
     <div class="c"><div class="n">01</div><div class="t">AI가 아무리 해도<br>사람 손은 반드시 탄다</div></div>
     <div class="c"><div class="n">02</div><div class="t">시니어가 만들고<br>주니어가 마무리하는 공정</div></div>
     <div class="c"><div class="n">03</div><div class="t">기획·PM·디자인·영상이<br>한 유닛일 때 가장 잘 돈다</div></div>
-    <div class="c"><div class="n">04</div><div class="t">회사 차원의 그림이라<br>오늘은 인사이트로 공유</div></div>
+    <div class="c"><div class="n">04</div><div class="t">그 위엔 전사 AI 상위층이<br>필요 — 회사 차원의 그림</div></div>
   </div>
 
   <!-- 목차 -->
@@ -303,37 +317,52 @@ footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-
   </div>
 
   <div class="diag">
-    <div class="diag-lbl">전사 조직도 — 제안 초안 (고객별 유닛 + 공통 기반) · 같이 그릴 그림</div>
+    <div class="diag-lbl">전사 조직도 — 제안 초안 (4단 계층) · 같이 그릴 그림</div>
     <div class="org">
       <div class="node head">대표 · 부대표<span class="sub">전환을 직접 챙김</span></div>
       <div class="trunk"></div>
-      <div class="lvl">
-        <div class="cell">
-          <div class="unit">
-            <div class="un">고객 유닛 A</div><div class="us">게임 · 넷마블</div>
-            <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
-            <div class="lead">리더 1명</div>
-          </div>
-        </div>
-        <div class="cell">
-          <div class="unit">
-            <div class="un">고객 유닛 B</div><div class="us">뷰티·리테일 · 올리브영</div>
-            <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
-            <div class="lead">리더 1명</div>
-          </div>
-        </div>
-        <div class="cell">
-          <div class="unit">
-            <div class="un">고객 유닛 C</div><div class="us">가전·제조 · 코웨이·현대</div>
-            <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
-            <div class="lead">리더 1명</div>
-          </div>
-        </div>
+
+      <!-- 전사 상위 레이어 -->
+      <div class="toplayer">
+        <div class="tl">전사 상위 구조 · AI · LLM 자동화 결합 체계</div>
+        <div class="td">회사 전체의 <b>데이터 · LLM · 자동화</b>를 하나로 묶는 운영 상위 구조. 모든 센터가 이 위에서 돕니다 — 개별 센터 툴이 아니라 <b>전사 공용 "뇌"</b>. (BCG: 경영진이 직접 챙겨야 하는 층)</div>
       </div>
-      <div class="band">
-        <div class="bt">↑ 모든 유닛을 떠받치는 공통 기반 — AI·데이터 기반팀</div>
-        <div class="bd">공용 도구(현 24종) · 브랜드 데이터 자산 · <b>회사 특허 기술</b> · 보안 통로. 유닛들이 이 위에서 돕니다.</div>
+      <div class="trunk"></div>
+
+      <!-- 센터 레이어 -->
+      <div class="center">
+        <div class="center-head"><span class="cn">우리 센터</span><span class="ct">이 유닛 방식으로 먼저 재편</span></div>
+        <div class="center-sub">지금은 우리 센터만 이렇게 짜여 있습니다 — 파일럿으로 시작해 다른 센터로 확장</div>
+        <div class="lvl">
+          <div class="cell">
+            <div class="unit">
+              <div class="un">고객 유닛 A</div><div class="us">게임 · 넷마블</div>
+              <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
+              <div class="lead">리더 1명</div>
+            </div>
+          </div>
+          <div class="cell">
+            <div class="unit">
+              <div class="un">고객 유닛 B</div><div class="us">뷰티·리테일 · 올리브영</div>
+              <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
+              <div class="lead">리더 1명</div>
+            </div>
+          </div>
+          <div class="cell">
+            <div class="unit">
+              <div class="un">고객 유닛 C</div><div class="us">가전·제조 · 코웨이·현대</div>
+              <div class="chips"><span class="chip">기획</span><span class="chip">PM</span><span class="chip">디자인</span><span class="chip">영상</span></div>
+              <div class="lead">리더 1명</div>
+            </div>
+          </div>
+        </div>
+        <div class="band">
+          <div class="bt">↑ 유닛들을 떠받치는 센터 공통 기반 — AI·데이터 기반팀</div>
+          <div class="bd">공용 도구(현 24종) · 브랜드 데이터 자산 · <b>회사 특허 기술</b> · 보안 통로 — 전사 상위 체계와 이어짐.</div>
+        </div>
+        <div class="others">다른 센터들 — <b>당분간 기존 구조 유지</b>, 파일럿 성과 확인 후 순차 적용</div>
       </div>
+
       <div class="side">
         <div class="s"><b>영업·계약</b> — 접수 창구 일원화, 계약 방식 전환</div>
         <div class="s"><b>경영지원·보안</b></div>
