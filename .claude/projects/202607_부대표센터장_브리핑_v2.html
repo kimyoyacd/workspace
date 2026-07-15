@@ -172,6 +172,12 @@ ol.asks li .a{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.6
 .dark .dtag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;}
 .dark p{font-size:17px;line-height:1.65;color:rgba(255,255,255,.88);max-width:70ch;}
 .dark p b{color:var(--accent);}
+.dark .benefits{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);margin-top:8px;}
+@media(max-width:700px){.dark .benefits{grid-template-columns:1fr;}}
+.dark .bf{background:var(--ink);padding:18px 20px;}
+.dark .bf .bh{font-size:14.5px;font-weight:700;color:#fff;}
+.dark .bf .bh em{font-style:normal;color:var(--accent);margin-right:7px;}
+.dark .bf .bx{font-size:13px;color:rgba(255,255,255,.72);margin-top:6px;line-height:1.55;}
 
 footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;line-height:1.8;}
 </style>
@@ -371,6 +377,34 @@ footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-
     <div class="asis-note">유닛 = 기획+PM+디자인+영상, 리더 1명 → 사람을 밖에서 안 빌려도 됨(리소스 내재화). 사례 5가 이 모습.</div>
   </div>
 
+  <!-- 뇌 상세 -->
+  <div class="diag">
+    <div class="diag-lbl">전사 상위 구조 '뇌' — 안에 뭐가 들어가나</div>
+    <p class="deck" style="margin-bottom:4px;">"뇌"라고 하면 막연한데, 실제로는 네 가지가 들어갑니다. 하나같이 <b style="color:var(--ink);font-weight:600">개별 센터가 각자 하면 안 되고, 회사가 한 번 깔아야 하는</b> 것들입니다.</p>
+    <div class="grid g2">
+      <div class="card"><div class="rank">01 · 공용 AI 창구</div><h4>LLM 게이트웨이</h4><p>모든 팀이 <b>하나의 통제된 창구</b>로 AI를 씁니다. 어떤 모델을 쓰든 보안·비용·품질을 이 한 곳에서 보고, 문제 생기면 여기서 잠급니다.</p></div>
+      <div class="card"><div class="rank">02 · 회사 공용 기억</div><h4>Company Brain</h4><p>브랜드 데이터·결정·미팅 맥락을 한곳에 쌓아, <b>사람도 AI 에이전트도 검색</b>합니다. 담당자 머릿속에만 있던 감각이 회사 자산이 됩니다.</p></div>
+      <div class="card"><div class="rank">03 · 권한·데이터 격리</div><h4>롤별 접근 통제</h4><p>누가 어디까지 보는지 롤로 나눠 <b>보안과 정확도를 동시에</b> 잡습니다. 넷마블 IP처럼 민감한 데이터가 아무 데나 흘러가지 않습니다.</p></div>
+      <div class="card"><div class="rank">04 · 실행·자동화 관제</div><h4>Foundry</h4><p>자동화가 언제 도는지 관제하고, <b>결과물에 팀이 피드백</b>을 남겨 함께 고도화합니다. 저희 트리거 맵·게이트가 여기에 붙습니다.</p></div>
+    </div>
+
+    <div class="note"><span class="nt">이게 뜬구름이 아닌 이유 — 이미 하는 곳들</span>
+    · <b>리트머스</b>(AI 네이티브 회사): 'AIOS'가 딱 이 구조 — 넥서스(권한)+워크벤치(공용 기억)+파운드리(실행 관제).<br>
+    · <b>BCG</b>: "AI는 수단일 뿐, 진짜 가치는 <b>이기는 로직이 주입된 뇌(Enterprise IQ)</b>를 설계하는 것."<br>
+    · <b>퍼블리시스</b>(글로벌 광고 지주사): AI 플랫폼 'Marcel'로 9만 직원을 하나로 연결.<br>
+    · 업계 용어로 <b>'company brain / 엔터프라이즈 LLM 플랫폼'</b> — 흩어진 툴 대신 <b>하나의 통제선</b> 위에서 전사가 AI를 씁니다. 2025년 기업 GenAI 지출은 370억 달러로 1년 새 3.2배.</div>
+
+    <div class="dark">
+      <div class="dtag">그래서 뭐가 좋은가</div>
+      <div class="benefits">
+        <div class="bf"><div class="bh"><em>①</em>보안이 오히려 강해진다</div><div class="bx">AI 쓰는 통로가 하나라 통제·감사가 한 곳에서 됩니다. "라인웍스 못 놓는다"는 걱정과 정면으로 맞는 답 — 흩어진 개인 툴이 더 위험합니다.</div></div>
+        <div class="bf"><div class="bh"><em>②</em>감각이 회사 재산이 된다</div><div class="bx">브랜드 노하우가 개인 기억이 아니라 회사에 쌓입니다. 사람이 나가도 남고, 아무도 못 베낍니다 — 우리의 진짜 방어선.</div></div>
+        <div class="bf"><div class="bh"><em>③</em>한 번 만들면 전 센터가 쓴다</div><div class="bx">우리 센터가 만든 파이프라인·에이전트를 다른 센터가 그대로 재사용. 매번 새로 만들 필요가 없어집니다.</div></div>
+        <div class="bf"><div class="bh"><em>④</em>비용·품질이 균일해진다</div><div class="bx">모델·프롬프트를 한 곳에서 관리하니 낭비와 사람별 편차가 줄어듭니다. MIT가 말한 "성공한 5%"가 하는 게 정확히 이것.</div></div>
+      </div>
+    </div>
+  </div>
+
   <div class="note"><span class="nt">보안 — 지금 방침 그대로</span>라인웍스 등 기존 툴을 바꾸자는 게 아닙니다. 보안 최우선은 맞는 방향입니다 — 진짜 재산이 브랜드 데이터라면 더 지켜야 합니다. 기존 툴은 그대로 두고, <b>회사가 통제하는 통로 하나만 보안 검토 아래</b> 내는 방향입니다.</div>
 </section>
 
@@ -395,5 +429,5 @@ footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-
 </main>
 
 <footer>
-  <div class="wrap">MAX실 · 부대표님·센터장님 보고 · 2026.07<br>근거 — 넷마블 7/10 회의록 · 올리브영 RFP 분석 · 케이스북 제작 후기(aicoo.imweb.me) · 제일기획 배너 자동화(한국경제) · BCG 다큐멘터리(EO Korea) · MIT GenAI Divide 2025 · 회사 특허(재확인 필요)</div>
+  <div class="wrap">MAX실 · 부대표님·센터장님 보고 · 2026.07<br>근거 — 넷마블 7/10 회의록 · 올리브영 RFP 분석 · 케이스북 제작 후기(aicoo.imweb.me) · 제일기획 배너 자동화(한국경제) · BCG 다큐멘터리(EO Korea)/Enterprise IQ · MIT GenAI Divide 2025 · 리트머스 AIOS(김응진) · Publicis Marcel · company brain/엔터프라이즈 LLM 플랫폼 개념 · 회사 특허(재확인 필요)</div>
 </footer>
