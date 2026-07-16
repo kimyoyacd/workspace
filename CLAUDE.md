@@ -33,7 +33,8 @@
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
-│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   ├── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   └── deck-style-guide.md  # 제안 덱 고정 스타일 + 도식화 6종 카탈로그
 └── projects/      # 프로젝트별 노트
 ```
 
@@ -83,3 +84,8 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+
+## 제안 덱 표준
+- 제안용 PPT/슬라이드 덱은 **`.claude/library/deck-style-guide.md`** 를 고정 기준으로 한다.
+  (1920×1080, 공통 크롬, 컬러·타이포 토큰, 도식화 6종 D1~D6). 임의로 스타일을 바꾸지 않는다.
+- 에디토리얼 리포트(HTML)는 `list-deck-design`, 제안 덱(슬라이드)은 이 가이드 — 용도별로 구분.
