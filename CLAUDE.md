@@ -33,7 +33,8 @@
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
-│   └── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   ├── automation.md     # 자동화 트리거 맵 (스케줄·이벤트·티어)
+│   └── claude-to-higgsfield-pipeline.md  # 캐릭터 시리즈 생성 파이프라인 (불변/가변·일관성 잠금)
 └── projects/      # 프로젝트별 노트
 ```
 
