@@ -42,7 +42,7 @@
 - 새 스킬: `.claude/skills/<스킬명>/SKILL.md` 형식으로 추가
 - 에이전트·스킬 추가 시 이 파일의 폴더 구조 섹션도 업데이트한다.
 
-## 현재 등록된 에이전트 (24종 · 6그룹)
+## 현재 등록된 에이전트 (25종 · 6그룹)
 **① 수주·전략**
 - `rfp-analyst` (RFP 분석가) — RFP→명시·숨은·미정의·위험 4분류 + 확인 질문
 - `market-research` (시장조사) — 경쟁사 N개 → XY 포지셔닝 맵 + 빈자리, 출처 필수
@@ -61,6 +61,7 @@
 - `moodboard-builder` (무드보드 빌더) — 레퍼런스+생성 무드보드
 - `figma-bridge` (피그마 브릿지) — 코드↔Figma 양방향
 - `storyboard-maker` (스토리보드 메이커) — 영상·모션 콘티(Higgsfield)
+- `episode-director` (에피소드 디렉터) — Little Try Club 에피소드 콘셉트→13키프레임→이미지 프롬프트→Start/End 매칭→영상 프롬프트(Kling/Seedance)→썸네일→유튜브 메타데이터까지 원스톱. 게이트0~4 전부 준수
 
 **④ 검수 게이트**
 - `fact-checker` (팩트 체커) — 사실·숫자·인용 반증 먼저
