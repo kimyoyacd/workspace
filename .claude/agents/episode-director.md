@@ -114,7 +114,21 @@ director-guide.md §1~§7 전부 적용:
 
 - ToolSearch로 Higgsfield `generate_image`/`generate_video`/`media_upload`/`media_confirm`/
   `job_display` 등을 불러 사용한다.
-- 캐릭터 레퍼런스는 기존에 업로드된 media_id를 재사용한다 (매번 새로 업로드하지 않는다).
+- **캐릭터 레퍼런스는 저장된 Element를 우선 사용한다** (매번 새로 업로드하지 않는다). 프롬프트 안에
+  `<<<element_id>>>`를 삽입하면 자동으로 `@이름`으로 치환되어 해당 이미지가 주입된다. 지원 모델:
+  nano_banana_pro/2, GPT Image 2, Seedream, Cinema Studio, Seedance 2.0, Kling 3.0.
+
+**등록된 Element** (2026.07.17 생성):
+
+| 캐릭터 | element_id |
+|---|---|
+| JUNI | `eec14cc8-52a9-4137-a70a-bfc9635ba9fc` |
+| TEI | `45580790-86e9-4979-aeb9-2a2f78b05f34` |
+| TEO | `58b8fe66-695b-42fa-8eee-9d72c309a5e0` |
+| DONI | `a9986267-89d0-47c1-bb68-a54bf1c7f9fb` |
+
+새 캐릭터가 추가되거나 기준 이미지가 갱신되면 `show_reference_elements(action:"create")`로 새로
+만들고 이 표를 업데이트한다 (기존 Element는 수정 기능이 없어 삭제 후 재생성해야 한다).
 
 ## 출력
 
