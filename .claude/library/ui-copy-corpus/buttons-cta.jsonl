@@ -1,0 +1,47 @@
+{"copy":"저장","component":"버튼","context":"편집 완료 후 변경사항 저장","keywords":["저장","버튼","완료","편집"],"tone":"명확","principle":"동사로 결과를 약속","platform":"공통","source":"crafted","why":"무엇을 하는 버튼인지 한 단어로 분명해 망설임이 없다"}
+{"copy":"변경사항 저장","component":"버튼","context":"설정 화면에서 여러 항목 수정 후","keywords":["저장","변경사항","설정","버튼"],"tone":"명확","principle":"무엇을 저장하는지 명시","platform":"공통","source":"crafted","why":"그냥 '저장'보다 대상이 분명해 실수 우려가 준다"}
+{"copy":"무료로 시작하기","component":"CTA","context":"랜딩·가입 유도 메인 버튼","keywords":["시작","무료","가입","CTA","진입"],"tone":"격려","principle":"진입 장벽(비용)을 라벨에서 제거","platform":"웹","source":"recalled","why":"'무료'가 부담을 지우고 '시작'이 행동을 곧장 부른다"}
+{"copy":"3일 무료체험 시작","component":"CTA","context":"구독 결제 전 체험 유도","keywords":["무료체험","구독","시작","CTA"],"tone":"격려","principle":"혜택 기간을 라벨에 담아 안심","platform":"앱","source":"crafted","why":"결제 두려움을 '무료 3일'로 낮춰 클릭을 쉽게 만든다"}
+{"copy":"다음","component":"버튼","context":"여러 단계 온보딩·가입 플로우 진행","keywords":["다음","단계","진행","온보딩"],"tone":"명확","principle":"플로우의 방향을 한 단어로","platform":"공통","source":"crafted","why":"다음 단계로 간다는 걸 누구나 즉시 이해한다"}
+{"copy":"건너뛰기","component":"버튼","context":"온보딩·튜토리얼 중 생략 허용","keywords":["건너뛰기","스킵","온보딩","선택"],"tone":"명확","principle":"이탈 아닌 선택지를 제공","platform":"공통","source":"crafted","why":"강요받지 않는다는 느낌이 오히려 완주율을 높인다"}
+{"copy":"장바구니 담기","component":"버튼","context":"상품 상세에서 구매 보류·모으기","keywords":["장바구니","담기","상품","구매"],"tone":"명확","principle":"결과 동작을 구체적으로","platform":"공통","source":"recalled","why":"'담기'가 즉시 결제가 아님을 알려 부담 없이 누르게 한다"}
+{"copy":"바로 구매","component":"버튼","context":"장바구니 없이 즉시 결제로","keywords":["구매","즉시","결제","바로"],"tone":"명확","principle":"경로 차이를 라벨로 구분","platform":"공통","source":"recalled","why":"'담기'와 나란히 둘 때 빠른 길임을 분명히 한다"}
+{"copy":"결제하기","component":"버튼","context":"장바구니→결제 진입","keywords":["결제","구매","장바구니","진행"],"tone":"명확","principle":"돈이 나가는 단계를 정직하게 명명","platform":"공통","source":"crafted","why":"다음이 결제임을 숨기지 않아 신뢰를 준다"}
+{"copy":"12,900원 결제","component":"버튼","context":"최종 결제 확인 버튼에 금액 노출","keywords":["결제","금액","확인","최종"],"tone":"명확","principle":"버튼에 결과 금액을 명시","platform":"공통","source":"recalled","why":"누르기 전 얼마가 나가는지 보여 결제 실수를 막는다"}
+{"copy":"로그인","component":"버튼","context":"기존 회원 인증","keywords":["로그인","인증","회원","진입"],"tone":"명확","principle":"관용 라벨 유지","platform":"공통","source":"crafted","why":"보편적 단어라 학습 없이 통한다"}
+{"copy":"이메일로 계속하기","component":"버튼","context":"소셜 로그인과 병렬 제공","keywords":["이메일","계속","로그인","소셜"],"tone":"명확","principle":"가입·로그인 통합 진입을 '계속'으로","platform":"공통","source":"recalled","why":"신규·기존을 안 가르고 진입시켜 마찰을 줄인다"}
+{"copy":"카카오로 3초 만에 시작","component":"CTA","context":"소셜 간편가입 유도","keywords":["카카오","간편","소셜","가입","시작"],"tone":"격려","principle":"소요 시간으로 간편함 강조","platform":"앱","source":"crafted","why":"'3초'가 가입 귀찮음을 눌러 전환을 높인다"}
+{"copy":"지금 예약","component":"CTA","context":"숙소·서비스 예약 확정","keywords":["예약","확정","지금","CTA"],"tone":"명확","principle":"즉시성 + 동작","platform":"공통","source":"crafted","why":"미루지 않고 지금 하도록 행동을 좁힌다"}
+{"copy":"신청 완료하기","component":"버튼","context":"폼 마지막 제출","keywords":["신청","완료","제출","폼"],"tone":"명확","principle":"제출이 끝맺음임을 명시","platform":"공통","source":"crafted","why":"'완료'가 이 단계가 마지막임을 알려 안심시킨다"}
+{"copy":"더 알아보기","component":"액션링크","context":"요약 아래 상세로 유도","keywords":["더보기","상세","링크","안내"],"tone":"친근","principle":"낮은 압박의 탐색 유도","platform":"웹","source":"crafted","why":"구매 압박 없이 정보 탐색을 열어 이탈을 막는다"}
+{"copy":"취소","component":"버튼","context":"다이얼로그에서 행동 철회","keywords":["취소","닫기","철회","다이얼로그"],"tone":"명확","principle":"파괴적 버튼과 시각·의미로 구분","platform":"공통","source":"crafted","why":"되돌아갈 출구를 분명히 해 실수를 막는다"}
+{"copy":"삭제","component":"버튼","context":"항목 영구 삭제 확정","keywords":["삭제","제거","확정","위험"],"tone":"단호","principle":"결과어로 위험을 정직하게","platform":"공통","source":"crafted","why":"'확인'이 아닌 '삭제'라 무슨 일이 날지 분명하다"}
+{"copy":"네, 삭제할게요","component":"버튼","context":"삭제 확인 다이얼로그의 긍정 버튼","keywords":["삭제","확인","동의","위험"],"tone":"단호","principle":"행동을 1인칭으로 재확인","platform":"앱","source":"crafted","why":"내가 하는 행동임을 문장으로 각인해 오조작을 줄인다"}
+{"copy":"재시도","component":"버튼","context":"네트워크·처리 실패 후 복구","keywords":["재시도","다시","실패","복구"],"tone":"안심","principle":"실패에 출구를 제공","platform":"공통","source":"crafted","why":"막힌 상황에서 다음 행동을 즉시 쥐여준다"}
+{"copy":"다시 시도","component":"버튼","context":"오류 화면에서 재실행","keywords":["다시","시도","오류","복구"],"tone":"안심","principle":"부드러운 재시도 유도","platform":"공통","source":"crafted","why":"딱딱한 '재시도'보다 사람 말에 가까워 덜 위축된다"}
+{"copy":"앱 업데이트","component":"버튼","context":"신버전 안내 배너","keywords":["업데이트","버전","앱","갱신"],"tone":"명확","principle":"동작 대상을 명시","platform":"앱","source":"crafted","why":"무엇을 갱신하는지 분명해 오해가 없다"}
+{"copy":"쿠폰 받기","component":"버튼","context":"혜택 수령","keywords":["쿠폰","받기","혜택","수령"],"tone":"격려","principle":"혜택 획득을 능동으로","platform":"공통","source":"recalled","why":"'받기'가 손해 안 보려는 심리를 눌러 누르게 한다"}
+{"copy":"무료로 받기","component":"버튼","context":"무료 아이템·기프트 수령","keywords":["무료","받기","기프트","수령"],"tone":"격려","principle":"공짜임을 라벨에 명시","platform":"게임","source":"crafted","why":"'무료'가 클릭 장벽을 없애 수령률을 높인다"}
+{"copy":"알림 켜기","component":"버튼","context":"푸시 알림 권한 유도","keywords":["알림","켜기","권한","푸시"],"tone":"명확","principle":"동작을 스위치 은유로","platform":"앱","source":"crafted","why":"'허용'보다 '켜기'가 되돌릴 수 있음을 암시해 부담이 적다"}
+{"copy":"위치 사용 허용","component":"버튼","context":"위치 권한 요청 다이얼로그","keywords":["위치","허용","권한","GPS"],"tone":"명확","principle":"무엇을 허용하는지 구체화","platform":"앱","source":"crafted","why":"허용 대상이 분명해 막연한 불안을 줄인다"}
+{"copy":"나중에 하기","component":"버튼","context":"권한·업그레이드 요청의 보류 선택","keywords":["나중에","보류","건너뛰기","권한"],"tone":"친근","principle":"거절 아닌 연기로 프레이밍","platform":"앱","source":"crafted","why":"'취소'보다 부드러워 관계를 끊지 않고 다음 기회를 남긴다"}
+{"copy":"전체 동의","component":"버튼","context":"약관 일괄 동의","keywords":["동의","약관","전체","가입"],"tone":"명확","principle":"묶음 동작 명시","platform":"공통","source":"crafted","why":"한 번에 처리됨을 알려 반복 탭을 던다"}
+{"copy":"보내기","component":"버튼","context":"메시지·댓글 전송","keywords":["보내기","전송","메시지","댓글"],"tone":"명확","principle":"즉시 동작 동사","platform":"공통","source":"crafted","why":"짧고 분명해 입력 흐름을 끊지 않는다"}
+{"copy":"복사","component":"버튼","context":"코드·링크 클립보드 복사","keywords":["복사","링크","코드","클립보드"],"tone":"명확","principle":"단일 동작 명명","platform":"공통","source":"crafted","why":"결과가 즉시 예상돼 학습이 필요 없다"}
+{"copy":"복사됨","component":"버튼상태","context":"복사 직후 버튼 라벨 변경","keywords":["복사","완료","피드백","상태"],"tone":"안심","principle":"동작 결과를 버튼에서 즉시 피드백","platform":"공통","source":"recalled","why":"눌린 게 됐는지 바로 확인돼 다시 누르지 않는다"}
+{"copy":"팔로우","component":"버튼","context":"계정·크리에이터 구독","keywords":["팔로우","구독","소셜","관계"],"tone":"명확","principle":"관계 동작 관용어","platform":"앱","source":"crafted","why":"보편 라벨이라 즉시 통한다"}
+{"copy":"팔로잉","component":"버튼상태","context":"이미 팔로우한 상태 표시","keywords":["팔로잉","상태","팔로우","해제"],"tone":"명확","principle":"현재 상태를 라벨로 반영","platform":"앱","source":"crafted","why":"눌렀는지 상태가 보여 혼란이 없다"}
+{"copy":"주문 상세 보기","component":"액션링크","context":"주문 완료 후 내역 확인 유도","keywords":["주문","상세","내역","확인"],"tone":"명확","principle":"이동 목적지를 명시","platform":"공통","source":"crafted","why":"어디로 가는지 분명해 클릭 후 당황이 없다"}
+{"copy":"홈으로","component":"버튼","context":"완료·에러 화면에서 복귀","keywords":["홈","복귀","이동","완료"],"tone":"명확","principle":"안전한 출구 제공","platform":"공통","source":"crafted","why":"막다른 화면에서 돌아갈 길을 준다"}
+{"copy":"지금 충전","component":"버튼","context":"결제·포인트 충전 유도","keywords":["충전","포인트","결제","지금"],"tone":"명확","principle":"즉시성 + 대상 명시","platform":"게임","source":"crafted","why":"무엇을 지금 하는지 좁혀 결정을 돕는다"}
+{"copy":"더 담기","component":"버튼","context":"무료배송 임계 근접 시 추가 구매 유도","keywords":["더담기","추가","장바구니","배송"],"tone":"친근","principle":"넛지를 가벼운 동작으로","platform":"공통","source":"crafted","why":"조금만 더 담으면 이득이라는 맥락과 맞물려 자연스럽다"}
+{"copy":"내 위치에서 찾기","component":"버튼","context":"지도·매장 검색","keywords":["위치","찾기","지도","주변"],"tone":"명확","principle":"동작 + 기준점 명시","platform":"앱","source":"crafted","why":"무엇을 기준으로 찾는지 분명해 결과를 예상하게 한다"}
+{"copy":"QR 스캔","component":"버튼","context":"결제·입장 QR 인식 진입","keywords":["QR","스캔","카메라","인식"],"tone":"명확","principle":"기능을 두 단어로","platform":"앱","source":"crafted","why":"짧고 익숙해 즉시 이해된다"}
+{"copy":"전체 보기","component":"액션링크","context":"목록 일부 노출 후 더 보기","keywords":["전체","더보기","목록","확장"],"tone":"명확","principle":"범위 확장을 명시","platform":"공통","source":"crafted","why":"몇 개가 아니라 전부 본다는 걸 분명히 한다"}
+{"copy":"필터","component":"버튼","context":"목록 조건 좁히기 진입","keywords":["필터","조건","정렬","목록"],"tone":"명확","principle":"기능 명명 최소화","platform":"공통","source":"crafted","why":"관용어라 아이콘 없이도 통한다"}
+{"copy":"적용","component":"버튼","context":"필터·설정 선택값 반영","keywords":["적용","반영","필터","설정"],"tone":"명확","principle":"선택을 확정하는 동작","platform":"공통","source":"crafted","why":"고른 값이 지금 반영됨을 분명히 한다"}
+{"copy":"초기화","component":"버튼","context":"필터·설정 값 되돌리기","keywords":["초기화","리셋","되돌리기","필터"],"tone":"명확","principle":"복구 동작 명명","platform":"공통","source":"crafted","why":"처음 상태로 돌아감을 예측하게 한다"}
+{"copy":"구독하고 광고 없이 보기","component":"CTA","context":"구독 전환 유도","keywords":["구독","광고제거","혜택","전환"],"tone":"격려","principle":"혜택을 라벨에 직접 담기","platform":"앱","source":"crafted","why":"구독의 즉각 이득(광고 제거)을 버튼에서 약속한다"}
+{"copy":"체험 계속하려면 구독","component":"CTA","context":"무료체험 종료 임박","keywords":["구독","체험종료","전환","결제"],"tone":"명확","principle":"현재 상태와 다음을 잇기","platform":"앱","source":"crafted","why":"왜 지금 구독해야 하는지 맥락을 라벨에 준다"}
+{"copy":"길찾기","component":"버튼","context":"장소 상세에서 내비 연결","keywords":["길찾기","내비","경로","이동"],"tone":"명확","principle":"목적 동작 한 단어","platform":"앱","source":"crafted","why":"결과가 명확해 부가 설명이 필요 없다"}
+{"copy":"1:1 문의","component":"버튼","context":"고객센터 채팅 진입","keywords":["문의","고객센터","상담","도움"],"tone":"안심","principle":"도움 경로를 분명히","platform":"공통","source":"crafted","why":"막힌 사용자에게 사람에게 닿는 길을 준다"}

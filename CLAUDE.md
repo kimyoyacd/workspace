@@ -17,6 +17,12 @@
 - 디자인·기획 맥락에서 조언할 때는 현업 실장 관점에서 실용적으로 제안한다.
 - 한국어로 소통한다 (별도 요청 시 영어 전환).
 
+## 카피 작성 라우팅 (자동)
+- **카피·문구·슬로건·헤드라인·배너 문구·앱푸시·UI 문구(버튼·에러·빈상태 등) 작성/리라이트 요청이 들어오면, 맨땅에서 쓰지 말고 반드시 `copywriter` 스킬을 먼저 불러 코퍼스 검색 기반으로 작성한다.**
+- 광고 캠페인·브랜드 제안·상세페이지·배너 작업 등 **다른 업무 중 카피가 필요한 순간**에도 그 카피 부분은 `copywriter` 스킬을 경유한다.
+- 판별: 주목·설득 문구 → 광고 모드 / 버튼·에러·팝업·온보딩 등 화면 문구 → UI 모드(`--ui`). 애매하면 한 줄로 되묻는다.
+- 채택된 카피는 작업 후 해당 코퍼스에 축적한다(팀 공용 기출).
+
 ## 프로젝트 관리 규칙
 - 신규 프로젝트 시작 시 `.claude/projects/` 폴더 아래에 프로젝트별 노트 파일을 생성한다.
 - 파일명 형식: `YYYYMM_프로젝트명.md`
@@ -27,9 +33,12 @@
 .claude/
 ├── agents/        # 커스텀 에이전트 정의 파일
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── copywriter/       # 기출문제(RAG) 기반 카피라이팅
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
+│   ├── copy-corpus/      # 광고 카피 RAG 기출 코퍼스 (업종별 JSONL)
+│   ├── ui-copy-corpus/   # UI 카피 RAG 기출 코퍼스 (컴포넌트·상황별 JSONL)
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
@@ -83,3 +92,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `copywriter` — 코퍼스를 grep 검색해 기출문제 기반으로 카피 작성. **두 모드**: ①광고 카피(`copy-corpus`, 기준 "누르고 싶은 문구") ②UI 카피(`ui-copy-corpus`, 기준 "헷갈림 없이 다음 행동으로" — 버튼·에러·빈상태·토스트·온보딩·게임UI). 팀 공용 검색 헬퍼(`search.sh`, `--ui` 플래그) 포함. 저장소 공유로 팀 전원 사용·코퍼스 공동 축적. 저장소 밖 배포는 `plugin/`으로 패키징
