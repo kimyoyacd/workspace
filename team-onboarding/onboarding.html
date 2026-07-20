@@ -489,9 +489,26 @@
         </div>
       </div>
       <p style="margin-top:16px;font-size:0.92rem;color:var(--ink-soft)"><strong>원칙:</strong> 혼자 잘 쓴 게 자꾸 반복되면 → <strong>팀 것으로 올려요.</strong> 계정은 각자 쓰고(보안 때문), 비밀·개인정보는 넣기 전에 가려요.</p>
-      <div class="rows">
+
+      <h3 style="margin-top:28px;margin-bottom:14px">프로젝트 두 가지 — 뭘 쓸지 선택</h3>
+      <p style="font-size:0.92rem;color:var(--ink-soft);margin-bottom:16px">같은 이름이지만 다르게 쓰는 방식이 있어요. 대화 방식으로 하는 "프로젝트"와 파일로 남기는 "프로젝트 노트"예요.</p>
+      <div class="scroller">
+        <table>
+          <thead><tr><th style="width:20%">구분</th><th>일반 챗 프로젝트 (가볍게)</th><th>Claude Code 프로젝트 노트 (팀 기록)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>뭐예요</strong></td><td>챗 안의 폴더. 관련 대화를 한곳에 모음</td><td>.claude/projects/ 폴더의 .md 파일. 팀이 봄</td></tr>
+            <tr><td><strong>기록</strong></td><td>대화만 남음. 파일 없음</td><td>실제 파일로 저장소에 남음</td></tr>
+            <tr><td><strong>장점</strong></td><td>빠르고 즉시 시작. 가벼움</td><td>팀이 함께 봄. 재사용 가능. 오래 보관</td></tr>
+            <tr><td><strong>네이밍</strong></td><td><code style="font-family:var(--font-mono);font-size:0.85em">[고객]_[일]_[날짜]</code></td><td><code style="font-family:var(--font-mono);font-size:0.85em">YYYYMM_고객_일</code></td></tr>
+            <tr><td><strong>예시</strong></td><td><code style="font-family:var(--font-mono);font-size:0.85em">코웨이_배너_0720</code> — 일회성</td><td><code style="font-family:var(--font-mono);font-size:0.85em">202607_코웨이_상세페이지.md</code></td></tr>
+            <tr><td><strong>이럴 때</strong></td><td>문구 뽑기 · 시안 피드백 · 아이디어</td><td>팀 표준 규칙 · 월별 진행현황 · 반복 흐름</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rows" style="margin-top:20px">
         <div class="row"><span class="lab">대화 이름</span><code>[고객]_[일]_[날짜]</code><span style="font-size:0.85rem;color:var(--muted)">예: 코웨이_상세페이지_0720</span></div>
-        <div class="row"><span class="lab">프로젝트 이름</span><code>연월_고객_일</code><span style="font-size:0.85rem;color:var(--muted)">예: 202607_코웨이_상세페이지</span></div>
+        <div class="row"><span class="lab">프로젝트 노트 이름</span><code>YYYYMM_고객_일</code><span style="font-size:0.85rem;color:var(--muted)">예: 202607_코웨이_상세페이지.md</span></div>
       </div>
     </div>
   </section>
