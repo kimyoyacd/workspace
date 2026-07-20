@@ -345,6 +345,7 @@
     <a href="#glossary">용어 사전</a>
     <a href="#checklist">확인 목록</a>
     <a href="#faq">자주 묻는 질문</a>
+    <a href="#advanced">심화 학습</a>
   </div>
 </nav>
 
@@ -657,6 +658,102 @@
           <p><strong>아니다. 나중에 필요하면 배워.</strong> 지금은 챗으로 충분해요. 팀이 자동화가 필요하면 그때 Code를 쓰는 사람들이 챙길 거예요. 우선은 챗을 잘 쓰는 게 먼저예요.</p>
           <p style="font-size:0.85rem;color:var(--muted);margin-top:8px;">→ 코드가 뭔지는 <a href="#glossary" class="inline" style="border:none;text-decoration:underline">07. 용어 사전</a> 참고</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advanced">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">10</span><div><h2>한 걸음 더 — 심화 학습</h2><p class="sub">기초를 다진 후, 자기 속도대로. 한 번씩 따라하며 배우는 7단계 마스터 가이드.</p></div></div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">Day 1</div>
+          <div>
+            <div class="when">Chat 메모리 & 설정 · 약 40분</div>
+            <h3>Claude가 나를 기억하게 하기</h3>
+            <p><strong>메모리 토글 켜기:</strong> 설정 → 기능(Capabilities) → "대화 기록으로 메모리 생성" + "지난 대화 검색·참조" 토글 ON. Claude가 일주일만 지나도 당신의 프로젝트·말투·우선순위를 기억하게 됩니다.</p>
+            <p><strong>사용자 환경설정:</strong> 설정 → 사용자 환경설정에 당신의 직책·브랜드·말투·진행 중인 프로젝트를 한 번 써 두세요. 모든 대화에 적용돼요.</p>
+            <div class="out">→ 다음부터 맥락 설명 없이 바로 일하기 시작할 수 있어요</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 2</div>
+          <div>
+            <div class="when">프로젝트·도구·모델 · 약 50분</div>
+            <h3>상황별로 다르게 쓰는 법</h3>
+            <p><strong>프로젝트 4가지 만들기:</strong> ① 콘텐츠 스튜디오 (글쓰기·릴스) ② 비즈니스 운영 (고객·제안) ③ 제품/프로젝트 (기술·로드맵) ④ 커리어 (이력서·면접).</p>
+            <p><strong>도구 켜고 끄기:</strong> 채팅 입력창 왼쪽 아래 검색·도구로 필요한 것만 ON. 웹 검색(리서치), 확장 사고(전략·어려운 문제), 딥 리서치(시장조사), 코드 실행(데이터 정리). 안 쓸 땐 끠서 토큰 아끼기.</p>
+            <div class="out">→ 일의 종류에 따라 맞춤 설정</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 3</div>
+          <div>
+            <div class="when">Claude Code 실전 · 약 60분</div>
+            <h3>파일·자동화 다루기</h3>
+            <p><strong>설치:</strong> 터미널에서 <code style="font-family:var(--font-mono);font-size:0.85em">npm install -g @anthropic-ai/claude-code</code> → 프로젝트 폴더에서 <code style="font-family:var(--font-mono);font-size:0.85em">claude</code> 입력.</p>
+            <p><strong>첫 명령어:</strong> <code style="font-family:var(--font-mono);font-size:0.85em">/init</code> (프로젝트 메모리 생성) → <code style="font-family:var(--font-mono);font-size:0.85em">/goal [작업]</code> (Claude가 끝날 때까지 자율 수행).</p>
+            <p><strong>CLAUDE.md 작성:</strong> 프로젝트명·기술스택·코드규칙·명령어·건드리지 말 것을 한 번 써 두면, 매번 반복 설명할 필요가 없어요.</p>
+            <div class="out">→ 터미널에서 "Claude, CSV 정리하고 리포트 만들어줘" 하면 알아서 해줌</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 4</div>
+          <div>
+            <div class="when">MCP 커넥터 · 약 40분</div>
+            <h3>내 도구들과 연결하기</h3>
+            <p><strong>연결할 수 있는 것:</strong> Gmail (메일 요약·초안), Google Drive (파일 검색·데이터 추출), Google Calendar (일정 관리·블록 생성), Slack, Notion, GitHub, n8n (내 자동화 실행).</p>
+            <p><strong>연결 방법:</strong> 설정 → 커넥터 → 찾아보기 → 추가. 이후 Chat나 Cowork에서 바로 접근 가능.</p>
+            <p><strong>주의:</strong> 필요 없을 땐 커넥터를 꺼두세요. 토큰을 소모하고 컨텍스트 한도에 더 빨리 도달합니다.</p>
+            <div class="out">→ "어제 마케팅팀이 보낸 메일 찾아줘. 요청이 뭔지 요약해"라고 하면 Gmail에서 자동으로 찾아 정리해줌</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 5</div>
+          <div>
+            <div class="when">스킬 vs 플러그인 · 약 50분</div>
+            <h3>Claude를 전문가로 만들기</h3>
+            <p><strong>스킬:</strong> 특정 일을 가르치는 마크다운 파일. 관련 맥락이 나오면 자동으로 발동. 예) 릴스 대본 작성기, 브랜드 보이스 체커.</p>
+            <p><strong>플러그인:</strong> 스킬 + 슬래시 명령어 + 커넥터를 묶은 완제품. Cowork에서 설치 후 <code style="font-family:var(--font-mono);font-size:0.85em">/</code> 입력하면 자동 완성. 예) Productivity, Marketing, Sales.</p>
+            <p><strong>스킬 만들기:</strong> <code style="font-family:var(--font-mono);font-size:0.85em">.claude/skills/[스킬명]/SKILL.md</code> 파일 만들고, 목적·규칙·출력 형식 3가지만 정의하면 끝.</p>
+            <div class="out">→ "매번 같은 요청을 하고 있다" 싶으면 스킬로 만들어 자동화</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 6</div>
+          <div>
+            <div class="when">Cowork 위임 · 약 50분</div>
+            <h3>결과물만 받기</h3>
+            <p><strong>Cowork는 Chat이 아닙니다.</strong> 작업을 설명하고 자리를 뜨면, Claude가 로컬 파일·여러 앱을 넘나들며 자율 수행합니다.</p>
+            <p><strong>예약 작업:</strong> <code style="font-family:var(--font-mono);font-size:0.85em">/schedule</code> 입력해서 주간 반복 업무 자동화. 예) 매주 월요일 오전 8:30에 Gmail·Slack 확인 + 요약 저장.</p>
+            <p><strong>모바일 디스패치:</strong> 휴대폰에서 "이번 주 협업 메일 정리해줘"라고 지시 → 데스크톱 Claude가 작업 → 완료되면 푸시 알림.</p>
+            <div class="out">→ 데스크톱 켜고만 있으면, 휴대폰에서 일 지시 가능</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">Day 7</div>
+          <div>
+            <div class="when">Claude Design + 안전 · 약 60분</div>
+            <h3>마무리와 완성</h3>
+            <p><strong>Claude Design:</strong> 시각 작업 전용 캔버스. 피치덱·랜딩페이지·프로토타입·마케팅 자료. 먼저 "브랜드 킷" (GitHub 레포/Figma/웹사이트)을 가리키면 색·타이포·컴포넌트를 자동 학습.</p>
+            <p><strong>Tweaks 패널:</strong> 채팅 없이 슬라이더로 디자인 조정 (색온도·간격·타이포스케일). 구조 변경만 채팅으로, 나머지는 Tweaks로.</p>
+            <p><strong>안전 규칙:</strong> 낮은 위험부터 시작 (요약·초안·정리) → 높은 위험은 사람 승인 거친다 (금융 실행·고객데이터·자동 메일).</p>
+            <div class="out">→ 완성된 디자인은 Claude Code로 "구현해줘"라고 하면 프로덕션 코드가 나옴</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;padding:22px;background:var(--accent-soft);border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);border-radius:var(--r)">
+        <div class="k" style="color:var(--accent-ink);margin-bottom:12px">마스터 프롬프트 — 나만의 완전한 세팅</div>
+        <p style="font-size:0.92rem;margin:0 0 12px">7일이 끝났다면, 이 프롬프트를 Claude에 붙여넣으세요. 나만의 세팅 계획을 통째로 받을 수 있어요.</p>
+        <p style="font-size:0.85rem;color:var(--ink-soft);font-family:var(--font-mono);line-height:1.7;margin:0">내 업무에 맞는 제대로 된 Claude 세팅을 만들고 싶어.<br/><br/>나에 대해: [3~4줄로 나를 소개]<br/>내 주요 작업: [Chat / Code / Cowork에서 각각 뭘 하는지]<br/>주간 반복 업무: [1, 2, 3]<br/>쓰는 도구: [Gmail, Drive, Notion 등]<br/><br/>완전한 세팅 계획을 만들어줘:<br/>① 어떤 프로젝트를 만들고 각각 어떤 지침이 필요한지<br/>② 먼저 만들 스킬<br/>③ 설치할 플러그인<br/>④ 우선할 MCP 커넥터<br/>⑤ 예약 작업 아이디어<br/>⑥ CLAUDE.md 템플릿</p>
       </div>
     </div>
   </section>
