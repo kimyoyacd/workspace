@@ -31,7 +31,8 @@
 │   └── copywriter/       # 기출문제(RAG) 기반 카피라이팅
 ├── library/       # 재사용 자산
 │   ├── prompts/   # wide-research, brand-brief-template, persona-directives …
-│   ├── copy-corpus/      # 카피라이팅 RAG 기출 코퍼스 (카테고리별 JSONL)
+│   ├── copy-corpus/      # 광고 카피 RAG 기출 코퍼스 (업종별 JSONL)
+│   ├── ui-copy-corpus/   # UI 카피 RAG 기출 코퍼스 (컴포넌트·상황별 JSONL)
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록
@@ -85,4 +86,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
-- `copywriter` — 카피 코퍼스(`.claude/library/copy-corpus/`)를 grep 검색해 기출문제 기반으로 카피 작성. 기준은 "누르고 싶은 문구". 팀 공용 검색 헬퍼(`search.sh`) 포함, 저장소 공유로 팀 전원 사용·코퍼스 공동 축적. 저장소 밖 배포는 `plugin/`으로 플러그인 패키징
+- `copywriter` — 코퍼스를 grep 검색해 기출문제 기반으로 카피 작성. **두 모드**: ①광고 카피(`copy-corpus`, 기준 "누르고 싶은 문구") ②UI 카피(`ui-copy-corpus`, 기준 "헷갈림 없이 다음 행동으로" — 버튼·에러·빈상태·토스트·온보딩·게임UI). 팀 공용 검색 헬퍼(`search.sh`, `--ui` 플래그) 포함. 저장소 공유로 팀 전원 사용·코퍼스 공동 축적. 저장소 밖 배포는 `plugin/`으로 패키징

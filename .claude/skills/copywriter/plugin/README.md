@@ -23,7 +23,8 @@ dist/copywriter-plugin/
 ├── skills/copywriter/SKILL.md
 ├── skills/copywriter/search.sh
 ├── skills/copywriter/_render.py
-└── skills/copywriter/corpus/*.jsonl      # 코퍼스가 스킬 안에 함께 포함됨
+├── skills/copywriter/corpus/*.jsonl       # 광고 카피 코퍼스 (스킬 안에 포함)
+└── skills/copywriter/ui-corpus/*.jsonl    # UI 카피 코퍼스 (스킬 안에 포함)
 ```
 
 ## 팀원이 설치하는 법
@@ -43,6 +44,6 @@ cp -r dist/copywriter-plugin/skills/copywriter ~/.claude/skills/copywriter
 
 ## 자체 포함 스킬의 코퍼스 경로
 
-번들된 스킬은 코퍼스를 `skills/copywriter/corpus/`에서 찾는다. `search.sh`는 다음 순서로 코퍼스를 자동 탐색하므로 저장소·플러그인 양쪽에서 동작한다:
-1. `$SCRIPT_DIR/corpus` (플러그인 번들)
-2. `$SCRIPT_DIR/../../library/copy-corpus` (이 저장소)
+`search.sh`는 모드별로 다음 순서로 코퍼스를 자동 탐색하므로 저장소·플러그인 양쪽에서 동작한다:
+- 광고 카피(기본): `$SCRIPT_DIR/corpus` (번들) → `$SCRIPT_DIR/../../library/copy-corpus` (저장소)
+- UI 카피(`--ui`): `$SCRIPT_DIR/ui-corpus` (번들) → `$SCRIPT_DIR/../../library/ui-copy-corpus` (저장소)
