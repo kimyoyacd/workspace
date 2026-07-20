@@ -292,6 +292,15 @@
     }
     .result b { color: var(--off-white); }
 
+    /* ===== prompt vs-table ===== */
+    .vs-cat { font-size: 13px; font-weight: 600; color: var(--muted); margin: 20px 0 8px; }
+    table.vs { min-width: 480px; }
+    table.vs thead th:first-child { color: #a15b52; }
+    table.vs thead th:last-child { color: var(--charcoal); }
+    table.vs tbody td { font-weight: 400; }
+    table.vs tbody td:first-child { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(28,28,28,0.25); }
+    table.vs tbody td:last-child { color: var(--charcoal); font-weight: 600; }
+
     /* ===== prompt formula ===== */
     .formula { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0; }
     @media (max-width: 900px) { .formula { grid-template-columns: repeat(3, 1fr); } }
@@ -759,6 +768,43 @@
             </div>
             <p><strong>고치는 순서:</strong> 답이 이상하면 처음부터 다시 쓰지 말고 — "④형식만 바꿔줘(더 짧게)" "⑤이 예시 느낌으로" 하고 부족한 재료만 추가하세요. 대화로 다듬는 게 핵심이에요.</p>
             <p><strong>거꾸로 물어보기:</strong> 뭘 써야 할지 모르겠으면 "좋은 결과를 내려면 나한테 뭘 물어봐야 해?" 하고 클로드에게 먼저 질문시키세요.</p>
+
+            <h3 style="margin-top:28px">비교로 배우기 — 같은 요청, 다른 결과</h3>
+            <p>왼쪽처럼 말하면 뻔한 답이, 오른쪽처럼 말하면 쓸 수 있는 답이 나와요. 차이는 딱 하나 — <strong>"어떻게"를 붙였는가</strong>예요.</p>
+
+            <div class="vs-cat">① 물어볼 때 — 설명·의견을 구할 때</div>
+            <div class="scroller" style="margin:0 0 6px">
+              <table class="vs">
+                <thead><tr><th style="width:38%">✕ 이렇게 말하지 말고</th><th>✓ 이렇게 말해요</th></tr></thead>
+                <tbody>
+                  <tr><td>설명해줘</td><td>수치와 구체적인 사례를 들어 설명해줘</td></tr>
+                  <tr><td>이게 뭐야?</td><td>뻔하지 않은 관점으로 알려줘</td></tr>
+                  <tr><td>~에 대해 어떻게 생각해</td><td>일반적이지 않은 너만의 답을 줘</td></tr>
+                  <tr><td>~전략 알려줘</td><td>이 개념을 잘게 쪼개서 설명해줘</td></tr>
+                  <tr><td>~팁 알려줘</td><td>이 생각에 반박해봐</td></tr>
+                  <tr><td>예시 보여줘</td><td>누가 봐도 바로 이해할 직관적인 예시를 줘</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="vs-cat">② 글을 맡길 때 — 쓰기·고치기를 시킬 때</div>
+            <div class="scroller" style="margin:0">
+              <table class="vs">
+                <thead><tr><th style="width:38%">✕ 이렇게 말하지 말고</th><th>✓ 이렇게 말해요</th></tr></thead>
+                <tbody>
+                  <tr><td>글 써줘</td><td>내 말투 그대로, 전문용어 없이 써줘</td></tr>
+                  <tr><td>요약해줘</td><td>서론 빼고 3줄로 요약해줘</td></tr>
+                  <tr><td>개선해줘</td><td>이 3가지만 개선해줘: 진실성 · 글의 흐름 · CTA</td></tr>
+                  <tr><td>더 전문적으로 써줘</td><td>고객이 5초 안에 이해하게 명확하게 써줘</td></tr>
+                  <tr><td>전체적으로 수정해줘</td><td>말투는 유지하고 맞춤법·리듬만 수정해줘</td></tr>
+                  <tr><td>더 설득력 있게 써줘</td><td>이 실제 반론을 반영해서 더 설득력 있게 써줘</td></tr>
+                  <tr><td>콘텐츠 아이디어 줘</td><td>훅 + 요즘 유행 포맷을 넣어 아이디어 5개 줘</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p style="margin-top:14px;font-size:14px;color:var(--muted)">패턴이 보이죠? 오른쪽은 전부 ④형식(몇 줄·몇 개·뭘 유지)이나 ②상황(누가 읽는지)을 붙인 거예요. 외울 필요 없이, 위 5가지 재료에서 하나만 더 얹으면 돼요.</p>
+
             <div class="result">→ <b>답이 이상할 때 "빠진 재료"를 찾아 고칠 수 있게 돼요</b></div>
           </div>
         </details>
