@@ -48,6 +48,7 @@
 │   │   ├── manus-1-brand-planning.md
 │   │   ├── manus-2-visual-identity.md
 │   │   └── runable-3-brand-system.md
+│   ├── max-palette.md    # MAX 포인트 컬러 팔레트 — 디자인 덱·HTML 산출물 표준 (필수 적용)
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
 │   ├── qc-checklist.md   # 시안 검수 체크리스트
 │   ├── data-sources.md   # 노션·구글시트 연결 주소록

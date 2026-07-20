@@ -340,23 +340,7 @@ body {
   pointer-events: none;
   overflow: visible;
 }
-</style>
-</head>
-<body>
 
-<div class="page-header">
-  <h1>MAX실 OS v8 — 워크플로우 맵</h1>
-  <p>에이전트 6종 · 스킬 25종 · 검증 게이트 5곳의 전체 흐름</p>
-</div>
-
-<div class="legend">
-  <div class="legend-item"><div class="l-rect"></div> 스킬 노드</div>
-  <div class="legend-item"><div class="l-diamond"></div> 검증 게이트 (앰버)</div>
-  <div class="legend-item"><div class="l-diamond red"></div> 최종 게이트 (레드)</div>
-  <div class="legend-item"><div class="l-line"></div> 에이전트 간 전달</div>
-</div>
-
-<style>
 /* ── Trigger row ── */
 .trigger-row {
   display: flex;
@@ -431,6 +415,20 @@ body {
   font-family: var(--ff);
 }
 </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>MAX실 OS v8 — 에이전트 조직도</h1>
+  <p>역할 에이전트 7종이 각자 어떤 스킬을 담당하는지 보여준다. 에이전트에게 말하면 담당 스킬이 자동 호출된다. 하단에 에이전트별 역할 상세.</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="l-rect"></div> 스킬 노드</div>
+  <div class="legend-item"><div class="l-diamond"></div> 검증 게이트 (앰버)</div>
+  <div class="legend-item"><div class="l-diamond red"></div> 최종 게이트 (레드)</div>
+  <div class="legend-item"><div class="l-line"></div> 에이전트 간 전달</div>
+</div>
 
 <div class="trigger-row">
   <div class="trigger-node" id="n-rfp-analyst">
@@ -724,6 +722,155 @@ body {
       <span style="width:32px;height:0;border-top:1.5px dashed #e04fd4;display:inline-block;flex-shrink:0;"></span>
       <span style="color:#6B7280;">Designer <strong style="color:#111;">visual-generator</strong> → Director <strong style="color:#111;">design-critique</strong> &nbsp;·&nbsp; 시안 완성 전달</span>
     </div>
+  </div>
+</div>
+
+<!-- ── 에이전트별 역할 상세 ── -->
+<div style="margin-top:48px;padding-top:32px;border-top:1px solid #E5E7EB;">
+  <div style="font-family:'Instrument Serif','Georgia',serif;font-style:italic;font-size:18px;font-weight:400;color:#111;margin-bottom:4px;">에이전트별 역할 상세</div>
+  <p style="font-size:12.5px;color:#6B7280;margin-bottom:24px;">각 에이전트가 담당하는 스킬과 트리거 키워드. 이 목록 중 하나를 말하면 해당 에이전트가 자동으로 활성화된다.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;">
+
+    <!-- Marketer -->
+    <div style="background:#fff7f3;border:1px solid #ffb690;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#ff6e23;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7a2e00;">Marketer</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">시장을 읽고 아이디어를 벌린다</div>
+      <p style="font-size:11px;color:#7a2e00;margin-bottom:14px;line-height:1.5;">경쟁사 분석·트렌드 리서치·레퍼런스 큐레이션·아이디어 발산을 통해 프로젝트의 시장적 기반을 마련합니다.</p>
+      <div style="background:#fff;border:1px solid #ffb690;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#ff6e23;margin-bottom:8px;">스킬 4개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>market-research</strong> — 경쟁사 분석 → 포지셔닝 맵</div>
+          <div style="margin-bottom:6px;"><strong>design-trend</strong> — 3개월 트렌드 + 약신호</div>
+          <div style="margin-bottom:6px;"><strong>reference-curator</strong> — 방향별 레퍼런스</div>
+          <div><strong>brainstorm</strong> — 키워드 발산 + 아날로지</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">시장조사 · 경쟁사 분석 · 트렌드 봐줘 · 레퍼런스 찾아줘 · 아이디어 줘 · 포지셔닝 맵 · 화이트스페이스 · 이종업계</div>
+      </div>
+    </div>
+
+    <!-- Strategist -->
+    <div style="background:#f2f5ff;border:1px solid #94a8fd;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#2f53f9;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a3acc;">Strategist</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">방향을 정하고 제안을 만든다</div>
+      <p style="font-size:11px;color:#1a3acc;margin-bottom:14px;line-height:1.5;">RFP 분석·컨셉 정의·브랜드 제안 풀파이프라인을 통해 프로젝트의 전략적 방향을 수립하고 검증합니다.</p>
+      <div style="background:#fff;border:1px solid #94a8fd;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#2f53f9;margin-bottom:8px;">스킬 5개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>rfp-analyst</strong> — RFP → 4분류 + 확인 질문</div>
+          <div style="margin-bottom:6px;"><strong>concept-director</strong> — 관점 한 문장 정의</div>
+          <div style="margin-bottom:6px;"><strong>brand-pipeline</strong> — Manus 1→2→Runable 3</div>
+          <div style="margin-bottom:6px;"><strong>review-panel</strong> — 5관점 병렬 검토</div>
+          <div><strong>critic</strong> — 비용·기간·역량 점수화</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">RFP 분석 · 과업 분석 · 관점 잡아줘 · 컨셉 정의해줘 · 냉정하게 봐줘 · 점수 매겨줘 · 브랜드 제안 · 5관점</div>
+      </div>
+    </div>
+
+    <!-- Designer -->
+    <div style="background:#fff3fe;border:1px solid #ffb6fb;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#ff86f6;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8b007e;">Designer</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">눈에 보이는 결과물을 만든다</div>
+      <p style="font-size:11px;color:#8b007e;margin-bottom:14px;line-height:1.5;">비주얼 생성·무드보드·영상 콘티·Figma 연동을 통해 프로젝트의 모든 시각적 결과물을 구현합니다.</p>
+      <div style="background:#fff;border:1px solid #ffb6fb;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#ff86f6;margin-bottom:8px;">스킬 4개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>moodboard</strong> — 6버킷 무드보드</div>
+          <div style="margin-bottom:6px;"><strong>visual-generator</strong> — 키비주얼·목업 생성</div>
+          <div style="margin-bottom:6px;"><strong>storyboard</strong> — 영상·모션 콘티</div>
+          <div><strong>figma-bridge</strong> — 코드 ↔ Figma 연동</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">키비주얼 뽑아 · 이미지 생성 · 목업 만들어 · 무드보드 · 분위기 잡아줘 · 스토리보드 · 영상 콘티 · Figma</div>
+      </div>
+    </div>
+
+    <!-- Director -->
+    <div style="background:#f0faf9;border:1px solid #5aada6;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#01524d;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#01524d;">Director</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">품질을 지키고 발송을 결정한다</div>
+      <p style="font-size:11px;color:#01524d;margin-bottom:14px;line-height:1.5;">시안 검수·톤 점검·팩트 체크·발송 게이트를 통해 프로젝트의 최종 품질을 보증하고 발송을 결정합니다.</p>
+      <div style="background:#fff;border:1px solid #5aada6;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#01524d;margin-bottom:8px;">스킬 6개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>design-critique</strong> — 6영역 검수</div>
+          <div style="margin-bottom:6px;"><strong>creative-director</strong> — CD 톤 최종 점검</div>
+          <div style="margin-bottom:6px;"><strong>fact-checker</strong> — 팩트 체크</div>
+          <div style="margin-bottom:6px;"><strong>design-system-guardian</strong> — 시스템 준수</div>
+          <div style="margin-bottom:6px;"><strong>tone-guardian</strong> — 톤 교정</div>
+          <div><strong>delivery-gate</strong> — 발송 직전 린트</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">시안 검수 · 이 시안 봐줘 · CD 검수 · 톤 최종 점검 · 시스템 점검 · 팩트체크 · 톤 봐줘 · 발송 점검</div>
+      </div>
+    </div>
+
+    <!-- Operator -->
+    <div style="background:#f8ffec;border:1px solid #9fd94e;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#c5ff79;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2d5500;">Operator</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">숫자로 실을 돌린다</div>
+      <p style="font-size:11px;color:#2d5500;margin-bottom:14px;line-height:1.5;">프로젝트 진행 현황·매출·가동률·견적·클라이언트 관리를 통해 조직의 운영 효율성을 유지합니다. <strong>상시 운영</strong></p>
+      <div style="background:#fff;border:1px solid #9fd94e;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#c5ff79;margin-bottom:8px;">스킬 3개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>project-manager</strong> — 진행·매출·가동률</div>
+          <div style="margin-bottom:6px;"><strong>quote-accountant</strong> — 원가·마진 산출</div>
+          <div><strong>account-radar</strong> — 클라 히스토리·리스크</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">이번 주 현황 · 가동률 · 매출 달성율 · 프로젝트 정리 · 견적 · 단가 계산 · 코웨이 상황 · 클라 히스토리</div>
+      </div>
+    </div>
+
+    <!-- HR·Legal -->
+    <div style="background:#f5f5f5;border:1px solid #888;border-radius:12px;padding:20px;overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:14px;height:14px;background:#000000;border-radius:50%;flex-shrink:0;"></div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#333;">HR · Legal</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:2px;">사람과 계약을 지킨다</div>
+      <p style="font-size:11px;color:#555;margin-bottom:14px;line-height:1.5;">채용 파이프라인·외주 풀 관리·계약 및 법무 검토를 통해 조직의 인적 자산과 법적 리스크를 관리합니다. <strong>상시 운영</strong></p>
+      <div style="background:#fff;border:1px solid #888;border-radius:8px;padding:12px;margin-bottom:12px;">
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#666;margin-bottom:8px;">스킬 3개</div>
+        <div style="font-size:10.5px;color:#333;line-height:1.6;">
+          <div style="margin-bottom:6px;"><strong>hiring-radar</strong> — 채용 파이프라인</div>
+          <div style="margin-bottom:6px;"><strong>vendor-radar</strong> — 외주 풀 관리</div>
+          <div><strong>legal-compliance</strong> — 계약·NDA 검토</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#9CA3AF;margin-bottom:6px;">이렇게 부르세요</div>
+        <div style="font-size:10px;color:#666;line-height:1.6;">채용 상황 · JD 써줘 · 채용 현황 · 외주 찾자 · 프리랜서 풀 · 외주비 계산 · 계약서 검토 · NDA 봐줘</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
