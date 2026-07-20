@@ -85,4 +85,4 @@
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
-- `copywriter` — 카피 코퍼스(`.claude/library/copy-corpus/`)를 grep 검색해 기출문제 기반으로 카피 작성. 기준은 "누르고 싶은 문구"
+- `copywriter` — 카피 코퍼스(`.claude/library/copy-corpus/`)를 grep 검색해 기출문제 기반으로 카피 작성. 기준은 "누르고 싶은 문구". 팀 공용 검색 헬퍼(`search.sh`) 포함, 저장소 공유로 팀 전원 사용·코퍼스 공동 축적. 저장소 밖 배포는 `plugin/`으로 플러그인 패키징
