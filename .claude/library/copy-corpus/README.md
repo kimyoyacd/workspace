@@ -24,16 +24,25 @@ grep -h '"tone":"위트"' .claude/library/copy-corpus/*.jsonl | head -30
 
 ## 파일 구성 (카테고리별 JSONL)
 
+이 코퍼스는 **광고 카피**(주목·설득) 전용이다. UI 문구(버튼·에러·빈상태 등)는 `../ui-copy-corpus/`에 따로 있다.
+
 | 파일 | 커버 범위 |
 |---|---|
 | `telecom-internet.jsonl` | 통신사·인터넷·요금제·알뜰폰·와이파이 |
-| `food-beverage.jsonl` | 식품·음료·주류·카페·프랜차이즈 |
+| `food-beverage.jsonl` | 식품·음료·주류·카페·프랜차이즈 (F&B) |
 | `finance-insurance.jsonl` | 은행·카드·보험·핀테크·증권 |
-| `beauty-fashion.jsonl` | 뷰티·화장품·패션·쇼핑몰 |
+| `beauty-fashion.jsonl` | 뷰티·화장품·패션·쇼핑몰 (코스메틱) |
 | `ecommerce-delivery.jsonl` | 커머스·배달·플랫폼·앱푸시·프로모션 |
 | `game-entertainment.jsonl` | 게임(UA·사전예약·업데이트)·OTT·엔터 |
 | `tech-appliance-auto.jsonl` | 가전·IT기기·자동차·B2B테크 |
 | `living-health-public.jsonl` | 생활용품·헬스·교육·공익·브랜드 슬로건 |
+| `corporate-b2b.jsonl` | 일반 기업·기업 브랜딩·B2B·제조·채용·ESG·IR |
+| `education-kids.jsonl` | 교육·학원·인강·에듀테크·유아/키즈 |
+| `travel-hospitality.jsonl` | 여행·항공·호텔·리조트·숙박·레저 |
+| `medical-clinic.jsonl` | 병원·의원·치과·피부/성형·검진·제약 |
+| `realestate-interior.jsonl` | 부동산·분양·건설·인테리어·가구·이사 |
+
+> 클라이언트 업종이 위에 없으면 새 파일을 신설하고 이 표에 추가한다. 업종이 달라도 후킹 구조는 공유되므로, 인접 업종을 함께 검색해 기출을 확보한다.
 
 ## 스키마 (한 줄 = 카피 한 건)
 
