@@ -39,14 +39,16 @@
 ├── agents/README.md           # 에이전트 상세 설명
 ├── skills/                    # 커스텀 스킬
 │   └── list-deck-design/
+├── projects/                   # 프로젝트별 노트
 └── library/
     ├── core-directives.md     # 5가지 핵심 원칙
     ├── prompt-guide.md        # 프롬프트 생성 가이드
+    ├── project-note-rules.md  # 프로젝트 노트 요약/원본 로그 이원 구조 규칙
     ├── unit-rates.md
     ├── qc-checklist.md
     ├── data-sources.md
     ├── automation.md
-    └── prompts/               # 템플릿 자산
+    └── prompts/               # 템플릿 자산 (project-note-template.md 포함)
 배움노트/                      # 사용자 학습 노트 (클로드 코드·깃허브 개념 정리)
 ```
 
@@ -108,3 +110,4 @@
 ## 프로젝트 관리
 - 신규 프로젝트: `.claude/projects/YYYYMM_프로젝트명.md` 형식
 - 포함 항목: 클라이언트, 업무 범위, 일정, 견적, 진행 메모
+- 상세 규칙(요약 섹션 vs 원본 로그 섹션 이원화)은 `.claude/library/project-note-rules.md` 참조
