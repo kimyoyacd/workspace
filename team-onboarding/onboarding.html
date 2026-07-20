@@ -283,6 +283,36 @@
   .bad .tagm { color: #c2453f; }
   .good .tagm { color: var(--good); }
 
+  /* ---- glossary ---- */
+  .gloss-note {
+    background: var(--warm-soft);
+    border: 1px solid color-mix(in srgb, var(--warm) 28%, transparent);
+    border-radius: var(--r); padding: 18px 22px; margin: 0 0 22px;
+    font-size: 0.94rem; color: var(--ink-soft);
+  }
+  .gloss-note b { color: var(--warm); }
+  .gloss { display: grid; gap: 12px; }
+  .gterm {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 15px 18px;
+  }
+  .gterm .top { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-bottom: 6px; }
+  .gterm .name { font-weight: 700; font-size: 1rem; }
+  .gterm .lvl {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
+  }
+  .lvl.know { background: var(--accent-soft); color: var(--accent-ink); }
+  .lvl.skip { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .gterm p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+  .gterm .analogy { display: block; margin-top: 5px; font-size: 0.85rem; color: var(--muted); }
+  .gloss-cat {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin: 22px 0 4px; padding-top: 4px;
+  }
+  .gloss-cat:first-of-type { margin-top: 4px; }
+
   footer { padding: 46px 0 60px; }
   footer p { color: var(--muted); font-size: 0.86rem; font-family: var(--font-mono); }
 
@@ -312,6 +342,7 @@
     <a href="#habits">5가지 습관</a>
     <a href="#rollout">3단계 롤아웃</a>
     <a href="#ops">그룹·개인 운영</a>
+    <a href="#glossary">용어 사전</a>
     <a href="#checklist">이수 체크리스트</a>
   </div>
 </nav>
@@ -465,9 +496,71 @@
     </div>
   </section>
 
+  <section id="glossary">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">07</span><div><h2>용어 사전 — "이 단어가 대체 뭐야?"</h2><p class="sub">스킬·마크다운·깃허브가 뭔지 몰라도 일은 시작된다. 이 사전은 겁먹지 말라고 있는 것.</p></div></div>
+      <div class="gloss-note">먼저 안심하세요. <b>당장 알아야 할 건 거의 없습니다.</b> 챗에서 한국어로 부탁하는 것만으로 대부분의 일이 됩니다. 아래는 "우리 작업 환경에서 지나가다 보게 될 간판"일 뿐 — 뜻만 알면 안 무섭습니다. <b>ALWAYS</b> = 알면 편함 / <b>SKIP</b> = 지금은 신경 끄기.</div>
+
+      <div class="gloss-cat">A · 파일·문서 형식</div>
+      <div class="gloss">
+        <div class="gterm">
+          <div class="top"><span class="name">마크다운 (.md)</span><span class="lvl know">알면 편함</span></div>
+          <p>서식 있는 글을 아주 간단한 기호로 쓰는 가벼운 문서 형식. 이 온보딩 문서들이 전부 마크다운이다.<span class="analogy">비유 — 제목·굵게·목록이 되는 초경량 메모장 (워드의 가벼운 버전)</span></p>
+        </div>
+        <div class="gterm">
+          <div class="top"><span class="name">HTML</span><span class="lvl skip">몰라도 됨</span></div>
+          <p>웹페이지를 만드는 형식. 결과물을 "보기 좋게 전달"할 때 클로드가 대신 만들어준다. 이 페이지가 그 예.</p>
+        </div>
+      </div>
+
+      <div class="gloss-cat">B · 깃허브 생태계 — 팀 공동 창고</div>
+      <div class="gloss-note" style="margin:0 0 12px">대부분의 팀원은 <b>깃허브를 직접 안 만져도 됩니다.</b> "우리 결과물이 여기 보관·버전관리되고 링크로 공유된다" 정도만 알면 충분.</div>
+      <div class="gloss">
+        <div class="gterm">
+          <div class="top"><span class="name">깃허브 (GitHub)</span><span class="lvl know">알면 편함</span></div>
+          <p>문서·코드를 팀이 함께 보관하고 누가 언제 뭘 바꿨는지 전부 기록하는 클라우드 창고.<span class="analogy">비유 — 구글 드라이브 + 강력한 "변경 이력 되감기"</span></p>
+        </div>
+        <div class="gterm">
+          <div class="top"><span class="name">저장소 · 커밋 · 브랜치 · PR</span><span class="lvl skip">원리는 몰라도 됨</span></div>
+          <p>저장소 = 프로젝트 폴더 전체 · 커밋 = "저장+변경 메모" 스냅샷(게임 세이브) · 브랜치 = 원본 안 건드리는 작업 사본 · PR = "이 수정본 합쳐도 될까요?" 결재 상신.</p>
+        </div>
+      </div>
+
+      <div class="gloss-cat">C · 클로드 확장 개념</div>
+      <div class="gloss">
+        <div class="gterm">
+          <div class="top"><span class="name">스킬 (Skill)</span><span class="lvl know">알면 편함</span></div>
+          <p>특정 작업을 "이렇게 해라"라고 미리 패키징해 둔 설명서 묶음. 클로드가 필요할 때 알아서 꺼내 쓴다. 매번 같은 지시를 반복 안 해도 됨.<span class="analogy">비유 — 자주 쓰는 요리의 레시피 카드</span></p>
+        </div>
+        <div class="gterm">
+          <div class="top"><span class="name">에이전트 (Agent)</span><span class="lvl know">알면 편함</span></div>
+          <p>특정 역할에 특화된 클로드 분신. "견적 담당", "트렌드 리서치 담당"처럼 부르면 그 관점으로 일한다.<span class="analogy">스킬 = 작업 방법 설명서 / 에이전트 = 그 방법을 든 담당자</span></p>
+        </div>
+        <div class="gterm">
+          <div class="top"><span class="name">아티팩트 (Artifact)</span><span class="lvl know">알면 편함</span></div>
+          <p>클로드가 만든 결과물(웹페이지·문서 등)을 링크로 바로 볼 수 있게 발행한 것. 이 온보딩 페이지가 그 예.</p>
+        </div>
+      </div>
+
+      <div class="gloss-cat">D · 연결·도구</div>
+      <div class="gloss">
+        <div class="gterm">
+          <div class="top"><span class="name">MCP · 커넥터 (Connector)</span><span class="lvl know">알면 편함</span></div>
+          <p>클로드를 외부 도구(노션·지메일·구글드라이브·피그마 등)에 연결하는 다리. 연결하면 그 안의 자료를 읽거나 쓸 수 있다. (연결은 보통 관리자가 세팅)<span class="analogy">주의 — 연결된 자료는 기밀·개인정보일 수 있으니 보안 규칙 준수</span></p>
+        </div>
+        <div class="gterm">
+          <div class="top"><span class="name">Claude Code · 터미널(CLI)</span><span class="lvl skip">몰라도 됨</span></div>
+          <p>검은 화면에 명령으로 파일·자동화를 직접 다루는 개발자용 환경. 대부분의 팀원은 지금 몰라도 된다. 파일 대량 생성·자동화가 필요해질 때 배우면 됨.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;font-size:0.92rem;color:var(--ink-soft)"><strong>핵심:</strong> 위 단어가 대화나 문서에 나와도 <strong>당황하지 마세요.</strong> "아 그거 그런 뜻이었지" 하고 넘어가면 됩니다. 정말 필요해지는 순간, 그때 이 사전을 다시 펴면 됩니다.</p>
+    </div>
+  </section>
+
   <section id="checklist">
     <div class="wrap">
-      <div class="sec-head"><span class="sec-no">07</span><div><h2>이수 체크리스트</h2><p class="sub">전원 8/8 통과 = "같은 출발선" 달성. 기준은 완벽이 아니라 "혼자 겁 없이 시도할 수 있다".</p></div></div>
+      <div class="sec-head"><span class="sec-no">08</span><div><h2>이수 체크리스트</h2><p class="sub">전원 8/8 통과 = "같은 출발선" 달성. 기준은 완벽이 아니라 "혼자 겁 없이 시도할 수 있다".</p></div></div>
       <ul class="checks">
         <li><span class="box" aria-hidden="true"></span><span>챗·프로젝트·코드 3접점의 차이를 한 문장씩 설명할 수 있다</span></li>
         <li><span class="box" aria-hidden="true"></span><span>"세션 = 맥락"을 이해하고, 주제가 바뀌면 새 세션을 연다</span></li>
@@ -485,6 +578,6 @@
 
 <footer>
   <div class="wrap">
-    <p>팀 클로드 온보딩 플레이북 · 이식 가능 문서 세트(README · 00 기초개념 · 10 치트시트 · 20 커리큘럼 · 30 그룹·개인 운영 · 40 역할별 레시피 · 99 우리팀 규칙)의 요약 페이지. 회사 고유값은 99_우리팀_규칙에 채운다.</p>
+    <p>팀 클로드 온보딩 플레이북 · 이식 가능 문서 세트(README · 00 기초개념 · 10 치트시트 · 20 커리큘럼 · 30 그룹·개인 운영 · 40 역할별 레시피 · 50 용어사전 · 99 우리팀 규칙)의 요약 페이지. 회사 고유값은 99_우리팀_규칙에 채운다.</p>
   </div>
 </footer>
