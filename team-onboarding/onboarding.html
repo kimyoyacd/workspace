@@ -1,0 +1,490 @@
+<title>팀 클로드 온보딩 플레이북</title>
+<style>
+  :root {
+    --paper: #EFF0F3;
+    --surface: #FBFBFC;
+    --surface-2: #F5F6F8;
+    --ink: #171A20;
+    --ink-soft: #474D5A;
+    --muted: #868C9A;
+    --line: #E0E2E8;
+    --line-strong: #CDD0D8;
+    --accent: #2C4BE0;
+    --accent-ink: #1B2F9E;
+    --accent-soft: #E6EAFB;
+    --warm: #B26E17;
+    --warm-soft: #F5EAD6;
+    --good: #1C8256;
+    --good-soft: #E0F0E7;
+    --font-sans: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "D2Coding", Menlo, Consolas, monospace;
+    --maxw: 780px;
+    --r: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0F1015;
+      --surface: #181A21;
+      --surface-2: #14161C;
+      --ink: #ECEDF1;
+      --ink-soft: #AFB5C1;
+      --muted: #767C8A;
+      --line: #272A33;
+      --line-strong: #363A45;
+      --accent: #6E88FF;
+      --accent-ink: #A9B8FF;
+      --accent-soft: #1B2140;
+      --warm: #E6B45E;
+      --warm-soft: #2B2416;
+      --good: #52C08D;
+      --good-soft: #16281F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0F1015;
+    --surface: #181A21;
+    --surface-2: #14161C;
+    --ink: #ECEDF1;
+    --ink-soft: #AFB5C1;
+    --muted: #767C8A;
+    --line: #272A33;
+    --line-strong: #363A45;
+    --accent: #6E88FF;
+    --accent-ink: #A9B8FF;
+    --accent-soft: #1B2140;
+    --warm: #E6B45E;
+    --warm-soft: #2B2416;
+    --good: #52C08D;
+    --good-soft: #16281F;
+  }
+  :root[data-theme="light"] {
+    --paper: #EFF0F3;
+    --surface: #FBFBFC;
+    --surface-2: #F5F6F8;
+    --ink: #171A20;
+    --ink-soft: #474D5A;
+    --muted: #868C9A;
+    --line: #E0E2E8;
+    --line-strong: #CDD0D8;
+    --accent: #2C4BE0;
+    --accent-ink: #1B2F9E;
+    --accent-soft: #E6EAFB;
+    --warm: #B26E17;
+    --warm-soft: #F5EAD6;
+    --good: #1C8256;
+    --good-soft: #E0F0E7;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+  /* ---- eyebrow / labels ---- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .lede { color: var(--ink-soft); }
+
+  /* ---- header ---- */
+  header.hero {
+    border-bottom: 1px solid var(--line);
+    padding: 62px 0 44px;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 6vw, 3.15rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  h1 .hl { color: var(--accent); }
+  .hero p { font-size: 1.08rem; max-width: 60ch; margin: 0 0 26px; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 11px; border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-soft); background: var(--surface);
+  }
+  .tag b { color: var(--ink); font-weight: 600; }
+
+  /* ---- toc ---- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 11px 0;
+  }
+  nav.toc .wrap { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+  nav.toc .wrap::-webkit-scrollbar { display: none; }
+  nav.toc a {
+    flex: 0 0 auto;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-soft); text-decoration: none;
+    padding: 5px 11px; border-radius: 8px; white-space: nowrap;
+    transition: background .15s, color .15s;
+  }
+  nav.toc a:hover { background: var(--accent-soft); color: var(--accent); }
+  nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---- sections ---- */
+  section { padding: 52px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 26px; }
+  .sec-no {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    color: var(--accent); flex: 0 0 auto; padding-top: 4px;
+  }
+  h2 { font-size: 1.62rem; line-height: 1.15; letter-spacing: -0.025em; font-weight: 800; margin: 0; text-wrap: balance; }
+  h2 + .sub { color: var(--muted); margin: 6px 0 0; font-size: 0.96rem; }
+  h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  strong { font-weight: 700; }
+  a.inline { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+  /* ---- cards grid ---- */
+  .grid { display: grid; gap: 14px; }
+  .grid.g3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.g2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { .grid.g3, .grid.g2 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 20px;
+  }
+  .card .k {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  }
+  .card h3 { margin-bottom: 6px; }
+  .card p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+
+  /* ---- callout ---- */
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    border-radius: var(--r); padding: 22px 24px; margin: 22px 0;
+  }
+  .callout .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 10px; }
+  .callout ol { margin: 0; padding-left: 1.2em; }
+  .callout ol li { margin-bottom: 8px; }
+  .callout ol li::marker { color: var(--accent); font-weight: 700; }
+  .callout ol li:last-child { margin-bottom: 0; }
+  .callout strong { color: var(--accent-ink); }
+
+  /* ---- model table ---- */
+  .scroller { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 520px; }
+  th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    background: var(--surface-2);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr td:first-child { font-weight: 700; }
+  .mtag {
+    display: inline-block; font-family: var(--font-mono); font-size: 11px;
+    padding: 2px 8px; border-radius: 6px; margin-top: 4px;
+  }
+  .mtag.base { background: var(--accent-soft); color: var(--accent-ink); }
+  .mtag.warm { background: var(--warm-soft); color: var(--warm); }
+
+  /* ---- rollout timeline ---- */
+  .steps { display: grid; gap: 14px; }
+  .step {
+    display: grid; grid-template-columns: auto 1fr; gap: 18px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 20px 22px;
+  }
+  .step .num {
+    font-family: var(--font-mono); font-weight: 700; font-size: 1.35rem;
+    color: var(--accent); line-height: 1; padding-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .step .when { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+  .step h3 { margin: 4px 0 8px; }
+  .step p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+  .step .out { margin-top: 10px; font-size: 0.85rem; color: var(--good); font-family: var(--font-mono); }
+
+  /* ---- 2col compare ---- */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+  @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
+  .compare > div { padding: 20px 22px; }
+  .compare .c-ind { background: var(--surface); border-right: 1px solid var(--line); }
+  .compare .c-grp { background: var(--surface-2); }
+  @media (max-width: 640px) { .compare .c-ind { border-right: none; border-bottom: 1px solid var(--line); } }
+  .compare .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .compare .c-ind .k { color: var(--accent); }
+  .compare .c-grp .k { color: var(--warm); }
+  .compare ul { margin: 0; padding-left: 1.1em; }
+  .compare li { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 7px; }
+
+  /* ---- naming rows ---- */
+  .rows { display: grid; gap: 10px; margin-top: 16px; }
+  .row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .row .lab { font-size: 0.9rem; color: var(--ink-soft); flex: 1 1 180px; }
+  .row code {
+    font-family: var(--font-mono); font-size: 0.82rem;
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 4px 9px; border-radius: 7px; color: var(--accent-ink);
+  }
+
+  /* ---- checklist ---- */
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .checks li {
+    display: grid; grid-template-columns: auto 1fr; gap: 13px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; padding: 13px 16px; font-size: 0.94rem;
+  }
+  .checks li .box {
+    width: 19px; height: 19px; border-radius: 5px; margin-top: 2px;
+    border: 1.5px solid var(--good); flex: 0 0 auto; position: relative;
+  }
+  .checks li .box::after {
+    content: ""; position: absolute; left: 5px; top: 1px;
+    width: 5px; height: 10px; border: solid var(--good);
+    border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+
+  .habits { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+  .habits li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline; }
+  .habits .n { font-family: var(--font-mono); color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+  .habits b { font-weight: 700; }
+  .habits span { color: var(--ink-soft); font-size: 0.94rem; }
+
+  .badexample { display: grid; gap: 8px; margin-top: 16px; }
+  .badexample div { padding: 12px 16px; border-radius: 10px; font-size: 0.92rem; }
+  .bad { background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+  .good { background: var(--good-soft); border: 1px solid color-mix(in srgb, var(--good) 30%, transparent); color: var(--ink); }
+  .badexample .tagm { font-family: var(--font-mono); font-size: 11px; margin-right: 8px; }
+  .bad .tagm { color: #c2453f; }
+  .good .tagm { color: var(--good); }
+
+  footer { padding: 46px 0 60px; }
+  footer p { color: var(--muted); font-size: 0.86rem; font-family: var(--font-mono); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">내부 플레이북 · 이식 가능(portable)</p>
+    <h1>팀 전원을 <span class="hl">같은 출발선</span>에.<br>클로드 온보딩 플레이북</h1>
+    <p class="lede">클로드를 처음 쓰는 팀원도, Sonnet·Fable 같은 모델을 몰라도 어려움 없이 실무에 투입할 수 있게 한다. 이 문서는 특정 회사 자산에 묶이지 않는다 — 폴더째 복사해 다른 팀·워크스페이스로 그대로 옮길 수 있다.</p>
+    <div class="meta">
+      <span class="tag">읽는 시간 <b>15분</b></span>
+      <span class="tag">공통 온보딩 <b>90분</b></span>
+      <span class="tag">롤아웃 <b>3단계</b></span>
+      <span class="tag">목표 <b>습관 통일</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="섹션 이동">
+  <div class="wrap">
+    <a href="#access">접점 3가지</a>
+    <a href="#session">세션</a>
+    <a href="#models">모델</a>
+    <a href="#habits">5가지 습관</a>
+    <a href="#rollout">3단계 롤아웃</a>
+    <a href="#ops">그룹·개인 운영</a>
+    <a href="#checklist">이수 체크리스트</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="access">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">01</span><div><h2>어디서 쓰나 — 접점 3가지</h2><p class="sub">같은 클로드지만 들어가는 문이 셋. 문마다 잘하는 일이 다르다.</p></div></div>
+      <div class="grid g3">
+        <div class="card">
+          <div class="k">① 챗 · claude.ai</div>
+          <h3>대화창</h3>
+          <p>아이데이션 · 글쓰기 · 리서치 · 요약 · 시안 피드백. 대부분의 팀원이 <strong>여기서 시작</strong>한다.</p>
+        </div>
+        <div class="card">
+          <div class="k">② 프로젝트</div>
+          <h3>맥락 폴더</h3>
+          <p>관련 대화·파일·지침을 한 건으로 묶는 공간. "이 클라이언트 건은 여기서만" — 맥락을 계속 유지.</p>
+        </div>
+        <div class="card">
+          <div class="k">③ 코드 · Claude Code</div>
+          <h3>작업실</h3>
+          <p>실제 파일 생성/수정·자동화·대량 문서. <strong>필요한 사람만</strong> 나중에 배운다.</p>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:0.92rem;color:var(--ink-soft)"><strong>초기 권장:</strong> 대부분은 <strong>①챗 + ②프로젝트</strong>만으로 리서치·기획·글쓰기·검토의 80%를 해결한다.</p>
+    </div>
+  </section>
+
+  <section id="session">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">02</span><div><h2>세션 = 대화 하나 = 맥락 하나</h2><p class="sub">가장 중요한 개념. 이것만 알면 절반은 끝난다.</p></div></div>
+      <p>새 대화를 열면 클로드는 <strong>그 대화 안에서 오간 내용만</strong> 기억한다. 옆 대화는 모른다. 사람으로 치면 <strong>"이 회의실 안 이야기만 기억하는" 상태</strong>다.</p>
+      <div class="callout">
+        <div class="k">세션 관리 3규칙</div>
+        <ol>
+          <li><strong>주제가 바뀌면 새 세션.</strong> A클라이언트 → B클라이언트로 넘어가면 새 대화. 안 그러면 맥락이 섞여 답이 흐려진다.</li>
+          <li><strong>세션 이름은 규칙대로.</strong> <code style="font-family:var(--font-mono);font-size:0.85em">[클라이언트]_[업무]_[날짜]</code> 형식으로 나중에 찾기 쉽게.</li>
+          <li><strong>길어진 세션은 결정을 밖으로.</strong> 앞부분이 요약되며 디테일이 흐려질 수 있으니, 확정 방향·수치·문구는 그때그때 문서로 남긴다.</li>
+        </ol>
+      </div>
+      <p style="font-size:0.92rem;color:var(--muted)">컨텍스트 = 클로드가 지금 머릿속에 든 대화 전체(= 화이트보드). 토큰 = 글자 세는 단위. 화이트보드가 다 차면 오래된 걸 요약·삭제한다. → 지금 일에 필요한 것으로만 채운다.</p>
+    </div>
+  </section>
+
+  <section id="models">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">03</span><div><h2>모델 — 3줄 규칙이면 끝</h2><p class="sub">이름을 다 외울 필요 없다. 아래 세 줄만.</p></div></div>
+      <div class="callout">
+        <div class="k">모델 3줄 규칙</div>
+        <ol>
+          <li><strong>기본은 Sonnet.</strong> 일상 실무 대부분(글·기획·리서치·검토)에 빠르고 충분.</li>
+          <li><strong>어려우면 Opus.</strong> 복잡한 추론·긴 전략 문서·까다로운 판단.</li>
+          <li><strong>단순·급하면 Haiku, 최고난도 장기전이면 Fable.</strong></li>
+        </ol>
+      </div>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>모델</th><th>비유</th><th>언제</th></tr></thead>
+          <tbody>
+            <tr><td>Haiku<div class="mtag warm">4.5</div></td><td>인턴 (빠른 손)</td><td>단순·반복·빠른 처리 — 분류, 짧은 요약, 초안 대량 생성</td></tr>
+            <tr><td>Sonnet<div class="mtag base">기본값 · 5</div></td><td>실무 담당</td><td>일상 실무 전반 — 기획·글쓰기·리서치·시안 피드백·코딩</td></tr>
+            <tr><td>Opus<div class="mtag base">4.8</div></td><td>시니어</td><td>복잡한 전략·긴 제안서·장시간 자동 작업·어려운 판단</td></tr>
+            <tr><td>Fable<div class="mtag warm">5 · 비쌈</div></td><td>특급 전문가</td><td>최고 난도·초장기 작업. 꼭 필요할 때만</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:0.92rem;color:var(--ink-soft)"><strong>실전:</strong> 헷갈리면 Sonnet으로 시작 → 답이 얕으면 <em>"이거 Opus로 다시 해줘"</em>로 올린다. 위로 올리는 건 쉽다. <span style="color:var(--muted)">(모델 이름은 갱신될 수 있다. 새 이름이 보이면 상위 버전으로 이해하고 3줄 규칙 그대로 적용.)</span></p>
+    </div>
+  </section>
+
+  <section id="habits">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">04</span><div><h2>잘 부리는 5가지 습관</h2><p class="sub">전원 공통. 완벽한 프롬프트 엔지니어가 될 필요는 없다.</p></div></div>
+      <ul class="habits">
+        <li><span class="n">01</span><span><b>맥락을 먼저 준다.</b> "누구를 위한, 무슨 목적의 일인지"를 앞에 깔면 결과가 확 좋아진다.</span></li>
+        <li><span class="n">02</span><span><b>대화로 다듬는다.</b> "더 짧게 · 이 톤으로 · 3안만 남기고" — 왕복이 정상이다.</span></li>
+        <li><span class="n">03</span><span><b>예시를 준다.</b> 원하는 톤/형식의 샘플 하나를 붙이면 적중률이 오른다.</span></li>
+        <li><span class="n">04</span><span><b>주제가 바뀌면 새 세션.</b></span></li>
+        <li><span class="n">05</span><span><b>사실·숫자·PII·톤은 사람이 검수 후 발송.</b> 특히 외부 발송물.</span></li>
+      </ul>
+      <div class="badexample">
+        <div class="bad"><span class="tagm">나쁨</span>배너 문구 뽑아줘</div>
+        <div class="good"><span class="tagm">좋음</span>20대 여성 화장품 여름세일 배너. 톡톡 튀되 과하지 않게, 15자 이내 5개.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rollout">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">05</span><div><h2>3단계 롤아웃</h2><p class="sub">한 번의 교육이 아니라, 베이스라인 통일 → 실무 적용 → 팀 표준화의 순서.</p></div></div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <div class="when">1주차 · 베이스라인 통일</div>
+            <h3>전원이 개념을 이해하고 혼자 시작할 수 있다</h3>
+            <p>기초개념 각자 읽기 → 90분 공통 온보딩 → 치트시트 핀 고정 → 이수 체크리스트 8항목 통과.</p>
+            <div class="out">→ 전원 체크리스트 통과 = "같은 출발선" 달성</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <div class="when">2–4주차 · 실무 적용</div>
+            <h3>각자 자기 업무에 클로드를 붙인다</h3>
+            <p>역할별 레시피 3개를 실제 업무에 적용 → 주 1회 15분 "이번 주 뭘 아꼈나" 공유 → 잘 된 프롬프트는 공유 저장소에 적립.</p>
+            <div class="out">→ 1인당 검증된 워크플로 ≥ 3개</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <div class="when">2개월차~ · 팀 표준화</div>
+            <h3>개인 노하우를 팀 자산으로 전환</h3>
+            <p>반복 프롬프트 → 공유 템플릿/프로젝트로 승격 → 자주 쓰는 검수·산정 흐름은 에이전트/스킬로 패키징(선택).</p>
+            <div class="out">→ "개인이 잘 쓰는 팀" → "팀 시스템으로 잘 쓰는 팀"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ops">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">06</span><div><h2>그룹 사용 vs 개인 사용</h2><p class="sub">무엇을 각자 하고, 무엇을 팀 공유로 관리하나.</p></div></div>
+      <div class="compare">
+        <div class="c-ind">
+          <div class="k">개인 영역 · 속도</div>
+          <ul>
+            <li>각자의 실무 대화·초안·실험</li>
+            <li>개인 프롬프트, 일회성 요청</li>
+            <li>자유롭게 빠르게 시도</li>
+          </ul>
+        </div>
+        <div class="c-grp">
+          <div class="k">그룹 영역 · 일관성</div>
+          <ul>
+            <li>팀 공통 규칙·검증된 프롬프트</li>
+            <li>클라이언트 프로젝트 노트·템플릿</li>
+            <li>노하우 축적 · 중복 제거</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:16px;font-size:0.92rem;color:var(--ink-soft)"><strong>원칙:</strong> 개인이 잘 쓴 게 반복되면 → <strong>그룹으로 승격</strong>한다. 계정은 개인별(보안·책임 추적), 기밀·PII는 입력 전 마스킹.</p>
+      <div class="rows">
+        <div class="row"><span class="lab">세션 이름</span><code>[클라이언트]_[업무]_[날짜]</code><span style="font-size:0.85rem;color:var(--muted)">예: 코웨이_상세페이지_0720</span></div>
+        <div class="row"><span class="lab">프로젝트 이름</span><code>YYYYMM_클라이언트_업무</code><span style="font-size:0.85rem;color:var(--muted)">예: 202607_코웨이_상세페이지</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-no">07</span><div><h2>이수 체크리스트</h2><p class="sub">전원 8/8 통과 = "같은 출발선" 달성. 기준은 완벽이 아니라 "혼자 겁 없이 시도할 수 있다".</p></div></div>
+      <ul class="checks">
+        <li><span class="box" aria-hidden="true"></span><span>챗·프로젝트·코드 3접점의 차이를 한 문장씩 설명할 수 있다</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>"세션 = 맥락"을 이해하고, 주제가 바뀌면 새 세션을 연다</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>모델 3줄 규칙을 안다 (기본 Sonnet / 어려우면 Opus / 양 끝은 Haiku·Fable)</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>나쁜 요청을 "맥락 먼저 + 구체적으로" 좋은 요청으로 고칠 수 있다</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>결과를 대화로 다듬어 본다 (더 짧게 / 톤 변경 / N안 남기기)</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>클라이언트/건별로 프로젝트를 하나 만들어 봤다</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>사실·숫자·PII·톤은 사람이 검수 후 발송한다는 원칙을 안다</span></li>
+        <li><span class="box" aria-hidden="true"></span><span>막혔을 때 어디에 물어보는지 안다 (팀 공유 채널)</span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>팀 클로드 온보딩 플레이북 · 이식 가능 문서 세트(README · 00 기초개념 · 10 치트시트 · 20 커리큘럼 · 30 그룹·개인 운영 · 40 역할별 레시피 · 99 우리팀 규칙)의 요약 페이지. 회사 고유값은 99_우리팀_규칙에 채운다.</p>
+  </div>
+</footer>
