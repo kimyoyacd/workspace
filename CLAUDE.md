@@ -38,7 +38,8 @@
 ├── CLAUDE.md (이 파일 — 핵심만)
 ├── agents/README.md           # 에이전트 상세 설명
 ├── skills/                    # 커스텀 스킬
-│   └── list-deck-design/
+│   ├── list-deck-design/
+│   └── mx-deck-design/
 ├── projects/                   # 프로젝트별 노트
 └── library/
     ├── core-directives.md     # 5가지 핵심 원칙
@@ -100,12 +101,13 @@
 - `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
 
 **⑦ 역할 오케스트레이터 (v8)**
-- `marketer` (마케터) — 리서치·발산 통합 역할. 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
+- `marketer` (마케터) — RFP부터 리서치·발산까지 통합 역할. RFP 분석 → 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: rfp-analyst · market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "RFP 분석"/"시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
 
 > 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
+- `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
 
 ## 프로젝트 관리
 - 신규 프로젝트: `.claude/projects/YYYYMM_프로젝트명.md` 형식
