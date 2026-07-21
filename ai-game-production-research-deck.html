@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>AI 게임 제작 동향 — Wide Research</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF; --bg-dark: #0A0A0A; --bg-dark2: #1C1C1E;
+  --card: #F3F3F3; --ink: #171717; --ink-inv: #FFFFFF;
+  --muted: #9C9C9C; --meta: #B0B0B0;
+  --accent: #3D5AFE; /* AI 게임 리서치 포인트 1색 — 일렉트릭 인디고 */
+  --sig: #2F3E5F;     --sig-soft: #EEF1F7;
+  --pt-blue: #1D4ED8; --pt-blue-soft: #DBEAFE;
+  --pt-green: #2D7A4F;--pt-green-soft: #E5F2E9;
+  --pt-amber: #C77A0F;--pt-amber-soft: #FFF6E5;
+  --pt-red: #B23B3B;  --pt-red-soft: #FDECEC;
+  --pt-purple: #8B5CF6;
+  --pt-pink: #7A1F4A; --pt-pink-soft: #FBE7F1;
+  --sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --r-card: 30px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #E8E8E8; }
+body { font-family: var(--sans); color: var(--ink); font-size: 16px; line-height: 1.4; -webkit-font-smoothing: antialiased; }
+
+.deck { display: grid; gap: 20px; padding: 20px; max-width: 1960px; margin: 0 auto; }
+.slide {
+  position: relative; background: var(--bg); overflow: hidden;
+  min-height: min(56.25vw, 100svh);
+  display: flex; flex-direction: column;
+}
+.slide.dark  { background: var(--bg-dark);  color: var(--ink-inv); }
+.slide.dark2 { background: var(--bg-dark2); color: var(--ink-inv); }
+
+.m-divider { padding: 90px clamp(24px, 2.3vw, 45px) 60px; }
+.m-content { padding: 90px clamp(24px, 4.2vw, 80px) 80px; }
+.m-dense   { padding: 90px clamp(24px, 5.7vw, 110px) 80px; }
+
+.meta-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 26px clamp(24px, 2vw, 40px) 0;
+  font-size: 14px; letter-spacing: 0.5px; opacity: 0.5;
+}
+.meta-bar span:nth-child(2) { position: absolute; left: 50%; transform: translateX(-50%); }
+@media (max-width: 560px) { .meta-bar span:nth-child(2) { display: none; } }
+
+.source { position: absolute; right: clamp(24px, 4.2vw, 80px); bottom: 28px; font-size: 12px; color: var(--muted); max-width: 62%; text-align: right; }
+
+.t-display { font-size: clamp(64px, 8vw, 120px); font-weight: 700; letter-spacing: -0.019em; line-height: 1; font-variant-numeric: tabular-nums; }
+.t-stat    { font-size: clamp(44px, 5vw, 72px);  font-weight: 700; letter-spacing: -0.02em;  line-height: 1; font-variant-numeric: tabular-nums; }
+.t-stat .unit { font-size: 0.5em; }
+.t-divider { font-size: clamp(56px, 9vw, 160px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+.t-opener  { font-size: clamp(40px, 6vw, 90px);  font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; }
+.t-quote   { font-size: clamp(24px, 2.5vw, 37px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+.t-title   { font-size: clamp(28px, 3vw, 44px);  font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+.t-label   { font-size: 24px; font-weight: 700; }
+.t-eyebrow { font-size: 18px; font-weight: 600; }
+.t-body    { font-size: 16px; font-weight: 400; line-height: 1.4; }
+.accent { color: var(--accent); }
+
+.cover-foot { margin-top: auto; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end; }
+.cover-note { max-width: 660px; font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.cover-fields { display: flex; gap: clamp(24px, 4vw, 90px); flex-wrap: wrap; }
+.cover-fields .f .k { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.cover-fields .f .v { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+.opener { display: flex; gap: clamp(16px, 2vw, 28px); align-items: flex-start; flex-wrap: wrap; }
+.opener .no { font-size: clamp(22px, 2.4vw, 36px); color: rgba(255,255,255,0.35); padding-top: 0.5em; }
+.opener .toc { margin-left: auto; display: grid; gap: 14px; padding-top: 0.8em; min-width: 240px; }
+.opener .toc .i { display: flex; gap: 14px; font-size: 14px; }
+.opener .toc .i b { font-weight: 700; }
+.opener .toc .i span { color: rgba(255,255,255,0.65); }
+@media (max-width: 760px) { .opener .toc { margin-left: 0; width: 100%; } }
+
+.two-col { display: grid; grid-template-columns: minmax(280px, 5fr) 7fr; gap: clamp(24px, 3vw, 60px); }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+.two-col .head { display: grid; gap: 18px; align-content: start; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 38px); align-items: stretch; margin-top: clamp(28px, 4vw, 64px); }
+.card {
+  background: var(--card); border-radius: var(--r-card); padding: 34px;
+  min-height: 300px; display: flex; flex-direction: column;
+}
+.card .num { text-align: right; }
+.card .foot { margin-top: auto; display: grid; gap: 8px; padding-top: 28px; }
+.card .cap { font-size: 15px; color: rgba(23,23,23,0.72); line-height: 1.45; }
+.card.hi { background: var(--ink); color: var(--ink-inv); min-height: 300px; grid-column: span 2; }
+.card.hi .cap { color: rgba(255,255,255,0.72); }
+.card.hi .num .t-display { color: var(--accent); }
+@media (max-width: 620px) { .card.hi { grid-column: span 1; } }
+
+.pull-quote { text-align: center; margin: clamp(32px, 5vw, 72px) auto; max-width: 34ch; }
+
+.trend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(28px, 4vw, 56px); }
+.trend-card { background: var(--card); border-radius: var(--r-card); padding: 32px; min-height: 240px; display: flex; flex-direction: column; gap: 12px; }
+.trend-card .kw { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.trend-card .desc { color: rgba(23,23,23,0.72); font-size: 15px; line-height: 1.5; }
+.trend-card .tail { margin-top: auto; font-size: 13px; color: var(--muted); padding-top: 14px; }
+.trend-card.dark { background: var(--ink); color: var(--ink-inv); }
+.trend-card.dark .desc { color: rgba(255,255,255,0.72); }
+.trend-card.dark .kw { color: var(--accent); }
+
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
+.tag.sig   { background: var(--sig-soft);      color: var(--sig); }
+.tag.blue  { background: var(--pt-blue-soft);  color: var(--pt-blue); }
+.tag.green { background: var(--pt-green-soft); color: var(--pt-green); }
+.tag.amber { background: var(--pt-amber-soft); color: var(--pt-amber); }
+.tag.red   { background: var(--pt-red-soft);   color: var(--pt-red); }
+.tag.pink  { background: var(--pt-pink-soft);  color: var(--pt-pink); }
+.tag.purple{ background: #EDE9FE;              color: var(--pt-purple); }
+
+.chart { background: var(--card); border-radius: var(--r-card); padding: 34px; margin-top: clamp(28px, 4vw, 56px); overflow-x: auto; }
+.bar-row { display: grid; grid-template-columns: 190px 1fr 96px; gap: 14px; align-items: center; margin-bottom: 16px; min-width: 480px; }
+.bar-row:last-child { margin-bottom: 0; }
+.bar-row .name { font-size: 14px; font-weight: 600; }
+.bar-row .track { height: 26px; background: rgba(23,23,23,0.06); border-radius: 6px; overflow: hidden; }
+.bar-row .fill { height: 100%; border-radius: 6px; }
+.bar-row .val { font-size: 14px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.c1 { background: var(--sig); } .c2 { background: var(--pt-blue); }
+.c3 { background: var(--pt-green); } .c4 { background: var(--pt-amber); } .c5 { background: var(--pt-purple); }
+.c-acc { background: var(--accent); }
+
+/* ===== 데이터 표 ===== */
+.tbl-wrap { margin-top: clamp(24px, 3vw, 44px); overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 14px; }
+table.data th, table.data td { text-align: left; padding: 14px 16px; vertical-align: top; border-bottom: 1px solid rgba(23,23,23,0.09); }
+table.data thead th { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1.5px solid rgba(23,23,23,0.2); }
+table.data td .co { font-weight: 700; }
+table.data td .mt { color: rgba(23,23,23,0.66); line-height: 1.45; }
+table.data td .val { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }
+table.data tbody tr:last-child td { border-bottom: none; }
+
+/* ===== 선제작 관점 리스트 ===== */
+.persp { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(14px, 1.6vw, 22px); margin-top: clamp(28px, 4vw, 52px); }
+.persp-card { background: var(--card); border-radius: 22px; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+.persp-card .idx { font-size: 13px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.persp-card .ttl { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+.persp-card .rows { display: grid; gap: 6px; margin-top: 2px; }
+.persp-card .r { display: grid; grid-template-columns: 60px 1fr; gap: 10px; font-size: 13px; line-height: 1.4; }
+.persp-card .r .k { color: var(--muted); font-weight: 600; }
+.persp-card .r .v { color: rgba(23,23,23,0.82); }
+
+/* ===== 프로세스 스텝 ===== */
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: clamp(14px, 1.8vw, 26px); margin-top: clamp(28px, 4vw, 56px); align-items: stretch; }
+.flow-step { background: var(--card); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px; position: relative; }
+.flow-step .st { font-size: 13px; font-weight: 700; color: var(--accent); }
+.flow-step .sh { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+.flow-step .sd { font-size: 14px; color: rgba(23,23,23,0.7); line-height: 1.5; margin-top: auto; }
+.flow-step.dark { background: var(--ink); color: var(--ink-inv); }
+.flow-step.dark .sd { color: rgba(255,255,255,0.72); }
+
+.lead { max-width: 780px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.6; color: rgba(23,23,23,0.82); }
+.slide.dark .lead, .slide.dark2 .lead { color: rgba(255,255,255,0.8); }
+.kicker { display:inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--accent); margin-bottom: 18px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ===== 01 COVER ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h1 class="t-divider" style="margin-top:52px">AI 게임 제작<br>동향 <span class="accent">리서치</span></h1>
+    <div class="cover-foot">
+      <p class="cover-note">본 문서는 최근 1개월(2026.06~07) 기준 AI 게임 제작·UA·선제작 동향을 정리한 내부 와이드 리서치입니다. 수치 상당수는 플랫폼·벤더 자사 발표를 포함하며, 외부 인용 전 원문 재확인을 권장합니다.</p>
+      <div class="cover-fields">
+        <div class="f"><div class="k">SCOPE</div><div class="v">제작 · UA · 선제작</div></div>
+        <div class="f"><div class="k">DATE</div><div class="v">2026.07</div></div>
+        <div class="f"><div class="k">BASIS</div><div class="v">최근 1개월 우선</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 TOC / 목차 ===== -->
+  <section class="slide dark2 m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="opener" style="margin-top:40px">
+      <span class="no">00</span>
+      <h2 class="t-opener">Contents</h2>
+      <div class="toc">
+        <div class="i"><b>01</b><span>AI 게임 제작 케이스</span></div>
+        <div class="i"><b>02</b><span>게임 UA × AI 성과</span></div>
+        <div class="i"><b>03</b><span>선제작(Pre-production) 관점</span></div>
+        <div class="i"><b>04</b><span>실무 제안 결론</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 DIVIDER 01 ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h2 class="t-divider" style="margin-top:40px">01<br>AI 게임 제작<br><span class="accent">CASES</span></h2>
+  </section>
+
+  <!-- ===== 04 산업 지표 stat-cards ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Overview</p>
+        <h3 class="t-title">AI는 이미 제작 파이프라인의<br>기본값이 됐다</h3>
+      </div>
+      <p class="t-body">2026년 게임 개발자 90%가 워크플로우에 AI를 통합했고, 97%가 생성형 AI가 산업을 재편 중이라 응답했다. 다만 국내 도입률은 41.7%로 아직 인프라 투자기이며, 전문가의 부정 인식이 30%→52%로 급증해 <b>효율과 수용성 리스크가 동시에 커지는 국면</b>이다.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num t-stat">90<span class="unit">%</span></div>
+        <div class="foot"><div class="t-label">개발자 AI 통합</div><div class="cap">워크플로우에 생성형 AI를 어떤 형태로든 도입</div></div>
+      </div>
+      <div class="card">
+        <div class="num t-stat">41.7<span class="unit">%</span></div>
+        <div class="foot"><div class="t-label">국내 도입률</div><div class="cap">국내 게임업계 생성형 AI 도입 (전년 상반기 기준)</div></div>
+      </div>
+      <div class="card">
+        <div class="num t-stat">7,300<span class="unit">+</span></div>
+        <div class="foot"><div class="t-label">Steam AI 공개 게임</div><div class="cap">AI 사용을 공시한 타이틀 수 · 공시 의무화 영향</div></div>
+      </div>
+      <div class="card hi">
+        <div class="num t-display">52<span class="unit" style="font-size:0.4em">%</span></div>
+        <div class="foot"><div class="t-label">전문가 부정 인식</div><div class="cap">2025년 30% → 2026년 52%. 효율만큼 '어떻게 공개하고 크리에이터를 존중하는가'가 평판 변수로 부상.</div></div>
+      </div>
+    </div>
+    <p class="source">출처 : Google Cloud 게임 산업 서베이 2026 / 블로터 NDC26 2026-06 / Jenova AI · GDC 2026 리포트</p>
+  </section>
+
+  <!-- ===== 05 국내 4사 케이스 ===== -->
+  <section class="slide m-dense">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Domestic</p>
+        <h3 class="t-title">국내 대형사 — 성공담보다<br>'시행착오'를 공개하는 단계</h3>
+      </div>
+      <p class="t-body">NDC26(2026-06)의 메시지는 "AX는 재미 중심이어야 한다"였다. 크래프톤·엔씨는 전사 파이프라인·데이터 파운데이션을 구축 중이고, 넥슨은 오픈소스 전면 도입의 실패를 인정했다. <b>넷마블만 32.4% 업무시간 단축</b>이라는 구체 수치를 제시한다.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead>
+          <tr><th style="width:14%">회사</th><th style="width:30%">적용 단계</th><th style="width:26%">AI 툴·모델</th><th style="width:30%">성과 · 상태</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="co">크래프톤</span></td>
+            <td><span class="mt">그래픽 리소스·매시 자동화, 전사 AI 파이프라인 '플레이그라운드'</span></td>
+            <td><span class="mt">자체 파이프라인 + NVIDIA ACE (inZOI 'Smart Zoi')</span></td>
+            <td><span class="val">임직원 97%</span> <span class="mt">AI 에이전트 활용 (2월). 하반기 전사 AI 인프라 완성 목표</span></td>
+          </tr>
+          <tr>
+            <td><span class="co">넷마블</span></td>
+            <td><span class="mt">그래픽·레벨디자인·QA 자동화, '1직원 1 AI 에이전트'</span></td>
+            <td><span class="mt">AI 이미지 생성 도구 + 자체 AI 전략실</span></td>
+            <td><span class="val">업무시간 −32.4%</span> <span class="mt">생산성·품질 각 30%+ 개선</span></td>
+          </tr>
+          <tr>
+            <td><span class="co">엔씨소프트</span></td>
+            <td><span class="mt">신작 개발에 혁신 AI 적용, 사내 'Game AI' 조직</span></td>
+            <td><span class="mt">MS 기술 협력 + 자체 Game AI</span></td>
+            <td><span class="mt">신작 <b>'신더시티'</b> 개발에 적용 중</span></td>
+          </tr>
+          <tr>
+            <td><span class="co">넥슨</span></td>
+            <td><span class="mt">개발 생산성 최우선, 전용 AI 모델 + 파이프라인 재설계</span></td>
+            <td><span class="mt">자체 모델 + 오픈소스 기반 도구</span></td>
+            <td><span class="mt">오픈소스 전사 도입 중 <b>보안·인프라 비용</b> 부담으로 확산 재검토</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">출처 : 블로터 NDC26 2026-06-18 / 더게임스데일리 · 게임메카 2026 / 포인트데일리 · NCSoft Game AI 2026</p>
+  </section>
+
+  <!-- ===== 06 글로벌 케이스 ===== -->
+  <section class="slide m-dense">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Global</p>
+        <h3 class="t-title">AI NPC·월드 모델이<br>데모를 넘어 실제 빌드로</h3>
+      </div>
+      <p class="t-body">EA는 AI를 "더 똑똑한 붓"으로 규정하고 Stability AI와 텍스처·PBR 머티리얼을 공동 개발한다. NVIDIA ACE는 PUBG·inZOI에 온디바이스로 실장됐고, MS Muse는 Nature 게재로 학술 검증까지 받았다. <b>'플레이 가능한 생성'이 소비자에게 개방</b>되는 중이다.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead>
+          <tr><th style="width:20%">주체</th><th style="width:32%">무엇을</th><th style="width:22%">모델·플랫폼</th><th style="width:26%">성과 · 상태</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="co">EA × Stability AI</span></td><td><span class="mt">PBR 머티리얼·2D 텍스처·3D 프리비주얼</span></td><td><span class="mt">Stable Diffusion 계열 공동모델</span></td><td><span class="mt">전략 파트너십, 아티스트 통제 유지</span></td></tr>
+          <tr><td><span class="co">Microsoft × Ninja Theory</span></td><td><span class="mt">게임플레이 아이디에이션 생성 모델 Muse</span></td><td><span class="mt">WHAM (World & Human Action Model)</span></td><td><span class="val">10억+ 프레임</span> <span class="mt">학습 · Nature 게재</span></td></tr>
+          <tr><td><span class="co">Roblox</span></td><td><span class="mt">텍스트→3D/4D 오브젝트·씬, 에이전트 빌더</span></td><td><span class="mt">Cube 3D/4D Foundation Model</span></td><td><span class="val">플레이타임 +64%</span> <span class="mt">(4D 사용 시) · 16만+ 생성</span></td></tr>
+          <tr><td><span class="co">Google DeepMind</span></td><td><span class="mt">프롬프트로 플레이 가능한 월드 생성</span></td><td><span class="mt">Genie 3 월드 모델</span></td><td><span class="val">720p·24fps</span> <span class="mt">· 수분간 월드 상태 유지</span></td></tr>
+          <tr><td><span class="co">NVIDIA ACE × Inworld</span></td><td><span class="mt">실시간 AI NPC/동료 (PUBG Ally·inZOI)</span></td><td><span class="mt">Nemotron SLM + Audio2Face</span></td><td><span class="mt">온디바이스 구동 · GDC/Unreal Fest 2026</span></td></tr>
+          <tr><td><span class="co">Activision (CoD)</span></td><td><span class="mt">인게임 에셋(스킨·카모·콜링카드)</span></td><td><span class="mt">미공개 생성형 이미지 도구</span></td><td><span class="mt">Steam 공시로 AI 사용 인정 · <b>논란 사례</b></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">출처 : Stability AI · EA 2025-10 / Microsoft Research (Nature) 2026-05 / Roblox Newsroom · TNW 2026 / 9to5Google · TechCrunch 2026-01 / NVIDIA 2026-06 / PC Gamer 2026</p>
+  </section>
+
+  <!-- ===== 07 제작 트렌드 카드 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Production Shift</p>
+        <h3 class="t-title">'생성'에서<br>'통제'로</h3>
+      </div>
+      <p class="t-body">2026 프로덕션 컨센서스는 전면 자동화가 아닌 하이브리드다. 효율 수치는 아트·텍스처·QA 같은 고볼륨·저정밀 영역에서 가장 크고, 히어로 에셋·내러티브·게임성 판단은 여전히 사람 몫이다.</p>
+    </div>
+    <div class="trend-grid">
+      <div class="trend-card dark">
+        <div class="kw">70–90%</div>
+        <div class="desc">아트·텍스처 제작 시간 단축. 배경 텍스처는 며칠 → 즉시 시안 수준으로 압축됐다.</div>
+        <div class="tail">Inkration · aibuzz 2026</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw">Controlled Gen</div>
+        <div class="desc">프롬프트 라이브러리·LoRA·커스텀 체크포인트로 "무엇이 생성될지" 통제하고, 사람의 페인트오버를 표준 단계로 둔다.</div>
+        <div class="tail">EA "smarter paintbrush"</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw">Playable Gen</div>
+        <div class="desc">Genie 3·Roblox 4D·MS Muse가 '플레이 가능한 생성'을 실제 빌드·소비자 단으로 끌어올렸다.</div>
+        <div class="tail">DeepMind · Roblox · MS 2026</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw">$10M / 24→12mo</div>
+        <div class="desc">킷배싱·스타일 고정 배치 생성으로 AAA 개발 사이클 절반, 타이틀당 평균 $10M 절감(추정).</div>
+        <div class="tail">Inkration 2026 (추정치)</div>
+      </div>
+    </div>
+    <p class="source">출처 : Inkration 2026 / aibuzz 2026 (효율 수치는 벤더·추정 포함)</p>
+  </section>
+
+  <!-- ===== 08 PULL QUOTE 01 ===== -->
+  <section class="slide dark m-content" style="justify-content:center">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <p class="pull-quote t-quote">“ AI는 <span class="accent">기본 시안을 대량으로</span> 뽑고,<br>사람은 <span class="accent">디테일과 게임성</span>을 판단한다.<br>이 경계가 외주 과금·공수 구조로 정착 중이다. ”</p>
+  </section>
+
+  <!-- ===== 09 DIVIDER 02 ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h2 class="t-divider" style="margin-top:40px">02<br>게임 UA<br>× <span class="accent">AI 성과</span></h2>
+  </section>
+
+  <!-- ===== 10 UA 지표 stat cards ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">UA Landscape</p>
+        <h3 class="t-title">CPI 상승장 —<br>AI는 비용 절감보다<br>'효율 방어'다</h3>
+      </div>
+      <p class="t-body">2026 블렌디드 CPI가 전년비 +30% 오른 $0.56, 티어1 iOS는 $4.22 수준이다. 소재 실패 비용이 커지는 상황에서 AI 크리에이티브는 경매 과열 속 효율을 방어하는 수단에 가깝다. <b>Kingshot은 일 2,000~3,000개 AI 소재</b>로 6월 미·일·한 차트를 석권했다.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num t-stat">+30<span class="unit">%</span></div>
+        <div class="foot"><div class="t-label">블렌디드 CPI (YoY)</div><div class="cap">$0.56 / 티어1 iOS $4.22 · 소재 실패 비용 상승</div></div>
+      </div>
+      <div class="card">
+        <div class="num t-stat">+23<span class="unit">%</span></div>
+        <div class="foot"><div class="t-label">플레이어블 IPM (YoY)</div><div class="cap">노출→설치 8~16배 · UGC 도입 시 전환 +152%</div></div>
+      </div>
+      <div class="card">
+        <div class="num t-stat">~50<span class="unit">%</span></div>
+        <div class="foot"><div class="t-label">AI 개입 소재 비중</div><div class="cap">2026 말까지 UA 소재 절반이 AI 개입/완전 AI 제작 전망</div></div>
+      </div>
+      <div class="card hi">
+        <div class="num t-display">2–3천</div>
+        <div class="foot"><div class="t-label">Kingshot 일 AI 소재</div><div class="cap">피크 시 하루 2,000~3,000개 배포 · 출시 11개월 순매출 $500M · 6월 美·日·韓 차트 석권</div></div>
+      </div>
+    </div>
+    <p class="source">출처 : Segwise 2026 벤치마크 / Liftoff Creative Index / SocialPeta 2026-06 · Appfigures</p>
+  </section>
+
+  <!-- ===== 11 UA 케이스 표 ===== -->
+  <section class="slide m-dense">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">UA Cases</p>
+        <h3 class="t-title">성과는 '분석-생성 루프'<br>에서 나온다</h3>
+      </div>
+      <p class="t-body">볼륨만으로는 차별화가 안 된다. AppGrowing이 "AI vs AI 배틀"로 규정하듯, 승리 소재를 식별해 재생성하는 루프가 성과를 만든다. 아래 절감 수치 상당수는 AI '입찰·타겟팅'과 소재 변형이 결합된 결과다.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead>
+          <tr><th style="width:26%">주체 / 사례</th><th style="width:36%">성과 수치</th><th style="width:24%">방식</th><th style="width:14%">신뢰도</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="co">Century Games — Kingshot</span></td><td><span class="val">일 2–3천 소재</span> <span class="mt">· 11개월 순매출 $500M</span></td><td><span class="mt">AI 대량 소재 생성</span></td><td><span class="tag green">관측</span></td></tr>
+          <tr><td><span class="co">익명 SLG (AppGrowing)</span></td><td><span class="val">볼륨 +47% · CVR +32%</span> <span class="mt">(1주 내)</span></td><td><span class="mt">승리소재 태깅→훅 생성</span></td><td><span class="tag amber">벤더</span></td></tr>
+          <tr><td><span class="co">InnoGames (Moloco)</span></td><td><span class="val">CPI −85% · D7 ROAS +88%</span></td><td><span class="mt">AI 입찰 + 소재 변형</span></td><td><span class="tag amber">벤더</span></td></tr>
+          <tr><td><span class="co">Meta Advantage+</span></td><td><span class="val">ROAS +22% · CPL −14%</span></td><td><span class="mt">생성형 AI 크리에이티브</span></td><td><span class="tag amber">자사</span></td></tr>
+          <tr><td><span class="co">AppLovin AXON</span></td><td><span class="val">매출 +59% YoY ($1.84B)</span></td><td><span class="mt">AI 플레이어블/영상 자동생성</span></td><td><span class="tag green">실적</span></td></tr>
+          <tr><td><span class="co">크리에이티브 벨로시티</span></td><td><span class="val">주 5배 생산 → CPI −40~60%</span></td><td><span class="mt">AI로 볼륨 임계치 달성</span></td><td><span class="tag blue">집계</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">출처 : SocialPeta 2026-06 / AppGrowing 2026 / Moloco · Meta 케이스 / AppLovin Q1 2026 실적 / RocketShipHQ · Segwise 2026</p>
+  </section>
+
+  <!-- ===== 12 UA 개선율 차트 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Data</p>
+        <h3 class="t-title">포맷이 소재 품질만큼<br>중요하다</h3>
+      </div>
+      <p class="t-body">AI로 플레이어블·UGC를 대량 생성할 수 있게 된 것이 2026 UA 레버리지의 핵심이다.
+        <span class="tag green" style="margin-left:8px">전환 상승</span>
+        <span class="tag amber">피로 주의</span>
+      </p>
+    </div>
+    <div class="chart">
+      <div class="bar-row"><span class="name">UGC 도입 전환율</span><div class="track"><div class="fill c-acc" style="width:100%"></div></div><span class="val">+152%</span></div>
+      <div class="bar-row"><span class="name">판타지 정합 IPM</span><div class="track"><div class="fill c1" style="width:61%"></div></div><span class="val">+93%</span></div>
+      <div class="bar-row"><span class="name">Moloco D7 ROAS</span><div class="track"><div class="fill c2" style="width:58%"></div></div><span class="val">+88%</span></div>
+      <div class="bar-row"><span class="name">AppLovin 매출 YoY</span><div class="track"><div class="fill c3" style="width:39%"></div></div><span class="val">+59%</span></div>
+      <div class="bar-row"><span class="name">플레이어블 IPM YoY</span><div class="track"><div class="fill c4" style="width:15%"></div></div><span class="val">+23%</span></div>
+    </div>
+    <p class="source">출처 : Liftoff Mobile Creative Index / Moloco · AppLovin 2026 (개선율 지표, 절대치 아님)</p>
+  </section>
+
+  <!-- ===== 13 PULL QUOTE 02 ===== -->
+  <section class="slide dark m-content" style="justify-content:center">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <p class="pull-quote t-quote">“ AI는 소재 문제와 해법을 <span class="accent">동시에</span> 만든다.<br>대량화가 크리에이티브 피로를 앞당기니,<br><span class="accent">주 1회+ 리프레시</span> 없이는 성과가 급락한다. ”</p>
+  </section>
+
+  <!-- ===== 14 DIVIDER 03 ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h2 class="t-divider" style="margin-top:40px">03<br>선제작<br><span class="accent">PRE-PRODUCTION</span></h2>
+  </section>
+
+  <!-- ===== 15 선제작 워크플로우 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Workflow</p>
+        <h3 class="t-title">"광고를 먼저,<br>게임을 나중에"</h3>
+      </div>
+      <p class="t-body">CTR 테스트가 프로토타입 없이 짧은 게임플레이 영상·이미지만으로 가능해지면서, 전통적 7단계 파이프라인이 <b>Develop·Deploy·Grow 3단계로 압축</b>됐다. 컨셉이 부진하면 개발 착수 전에 접을 수 있다.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="st">STEP 01</div>
+        <div class="sh">선제작</div>
+        <div class="sd">AI로 컨셉·키비주얼·플레이어블·광고 소재를 개발 전 대량 생성. 며칠 만에 여러 안.</div>
+      </div>
+      <div class="flow-step">
+        <div class="st">STEP 02</div>
+        <div class="sh">검증</div>
+        <div class="sd">CTR/CPI 마케터블리티 테스트로 시장성 측정. 부진 컨셉은 착수 전 폐기 → 수백만 낭비 방지.</div>
+      </div>
+      <div class="flow-step dark">
+        <div class="st" style="color:var(--accent)">STEP 03</div>
+        <div class="sh">본제작</div>
+        <div class="sd">검증된 컨셉만 개발. 선제작 소재는 그린라이트 자료이자 론칭 UA 소재의 초안이 된다.</div>
+      </div>
+    </div>
+    <p class="source">출처 : Studiokrew · Stepico 2026 / GameAnalytics · Lancaric (마케터블리티 테스트)</p>
+  </section>
+
+  <!-- ===== 16 선제작 관점 7개 ===== -->
+  <section class="slide m-dense">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">7 Perspectives</p>
+        <h3 class="t-title">선제작으로 리스크를<br>줄이는 7가지 관점</h3>
+      </div>
+      <p class="t-body">각 관점 = 무엇을 / 어떤 AI로 / 어떤 리스크를 줄이고 / 어떤 성과에 기여하는가. 한 번의 선제작이 <b>개발 의사결정과 UA</b> 두 리스크를 동시에 커버한다.</p>
+    </div>
+    <div class="persp">
+      <div class="persp-card">
+        <div class="idx">01</div>
+        <div class="ttl">컨셉 마케터블리티 선검증</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Midjourney · Runway · Higgsfield</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">잘못된 컨셉에 개발 착수</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">그린라이트 정확도 · CTR</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">02</div>
+        <div class="ttl">키비주얼 / IP 톤 고정</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Scenario.gg · Midjourney</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">아트 방향 재작업 · 톤 불일치</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">프로덕션 일관성 · 의사결정 속도</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">03</div>
+        <div class="ttl">3D 블록아웃 · 목업 선제작</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Meshy · Tripo</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">룩앤필 오판 · 스코프 과대산정</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">프로토타입 속도 · 견적 정밀도</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">04</div>
+        <div class="ttl">트레일러 / 시네마틱 프리비즈</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Runway Gen-4 · Luma</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">영상 본제작 후 방향 뒤집힘</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">투자 · 퍼블리셔 피치 설득력</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">05</div>
+        <div class="ttl">플레이어블 목업 선제작</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Sett · 플레이어블 툴</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">재미 검증을 개발 후로 미룸</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">플레이어블 CPI −20~30% · 유저 선별</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">06</div>
+        <div class="ttl">UA 소재 풀 사전 비축</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">Sett · Higgsfield</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">론칭 시 소재 부족 · 테스트 지연</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">초기 CPI 억제 · 스케일 가속</span></div>
+        </div>
+      </div>
+      <div class="persp-card">
+        <div class="idx">07</div>
+        <div class="ttl">엔드카드 · 훅 라이브러리</div>
+        <div class="rows">
+          <div class="r"><span class="k">AI</span><span class="v">이미지 · 영상 AI 조합</span></div>
+          <div class="r"><span class="k">리스크</span><span class="v">소재 피로도 · 성과 하락</span></div>
+          <div class="r"><span class="k">기여</span><span class="v">리프레시 사이클 성과 안정성 +30%</span></div>
+        </div>
+      </div>
+      <div class="persp-card" style="background:var(--ink); color:var(--ink-inv);">
+        <div class="idx" style="color:var(--accent)">방어선</div>
+        <div class="ttl" style="color:#fff">툴은 변주를 뽑고,<br>인간은 '무엇을 테스트할지'를 정한다</div>
+        <div class="rows"><div class="r"><span class="k" style="color:rgba(255,255,255,0.55)">핵심</span><span class="v" style="color:rgba(255,255,255,0.82)">훅·첫 인터랙션·리워드·엔드카드 설계는 크리에이티브 디렉션의 방어 가능한 가치</span></div></div>
+      </div>
+    </div>
+    <p class="source">출처 : Segwise Playbook 2026 / PlayableLab / Sett Series B (ContentGrip 2026-04) / Meshy · Tripo · CrePal 2026</p>
+  </section>
+
+  <!-- ===== 17 DIVIDER 04 ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h2 class="t-divider" style="margin-top:40px">04<br>실무 <span class="accent">제안</span><br>결론</h2>
+  </section>
+
+  <!-- ===== 18 결론 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <span class="kicker">Positioning</span>
+    <h3 class="t-title" style="max-width:16ch">외주사는 '소재 벤더'가 아니라<br>'의사결정을 앞당기는 파트너'다</h3>
+    <div class="trend-grid" style="margin-top:clamp(32px,4vw,56px)">
+      <div class="trend-card">
+        <div class="kw accent" style="color:var(--accent)">01 세일즈 논리</div>
+        <div class="desc">CPI 상승장(+30% YoY)이 선제작의 금전적 설득력을 강화한다. "미리 검증해 실패 소재를 걸러낸다"는 제안이 그 어느 때보다 유효하다.</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw" style="color:var(--accent)">02 프로세스로 판다</div>
+        <div class="desc">Sora 종료처럼 툴 지형이 빠르게 바뀐다. 특정 툴이 아니라 "선제작→검증→본제작" 워크플로우를 상품화하고, 툴은 교체 가능한 부품으로 둔다.</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw" style="color:var(--accent)">03 방어선</div>
+        <div class="desc">툴은 변주를 무한 생성하지만 훅·첫 인터랙션·리워드 설계는 인간 몫. 크리에이티브 디렉션을 전면에 내세우는 게 AI 시대 외주사의 생존 포지션.</div>
+      </div>
+    </div>
+    <p class="source">출처 : FoxData CPI 벤치마크 2026 / CrePal (Sora 종료) / PlayableLab · Studiokrew 2026</p>
+  </section>
+
+  <!-- ===== 19 최종 명제 ===== -->
+  <section class="slide dark m-content" style="justify-content:center">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <p class="pull-quote t-quote" style="max-width:40ch">“ 만들고 나서 광고를 붙이지 말고,<br><span class="accent">광고를 먼저 만들어</span> 만들지 말지를 정하자.<br>한 번의 선제작이 두 번의 리스크를 커버한다. ”</p>
+  </section>
+
+  <!-- ===== 20 END ===== -->
+  <section class="slide dark m-divider" style="align-items:center; justify-content:center; text-align:center">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <p class="t-divider" style="font-size:clamp(40px, 6vw, 96px)">End Of<br>Document</p>
+  </section>
+
+</div>
+</body>
+</html>
