@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HIVELAB MAX LAB × NETMARBLE — AI 파트너십 제안</title>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #FFFFFF;
+    --bg-card:   #F5F1EA;
+    --ink:       #1A1A1A;
+    --muted:     #6E665A;
+    --rule:      #E4DED2;
+    --chip:      #F2EDE3;
+
+    --accent:        #FF6B35;
+    --accent-soft:   #FFD9C2;
+
+    --data:          #C5BBDD;
+    --data-strong:   #A89BC8;
+
+    --sans: "Pretendard Variable", Pretendard, -apple-system,
+            BlinkMacSystemFont, system-ui, "Segoe UI",
+            Roboto, "Helvetica Neue", "Apple SD Gothic Neo",
+            "Noto Sans KR", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw: 1200px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+  html { background-color: #FFFFFF; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* ---------- top nav ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; font-size: 13px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+  }
+  .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); }
+  .nav { display: flex; gap: 20px; color: var(--muted); font-size: 12px; }
+  .nav span { font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ---------- layout ---------- */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    padding: 56px 0 120px;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+    .sidenav { position: static !important; }
+  }
+
+  /* ---------- side nav ---------- */
+  .sidenav {
+    position: sticky; top: 80px; align-self: start;
+    font-size: 13px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+  .sidenav .label {
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sidenav ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+  .sidenav li {
+    counter-increment: toc;
+    padding: 8px 0; border-bottom: 1px dashed var(--rule);
+    display: flex; gap: 10px;
+  }
+  .sidenav li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); padding-top: 2px;
+  }
+  .sidenav a { text-decoration: none; line-height: 1.35; font-weight: 500; }
+  .sidenav li.active a { color: var(--accent); font-weight: 700; }
+
+  /* ---------- chapter intro ---------- */
+  .crumb {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted); letter-spacing: 0.04em;
+    display: flex; gap: 14px; align-items: center;
+    margin-bottom: 28px;
+  }
+  .crumb .pill {
+    background: var(--accent); color: #fff;
+    padding: 4px 10px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.08em;
+  }
+  h1.chapter-title {
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 0 0 32px;
+  }
+  h1.chapter-title em {
+    font-style: normal;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .lede {
+    font-weight: 500;
+    font-size: 22px; line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 60ch;
+    margin: 0 0 48px;
+  }
+
+  /* ---------- hero stat strip ---------- */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
+    margin: 0 0 72px;
+  }
+  @media (max-width: 700px) { .stat-strip { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    padding: 28px 24px 24px;
+    border-right: 1px dashed var(--rule);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat .num {
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .stat .num .unit { font-size: 0.4em; color: var(--muted); font-weight: 500; }
+  .stat .delta {
+    display: inline-block;
+    font-family: var(--mono); font-size: 11px;
+    margin-top: 10px; padding: 2px 8px; border-radius: 4px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .stat .label {
+    margin-top: 14px;
+    font-size: 13px; color: var(--muted); line-height: 1.4;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 88px; scroll-margin-top: 96px; }
+  .section-head {
+    border-top: 1px dashed var(--rule);
+    padding-top: 24px;
+    margin-bottom: 32px;
+  }
+  .section-head h2 {
+    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.15; letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .section-head h2 .no {
+    color: var(--ink);
+    margin-right: 12px;
+  }
+  .section-head h2 em { font-style: normal; color: var(--accent); }
+  .section-head .deck {
+    font-size: 16px; color: var(--muted);
+    margin-top: 12px; max-width: 55ch;
+  }
+  .prose p { max-width: 65ch; margin: 0 0 18px; }
+  .prose p .hl { background: linear-gradient(180deg, transparent 55%, var(--accent-soft) 55%); padding: 0 2px; }
+
+  /* ---------- two-column block ---------- */
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .two { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ---------- three-column block ---------- */
+  .three {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .three { grid-template-columns: 1fr; gap: 20px; } }
+
+  /* ---------- bar chart ---------- */
+  .chart {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    border-radius: 0;
+    padding: 24px;
+  }
+  .chart .ch-title {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px; font-weight: 700;
+  }
+  .chart .ch-sub {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.015em;
+    margin-bottom: 20px;
+  }
+  .bars { display: grid; gap: 12px; }
+  .bar-row {
+    display: grid; grid-template-columns: 80px 1fr 56px;
+    align-items: center; gap: 12px; font-size: 13px;
+  }
+  .bar-track { background: var(--chip); border-radius: 3px; height: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-fill.accent { background: var(--accent); }
+  .bar-fill.data { background: var(--data); }
+  .bar-fill.strong { background: var(--data-strong); }
+  .bar-fill.ink { background: var(--ink); }
+  .bar-row .val {
+    font-family: var(--mono); font-size: 12px; text-align: right; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .bar-row .name { color: var(--ink); font-weight: 500; }
+
+  /* ---------- pullquote ---------- */
+  .pull {
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
+    padding: 40px 0;
+    margin: 56px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+  }
+  .pull .no { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .pull blockquote {
+    margin: 0;
+    font-weight: 500;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.3; letter-spacing: -0.02em;
+  }
+  .pull blockquote em { color: var(--accent); font-style: normal; font-weight: 700; }
+  .pull cite {
+    display: block; margin-top: 18px;
+    font-style: normal; font-size: 13px; color: var(--muted);
+  }
+
+  /* ---------- tool grid ---------- */
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .tools { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .tools { grid-template-columns: 1fr; } }
+  .tool { background: var(--bg); padding: 24px; display: flex; flex-direction: column; gap: 8px; min-height: 140px; }
+  .tool .rank { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .tool .name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  .tool .share {
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .tool .share b { color: var(--accent); }
+  .tool .note { font-size: 13px; color: var(--muted); margin-top: auto; line-height: 1.45; }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--ink); color: var(--bg);
+    border-radius: 6px; padding: 28px 32px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 28px; align-items: center;
+    margin: 32px 0;
+  }
+  .callout h3 { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .callout p { margin: 0; color: #cfc8b7; font-size: 14px; max-width: 60ch; }
+  .callout .big {
+    font-size: 64px; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- data table ---------- */
+  .dtbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .dtbl th {
+    text-align: left; padding: 12px 14px;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+  }
+  .dtbl td {
+    padding: 12px 14px; border-bottom: 1px dashed var(--rule); line-height: 1.5;
+  }
+  .dtbl tr.hl-row { background: var(--accent-soft); }
+  .dtbl .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .dtbl .r { text-align: right; }
+  .dtbl .accent { color: var(--accent); font-weight: 700; }
+
+  /* ---------- card row ---------- */
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    margin: 32px 0;
+  }
+  @media (max-width: 700px) { .card-row { grid-template-columns: 1fr; } }
+  .card-item {
+    background: var(--bg); padding: 28px;
+  }
+  .card-item .card-num {
+    font-weight: 800; font-size: 40px; letter-spacing: -0.02em; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-item .card-title {
+    font-weight: 700; font-size: 15px; margin-top: 12px;
+  }
+  .card-item .card-desc {
+    font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5;
+  }
+
+  /* ---------- chip ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; }
+  .chips span {
+    background: var(--chip); border-radius: 999px;
+    padding: 4px 10px; font-size: 12px; color: var(--ink); font-weight: 500;
+  }
+  .chips span.active {
+    background: var(--accent); color: #fff;
+  }
+
+  /* ---------- step badge ---------- */
+  .badge {
+    display: inline-block; font-family: var(--mono); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .badge-now { background: var(--ink); color: #fff; }
+  .badge-soon { background: var(--chip); color: var(--ink); }
+  .badge-future { background: transparent; color: var(--muted); border: 1px dashed var(--rule); }
+
+  /* ---------- mock browser ---------- */
+  .mock {
+    border: 1px solid var(--rule); border-radius: 0; overflow: hidden;
+    background: var(--bg-card);
+  }
+  .mock-bar {
+    background: var(--ink); padding: 8px 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .mock-url {
+    flex: 1; background: #333; border-radius: 4px;
+    padding: 4px 10px; font-size: 11px; color: #999;
+    font-family: var(--mono);
+  }
+  .mock-body { background: #111; padding: 16px 20px; }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 32px 0 56px;
+    font-size: 12px; color: var(--muted);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  footer .closing {
+    font-size: 22px; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.02em; margin-bottom: 24px; max-width: 50ch;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner wrap">
+    <div class="brand"><span class="dot"></span> HIVELAB MAX LAB</div>
+    <nav class="nav">
+      <span>Confidential</span>
+      <span>NETMARBLE</span>
+      <span>2026.06</span>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid">
+
+    <aside class="sidenav">
+      <div class="label">For our meeting</div>
+      <ol>
+        <li class="active"><a href="#context">지금 보이는 구조</a></li>
+        <li><a href="#how">47은 베이스라인</a></li>
+        <li><a href="#noburden">만들어보고 있는 도구</a></li>
+        <li><a href="#pilot">함께 작게 시작</a></li>
+        <li><a href="#loop">갈 수 있는 그림</a></li>
+        <li><a href="#why">도울 준비된 것들</a></li>
+      </ol>
+    </aside>
+
+    <article>
+
+      <!-- ===== HERO ===== -->
+      <div class="crumb">
+        <span class="pill">NOTE</span>
+        <span>이렇게도 만들어봤습니다 · HIVELAB MAX LAB × NETMARBLE · 2026.06</span>
+      </div>
+
+      <h1 class="chapter-title">넷마블에 우리가 어떻게 <em>더 도울 수 있을지,</em><br>자료로 정리해봤습니다.</h1>
+
+      <p style="font-weight:500;font-size:18px;line-height:1.45;letter-spacing:-0.01em;color:var(--muted);max-width:60ch;margin:0 0 24px;">
+        함께 그려볼 가능성들 — 미팅을 위한 자료입니다.
+      </p>
+
+      <p class="lede">
+        어디까지 도울지, 함께 정해주십시오. 마케팅비 효율화 압박, 신작과 라이브 모멘텀 — 이 안에서 HIVELAB이 어떤 방식으로 더 도울 수 있을지 몇 가지 시도를 정리했습니다. 보여드리는 시스템 일부는 아직 고도화 중인 베타이고, 여기에 담긴 숫자도 함께 다듬어갈 여지가 있습니다.
+      </p>
+
+      <!-- ===== HERO STAT STRIP ===== -->
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="num">47<span class="unit">건</span></div>
+          <div class="delta">원본 1건당</div>
+          <div class="label">원본 1건을 평균 47건의 베리에이션으로 확장. 26년 3~5월 실측 평균</div>
+        </div>
+        <div class="stat">
+          <div class="num">0<span class="unit">원</span></div>
+          <div class="delta">추가 비용</div>
+          <div class="label">다음 캠페인부터, 지금 계약 단가 내에서 적용</div>
+        </div>
+        <div class="stat">
+          <div class="num">5<span class="unit">초</span></div>
+          <div class="delta">소재 검색</div>
+          <div class="label">"1주년 보상 배너" 자연어로 즉시 검색. 6,719건 DB 운영 중</div>
+        </div>
+        <div class="stat">
+          <div class="num">9<span class="unit">개 / 9</span></div>
+          <div class="delta">전 타이틀</div>
+          <div class="label">IP별 적용 범위는 달라도, 베리에이션 자동화는 9개 전체 대상</div>
+        </div>
+      </div>
+
+      <!-- ===== 01. 지금의 구조 ===== -->
+      <section id="context">
+        <div class="section-head">
+          <h2><span class="no">1.</span>지금 보이는 구조를 <em>먼저 정리</em>해봤습니다.</h2>
+          <p class="deck">신작과 라이브 업데이트로 소재 수요는 늘고, 마케팅비는 효율화 방침. TO는 줄어드는 추세. 이 안에서 우리가 도울 수 있는 부분을 함께 좁혀가고 싶습니다.</p>
+        </div>
+
+        <div class="prose">
+          <p>2026년 상반기 넷마블은 신작 3종(왕좌의게임, SOL인챈트, 몬길)을 출시했고 하반기 5종(나혼렙:카르마, 샹그릴라, 옥토퍼스, 이블베인, 이지스)이 대기 중입니다. 나혼렙 어라이즈 2주년 에볼루션 업데이트, 칠대죄 GC 7주년 777릴레이, 쿵야 일본 진출까지 라이브 모멘텀이 동시에 돕니다.</p>
+          <p>마케팅비는 매출의 20% 수준 유지, 효율화 기조입니다. 글로벌 비중 79%(북미 41%)로 매체별·국가별 베리에이션이 상시 필요합니다. <span class="hl">소재 수요는 늘었는데, 단가는 못 올리는 구조</span>입니다.</p>
+        </div>
+
+        <div class="two" style="margin-top:32px;">
+          <div class="chart">
+            <div class="ch-title">월간 제작량</div>
+            <div class="ch-sub">26년 3~5월 실측</div>
+            <div class="bars">
+              <div class="bar-row"><span class="name">이미지 신규</span><span class="bar-track"><span class="bar-fill data" style="width:6%"></span></span><span class="val">108건</span></div>
+              <div class="bar-row"><span class="name">이미지 베리</span><span class="bar-track"><span class="bar-fill accent" style="width:100%"></span></span><span class="val">5,580건</span></div>
+              <div class="bar-row"><span class="name">영상 신규</span><span class="bar-track"><span class="bar-fill data" style="width:3%"></span></span><span class="val">43건</span></div>
+              <div class="bar-row"><span class="name">영상 베리</span><span class="bar-track"><span class="bar-fill strong" style="width:50%"></span></span><span class="val">1,434건</span></div>
+              <div class="bar-row"><span class="name">OOH + 기획</span><span class="bar-track"><span class="bar-fill data" style="width:5%"></span></span><span class="val">90건</span></div>
+            </div>
+          </div>
+
+          <div class="chart">
+            <div class="ch-title">TO 계약 추이</div>
+            <div class="ch-sub">26년 1~6월, &minus;42%</div>
+            <div class="bars">
+              <div class="bar-row"><span class="name">1월</span><span class="bar-track"><span class="bar-fill ink" style="width:97%"></span></span><span class="val">42</span></div>
+              <div class="bar-row"><span class="name">2월</span><span class="bar-track"><span class="bar-fill ink" style="width:100%"></span></span><span class="val">43</span></div>
+              <div class="bar-row"><span class="name">3월</span><span class="bar-track"><span class="bar-fill ink" style="width:97%"></span></span><span class="val">42</span></div>
+              <div class="bar-row"><span class="name">4월</span><span class="bar-track"><span class="bar-fill ink" style="width:91%"></span></span><span class="val">39</span></div>
+              <div class="bar-row"><span class="name">5월</span><span class="bar-track"><span class="bar-fill strong" style="width:81%"></span></span><span class="val">35</span></div>
+              <div class="bar-row"><span class="name">6월</span><span class="bar-track"><span class="bar-fill accent" style="width:58%"></span></span><span class="val">25</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:40px;">
+          <div>
+            <h3>제작량의 97%는 반복 변형 작업입니다</h3>
+            <p>원본 151건(이미지 108 + 영상 43)이 베리에이션 7,014건으로 확장됩니다. 리사이징, 매체별 포맷, 국가별 현지화, 레이아웃 재배치 — 이 97%가 자동화 대상입니다.</p>
+          </div>
+          <div class="big">97%</div>
+        </div>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:16px;font-family:var(--mono);">
+          출처 — 신작/업데이트: 넷마블 26년 1Q 컨콜, 공식 보도자료 · 마케팅비: 넷마블 25년 사업보고서 · TO/제작량: 넷마블 × HIVELAB 26년 계약 및 검수확인서
+        </p>
+      </section>
+
+      <!-- ===== PULLQUOTE ===== -->
+      <div class="pull">
+        <div class="no">NOTE</div>
+        <blockquote>
+          47은 자랑이 아니라 <em>현재 우리가 만들어내고 있는 수준</em>입니다. 함께 키워갈 출발점으로 봐주십시오.
+        </blockquote>
+      </div>
+
+      <!-- ===== 02. 원본 1건 → 평균 47건 (베이스라인) ===== -->
+      <section id="how">
+        <div class="section-head">
+          <h2><span class="no">2.</span>원본 1건이 평균 <em>47건</em>의 베리에이션이 되고 있습니다.</h2>
+          <p class="deck">현재 인력 베이스로 만들어내고 있는 수준입니다. 끝이 아니라 출발점입니다. 누적되는 데이터와 발전하는 AI 위에서 더 깊고 빠르고 정확해질 여지가 있습니다.</p>
+        </div>
+
+        <div class="prose">
+          <p>26년 3~5월 검수확인서 기준 실측치입니다. 원본 151건(이미지 108 + 영상 43)이 베리에이션 7,014건(이미지 5,580 + 영상 1,434)으로 확장됐습니다. 원본 1건당 평균 46.5건, 반올림하면 약 47건. <span class="hl">이 숫자는 자랑이 아니라 현재 베이스라인</span>입니다.</p>
+          <p>지금 보여드리는 47건이 끝이 아닙니다. <span class="hl">시스템이 베리에이션 공정을 더 흡수하고, 6,719건 DB가 패턴을 제공하고, AI 자체가 시간이 갈수록 발전</span>합니다. 세 변수가 함께 가면 47이라는 숫자도, 그 안의 깊이도 함께 자랍니다.</p>
+        </div>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:32px 0 16px;">47이 끝이 아닌 이유 — 세 변수의 복리</h3>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:18%;">변수</th>
+              <th style="width:32%;">지금</th>
+              <th style="width:50%;">앞으로 함께 키워갈 여지</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>깊이</strong></td>
+              <td>리사이징·매체 포맷 중심의 단순 변형</td>
+              <td class="accent">6,719건에서 학습한 이긴 톤·구도·메시지를 기반으로 한 변형. 같은 47건이라도 시작점이 다름.</td>
+            </tr>
+            <tr>
+              <td><strong>속도</strong></td>
+              <td>인력 중심의 베리에이션 작업</td>
+              <td class="accent">AI가 공정을 더 흡수, 사람은 큐레이션·검수로 이동. 같은 산출물을 더 짧은 시간에.</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>적중률</strong></td>
+              <td>경험 기반의 변형</td>
+              <td class="accent">누적된 운영 사이클 + 발전하는 AI. 시간이 갈수록 이기는 패턴 발견 확률이 올라갈 여지.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:40px 0 16px;">IP 트랙별 적용 깊이 — 함께 정의</h3>
+
+        <div class="prose">
+          <p>AI가 만질 수 있는 영역은 타이틀마다 다릅니다. 캐릭터까지 변형 가능한 자체 IP와, 캐릭터는 유지하고 카피·구도·매체로 푸는 라이센스 IP — 두 트랙으로 나눠 적용 깊이를 다르게 가져갑니다. <span class="hl">어느 깊이까지 갈지는 트랙별로 함께 정의해주십시오.</span></p>
+        </div>
+
+        <table class="dtbl" style="margin-top:16px;">
+          <thead>
+            <tr>
+              <th style="width:24%;">트랙</th>
+              <th style="width:32%;">타이틀</th>
+              <th style="width:44%;">AI가 만질 수 있는 영역</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl-row">
+              <td><strong class="accent">자체 IP (3)</strong><br><span style="font-size:11px;color:var(--muted);font-family:var(--mono);">전면 AI</span></td>
+              <td>스톤에이지, 뱀피르, SOL인챈트</td>
+              <td>캐릭터 · 파츠 · 배경 · UI 전부</td>
+            </tr>
+            <tr>
+              <td><strong>라이센스 IP (6)</strong><br><span style="font-size:11px;color:var(--muted);font-family:var(--mono);">부분 AI</span></td>
+              <td>일곱개의 대죄, 왕좌의 게임, 몬스터 길들이기, RF 온라인, 세븐나이츠 리버스, 레이븐2</td>
+              <td>카피 · 구도 · 매체 포맷 · 국가별 변형 (캐릭터는 원본 유지)</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>공통 자동화</strong><br><span style="font-size:11px;color:var(--muted);font-family:var(--mono);">9개 전 타이틀</span></td>
+              <td class="accent" style="font-weight:700;">9개 전 타이틀</td>
+              <td>리사이징 · 매체별 포맷 · 국가별 현지화 · 베리에이션 공정</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:13px;color:var(--muted);margin-top:14px;">게임 UA 광고에서 성과를 가르는 진짜 변수는 캐릭터보다 카피·구도·매체 핏입니다. 라이센스 IP 6개도 베리에이션의 본질적인 영역은 만질 수 있습니다. 트랙별로 어느 깊이까지 가져갈지는 미팅에서 함께 정의해주십시오.</p>
+
+        <div class="callout" style="margin-top:32px;">
+          <div>
+            <h3>47은 베이스라인입니다</h3>
+            <p>누적되는 데이터, 발전하는 AI, 쌓이는 운영 경험. 세 변수가 함께 가면 첫 캠페인의 47과 1년 뒤의 47은 같은 숫자가 아닙니다. 함께 키워갈 출발점으로 봐주십시오.</p>
+          </div>
+          <div class="big">47 →</div>
+        </div>
+      </section>
+
+      <!-- ===== 03. 담당자가 바뀌어도 데이터는 남습니다 ===== -->
+      <section id="noburden">
+        <div class="section-head">
+          <h2><span class="no">3.</span>이런 도구도 <em>만들어보고</em> 있습니다.</h2>
+          <p class="deck">담당자가 바뀌어도 데이터는 남는다는 생각으로 만들어본 베타입니다. 어디까지 활용할지는 함께 정해주십시오.</p>
+        </div>
+
+        <div class="prose">
+          <p>담당자가 바뀔 때마다 "1주년 보상 이벤트 때 어떤 배너 썼더라", "작년 콜라보 때 어떤 톤이 통했더라"를 다시 학습하는 부담이 있다고 봤습니다. 그래서 <span class="hl">10년치 6,719건을 분류·태깅·검색 가능한 형태로 정리</span>해봤습니다. 신규 담당자가 첫날부터 자연어로 검색할 수 있도록 만들어보는 시도입니다.</p>
+          <p>여기에 더해 <span class="hl">넷마블이 TO로 주는 원본 외에도, 우리가 이 DB 패턴을 활용해 소재를 추가로 확장</span>하는 흐름도 같이 그리고 있습니다. 어떤 깊이로 어디까지 활용할지는 미팅에서 함께 정해가고 싶습니다.</p>
+        </div>
+
+        <!-- 배너 검색 시스템 -->
+        <div style="margin-bottom:40px;margin-top:32px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <span class="badge badge-soon">BETA · 고도화 중</span>
+            <span style="font-weight:700;font-size:18px;">6,719건 소재 DB + 자연어 검색 (베타)</span>
+          </div>
+
+          <div class="mock">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#FF5F57;"></div>
+              <div class="mock-dot" style="background:#FFBD2E;"></div>
+              <div class="mock-dot" style="background:#28CA41;"></div>
+              <div class="mock-url">127.0.0.1 &nbsp; Banner Search</div>
+              <span style="font-size:10px;color:#666;margin-left:auto;">6,719건</span>
+            </div>
+            <div class="mock-body">
+              <div style="display:flex;gap:16px;">
+                <div style="width:140px;flex-shrink:0;">
+                  <div style="font-size:10px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">필터</div>
+                  <div style="font-size:10px;font-weight:700;color:#888;margin-top:10px;margin-bottom:4px;">연도</div>
+                  <div style="font-size:11px;color:#aaa;line-height:2;">
+                    <span style="color:#FFF;font-weight:600;">&#9745; 2017년</span> <span style="color:#555;">2,624건</span><br>
+                    <span style="color:#888;">&#9744; 2018년</span> <span style="color:#555;">1,104건</span>
+                  </div>
+                  <div style="font-size:10px;font-weight:700;color:#888;margin-top:10px;margin-bottom:4px;">게임</div>
+                  <div style="font-size:11px;color:#aaa;line-height:2;">
+                    <span style="color:#888;">&#9744; 세븐나이츠</span> <span style="color:#555;">3,076건</span><br>
+                    <span style="color:#888;">&#9744; 레이븐</span> <span style="color:#555;">1,004건</span>
+                  </div>
+                </div>
+                <div style="flex:1;">
+                  <div style="background:#222;border-radius:4px;padding:6px 12px;display:flex;align-items:center;gap:8px;">
+                    <span style="color:#666;">&#128269;</span>
+                    <span style="font-size:12px;color:#aaa;">캐릭터 배경, 게임명, 분위기 ...</span>
+                  </div>
+                  <div style="margin-top:8px;display:flex;gap:6px;">
+                    <span style="background:var(--accent);color:#FFF;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;">연도 2017년 ×</span>
+                    <span style="background:var(--accent);color:#FFF;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;">매체 네이버 ×</span>
+                  </div>
+                  <div style="margin-top:8px;font-size:10px;color:#666;">49건</div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;">
+                    <div style="background:#1a1a1a;border-radius:6px;overflow:hidden;">
+                      <div style="height:56px;background:linear-gradient(135deg,#2a1a4a,#4a2a6a);display:flex;align-items:center;justify-content:center;font-size:10px;color:#c8a2f0;">&#9734; 세나 콜라보</div>
+                      <div style="padding:6px 8px;font-size:9px;color:#888;"><strong style="color:#ccc;">#5832</strong> · CTR <span style="color:var(--accent);">0.46%</span></div>
+                    </div>
+                    <div style="background:#1a1a1a;border-radius:6px;overflow:hidden;">
+                      <div style="height:56px;background:linear-gradient(135deg,#4a1a2a,#8a3a4a);display:flex;align-items:center;justify-content:center;font-size:10px;color:#f0a2b2;">&#9876; 대선배들</div>
+                      <div style="padding:6px 8px;font-size:9px;color:#888;"><strong style="color:#ccc;">#5831</strong> · CTR <span style="color:var(--accent);">0.72%</span></div>
+                    </div>
+                    <div style="background:#1a1a1a;border-radius:6px;overflow:hidden;">
+                      <div style="height:56px;background:linear-gradient(135deg,#1a3a4a,#2a5a7a);display:flex;align-items:center;justify-content:center;font-size:10px;color:#a2d0f0;">&#9733; DC 콜라보</div>
+                      <div style="padding:6px 8px;font-size:9px;color:#888;"><strong style="color:#ccc;">#5829</strong> · CTR <span style="color:var(--accent);">0.82%</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:40px 0 16px;">넷마블이 새로 해야 할 것은 없도록 만들어봤습니다</h3>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:32%;">항목</th>
+              <th style="width:34%;">일반적인 도입 부담</th>
+              <th style="width:34%;">우리 쪽 준비 상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>시스템 도입</strong></td>
+              <td>신규 SaaS 계약, IT 보안 검토, 사내 망 연동</td>
+              <td class="accent">없음 — HIVELAB 사내 운영, 검색 권한만 부여</td>
+            </tr>
+            <tr>
+              <td><strong>데이터 준비</strong></td>
+              <td>과거 소재 수집·태깅·메타데이터 정리</td>
+              <td class="accent">없음 — 6,719건 DB화 완료 (10년치 누적)</td>
+            </tr>
+            <tr>
+              <td><strong>담당자 인수인계</strong></td>
+              <td>전임자 기억 의존, 폴더 탐색, 일부 자료 유실</td>
+              <td class="accent">없음 — 신규 담당자도 첫날부터 자연어 검색 가능</td>
+            </tr>
+            <tr>
+              <td><strong>발주 방식</strong></td>
+              <td>새로운 발주 양식, 단가표 재협상</td>
+              <td class="accent">없음 — 평소대로 TO 발주, 산출량만 확장</td>
+            </tr>
+            <tr>
+              <td><strong>품질 관리</strong></td>
+              <td>AI 산출물 별도 검수 프로세스 신설</td>
+              <td class="accent">없음 — HIVELAB 디자인팀 최종 검수, 검수확인서 동일</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>학습 비용</strong></td>
+              <td>담당자 도구 사용법 교육, 매뉴얼</td>
+              <td class="accent">없음 — 자연어 검색, 별도 학습 불필요</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- AI 제작 -->
+        <div style="display:flex;align-items:center;gap:10px;margin:40px 0 16px;">
+          <span class="badge badge-now">NOW · 사내 적용</span>
+          <span style="font-weight:700;font-size:18px;">AI 스타일 베리에이션 — 일상 작업에 적용 중</span>
+        </div>
+
+        <p style="margin-bottom:24px;max-width:65ch;">하나의 키아트에서 다중 스타일 변형을 시도해보고 있습니다. 잘 되는 패턴이 보이면 그 패턴을 기반으로 AI가 변형을 만들고 결과를 다음 작업에 반영하는 사이클입니다. <span class="hl" style="background:linear-gradient(180deg,transparent 55%,var(--accent-soft) 55%);padding:0 2px;">넷마블이 주는 TO 원본 외에도, 우리가 DB 패턴으로 소재를 추가 확장하는 흐름도 함께 그리고 있습니다.</span></p>
+
+        <div class="tools">
+          <div class="tool">
+            <div class="rank">STYLE 01</div>
+            <div class="name">모뉴먼털 스톤</div>
+            <div class="note">대리석 질감, 조각 느낌. 저각 카메라로 위압감.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">STYLE 02</div>
+            <div class="name">구스타프 클림트</div>
+            <div class="note">황금빛 아르누보 패턴, 장식적 모자이크.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">STYLE 03</div>
+            <div class="name">모네 인상주의</div>
+            <div class="note">부드러운 붓터치, 빛의 표현.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">STYLE 04</div>
+            <div class="name">바로크 프레스코</div>
+            <div class="note">대성당 벽화 스타일, 몰입형 표현.</div>
+          </div>
+          <div class="tool" style="background:var(--ink);color:#fff;">
+            <div class="rank" style="color:var(--accent);">HIVELAB</div>
+            <div class="name">사내 운영 중</div>
+            <div class="note" style="color:#999;">AI 스타일 베리에이션 사내 완료. GPU RTX 4090 × 14대 운영.</div>
+          </div>
+          <div class="tool">
+            <div class="rank">STYLE 05</div>
+            <div class="name">사이버펑크 네온</div>
+            <div class="note">형광 네온, 글리치 효과.</div>
+          </div>
+        </div>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:16px;font-family:var(--mono);">
+          출처 — 배너 검색: HIVELAB MAX LAB PNGMETA Banner Search 26.06 운영 기준 · AI 베리에이션: GXD AI SOLUTION 사내 구축 · GPU: RTX 4090 × 14
+        </p>
+
+        <!-- B. 활용 시나리오 -->
+        <div style="margin-top:48px;">
+          <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:0 0 16px;">툴은 열려 있습니다. 활용은 미팅에서.</h3>
+
+          <div class="prose">
+            <p>배너 검색과 AI 베리에이션은 도구로 열려 있습니다. <span class="hl">어떻게 활용할지는 넷마블의 캠페인 운영 흐름에 맞춰 미팅에서 함께 정의</span>합니다. 예를 들어 가능한 활용 시나리오는 이렇습니다.</p>
+          </div>
+
+          <table class="dtbl" style="margin-top:16px;">
+            <thead>
+              <tr>
+                <th style="width:28%;">활용 시점</th>
+                <th style="width:36%;">DB 호출</th>
+                <th style="width:36%;">베리에이션 확장</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1주년·N주년 이벤트</strong></td>
+                <td>작년 동일 시점 배너 호출</td>
+                <td class="accent">톤·구도 유지, 메시지만 교체</td>
+              </tr>
+              <tr>
+                <td><strong>신규 헌터·캐릭터 출시</strong></td>
+                <td>과거 동일 클래스/등급 출시 배너 호출</td>
+                <td class="accent">검증된 레이아웃 재사용</td>
+              </tr>
+              <tr style="border-bottom:2px solid var(--ink);">
+                <td><strong>콜라보·시즌 캠페인</strong></td>
+                <td>과거 콜라보 시안 패턴 호출</td>
+                <td class="accent">컨텍스트만 교체해 즉시 확장</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;">기획 단계를 건너뛰고 DB에서 검증된 시안을 호출해 즉시 확장하는 흐름이 가능합니다. 어느 캠페인에 어떤 깊이로 적용할지, 신규 기획 트랙과 DB 호출 트랙을 어떻게 나눌지는 미팅에서 그립니다.</p>
+        </div>
+
+        <!-- D. 이미 일상 운영 중 -->
+        <div style="margin-top:48px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <span class="badge badge-now">NOW · 사내 운영 사이클</span>
+            <span style="font-weight:700;font-size:18px;">이미 일상 작업에서 검증 중</span>
+          </div>
+
+          <div class="prose">
+            <p>위 시나리오들은 가설이 아닙니다. HIVELAB은 일상 작업에서 이미 <span class="hl">AI 테스트와 베리에이션 테스트를 반복</span>하며 결과를 다음 작업에 반영하는 사이클을 운영 중입니다.</p>
+          </div>
+
+          <table class="dtbl" style="margin-top:16px;">
+            <thead>
+              <tr>
+                <th style="width:30%;">운영 사이클</th>
+                <th style="width:70%;">내용</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AI 베리에이션 테스트</strong></td>
+                <td>매 캠페인 단위로 사내 테스트 실행, 결과를 다음 작업에 반영하는 사이클 운영 중</td>
+              </tr>
+              <tr>
+                <td><strong>다중 변수 학습</strong></td>
+                <td>톤 · 스타일 · 해상도 · 매체별 포맷 · 국가별 변형 — 어떤 조합이 통하는지 누적 학습</td>
+              </tr>
+              <tr style="border-bottom:2px solid var(--ink);">
+                <td><strong>수량 대응</strong></td>
+                <td class="accent">26년 3~5월 월 평균 7,255건 산출. 단순 인력 투입이 아니라 AI 테스트·베리에이션 사이클 기반으로 수량을 받아내는 중</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:13px;color:var(--muted);margin-top:14px;">시스템 도입 시 처음부터 시작하지 않습니다. 이미 사내에서 검증된 운영 노하우 위에 넷마블 캠페인이 그대로 이어집니다.</p>
+        </div>
+
+        <div class="card-row" style="margin-top:32px;">
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">더 빠르게</div>
+            <div class="card-title">사전 학습 시간 단축</div>
+            <div class="card-desc">담당자가 바뀌어도 6,719건 검색이 학습을 대신하도록. 다음 캠페인 시작점을 줄여보는 방향입니다.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">더 깊게</div>
+            <div class="card-title">이긴 패턴 위에서 출발</div>
+            <div class="card-desc">10년치 누적 데이터에서 톤·구도·메시지 패턴을 끌어와 변형. 처음부터 다시 시작하지 않도록.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">더 정교하게</div>
+            <div class="card-title">시간이 갈수록</div>
+            <div class="card-desc">누적되는 운영 경험과 발전하는 AI. 한 번 통한 패턴이 다음을 더 정확하게 만드는 구조입니다.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 04. 함께 작게 시작해보고 싶습니다 ===== -->
+      <section id="pilot">
+        <div class="section-head">
+          <h2><span class="no">4.</span>함께 <em>작게 시작</em>해보고 싶습니다.</h2>
+          <p class="deck">다음 캠페인 1건. 추가 비용 0원. 결과는 함께 보고, 다음 단계도 함께 그리고 싶습니다. 리스크는 우리가 부담합니다.</p>
+        </div>
+
+        <div class="card-row">
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);">1건</div>
+            <div class="card-title">첫 시작 단위</div>
+            <div class="card-desc">다음 캠페인 1건의 원본을 47건 베리에이션으로 함께 풀어봅니다. 타이틀은 넷마블이 골라주십시오.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);">0원</div>
+            <div class="card-title">추가 비용</div>
+            <div class="card-desc">지금 계약 단가 내. 새 견적도, 새 PO도 없이.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);">우리 부담</div>
+            <div class="card-title">리스크</div>
+            <div class="card-desc">결과가 안 나오면 종료. 잘 나오면 다음은 함께 그립니다.</div>
+          </div>
+        </div>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:40px 0 16px;">측정 지표</h3>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:25%;">지표</th>
+              <th style="width:35%;">측정 방법</th>
+              <th style="width:40%;">판단 기준</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CTR</strong></td>
+              <td>캠페인 매체 리포트 기준</td>
+              <td>동일 타이틀 직전 캠페인 대비 변화</td>
+            </tr>
+            <tr>
+              <td><strong>CPI</strong></td>
+              <td>UA 매체 리포트 기준</td>
+              <td>동일 타이틀 직전 캠페인 대비 변화</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>고성과 소재 비율</strong></td>
+              <td>47건 중 상위 성과 소재 수</td>
+              <td>테스트 커버리지 확장 효과 직접 확인</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:40px 0 16px;">참고 — 동종 업계 공개 사례</h3>
+
+        <p style="font-size:14px;color:var(--muted);margin:0 0 20px;max-width:65ch;">넷마블 전용 수치는 파일럿으로 측정해야 확인됩니다. 아래는 게임/광고 업계 공개 사례입니다.</p>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:25%;">사례</th>
+              <th style="width:40%;">내용</th>
+              <th style="width:35%;">출처</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>넥슨</strong></td>
+              <td>광고 제작 1개월 → 1일 (선행UA팀, AI 파이프라인)</td>
+              <td>NDC 2026 공식 세션 발표</td>
+            </tr>
+            <tr>
+              <td><strong>크래프톤</strong></td>
+              <td>AI 퍼스트 선언, GPU 클러스터 1,000억 투자</td>
+              <td>크래프톤 공식 발표 2025.10</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>크래프톤</strong></td>
+              <td>직원 AI 도구 사용률 97.6%</td>
+              <td>NDC 2026 트랜스포메이션 부문 발표</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== PULLQUOTE ===== -->
+      <div class="pull">
+        <div class="no">LOOP</div>
+        <blockquote>
+          한 번 잘 맞으면, <em>이런 그림</em>으로 함께 갈 수 있습니다.
+        </blockquote>
+      </div>
+
+      <!-- ===== 05. 한 번 잘 맞으면 ===== -->
+      <section id="loop">
+        <div class="section-head">
+          <h2><span class="no">5.</span>한 번 잘 맞으면, <em>이런 그림</em>으로 갈 수 있습니다.</h2>
+          <p class="deck">첫 캠페인이 잘 풀리면, 산출량·적중률이 함께 움직이는 흐름이 그려집니다. 누적되는 데이터는 넷마블의 자산이 됩니다.</p>
+        </div>
+
+        <h3 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:0 0 16px;">단계별 확장</h3>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:22%;">단계</th>
+              <th style="width:26%;">현재</th>
+              <th style="width:26%;">STEP 1 (파일럿)</th>
+              <th style="width:26%;">STEP 2 (성과 합류 후)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TO당 산출량</strong></td>
+              <td>1건 원본</td>
+              <td class="accent">47건 (AI 변형)</td>
+              <td class="accent">47건 + 성과 순위</td>
+            </tr>
+            <tr>
+              <td><strong>소재 검색</strong></td>
+              <td>수작업 (폴더 탐색)</td>
+              <td class="accent">자연어 5초 검색</td>
+              <td class="accent">성과 기준 자동 정렬</td>
+            </tr>
+            <tr>
+              <td><strong>이긴 소재 재사용</strong></td>
+              <td>담당자 기억에 의존</td>
+              <td class="accent">DB 검색으로 즉시 재호출</td>
+              <td class="accent">고성과 패턴 자동 태깅·추천</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>넷마블 자산화</strong></td>
+              <td>분산된 산출물</td>
+              <td class="accent">통합 DB</td>
+              <td class="accent">학습된 크리에이티브 IP</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="prose" style="margin-top:32px;">
+          <p>STEP 2로 가려면 <span class="hl">CTR과 전환율 두 개 지표만</span> 함께 연동해주시면 됩니다. 그러면 검색이 성과 순위 시스템으로 확장되고, 다음 캠페인 시작점이 더 짧아질 수 있습니다.</p>
+          <p>이긴 소재 패턴이 누적될수록 다음 캠페인의 적중률이 올라가는 구조입니다. 누적되는 데이터는 외부 도구로 옮길 수 없는 <span class="hl">넷마블 고유의 자산</span>이 됩니다. 어디까지 갈지, 어떤 속도로 갈지는 미팅에서 함께 그려가고 싶습니다.</p>
+        </div>
+
+        <div class="callout" style="margin-top:32px;">
+          <div>
+            <h3>STEP 2 참고 사례 — 웹젠 × Airbridge, 뮤 모나크</h3>
+            <p>MMP 연동으로 크리에이티브별 성과 추적 적용 후 로그인율 +90%, ROAS +300% (Airbridge 공식 고객 사례). 성과 데이터 합류가 가져오는 변화의 예시입니다.</p>
+          </div>
+          <div class="big">+300%</div>
+        </div>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:16px;font-family:var(--mono);">
+          출처 — Airbridge 고객 사례 (웹젠 뮤 모나크), 공식 케이스 스터디
+        </p>
+      </section>
+
+      <!-- ===== 06. 우리가 도울 준비가 되어 있는 것 ===== -->
+      <section id="why">
+        <div class="section-head">
+          <h2><span class="no">6.</span>우리가 <em>도울 준비</em>가 되어 있는 것들.</h2>
+          <p class="deck">자기 자랑이 아니라, 넷마블에 어떤 자원으로 도움이 될 수 있는지 정리했습니다. 이걸 어떻게 활용할지는 미팅에서 함께 정해주십시오.</p>
+        </div>
+
+        <table class="dtbl">
+          <thead>
+            <tr>
+              <th style="width:30%;">도움 영역</th>
+              <th style="width:35%;">왜 필요한가</th>
+              <th style="width:35%;">우리가 가진 것</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>넷마블 소재 보유</strong></td>
+              <td>DB 구축을 새로 안 해도 됨</td>
+              <td class="accent">6,719건 DB화 완료 (10년 누적)</td>
+            </tr>
+            <tr>
+              <td><strong>제작 + 분석 동일팀</strong></td>
+              <td>제작 의도와 성과 분석이 분리되면 패턴 학습 안 됨</td>
+              <td class="accent">제작팀이 분석도 수행</td>
+            </tr>
+            <tr>
+              <td><strong>AI 인프라 사내 구축</strong></td>
+              <td>외부 API 의존 시 단가·납기 협상 불가</td>
+              <td class="accent">GPU RTX 4090 × 14 사내 운영</td>
+            </tr>
+            <tr>
+              <td><strong>운영 사이클 검증</strong></td>
+              <td>도구만 있고 운영 노하우가 없으면 도입 후 학습 비용 발생</td>
+              <td class="accent">AI 테스트·베리에이션 사이클 일상 작업에서 운영 중</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--ink);">
+              <td><strong>단가·납기·품질 단일 창구</strong></td>
+              <td>기획·제작 분리 에이전시는 협상 속도 저하</td>
+              <td class="accent">기획부터 제작까지 전 구간 인하우스</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card-row" style="margin-top:32px;">
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">10년</div>
+            <div class="card-title">넷마블 파트너 경력</div>
+            <div class="card-desc">맥락이 누적된 시간. 신규 에이전시가 따라올 수 없는 격차.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">21,766건</div>
+            <div class="card-title">26년 3~5월 산출량</div>
+            <div class="card-desc">실제 제작 가동 검증된 규모. 검수확인서 기준.</div>
+          </div>
+          <div class="card-item">
+            <div class="card-num" style="color:var(--accent);font-size:32px;">6,719건</div>
+            <div class="card-title">소재 DB + 제작 맥락</div>
+            <div class="card-desc">단순 파일이 아니라 제작 의도까지 함께 보관.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PULLQUOTE ===== -->
+      <div class="pull">
+        <div class="no">CLOSE</div>
+        <blockquote>
+          우리가 <em>뭘 더 해드릴 수 있을지,</em> 미팅에서 듣고 싶습니다.
+          <cite>여기 정리한 것은 출발점입니다. 함께 좁혀가고 싶습니다.</cite>
+        </blockquote>
+      </div>
+
+      <!-- ===== CLOSING ===== -->
+      <div class="callout" style="grid-template-columns:1fr;text-align:center;padding:48px 32px;">
+        <div>
+          <h3 style="font-size:28px;letter-spacing:-0.02em;">우리가 뭘 더 해드릴 수 있을지,<br>미팅에서 듣고 싶습니다.</h3>
+          <p style="margin-top:16px;font-size:15px;">이 자료는 정해진 답이 아니라 함께 그려갈 출발점입니다. 도울 준비가 되어 있습니다.</p>
+        </div>
+      </div>
+
+      <!-- ===== FOOTER ===== -->
+      <footer>
+        <div>
+          <div class="closing">HIVELAB MAX LAB × NETMARBLE</div>
+        </div>
+        <div style="text-align:right;">
+          <div>CONFIDENTIAL · 2026.06 · v5</div>
+          <div style="margin-top:4px;">TO/제작량 출처: 넷마블 × HIVELAB 26년 계약, 검수확인서 기준</div>
+        </div>
+      </footer>
+
+    </article>
+  </div>
+</main>
+
+</body>
+</html>
