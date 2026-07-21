@@ -1,0 +1,62 @@
+{
+  "axis_candidates": [
+    {
+      "id": 1,
+      "x_axis": "아날로그(무전원 물리) ↔ 디지털(앱·센서·화면)",
+      "y_axis": "재미·도전(아이 주도) ↔ 교육·안심(보호자 주도)",
+      "customer_felt": true,
+      "differentiates": true,
+      "strategic": true,
+      "evidence_available": true,
+      "not_self_serving": true,
+      "verdict": "selected",
+      "reason": "보호자의 실제 구매 언어('화면 없는 놀이' vs '교육 앱')와 아이의 욕구 언어(재미 vs 시켜서)가 동시에 드러나는 유일한 조합. 35개 브랜드가 4분면에 실제로 분산되고, 구매 결정자(보호자)와 사용자(아이)의 긴장이 축 위에서 보인다."
+    },
+    {
+      "id": 2,
+      "x_axis": "저가·소모품 ↔ 프리미엄·소장",
+      "y_axis": "기능·성능 ↔ 감성·세계관",
+      "customer_felt": true,
+      "differentiates": true,
+      "strategic": true,
+      "evidence_available": true,
+      "not_self_serving": false,
+      "verdict": "rejected",
+      "reason": "우상단(프리미엄×세계관)에 Boomi를 놓기 위해 설계된 자기 편향 위험. 컨셔스 프리미엄 10개 브랜드가 우상단에 몰려 변별력이 떨어지고, '왜 야외인가'라는 핵심 차별이 축에 안 잡힌다."
+    },
+    {
+      "id": 3,
+      "x_axis": "실내·정적 ↔ 야외·동적",
+      "y_axis": "혼자 놀이 ↔ 함께 놀이",
+      "customer_felt": true,
+      "differentiates": false,
+      "strategic": false,
+      "evidence_available": true,
+      "not_self_serving": true,
+      "verdict": "rejected",
+      "reason": "야외·동적 진영 내부(Waboba·Stomp Rocket·Zing·Flybar)가 한 점에 뭉쳐 경쟁 차이가 사라진다. '함께 놀이' 축은 대부분 브랜드가 중앙값이라 전략적 선택에 기여하지 못한다."
+    }
+  ],
+  "selected_axes": {
+    "x": { "left": "아날로그 (무전원 물리)", "right": "디지털 (앱·센서·화면)", "label": "놀이의 매체" },
+    "y": { "bottom": "재미·도전 (아이 주도)", "top": "교육·안심 (보호자 주도)", "label": "구매의 언어" },
+    "selection_reason": "구매 결정자(보호자)와 사용자(아이)의 언어가 동시에 드러나고, 35개 브랜드가 실제로 4분면에 분산되며, 'Boomi가 설 자리'를 미리 정하지 않아도 공백이 데이터에서 드러난다.",
+    "rejected_candidates": [
+      { "axes": "저가↔프리미엄 × 기능↔감성", "reason": "자기 편향 위험 + 컨셔스 프리미엄 군집 변별력 부족" },
+      { "axes": "실내↔야외 × 혼자↔함께", "reason": "야외 진영 내부 차이 소실, 함께 축 중앙 쏠림" }
+    ]
+  },
+  "note_positioning_points": "브랜드별 좌표(x, y)와 근거(x_rationale, y_rationale)는 04_competitive_research.json의 각 competitor 레코드에 존재. 좌표 스케일: x 0(아날로그)~100(디지털), y 0(아이 주도 재미)~100(보호자 주도 안심).",
+  "excluded_from_map": [
+    { "name": "Gel-o-rang", "reason": "T4 — 브랜드 실체·좌표 근거 검증 불가" },
+    { "name": "French Boomerang Club", "reason": "T4 — 상업 브랜드 실체 미검증" },
+    { "name": "Trickstick", "reason": "T4 — 검색 검증 불가" },
+    { "name": "Boomabird", "reason": "T4 — 유통·실체 미확인 (키즈 부메랑 자리가 비어 있다는 방증으로만 인용)" }
+  ],
+  "quadrants": [
+    { "position": "좌하", "label": "아날로그 × 아이 주도 — 퍼포먼스·스킬", "brands": ["Aerobie", "Wham-O", "Colorado Boomerangs", "MTA Boomerangs", "Duncan Toys", "Prism Kites", "Djubi", "ZURU X-Shot", "Zing Toys", "Waboba"], "characteristics": "비행 성능·기록·손기술. 성인 마니아 또는 매스 액션. 보호자 언어 부재." },
+    { "position": "좌상", "label": "아날로그 × 보호자 주도 — 컨셔스 프리미엄", "brands": ["Hape", "PlanToys", "GRIMM's", "Melissa & Doug", "Green Toys", "Bajo", "Glückskäfer", "Vilac", "Tegu", "TicToys", "Rangs Japan", "Stomp Rocket"], "characteristics": "소재·발달·인증으로 보호자 설득. 대부분 실내·정적·저연령. TicToys·Stomp Rocket·Rangs만 야외 걸침." },
+    { "position": "우상", "label": "디지털 × 보호자 주도 — 교육 명분 스크린", "brands": ["Osmo", "Sphero", "Loona"], "characteristics": "'스크린 죄책감'을 교육으로 정당화. 신체 활동 제로." },
+    { "position": "우하", "label": "디지털 × 아이 주도 — 자극·수집", "brands": ["Sky Viper", "L.O.L. Surprise!", "Moose Toys", "Schleich(중앙)", "yoyoyo.ai"], "characteristics": "즉각 자극·언박싱·조종 재미. 부모 반감 축적." }
+  ]
+}

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>{{PROJECT_NAME}} — Brand Strategy Deck</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+/* ============================================================
+   Brand Strategy Deck Template
+   계승: Boomi(섹션 리듬·맵·trap) + GRAIN(brand-card·tier-badge·cat-card)
+   프로젝트마다 --accent1 / --accent2 만 교체한다. 나머지는 고정.
+   ============================================================ */
+:root{
+  color-scheme:light;
+  --cream:#F7F3EA; --paper:#FBF8F1; --ink:#2E2A22; --ink2:#5E574A; --ink3:#938A78;
+  --accent1:#7E9A6E; --accent1-d:#5E7A52;
+  --accent2:#DD9B45; --accent2-d:#C47E2C;
+  --line:#E7E0D2;
+}
+html,body{margin:0;padding:0;background:var(--cream);}
+*{box-sizing:border-box;}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+a{color:inherit;}
+
+/* ===== Navigation ===== */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;}
+.nav-links{display:flex;gap:20px;font-size:13px;font-weight:600;color:var(--ink2);}
+.nav-links a{text-decoration:none;}.nav-links a:hover{color:var(--accent2-d);}
+@media(max-width:820px){.nav-links{display:none;}}
+
+/* ===== Hero / Cover ===== */
+.hero{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden;background:linear-gradient(160deg,#F7F3EA,#EFE8D7);}
+.hero-img{position:absolute;inset:0;}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:.92;}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,243,234,.93) 0%,rgba(247,243,234,.55) 45%,rgba(247,243,234,0) 75%);}
+.hero-in{position:relative;z-index:2;}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--accent2-d);text-transform:uppercase;}
+.hero h1{font-size:clamp(40px,8vw,86px);font-weight:900;letter-spacing:-.04em;line-height:.98;margin:14px 0 0;}
+.hero .tag{font-size:clamp(18px,2.4vw,26px);font-weight:700;color:var(--accent1-d);margin-top:14px;letter-spacing:-.01em;}
+.hero .sub{font-size:15px;color:var(--ink2);margin-top:16px;max-width:520px;}
+.hero .meta{margin-top:26px;font-size:12px;color:var(--ink3);letter-spacing:.02em;}
+
+/* ===== Part divider ===== */
+.part-divider{background:var(--ink);color:var(--cream);padding:90px 0;}
+.part-divider .no{font-size:13px;font-weight:800;letter-spacing:.24em;color:var(--accent2);text-transform:uppercase;}
+.part-divider h2{font-size:clamp(32px,6vw,64px);font-weight:900;letter-spacing:-.03em;line-height:1.02;margin:12px 0 0;}
+.part-divider p{color:rgba(247,243,234,.6);margin-top:14px;max-width:560px;}
+
+/* ===== Section ===== */
+section{padding:84px 0;border-top:1px solid var(--line);}
+.sec-no{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--accent2-d);text-transform:uppercase;}
+.sec-h{font-size:clamp(28px,4.5vw,46px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin:10px 0 0;}
+.sec-lead{font-size:17px;color:var(--ink2);margin-top:16px;max-width:640px;}
+.body p{margin:0 0 14px;color:var(--ink2);}.body p strong{color:var(--ink);}
+
+/* ===== Grid ===== */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:40px;}
+@media(max-width:820px){.grid2{grid-template-columns:1fr;gap:26px;}}
+
+/* ===== KV rows (프로젝트 요약) ===== */
+.kv{display:flex;flex-direction:column;gap:0;margin-top:18px;}
+.kv .row{display:grid;grid-template-columns:110px 1fr;gap:14px;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line);}
+.kv .row .k{font-weight:800;color:var(--ink3);font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+
+/* ===== 정보 상태 배지 ===== */
+.status-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.06em;padding:2px 8px;border-radius:4px;text-transform:uppercase;vertical-align:middle;}
+.status-badge.fact{background:var(--accent1);color:#fff;}
+.status-badge.claim{background:var(--accent2);color:#fff;}
+.status-badge.inference{background:var(--ink3);color:#fff;}
+.status-badge.hypothesis{border:1px solid var(--accent2-d);color:var(--accent2-d);}
+.status-badge.unknown{border:1px dashed var(--ink3);color:var(--ink3);}
+
+/* ===== 카테고리·팩트 카드 (rgroups/rcard) ===== */
+.rgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px;}
+.rcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;}
+.rcard .tagn{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--accent2-d);text-transform:uppercase;}
+.rcard h4{margin:6px 0 8px;font-size:17px;font-weight:900;letter-spacing:-.01em;}
+.rcard p{margin:0;font-size:13px;color:var(--ink2);}
+.rcard .brands{margin-top:10px;font-size:11px;color:var(--ink3);}
+
+/* ===== 경쟁·이종업계 브랜드 카드 (GRAIN 계승) ===== */
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:24px;}
+.brand-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:6px;position:relative;font-size:12px;}
+.brand-mark{font-size:14px;font-weight:900;letter-spacing:-.01em;padding-right:36px;}
+.brand-meta{color:var(--ink3);line-height:1.55;}
+.brand-meta b{color:var(--ink2);font-weight:700;}
+.brand-desc{color:var(--ink2);line-height:1.55;}
+.brand-desc b{color:var(--ink);}
+.brand-source{margin-top:auto;padding-top:8px;font-size:10.5px;color:var(--ink3);}
+.brand-source a{text-decoration:none;color:var(--ink3);}
+.brand-source a:hover{color:var(--accent2-d);}
+.brand-more{font-size:11.5px;color:var(--ink2);}
+.brand-more summary{cursor:pointer;color:var(--accent1-d);font-weight:700;font-size:11px;}
+.brand-more[open]{background:rgba(126,154,110,.05);border-radius:8px;padding:8px;}
+
+/* ===== 출처 등급 배지 (GRAIN 계승 + T4 시각 구분) ===== */
+.tier-badge{font-size:8.5px;font-weight:700;color:#fff;border-radius:8px;padding:2px 7px;position:absolute;top:14px;right:14px;}
+.tier-badge.tier-1{background:var(--accent1);}
+.tier-badge.tier-2{background:var(--accent2);}
+.tier-badge.tier-3{background:var(--ink3);}
+.tier-badge.tier-4{background:transparent;border:1px dashed var(--ink3);color:var(--ink3);}
+
+/* ===== 카테고리 대형 카드 (GRAIN cat-card 계승) ===== */
+.cat-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:40px 44px 44px;margin-top:32px;}
+@media(max-width:640px){.cat-card{padding:24px;}}
+.cat-label{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent2-d);text-transform:uppercase;}
+.cat-title{margin:8px 0 0;font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-.02em;}
+.cat-bullets{margin-top:14px;display:grid;gap:6px;font-size:13.5px;color:var(--ink2);}
+.cat-bullets div::before{content:"— ";color:var(--accent2-d);}
+.cat-card.minor{padding:24px 28px;opacity:.9;}
+.cat-card.minor .cat-title{font-size:20px;}
+
+/* ===== 경쟁 유형 필터 ===== */
+.type-filter{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.type-filter button{font-family:inherit;font-size:12px;font-weight:700;padding:7px 16px;border-radius:20px;border:1px solid var(--line);background:var(--paper);color:var(--ink2);cursor:pointer;}
+.type-filter button.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+
+/* ===== 축 후보 카드 ===== */
+.axis-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px;}
+.axis-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;}
+.axis-card.selected{border-left:4px solid var(--accent1);background:rgba(126,154,110,.05);}
+.axis-card.rejected{opacity:.65;}
+
+/* ===== XY 포지셔닝 맵 (Boomi 계승) ===== */
+.map{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;}
+.map-label{font-size:12px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;}
+.map-grid{position:relative;height:340px;border-left:2px solid var(--line);border-bottom:2px solid var(--line);margin:30px 34px 40px;}
+.map .axl{position:absolute;font-size:11px;font-weight:700;color:var(--ink3);}
+.map-caption{font-size:13px;color:var(--ink2);margin:8px 4px 0;}
+.dotb{position:absolute;transform:translate(-50%,50%);font-size:11px;font-weight:700;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 9px;white-space:nowrap;cursor:help;}
+.dotb.ws{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:800;}
+.coord-detail{margin-top:18px;font-size:12px;}
+.coord-detail summary{cursor:pointer;font-weight:700;color:var(--accent1-d);}
+.coord-detail table{width:100%;border-collapse:collapse;margin-top:10px;font-size:11.5px;}
+.coord-detail th,.coord-detail td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+.coord-detail th{color:var(--ink3);font-size:10px;text-transform:uppercase;letter-spacing:.05em;}
+.coord-wrap{overflow-x:auto;}
+
+/* ===== 화이트스페이스 (기회·함정 쌍 + 유형) ===== */
+.ws-card{margin-top:28px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;}
+.ws-type{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 12px;border-radius:20px;text-transform:uppercase;}
+.ws-type.true-opp{background:#EAF1E4;color:var(--accent1-d);border:1px solid #CFE0C2;}
+.ws-type.emerging{background:#FBEFD9;color:var(--accent2-d);border:1px solid #EED9B0;}
+.ws-type.false-ws{background:#F3E9E9;color:#9A5B5B;border:1px solid #E3CCCC;}
+.ws-type.cap-gap{background:#EDEDED;color:var(--ink2);border:1px solid #D9D9D9;}
+.ws-card h4{margin:12px 0 4px;font-size:19px;font-weight:900;}
+.trap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
+@media(max-width:760px){.trap{grid-template-columns:1fr;}}
+.trap .t{border-radius:14px;padding:18px;font-size:13px;line-height:1.6;}
+.trap .opp{background:#EAF1E4;border:1px solid #CFE0C2;}
+.trap .risk{background:#FBEFD9;border:1px solid #EED9B0;}
+.trap .t b{display:block;margin-bottom:6px;font-size:13px;}
+
+/* ===== Borrow / Translate / Avoid ===== */
+.bta{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px;}
+.bta .rcard.borrow{border-left:4px solid var(--accent1);}
+.bta .rcard.translate{border-left:4px solid var(--accent2);}
+.bta .rcard.avoid{background:#FBEFD9;border-color:#EED9B0;}
+
+/* ===== 인사이트 카드 ===== */
+.insight-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:36px;}
+.insight-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;}
+.insight-card .num{font-size:13px;font-weight:900;color:var(--accent2);letter-spacing:.08em;}
+.insight-card h4{margin:8px 0 6px;font-size:16px;font-weight:900;line-height:1.4;}
+.insight-card p{margin:0;font-size:13px;color:var(--ink2);}
+.insight-card .implication{margin-top:10px;font-size:12.5px;color:var(--accent1-d);font-weight:600;}
+.insight-card .brand-source{position:static;padding-top:10px;}
+
+/* ===== 전략 카드 ===== */
+.strategy-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:36px;}
+.strategy-card .tradeoff{margin-top:8px;font-size:12.5px;color:#9A5B5B;}
+.strategy-card.recommended{border-left:4px solid var(--accent1);background:rgba(126,154,110,.06);}
+.compare-wrap{overflow-x:auto;margin-top:30px;}
+.compare-table{width:100%;min-width:560px;border-collapse:collapse;font-size:13px;}
+.compare-table th,.compare-table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;}
+.compare-table th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);}
+.compare-table td.win{font-weight:800;color:var(--accent1-d);}
+
+/* ===== 리스크 카드 ===== */
+.risk-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px;}
+.severity{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:4px;text-transform:uppercase;}
+.severity.high{background:var(--accent2);color:#fff;}
+.severity.medium{background:var(--ink3);color:#fff;}
+.severity.low{background:var(--line);color:var(--ink);}
+
+/* ===== 출처 목록 ===== */
+.source-list{margin-top:36px;}
+.source-item{display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;flex-wrap:wrap;}
+.source-item .src-id{font-size:11px;font-weight:800;color:var(--ink3);min-width:48px;}
+.source-item .tier-badge{position:static;}
+.source-item .src-title{flex:1;color:var(--ink2);min-width:200px;}
+.src-link{font-size:11px;color:var(--ink3);text-decoration:none;}
+.src-link:hover{color:var(--accent2-d);}
+
+/* ===== Summary & Footer ===== */
+.summary{text-align:center;padding:100px 0;background:linear-gradient(160deg,#EFE8D7,#F7F3EA);border-top:1px solid var(--line);}
+.summary h2{font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:-.03em;margin:0 0 18px;}
+.summary p{font-size:17px;color:var(--ink2);max-width:580px;margin:0 auto;}
+.foot{padding:34px 0;text-align:center;font-size:12px;color:var(--ink3);border-top:1px solid var(--line);}
+.disc{margin-top:8px;font-size:11px;color:var(--ink3);}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<div class="nav"><div class="wrap">
+  <div class="logo">{{PROJECT_NAME}}</div>
+  <div class="nav-links">
+    <a href="#part1">브랜드</a>
+    <a href="#part2">경쟁 구도</a>
+    <a href="#part3">이종업계</a>
+    <a href="#part4">전략</a>
+    <a href="#sources">출처</a>
+  </div>
+</div></div>
+
+<!-- ===== COVER ===== -->
+<div class="hero">
+  <!-- HERO_IMAGE (optional): <div class="hero-img"><img src="..." alt=""></div> -->
+  <div class="wrap hero-in">
+    <div class="eyebrow">{{CLIENT}} · {{PROJECT_TYPE}}</div>
+    <h1>{{HERO_TITLE}}</h1>
+    <div class="tag">{{TAGLINE}}</div>
+    <p class="sub">{{EXECUTIVE_SUMMARY_ONE_LINER}}</p>
+    <div class="meta">Discovery → Factbook → Wide Research ({{COMP_COUNT}}+{{CROSS_COUNT}}) → Positioning → Strategy · {{DATE}} · {{RESEARCH_MODE}}</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART 1 — PROJECT & BRAND
+     ============================================================ -->
+<div class="part-divider" id="part1"><div class="wrap">
+  <div class="no">Part 1</div>
+  <h2>Project &amp; Brand</h2>
+  <p>프로젝트 성격 · 브랜드 팩트북 · 타깃 · 진짜 문제</p>
+</div></div>
+
+<section id="snapshot"><div class="wrap">
+  <div class="sec-no">01 — Project Snapshot</div>
+  <h2 class="sec-h">{{SNAPSHOT_TITLE}}</h2>
+  <p class="sec-lead">{{SNAPSHOT_LEAD}}</p>
+  <div class="grid2">
+    <div class="kv">
+      <!-- PROJECT_CONTEXT : client/project/type/background/scope/schedule rows -->
+    </div>
+    <div class="kv">
+      <!-- RFP_BRIEF : stated_request/deliverables/criteria rows -->
+    </div>
+  </div>
+</div></section>
+
+<section id="factbook"><div class="wrap">
+  <div class="sec-no">02 — Brand Factbook</div>
+  <h2 class="sec-h">{{FACTBOOK_TITLE}}</h2>
+  <p class="sec-lead">{{FACTBOOK_LEAD}}</p>
+  <div class="rgroups">
+    <!-- BRAND_FACTBOOK : rcard × N (기본정보·목적·제공물·아이덴티티·이름 스토리), 각 카드에 status-badge -->
+  </div>
+</div></section>
+
+<section id="target"><div class="wrap">
+  <div class="sec-no">03 — Target Definition</div>
+  <h2 class="sec-h">{{TARGET_TITLE}}</h2>
+  <div class="rgroups">
+    <!-- TARGET_CARDS : Primary/Secondary/구매자/사용자 rcard, 행동·욕구·장벽 중심 -->
+  </div>
+</div></section>
+
+<section id="assets-gaps"><div class="wrap">
+  <div class="sec-no">04 — Brand Assets &amp; Gaps</div>
+  <h2 class="sec-h">{{ASSETS_TITLE}}</h2>
+  <div class="grid2">
+    <div><!-- BRAND_ASSETS : 자산 rcard 목록 --></div>
+    <div><!-- BRAND_GAPS + UNKNOWNS : 격차·미확인 rcard 목록 --></div>
+  </div>
+</div></section>
+
+<section id="problem"><div class="wrap">
+  <div class="sec-no">05 — Real Problem</div>
+  <h2 class="sec-h">{{PROBLEM_TITLE}}</h2>
+  <div class="rgroups">
+    <!-- SAYS_DOES_SEES_COMPARES : Brand Says / Brand Does / Customer Sees / Market Compares 4 rcard -->
+  </div>
+  <div class="trap">
+    <div class="t opp"><b>현재 상태</b><!-- CURRENT_STATE --></div>
+    <div class="t risk"><b>목표 상태</b><!-- DESIRED_STATE --></div>
+  </div>
+  <div class="rcard" style="margin-top:24px;border-left:4px solid var(--accent2);">
+    <div class="tagn">Real Problem — 의사결정 질문</div>
+    <h4><!-- REAL_PROBLEM --></h4>
+    <p><!-- RESEARCH_AGENDA : 리서치 질문 목록 --></p>
+  </div>
+</div></section>
+
+<!-- ============================================================
+     PART 2 — COMPETITIVE LANDSCAPE
+     ============================================================ -->
+<div class="part-divider" id="part2"><div class="wrap">
+  <div class="no">Part 2</div>
+  <h2>Competitive Landscape</h2>
+  <p>경쟁·대체 브랜드 {{COMP_COUNT}}개 · 카테고리 군집 · XY 포지셔닝 · 화이트스페이스</p>
+</div></div>
+
+<section id="market-def"><div class="wrap">
+  <div class="sec-no">06 — Market Definition &amp; Universe</div>
+  <h2 class="sec-h">{{MARKET_TITLE}}</h2>
+  <p class="sec-lead"><!-- MARKET_DEFINITION : 카테고리·범위·기준시점·조사 수 --></p>
+  <div class="type-filter">
+    <!-- TYPE_FILTER : 전체/직접/간접/대체재/인접 버튼 (data-filter) -->
+  </div>
+</div></section>
+
+<section id="competitors"><div class="wrap">
+  <div class="sec-no">07 — Competitor Cards ({{COMP_COUNT}})</div>
+  <h2 class="sec-h">{{COMPETITORS_TITLE}}</h2>
+  <!-- COMPETITIVE_CATEGORY_CARDS : cat-card × 3~5, 각 내부에 brand-grid > brand-card (data-type 포함) -->
+  <!-- 주요 3개는 .cat-card, 추가 그룹은 .cat-card.minor -->
+</div></section>
+
+<section id="axes"><div class="wrap">
+  <div class="sec-no">08 — Axis Candidates &amp; Selection</div>
+  <h2 class="sec-h">{{AXES_TITLE}}</h2>
+  <p class="sec-lead">축 후보 최소 3세트 평가 → 최종 선정. 선정·제외 이유를 모두 기록.</p>
+  <div class="axis-cards">
+    <!-- AXIS_CANDIDATES : axis-card × 3+ (.selected / .rejected) -->
+  </div>
+</div></section>
+
+<section id="positioning"><div class="wrap">
+  <div class="sec-no">09 — XY Positioning Map</div>
+  <h2 class="sec-h">{{POSITIONING_TITLE}}</h2>
+  <div class="map">
+    <div class="map-label">포지셔닝 맵 — {{X_LABEL}} × {{Y_LABEL}}</div>
+    <div class="map-grid">
+      <span class="axl" style="top:-24px;left:50%;transform:translateX(-50%);">{{Y_TOP}} ▲</span>
+      <span class="axl" style="bottom:-26px;left:50%;transform:translateX(-50%);">{{Y_BOTTOM}} ▼</span>
+      <span class="axl" style="left:-20px;bottom:-40px;">◀ {{X_LEFT}}</span>
+      <span class="axl" style="right:-20px;bottom:-40px;">{{X_RIGHT}} ▶</span>
+      <!-- XY_POSITIONING_MAP : dotb × N (style="left:{x}%;bottom:{y}%" title="{x_rationale} / {y_rationale}") -->
+      <!-- WHITESPACE_DOTS : dotb ws -->
+    </div>
+    <p class="map-caption"><!-- MAP_CAPTION --></p>
+    <details class="coord-detail">
+      <summary>좌표 근거 전체 보기</summary>
+      <div class="coord-wrap"><table>
+        <tr><th>브랜드</th><th>X</th><th>X 근거</th><th>Y</th><th>Y 근거</th><th>Evidence</th><th>확신도</th></tr>
+        <!-- COORD_RATIONALE_ROWS -->
+      </table></div>
+    </details>
+  </div>
+  <div class="rgroups">
+    <!-- QUADRANT_ANALYSIS : 사분면 4 rcard -->
+  </div>
+</div></section>
+
+<section id="whitespace"><div class="wrap">
+  <div class="sec-no">10 — Whitespace</div>
+  <h2 class="sec-h">{{WHITESPACE_TITLE}}</h2>
+  <p class="sec-lead">Market Gap · Customer Demand · Brand Right · Capability Fit 4기준 평가. 유형 판정 필수.</p>
+  <!-- WHITESPACE_CARDS : ws-card × N — ws-type 배지 + trap(기회/리스크 쌍) -->
+</div></section>
+
+<!-- ============================================================
+     PART 3 — CROSS-INDUSTRY RESEARCH
+     ============================================================ -->
+<div class="part-divider" id="part3"><div class="wrap">
+  <div class="no">Part 3</div>
+  <h2>Cross-Industry Research</h2>
+  <p>이종업계 사례 {{CROSS_COUNT}}개 · 카테고리 군집 · Borrow / Translate / Avoid</p>
+</div></div>
+
+<section id="cross-scope"><div class="wrap">
+  <div class="sec-no">11 — Research Scope</div>
+  <h2 class="sec-h">{{CROSS_SCOPE_TITLE}}</h2>
+  <p class="sec-lead"><!-- CROSS_SCOPE : 진짜 문제와 연결된 조사 관점 --></p>
+</div></section>
+
+<section id="cross-cases"><div class="wrap">
+  <div class="sec-no">12 — Cross-Industry Cases ({{CROSS_COUNT}})</div>
+  <h2 class="sec-h">{{CROSS_TITLE}}</h2>
+  <!-- CROSS_CATEGORY_CARDS : cat-card × 3~5, 내부 brand-grid > brand-card -->
+</div></section>
+
+<section id="bta"><div class="wrap">
+  <div class="sec-no">13 — Borrow · Translate · Avoid</div>
+  <h2 class="sec-h">{{BTA_TITLE}}</h2>
+  <div class="bta">
+    <!-- WHAT_TO_BORROW : rcard.borrow × N -->
+    <!-- WHAT_TO_TRANSLATE : rcard.translate × N -->
+    <!-- WHAT_TO_AVOID : rcard.avoid × N -->
+  </div>
+</div></section>
+
+<!-- ============================================================
+     PART 4 — INSIGHT & STRATEGY
+     ============================================================ -->
+<div class="part-divider" id="part4"><div class="wrap">
+  <div class="no">Part 4</div>
+  <h2>Insight &amp; Strategy</h2>
+  <p>핵심 인사이트 · 전략 대안 비교 · 추천 전략 · 리스크와 검증</p>
+</div></div>
+
+<section id="insights"><div class="wrap">
+  <div class="sec-no">14 — Core Insights</div>
+  <h2 class="sec-h">{{INSIGHTS_TITLE}}</h2>
+  <div class="insight-cards">
+    <!-- INSIGHT_CARDS : insight-card × 3~5 (관찰→긴장→기회 + Evidence ID) -->
+  </div>
+</div></section>
+
+<section id="strategy"><div class="wrap">
+  <div class="sec-no">15 — Strategy Options</div>
+  <h2 class="sec-h">{{STRATEGY_TITLE}}</h2>
+  <div class="strategy-cards">
+    <!-- STRATEGY_OPTIONS : strategy-card × 2~4, 추천은 .recommended -->
+  </div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <tr><th>기준</th><!-- STRATEGY_HEADS --></tr>
+      <!-- STRATEGY_COMPARISON_ROWS : 고객가치/브랜드적합/차별성/실행가능성/지속성/확장성/근거강도 -->
+    </table>
+  </div>
+</div></section>
+
+<section id="recommended"><div class="wrap">
+  <div class="sec-no">16 — Recommended Strategy</div>
+  <h2 class="sec-h">{{RECOMMENDED_TITLE}}</h2>
+  <p class="sec-lead"><!-- RECOMMENDATION_REASON --></p>
+  <div class="kv" style="max-width:720px;">
+    <!-- RECOMMENDED_DETAIL : 핵심원칙/실행 우선순위/포기한 대안+이유/성공기준 rows -->
+  </div>
+</div></section>
+
+<section id="risks"><div class="wrap">
+  <div class="sec-no">17 — Risk &amp; Validation</div>
+  <h2 class="sec-h">{{RISKS_TITLE}}</h2>
+  <div class="risk-cards">
+    <!-- RISK_CARDS : rcard × N (severity 배지 + 대응 + 검증 계획) -->
+  </div>
+</div></section>
+
+<section id="sources"><div class="wrap">
+  <div class="sec-no">18 — Sources &amp; Limitations</div>
+  <h2 class="sec-h">출처 및 조사 한계</h2>
+  <div class="source-list">
+    <!-- SOURCE_LIST : source-item × N (src-id + tier-badge + title + link) -->
+  </div>
+  <div class="rgroups">
+    <!-- LIMITATIONS + OMITTED_SECTIONS : rcard -->
+  </div>
+</div></section>
+
+<!-- ===== SUMMARY ===== -->
+<div class="summary"><div class="wrap">
+  <h2>{{SUMMARY_TITLE}}</h2>
+  <p>{{SUMMARY_DESC}}</p>
+</div></div>
+
+<div class="foot"><div class="wrap">
+  {{PROJECT_NAME}} — {{CLIENT}} · {{YEAR}}<br>
+  <span class="disc">방법론: Discovery → Factbook → Wide Research → Positioning → Whitespace → Cross-Industry → Insight → Strategy · {{DISCLAIMER}}</span>
+</div></div>
+
+<script>
+// 경쟁 유형 필터 — vanilla JS만 사용
+document.querySelectorAll('.type-filter button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.type-filter button').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    var f = btn.dataset.filter;
+    document.querySelectorAll('.brand-card[data-type]').forEach(function(card){
+      card.style.display = (f === 'all' || card.dataset.type === f) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+</body>
+</html>
