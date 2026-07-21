@@ -94,7 +94,7 @@
 - `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
 
 **⑦ 역할 오케스트레이터 (v8)**
-- `marketer` (마케터) — 리서치·발산 통합 역할. 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
+- `marketer` (마케터) — RFP부터 리서치·발산까지 통합 역할. RFP 분석 → 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: rfp-analyst · market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "RFP 분석"/"시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
 
 > 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
