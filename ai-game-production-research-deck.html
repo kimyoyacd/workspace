@@ -157,6 +157,27 @@ table.data tbody tr:last-child td { border-bottom: none; }
 .lead { max-width: 780px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.6; color: rgba(23,23,23,0.82); }
 .slide.dark .lead, .slide.dark2 .lead { color: rgba(255,255,255,0.8); }
 .kicker { display:inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--accent); margin-bottom: 18px; text-transform: uppercase; }
+
+/* ===== XY 포지셔닝 맵 ===== */
+.posmap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--card); border-radius: var(--r-card); margin-top: clamp(18px, 2.5vw, 34px); }
+.posmap .axis-x { position: absolute; left: 9%; right: 9%; top: 50%; height: 1.5px; background: rgba(23,23,23,0.16); }
+.posmap .axis-y { position: absolute; top: 9%; bottom: 9%; left: 50%; width: 1.5px; background: rgba(23,23,23,0.16); }
+.posmap .cap { position: absolute; font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.2px; white-space: nowrap; }
+.posmap .cap.top    { top: 3%;    left: 50%; transform: translateX(-50%); }
+.posmap .cap.bottom { bottom: 3%; left: 50%; transform: translateX(-50%); }
+.posmap .cap.left   { left: 2%;   top: 50%; transform: translateY(-50%); }
+.posmap .cap.right  { right: 2%;  top: 50%; transform: translateY(-50%); }
+.posmap .zone { position: absolute; width: 30%; aspect-ratio: 1 / 0.82; border: 2px dashed var(--accent); border-radius: 50%; transform: translate(-50%,-50%); background: rgba(61,90,254,0.07); }
+.posmap .pt { position: absolute; transform: translate(-50%,-50%); display: flex; flex-direction: column; align-items: center; gap: 5px; width: max-content; max-width: 132px; text-align: center; }
+.posmap .pt .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--sig); }
+.posmap .pt .lbl { font-size: 11.5px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.posmap .pt .sub { font-size: 10px; color: var(--muted); line-height: 1.1; }
+.posmap .pt.star .dot { width: 18px; height: 18px; background: var(--accent); box-shadow: 0 0 0 5px rgba(61,90,254,0.18); }
+.posmap .pt.star .lbl { color: var(--accent); font-size: 12.5px; }
+.posmap .pt.auto .dot { background: var(--pt-blue); }
+.posmap .pt.gen .dot  { background: var(--pt-purple); }
+.posmap .pt.inh .dot  { background: var(--pt-amber); }
+@media (max-width: 700px) { .posmap .pt .lbl { font-size: 10px; } .posmap .pt .sub { display:none; } .posmap .cap { font-size: 10px; } }
 </style>
 </head>
 <body>
@@ -183,18 +204,112 @@ table.data tbody tr:last-child td { border-bottom: none; }
       <span class="no">00</span>
       <h2 class="t-opener">Contents</h2>
       <div class="toc">
-        <div class="i"><b>01</b><span>AI 게임 제작 케이스</span></div>
-        <div class="i"><b>02</b><span>게임 UA × AI 성과</span></div>
-        <div class="i"><b>03</b><span>선제작(Pre-production) 관점</span></div>
-        <div class="i"><b>04</b><span>실무 제안 결론</span></div>
+        <div class="i"><b>01</b><span>경쟁 지형 &amp; 포지셔닝</span></div>
+        <div class="i"><b>02</b><span>AI 게임 제작 케이스</span></div>
+        <div class="i"><b>03</b><span>게임 UA × AI 성과</span></div>
+        <div class="i"><b>04</b><span>선제작(Pre-production) 관점</span></div>
+        <div class="i"><b>05</b><span>실무 제안 결론</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 03 DIVIDER 01 ===== -->
+  <!-- ===== DIVIDER 01 · 포지셔닝 ===== -->
   <section class="slide dark m-divider">
     <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">01<br>AI 게임 제작<br><span class="accent">CASES</span></h2>
+    <h2 class="t-divider" style="margin-top:40px">01<br>경쟁 지형 &amp;<br><span class="accent">포지셔닝</span></h2>
+  </section>
+
+  <!-- ===== 플레이어 분류표 ===== -->
+  <section class="slide m-dense">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Players</p>
+        <h3 class="t-title">시장은 '생성(툴)'에서<br>'통제(오케스트레이션)'로</h3>
+      </div>
+      <p class="t-body">자금은 자동화·생성 레이어로 쏠린다(Sett 누적 $57M, Meshy 밸류 $1.38B). 반대로 <b>사람 판단 + 풀 파이프라인을 잇는 오픈 서비스는 희소</b>하다 — 인하우스에 갇혀 있기 때문. 이 비대칭이 우리 실의 진입 지점이다.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead>
+          <tr><th style="width:14%">유형</th><th style="width:34%">대표 플레이어</th><th style="width:34%">정체성</th><th style="width:18%">한계 / 신호</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="tag blue">a · UA 자동화</span></td><td><span class="co">AppLovin AXON · Meta Advantage+ · Sett · Bigabid</span></td><td><span class="mt">URL/입력→소재 자동생성·UA 실행 end-to-end</span></td><td><span class="mt">플랫폼 락인 · 컨셉·IP 디렉션 없음</span></td></tr>
+          <tr><td><span class="tag purple">b · 생성 툴</span></td><td><span class="co">Scenario · Meshy · Tripo · Runway · Luma</span></td><td><span class="mt">텍스트/이미지→에셋·3D·영상 생성 '부품'</span></td><td><span class="mt">디렉션·마케터블리티 없음 · 커모디티화</span></td></tr>
+          <tr><td><span class="tag sig">c · 전통 대행사</span></td><td><span class="co">Consumer Acquisition · AppAgent 류</span></td><td><span class="mt">사람 기반 소재 기획·A/B, UA 실행 최적화</span></td><td><span class="mt">UA 단건에 갇힘 · AI 3D·풀 파이프라인 약함</span></td></tr>
+          <tr><td><span class="tag amber">d · 인하우스</span></td><td><span class="co">크래프톤·넷마블·엔씨·넥슨 · EA·Roblox</span></td><td><span class="mt">'생성→통제' 파이프라인, 본제작 통합</span></td><td><span class="mt">사내 전속 · <b>시장에 안 판다</b></span></td></tr>
+          <tr><td><span class="tag red">e · 디자인 외주</span></td><td><span class="co">Room8 · Virtuos · Kevuru / <b>HIVELAB·MX실</b></span></td><td><span class="mt">본제작 에셋 파이프라인 · 사람 디렉션</span></td><td><span class="mt">UA·마케터블리티 루프 부재</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source">출처 : Mobidictum · SiliconANGLE 2026-03 (Sett) / The SaaS News · PitchBook 2026-07 (Meshy) / Crunchbase (Scenario). (c)·(e)는 카테고리 대표, 개별 팩트체크 권장</p>
+  </section>
+
+  <!-- ===== XY 포지셔닝 맵 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow accent">Positioning Map</p>
+        <h3 class="t-title">우측·상단이<br>비어 있다</h3>
+      </div>
+      <p class="t-body"><b>X축</b> 툴/자동화 판단 ↔ 사람 크리에이티브 디렉션 판단 · <b>Y축</b> 단건 소재·UA 실행 ↔ 선제작~본제작 풀 파이프라인. 자동화 플랫폼은 좌하, 인하우스는 우상(전속). <span class="accent">사람 디렉션 × 풀 파이프라인의 오픈 서비스(★)가 공백.</span></p>
+    </div>
+    <div class="posmap">
+      <div class="axis-x"></div><div class="axis-y"></div>
+      <span class="cap top">▲ 선제작~본제작 풀 파이프라인</span>
+      <span class="cap bottom">단건 소재 · UA 실행 ▼</span>
+      <span class="cap left">◀ 자동화 판단</span>
+      <span class="cap right">사람 디렉션 ▶</span>
+      <div class="zone" style="left:84%; top:29%;"></div>
+      <div class="pt star" style="left:84%; top:29%;"><span class="dot"></span><span class="lbl">★ 우리 목표존</span><span class="sub">오픈 서비스 공백</span></div>
+      <div class="pt inh" style="left:65%; top:19%;"><span class="dot"></span><span class="lbl">게임사 인하우스</span><span class="sub">전속·비판매</span></div>
+      <div class="pt" style="left:73%; top:41%;"><span class="dot"></span><span class="lbl">게임아트 아웃소싱</span><span class="sub">본제작O / UA·전략X</span></div>
+      <div class="pt gen" style="left:20%; top:48%;"><span class="dot"></span><span class="lbl">Scenario</span></div>
+      <div class="pt gen" style="left:34%; top:45%;"><span class="dot"></span><span class="lbl">Meshy · Tripo</span><span class="sub">생성 부품</span></div>
+      <div class="pt" style="left:77%; top:74%;"><span class="dot"></span><span class="lbl">전통 UA 대행사</span><span class="sub">사람 소재·A/B</span></div>
+      <div class="pt auto" style="left:31%; top:71%;"><span class="dot"></span><span class="lbl">Bigabid</span><span class="sub">에이전트+인하우스</span></div>
+      <div class="pt auto" style="left:15%; top:66%;"><span class="dot"></span><span class="lbl">Sett</span><span class="sub">상향 이동 중</span></div>
+      <div class="pt auto" style="left:16%; top:83%;"><span class="dot"></span><span class="lbl">AXON · Meta</span><span class="sub">극좌하·락인</span></div>
+    </div>
+    <p class="source">보조 프레임(Map 2) : X축을 '플랫폼 종속 ↔ 플랫폼 중립(멀티툴 오케스트레이션)'으로 두면 공백이 더 선명 — 벤더 성과 수치는 자사 주장</p>
+  </section>
+
+  <!-- ===== 화이트스페이스 결론 ===== -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <span class="kicker">Whitespace</span>
+    <h3 class="t-title" style="max-width:18ch">4개 유형의 강점을 <span class="accent">가로지르는 조합</span>이<br>어려워서 비어 있다 = 기회</h3>
+    <div class="trend-grid" style="margin-top:clamp(28px,3.5vw,48px)">
+      <div class="trend-card">
+        <div class="kw" style="color:var(--accent)">공백 ① 메인</div>
+        <div class="desc"><b>AI 오케스트레이션 × 사람 디렉션</b>의 선제작→본제작 브리지. 플랫폼 중립. 자동화(락인)·생성툴(부품)·아웃소싱(UA 부재)이 못 잇는 자리.</div>
+        <div class="tail">우측·상단 · 오픈 서비스 공백</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw" style="color:var(--accent)">공백 ② 뾰족</div>
+        <div class="desc"><b>마케터블리티 선제작 전문</b> — "광고 먼저, 게임 나중". 게임이 존재하기 전 단계를 파는 플레이어가 거의 없음.</div>
+        <div class="tail">성과연동·게이트형 견적으로 진입</div>
+      </div>
+      <div class="trend-card dark">
+        <div class="kw">우리 근거</div>
+        <div class="desc">① 툴 조합 자산(MJ+Scenario+Meshy/Tripo+Runway/Luma+Sett) = 중립 오케스트레이션 ② 17년 크리에이티브 디렉션 = X축 우측 진입장벽 ③ CPI +30%가 선제작 수요를 실증.</div>
+        <div class="tail">타겟 : 인하우스 약한 중견·인디</div>
+      </div>
+      <div class="trend-card">
+        <div class="kw" style="color:var(--pt-red)">리스크</div>
+        <div class="desc">(1) Sett 상향 이동 시 하단 침식 (2) 생성 커모디티화 → '생성'이 아닌 '<b>디렉션·오케스트레이션</b>'으로 값매김 (3) 인하우스 흡수 시 TAM 축소.</div>
+        <div class="tail">과금을 '선제작 게이트'로 재설계</div>
+      </div>
+    </div>
+    <p class="source">출처 : 시장조사 종합 (market-research) · 좌표는 정성 배치 · 벤더 성과 수치는 자사 주장 명기 필요</p>
+  </section>
+
+  <!-- ===== DIVIDER 02 · 제작 케이스 ===== -->
+  <section class="slide dark m-divider">
+    <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
+    <h2 class="t-divider" style="margin-top:40px">02<br>AI 게임 제작<br><span class="accent">CASES</span></h2>
   </section>
 
   <!-- ===== 04 산업 지표 stat-cards ===== -->
@@ -346,7 +461,7 @@ table.data tbody tr:last-child td { border-bottom: none; }
   <!-- ===== 09 DIVIDER 02 ===== -->
   <section class="slide dark m-divider">
     <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">02<br>게임 UA<br>× <span class="accent">AI 성과</span></h2>
+    <h2 class="t-divider" style="margin-top:40px">03<br>게임 UA<br>× <span class="accent">AI 성과</span></h2>
   </section>
 
   <!-- ===== 10 UA 지표 stat cards ===== -->
@@ -440,7 +555,7 @@ table.data tbody tr:last-child td { border-bottom: none; }
   <!-- ===== 14 DIVIDER 03 ===== -->
   <section class="slide dark m-divider">
     <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">03<br>선제작<br><span class="accent">PRE-PRODUCTION</span></h2>
+    <h2 class="t-divider" style="margin-top:40px">04<br>선제작<br><span class="accent">PRE-PRODUCTION</span></h2>
   </section>
 
   <!-- ===== 15 선제작 워크플로우 ===== -->
@@ -559,7 +674,7 @@ table.data tbody tr:last-child td { border-bottom: none; }
   <!-- ===== 17 DIVIDER 04 ===== -->
   <section class="slide dark m-divider">
     <header class="meta-bar"><span>WIDE RESEARCH X HIVELAB</span><span>INTERNAL RESEARCH</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">04<br>실무 <span class="accent">제안</span><br>결론</h2>
+    <h2 class="t-divider" style="margin-top:40px">05<br>실무 <span class="accent">제안</span><br>결론</h2>
   </section>
 
   <!-- ===== 18 결론 ===== -->
