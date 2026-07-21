@@ -135,6 +135,23 @@ Figma에서 고르듯 여기서도 골라 쓴다. 클래스명 = Figma 프레임
 ### `market--persona-quotes` — 페르소나 인용 카드
 카드 3개 auto-fit. 각: 큰따옴표 인용문(16~18px) + 하단 `나이 · 직업 · 지역` 메타(muted).
 
+### `research--category-case` — 리서치 케이스 그리드 (마케터 산출 표준)
+카테고리 단위 케이스 정리. 상단에 카테고리 헤더(Category_Label 18 SemiBold + Main_Title 44 Bold + 불릿 1~2줄),
+아래 케이스 카드 auto-fit 그리드. 각 카드: 이미지(또는 플레이스홀더) + 브랜드명(24 Bold) +
+"훔칠 포인트" 한 줄(16px) + **출처 링크(12px muted, `브랜드명 ↗` 형식)**.
+```html
+<div class="case-card">
+  <div class="ph">image</div>
+  <div class="t-label">{브랜드명}</div>
+  <p class="cap">{훔칠 포인트 한 줄}</p>
+  <a class="src-link" href="{URL}">{도메인} ↗</a>
+</div>
+```
+
+### `research--brand-detail` — 브랜드 상세 행
+와이드 리서치용. 한 브랜드 = 한 행: 브랜드명(24 Bold) | 속성 메타(국가·가격대·타깃, 14px) |
+핵심 메시지(16px) | 출처 링크. 행 사이 1px 보더.
+
 ### `trend--*` — 트렌드 카드 그리드
 이미지/키워드 카드 auto-fit. 각: 영문 키워드(24 Bold) + 한글 설명 1~2줄(16px).
 
