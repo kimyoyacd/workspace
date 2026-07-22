@@ -1,0 +1,45 @@
+{
+  "categories": [
+    {
+      "id": "physical-truth-core",
+      "label": "물리적 진실의 브랜드화 — 하나의 물성이 곧 코어",
+      "definition": "제품 고유의 물리 현상·물성을 브랜드 서사의 중심으로 승격한 군",
+      "cases": ["Polaroid", "LEGO", "Freitag", "Tony's Chocolonely", "IKEA", "Moleskine", "Fjällräven"],
+      "common_principle": "기능 스펙이 아니라 '이 물건만 가진 물리적 진실'(즉석 인화·브릭 결합·방수포 유일 패턴)을 반복 가능한 의식으로 만든다",
+      "what_to_borrow": "회귀(돌아옴)라는 물리 현상을 로고·카피·경험 전체의 단일 문법으로 — 이미 Boomi 설계와 일치, 일관성 유지가 과제",
+      "what_to_translate": "Polaroid의 '기다림의 의식'을 '던지고 기다리는 3초'로 번역",
+      "what_to_avoid": "물성 서사에 기능 스펙 언어를 섞는 것(Aerobie식 기록 수치로의 회귀)"
+    },
+    {
+      "id": "guilt-to-pride",
+      "label": "결핍의 자부심화 — '없어서 좋다' 화법",
+      "definition": "카테고리 표준 기능의 부재를 정체성·자부심으로 반전한 군",
+      "cases": ["Oatly", "MUJI", "Patagonia", "Liquid Death", "Aesop"],
+      "common_principle": "'~가 없다'를 사과하지 않고 선언한다. 결핍 선언이 곧 가치관 신호가 되어 프리미엄을 정당화",
+      "what_to_borrow": "'전자도, 화면도, 충전도 없습니다' — 3무(無) 선언을 패키지 전면에",
+      "what_to_translate": "Oatly의 도발 톤은 키즈 카테고리에 맞게 '다정한 당당함'으로 낮춰 번역",
+      "what_to_avoid": "안티-스크린을 금지·훈계의 언어로 말하는 것 (I-03 — 죄책감 자극이 아니라 즐거움 제시)"
+    },
+    {
+      "id": "dual-audience",
+      "label": "이중 청중 설득 — 구매자와 사용자가 다른 시장의 문법",
+      "definition": "결정자(보호자)와 사용자(아이)를 다른 언어로 동시에 설득하는 군",
+      "cases": ["Lovevery", "Montessori (Nienhuis)", "Kumon", "Decathlon", "Casper", "Bogner/Moncler Enfant", "Kiwico"],
+      "common_principle": "보호자에게는 근거(발달·안전·보장)를 문서로, 아이에게는 욕망(재미·성취·캐릭터)을 감각으로 — 두 채널을 섞지 않는다",
+      "what_to_borrow": "Lovevery식 보호자 가이드(왜 이 놀이인가 1장) + Casper식 불안 흡수 장치('첫 회귀 보장' 코칭·교환)",
+      "what_to_translate": "Decathlon의 입문 설계를 '3단계 난이도 부메랑'(첫 회귀 성공률 우선)으로 번역",
+      "what_to_avoid": "보호자 근거 언어를 아이 접점(제품·캐릭터)에 노출하는 것 — 아이에게 교육은 냄새만 나도 거부"
+    },
+    {
+      "id": "collection-without-consumption",
+      "label": "소비 없는 리텐션 — 기록·성장형 수집",
+      "definition": "재구매 강제 없이 기록·성장·커뮤니티로 리텐션을 만든 군",
+      "cases": ["Pokémon(도감)", "Strava", "GoPro", "Rapha", "Snow Peak", "Nintendo Labo", "Duolingo", "Tamagotchi", "Stanley", "Yeti", "Vitra"],
+      "common_principle": "수집 대상을 '물건'이 아니라 '경험 기록'으로 치환하면 부모 지갑과 충돌하지 않는 리텐션이 생긴다",
+      "what_to_borrow": "Pokémon 도감 구조의 오프라인판 — 던지기 성취 도감(첫 회귀·10연속·바람 읽기) + Strava식 '활동은 야외, 기록은 나중' 분리",
+      "what_to_translate": "Snow Peak의 '가족의 야외 시간' 상위 프레임을 '부메랑이 아니라 오후를 판다'로",
+      "what_to_avoid": "Stanley·L.O.L.식 컬러 드롭 수집 강제(소비주의 함정, I-04) · Duolingo식 화면 스트릭 압박"
+    }
+  ],
+  "synthesis": "4개 군의 원리를 겹치면: 회귀라는 물리적 진실(1군)을 3무 선언의 당당함(2군)으로 말하고, 보호자·아이 이중 채널(3군)로 설득하며, 소비 없는 성취 도감(4군)으로 붙잡는다 — 이것이 이종업계가 Boomi에 주는 전략 문법."
+}

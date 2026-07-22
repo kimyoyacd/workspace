@@ -73,8 +73,21 @@
 - 카테고리: 4개 군집
 - 축 후보 3세트 (선정 1 + 제외 2, 이유 기록)
 - 화이트스페이스 3건 (TRUE OPPORTUNITY / EMERGING / FALSE 유형 판정)
-- 이종업계: 30+ (웹 재검증 생략 — 세션 중 리서치 에이전트 중지로 확립 지식 기반, limitation 기록)
-- 신규 deck.html: `outputs/` 데이터 기반, template.html 문법으로 생성 (기존 deck.html은 보존)
+- 이종업계: **32개** (08 JSON) → 4개 전략 문법 군집 (09 JSON). 웹 재검증 생략 — 확립 지식 기반, limitation 기록
+- 통합 데이터: `report-data.json` — 데이터가 HTML 안에만 존재하지 않도록 outputs/ 원본 포인터 + 요약 구조화
+- 신규 덱: `deck-strategy.html` — outputs/ 데이터 기반, template.html 문법으로 생성 (기존 컨셉 쇼케이스 deck.html은 보존)
+
+### 렌더링 검증 (headless Chromium)
+
+| 항목 | 결과 |
+|---|---|
+| 브랜드 팩트북 출력 (상태 배지 12) | ✅ |
+| 경쟁사 카드(brand-card 15) + 카테고리 카드 3 + 사분면 4 | ✅ |
+| 카드별 출처 노출 (brand-source 27 · tier-badge 15) | ✅ |
+| XY맵 도트 23 (전부 좌표 근거 title 보유) + 축 후보 3 | ✅ |
+| 화이트스페이스 기회·함정 쌍 (opp 4 · risk 4) | ✅ |
+| 자산→기회→전략 연결 (인사이트 5 · 전략 3 · 추천 1) | ✅ |
+| 기존 시각 문법 유지 (cream/paper/ink + accent 2색, Boomi 골든 예시 컴포넌트) | ✅ |
 
 ## 되돌리기
 
