@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{PROJECT_NAME}} · Brand Strategy Report</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+/* ============================================================
+   Brand Strategy Deck Template — Research & Strategy OS 레이아웃
+   기본: 모노톤 (bg/panel/ink/muted/line)
+   포인트 4색: 분류·구분이 꼭 필요한 곳(T1~T4 배지, 스트림 태그,
+   리스크 레벨 등)에만 사용. 장식 금지.
+   --pt-pink #ff86f6 · --pt-blue #2e53f9 · --pt-lime #c5ff79 · --pt-orange #ff6e23
+   ============================================================ */
+:root{
+  --bg:#f4f3ef; --panel:#fff; --panel2:#faf9f6; --ink:#151515; --muted:#6f6d66; --line:#e4e1d9;
+  --dark:#151817; --dark2:#1d211f;
+  --pt-pink:#ff86f6;   --pt-pink-soft:#ffe9fd;
+  --pt-blue:#2e53f9;   --pt-blue-soft:#e7ecfe;
+  --pt-lime:#c5ff79;   --pt-lime-soft:#f3ffdc;
+  --pt-orange:#ff6e23; --pt-orange-soft:#ffe9dc;
+  --shadow:0 12px 30px rgba(24,24,24,.06);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR",Arial,sans-serif;letter-spacing:-.015em}
+button,input{font:inherit}
+.app{min-height:100vh}
+
+/* ===== Topbar ===== */
+.topbar{height:72px;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:30;box-shadow:0 2px 14px rgba(0,0,0,.18)}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-mark{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:12px;background:var(--dark2)}
+.brand h1{font-size:15px;margin:0 0 3px;font-weight:800}
+.brand p{font-size:10px;color:rgba(255,255,255,.5);margin:0;letter-spacing:.04em}
+.top-actions{display:flex;gap:8px;align-items:center}
+.pill{font-size:10px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.72)}
+.top-btn{border:1px solid rgba(255,255,255,.18);color:#fff;background:rgba(255,255,255,.06);padding:8px 11px;border-radius:7px;cursor:pointer;font-size:11px}
+.top-btn:hover{background:rgba(255,255,255,.12)}
+
+/* ===== Layout: sidebar + main ===== */
+.layout{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:calc(100vh - 72px)}
+.sidebar{background:#f9f8f4;border-right:1px solid var(--line);padding:21px 15px 40px;position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto}
+.project-mini{padding:13px 13px 15px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
+.eyebrow{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.project-mini h2{font-size:13px;margin:6px 0 4px;line-height:1.4}
+.project-mini p{font-size:10px;color:var(--muted);margin:0}
+.progress{height:4px;background:#ece9e1;border-radius:5px;margin-top:11px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--ink)}
+.nav-label{font-size:9px;font-weight:800;color:#97948c;letter-spacing:.13em;margin:17px 10px 7px}
+.nav-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;padding:9px 10px;border-radius:7px;color:#68665f;text-align:left;cursor:pointer;font-size:11px;margin:2px 0}
+.nav-item:hover{background:#efede7;color:#222}
+.nav-item.active{background:var(--ink);color:#fff;font-weight:700}
+.nav-num{font-family:ui-monospace,monospace;font-size:9px;opacity:.7;width:17px}
+.nav-badge{margin-left:auto;font-size:8px;border-radius:99px;padding:2px 6px;background:rgba(0,0,0,.08)}
+.nav-item.active .nav-badge{background:rgba(255,255,255,.16)}
+.main{padding:30px 34px 70px;max-width:1600px;width:100%}
+.view{display:none}.view.active{display:block}
+
+/* ===== Page head ===== */
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:21px}
+.page-title h2{font-size:25px;line-height:1.15;margin:3px 0 7px;letter-spacing:-.04em}
+.page-title p{font-size:12px;color:var(--muted);margin:0}
+.head-meta{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:9px;font-weight:700;border-radius:999px;padding:5px 9px;background:#fff;border:1px solid var(--line);color:#555}
+.tag.blue{color:var(--pt-blue);background:var(--pt-blue-soft);border-color:#c9d5fc}
+.tag.lime{color:#4a6d10;background:var(--pt-lime-soft);border-color:#d9efad}
+.tag.orange{color:#b34a12;background:var(--pt-orange-soft);border-color:#f7cfb4}
+.tag.pink{color:#b040aa;background:var(--pt-pink-soft);border-color:#f6c9f2}
+
+/* ===== Grid & Cards ===== */
+.grid{display:grid;gap:13px}
+.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.card.flat{box-shadow:none}
+.card h3{font-size:13px;margin:0 0 10px}
+.card p{font-size:11px;color:#4f4d47;line-height:1.65}
+.metric .label{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.metric .value{font-size:27px;font-weight:900;margin:6px 0 2px;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.metric .sub{font-size:9px;color:var(--muted)}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:26px 0 11px}
+.section-title h3{font-size:15px;margin:0}
+.section-title p{font-size:10px;color:var(--muted);margin:0}
+.divider{height:1px;background:var(--line);margin:22px 0}
+
+/* ===== Pipeline flow ===== */
+.flow{display:grid;grid-template-columns:repeat(8,minmax(80px,1fr));gap:7px}
+.flow-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:9px;padding:12px 9px;min-height:90px}
+.flow-step.done{border-color:#c9c6be;background:#fbfaf7}
+.flow-step.active{border:2px solid var(--ink);background:#f4f3ee}
+.flow-step .num{font-family:ui-monospace,monospace;font-size:9px;color:var(--muted)}
+.flow-step strong{display:block;font-size:10.5px;margin:8px 0 3px}
+.flow-step span{font-size:9px;color:var(--muted);line-height:1.35}
+.flow-step .check{position:absolute;right:8px;top:8px;font-size:9px;color:var(--ink)}
+
+/* ===== Decision hero (다크 모노톤) ===== */
+.decision{background:linear-gradient(135deg,#171a19,#242927);color:#fff;border-radius:14px;padding:24px;display:grid;grid-template-columns:1.4fr .8fr;gap:22px;box-shadow:0 16px 36px rgba(20,22,21,.16)}
+.decision .eyebrow{color:rgba(255,255,255,.55)}
+.decision h3{font-size:22px;line-height:1.38;letter-spacing:-.04em;margin:8px 0 11px}
+.decision p{font-size:11px;line-height:1.7;color:rgba(255,255,255,.7);margin:0}
+.decision-side{border-left:1px solid rgba(255,255,255,.16);padding-left:20px;display:flex;flex-direction:column;justify-content:center}
+.decision-side .score{font-size:37px;font-weight:900}
+.decision-side .score small{font-size:12px;color:rgba(255,255,255,.55)}
+.decision-side .why{font-size:10px;color:rgba(255,255,255,.63);line-height:1.6;margin-top:6px}
+
+/* ===== KV rows ===== */
+.kv{display:grid;grid-template-columns:135px 1fr;border-top:1px solid var(--line)}
+.kv:first-child{border-top:0}
+.kv dt,.kv dd{margin:0;padding:13px 0;font-size:11px}
+.kv dt{color:var(--muted);font-weight:700}
+.kv dd{line-height:1.65}
+
+/* ===== Request → Reframe ===== */
+.request-vs{display:grid;grid-template-columns:1fr 54px 1fr;align-items:stretch;gap:8px}
+.request-box{border:1px solid var(--line);border-radius:11px;padding:18px;background:#fff}
+.request-box.real{border-color:var(--ink);background:#faf9f6}
+.request-box .label{font-size:9px;color:var(--muted);font-weight:800;letter-spacing:.1em}
+.request-box h3{font-size:16px;line-height:1.5;margin:8px 0}
+.arrow{display:grid;place-items:center;color:var(--ink);font-size:22px}
+
+/* ===== Question list ===== */
+.question-list{counter-reset:q}
+.question{display:grid;grid-template-columns:31px 1fr auto;gap:10px;align-items:start;padding:13px 0;border-bottom:1px solid var(--line)}
+.question:last-child{border-bottom:0}
+.question:before{counter-increment:q;content:counter(q);width:25px;height:25px;border-radius:7px;background:#f0eee8;display:grid;place-items:center;font-size:9px;font-weight:900;color:#777}
+.question strong{font-size:11px;display:block;margin:2px 0 3px}
+.question span{font-size:9.5px;color:var(--muted)}
+
+/* ===== Research streams ===== */
+.streams{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.stream{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px}
+.stream.active{border:2px solid var(--ink);background:#faf9f5}
+.stream .count{font-size:21px;font-weight:900;font-variant-numeric:tabular-nums}
+.stream strong{font-size:10px;display:block;margin-top:5px}
+.stream p{font-size:9px;color:var(--muted);margin:3px 0 0}
+
+/* ===== Filters & search ===== */
+.filters{display:flex;gap:7px;align-items:center;margin-bottom:11px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:#fff;padding:6px 9px;border-radius:7px;font-size:9px;color:#666;cursor:pointer}
+.filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.search{margin-left:auto;min-width:210px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 10px;font-size:10px;outline:none}
+.search:focus{border-color:#a9a69d}
+
+/* ===== Evidence table ===== */
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px;background:#fff}
+.table{border-collapse:collapse;width:100%;min-width:1020px}
+.table th{position:sticky;top:0;background:#f6f4ee;color:#777;font-size:8.5px;text-align:left;letter-spacing:.06em;text-transform:uppercase;padding:11px;border-bottom:1px solid var(--line)}
+.table td{font-size:9.5px;line-height:1.5;padding:12px 11px;border-bottom:1px solid #eeece6;vertical-align:top}
+.table tr:last-child td{border-bottom:0}
+.eid{font-family:ui-monospace,monospace;font-size:9px;font-weight:800;color:var(--pt-blue);background:var(--pt-blue-soft);padding:3px 5px;border-radius:4px;white-space:nowrap}
+.confidence{display:inline-flex;gap:3px}
+.confidence i{display:block;width:7px;height:7px;border-radius:2px;background:#ddd}
+.confidence i.on{background:var(--ink)}
+.source-type{font-size:8px;padding:2px 5px;border-radius:4px;background:#efede7;color:#666;white-space:nowrap}
+.claim-link{color:var(--ink);text-decoration:none;font-weight:700}
+.claim-link:hover{text-decoration:underline}
+
+/* ===== 출처 등급 배지 — 포인트 4색 사용처 (분류 전용) ===== */
+.tier-badge{font-size:8.5px;font-weight:800;border-radius:8px;padding:2px 7px;white-space:nowrap}
+.tier-badge.tier-1{background:var(--pt-blue);color:#fff}
+.tier-badge.tier-2{background:var(--pt-lime);color:#2a3d05}
+.tier-badge.tier-3{background:var(--pt-pink);color:#4d0b48}
+.tier-badge.tier-4{background:var(--pt-orange);color:#fff}
+.brand-card .tier-badge{position:absolute;top:14px;right:14px}
+
+/* ===== 경쟁·이종업계 브랜드 카드 ===== */
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:16px}
+.brand-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:6px;position:relative;font-size:12px}
+.brand-mark{font-size:14px;font-weight:900;letter-spacing:-.01em;padding-right:40px}
+.brand-meta{color:var(--muted);line-height:1.55;font-size:10px}
+.brand-meta b{color:#4f4d47;font-weight:700}
+.brand-desc{color:#4f4d47;line-height:1.55;font-size:10.5px}
+.brand-desc b{color:var(--ink)}
+.brand-source{margin-top:auto;padding-top:8px;font-size:10px;color:var(--muted)}
+.brand-source a{text-decoration:none;color:var(--muted)}
+.brand-source a:hover{color:var(--ink)}
+.brand-more{font-size:10.5px;color:#4f4d47}
+.brand-more summary{cursor:pointer;color:var(--ink);font-weight:700;font-size:10px}
+.brand-more[open]{background:#f6f5f0;border-radius:8px;padding:8px}
+
+/* ===== 카테고리 대형 카드 ===== */
+.cat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 30px 30px;margin-top:16px;box-shadow:var(--shadow)}
+.cat-label{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.cat-title{margin:8px 0 0;font-size:clamp(17px,2.4vw,23px);font-weight:900;letter-spacing:-.03em}
+.cat-bullets{margin-top:12px;display:grid;gap:5px;font-size:11px;color:#4f4d47}
+.cat-bullets div::before{content:"— ";color:var(--muted)}
+.cat-card.minor{padding:18px 22px;opacity:.92}
+.cat-card.minor .cat-title{font-size:15px}
+
+/* ===== 축 후보 카드 ===== */
+.axis-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:16px}
+.axis-card.selected{border:2px solid var(--ink)}
+.axis-card .tagn{font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.axis-card h4{margin:7px 0 6px;font-size:12px;font-weight:800}
+.axis-card p{margin:0;font-size:10px;color:var(--muted);line-height:1.6}
+
+/* ===== XY 포지셔닝 맵 ===== */
+.map{background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px;box-shadow:var(--shadow)}
+.map-label{font-size:9px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.map-grid{position:relative;height:340px;border-left:2px solid var(--line);border-bottom:2px solid var(--line);margin:30px 34px 40px}
+.map .axl{position:absolute;font-size:10px;font-weight:700;color:var(--muted)}
+.map-caption{font-size:11px;color:#4f4d47;margin:6px 4px 0;line-height:1.6}
+.dotb{position:absolute;transform:translate(-50%,50%);font-size:10px;font-weight:700;color:#4f4d47;background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 9px;white-space:nowrap;cursor:default}
+.dotb.ws{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:800}
+
+/* ===== 화이트스페이스 기회·함정 ===== */
+.ws-type{display:inline-block;font-size:8.5px;font-weight:800;letter-spacing:.08em;border-radius:99px;padding:3px 8px;margin-bottom:8px}
+.ws-type.true-opp{background:var(--pt-lime);color:#2a3d05}
+.ws-type.emerging{background:var(--pt-blue-soft);color:var(--pt-blue)}
+.ws-type.false-ws{background:var(--pt-orange);color:#fff}
+.ws-type.capability{background:var(--pt-pink-soft);color:#b040aa}
+.trap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.trap .t{border-radius:11px;padding:15px;font-size:10.5px;line-height:1.6;border:1px solid var(--line);background:var(--panel2)}
+.trap .t.opp{border-color:#c9c6be}
+.trap .t.risk{background:#f4f2ec}
+.trap .t b{display:block;margin-bottom:5px;font-size:10.5px}
+
+/* ===== 인사이트 카드 ===== */
+.insight-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:19px 18px 17px;min-height:200px;display:flex;flex-direction:column}
+.insight-card .index{font-family:ui-monospace,monospace;color:#9b978e;font-size:9px}
+.insight-card h3{font-size:15px;line-height:1.45;margin:10px 0 8px}
+.insight-card p{font-size:10.5px;color:#5b5952;line-height:1.65;margin:0}
+.so-what{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.so-what .label{font-size:8px;color:var(--ink);font-weight:900;letter-spacing:.12em}
+.so-what strong{font-size:10.5px;line-height:1.55;display:block;margin-top:5px}
+.evidence-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:13px}
+.evidence-chips span{font-family:ui-monospace,monospace;font-size:8px;background:var(--pt-blue-soft);color:var(--pt-blue);padding:3px 5px;border-radius:4px}
+
+/* ===== 전략 카드 ===== */
+.strategy-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:19px;display:flex;flex-direction:column;min-height:420px}
+.strategy-card.recommended{border:2px solid var(--ink);box-shadow:0 15px 32px rgba(21,21,21,.12);position:relative}
+.recommended-ribbon{position:absolute;right:14px;top:14px;font-size:8px;background:var(--ink);color:#fff;padding:4px 7px;border-radius:999px;font-weight:800}
+.strategy-no{font-family:ui-monospace,monospace;font-size:9px;color:#999}
+.strategy-card h3{font-size:18px;margin:9px 0 5px}
+.strategy-card .one-line{font-size:10px;color:var(--muted);line-height:1.55;min-height:47px}
+.score-bars{margin:15px 0}
+.score-row{display:grid;grid-template-columns:64px 1fr 24px;align-items:center;gap:7px;margin:7px 0;font-size:8.5px;color:#777}
+.bar{height:5px;background:#ece9e2;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink)}
+.score-row b{font-size:8px;text-align:right}
+.strategy-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.strategy-list li{font-size:9.5px;line-height:1.5;padding:9px 0;border-bottom:1px solid #efede8;display:grid;grid-template-columns:58px 1fr;gap:7px}
+.strategy-list li strong{font-size:8.5px;color:var(--muted)}
+.strategy-total{margin-top:auto;padding-top:15px;display:flex;justify-content:space-between;align-items:end}
+.strategy-total span{font-size:9px;color:var(--muted)}
+.strategy-total b{font-size:25px;font-variant-numeric:tabular-nums}
+
+/* ===== 추천 전략 히어로 ===== */
+.reco-hero{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.reco-head{background:var(--dark);color:#fff;padding:26px 28px;display:grid;grid-template-columns:1fr 210px;gap:25px}
+.reco-head h3{font-size:25px;margin:7px 0 10px;letter-spacing:-.04em}
+.reco-head p{font-size:11px;color:rgba(255,255,255,.69);line-height:1.7}
+.reco-score{display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.18)}
+.reco-score b{font-size:42px;font-variant-numeric:tabular-nums}
+.reco-score span{font-size:9px;color:rgba(255,255,255,.55)}
+.reco-body{padding:24px 28px}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.principle{background:#f7f6f2;border:1px solid #ebe8e0;border-radius:10px;padding:15px}
+.principle .n{font-family:ui-monospace,monospace;color:#8b877e;font-size:9px}
+.principle h4{font-size:12px;margin:8px 0 5px}
+.principle p{font-size:9.5px;color:var(--muted);line-height:1.55;margin:0}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.phase{background:#fff;padding:19px}
+.phase .time{font-size:9px;font-weight:800;color:var(--ink);letter-spacing:.07em}
+.phase h4{font-size:12px;margin:7px 0}
+.phase ul{margin:0;padding-left:16px}
+.phase li{font-size:9.5px;line-height:1.6;color:#555;margin:3px 0}
+.not-doing{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.no-card{background:#f4f2ec;border:1px solid #e0dcd0;border-radius:10px;padding:13px}
+.no-card strong{font-size:10px;color:var(--ink)}
+.no-card p{font-size:9px;color:var(--muted);line-height:1.5;margin:5px 0 0}
+
+/* ===== 리스크 — 레벨 배지만 포인트 컬러 ===== */
+.risk{display:grid;grid-template-columns:1.2fr .5fr .5fr 1.4fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.risk:last-child{border-bottom:0}
+.risk strong{font-size:10px}
+.risk span{font-size:9px;color:var(--muted)}
+.risk-level{font-size:8px;padding:3px 6px;border-radius:5px;width:max-content;font-weight:800}
+.risk-level.high{background:var(--pt-orange);color:#fff}
+.risk-level.medium{background:var(--pt-orange-soft);color:#b34a12}
+.risk-level.low{background:#efede7;color:#666}
+
+/* ===== 출처 카드 ===== */
+.source-card{display:grid;grid-template-columns:90px 1fr auto;gap:15px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:8px}
+.source-card .domain{font-size:9px;font-weight:800;color:#555}
+.source-card h4{font-size:10.5px;margin:0 0 4px}
+.source-card p{font-size:9px;color:var(--muted);margin:0;line-height:1.5}
+.source-card .used{font-size:8px;color:var(--pt-blue);background:var(--pt-blue-soft);padding:4px 6px;border-radius:5px;white-space:nowrap}
+
+/* ===== 에이전트 실행 로그 ===== */
+.agent-log{position:relative;padding-left:24px}
+.agent-log:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:#d9d6cf}
+.log-item{position:relative;padding:0 0 19px}
+.log-item:before{content:"";position:absolute;left:-21px;top:4px;width:8px;height:8px;border:2px solid #fff;border-radius:50%;background:var(--ink);box-shadow:0 0 0 1px #c6c3ba}
+.log-item h4{font-size:10.5px;margin:0 0 3px}
+.log-item p{font-size:9.5px;color:var(--muted);margin:0;line-height:1.55}
+.log-meta{font-family:ui-monospace,monospace;font-size:8px;color:#aaa;margin-top:5px}
+.agent-chip{font-size:8px;background:#eceae4;color:#4a4841;padding:2px 5px;border-radius:4px;margin-right:5px}
+
+.footer-note{margin-top:24px;font-size:9px;color:#9a978f;text-align:center}
+.mobile-only{display:none}
+
+/* ===== Responsive ===== */
+@media(max-width:1100px){
+  .layout{grid-template-columns:205px minmax(0,1fr)}
+  .main{padding:25px 22px 60px}
+  .grid.cols-4{grid-template-columns:repeat(2,1fr)}
+  .grid.cols-3{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(4,1fr)}
+  .decision,.reco-head{grid-template-columns:1fr}
+  .decision-side,.reco-score{border-left:0;border-top:1px solid rgba(255,255,255,.16);padding:15px 0 0;align-items:flex-start}
+  .streams{grid-template-columns:repeat(2,1fr)}
+  .principles,.roadmap,.not-doing{grid-template-columns:1fr}
+  .risk{grid-template-columns:1fr 1fr}
+  .request-vs{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg)}
+}
+@media(max-width:740px){
+  .topbar{padding:0 16px}
+  .top-actions .pill,.top-btn.print{display:none}
+  .layout{display:block}
+  .sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px 12px;display:flex;overflow:auto;gap:4px}
+  .project-mini,.nav-label{display:none}
+  .nav-item{width:auto;white-space:nowrap}
+  .nav-item .nav-num,.nav-item .nav-badge{display:none}
+  .main{padding:20px 14px 50px}
+  .grid.cols-4,.grid.cols-2{grid-template-columns:1fr}
+  .page-head{display:block}
+  .head-meta{justify-content:flex-start;margin-top:12px}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .streams{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .risk{grid-template-columns:1fr}
+  .source-card{grid-template-columns:1fr}
+  .mobile-only{display:block}
+}
+@media print{
+  .topbar,.sidebar,.filters,.top-actions{display:none!important}
+  .layout{display:block}
+  .main{padding:0;max-width:none}
+  .view{display:block!important;page-break-before:always}
+  .view:first-child{page-break-before:auto}
+  .card,.strategy-card,.reco-hero,.decision{box-shadow:none;break-inside:avoid}
+  .page-head{margin-top:24px}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">{{PROJECT_INITIALS}}</div>
+    <div>
+      <h1>{{PROJECT_NAME}} <span style="font-weight:400;color:#9aa39f">/ Brand Strategy Report</span></h1>
+      <p>근거에서 전략까지 연결되는 브랜드 리서치·전략 리포트</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <span class="pill">{{VERSION_LABEL}}</span>
+    <button class="top-btn" onclick="toggleAll()">전체 펼침</button>
+    <button class="top-btn print" onclick="window.print()">PDF 출력</button>
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="project-mini">
+    <div class="eyebrow">CURRENT PROJECT</div>
+    <h2>{{PROJECT_TITLE}}</h2>
+    <p>{{RESEARCH_MODE}} · {{VERSION}}</p>
+    <div class="progress"><span style="width:{{PROGRESS_PCT}}%"></span></div>
+  </div>
+  <div class="nav-label">DECISION FLOW</div>
+  <button class="nav-item active" data-view="overview"><span class="nav-num">00</span>요약 대시보드</button>
+  <button class="nav-item" data-view="brief"><span class="nav-num">01</span>브리프·문제 정의</button>
+  <button class="nav-item" data-view="factbook"><span class="nav-num">02</span>브랜드 팩트북·타깃</button>
+  <button class="nav-item" data-view="plan"><span class="nav-num">03</span>리서치 설계</button>
+  <button class="nav-item" data-view="competitive"><span class="nav-num">04</span>경쟁 리서치<span class="nav-badge">{{COMPETITOR_COUNT}}</span></button>
+  <button class="nav-item" data-view="positioning"><span class="nav-num">05</span>포지셔닝·화이트스페이스</button>
+  <button class="nav-item" data-view="cross"><span class="nav-num">06</span>이종업계 리서치<span class="nav-badge">{{CROSS_COUNT}}</span></button>
+  <button class="nav-item" data-view="insights"><span class="nav-num">07</span>핵심 인사이트<span class="nav-badge">{{INSIGHT_COUNT}}</span></button>
+  <button class="nav-item" data-view="options"><span class="nav-num">08</span>전략 대안<span class="nav-badge">{{OPTION_COUNT}}</span></button>
+  <button class="nav-item" data-view="recommendation"><span class="nav-num">09</span>추천 전략</button>
+  <div class="nav-label">AUDIT & TRACE</div>
+  <button class="nav-item" data-view="sources"><span class="nav-num">10</span>출처·근거 추적</button>
+  <button class="nav-item" data-view="log"><span class="nav-num">11</span>실행 로그·한계</button>
+</aside>
+
+<main class="main">
+
+<!-- ============ 00 OVERVIEW ============ -->
+<section class="view active" id="overview">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">PROJECT OVERVIEW</div><h2>한눈에 보는 결론과 진행 상태</h2><p>결론을 먼저 보고, 필요한 근거와 사고 과정으로 내려갑니다.</p></div>
+    <div class="head-meta"><span class="tag lime">근거 검증 완료</span><span class="tag">업데이트 {{UPDATED_AT}}</span></div>
+  </div>
+  <div class="grid cols-4">
+    <div class="card metric"><div class="label">검토한 출처</div><div class="value">{{SOURCE_COUNT}}</div><div class="sub">{{SOURCE_BREAKDOWN}}</div></div>
+    <div class="card metric"><div class="label">경쟁 브랜드</div><div class="value">{{COMPETITOR_COUNT}}</div><div class="sub">{{COMPETITOR_BREAKDOWN}}</div></div>
+    <div class="card metric"><div class="label">이종업계 사례</div><div class="value">{{CROSS_COUNT}}</div><div class="sub">{{CROSS_BREAKDOWN}}</div></div>
+    <div class="card metric"><div class="label">전략 확신도</div><div class="value">{{STRATEGY_SCORE}}</div><div class="sub">{{SCORE_NOTE}}</div></div>
+  </div>
+  <div class="section-title"><h3>진행 파이프라인</h3><p>고정된 품질 게이트 / 유동적인 조사 방식</p></div>
+  <div class="flow">
+    <!-- SLOT_PIPELINE: flow-step 8개 (done/active) — 브리프→문제정의→팩트북→리서치설계→와이드리서치→포지셔닝→인사이트·전략→최종 덱 -->
+  </div>
+  <div class="section-title"><h3>이번 프로젝트의 추천 결론</h3><p>상세 내용은 ‘추천 전략’에서 확인</p></div>
+  <div class="decision">
+    <div><div class="eyebrow">RECOMMENDED DECISION</div><h3>{{DECISION_HEADLINE}}</h3><p>{{DECISION_SUMMARY}}</p></div>
+    <div class="decision-side"><div class="eyebrow">STRATEGY SCORE</div><div class="score">{{STRATEGY_SCORE}}<small>/100</small></div><div class="why">{{SCORE_DETAIL}}</div></div>
+  </div>
+  <div class="section-title"><h3>핵심 판단 근거</h3><p>결론에 직접 연결된 근거 3가지</p></div>
+  <div class="grid cols-3">
+    <!-- SLOT_KEY_EVIDENCE: card flat 3장 — <span class="eid">E-NN</span> + h3 + p -->
+  </div>
+</section>
+
+<!-- ============ 01 BRIEF ============ -->
+<section class="view" id="brief">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">BRIEF & PROBLEM FRAMING</div><h2>요청을 그대로 수행하지 않고, 결정 문제로 바꿉니다.</h2><p>RFP·초기 자료 해석 → 프로젝트 성격 파악 → 진짜 문제 재정의.</p></div>
+    <div class="head-meta"><span class="tag lime">Gate 01 통과</span></div>
+  </div>
+  <div class="request-vs">
+    <div class="request-box"><div class="label">CLIENT REQUEST</div><h3>{{CLIENT_REQUEST}}</h3><p>{{REQUEST_NOTE}}</p></div>
+    <div class="arrow">→</div>
+    <div class="request-box real"><div class="label">REFRAMED PROBLEM</div><h3>{{REFRAMED_PROBLEM}}</h3><p>{{REFRAME_NOTE}}</p></div>
+  </div>
+  <div class="grid cols-2" style="margin-top:13px">
+    <div class="card"><h3>프로젝트 스냅샷</h3><dl>
+      <!-- SLOT_SNAPSHOT: kv 행 — 브랜드/카테고리/채널/의사결정자/성공기준 -->
+    </dl></div>
+    <div class="card"><h3>제약과 위험</h3><dl>
+      <!-- SLOT_CONSTRAINTS: kv 행 — 예산/조직/데이터/설득 위험 -->
+    </dl></div>
+  </div>
+  <div class="section-title"><h3>현재 상태 → 목표 상태</h3><p>격차가 곧 문제 정의의 재료</p></div>
+  <div class="trap">
+    <div class="t opp"><b>현재 상태</b>{{CURRENT_STATE}}</div>
+    <div class="t risk"><b>목표 상태</b>{{GOAL_STATE}}</div>
+  </div>
+  <div class="section-title"><h3>가정과 미확인 사항</h3><p>추측을 사실처럼 쓰지 않도록 노출</p></div>
+  <div class="card flat"><div class="question-list">
+    <!-- SLOT_UNKNOWNS: question 행 — strong+span, 우측 tag(orange=미확인 / blue=가설) -->
+  </div></div>
+</section>
+
+<!-- ============ 02 FACTBOOK ============ -->
+<section class="view" id="factbook">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">BRAND FACTBOOK & TARGET</div><h2>브랜드가 가진 것과, 누구를 위한 브랜드인지 고정합니다.</h2><p>FACT / CLAIM / INFERENCE를 구분해 기록합니다.</p></div>
+    <div class="head-meta"><span class="tag lime">Gate 02 통과</span></div>
+  </div>
+  <div class="grid cols-2">
+    <div class="card"><h3>브랜드 팩트북</h3><dl>
+      <!-- SLOT_FACTBOOK: kv 행 — 브랜드명/스토리/핵심가치/헤리티지/톤. 값 끝에 (FACT)/(CLAIM)/(INFERENCE) 표기 -->
+    </dl></div>
+    <div class="card"><h3>브랜드 자산</h3><div class="question-list">
+      <!-- SLOT_ASSETS: question 행 — 자산명 + 전략 카드와의 연결(brand_assets_used) -->
+    </div></div>
+  </div>
+  <div class="section-title"><h3>타깃 정의</h3><p>행동·욕구·선택 기준·장벽 중심</p></div>
+  <div class="grid cols-3">
+    <!-- SLOT_TARGETS: card 3장 — Primary / Secondary / 구매 결정자 -->
+  </div>
+</section>
+
+<!-- ============ 03 RESEARCH PLAN ============ -->
+<section class="view" id="plan">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">RESEARCH DESIGN</div><h2>무엇을 검색할지가 아니라, 무엇을 밝혀야 하는지 설계합니다.</h2><p>리서치 질문과 가설이 이후 모든 조사의 기준이 됩니다.</p></div>
+    <div class="head-meta"><span class="tag">{{RESEARCH_MODE}}</span></div>
+  </div>
+  <div class="streams">
+    <!-- SLOT_STREAMS: stream 4장 — 시장·산업 / 고객·조직 / 경쟁·사례 / 이종업계 (count = 조사 건수) -->
+  </div>
+  <div class="grid cols-2" style="margin-top:13px">
+    <div class="card"><h3>핵심 리서치 질문</h3><div class="question-list">
+      <!-- SLOT_QUESTIONS: question 행 + 우측 tag(영역) -->
+    </div></div>
+    <div class="card"><h3>조사 가설</h3><div class="question-list">
+      <!-- SLOT_HYPOTHESES: question 행 + tag blue "가설" -->
+    </div></div>
+  </div>
+  <div class="section-title"><h3>출처 우선순위</h3><p>자료 수보다 신뢰 가능한 근거를 우선</p></div>
+  <div class="grid cols-4">
+    <div class="card flat"><span class="tier-badge tier-1">T1</span><h3 style="margin-top:10px">공식 1차 자료</h3><p>IR·공시, 공식 사이트, 서비스 문서</p></div>
+    <div class="card flat"><span class="tier-badge tier-2">T2</span><h3 style="margin-top:10px">산업·연구 기관</h3><p>시장 보고서, 학술 연구, 전문 기관</p></div>
+    <div class="card flat"><span class="tier-badge tier-3">T3</span><h3 style="margin-top:10px">전문 매체·커뮤니티</h3><p>업계 매체, 실무 인터뷰, 유통 데이터</p></div>
+    <div class="card flat"><span class="tier-badge tier-4">T4</span><h3 style="margin-top:10px">추정</h3><p>가설 발견에만 사용 · 검증 필요 플래그</p></div>
+  </div>
+</section>
+
+<!-- ============ 04 COMPETITIVE ============ -->
+<section class="view" id="competitive">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">COMPETITIVE LANDSCAPE</div><h2>경쟁 구도를 있는 그대로 지도화합니다.</h2><p>DEEP 기준 30개 이상 · 모든 카드에 출처와 등급.</p></div>
+    <div class="head-meta"><span class="tag">{{COMPETITOR_COUNT}}개 조사</span><span class="tag">기준 {{RESEARCH_DATE}}</span></div>
+  </div>
+  <div class="filters">
+    <button class="filter active" data-filter="all">전체 {{COMPETITOR_COUNT}}</button>
+    <button class="filter" data-filter="직접">직접</button>
+    <button class="filter" data-filter="간접">간접</button>
+    <button class="filter" data-filter="대체재">대체재</button>
+    <button class="filter" data-filter="인접">인접</button>
+    <input class="search" id="brandSearch" placeholder="브랜드 검색" />
+  </div>
+  <!-- SLOT_CATEGORIES: cat-card 3장(주요) + cat-card.minor(추가 그룹)
+       각 cat-card 안에 brand-grid > brand-card (data-type="직접|간접|대체재|인접")
+       brand-card 구조: tier-badge + brand-mark + brand-meta + brand-desc + details.brand-more + brand-source -->
+  <div class="footer-note">근거 부족 브랜드는 T4로 표시하고 사실 근거로 사용하지 않습니다.</div>
+</section>
+
+<!-- ============ 05 POSITIONING ============ -->
+<section class="view" id="positioning">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">POSITIONING & WHITESPACE</div><h2>축을 먼저 검증하고, 빈자리를 찾습니다.</h2><p>축 후보 → 선정 근거 → XY맵 → 사분면 → 화이트스페이스 검증.</p></div>
+    <div class="head-meta"><span class="tag">축 후보 {{AXIS_COUNT}}개</span></div>
+  </div>
+  <div class="section-title" style="margin-top:0"><h3>축 후보와 선정 근거</h3><p>소비자 언어의 대립 축만</p></div>
+  <div class="grid cols-3">
+    <!-- SLOT_AXES: axis-card 3장 이상, 선정 축은 .selected + 제외 축은 제외 이유 병기 -->
+  </div>
+  <div class="section-title"><h3>XY 포지셔닝 맵</h3><p>도트에 마우스를 올리면 좌표 근거</p></div>
+  <div class="map">
+    <div class="map-label">POSITIONING MAP</div>
+    <div class="map-grid">
+      <span class="axl" style="top:-22px;left:50%;transform:translateX(-50%)">{{Y_TOP}} ▲</span>
+      <span class="axl" style="bottom:-24px;left:50%;transform:translateX(-50%)">{{Y_BOTTOM}}</span>
+      <span class="axl" style="left:-20px;bottom:-36px">◀ {{X_LEFT}}</span>
+      <span class="axl" style="right:-20px;bottom:-36px">{{X_RIGHT}} ▶</span>
+      <!-- SLOT_MAP_DOTS: dotb (left:x%; bottom:y%; title="x근거 / y근거") + dotb.ws 화이트스페이스 -->
+    </div>
+    <p class="map-caption">{{MAP_CAPTION}}</p>
+  </div>
+  <div class="section-title"><h3>사분면 분석</h3><p></p></div>
+  <div class="grid cols-4">
+    <!-- SLOT_QUADRANTS: card flat 4장 — 포지션명·소속 브랜드·특징 -->
+  </div>
+  <div class="section-title"><h3>화이트스페이스 검증</h3><p>기회·함정 항상 쌍으로 · 유형 배지 필수</p></div>
+  <!-- SLOT_WHITESPACE: 각 화이트스페이스마다
+       <div class="card"><span class="ws-type true-opp">TRUE OPPORTUNITY</span> (또는 emerging/false-ws/capability)
+       <h3>...</h3><div class="trap"><div class="t opp">🟢 기회 근거</div><div class="t risk">🟡 리스크·검증 필요</div></div></div> -->
+</section>
+
+<!-- ============ 06 CROSS-INDUSTRY ============ -->
+<section class="view" id="cross">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">CROSS-INDUSTRY RESEARCH</div><h2>이종업계에서 원리를 빌려옵니다.</h2><p>표면 모방이 아니라 구조 차용 — Borrow / Translate / Avoid.</p></div>
+    <div class="head-meta"><span class="tag">{{CROSS_COUNT}}개 사례</span></div>
+  </div>
+  <!-- SLOT_CROSS_GROUPS: cat-card 그룹별 — 안에 brand-grid > brand-card (이종업계 사례) -->
+  <div class="section-title"><h3>What to Borrow / Translate / Avoid</h3><p></p></div>
+  <div class="grid cols-3">
+    <!-- SLOT_BORROW: card 3장 — BORROW / TRANSLATE / AVOID -->
+  </div>
+</section>
+
+<!-- ============ 07 INSIGHTS ============ -->
+<section class="view" id="insights">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">KEY INSIGHTS</div><h2>정보를 요약하지 않고, 전략적 의미로 변환합니다.</h2><p>각 인사이트는 복수 근거와 연결되고 ‘그래서 무엇을 해야 하는가’를 포함합니다.</p></div>
+    <div class="head-meta"><span class="tag lime">근거 연결 100%</span></div>
+  </div>
+  <div class="grid cols-3">
+    <!-- SLOT_INSIGHTS: insight-card — index(I-NN) + h3 + p + so-what + evidence-chips(E-NN) -->
+  </div>
+</section>
+
+<!-- ============ 08 STRATEGY OPTIONS ============ -->
+<section class="view" id="options">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">STRATEGY OPTIONS</div><h2>하나의 아이디어가 아니라, 서로 다른 선택지를 비교합니다.</h2><p>무엇을 선택하고 무엇을 포기하는지 확인할 수 있어야 전략입니다.</p></div>
+    <div class="head-meta"><span class="tag">5개 기준 비교</span></div>
+  </div>
+  <div class="grid cols-3">
+    <!-- SLOT_OPTIONS: strategy-card 3장 — 추천안은 .recommended + recommended-ribbon
+         구조: strategy-no + h3 + one-line + score-bars(고객가치/차별성/실행성/수익성/근거) + strategy-list(장점/위험/포기) + strategy-total -->
+  </div>
+  <div class="section-title"><h3>선택 기준</h3><p>프로젝트마다 가중치 조정 가능</p></div>
+  <div class="card flat"><dl>
+    <!-- SLOT_CRITERIA: kv 행 — 기준명(가중치) + 설명 -->
+  </dl></div>
+</section>
+
+<!-- ============ 09 RECOMMENDATION ============ -->
+<section class="view" id="recommendation">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">RECOMMENDED STRATEGY</div><h2>추천안은 실행 원칙과 포기 항목까지 보여줍니다.</h2><p>브랜드 자산 × 시장 기회의 연결이 이 페이지의 핵심입니다.</p></div>
+    <div class="head-meta"><span class="tag lime">Quality Gate 통과</span></div>
+  </div>
+  <div class="reco-hero">
+    <div class="reco-head">
+      <div><div class="eyebrow" style="color:rgba(255,255,255,.55)">{{STRATEGY_NAME_EN}}</div><h3>{{STRATEGY_HEADLINE}}</h3><p>{{STRATEGY_SUMMARY}}</p></div>
+      <div class="reco-score"><b>{{STRATEGY_SCORE}}</b><span>STRATEGY SCORE / 100</span></div>
+    </div>
+    <div class="reco-body">
+      <div class="section-title" style="margin-top:0"><h3>브랜드 자산 × 시장 기회 연결</h3><p>이 전략이 성립하는 이유</p></div>
+      <div class="card flat"><dl>
+        <!-- SLOT_CONNECTION: kv 행 — 활용 자산 / 연결 화이트스페이스 / 차용 원리(이종업계) / 근거 Evidence IDs -->
+      </dl></div>
+      <div class="section-title"><h3>전략 원칙</h3><p>모든 실행안을 판단하는 기준</p></div>
+      <div class="principles">
+        <!-- SLOT_PRINCIPLES: principle 3장 -->
+      </div>
+      <div class="section-title"><h3>실행 로드맵</h3><p></p></div>
+      <div class="roadmap">
+        <!-- SLOT_ROADMAP: phase 3장 — 기간 + 할 일 목록 -->
+      </div>
+      <div class="section-title"><h3>하지 않을 것</h3><p>전략의 경계</p></div>
+      <div class="not-doing">
+        <!-- SLOT_NOT_DOING: no-card 3장 -->
+      </div>
+      <div class="section-title"><h3>주요 리스크와 검증 계획</h3><p>실행 전제 조건을 함께 노출</p></div>
+      <!-- SLOT_RISKS: risk 행 — strong + risk-level(high/medium/low) + 영역 + 대응·검증 계획 -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 SOURCES ============ -->
+<section class="view" id="sources">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">SOURCE TRACEABILITY</div><h2>출처는 부록이 아니라 전략의 증거 지도입니다.</h2><p>어떤 근거가 어떤 인사이트와 전략에 사용됐는지 추적합니다.</p></div>
+    <div class="head-meta"><span class="tag">총 {{SOURCE_COUNT}}개</span><span class="tag blue">T1 {{T1_PCT}}%</span></div>
+  </div>
+  <!-- SLOT_SOURCES: source-card — domain + 제목/설명 + used(E-NN) · tier-badge 병기 -->
+  <div class="card flat" style="margin-top:14px"><h3>출처 운영 원칙</h3><dl>
+    <div class="kv"><dt>사실</dt><dd>출처에서 직접 확인 가능한 내용만 사실로 표기합니다.</dd></div>
+    <div class="kv"><dt>해석</dt><dd>근거에서 도출한 의미는 별도 필드에 기록합니다.</dd></div>
+    <div class="kv"><dt>추정</dt><dd>확인되지 않은 내용은 T4·가설로 노출합니다.</dd></div>
+    <div class="kv"><dt>최신성</dt><dd>시장·제품 자료는 발행일과 확인일을 모두 기록합니다.</dd></div>
+  </dl></div>
+</section>
+
+<!-- ============ 11 LOG ============ -->
+<section class="view" id="log">
+  <div class="page-head">
+    <div class="page-title"><div class="eyebrow">RUN LOG & LIMITATIONS</div><h2>판단 과정의 투명성과 조사 한계.</h2><p>marketer 파이프라인의 스킬 체인 실행 기록입니다.</p></div>
+    <div class="head-meta"><span class="tag">{{STEP_COUNT}} Steps</span></div>
+  </div>
+  <div class="grid cols-2">
+    <div class="card"><h3>실행 타임라인</h3><div class="agent-log">
+      <!-- SLOT_LOG: log-item — agent-chip(marketer/skill명) + 설명 + log-meta(skill·output 파일) -->
+    </div></div>
+    <div>
+      <div class="card"><h3>산출 파일</h3><dl>
+        <div class="kv"><dt>Source of Truth</dt><dd>project-discovery.md · brand-factbook.md · market-research.json · strategy.md</dd></div>
+        <div class="kv"><dt>통합 데이터</dt><dd>report-data.json</dd></div>
+        <div class="kv"><dt>Output</dt><dd>이 파일 (deck.html) — 독립 실행형</dd></div>
+        <div class="kv"><dt>재생성</dt><dd>원본 수정 후 brand-strategy-deck 스킬로 재컴파일</dd></div>
+      </dl></div>
+      <div class="card" style="margin-top:13px"><h3>조사 한계</h3><div class="question-list">
+        <!-- SLOT_LIMITATIONS: question 행 — 한계 + 생략 섹션·이유 -->
+      </div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<script>
+const navItems=[...document.querySelectorAll('.nav-item')];
+function goView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');navItems.forEach(n=>n.classList.toggle('active',n.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'','#'+id)}
+navItems.forEach(n=>n.addEventListener('click',()=>goView(n.dataset.view)));
+window.addEventListener('load',()=>{const h=location.hash.replace('#','');if(document.getElementById(h))goView(h)});
+const filters=[...document.querySelectorAll('.filter')];
+filters.forEach(f=>f.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('active'));f.classList.add('active');filterBrands()}));
+const searchEl=document.getElementById('brandSearch');
+if(searchEl)searchEl.addEventListener('input',filterBrands);
+function filterBrands(){const type=document.querySelector('.filter.active')?.dataset.filter||'all';const q=(searchEl?.value||'').toLowerCase();document.querySelectorAll('.brand-card').forEach(c=>{const matchType=type==='all'||c.dataset.type===type;const matchQ=!q||c.innerText.toLowerCase().includes(q);c.style.display=matchType&&matchQ?'':'none'})}
+let expanded=false;
+function toggleAll(){expanded=!expanded;document.querySelector('.top-actions .top-btn').textContent=expanded?'대시보드 보기':'전체 펼침';document.querySelector('.sidebar').style.display=expanded?'none':'';document.querySelector('.layout').style.display=expanded?'block':'';document.querySelectorAll('.view').forEach(v=>v.style.display=expanded?'block':'');if(!expanded){document.querySelector('.layout').style.display='';document.querySelectorAll('.view').forEach(v=>v.style.display='');document.querySelector('.view.active').style.display='block'}}
+</script>
+</body>
+</html>

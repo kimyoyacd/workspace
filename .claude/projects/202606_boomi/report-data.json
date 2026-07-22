@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "project_name": "Boomi",
+    "client": "미정 (인테이크·컨셉 검증)",
+    "date": "2026-07",
+    "scope": "브랜드 전략 리서치 — 팩트북 → 와이드 리서치 → 포지셔닝 → 전략",
+    "version": "2.0",
+    "accent1": "#7E9A6E",
+    "accent2": "#DD9B45",
+    "data_files": {
+      "discovery": "outputs/01_project_discovery.md",
+      "factbook": "outputs/02_brand_factbook.md",
+      "problem": "outputs/03_problem_definition.md",
+      "competitors": "outputs/04_competitive_research.json",
+      "competitive_categories": "outputs/05_competitive_categories.json",
+      "positioning": "outputs/06_positioning_map.json",
+      "whitespace": "outputs/07_whitespace.json",
+      "cross_industry": "outputs/08_cross_industry_research.json",
+      "cross_industry_categories": "outputs/09_cross_industry_categories.json",
+      "insights": "outputs/10_insights.md",
+      "strategy": "outputs/11_strategy.md"
+    }
+  },
+  "hero": {
+    "eyebrow": "Boomi · Brand Strategy Research Deck",
+    "title": "던지면, 돌아온다.",
+    "tagline": "경쟁 35 · 이종업계 32 · 화이트스페이스 3 — 전략은 증명 순서다.",
+    "description": "무전원 바이오 부메랑 브랜드 Boomi의 시장 좌표와 전략. 리서치 원본은 outputs/ 폴더의 Markdown·JSON에 있으며 이 덱은 그 렌더링이다.",
+    "meta_line": "디스커버리 → 팩트북 → 와이드 리서치 → XY맵 → 화이트스페이스 → 이종업계 → 인사이트 → 전략"
+  },
+  "snapshot": {
+    "brand_name": "Boomi (부미)",
+    "category": "어린이 야외 놀이 — 부메랑 (플라잉 토이)",
+    "channel": "온라인 D2C 가정 (HYPOTHESIS)",
+    "purpose": "화면 없는 순수 야외 신체 놀이의 프리미엄 재정의",
+    "target": "사용자 5~12세 어린이 / 구매 결정자 보호자",
+    "constraints": ["AI는 비주얼 제작 도구로만 사용", "KC 인증 필수(양산 시)", "보호자 화면 의존 우려가 구매 게이트"]
+  },
+  "brand_factbook_summary": {
+    "core_value": "회귀(回歸) — 던진 만큼 돌아오는 놀이·관계 [FACT·설계]",
+    "assets": ["회귀 서사(물리적 진실)", "바이오 소재·무전원 코어", "씨앗 정령 캐릭터·자연주의 팔레트"],
+    "unknowns": ["프리미엄 부메랑 절대 수요", "가격 저항선", "시장 지리 범위", "인증 비용·기간"],
+    "detail": "outputs/02_brand_factbook.md"
+  },
+  "problem_reframe": {
+    "current_state": "브랜드 인지 제로 · 카테고리는 저가 노벨티/성인 마니아로 양극화 · 절대 수요 미검증",
+    "goal_state": "보호자가 안심하고 사주고, 아이가 스스로 조르는 프리미엄 야외 놀이 브랜드",
+    "real_problem": "'좋은 부메랑'이 아니라 — 보호자의 언어(안심·소재)로 말하면서 아이의 욕망(재미·성장)을 배신하지 않는 브랜드의 부재",
+    "detail": "outputs/03_problem_definition.md"
+  },
+  "market": {
+    "definition": "플라잉 토이 + 인접 대체재(교육 스크린·수집·야외 액션)",
+    "brand_count": 35,
+    "type_split": {"직접": 13, "간접": 10, "대체재": 6, "인접": 7},
+    "verified_t1": 27,
+    "flagged_t4": 4,
+    "categories": ["performance-craft 퍼포먼스·장인(10)", "conscious-premium 컨셔스 프리미엄(10)", "screen-alternative 스크린 대체·교육 명분(6)", "digital-worldview 자극·수집·세계관(9)"],
+    "data": "outputs/04_competitive_research.json · outputs/05_competitive_categories.json"
+  },
+  "positioning": {
+    "x_axis": "아날로그(무전원 물리) 0 ↔ 100 디지털(앱·센서·화면)",
+    "y_axis": "재미·도전(아이 주도) 0 ↔ 100 교육·안심(보호자 주도)",
+    "axis_candidates": 3,
+    "selected": 1,
+    "excluded_from_map": ["Gel-o-rang", "French Boomerang Club", "Trickstick", "Boomabird"],
+    "whitespace_position": {"x": 12, "y": 50},
+    "data": "outputs/06_positioning_map.json (좌표는 04 JSON 각 레코드)"
+  },
+  "whitespace_summary": [
+    {"name": "프리미엄 야외 신체놀이 — 보호자 언어의 플라잉 토이", "type": "TRUE OPPORTUNITY", "score": 78},
+    {"name": "폰=관찰자 하이브리드 (야외 동적 Osmo)", "type": "EMERGING SPACE", "score": 55},
+    {"name": "코딩·LED 인터랙션 부메랑", "type": "FALSE WHITE SPACE", "score": 22}
+  ],
+  "cross_industry": {
+    "case_count": 32,
+    "categories": ["물리적 진실의 브랜드화", "결핍의 자부심화", "이중 청중 설득", "소비 없는 리텐션"],
+    "synthesis": "회귀라는 물리적 진실을 3무(無) 선언의 당당함으로 말하고, 보호자·아이 이중 채널로 설득하며, 소비 없는 성취 도감으로 붙잡는다",
+    "data": "outputs/08_cross_industry_research.json · outputs/09_cross_industry_categories.json"
+  },
+  "insights": [
+    {"id": "I-01", "title": "카테고리는 '기능의 언어'에 갇혀 있다 — 우위는 번역에서 나온다", "confidence": "높음"},
+    {"id": "I-02", "title": "컨셔스 프리미엄의 지불의사는 검증됐지만 야외가 비어 있다", "confidence": "높음"},
+    {"id": "I-03", "title": "'스크린 죄책감'은 이미 상업적으로 검증된 대항 서사다", "confidence": "높음"},
+    {"id": "I-04", "title": "아날로그 리텐션의 답은 세계관·수집, 함정은 소비주의", "confidence": "중간"},
+    {"id": "I-05", "title": "빈자리의 3개 요구 조건은 팩트북의 3개 자산과 1:1 대응한다", "confidence": "높음(대응)/낮음(수요)"}
+  ],
+  "strategy": {
+    "options": [
+      {"id": "S-A", "name": "씨앗 세계관 리텐션", "one_liner": "던질수록 씨앗 정령이 자란다"},
+      {"id": "S-B", "name": "회귀 경험 마스터리", "one_liner": "학습 곡선 자체를 브랜드 스토리로"},
+      {"id": "S-C", "name": "보호자 안심 게이트", "one_liner": "엄마가 사줄 수 있는 야외 완구"}
+    ],
+    "recommended": "S-C를 척추로, S-B → S-A 단계 결합 — 안심 게이트 통과 → 회귀 경험 증명 → 세계관 리텐션. 전략은 선택이 아니라 증명 순서다 (I-05).",
+    "detail": "outputs/11_strategy.md"
+  },
+  "risks": [
+    {"risk": "프리미엄 부메랑 절대 수요 미검증", "severity": "high", "mitigation": "소량 D2C 테스트 + 플라잉 디스크·글라이더 플랜 B"},
+    {"risk": "첫 경험 실패(습득 난이도)", "severity": "high", "mitigation": "안전 형상 복귀 성공률 실측 + 입문 소프트 라인"},
+    {"risk": "KC·안전 인증", "severity": "medium", "mitigation": "양산 전 인증 완료, 컨셉 단계 명시"},
+    {"risk": "'야외인데 왜 폰?' 거부", "severity": "medium", "mitigation": "폰=관찰자 A/B 테스트, 1단계 앱 제외"}
+  ],
+  "sources": {
+    "tier_definition": {"T1": "공식 사이트·공식 발표", "T2": "언론·리포트", "T3": "유통·커뮤니티", "T4": "추정·검증 불가"},
+    "competitor_sources": "04_competitive_research.json 각 레코드의 source_url·source_tier",
+    "cross_industry_note": "08 JSON — 웹 재검증 생략, 확립 지식 기반 (T2~T3 표기)"
+  },
+  "limitations": [
+    "이종업계 32건은 세션 중 리서치 에이전트 중지로 웹 재검증 생략 — 확립 지식 기반이며 수치 재인용 시 fact-checker 경유 필요",
+    "경쟁 브랜드 4건(T4)은 실체 검증 불가로 포지셔닝 맵에서 제외",
+    "프리미엄 부메랑 절대 수요·가격 저항선은 미검증 — 전략의 최대 가정",
+    "Boomi는 컨셉 단계 브랜드 — 팩트북 다수 항목이 설계값(CLIENT CLAIM/HYPOTHESIS)"
+  ]
+}
