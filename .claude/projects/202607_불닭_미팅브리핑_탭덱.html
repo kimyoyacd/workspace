@@ -1,0 +1,652 @@
+<title>불닭닷컴 2차 리뉴얼 — 미팅 브리핑</title>
+<style>
+  :root {
+    --bg:#f7f4ed; --ink:#1c1c1c; --ink-body:rgba(28,28,28,0.82); --muted:#5f5f5d;
+    --ink-40:rgba(28,28,28,0.4); --ink-08:rgba(28,28,28,0.08); --ink-04:rgba(28,28,28,0.04); --ink-03:rgba(28,28,28,0.03);
+    --line:#eceae4; --dark:#1c1c1c; --dark-ink:#fcfbf8; --dark-muted:rgba(252,251,248,0.6);
+    --warn:#8a4b2a; --ok:#4c6b4f;
+    --inset:rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#1c1a16; --ink:#f0ede5; --ink-body:rgba(240,237,229,0.82); --muted:#a3a09a;
+      --ink-40:rgba(240,237,229,0.4); --ink-08:rgba(240,237,229,0.09); --ink-04:rgba(240,237,229,0.05); --ink-03:rgba(240,237,229,0.03);
+      --line:#33302a; --dark:#f0ede5; --dark-ink:#1c1a16; --dark-muted:rgba(28,26,22,0.6);
+      --warn:#d99a6c; --ok:#93b48e;
+      --inset:rgba(255,255,255,0.08) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.4) 0px 0px 0px 0.5px inset; }
+  }
+  :root[data-theme="dark"] { --bg:#1c1a16; --ink:#f0ede5; --ink-body:rgba(240,237,229,0.82); --muted:#a3a09a;
+    --ink-40:rgba(240,237,229,0.4); --ink-08:rgba(240,237,229,0.09); --ink-04:rgba(240,237,229,0.05); --ink-03:rgba(240,237,229,0.03);
+    --line:#33302a; --dark:#f0ede5; --dark-ink:#1c1a16; --dark-muted:rgba(28,26,22,0.6);
+    --warn:#d99a6c; --ok:#93b48e;
+    --inset:rgba(255,255,255,0.08) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.4) 0px 0px 0px 0.5px inset; }
+  :root[data-theme="light"] { --bg:#f7f4ed; --ink:#1c1c1c; --ink-body:rgba(28,28,28,0.82); --muted:#5f5f5d;
+    --ink-40:rgba(28,28,28,0.4); --ink-08:rgba(28,28,28,0.08); --ink-04:rgba(28,28,28,0.04); --ink-03:rgba(28,28,28,0.03);
+    --line:#eceae4; --dark:#1c1c1c; --dark-ink:#fcfbf8; --dark-muted:rgba(252,251,248,0.6);
+    --warn:#8a4b2a; --ok:#4c6b4f;
+    --inset:rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px; }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:'Pretendard',ui-sans-serif,system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif; font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--ink); color:var(--bg); }
+  a { color:inherit; }
+  strong { font-weight:600; color:var(--ink); }
+
+  /* ---- tab nav ---- */
+  .deck-nav {
+    position:sticky; top:0; z-index:10; display:flex; gap:4px; flex-wrap:wrap;
+    background:var(--bg); border-bottom:1px solid var(--line); padding:12px 16px;
+    justify-content:center;
+  }
+  .deck-tab {
+    font-family:inherit; font-size:14px; font-weight:600; color:var(--muted);
+    background:transparent; border:1px solid transparent; border-radius:9999px;
+    padding:7px 16px; cursor:pointer;
+  }
+  .deck-tab:hover { color:var(--ink); background:var(--ink-04); }
+  .deck-tab:focus-visible { outline:none; box-shadow:rgba(0,0,0,0.1) 0px 4px 12px; }
+  .deck-tab.active { background:var(--dark); color:var(--dark-ink); box-shadow:var(--inset); }
+  .deck-panel { display:none; }
+  .deck-panel.active { display:block; }
+
+  .page { max-width:880px; margin:0 auto; padding:40px 24px 80px; }
+
+  /* ---- hero ---- */
+  .hero { padding:16px 0 28px; }
+  .hero .eyebrow { font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .hero h1 { font-size:clamp(26px,4vw,36px); font-weight:600; letter-spacing:-0.9px; line-height:1.15; text-wrap:balance; margin-bottom:12px; }
+  .hero .sub { font-size:16px; color:var(--muted); max-width:60ch; }
+  .hero-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:13px; color:var(--muted); }
+  .hero-meta b { color:var(--ink); font-weight:600; }
+
+  /* ---- one-line callout ---- */
+  .callout { background:var(--dark); color:var(--dark-ink); border-radius:12px; padding:22px 26px; margin:8px 0 28px; box-shadow:var(--inset); }
+  .callout .c-label { font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--dark-muted); margin-bottom:8px; text-transform:uppercase; }
+  .callout .c-title { font-size:19px; font-weight:600; letter-spacing:-0.3px; line-height:1.4; text-wrap:balance; }
+  .callout .c-body { font-size:14px; color:var(--dark-muted); margin-top:10px; line-height:1.6; }
+  .callout .c-body strong { color:var(--dark-ink); }
+
+  /* ---- section chrome ---- */
+  .block { margin:36px 0 0; }
+  .part-label { font-size:12px; font-weight:600; letter-spacing:0.05em; color:var(--muted); text-transform:uppercase; margin-bottom:6px; }
+  .block h2 { font-size:22px; font-weight:600; letter-spacing:-0.4px; margin-bottom:6px; text-wrap:balance; }
+  .block > .sub { font-size:14px; color:var(--muted); margin-bottom:16px; max-width:64ch; }
+
+  /* ---- stat strip ---- */
+  .stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0; }
+  @media (max-width:720px){ .stat-strip { grid-template-columns:repeat(2,1fr); } }
+  .stat { border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .stat-num { font-size:30px; font-weight:600; letter-spacing:-0.8px; line-height:1; font-variant-numeric:tabular-nums; }
+  .stat-label { font-size:12.5px; color:var(--muted); margin-top:7px; line-height:1.45; }
+
+  /* ---- fact cards ---- */
+  .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0; }
+  @media (max-width:720px){ .fact-grid { grid-template-columns:1fr; } }
+  .fact-grid.three { grid-template-columns:repeat(3,1fr); }
+  @media (max-width:820px){ .fact-grid.three { grid-template-columns:1fr; } }
+  .fact-card { border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .fact-card.warn { border-color:color-mix(in srgb, var(--warn) 45%, var(--line)); }
+  .fact-card.ok { border-color:color-mix(in srgb, var(--ok) 45%, var(--line)); }
+  .fact-tag { display:inline-block; font-size:11.5px; font-weight:600; padding:2px 10px; border-radius:9999px; border:1px solid var(--ink-40); margin-bottom:9px; }
+  .fact-card.warn .fact-tag { color:var(--warn); border-color:var(--warn); }
+  .fact-card.ok .fact-tag { color:var(--ok); border-color:var(--ok); }
+  .fact-title { font-size:15.5px; font-weight:600; letter-spacing:-0.2px; margin-bottom:6px; line-height:1.35; }
+  .fact-body { font-size:13.5px; color:var(--ink-body); line-height:1.6; }
+
+  /* ---- tables ---- */
+  .tbl-wrap { overflow-x:auto; margin:12px 0; border:1px solid var(--line); border-radius:12px; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; min-width:480px; }
+  th { text-align:left; padding:10px 14px; font-weight:600; font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); }
+  td { padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-body); }
+  tr:last-child td { border-bottom:none; }
+  td.r, th.r { text-align:right; font-variant-numeric:tabular-nums; }
+  tr.total td { background:var(--ink-04); font-weight:600; color:var(--ink); }
+
+  /* ---- type cards ---- */
+  .type-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:14px 0; }
+  @media (max-width:820px){ .type-grid { grid-template-columns:1fr; } }
+  .type-card { border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .type-head { padding:14px 16px 12px; border-bottom:1px solid var(--line); }
+  .type-card.featured .type-head { background:var(--dark); color:var(--dark-ink); border-bottom-color:var(--dark); }
+  .type-head .badge { font-size:11px; color:var(--muted); display:block; margin-bottom:5px; letter-spacing:0.03em; }
+  .type-card.featured .badge { color:var(--dark-muted); }
+  .type-head h4 { font-size:16.5px; font-weight:600; letter-spacing:-0.2px; }
+  .type-body { padding:12px 16px 16px; flex:1; display:flex; flex-direction:column; gap:10px; }
+  .type-body .one { font-size:13.5px; color:var(--ink-body); line-height:1.55; }
+  .chips { display:flex; flex-wrap:wrap; gap:4px; }
+  .chip { font-size:11px; padding:2px 8px; border-radius:9999px; border:1px solid var(--line); color:var(--muted); }
+  .type-verdict { margin-top:auto; background:var(--ink-04); border-radius:8px; padding:10px 12px; font-size:12.5px; line-height:1.5; color:var(--ink-body); }
+  .type-verdict b { font-weight:600; color:var(--ink); }
+
+  /* ---- scatter ---- */
+  .scatter { position:relative; width:100%; max-width:520px; aspect-ratio:1/1; margin:18px auto 6px; border:1px solid var(--ink-40); border-radius:12px; }
+  .qtint { position:absolute; width:50%; height:50%; }
+  .qtint.tl { top:0; left:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .qtint.tr { top:0; right:0; border-bottom:1px solid var(--line); background:var(--ink-03); }
+  .qtint.bl { bottom:0; left:0; border-right:1px solid var(--line); }
+  .axis-lbl { position:absolute; font-size:11px; font-weight:600; color:var(--muted); background:var(--bg); padding:2px 9px; border-radius:9999px; border:1px solid var(--line); z-index:3; white-space:nowrap; }
+  .axis-lbl.top { top:6px; left:50%; transform:translateX(-50%); }
+  .axis-lbl.bottom { bottom:6px; left:50%; transform:translateX(-50%); }
+  .axis-lbl.left { left:6px; top:50%; transform:translateY(-50%); }
+  .axis-lbl.right { right:6px; top:50%; transform:translateY(-50%); }
+  .pt { position:absolute; z-index:2; }
+  .pt .dot { position:absolute; width:7px; height:7px; border-radius:50%; background:var(--ink-40); transform:translate(-50%,-50%); box-shadow:0 0 0 2px var(--bg); }
+  .pt .lbl { position:absolute; top:6px; left:0; transform:translateX(-50%); font-size:10.5px; white-space:nowrap; color:var(--muted); background:var(--bg); padding:1px 4px; border-radius:4px; }
+  .pt.hi .dot { width:13px; height:13px; background:var(--ink); box-shadow:0 0 0 2px var(--bg), 0 0 0 4px var(--ink-08); }
+  .pt.hi .lbl { font-weight:600; color:var(--ink); font-size:11.5px; }
+  .pt.target .dot { width:auto; height:auto; background:none; box-shadow:none; font-size:17px; color:var(--ink); line-height:1; }
+  .pt.target .lbl { font-weight:600; color:var(--ink); }
+  .scatter-note { text-align:center; font-size:12px; color:var(--muted); margin-top:6px; }
+
+  /* ---- script cards ---- */
+  .script-card { border:1px solid var(--line); border-radius:12px; margin:12px 0; overflow:hidden; }
+  .sc-top { padding:16px 20px 13px; }
+  .sc-label { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .sc-no { font-size:11.5px; font-weight:600; padding:2px 9px; border-radius:9999px; background:var(--dark); color:var(--dark-ink); box-shadow:var(--inset); font-variant-numeric:tabular-nums; }
+  .sc-why { font-size:12.5px; color:var(--muted); }
+  .sc-say { font-size:16.5px; font-weight:600; letter-spacing:-0.25px; line-height:1.4; text-wrap:balance; }
+  .sc-say::before { content:"“"; color:var(--ink-40); }
+  .sc-say::after { content:"”"; color:var(--ink-40); }
+  .sc-branch { border-top:1px solid var(--line); background:var(--ink-03); padding:11px 20px; }
+  .b-row { display:flex; gap:10px; font-size:13px; padding:3px 0; color:var(--ink-body); }
+  .b-key { font-weight:600; color:var(--ink); flex-shrink:0; min-width:96px; }
+
+  /* ---- flow ---- */
+  .flow { display:flex; align-items:stretch; gap:6px; margin:16px 0; flex-wrap:wrap; }
+  .flow-step { flex:1; min-width:110px; background:var(--dark); color:var(--dark-ink); border-radius:10px; padding:12px; text-align:center; font-weight:600; font-size:13px; box-shadow:var(--inset); }
+  .flow-step span { display:block; font-size:11px; font-weight:400; color:var(--dark-muted); margin-top:3px; }
+  .flow-arrow { align-self:center; color:var(--ink-40); font-size:15px; }
+
+  .verdict-line { font-size:13.5px; margin:6px 0 18px; }
+  .verdict-line.ok { color:var(--ok); }
+  .verdict-line.warn { color:var(--warn); }
+
+  footer { text-align:center; padding:36px 24px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
+</style>
+
+<div class="deck-nav">
+  <button class="deck-tab active" data-target="p0">한눈 요약</button>
+  <button class="deck-tab" data-target="p1">시장 지도</button>
+  <button class="deck-tab" data-target="p2">디자인 방향</button>
+  <button class="deck-tab" data-target="p3">질문 스크립트 8</button>
+  <button class="deck-tab" data-target="p4">예산 시나리오</button>
+  <button class="deck-tab" data-target="p5">리스크·일정</button>
+</div>
+
+<!-- ============ TAB 0: 한눈 요약 ============ -->
+<div class="deck-panel active" id="p0">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">불닭닷컴(Buldak.com KR) 2차 리뉴얼 · 미팅 브리핑</div>
+    <h1>1차가 '예쁘게'였다면,<br>2차는 '성격'을 입히는 일입니다</h1>
+    <div class="hero-meta">
+      <div><b>클라이언트</b> 삼양식품</div>
+      <div><b>예산</b> 1억 원 (범위 미확정)</div>
+      <div><b>1차 오픈</b> 2026.07.30</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">한 줄 브리핑</div>
+    <div class="c-title">불닭 콘텐츠는 200억 뷰인데, 그 에너지가 자사몰로 안 넘어온다. 2차 리뉴얼은 "라면 파는 사이트"를 "도전을 증명하러 오는 곳"으로 바꿔 그 에너지를 회수하는 프로젝트다.</div>
+    <div class="c-body">챌린지는 TikTok에서 소비되고 끝난다. 사이트가 그 문화의 <strong>홈그라운드</strong>가 되면 재방문·재구매·UGC가 자사몰 안에서 돈다.</div>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="stat-num">200억+</div><div class="stat-label">Buldak 글로벌 콘텐츠 누적 뷰</div></div>
+    <div class="stat"><div class="stat-num">30개</div><div class="stat-label">경쟁 브랜드 조사 (국내 15 + 해외 15)</div></div>
+    <div class="stat"><div class="stat-num">1곳</div><div class="stat-label">시장 지도에서 비어 있는 자리<br>= 극한 × 품격</div></div>
+    <div class="stat"><div class="stat-num">8문항</div><div class="stat-label">미팅에서 그대로 말할 질문 스크립트</div></div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">이 미팅에서 정할 3가지</div>
+    <h2>이 3개만 확정되면 5영업일 안에 제안·견적이 나갑니다</h2>
+    <div class="fact-grid three">
+      <div class="fact-card warn">
+        <span class="fact-tag">결정 1</span>
+        <div class="fact-title">1차 피그마 원본을 받는가</div>
+        <div class="fact-body">받으면 1차 위에 증축. 못 받으면 컴포넌트 재제작 — <strong>일정·비용 +20~30%</strong>. 이 미팅에서 가장 돈이 걸린 질문.</div>
+      </div>
+      <div class="fact-card warn">
+        <span class="fact-tag">결정 2</span>
+        <div class="fact-title">1억은 디자인 예산인가</div>
+        <div class="fact-body">디자인만이면 8개 템플릿 풀스코프 가능. 개발 포함이면 <strong>페이지 우선순위를 함께 정해야</strong> 함. VAT 별도 여부 포함.</div>
+      </div>
+      <div class="fact-card warn">
+        <span class="fact-tag">결정 3</span>
+        <div class="fact-title">글로벌 톤을 몇 %까지 가져오나</div>
+        <div class="fact-body">'Spicy or Nothing'을 100으로 정면 이식인지, 60의 안전한 통일인지. <strong>숫자로 답을 받아</strong> 컨셉의 수위를 고정.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">범위 (요청서 기준)</div>
+    <h2>6개 영역 · 8개 템플릿</h2>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>영역</th><th>내용</th></tr>
+      <tr><td><strong>① BI 컨셉</strong></td><td>브랜드 방향성에 맞는 사이트 컨셉 도출</td></tr>
+      <tr><td><strong>② UX/UI 진단</strong></td><td>현 사이트 분석·개선안 (진단 리포트 별도 산출물 여부 확인)</td></tr>
+      <tr><td><strong>③ Home / PLP / PDP</strong></td><td>커머스 핵심 동선 리뉴얼</td></tr>
+      <tr><td><strong>④ Recipe</strong></td><td>콘텐츠 허브의 킬러 페이지</td></tr>
+      <tr><td><strong>⑤ News / Blog</strong></td><td>운영형 콘텐츠 템플릿 개선</td></tr>
+      <tr><td><strong>⑥ About / My Page</strong></td><td>브랜드 스토리(감성) + 회원 기능(로직)</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ TAB 1: 시장 지도 ============ -->
+<div class="deck-panel" id="p1">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Wide Research · 매운맛·강렬함 카테고리 30개 브랜드</div>
+    <h1>시장 지도에 빈 자리는 하나,<br>갈 수 있는 브랜드는 불닭뿐</h1>
+    <div class="hero-meta">
+      <div><b>조사</b> 국내 15 + 해외 15 · 8속성 · 출처 확보</div>
+      <div><b>기준</b> 2026.07 · 최근 1년 활동 브랜드</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">한 줄 브리핑</div>
+    <div class="c-title">매운맛 브랜드는 셋 중 하나다 — 챌린지로 팔거나(A), 품격으로 팔거나(B), 이야기로 팔거나(C). '극한인데 품격 있는' 브랜드만 없다. 그 자리가 불닭의 목표 좌표다.</div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">3개 타입</div>
+    <h2>30개 브랜드는 이렇게 나뉩니다</h2>
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-head"><span class="badge">TYPE A</span><h4>맵기 = 스펙터클</h4></div>
+        <div class="type-body">
+          <div class="one">얼마나 매운지를 <strong>숫자·기록·챌린지</strong>로 판다. 화제성은 크지만 저가 소모품 이미지 + 안전 리스크(Paqui 사망사고).</div>
+          <div class="chips"><span class="chip">틈새라면</span><span class="chip">열라면</span><span class="chip">Paqui</span><span class="chip">Da Bomb</span><span class="chip">Peyoung 激辛</span></div>
+          <div class="type-verdict"><b>불닭:</b> 이 문법의 원조. 여기 머물면 "챌린지 소모품"에서 못 벗어남.</div>
+        </div>
+      </div>
+      <div class="type-card featured">
+        <div class="type-head"><span class="badge">TYPE B ★ 핵심 축</span><h4>맵기 = 프리미엄</h4></div>
+        <div class="type-body">
+          <div class="one">강렬함을 <strong>다크 비주얼·헤리티지·전문성</strong>으로 격상. 단, 실제 맵기는 다들 중간 수준으로 타협.</div>
+          <div class="chips"><span class="chip">TRUFF</span><span class="chip">Fly By Jing</span><span class="chip">Momofuku</span><span class="chip">신라면 블랙</span></div>
+          <div class="type-verdict"><b>불닭:</b> 이 그룹의 비주얼 문법(TRUFF급 제품샷·다크 시스템)을 가져오되, 맵기는 타협하지 않는다 — 그게 차별점.</div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-head"><span class="badge">TYPE C</span><h4>맵기 = 문화·서사</h4></div>
+        <div class="type-body">
+          <div class="one">"누가 왜 만들었나"의 <strong>이야기·소속감</strong>이 브랜드력. 서브컬처(Liquid Death), 크리에이터 IP(Feastables).</div>
+          <div class="chips"><span class="chip">Liquid Death</span><span class="chip">Feastables</span><span class="chip">신라면</span><span class="chip">엽기떡볶이</span></div>
+          <div class="type-verdict"><b>불닭:</b> 200억 뷰 — 이 자산을 세계에서 가장 크게 보유. 커머스로 번역만 안 됐을 뿐.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">XY 포지셔닝</div>
+    <h2>불닭의 현재 위치와 목표 좌표</h2>
+    <div class="sub">X축: 순한 ↔ 극한 · Y축: 유희(화제성) ↔ 품격(신뢰). 우상단만 비어 있습니다.</div>
+
+    <div class="scatter">
+      <div class="qtint tl"></div><div class="qtint tr"></div><div class="qtint bl"></div>
+      <div class="axis-lbl top">품격 ▲</div>
+      <div class="axis-lbl bottom">▼ 유희</div>
+      <div class="axis-lbl left">◀ 순한</div>
+      <div class="axis-lbl right">극한 ▶</div>
+      <div class="pt" style="left:22%; top:18%;"><span class="dot"></span><span class="lbl">청정원</span></div>
+      <div class="pt" style="left:30%; top:26%;"><span class="dot"></span><span class="lbl">immi</span></div>
+      <div class="pt" style="left:38%; top:36%;"><span class="dot"></span><span class="lbl">Mama</span></div>
+      <div class="pt" style="left:46%; top:24%;"><span class="dot"></span><span class="lbl">Fly By Jing</span></div>
+      <div class="pt" style="left:62%; top:30%;"><span class="dot"></span><span class="lbl">TRUFF</span></div>
+      <div class="pt" style="left:55%; top:40%;"><span class="dot"></span><span class="lbl">신라면 블랙</span></div>
+      <div class="pt" style="left:28%; top:76%;"><span class="dot"></span><span class="lbl">핫식스</span></div>
+      <div class="pt" style="left:34%; top:80%;"><span class="dot"></span><span class="lbl">Prime</span></div>
+      <div class="pt" style="left:76%; top:70%;"><span class="dot"></span><span class="lbl">틈새라면</span></div>
+      <div class="pt" style="left:70%; top:74%;"><span class="dot"></span><span class="lbl">열라면</span></div>
+      <div class="pt" style="left:90%; top:86%;"><span class="dot"></span><span class="lbl">Paqui</span></div>
+      <div class="pt" style="left:92%; top:82%;"><span class="dot"></span><span class="lbl">Da Bomb</span></div>
+      <div class="pt hi" style="left:84%; top:64%;"><span class="dot"></span><span class="lbl">불닭(현재)</span></div>
+      <div class="pt target" style="left:88%; top:12%;"><span class="dot">★</span><span class="lbl">목표 좌표</span></div>
+    </div>
+    <p class="scatter-note">대표 브랜드만 표기 · 좌표는 정성적 추정 (전체 30개 매트릭스는 별도 문서)</p>
+
+    <div class="fact-grid">
+      <div class="fact-card ok">
+        <span class="fact-tag">왜 기회인가</span>
+        <div class="fact-title">비어 있는 이유는 "아무도 못 해서"</div>
+        <div class="fact-body">TRUFF는 맵기를 포기했고, Da Bomb은 프리미엄을 포기했다. 둘 다 가진 브랜드가 없다. 수요 검증은 불닭의 200억 뷰가 이미 끝냈다.</div>
+      </div>
+      <div class="fact-card warn">
+        <span class="fact-tag">함정 주의</span>
+        <div class="fact-title">"극한"의 과도한 콘텐츠화는 금물</div>
+        <div class="fact-body">Paqui는 챌린지 과열로 사망사고 후 판매 중단. 목표는 <strong>극한이되 위험하지 않은 품격</strong> — A타입의 리스크 문법은 가져오지 않는다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ TAB 2: 디자인 방향 ============ -->
+<div class="deck-panel" id="p2">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Design Direction · 관점 → 시각 → 경험</div>
+    <h1>"Spicy or Nothing"을<br>커머스 UX로 번역합니다</h1>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">관점 한 문장</div>
+    <div class="c-title">"극한 매운맛을 품격 있게 파는 최초의 브랜드 몰" — 유저는 라면을 사러 오는 게 아니라, 도전을 증명하러 온다.</div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">시각 언어</div>
+    <h2>다크 + 불 오렌지, 명령형 카피</h2>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <span class="fact-tag">컬러</span>
+        <div class="fact-title">차콜 블랙 + 불 오렌지 단 둘</div>
+        <div class="fact-body">다색 금지. 검정 바탕의 강한 대비가 "거침없음"을 만든다. 맵기는 색이 아니라 <strong>불꽃 아이콘 개수</strong>로 표현 — Scoville Club 등급과 연동.</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-tag">타입 · 카피</span>
+        <div class="fact-title">두껍고 각지게, 명령형으로</div>
+        <div class="fact-body">"이 제품의 매운맛을 즐겨보세요" ❌ → <strong>"너의 한계를 시험해."</strong> ⭕ 부드러운 톤·파스텔·원형 모티프는 쓰지 않는다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">페이지별 설계</div>
+    <h2>6개 페이지, 각각 한 줄이면 설명됩니다</h2>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>페이지</th><th>컨셉 한 줄</th><th>핵심 장치</th></tr>
+      <tr><td><strong>HOME</strong></td><td>"당신은 몇 도(℃)인가?"</td><td>진입 즉시 Spicy Level 테스트 → 뱃지 → 맞춤 추천</td></tr>
+      <tr><td><strong>PLP</strong></td><td>강렬한 선택의 현장</td><td>불꽃 개수 필터 + 내 레벨과 비교</td></tr>
+      <tr><td><strong>PDP</strong></td><td>도전의 증명</td><td>"300명이 이미 도전중" + 구매 후 영상 공유 → 포인트</td></tr>
+      <tr><td><strong>RECIPE</strong></td><td>불닭을 더 극단적으로</td><td>레벨별 필터 + 재료 "한 번에 담기" + UGC 피드</td></tr>
+      <tr><td><strong>SCOVILLE CLUB</strong></td><td>내 정체성을 확인하는 곳</td><td>레벨·뱃지·랭킹 + 도전 기록 + 월간 미션</td></tr>
+      <tr><td><strong>ABOUT / NEWS</strong></td><td>우리가 왜 이렇게 강렬한가</td><td>브랜드 철학 + 유저 영상 셀렉션</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">기대효과</div>
+    <h2>6개월 목표 지표</h2>
+    <div class="stat-strip">
+      <div class="stat"><div class="stat-num">2분→5분</div><div class="stat-label">평균 체류시간 · Club+Recipe</div></div>
+      <div class="stat"><div class="stat-num">30→50%</div><div class="stat-label">재방문율 · 게이미피케이션</div></div>
+      <div class="stat"><div class="stat-num">3→4%</div><div class="stat-label">구매 전환율 · PDP 개선</div></div>
+      <div class="stat"><div class="stat-num">50→300건</div><div class="stat-label">월 UGC · 포인트 인센티브</div></div>
+    </div>
+    <p class="scatter-note">baseline은 추정치 — 착수 시 GA 데이터로 재설정</p>
+  </div>
+</div>
+</div>
+
+<!-- ============ TAB 3: 질문 스크립트 ============ -->
+<div class="deck-panel" id="p3">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Meeting Script · 이 순서, 이 문장 그대로</div>
+    <h1>8개 질문이 미팅의 전부입니다</h1>
+    <div class="hero-meta"><div><b>원칙</b> 견적 숫자는 이 자리에서 말하지 않는다</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">한 줄 브리핑</div>
+    <div class="c-title">질문마다 "왜 묻는지"가 상대에게도 전달되게 설계했다 — 질문 자체가 전문성의 증거가 되도록. 답이 무엇이든 받아칠 분기가 준비돼 있다.</div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q1</span><span class="sc-why">우선순위 압축 — 이후 모든 결정의 기준점</span></div>
+      <div class="sc-say">이번 2차에서 딱 하나만 바뀐다면, 뭐가 바뀌어야 성공입니까 — 브랜드 인상입니까, 전환율입니까, 팬들이 다시 오는 사이트입니까?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">브랜드 인상</span><span>비주얼 격상(TYPE B) 중심으로 제안 구성</span></div>
+      <div class="b-row"><span class="b-key">전환·재방문</span><span>Scoville Club 중심 + KPI를 계약서에 숫자로 명시 역제안</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q2</span><span class="sc-why">가장 돈이 걸린 질문 — 인수인계</span></div>
+      <div class="sc-say">7월 30일에 열리는 1차, 그 피그마 원본과 컴포넌트를 저희가 받을 수 있습니까?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">받는다</span><span>1차 위에 증축 — 절감분을 컨셉·비주얼 퀄리티에 재투자</span></div>
+      <div class="b-row"><span class="b-key">못 받는다</span><span>그 자리에서 명시: "재제작으로 일정·비용 20~30% 달라집니다" — 견적 방어선 선점</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q3</span><span class="sc-why">덮어쓰기 권한 — 책임 경계를 지금 긋는다</span></div>
+      <div class="sc-say">1차에서 '이건 건드리지 마라' 하는 영역이 있습니까? 저희가 덮어써도 되는 선을 오늘 그어 주십시오.</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">전면 가능</span><span>풀 리디자인 스코프 — 단, 1차 잔여 버그는 1차 주체 몫으로 계약 분리</span></div>
+      <div class="b-row"><span class="b-key">부분 제한</span><span>제한 영역을 문서로 받아 스코프 제외 표기 — "왜 안 바꿨냐" 방지</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q4</span><span class="sc-why">BI 권한을 추상어가 아니라 숫자로</span></div>
+      <div class="sc-say">글로벌 'Spicy or Nothing' 톤이 100이라면, 한국 사이트에는 몇까지 가져올까요 — 60의 안전한 통일입니까, 100의 정면 이식입니까?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">100 (정면)</span><span>화이트스페이스 전략 그대로 — 우리가 가장 잘하는 판</span></div>
+      <div class="b-row"><span class="b-key">60 (안전)</span><span>가이드 준수형으로 조정하되 "브랜드 강화 목표와 상충" 리스크를 기록으로 남김</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q5</span><span class="sc-why">1억의 정체 — 견적 구조가 이 답에 달렸다</span></div>
+      <div class="sc-say">1억은 디자인 예산입니까, 개발까지 포함입니까? 그리고 VAT는 별도지요?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">디자인만</span><span>최적 — 8개 템플릿 × PC·MO 풀스코프 제안</span></div>
+      <div class="b-row"><span class="b-key">개발 포함</span><span>즉답 금지. "그 범위면 페이지 우선순위를 함께 정하시죠" — 단계 분리 or 증액 카드는 제안서에서</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q6</span><span class="sc-why">플랫폼 제약 — PDP·My Page 자유도 결정</span></div>
+      <div class="sc-say">결제와 회원이 붙는 자사몰이지요? 솔루션이 뭔지, 개발은 어느 회사가 받습니까?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">자체 개발</span><span>자유도 높음 — Scoville Club 같은 커스텀 기능 제안 가능</span></div>
+      <div class="b-row"><span class="b-key">솔루션 기반</span><span>템플릿 제약 문서 요청 — 제약 안의 최대치로 범위 재조정</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q7</span><span class="sc-why">일정 리스크 — 1차 오픈 여파와의 충돌 예방</span></div>
+      <div class="sc-say">2차 오픈 목표일이 언제입니까 — 1차 열자마자 바로 달립니까, 한 달쯤 반응 보고 시작합니까?</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">바로</span><span>1차 버그 대응과 겹침 — 책임 경계(Q3) 계약 명시 조건으로 수용</span></div>
+      <div class="b-row"><span class="b-key">반응 후</span><span>오히려 기회 — 1차 실데이터(GA·히트맵)로 진단 기반 제안 격상</span></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="sc-top">
+      <div class="sc-label"><span class="sc-no">Q8</span><span class="sc-why">수정 지옥 예방 — 마지막에 묻는다</span></div>
+      <div class="sc-say">시안의 최종 컨펌은 누가 하십니까? 그분이 중간에 한 번 미리 보시는 걸로 하고, 수정 라운드 수를 계약에 넣으시죠.</div>
+    </div>
+    <div class="sc-branch">
+      <div class="b-row"><span class="b-key">실무 전결</span><span>속도전 — 주 1회 리뷰 사이클 제안</span></div>
+      <div class="b-row"><span class="b-key">임원 컨펌</span><span>중간 임원 프리뷰 1회를 일정에 고정 + 수정 2라운드 계약 명시</span></div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px;">
+    <div class="c-label">클로징 멘트</div>
+    <div class="c-title">"오늘 확인된 범위로 5영업일 안에 제안서와 견적을 드리겠습니다. 그 전에 1차 피그마 원본, BI 가이드, GA 데이터 세 가지만 주시면 제안의 정확도가 완전히 달라집니다."</div>
+  </div>
+</div>
+</div>
+
+<!-- ============ TAB 4: 예산 ============ -->
+<div class="deck-panel" id="p4">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Budget · 1억의 3가지 시나리오 (내부 참고)</div>
+    <h1>1억이 '디자인만'이면 최적,<br>개발 포함이면 재협상입니다</h1>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">한 줄 브리핑</div>
+    <div class="c-title">같은 1억이라도 범위에 따라 우리실(UI Design) 매출이 6,000만 → 2,500만까지 떨어진다. Q5(예산 범위 질문)가 이 표의 어느 행인지 정하는 질문이다.</div>
+    <div class="c-body">규칙: 총액 중 <strong>UI Design 직군만 우리실(MX) 매출</strong>. PM·UX·FE·BE·QA는 타 실/외주 몫. 미팅에서 이 표는 공개하지 않는다.</div>
+  </div>
+
+  <div class="block">
+    <h2>시나리오 A · 디자인만 (권장)</h2>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>직군</th><th class="r">배분</th><th class="r">우리실 매출</th></tr>
+      <tr><td>UX Design</td><td class="r">1,500만</td><td class="r">—</td></tr>
+      <tr><td><strong>UI Design</strong></td><td class="r"><strong>6,000만</strong></td><td class="r"><strong>6,000만</strong></td></tr>
+      <tr><td>PM·기타</td><td class="r">2,500만</td><td class="r">—</td></tr>
+      <tr class="total"><td>합계</td><td class="r">1억</td><td class="r">6,000만 (60%)</td></tr>
+    </table>
+    </div>
+    <p class="verdict-line ok"><strong>판정</strong> — 가장 유리. 8개 템플릿 × PC·MO 풀스코프 가능.</p>
+
+    <h2>시나리오 B · 디자인 + 퍼블</h2>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>직군</th><th class="r">배분</th><th class="r">우리실 매출</th></tr>
+      <tr><td>UX Design</td><td class="r">1,500만</td><td class="r">—</td></tr>
+      <tr><td><strong>UI Design</strong></td><td class="r"><strong>4,000만</strong></td><td class="r"><strong>4,000만</strong></td></tr>
+      <tr><td>FE(퍼블)</td><td class="r">3,000만</td><td class="r">—</td></tr>
+      <tr><td>PM·기타</td><td class="r">1,500만</td><td class="r">—</td></tr>
+      <tr class="total"><td>합계</td><td class="r">1억</td><td class="r">4,000만 (40%)</td></tr>
+    </table>
+    </div>
+    <p class="verdict-line warn"><strong>판정</strong> — UI 비중 희석. UI 매출 방어 필요.</p>
+
+    <h2>시나리오 C · 개발까지 통짜</h2>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>직군</th><th class="r">배분</th><th class="r">우리실 매출</th></tr>
+      <tr><td>UX Design</td><td class="r">1,000만</td><td class="r">—</td></tr>
+      <tr><td><strong>UI Design</strong></td><td class="r"><strong>2,500만</strong></td><td class="r"><strong>2,500만</strong></td></tr>
+      <tr><td>FE + BE·QA</td><td class="r">5,500만</td><td class="r">—</td></tr>
+      <tr><td>PM·기타</td><td class="r">1,000만</td><td class="r">—</td></tr>
+      <tr class="total"><td>합계</td><td class="r">1억</td><td class="r">2,500만 (25%)</td></tr>
+    </table>
+    </div>
+    <p class="verdict-line warn"><strong>판정</strong> — 총액은 커도 우리실 실적 얇음. <strong>개발 분리 or 증액</strong> 카드를 제안서에서 제시.</p>
+  </div>
+
+  <div class="fact-card warn" style="margin-top:20px;">
+    <span class="fact-tag">규모 감각</span>
+    <div class="fact-title">코웨이 BEREX가 총 8,000만(UI분 약 7,000만)이었다</div>
+    <div class="fact-body">불닭은 8개 템플릿 × PC·MO + BI 컨셉까지 — 그보다 큰 스코프다. <strong>1억에 개발까지 넣으면 디자인 공수가 부족</strong>하다는 근거로 활용.</div>
+  </div>
+</div>
+</div>
+
+<!-- ============ TAB 5: 리스크·일정 ============ -->
+<div class="deck-panel" id="p5">
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Risk &amp; Timeline</div>
+    <h1>위험 5개, 일정 4단계</h1>
+  </div>
+
+  <div class="callout">
+    <div class="c-label">한 줄 브리핑</div>
+    <div class="c-title">리스크 5개 중 3개(인수인계·BI 권한·예산 범위)는 미팅 질문 Q2·Q4·Q5로 그 자리에서 해소된다. 나머지 2개는 계약 조항으로 막는다.</div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">리스크 5</div>
+    <h2>무엇이 프로젝트를 흔들 수 있나</h2>
+    <div class="fact-grid">
+      <div class="fact-card warn">
+        <span class="fact-tag">R1 · Q2로 해소</span>
+        <div class="fact-title">1차 시스템 미인수</div>
+        <div class="fact-body">컴포넌트 재제작 → 일정·비용 +20~30%. 미팅에서 피그마 원본 여부 즉시 확인.</div>
+      </div>
+      <div class="fact-card warn">
+        <span class="fact-tag">R2 · Q4로 해소</span>
+        <div class="fact-title">BI 권한 모호</div>
+        <div class="fact-body">"준수만"이면 자유도 죽고, 가이드가 없으면 우리가 시스템 구축(공수↑ = 매출 기회로 전환 가능). 숫자로 답 받기.</div>
+      </div>
+      <div class="fact-card warn">
+        <span class="fact-tag">R3 · Q5로 해소</span>
+        <div class="fact-title">1억에 개발 포함</div>
+        <div class="fact-body">우리실 매출 60%→25%로 급감. 개발 분리 or 증액 역제안 준비 완료(예산 탭).</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-tag">R4 · 계약으로</span>
+        <div class="fact-title">콘텐츠·플랫폼 제약</div>
+        <div class="fact-body">Recipe/News 실콘텐츠 책임과 커머스 솔루션 UI 제약을 계약서에 명시. 껍데기 오픈 방지.</div>
+      </div>
+      <div class="fact-card">
+        <span class="fact-tag">R5 · 계약으로</span>
+        <div class="fact-title">다단계 컨펌 · 수정 지옥</div>
+        <div class="fact-body">임원 프리뷰 1회 일정 고정 + 수정 2라운드 계약 명시(Q8). 7.30 직후 착수 시 1차 버그 책임 분리(Q3·Q7).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="part-label">일정</div>
+    <h2>미팅에서 착수까지</h2>
+    <div class="flow">
+      <div class="flow-step">미팅<span>스코프 확정</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">진단<span>D+1~2 · 1차 오픈본</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">제안·견적<span>D+5 · 5영업일</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">착수<span>계약·선금 후</span></div>
+    </div>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>단계</th><th>기간</th><th>내용</th></tr>
+      <tr><td><strong>스코핑</strong></td><td>미팅 당일</td><td>질문 8개로 범위·예산·권한 확정. 견적 숫자 미확약.</td></tr>
+      <tr><td><strong>진단</strong></td><td>D+1~2</td><td>7.30 오픈본 캡처 → 휴리스틱 진단 리포트</td></tr>
+      <tr><td><strong>제안</strong></td><td>D+5</td><td>컨셉 관점 + 진단 + 개선방향 + 견적/일정</td></tr>
+      <tr><td><strong>제작</strong></td><td>약 6주</td><td>디자인 (+범위에 따라 퍼블) · 주 1회 리뷰</td></tr>
+      <tr><td><strong>오픈</strong></td><td>협의</td><td>1차 오픈 여파 고려해 시점 조율</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  불닭닷컴 2차 리뉴얼 미팅 브리핑 · 2026-07-20 · 클라이언트 삼양식품 · 예산 1억 원<br>
+  브랜드 수치(200억 뷰 등)는 공개 보도 기준 · 예산 시나리오는 내부 참고용
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.deck-tab');
+  const panels = document.querySelectorAll('.deck-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  });
+</script>
