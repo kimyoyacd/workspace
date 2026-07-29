@@ -12,14 +12,11 @@
   --bg: #FFFFFF; --bg-dark: #0A0A0A; --bg-dark2: #1C1C1E;
   --card: #F3F3F3; --ink: #171717; --ink-inv: #FFFFFF;
   --muted: #9C9C9C; --meta: #B0B0B0;
-  --accent: #C41230; /* 뱀피르 크림슨 — 프로젝트 포인트 1색 */
+  --accent: #C41230;
   --sig: #2F3E5F;     --sig-soft: #EEF1F7;
   --pt-blue: #1D4ED8; --pt-blue-soft: #DBEAFE;
   --pt-green: #2D7A4F;--pt-green-soft: #E5F2E9;
   --pt-amber: #C77A0F;--pt-amber-soft: #FFF6E5;
-  --pt-red: #B23B3B;  --pt-red-soft: #FDECEC;
-  --pt-purple: #8B5CF6;
-  --pt-pink: #7A1F4A; --pt-pink-soft: #FBE7F1;
   --sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   --r-card: 30px;
 }
@@ -30,11 +27,10 @@ body { font-family: var(--sans); color: var(--ink); font-size: 16px; line-height
 .deck { display: grid; gap: 20px; padding: 20px; max-width: 1960px; margin: 0 auto; }
 .slide { position: relative; background: var(--bg); overflow: hidden; min-height: min(56.25vw, 100svh); display: flex; flex-direction: column; }
 .slide.dark  { background: var(--bg-dark);  color: var(--ink-inv); }
-.slide.dark2 { background: var(--bg-dark2); color: var(--ink-inv); }
 
 .m-divider { padding: 90px clamp(24px, 2.3vw, 45px) 60px; }
 .m-content { padding: 90px clamp(24px, 4.2vw, 80px) 80px; }
-.m-dense   { padding: 90px clamp(24px, 5.7vw, 110px) 80px; }
+.m-dense   { padding: 84px clamp(24px, 4.2vw, 80px) 72px; }
 
 .meta-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; gap: 12px; padding: 26px clamp(24px, 2vw, 40px) 0; font-size: 14px; letter-spacing: 0.5px; opacity: 0.5; }
 .meta-bar span:nth-child(2) { position: absolute; left: 50%; transform: translateX(-50%); }
@@ -43,14 +39,11 @@ body { font-family: var(--sans); color: var(--ink); font-size: 16px; line-height
 
 .t-display { font-size: clamp(64px, 8vw, 120px); font-weight: 700; letter-spacing: -0.019em; line-height: 1; font-variant-numeric: tabular-nums; }
 .t-stat    { font-size: clamp(44px, 5vw, 72px);  font-weight: 700; letter-spacing: -0.02em;  line-height: 1; font-variant-numeric: tabular-nums; }
-.t-stat .unit { font-size: 0.5em; }
 .t-divider { font-size: clamp(56px, 9vw, 160px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
-.t-opener  { font-size: clamp(40px, 6vw, 90px);  font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; }
-.t-quote   { font-size: clamp(24px, 2.5vw, 37px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
 .t-title   { font-size: clamp(28px, 3vw, 44px);  font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
 .t-label   { font-size: 24px; font-weight: 700; }
 .t-eyebrow { font-size: 18px; font-weight: 600; }
-.t-body    { font-size: 16px; font-weight: 400; line-height: 1.4; }
+.t-body    { font-size: 16px; font-weight: 400; line-height: 1.5; }
 
 .cover-foot { margin-top: auto; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end; }
 .cover-note { max-width: 660px; font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
@@ -58,97 +51,86 @@ body { font-family: var(--sans); color: var(--ink); font-size: 16px; line-height
 .cover-fields .f .k { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
 .cover-fields .f .v { font-size: 13px; color: rgba(255,255,255,0.7); }
 
-.opener { display: flex; gap: clamp(16px, 2vw, 28px); align-items: flex-start; flex-wrap: wrap; }
-.opener .no { font-size: clamp(22px, 2.4vw, 36px); color: rgba(255,255,255,0.35); padding-top: 0.5em; }
-.opener .toc { margin-left: auto; display: grid; gap: 14px; padding-top: 0.8em; min-width: 220px; }
-.opener .toc .i { display: flex; gap: 14px; font-size: 14px; }
-.opener .toc .i b { font-weight: 700; }
-.opener .toc .i span { color: rgba(255,255,255,0.65); }
-@media (max-width: 760px) { .opener .toc { margin-left: 0; width: 100%; } }
-
 .two-col { display: grid; grid-template-columns: minmax(280px, 5fr) 7fr; gap: clamp(24px, 3vw, 60px); }
 @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
 .two-col .head { display: grid; gap: 18px; align-content: start; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 38px); align-items: end; margin-top: clamp(28px, 4vw, 64px); }
-.card { background: var(--card); border-radius: var(--r-card); padding: 34px; min-height: 320px; display: flex; flex-direction: column; }
+.card { background: var(--card); border-radius: var(--r-card); padding: 34px; min-height: 300px; display: flex; flex-direction: column; }
 .card .num { text-align: right; }
 .card .foot { margin-top: auto; display: grid; gap: 8px; padding-top: 32px; }
-.card .cap { font-size: 16px; color: rgba(23,23,23,0.75); }
-.card.hi { background: var(--ink); color: var(--ink-inv); min-height: 420px; grid-column: span 2; }
+.card .cap { font-size: 15px; color: rgba(23,23,23,0.7); line-height: 1.5; }
+.card.hi { background: var(--ink); color: var(--ink-inv); min-height: 400px; grid-column: span 2; }
 .card.hi .cap { color: rgba(255,255,255,0.7); }
 @media (max-width: 620px) { .card.hi { grid-column: span 1; } }
 
-.pull-quote { text-align: center; margin: clamp(32px, 5vw, 72px) auto; max-width: 30ch; }
-
-.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
-.tag.sig   { background: var(--sig-soft);      color: var(--sig); }
-.tag.blue  { background: var(--pt-blue-soft);  color: var(--pt-blue); }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 6px; white-space: nowrap; }
 .tag.green { background: var(--pt-green-soft); color: var(--pt-green); }
+.tag.blue  { background: var(--pt-blue-soft);  color: var(--pt-blue); }
 .tag.amber { background: var(--pt-amber-soft); color: var(--pt-amber); }
-.tag.red   { background: var(--pt-red-soft);   color: var(--pt-red); }
 
-.case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(16px, 2vw, 32px); margin-top: clamp(28px, 4vw, 56px); }
-.case-card { background: var(--card); border-radius: var(--r-card); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-.case-card .ph { aspect-ratio: 4/3; background: rgba(23,23,23,0.06); border-radius: 12px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.6; padding: 14px; }
-.case-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; display: block; }
-.case-card .cap { font-size: 15px; color: rgba(23,23,23,0.75); line-height: 1.5; }
-.case-card .src-link { margin-top: auto; font-size: 12px; color: var(--muted); text-decoration: none; }
+/* 레퍼런스 보드 */
+.mood-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: clamp(24px, 3vw, 44px); }
+.mood-grid .ph { aspect-ratio: 4/5; background: var(--card); border-radius: 14px; display: flex; align-items: flex-end; justify-content: flex-start; color: var(--muted); font-size: 11px; line-height: 1.5; padding: 14px; }
+.mood-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
 
-.mood-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: clamp(28px, 4vw, 56px); }
-.mood-grid .ph { aspect-ratio: 4/3; background: var(--card); border-radius: 12px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.6; padding: 12px; }
-.mood-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block; }
+/* ===== 방향 슬라이드 ===== */
+.dir-head { display: flex; align-items: baseline; gap: clamp(14px, 1.8vw, 26px); flex-wrap: wrap; margin-top: 34px; }
+.dir-num { font-size: clamp(40px, 5vw, 76px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.dir-en { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; color: var(--muted); display: block; margin-bottom: 8px; }
 
-/* ===== direction 모듈 (이 덱 전용) ===== */
-.dir-head { display: flex; align-items: baseline; gap: clamp(16px, 2vw, 28px); flex-wrap: wrap; }
-.dir-num { font-size: clamp(44px, 5.5vw, 84px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
-.dir-en { font-size: 13px; font-weight: 700; letter-spacing: 1.4px; color: var(--muted); display: block; margin-bottom: 10px; }
+.dir-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(14px, 1.6vw, 24px); margin-top: clamp(22px, 2.6vw, 38px); }
+.pane { display: flex; flex-direction: column; gap: 10px; }
+.pane .ph { aspect-ratio: 16/10; background: var(--card); border-radius: 22px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 13px; line-height: 1.7; padding: 20px; }
+.pane img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 22px; display: block; }
+.pane .k { font-size: 12px; font-weight: 700; letter-spacing: 0.9px; color: var(--muted); }
+.pane.ours .k { color: var(--accent); }
 
-.dir-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(26px, 3.2vw, 46px); }
-.shot { background: var(--card); border-radius: var(--r-card); padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-.shot .ph { aspect-ratio: 16/10; background: rgba(23,23,23,0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.6; padding: 14px; }
-.shot img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 14px; display: block; }
-.shot .k { font-size: 13px; font-weight: 700; letter-spacing: 0.4px; }
-.shot .cap { font-size: 14px; color: rgba(23,23,23,0.7); line-height: 1.55; }
+.rule { display: flex; gap: clamp(12px, 1.6vw, 22px); align-items: baseline; flex-wrap: wrap; margin-top: clamp(20px, 2.4vw, 32px); padding-top: 20px; border-top: 1px solid rgba(23,23,23,0.14); }
+.rule .lb { font-size: 12px; font-weight: 700; letter-spacing: 0.9px; color: var(--accent); }
+.rule .v { font-size: clamp(17px, 1.5vw, 22px); font-weight: 700; letter-spacing: -0.01em; }
 
-.fit { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(12px, 1.5vw, 20px); margin-top: clamp(20px, 2.5vw, 32px); }
-.fit-item { border: 1px solid rgba(23,23,23,0.12); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 9px; }
-.fit-item .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.fit { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(10px, 1.2vw, 16px); margin-top: clamp(16px, 2vw, 24px); }
+.fit-item { display: flex; flex-direction: column; gap: 7px; }
+.fit-item .top { display: flex; align-items: center; gap: 9px; }
 .fit-item .nm { font-size: 17px; font-weight: 700; }
-.fit-item .why { font-size: 14px; color: rgba(23,23,23,0.7); line-height: 1.55; }
+.fit-item .why { font-size: 14px; color: rgba(23,23,23,0.65); line-height: 1.5; }
 
-.prompt { margin-top: clamp(20px, 2.5vw, 30px); background: var(--ink); color: var(--ink-inv); border-radius: 20px; padding: 22px 26px; font-size: 13px; line-height: 1.75; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-x: auto; }
-.prompt .lb { display: block; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.6px; color: #FF6B7F; margin-bottom: 10px; }
-.prompt b { color: #FF6B7F; font-weight: 600; }
-
-.mx-wrap { overflow-x: auto; margin-top: clamp(28px, 4vw, 52px); }
-table.mx { border-collapse: collapse; width: 100%; min-width: 680px; }
-table.mx th, table.mx td { padding: 17px 14px; text-align: left; border-bottom: 1px solid rgba(23,23,23,0.1); font-size: 15px; vertical-align: middle; }
+/* 매트릭스 */
+.mx-wrap { overflow-x: auto; margin-top: clamp(24px, 3vw, 44px); }
+table.mx { border-collapse: collapse; width: 100%; min-width: 640px; }
+table.mx th, table.mx td { padding: 18px 14px; text-align: left; border-bottom: 1px solid rgba(23,23,23,0.1); font-size: 16px; vertical-align: middle; }
 table.mx th { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.4px; }
-table.mx thead th { border-bottom: 1px solid rgba(23,23,23,0.25); }
+table.mx thead th { border-bottom: 1px solid rgba(23,23,23,0.28); }
 table.mx td.dir { font-weight: 700; }
-table.mx td.dir small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: 0.4px; margin-top: 3px; }
+table.mx td.dir small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); letter-spacing: 0.7px; margin-top: 3px; }
 table.mx td.c { text-align: center; }
-.legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 22px; font-size: 13px; color: var(--muted); }
+.legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 22px; font-size: 13px; color: var(--muted); align-items: center; }
 
-.lever { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(14px, 1.8vw, 24px); margin-top: clamp(28px, 4vw, 52px); }
-.lever-item { background: var(--card); border-radius: var(--r-card); padding: 28px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; }
-.lever-item .st { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; color: var(--accent); }
-.lever-item .cap { font-size: 14px; color: rgba(23,23,23,0.7); line-height: 1.55; margin-top: auto; }
+/* 스텝 */
+.steps { display: grid; margin-top: clamp(24px, 3vw, 44px); }
+.step { display: grid; grid-template-columns: 68px 220px 1fr; gap: clamp(14px, 2vw, 30px); align-items: baseline; padding: 24px 0; border-top: 1px solid rgba(23,23,23,0.12); }
+.step .n { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; color: var(--accent); }
+.step .h { font-size: 20px; font-weight: 700; }
+.step .d { font-size: 15px; color: rgba(23,23,23,0.65); line-height: 1.5; }
+@media (max-width: 760px) { .step { grid-template-columns: 1fr; gap: 6px; } }
 
-.steps { display: grid; gap: 14px; margin-top: clamp(28px, 4vw, 52px); }
-.step { display: grid; grid-template-columns: 74px 1fr; gap: clamp(16px, 2vw, 30px); align-items: start; padding: 22px 0; border-top: 1px solid rgba(23,23,23,0.12); }
-.step .n { font-size: 13px; font-weight: 700; letter-spacing: 0.6px; color: var(--accent); padding-top: 4px; }
-.step .b { display: grid; gap: 7px; }
-.step .h { font-size: 19px; font-weight: 700; }
-.step .d { font-size: 15px; color: rgba(23,23,23,0.7); line-height: 1.55; }
-@media (max-width: 620px) { .step { grid-template-columns: 1fr; gap: 8px; } }
+/* 부록 */
+.prompt { background: var(--card); border-radius: 20px; padding: 20px 24px; font-size: 12.5px; line-height: 1.7; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-x: auto; color: rgba(23,23,23,0.8); }
+.prompt .lb { display: block; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.9px; color: var(--accent); margin-bottom: 9px; }
+.prompt b { color: var(--accent); font-weight: 700; }
+.prompt-list { display: grid; gap: 12px; margin-top: clamp(20px, 2.4vw, 32px); }
+.lever { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: clamp(20px, 2.4vw, 30px); }
+.lever-item { background: var(--ink); color: var(--ink-inv); border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }
+.lever-item .st { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; color: #FF6B7F; }
+.lever-item .nm { font-size: 17px; font-weight: 700; }
+.lever-item .d { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 </style>
 </head>
 <body>
 <div class="deck">
 
-  <!-- 01 · cover -->
+  <!-- 01 표지 -->
   <section class="slide dark m-divider">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <h1 class="t-divider" style="margin-top:60px">UA 룩앤필<br>확장 테스트</h1>
@@ -162,359 +144,198 @@ table.mx td.c { text-align: center; }
     </div>
   </section>
 
-  <!-- 02 · divider -->
-  <section class="slide dark m-divider">
-    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">지금의 소재<br>THE PROBLEM<br>왜 안 멈추나</h2>
-  </section>
-
-  <!-- 03 · 문제 정의 -->
+  <!-- 02 왜 -->
   <section class="slide m-content">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <div class="two-col" style="margin-top:40px">
       <div class="head">
-        <p class="t-eyebrow">Problem</p>
-        <h3 class="t-title">게임 UA 소재는<br>서로를 닮아간다</h3>
+        <p class="t-eyebrow">Why</p>
+        <h3 class="t-title">유저는 0.4초에<br>장르를 판별한다</h3>
       </div>
-      <p class="t-body">캐릭터 정면 · 스킬 이펙트 · 전투 스크린샷. 세 가지 문법이 장르를 가리지 않고 반복되면서, 유저는 소재를 보기 전에 카테고리를 먼저 인식한다. "또 게임 광고"로 분류되는 순간 스크롤은 이미 지나간 뒤다.<br><br>문제는 퀄리티가 아니라 <b>분류 속도</b>다. 잘 만든 판타지 키비주얼도 0.4초 안에 게임 광고로 판별되면 잘 만든 값을 못 받는다. 확장의 목표는 더 화려한 게임 컷이 아니라, <b>게임 광고로 분류되기 전에 눈이 걸리는 컷</b>이다.</p>
+      <p class="t-body">판별이 끝나면 관심 없는 유저는 지나갑니다. 잘 만든 판타지 키비주얼도 마찬가지입니다.<br><br>이번 테스트의 목표는 <b>그 판별을 늦추는 구도</b>를 찾는 것입니다. 재료는 게임이 아니라 일상 소품입니다. 케이크 · 향수병 · 식탁 · 꽃 위에 IP를 올립니다.</p>
     </div>
     <div class="cards">
       <div class="card">
         <div class="num t-stat">01</div>
-        <div class="foot"><div class="t-label">배경이 판타지</div><div class="cap">성·던전·전장. 배경만 봐도 장르가 확정되고, 확정되는 순간 관심 없는 유저는 이탈한다.</div></div>
+        <div class="foot"><div class="t-label">배경이 판타지</div><div class="cap">성 · 던전 · 전장</div></div>
       </div>
       <div class="card">
         <div class="num t-stat">02</div>
-        <div class="foot"><div class="t-label">구도가 정면</div><div class="cap">캐릭터 정면 반신 · 아이레벨. 화면 안에 얌전히 갇혀 있어 스크롤 벡터를 방해하지 않는다.</div></div>
+        <div class="foot"><div class="t-label">구도가 정면</div><div class="cap">정면 반신 · 아이레벨</div></div>
       </div>
       <div class="card">
         <div class="num t-stat">03</div>
-        <div class="foot"><div class="t-label">질문이 없다</div><div class="cap">보자마자 다 읽힌다. 더 볼 이유가 없으니 캡션도 안 읽고 넘어간다.</div></div>
+        <div class="foot"><div class="t-label">질문이 없다</div><div class="cap">보자마자 다 읽힌다</div></div>
       </div>
       <div class="card hi">
         <div class="num t-display">0.4초</div>
-        <div class="foot"><div class="t-label">카테고리 판별에 걸리는 시간</div><div class="cap">이 시간 안에 "게임 광고"로 분류되면 소재의 완성도는 평가받지 못한다. 확장의 승부처는 이 0.4초를 흐리는 것.</div></div>
+        <div class="foot"><div class="t-label">장르 판별에 걸리는 시간</div><div class="cap">이 안에 게임 광고로 분류되면 소재의 완성도는 평가받지 못합니다.</div></div>
       </div>
     </div>
     <p class="source">※ 0.4초는 업계 통용 기준치를 참고한 작업 가설. 이번 테스트로 실측 예정.</p>
   </section>
 
-  <!-- 04 · 가설 -->
-  <section class="slide m-content" style="justify-content:center">
-    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <p class="pull-quote t-quote">“ 궁금증은 비현실에서 오지 않는다.<br><b style="color:var(--accent)">현실 안에 놓인 비현실</b>에서 온다. ”</p>
-    <div class="two-col" style="max-width:1100px; margin:0 auto; width:100%">
-      <div class="head"></div>
-      <p class="t-body">완전한 판타지는 판타지로 분류되고 끝난다. 유저가 멈추는 건 <b>아는 것 안에 모르는 게 하나 섞였을 때</b>다. 부엌은 아는데 낫이 모르겠고, 케이크는 아는데 크기가 안 맞는다. 그 어긋남을 확인하려고 0.4초가 1.5초가 된다.<br><br>그래서 이번 확장의 재료는 게임이 아니라 <b>일상</b>이다. 케이크 · 향수병 · 식탁 · 꽃. 여기에 IP를 얹는다.</p>
-    </div>
-  </section>
-
-  <!-- 05 · divider -->
-  <section class="slide dark m-divider">
-    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <h2 class="t-divider" style="margin-top:40px">레퍼런스<br>REFERENCE<br>무엇을 훔칠 것인가</h2>
-  </section>
-
-  <!-- 06 · 레퍼런스 보드 -->
+  <!-- 03 레퍼런스 보드 -->
   <section class="slide m-content">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <div class="two-col" style="margin-top:40px">
       <div class="head">
-        <p class="t-eyebrow">Reference Board</p>
+        <p class="t-eyebrow">Reference</p>
         <h3 class="t-title">게임 밖에서<br>가져온다</h3>
       </div>
-      <p class="t-body">뷰티 · 패션 · F&amp;B 광고에서 이미 검증된 컷들. 이 카테고리는 제품이 작고 심심하기 때문에 <b>구도로 승부</b>해온 역사가 길다. 게임은 소재가 화려해서 구도를 안 써왔다. 정확히 반대다.<br><br>수집한 컷을 배치·물성·스케일 기준으로 다시 갈랐더니 <b>5개 패턴</b>으로 수렴했다.</p>
+      <p class="t-body">뷰티 · 패션 · F&amp;B 광고. 제품이 작고 심심해서 구도로 승부해온 카테고리입니다.<br><br>모은 컷을 배치 · 물성 · 스케일로 갈랐더니 <b>5개 패턴</b>으로 모였습니다.</p>
     </div>
     <div class="mood-grid">
-      <div class="ph">medicube<br>손 뻗기</div>
-      <div class="ph">Chinatown<br>아이 손 뻗기</div>
-      <div class="ph">전기톱<br>웨딩케이크</div>
-      <div class="ph">케이크<br>포크 클로즈업</div>
-      <div class="ph">GUCCI<br>초콜릿</div>
-      <div class="ph">LOEWE<br>가방 그네</div>
-      <div class="ph">Acne Studios<br>오렌지</div>
-      <div class="ph">거대 딸기<br>위 인물</div>
-      <div class="ph">병에서 쏟아지는<br>보라 액체</div>
-      <div class="ph">레몬 낙하<br>향수</div>
-      <div class="ph">Jacquemus<br>버섯</div>
-      <div class="ph">이끼 정원<br>+ 난초</div>
+      <div class="ph">medicube</div>
+      <div class="ph">Chinatown 키즈</div>
+      <div class="ph">전기톱 케이크</div>
+      <div class="ph">케이크 포크</div>
+      <div class="ph">GUCCI 초콜릿</div>
+      <div class="ph">LOEWE 그네</div>
+      <div class="ph">Acne 오렌지</div>
+      <div class="ph">거대 딸기</div>
+      <div class="ph">보라 액체</div>
+      <div class="ph">레몬 낙하</div>
+      <div class="ph">Jacquemus 버섯</div>
+      <div class="ph">이끼 정원</div>
     </div>
-    <p class="source">※ 각 자리에 원본 레퍼런스 이미지 삽입 (보유 보드에서 배치)</p>
+    <p class="source">※ 각 칸에 원본 레퍼런스 이미지 삽입</p>
   </section>
 
-  <!-- 07 · 5방향 인덱스 -->
+  <!-- 04 · D01 -->
   <section class="slide m-dense">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="two-col" style="margin-top:40px">
-      <div class="head">
-        <p class="t-eyebrow">Index</p>
-        <h3 class="t-title">5개 방향</h3>
-      </div>
-      <p class="t-body">각 방향은 <b>구도 규칙 하나</b>로 정의된다. 규칙이 하나여야 타이틀을 갈아끼워도 룩이 유지되고, 외주·내부 누가 만들어도 같은 결과가 나온다.<br><br>다섯 방향 모두 <b>뱀피르로 이미 1차 생성이 끝나 있다.</b> 검증 안 된 방향을 제안하는 게 아니라, 나온 결과를 정리해 다른 타이틀로 넓히는 단계다.</p>
-    </div>
-    <div class="case-grid">
-      <div class="case-card">
-        <div class="ph">D01<br>손 클로즈업 컷</div>
-        <div class="t-label">01 · 손이 화면을 뚫는다</div>
-        <p class="cap">광각 극단 원근. 손이 얼굴의 2배가 되며 화면 밖으로 나온다.</p>
-        <span class="src-link">HAND FORWARD</span>
-      </div>
-      <div class="case-card">
-        <div class="ph">D02<br>주방 케이크 컷</div>
-        <div class="t-label">02 · 일상을 도륙한다</div>
-        <p class="cap">게임 무기를 현대 주방으로. 케이크를 자르고 식탁을 부순다.</p>
-        <span class="src-link">KITCHEN CARNAGE</span>
-      </div>
-      <div class="case-card">
-        <div class="ph">D03<br>거대 오브젝트 컷</div>
-        <div class="t-label">03 · 스케일이 뒤집힌다</div>
-        <p class="cap">캐릭터 대 오브젝트 1:18. 일상 사물이 무대가 된다.</p>
-        <span class="src-link">SCALE INVERSION</span>
-      </div>
-      <div class="case-card">
-        <div class="ph">D04<br>액체 스플래시 컷</div>
-        <div class="t-label">04 · 액체가 멈춘다</div>
-        <p class="cap">고속 셔터 크라운 스플래시. 실사 촬영 난이도가 눈에 보인다.</p>
-        <span class="src-link">LIQUID FREEZE</span>
-      </div>
-      <div class="case-card">
-        <div class="ph">D05<br>장미 · 관 컷</div>
-        <div class="t-label">05 · 정원에 잠긴다</div>
-        <p class="cap">45° 부감. 인물이 꽃과 액체에 반쯤 잠긴 디오라마.</p>
-        <span class="src-link">FLORAL ENTOMBMENT</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 08 · D01 -->
-  <section class="slide m-dense">
-    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="dir-head" style="margin-top:40px">
+    <div class="dir-head">
       <span class="dir-num">01</span>
-      <div>
-        <span class="dir-en">HAND FORWARD</span>
-        <h3 class="t-title">손이 화면을 뚫는다</h3>
+      <div><span class="dir-en">HAND FORWARD</span><h3 class="t-title">손이 화면을 뚫는다</h3></div>
+    </div>
+    <div class="dir-shots">
+      <div class="pane">
+        <div class="ph">레퍼런스<br>medicube 세럼 / Chinatown 아이</div>
+        <div class="k">REFERENCE</div>
+      </div>
+      <div class="pane ours">
+        <div class="ph">뱀피르 Step 08 · IP 변경<br>폐허에서 손 뻗기 4컷</div>
+        <div class="k">생성 완료</div>
       </div>
     </div>
-    <div class="dir-grid">
-      <div class="shot">
-        <div class="ph">레퍼런스<br>medicube 세럼 · Chinatown 아이<br>극단 광각 셀피</div>
-        <div class="k">레퍼런스</div>
-        <p class="cap">뷰티·키즈 광고가 오래 써온 문법. 손이 렌즈를 향하고, 소실점이 손바닥에 꽂힌다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">뱀피르 검증컷<br>Step 08 · IP 변경 4컷<br>(무너진 성벽 / 손 뻗기)</div>
-        <div class="k">뱀피르 · 생성 완료</div>
-        <p class="cap">가시덩굴 폐허에서 손을 뻗는 4개 변주. 손톱·피 질감이 광각에서 더 살아난다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">규칙 다이어그램<br>20mm · 30cm · 손:얼굴 = 2:1</div>
-        <div class="k">구도 규칙</div>
-        <p class="cap">20mm 광각을 인물 30cm 앞에. 손이 프레임의 40%. 얼굴은 얕은 심도로 뒤에 남긴다.</p>
-      </div>
-    </div>
+    <div class="rule"><span class="lb">RULE</span><span class="v">20mm 광각 · 인물 30cm 앞 · 손이 얼굴의 2배</span></div>
     <div class="fit">
-      <div class="fit-item">
-        <div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div>
-        <p class="why">손톱 · 핏자국 · 반지가 이미 IP 자산. 손 자체가 캐릭터를 설명한다. 생성 완료.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div>
-        <p class="why">메카닉 건틀렛. 금속 관절과 유압 라인이 광각 왜곡에서 오히려 정보량이 늘어난다.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">몬스터길들이기</span><span class="tag amber">변주 필요</span></div>
-        <p class="why">캐릭터 두상이 커서 광각이 기괴해진다. 손 대신 <b>몬스터 발바닥·발톱</b>이 화면을 덮는 컷으로 치환.</p>
-      </div>
+      <div class="fit-item"><div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div><p class="why">손톱과 피가 이미 IP</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div><p class="why">메카닉 건틀렛</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">몬스터길들이기</span><span class="tag amber">변주</span></div><p class="why">손 대신 몬스터 발바닥</p></div>
     </div>
-    <div class="prompt"><span class="lb">STEP 2 · PROMPT SKELETON</span>ultra-wide 20mm lens, subject 30cm from camera, one hand thrust toward the lens filling 40% of frame, hand rendered 2x larger than the head, extreme foreshortening, low camera angle, shallow depth of field keeping the face soft behind, cinematic rim light, <b>[IP CHARACTER + COSTUME]</b>, <b>[IP ENVIRONMENT]</b> in ruin behind, photoreal</div>
   </section>
 
-  <!-- 09 · D02 -->
+  <!-- 05 · D02 -->
   <section class="slide m-dense">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="dir-head" style="margin-top:40px">
+    <div class="dir-head">
       <span class="dir-num">02</span>
-      <div>
-        <span class="dir-en">KITCHEN CARNAGE</span>
-        <h3 class="t-title">일상을 도륙한다</h3>
+      <div><span class="dir-en">KITCHEN CARNAGE</span><h3 class="t-title">일상을 도륙한다</h3></div>
+    </div>
+    <div class="dir-shots">
+      <div class="pane">
+        <div class="ph">레퍼런스<br>전기톱 웨딩케이크 / GUCCI 초콜릿</div>
+        <div class="k">REFERENCE</div>
+      </div>
+      <div class="pane ours">
+        <div class="ph">뱀피르 Step 03 · BG 생성<br>낫으로 케이크 가르기 (현대 주방)</div>
+        <div class="k">생성 완료</div>
       </div>
     </div>
-    <div class="dir-grid">
-      <div class="shot">
-        <div class="ph">레퍼런스<br>전기톱 웨딩케이크 · GUCCI 초콜릿<br>케이크 포크 클로즈업</div>
-        <div class="k">레퍼런스</div>
-        <p class="cap">우아한 것에 과잉 폭력을 가하는 대비. 패션 하우스가 가장 적극적으로 써온 방식.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">뱀피르 검증컷<br>Step 03 · BG 생성 2안<br>(고딕 주방 → 현대 주방)</div>
-        <div class="k">뱀피르 · 생성 완료</div>
-        <p class="cap">낫으로 케이크를 가르는 동일 포즈에 배경만 교체. <b>현대 주방 안이 압도적으로 강하다.</b></p>
-      </div>
-      <div class="shot">
-        <div class="ph">규칙 다이어그램<br>무기 스케일 유지 · 배경만 현실</div>
-        <div class="k">구도 규칙</div>
-        <p class="cap">무기와 의상은 게임 스케일 그대로. 배경·소품만 현실로 교체한다. 창가 자연광 고정.</p>
-      </div>
-    </div>
+    <div class="rule"><span class="lb">RULE</span><span class="v">무기는 게임 스케일 그대로 · 배경만 현대 주방</span></div>
     <div class="fit">
-      <div class="fit-item">
-        <div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div>
-        <p class="why">낫 + 케이크. 붉은 필링이 피로 읽히면서 IP 설명을 대사 없이 끝낸다. 생성 완료.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">몬스터길들이기</span><span class="tag green">최적</span></div>
-        <p class="why">몬스터가 새벽에 냉장고를 털다 걸린 컷. 귀여움 + 난장판 = 캡션을 읽게 만드는 조합.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">RF 온라인</span><span class="tag blue">가능</span></div>
-        <p class="why">광선 병기로 스테이크 절단, 절단면 발광. 다만 SF 톤과 주방의 거리가 멀어 2차 우선.</p>
-      </div>
+      <div class="fit-item"><div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div><p class="why">낫 + 케이크, 붉은 필링</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">몬스터길들이기</span><span class="tag green">최적</span></div><p class="why">새벽에 냉장고 터는 몬스터</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">RF 온라인</span><span class="tag blue">2차</span></div><p class="why">광선 병기로 스테이크</p></div>
     </div>
-    <div class="prompt"><span class="lb">STEP 2 · PROMPT SKELETON</span><b>[IP WEAPON]</b> mid-swing cleaving a tiered buttercream cake, modern domestic kitchen, daylight from a side window, cream and red filling splattered across the counter and floor, <b>[IP CHARACTER]</b> deadpan expression looking at camera, editorial food photography lighting, 50mm, f/2.8, photoreal</div>
   </section>
 
-  <!-- 10 · D03 -->
+  <!-- 06 · D03 -->
   <section class="slide m-dense">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="dir-head" style="margin-top:40px">
+    <div class="dir-head">
       <span class="dir-num">03</span>
-      <div>
-        <span class="dir-en">SCALE INVERSION</span>
-        <h3 class="t-title">스케일이 뒤집힌다</h3>
+      <div><span class="dir-en">SCALE INVERSION</span><h3 class="t-title">스케일이 뒤집힌다</h3></div>
+    </div>
+    <div class="dir-shots">
+      <div class="pane">
+        <div class="ph">레퍼런스<br>LOEWE 가방 그네 / Acne 오렌지</div>
+        <div class="k">REFERENCE</div>
+      </div>
+      <div class="pane ours">
+        <div class="ph">뱀피르 Step 03 · 오브젝트 변경<br>기울어진 병 위 착석</div>
+        <div class="k">생성 완료</div>
       </div>
     </div>
-    <div class="dir-grid">
-      <div class="shot">
-        <div class="ph">레퍼런스<br>LOEWE 가방 그네 · Acne 오렌지<br>거대 딸기 · Jacquemus 버섯</div>
-        <div class="k">레퍼런스</div>
-        <p class="cap">제품을 무대로 만드는 럭셔리 광고의 정석. 제품이 클수록 브랜드가 커 보인다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">뱀피르 검증컷<br>Step 03 · 오브젝트 변경 / 배경 늘리기<br>(기울어진 병 위 착석)</div>
-        <div class="k">뱀피르 · 생성 완료</div>
-        <p class="cap">기울어진 향수병 위에 앉은 세로 컷. 아웃페인팅으로 하늘을 늘려 여백을 확보했다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">규칙 다이어그램<br>캐릭터 : 오브젝트 = 1 : 18</div>
-        <div class="k">구도 규칙</div>
-        <p class="cap">오브젝트가 하단 2/3를 차지. 배경은 비운다. 85mm 압축으로 원근을 죽여야 크기가 산다.</p>
-      </div>
-    </div>
+    <div class="rule"><span class="lb">RULE</span><span class="v">캐릭터 : 오브젝트 = 1 : 18 · 85mm 압축</span></div>
     <div class="fit">
-      <div class="fit-item">
-        <div class="top"><span class="nm">몬스터길들이기</span><span class="tag green">최적</span></div>
-        <p class="why">몬스터 간 크기 편차가 원래 IP 설정. 스케일 전복에 <b>개연성이 공짜로</b> 붙는다.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div>
-        <p class="why">거대 광석 · 에너지 코어 위 착석. 자원 채굴이 IP 설정이라 오브젝트를 새로 만들 필요가 없다.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">뱀피르</span><span class="tag blue">가능</span></div>
-        <p class="why">이미 검증됨. 향수병 외에 성배 · 관 · 촛대로 오브젝트만 갈아끼우면 시리즈가 된다.</p>
-      </div>
+      <div class="fit-item"><div class="top"><span class="nm">몬스터길들이기</span><span class="tag green">최적</span></div><p class="why">크기 편차가 원래 IP 설정</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div><p class="why">거대 광석 위 착석</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">뱀피르</span><span class="tag blue">2차</span></div><p class="why">성배 · 관으로 시리즈화</p></div>
     </div>
-    <div class="prompt"><span class="lb">STEP 2 · PROMPT SKELETON</span><b>[IP CHARACTER]</b> sitting on top of a giant <b>[EVERYDAY OBJECT]</b>, character-to-object ratio 1:18, object occupying the lower two-thirds of the frame, wide empty landscape behind, overcast soft light, product photography realism, 85mm telephoto compression, vertical 4:5 composition</div>
   </section>
 
-  <!-- 11 · D04 -->
+  <!-- 07 · D04 -->
   <section class="slide m-dense">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="dir-head" style="margin-top:40px">
+    <div class="dir-head">
       <span class="dir-num">04</span>
-      <div>
-        <span class="dir-en">LIQUID FREEZE</span>
-        <h3 class="t-title">액체가 멈춘다</h3>
+      <div><span class="dir-en">LIQUID FREEZE</span><h3 class="t-title">액체가 멈춘다</h3></div>
+    </div>
+    <div class="dir-shots">
+      <div class="pane">
+        <div class="ph">레퍼런스<br>보라 액체 크라운 / 레몬 낙하</div>
+        <div class="k">REFERENCE</div>
+      </div>
+      <div class="pane ours">
+        <div class="ph">뱀피르 Step 03<br>병에서 쏟아지는 피 · 왕관형 스플래시</div>
+        <div class="k">생성 완료</div>
       </div>
     </div>
-    <div class="dir-grid">
-      <div class="shot">
-        <div class="ph">레퍼런스<br>보라 액체 크라운 스플래시<br>레몬 낙하 · 딸기 폭발</div>
-        <div class="k">레퍼런스</div>
-        <p class="cap">F&amp;B·향수 광고의 고속 촬영 문법. "이거 어떻게 찍었지"가 곧 체류 시간이 된다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">뱀피르 검증컷<br>Step 03 · 붉은 액체 크라운<br>(병에서 쏟아지는 피)</div>
-        <div class="k">뱀피르 · 생성 완료</div>
-        <p class="cap">낙하 지점의 왕관형 스플래시가 정확히 잡혔다. 안개 낀 초원 배경으로 액체 색만 남겼다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">규칙 다이어그램<br>1/8000s · 크라운 · 낙하물 5개</div>
-        <div class="k">구도 규칙</div>
-        <p class="cap">낙하물은 5~7개까지만. 더 늘리면 CG로 읽힌다. 단일 하드 키라이트로 물성을 세운다.</p>
-      </div>
-    </div>
+    <div class="rule"><span class="lb">RULE</span><span class="v">1/8000초 · 왕관형 스플래시 · 낙하물 5개까지</span></div>
     <div class="fit">
-      <div class="fit-item">
-        <div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div>
-        <p class="why">피. 색 하나로 IP가 설명되는 유일한 타이틀. 액체 방향에서 가장 강하다. 생성 완료.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div>
-        <p class="why">용융 금속 · 플라즈마. 자체 발광 액체라 어두운 배경에서 광량 대비가 크게 벌어진다.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">몬스터길들이기</span><span class="tag blue">가능</span></div>
-        <p class="why">슬라임 · 물감 다색 스플래시. 색이 여러 개라 크라운 형태가 흐려질 수 있어 단색 우선 테스트.</p>
-      </div>
+      <div class="fit-item"><div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div><p class="why">피. 색 하나로 IP가 읽힌다</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">RF 온라인</span><span class="tag green">최적</span></div><p class="why">용융 금속, 자체 발광</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">몬스터길들이기</span><span class="tag blue">2차</span></div><p class="why">슬라임 다색 스플래시</p></div>
     </div>
-    <div class="prompt"><span class="lb">STEP 2 · PROMPT SKELETON</span>high-speed capture at 1/8000s, <b>[IP LIQUID]</b> pouring from a tilted <b>[OBJECT]</b>, crown-shaped splash at the point of impact, exactly 5 droplets suspended mid-air, <b>[IP CHARACTER]</b> perched above the vessel, dark gradient background, single hard key light from the left, macro clarity, photoreal</div>
   </section>
 
-  <!-- 12 · D05 -->
+  <!-- 08 · D05 -->
   <section class="slide m-dense">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="dir-head" style="margin-top:40px">
+    <div class="dir-head">
       <span class="dir-num">05</span>
-      <div>
-        <span class="dir-en">FLORAL ENTOMBMENT</span>
-        <h3 class="t-title">정원에 잠긴다</h3>
+      <div><span class="dir-en">FLORAL ENTOMBMENT</span><h3 class="t-title">정원에 잠긴다</h3></div>
+    </div>
+    <div class="dir-shots">
+      <div class="pane">
+        <div class="ph">레퍼런스<br>이끼 정원 + 난초 / 연꽃 위 인물</div>
+        <div class="k">REFERENCE</div>
+      </div>
+      <div class="pane ours">
+        <div class="ph">뱀피르 · 장미 / 촛농 / 관 3컷<br>핏물에 잠긴 캐릭터</div>
+        <div class="k">생성 완료</div>
       </div>
     </div>
-    <div class="dir-grid">
-      <div class="shot">
-        <div class="ph">레퍼런스<br>이끼 정원 + 난초<br>연꽃 위 인물 · Jacquemus 버섯</div>
-        <div class="k">레퍼런스</div>
-        <p class="cap">미니어처 디오라마 부감. 프레임 네 귀퉁이를 식물로 막아 시선을 가운데에 가둔다.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">뱀피르 검증컷<br>장미 · 촛농 · 관 3컷<br>(핏물에 잠긴 남성 캐릭터)</div>
-        <div class="k">뱀피르 · 생성 완료</div>
-        <p class="cap">죽음인지 잠인지 모호한 상태. 방향 5개 중 캡션을 가장 확실히 읽게 만드는 컷.</p>
-      </div>
-      <div class="shot">
-        <div class="ph">규칙 다이어그램<br>45° 부감 · 네 귀퉁이 차폐</div>
-        <div class="k">구도 규칙</div>
-        <p class="cap">45° 부감 고정. 인물은 반쯤 잠기게. 틸트시프트로 미니어처감을 만든다.</p>
-      </div>
-    </div>
+    <div class="rule"><span class="lb">RULE</span><span class="v">45° 부감 · 네 귀퉁이를 식물로 막기 · 틸트시프트</span></div>
     <div class="fit">
-      <div class="fit-item">
-        <div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div>
-        <p class="why">관 + 장미 + 핏물. 이미 완성 단계라 추가 생성 없이 바로 편성 가능.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">몬스터길들이기</span><span class="tag blue">가능</span></div>
-        <p class="why">이끼 디오라마에 잠든 몬스터. 죽음 톤을 빼고 <b>낮잠</b>으로 치환하면 IP 톤과 맞는다.</p>
-      </div>
-      <div class="fit-item">
-        <div class="top"><span class="nm">RF 온라인</span><span class="tag amber">변주 필요</span></div>
-        <p class="why">자연·화훼 모티프가 IP에 없다. 꽃 대신 <b>금속 파편 · 배선 · 발광 이끼</b>로 치환해야 성립.</p>
-      </div>
+      <div class="fit-item"><div class="top"><span class="nm">뱀피르</span><span class="tag green">최적</span></div><p class="why">관 + 장미, 이미 완성 단계</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">몬스터길들이기</span><span class="tag blue">2차</span></div><p class="why">죽음 대신 낮잠으로</p></div>
+      <div class="fit-item"><div class="top"><span class="nm">RF 온라인</span><span class="tag amber">변주</span></div><p class="why">꽃 대신 금속 파편 · 발광 이끼</p></div>
     </div>
-    <div class="prompt"><span class="lb">STEP 2 · PROMPT SKELETON</span>45-degree overhead shot, <b>[IP CHARACTER]</b> half-submerged in a pool of <b>[IP LIQUID]</b>, black roses and moss framing all four corners of the frame, dripping candles on wet rock, <b>[IP WEAPON]</b> resting beside the body, diorama miniature aesthetic, tilt-shift, moody low-key lighting</div>
   </section>
 
-  <!-- 13 · 매트릭스 -->
-  <section class="slide m-dense">
+  <!-- 09 매트릭스 -->
+  <section class="slide m-content">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <div class="two-col" style="margin-top:40px">
       <div class="head">
         <p class="t-eyebrow">Matrix</p>
         <h3 class="t-title">타이틀 × 방향</h3>
       </div>
-      <p class="t-body">15칸 중 <b>최적 8칸</b>. 전 방향을 모든 타이틀에 밀지 않고, 타이틀마다 강한 2개씩만 골라 1차 테스트를 돌린다.<br><br>변주 필요 2칸은 규칙을 그대로 쓰되 소재를 치환하는 조건부다. 폐기가 아니라 2차 대상.</p>
+      <p class="t-body">15칸 중 <b>최적 8칸</b>. 타이틀마다 강한 2개씩만 1차로 돌립니다.</p>
     </div>
     <div class="mx-wrap">
       <table class="mx">
@@ -522,86 +343,22 @@ table.mx td.c { text-align: center; }
           <tr><th>방향</th><th style="text-align:center">뱀피르</th><th style="text-align:center">RF 온라인</th><th style="text-align:center">몬스터길들이기</th><th>1차 편성</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="dir">01 손이 화면을 뚫는다<small>HAND FORWARD</small></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag amber">변주</span></td>
-            <td>뱀피르 · RF</td>
-          </tr>
-          <tr>
-            <td class="dir">02 일상을 도륙한다<small>KITCHEN CARNAGE</small></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag blue">가능</span></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td>뱀피르 · 몬길</td>
-          </tr>
-          <tr>
-            <td class="dir">03 스케일이 뒤집힌다<small>SCALE INVERSION</small></td>
-            <td class="c"><span class="tag blue">가능</span></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td>RF · 몬길</td>
-          </tr>
-          <tr>
-            <td class="dir">04 액체가 멈춘다<small>LIQUID FREEZE</small></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag blue">가능</span></td>
-            <td>뱀피르 · RF</td>
-          </tr>
-          <tr>
-            <td class="dir">05 정원에 잠긴다<small>FLORAL ENTOMBMENT</small></td>
-            <td class="c"><span class="tag green">최적</span></td>
-            <td class="c"><span class="tag amber">변주</span></td>
-            <td class="c"><span class="tag blue">가능</span></td>
-            <td>뱀피르</td>
-          </tr>
+          <tr><td class="dir">01 손이 화면을 뚫는다<small>HAND FORWARD</small></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag amber">변주</span></td><td>뱀피르 · RF</td></tr>
+          <tr><td class="dir">02 일상을 도륙한다<small>KITCHEN CARNAGE</small></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag blue">2차</span></td><td class="c"><span class="tag green">최적</span></td><td>뱀피르 · 몬길</td></tr>
+          <tr><td class="dir">03 스케일이 뒤집힌다<small>SCALE INVERSION</small></td><td class="c"><span class="tag blue">2차</span></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag green">최적</span></td><td>RF · 몬길</td></tr>
+          <tr><td class="dir">04 액체가 멈춘다<small>LIQUID FREEZE</small></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag blue">2차</span></td><td>뱀피르 · RF</td></tr>
+          <tr><td class="dir">05 정원에 잠긴다<small>FLORAL ENTOMBMENT</small></td><td class="c"><span class="tag green">최적</span></td><td class="c"><span class="tag amber">변주</span></td><td class="c"><span class="tag blue">2차</span></td><td>뱀피르</td></tr>
         </tbody>
       </table>
     </div>
     <div class="legend">
-      <span><span class="tag green">최적</span> &nbsp;규칙 그대로 적용</span>
-      <span><span class="tag blue">가능</span> &nbsp;적용되나 우선순위 2차</span>
-      <span><span class="tag amber">변주</span> &nbsp;소재 치환 후 적용</span>
+      <span><span class="tag green">최적</span> &nbsp;규칙 그대로</span>
+      <span><span class="tag blue">2차</span> &nbsp;되지만 우선순위 뒤</span>
+      <span><span class="tag amber">변주</span> &nbsp;소재 바꿔야 성립</span>
     </div>
   </section>
 
-  <!-- 14 · 조작 레버 -->
-  <section class="slide m-content">
-    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
-    <div class="two-col" style="margin-top:40px">
-      <div class="head">
-        <p class="t-eyebrow">Pipeline</p>
-        <h3 class="t-title">한 컷에서<br>네 갈래로</h3>
-      </div>
-      <p class="t-body">뱀피르 작업에서 실제로 쓴 조작은 네 가지다. 원본 컷 하나를 잡으면 나머지는 이 레버를 돌려 파생시킨다. <b>새로 그리는 게 아니라 갈아끼우는 구조</b>라 타이틀이 늘어도 작업량이 선형으로 늘지 않는다.</p>
-    </div>
-    <div class="lever">
-      <div class="lever-item">
-        <div class="st">LEVER 01</div>
-        <div class="t-label">배경 생성</div>
-        <p class="cap">포즈·의상 고정, 배경만 교체. 고딕 주방 ↔ 현대 주방처럼 <b>같은 컷의 톤을 완전히 바꾼다.</b></p>
-      </div>
-      <div class="lever-item">
-        <div class="st">LEVER 02</div>
-        <div class="t-label">오브젝트 변경</div>
-        <p class="cap">캐릭터가 올라탄 사물만 교체. 향수병 → 성배 → 광석. 방향 03의 시리즈화 엔진.</p>
-      </div>
-      <div class="lever-item">
-        <div class="st">LEVER 03</div>
-        <div class="t-label">IP 변경</div>
-        <p class="cap">구도·조명 고정, 캐릭터만 교체. <b>타이틀 확장이 여기서 일어난다.</b> 룩 일관성이 유지되는 이유.</p>
-      </div>
-      <div class="lever-item">
-        <div class="st">LEVER 04</div>
-        <div class="t-label">배경 늘리기</div>
-        <p class="cap">아웃페인팅으로 여백 확보. 1:1 · 4:5 · 9:16 규격 대응을 재생성 없이 처리.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 15 · 다음 스텝 -->
+  <!-- 10 다음 스텝 -->
   <section class="slide m-content">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <div class="two-col" style="margin-top:40px">
@@ -609,48 +366,43 @@ table.mx td.c { text-align: center; }
         <p class="t-eyebrow">Next</p>
         <h3 class="t-title">테스트 설계</h3>
       </div>
-      <p class="t-body">룩앤필은 취향으로 정하지 않는다. 1차에서 <b>18컷</b>을 만들고 기존 소재와 같은 조건으로 돌려 숫자로 판정한다. 목표치는 넷마블 측 기존 벤치마크를 받아 확정한다.</p>
+      <p class="t-body">1차에서 18컷을 만들고, 기존 소재와 같은 조건으로 돌려 숫자로 판정합니다. 목표치는 넷마블 기존 벤치마크를 받아 확정합니다.</p>
     </div>
     <div class="steps">
-      <div class="step">
-        <div class="n">STEP 01</div>
-        <div class="b">
-          <div class="h">IP 사용 범위 확정</div>
-          <div class="d">타이틀별 AI 사용 가능 여부 시트 회수. 캐릭터·배경·오브젝트·광고 소재 각각의 가부와 조건을 먼저 닫는다. <b>이게 안 닫히면 이후 전부 재작업 리스크.</b></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">STEP 02</div>
-        <div class="b">
-          <div class="h">1차 생성 18컷</div>
-          <div class="d">타이틀 3종 × 방향 2개 × 변주 3안. 뱀피르는 기존 컷 재활용으로 실제 신규 생성은 12컷.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">STEP 03</div>
-        <div class="b">
-          <div class="h">내부 셀렉 · IP 검수</div>
-          <div class="d">실 CD 셀렉 후 넷마블 IP팀 검수. 조건부 판정 항목은 이 단계에서 개별 확인.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">STEP 04</div>
-        <div class="b">
-          <div class="h">A/B 집행 · 판정</div>
-          <div class="d">기존 소재를 대조군으로 동일 예산·동일 타깃 집행. 판정 지표는 <b>3초 시청 유지율 · CTR · CPI</b> 3종. 목표치는 기존 벤치마크 수령 후 확정.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="n">STEP 05</div>
-        <div class="b">
-          <div class="h">승자 방향 시리즈화</div>
-          <div class="d">이긴 방향을 레버 01~04로 확장해 규격·타이틀 전개. 규칙이 문서화돼 있어 외주 이관 가능.</div>
-        </div>
-      </div>
+      <div class="step"><div class="n">STEP 01</div><div class="h">IP 사용 범위 확정</div><div class="d">타이틀별 AI 사용 가능 여부 시트 회수. 이게 안 닫히면 뒤가 전부 재작업입니다.</div></div>
+      <div class="step"><div class="n">STEP 02</div><div class="h">1차 생성 18컷</div><div class="d">타이틀 3종 × 방향 2개 × 3안. 뱀피르는 기존 컷을 써서 신규 생성은 12컷.</div></div>
+      <div class="step"><div class="n">STEP 03</div><div class="h">셀렉 · IP 검수</div><div class="d">실 CD 셀렉 후 넷마블 IP팀 검수. 조건부 항목은 여기서 개별 확인.</div></div>
+      <div class="step"><div class="n">STEP 04</div><div class="h">A/B 집행</div><div class="d">기존 소재를 대조군으로 같은 예산 · 같은 타깃. 지표는 3초 시청 유지율 · CTR · CPI.</div></div>
+      <div class="step"><div class="n">STEP 05</div><div class="h">승자 방향 시리즈화</div><div class="d">이긴 방향을 아래 레버로 확장. 규칙이 문서화돼 있어 외주 이관도 가능합니다.</div></div>
     </div>
   </section>
 
-  <!-- 16 · end -->
+  <!-- 11 부록 -->
+  <section class="slide m-content">
+    <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
+    <div class="two-col" style="margin-top:40px">
+      <div class="head">
+        <p class="t-eyebrow">Appendix</p>
+        <h3 class="t-title">제작 레버 &amp;<br>프롬프트</h3>
+      </div>
+      <p class="t-body">원본 컷 하나를 잡으면 레버 네 개로 파생시킵니다. 타이틀이 늘어도 작업량은 그만큼 안 늘어납니다.</p>
+    </div>
+    <div class="lever">
+      <div class="lever-item"><div class="st">LEVER 01</div><div class="nm">배경 생성</div><div class="d">포즈 고정, 배경만 교체</div></div>
+      <div class="lever-item"><div class="st">LEVER 02</div><div class="nm">오브젝트 변경</div><div class="d">올라탄 사물만 교체</div></div>
+      <div class="lever-item"><div class="st">LEVER 03</div><div class="nm">IP 변경</div><div class="d">구도 고정, 캐릭터만 교체</div></div>
+      <div class="lever-item"><div class="st">LEVER 04</div><div class="nm">배경 늘리기</div><div class="d">아웃페인팅으로 규격 대응</div></div>
+    </div>
+    <div class="prompt-list">
+      <div class="prompt"><span class="lb">01 HAND FORWARD</span>ultra-wide 20mm lens, subject 30cm from camera, one hand thrust toward the lens filling 40% of frame, hand rendered 2x larger than the head, extreme foreshortening, low angle, shallow depth of field keeping the face soft behind, cinematic rim light, <b>[IP CHARACTER]</b>, <b>[IP ENVIRONMENT]</b> in ruin behind, photoreal</div>
+      <div class="prompt"><span class="lb">02 KITCHEN CARNAGE</span><b>[IP WEAPON]</b> mid-swing cleaving a tiered buttercream cake, modern domestic kitchen, daylight from a side window, cream and red filling splattered across counter and floor, <b>[IP CHARACTER]</b> deadpan expression, editorial food photography lighting, 50mm, f/2.8</div>
+      <div class="prompt"><span class="lb">03 SCALE INVERSION</span><b>[IP CHARACTER]</b> sitting on a giant <b>[EVERYDAY OBJECT]</b>, character-to-object ratio 1:18, object occupying the lower two-thirds, wide empty landscape behind, overcast soft light, product photography realism, 85mm compression, 4:5</div>
+      <div class="prompt"><span class="lb">04 LIQUID FREEZE</span>high-speed capture at 1/8000s, <b>[IP LIQUID]</b> pouring from a tilted <b>[OBJECT]</b>, crown-shaped splash at impact, exactly 5 droplets suspended mid-air, <b>[IP CHARACTER]</b> perched above, dark gradient background, single hard key light, macro clarity</div>
+      <div class="prompt"><span class="lb">05 FLORAL ENTOMBMENT</span>45-degree overhead shot, <b>[IP CHARACTER]</b> half-submerged in a pool of <b>[IP LIQUID]</b>, black roses and moss framing all four corners, dripping candles on wet rock, <b>[IP WEAPON]</b> resting beside, diorama miniature aesthetic, tilt-shift, low-key</div>
+    </div>
+  </section>
+
+  <!-- 12 end -->
   <section class="slide dark m-divider" style="align-items:center; justify-content:center; text-align:center">
     <header class="meta-bar"><span>넷마블 X HIVELAB</span><span>UA LOOK &amp; FEEL TEST</span><span>2026</span></header>
     <p class="t-divider" style="font-size:clamp(40px, 6vw, 96px)">End Of<br>Document</p>
