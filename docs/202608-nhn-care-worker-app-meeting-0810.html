@@ -621,77 +621,65 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
 <section class="view" id="v-wbs">
   <div class="page-head">
     <div class="page-title">
-      <div class="eyebrow">05 · WBS</div>
-      <h2>WBS · 일정</h2>
-      <p>계약상 착수일은 8/18이지만, 개발 일정을 역산해 <b>8/13부터 앞당겨 시작하고 8/28에 마무리</b>하는 것으로 계획했습니다.</p>
+      <div class="eyebrow">05 · Schedule &amp; R&amp;R</div>
+      <h2>진행 일정 · 양사 액션 아이템</h2>
+      <p>계약상 착수일은 8/18이지만, 개발 일정을 역산해 <b>8/11 채널 세팅부터 시작해 8/28에 마무리</b>합니다. 세부 WBS는 8/12에 별도 제출합니다.</p>
     </div>
-    <div class="head-meta"><span class="tag core">8/13 ~ 8/28</span><span class="tag warn">11영업일</span></div>
+    <div class="head-meta"><span class="tag core">NHN</span><span class="tag easy">HL 하이브랩</span></div>
   </div>
 
-  <div class="gloss-note risk">
-    <b>⚠️ 8/17(월)은 휴무입니다 —</b> 2026년 8월 15일 광복절이 <b>토요일</b>이라 대체공휴일로 <b>8/17(월)이 쉽니다.</b>
-    <br><br>
-    ① 표의 <b>"최종 기획서 8/17까지 희망"</b>은 그날 NHN도 휴무이므로 실질적으로 <b>8/14(금) 또는 8/18(화)</b>로 잡는 게 맞습니다.<br>
-    ② 8/13~8/28 구간의 실제 영업일은 12일이 아니라 <b>11일</b>입니다.
-  </div>
-
-  <div class="table-wrap"><table class="t" style="min-width:860px">
-    <thead><tr><th style="min-width:104px">일정</th><th style="min-width:250px">내용</th><th>각 역할</th></tr></thead>
+  <div class="table-wrap"><table class="t" style="min-width:900px">
+    <thead><tr><th style="min-width:100px">일정</th><th style="min-width:78px">구분</th><th style="min-width:170px">주력 과업</th><th>주요 내용 및 요청 사항 (Action Item)</th></tr></thead>
     <tbody>
       <tr>
-        <td class="yes">8/11 (화)</td>
-        <td><b>두레이 등록 / 프로젝트 세팅</b></td>
-        <td><b>NHN →</b> 하이브랩 계정 등록<br>
-        김준환 <code class="c">joonan42@hivelab.co.kr</code><br>김효정 <code class="c">hyojung@hivelab.co.kr</code></td>
+        <td class="yes">8/11 (화)</td><td>채널 세팅</td><td><b>프로젝트 두레이 세팅</b></td>
+        <td><span class="tag core">NHN</span> 프로젝트 두레이 등록 및 계정 추가 요청<br>
+        · 김준환 선임 <code class="c">joonan42@hivelab.co.kr</code><br>· 김효정 실장 <code class="c">hyojung@hivelab.co.kr</code></td>
       </tr>
       <tr>
-        <td class="yes">8/12 (수)</td>
-        <td><b>WBS 작성 및 공유</b><br><b>레퍼런스 · 무드 방향 제안</b></td>
-        <td><b>하이브랩 →</b> 고객사에 전달 예정</td>
+        <td class="yes">8/12 (수)</td><td>플랜 공유</td><td><b>WBS 공유 &amp; 무드 제안</b></td>
+        <td><span class="tag easy">HL</span> 세부 일정표(WBS) 작성 제출 및 톤앤무드 추천 레퍼런스 제안</td>
       </tr>
       <tr style="background:var(--pt-lime-soft)">
-        <td class="yes">8/13 (목)</td>
-        <td class="yes">🚩 <b>추천 무드 방향 1개 확정</b></td>
-        <td class="yes"><b>NHN →</b> 하이브랩에 확정 후 공유 필요</td>
+        <td class="yes">8/13 (목)</td><td>방향 확정</td><td class="yes">🚩 <b>톤앤무드 1개 방향 확정</b></td>
+        <td class="yes"><span class="tag core">NHN</span> 제안된 추천 무드 중 최종 1개 방향 확정 회신</td>
       </tr>
       <tr>
-        <td class="yes">8/13 ~ 8/26</td>
-        <td><b>목차 섹션별 선작업 주요 화면(2~3개 수준)부터<br>1차 적용 및 순차 진행</b></td>
-        <td class="yes"><b>NHN →</b> TBD 또는 90% 파악된 페이지의 순차 전개를 위해 <b>최종 기획서 전달 필요</b><br>
-        <span class="tag warn">8/17까지 희망 — 단 대체공휴일</span></td>
+        <td class="yes">8/13 ~ 8/26</td><td>UI 전개</td><td><b>주요 화면 선작업 &amp; 순차 UI 전개</b></td>
+        <td><span class="tag easy">HL</span> 주요 화면 선작업 1차 적용 후 업데이트된 기획서 기반 순차 디자인 전개<br><br>
+        <span class="tag core">NHN</span> 순차 작업을 위해 <b>90% 기준 최종 기획서 전달</b> (8/17까지 희망)<br>
+        <span style="color:var(--muted)">파악된 페이지부터 우선순위 전개 예상</span></td>
       </tr>
       <tr>
-        <td class="yes">8/26 ~ 8/28</td>
-        <td><b>QA 최종 수정 대응</b></td>
-        <td>양측 — 누락 화면·상태 점검 및 반영</td>
+        <td class="yes">8/26 ~ 8/28</td><td>QA 대응</td><td><b>디자인 QA 및 수정 반영</b></td>
+        <td><span class="tag easy">HL</span> 디자인 QA 피드백 일괄 수정 반영<br><br>
+        <span class="tag core">NHN</span> 내부 및 개발사 검토 후 수정 피드백 취합 전달</td>
       </tr>
       <tr style="background:var(--pt-blue-soft)">
-        <td class="yes">8/27 ~ 8/28</td>
-        <td class="yes">🚩 <b>아이콘 · 컴포넌트 정리 및 최종 전달</b></td>
-        <td class="yes"><b>하이브랩 →</b> NHN</td>
-      </tr>
-      <tr style="background:var(--pt-orange-soft)">
-        <td class="yes">TBD</td>
-        <td class="yes"><b>개발 QA 대응</b></td>
-        <td class="yes">일정 확인 필요 — 11/18 오픈 역산</td>
+        <td class="yes">8/27 ~ 8/28</td><td>최종 전달</td><td class="yes">🚩 <b>가이드·컴포넌트 정리 및 납품</b></td>
+        <td class="yes"><span class="tag easy">HL</span> 아이콘, 컴포넌트, 가이드 정돈 후 최종 산출물 전달</td>
       </tr>
     </tbody>
   </table></div>
 
-  <div class="section-title"><h3>구간별 성격</h3></div>
-  <div class="grid g4">
-    <div class="card flat metric"><div class="k">준비</div><div class="value">8/11–12</div><div class="sub">세팅 · WBS · 레퍼런스 제안</div></div>
-    <div class="card flat metric"><div class="k">방향 확정</div><div class="value">8/13</div><div class="sub">무드 1개 픽스</div></div>
-    <div class="card flat metric"><div class="k">본작업</div><div class="value">8/13–26</div><div class="sub">선작업 2~3화면 → 순차 전개</div></div>
-    <div class="card flat metric"><div class="k">마감</div><div class="value">8/26–28</div><div class="sub">QA · 아이콘 · 컴포넌트</div></div>
+  <div class="gloss-note warn">
+    <b>세부 WBS는 8/12에 별도 제출합니다 —</b> 위 표는 큰 골격이고, 목차 섹션별 화면 단위로 쪼갠 세부 일정표는
+    레퍼런스 제안과 <b>함께 8/12(수)</b>에 전달합니다. 컨펌 후 그 기준으로 진행합니다.
   </div>
 
-  <div class="gloss-note warn">
-    <b>이 일정이 기존 계획과 다른 점 —</b> 계약은 8/18 착수 · 3주(9/7 종료)인데, 실제로는 <b>8/13 착수 · 8/28 종료</b>입니다.
-    <br>
-    · <b>5일 앞당겨 시작</b>하고 <b>일주일 이상 일찍 끝냅니다.</b> 11/18 서비스 오픈에서 개발 2개월을 역산한 결과입니다.<br>
-    · 그만큼 <b>수정 대응 여유가 줄어듭니다.</b> 8/26~8/28 사흘이 QA와 최종 수정을 함께 감당하는 구간입니다.<br>
-    · <b>8/13 무드 확정이 하루라도 밀리면</b> 본작업 시작이 그대로 밀립니다. 제안(8/12) 다음 날 확정이라 여유가 없습니다.
+  <div class="section-title"><h3>구간별 성격</h3></div>
+  <div class="grid g4">
+    <div class="card flat metric"><div class="k">준비</div><div class="value">8/11–12</div><div class="sub">채널 세팅 · WBS · 레퍼런스 제안</div></div>
+    <div class="card flat metric"><div class="k">방향 확정</div><div class="value">8/13</div><div class="sub">톤앤무드 1개 픽스</div></div>
+    <div class="card flat metric"><div class="k">UI 전개</div><div class="value">8/13–26</div><div class="sub">선작업 3~4화면 → 순차 전개</div></div>
+    <div class="card flat metric"><div class="k">QA · 납품</div><div class="value">8/26–28</div><div class="sub">QA 반영 · 아이콘 · 컴포넌트</div></div>
+  </div>
+
+  <div class="gloss-note risk">
+    <b>⚠️ 8/17(월)은 광복절 대체공휴일입니다 —</b> 2026년 광복절(8/15)이 토요일이라 <b>8/17(월)이 휴무</b>입니다.
+    표의 "최종 기획서 8/17까지 희망"은 그날 NHN도 쉬는 날이므로, 실질적으로는 <b>8/14(금) 또는 8/18(화)</b> 도착이 됩니다.
+    <br><br>
+    8/13~8/28 구간의 실제 영업일은 <b>11일</b>입니다.
   </div>
 </section>
 
@@ -821,90 +809,70 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   <div class="mail">
     <div class="subj">제목: [하이브랩] NHN 돌봄종사자 앱 디자인 미팅 내용 정리 및 후속 진행 안내 건</div>
 
-    <p>안녕하세요, 김유미 파트장님. 하이브랩 김효정입니다.</p>
+    <p>안녕하세요. 하이브랩 김효정입니다.</p>
     <p>지난 미팅 때 사업 전체 구조부터 화면별 기획 의도까지 상세하게 설명해 주신 덕분에 프로젝트 맥락을 깊이 있게 이해할 수 있었습니다. 바쁘신 와중에 시간 내주셔서 다시 한번 감사드립니다.</p>
-    <p>나눠주셨던 내용들을 바탕으로 주요 논의 사항과 향후 진행 스케줄을 정리해 드립니다. 확인 및 공유해 주셔야 하는 부분들은 <b>3번과 4번 항목</b>에 모아두었으니 편하게 살펴봐 주시면 감사하겠습니다.</p>
+    <p>나눠주셨던 내용들을 바탕으로 주요 논의 사항과 향후 진행 스케줄을 정리해 드립니다.<br>
+    확인 및 공유해 주셔야 하는 부분들은 <b>2번 표의 [NHN] 표기 항목</b>과 <b>3번</b>에 모아두었으니 편하게 살펴봐 주시면 감사하겠습니다.</p>
 
     <h4>1. 주요 논의 및 확정 내용</h4>
     <p><b>진행 방식</b><br>
-    · 확정된 UX 구조는 최대한 유지하면서, 그 안에서 시각적 완성도와 디테일을 높이는 방향으로 진행합니다.<br>
-    · 톤앤매너는 여러 시안을 나열하는 방식 대신, 저희가 8/14(금)에 레퍼런스를 제안드리고 협의를 통해 하나의 방향으로 확정한 뒤 본격 작업에 들어갑니다.<br>
-    · 방향이 확정되면 우선순위가 높은 주요 화면(3~4개 수준)에 먼저 1차 적용하여 전체적인 무드를 확인받고, 이후 나머지 화면으로 전개하겠습니다.</p>
+    · 확정된 UX 구조는 최대한 유지하면서, 그 안에서 시각적 완성도와 디테일을 높이는 방향으로 진행할 예정입니다.<br>
+    · 톤앤매너는 여러 시안을 나열하는 방식 대신, 저희가 8/12(수)에 레퍼런스를 제안드리고 협의를 통해 하나의 방향으로 확정한 뒤 본격 작업에 들어갈 예정입니다.<br>
+    · 방향이 확정되면 우선순위가 높은 주요 섹션의 화면(3~4개 수준)에 먼저 1차 적용 후, 이후 예정된 업데이트 화면을 순차적으로 진행합니다.</p>
 
-    <p><b>작업 범위 및 기준</b><br>
+    <p><b>작업 협의 및 기준</b><br>
     · 작업 기본 기준은 안드로이드로 맞추겠습니다.<br>
-    · 글자 크기 조절은 개발단에서 배수로 처리하시는 것으로 확인하였으며, 디자인은 기본 1벌을 제공하고 특정 디바이스에서 이상 노출이 있을 때 유연하게 조정하겠습니다.<br>
-    · 모션은 '업무 완료' 및 '하루 업무 완료' 시점 정도로 한정하고, 음성 입력 파형 애니메이션 등은 이번 범위에서 제외합니다.<br>
-    · 아이콘은 3주차 마지막 단계에 집중적으로 디벨롭하겠습니다.<br>
-    · 컴포넌트와 디자인 가이드는 모든 수정 사항이 반영된 후 마지막 2~3일 동안 깔끔하게 정리해 최종 산출물로 전달드리겠습니다.</p>
+    · 글자 크기 조절은 개발단에서 배수로 처리하시는 것으로 확인하였으며, 디자인은 기본 1벌을 제공합니다.<br>
+    · 모션은 특별하게 추가되는 부분은 없으며, 음성 입력 파형 애니메이션 또한 간단한 수준의 범위로 고려하여 진행합니다.<br>
+    · 아이콘은 마지막 단계에 집중적으로 퀄리티 디벨롭할 예정입니다.<br>
+    · 컴포넌트와 디자인 가이드는 모든 수정 사항이 반영된 후 마지막 2~3일 동안 깔끔하게 정리해 최종 산출물로 전달드릴 예정입니다.</p>
 
     <p><b>협업 방식</b><br>
-    · 일반 소통은 두레이(Dooray)를 통해 진행하고, 상세 디자인 피드백은 피그마(Figma) 댓글을 활용하겠습니다.<br>
-    · 섹션 단위로 작업이 끝날 때마다 확인을 요청드리되, 한 번에 보시기 부담스럽지 않도록 파트를 나누어 순차 공유드리겠습니다.<br>
-    · 확정된 시안은 저희가 개발사 쪽으로 직접 전달하고 파트장님을 참조(CC)로 넣겠습니다.</p>
+    · 일반 소통은 두레이를 통해 진행하고, 상세 디자인 피드백은 피그마 댓글을 활용합니다. (두레이 소통 시 피그마 링크를 함께 공유드리겠습니다.)<br>
+    · WBS 기준 섹션 단위로 작업이 끝날 때마다 확인 요청드리고, 순차적으로 피드백을 반영할 예정입니다.<br>
+    · 김유미 파트장님 피드백 반영 후 완료가 확인되면 개발사 쪽으로 직접 전달드리고, 파트장님을 참조(CC)로 넣겠습니다.</p>
 
-    <h4>2. 진행 일정</h4>
-    <div class="table-wrap"><table class="t" style="min-width:700px">
-      <thead><tr><th style="min-width:100px">일정</th><th style="min-width:230px">내용</th><th>각 역할</th></tr></thead>
+    <h4>2. 프로젝트 진행 일정 및 양사 액션 아이템 (R&amp;R)</h4>
+    <div class="table-wrap"><table class="t" style="min-width:760px">
+      <thead><tr><th style="min-width:96px">일정</th><th style="min-width:72px">구분</th><th style="min-width:150px">주력 과업</th><th>주요 내용 및 요청 사항 (Action Item)</th></tr></thead>
       <tbody>
-        <tr><td class="yes">8/11 (화)</td><td>두레이 등록 / 프로젝트 세팅</td><td>NHN → 하이브랩 계정 등록<br>김준환 joonan42@hivelab.co.kr<br>김효정 hyojung@hivelab.co.kr</td></tr>
-        <tr><td class="yes">8/12 (수)</td><td>WBS 작성 및 공유<br>레퍼런스 · 무드 방향 제안</td><td>하이브랩 → NHN 전달</td></tr>
-        <tr><td class="yes">8/13 (목)</td><td>추천 무드 방향 1개 확정</td><td class="yes">NHN → 하이브랩 확정 후 공유 부탁드립니다</td></tr>
-        <tr><td class="yes">8/13 ~ 8/26</td><td>목차 섹션별 선작업 주요 화면(2~3개 수준)부터 1차 적용 및 순차 진행</td><td class="yes">NHN → 순차 전개를 위해 최종 기획서 전달 부탁드립니다<br>(TBD 또는 90% 파악된 페이지 기준)</td></tr>
-        <tr><td class="yes">8/26 ~ 8/28</td><td>QA 최종 수정 대응</td><td>양측</td></tr>
-        <tr><td class="yes">8/27 ~ 8/28</td><td>아이콘 · 컴포넌트 정리 및 최종 전달</td><td>하이브랩 → NHN</td></tr>
-      </tbody>
-    </table></div>
-    <p style="font-size:11.5px;color:var(--muted)">※ 8월 15일 광복절이 토요일이라 <b>8월 17일(월)이 대체공휴일</b>입니다. 해당 주 일정에 참고 부탁드립니다.</p>
-
-    <h4>3. NHN 측 확인 요청 사항</h4>
-    <div class="table-wrap"><table class="t" style="min-width:720px">
-      <thead><tr><th style="min-width:150px">항목</th><th style="min-width:104px">요청 기한</th><th>내용</th></tr></thead>
-      <tbody>
-        <tr><td class="yes">① 두레이 계정 등록</td><td class="yes">8/11 (화)</td><td>아래 두 계정 등록 부탁드립니다. 김준환 joonan42@hivelab.co.kr / 김효정 hyojung@hivelab.co.kr</td></tr>
-        <tr><td class="yes">② 무드 방향 확정 회신</td><td class="yes">8/13 (목)</td><td>8/12(수)에 레퍼런스와 추천 방향을 전달드립니다. 확정해 주시면 그 방향으로 바로 선작업에 들어가겠습니다. 이 일정이 밀리면 이후 전개가 함께 밀리게 되어, 가능하시면 당일 회신 부탁드립니다.</td></tr>
-        <tr><td class="yes">③ 최종 기획서 전달</td><td class="yes">8/18 (화) 희망</td><td>순차 전개를 위해 필요합니다. 아직 확정되지 않은 영역은 <b>TBD로 표시</b>해 주시면 확정된 부분부터 작업하고 TBD 영역은 마지막 구간에서 유연하게 대응하겠습니다. 90% 수준으로 파악된 상태여도 괜찮습니다.<br><span style="color:var(--pt-orange-deep)">※ 당초 8/17(월) 희망이었으나 대체공휴일이라 8/18(화)로 조정했습니다. 8/14(금)에 주시면 더 좋습니다.</span></td></tr>
-        <tr><td class="yes">④ 선작업 주요 화면 지정</td><td class="yes">8/12 (수)</td><td>목차 섹션 중 먼저 작업할 주요 화면 2~3개를 지정해 주시면, 무드 확정 직후 바로 1차 적용에 들어가겠습니다.</td></tr>
-        <tr><td class="yes">⑤ BI 진행 여부</td><td class="yes">가능한 빠르게</td><td>돌봄종사자 앱 BI가 본 사업 내에서 별도 진행되는지 확인 부탁드립니다. 진행하지 않으신다면 저희가 제작을 도와드릴 수 있으나, UI와는 별도 영역이라 범위와 비용은 따로 협의드려야 합니다. BI 무드가 전체 방향에 영향을 주는 만큼 방향 확정 전에 알 수 있으면 좋겠습니다.</td></tr>
-        <tr><td class="yes">⑥ 개발 데드라인 및 QA 기간</td><td class="yes">가능한 빠르게</td><td>11월 18일 오픈 일정을 역산했을 때 개발 데드라인과 QA 기간이 언제인지 공유 부탁드립니다. 디자인 QA 대응이 필요하다면 그 시점에 맞춰 미리 인력을 세팅해 두겠습니다.</td></tr>
-        <tr><td class="yes">⑦ 기획 v0.2.0 링크</td><td>금주 내</td><td>저희가 현재 검토한 버전은 v0.1.0입니다. 갱신된 최신 버전 링크 공유 부탁드립니다.</td></tr>
-        <tr><td class="yes">⑧ 브랜드 가이드 및 폰트</td><td>금주 내</td><td>통합 어드민 BI는 다른 서비스라 그대로 활용하기 어렵겠지만, 폰트는 맞추는 방향으로 이해했습니다. 확인되는 대로 공유 부탁드립니다.</td></tr>
-        <tr><td class="yes">⑨ 사업 구조 정리 자료</td><td>금주 내</td><td>미팅에서 설명해 주신 내용을 정리해 두신 자료가 있다면 캡처만이라도 공유해 주시면 전체 구조 이해에 큰 도움이 될 것 같습니다.</td></tr>
+        <tr><td class="yes">8/11 (화)</td><td>채널 세팅</td><td>프로젝트 두레이 세팅</td><td><b>[NHN]</b> 프로젝트 두레이 등록 및 계정 추가 요청<br>· 김준환 선임 (joonan42@hivelab.co.kr)<br>· 김효정 실장 (hyojung@hivelab.co.kr)</td></tr>
+        <tr><td class="yes">8/12 (수)</td><td>플랜 공유</td><td>WBS 공유 &amp; 무드 제안</td><td><b>[HL]</b> 세부 일정표(WBS) 작성 제출 및 톤앤무드 추천 레퍼런스 제안</td></tr>
+        <tr><td class="yes">8/13 (목)</td><td>방향 확정</td><td>톤앤무드 1개 방향 확정</td><td><b>[NHN]</b> 제안된 추천 무드 중 최종 1개 방향 확정 회신</td></tr>
+        <tr><td class="yes">8/13 ~ 8/26</td><td>UI 전개</td><td>주요 화면 선작업 &amp; 순차 UI 전개</td><td><b>[HL]</b> 주요 화면 선작업 1차 적용 후 업데이트된 기획서 기반 순차 디자인 전개<br><br><b>[NHN]</b> 순차 작업을 위해 90% 기준 최종 기획서 전달 (8/17까지 희망)<br>(파악된 페이지부터 우선순위 전개 예상)</td></tr>
+        <tr><td class="yes">8/26 ~ 8/28</td><td>QA 대응</td><td>디자인 QA 및 수정 반영</td><td><b>[HL]</b> 디자인 QA 피드백 일괄 수정 반영<br><br><b>[NHN]</b> 내부 및 개발사 검토 후 수정 피드백 취합 전달</td></tr>
+        <tr><td class="yes">8/27 ~ 8/28</td><td>최종 전달</td><td>가이드·컴포넌트 정리 및 납품</td><td><b>[HL]</b> 아이콘, 컴포넌트, 가이드 정돈 후 최종 산출물 전달</td></tr>
       </tbody>
     </table></div>
 
-    <h4>4. 개발사 소통 방식 확인</h4>
-    <p>기획, 디자인, 개발 주체가 각각 달라 소통 채널 정리가 필요할 것 같습니다. 아래 부분에 대해 편하신 방향으로 정해 주시면 그에 맞추겠습니다.</p>
+    <h4>3. 그 외 확인 요청 사항</h4>
     <p>
-    · 개발사 측 메인 담당자가 어느 분이신지<br>
-    · 개발에서 디자인 관련 질의가 나올 때 저희가 직접 받는 구조인지, 파트장님을 경유하는 구조인지<br>
-    · 두레이에 3사가 함께 참여하는 방을 둘지, 기획·개발 채널을 분리해 두는 것이 좋을지
-    </p>
-    <p>QA 단계에서 질의가 몰릴 텐데 창구가 미리 정리되어 있으면 대응이 훨씬 빨라집니다.</p>
-
-    <h4>5. 일정 관련 참고 사항</h4>
-    <p>
-    · 개발 일정을 역산하여 계약상 착수일(8/18)보다 앞당긴 <b>8/13(목)부터 작업을 시작해 8/28(금)에 마무리</b>하는 일정으로 계획했습니다. 기간이 짧은 만큼 각 단계별 확인이 제때 이루어지는 것이 중요합니다.<br>
-    · 특히 <b>8/13 무드 방향 확정</b>이 이후 전개의 출발점이 되므로, 이 시점만 맞춰 주시면 나머지는 저희가 맞춰 진행하겠습니다.<br>
-    · 피드백은 내부 취합 후 한 번에 전달해 주시면 가장 효율적으로 진행될 수 있습니다.<br>
-    · 전달주시는 최종 기획서를 바탕으로 WBS를 구체화하여 다시 공유드리겠습니다.
+    · <b>BI 진행 여부 및 폰트·가이드</b> — 본 사업 내 BI 제작 포함 여부 확인 부탁드립니다. 미진행 시 별도 협의가 필요합니다. 어드민 공통 폰트 가이드도 함께 공유해 주시면 감사하겠습니다.<br>
+    · <b>개발/QA 일정 공유</b> — 오픈 기준 개발 데드라인과, 디자인 QA 추가 대응 인력이 필요할 경우의 일정을 공유 부탁드립니다.
     </p>
 
-    <p>궁금하신 점이나 추가로 공유해 주실 내용이 있으시면 언제든 편하게 말씀해 주세요. 짧은 일정인 만큼 긴밀하게 소통하며 차질 없이 진행하겠습니다.</p>
+    <h4>4. QA 기간 관련 참고 사항</h4>
+    <p>우선 WBS 내에는 계약 기간 <b>3주 + 3일</b>을 고려한 QA 기간을 업데이트해 둘 예정입니다.</p>
+    <p>다만 11월 18일 오픈 일정을 고려할 때 <b>디자인 대응 기간(18일) 이후에 요청이 발생할 가능성</b>도 있어 보여, 전체 QA 기간에 대한 협의 구간이 필요할 것 같습니다.</p>
+    <p>그 시점에 맞춰 미리 인력 리소스를 체크해야 하고, 범위에 따라 <b>일정 또는 금액 산정이 별도로 이뤄져야 할 수 있어</b> 참고차 말씀드립니다.</p>
+
+    <p style="margin-top:18px">해당 프로젝트는 <b>20일 이내에 디자인을 최종 완성해야 하는 타이트한 일정</b>인 만큼, 프로젝트 특성상 일정 외 추가 요청이나 빠른 대응이 필요한 순간이 발생할 수 있고, 그 부분은 저희가 적극 맞춰 진행할 예정입니다.</p>
+    <p>다만 20일 내 정해진 데드라인을 차질 없이 준수하기 위해서는 <b>양사 간 피드백 과정을 최소화하며 대응하고 긴밀히 협업하는 것</b>이 매우 중요할 것 같습니다.</p>
+
     <p>감사합니다.</p>
-    <p style="margin-top:16px;color:var(--ink)"><b>하이브랩 김효정 드림</b></p>
+    <p style="margin-top:16px;color:var(--ink)"><b>김효정 드림</b></p>
   </div>
 
   <div class="gloss-note" style="margin-top:16px">
-    <b>온도 —</b> 실장님이 직접 다듬은 문장을 기준으로 삼았습니다.
-    인사와 감사를 충분히 두고, 요청은 <b>"~부탁드립니다 / ~주시면 감사하겠습니다"</b>로 낮춰 씁니다.
-    우리 쪽 행위는 <b>"~하겠습니다"</b>로 능동적으로 받되 단정적으로 들리지 않게 둡니다.
+    <b>구성 —</b> 실장님 최종 문안 그대로입니다. 한 곳만 손봤습니다.
+    인트로가 <b>"3번과 4번 항목에 모아두었다"</b>고 안내하는데 실제 구성에는 3·4번이 없어서,
+    섹션에 번호를 붙이고 안내를 <b>"2번 표의 [NHN] 표기 항목과 3번"</b>으로 맞췄습니다.
     <br><br>
-    <b>2·3번은 표로 바꿨습니다.</b> 날짜와 요청 사항이 문단에 섞여 있으면 받는 쪽이 "내가 언제까지 뭘 회신해야 하는지"를 다시 읽어야 합니다.
-    3번은 <b>항목 / 요청 기한 / 내용</b> 세 칸으로 나눠, 기한만 훑어도 우선순위가 잡히게 했습니다.
+    <b>[NHN] / [HL] 태그</b>가 이 메일의 핵심 장치입니다. 표를 훑기만 해도 자기 몫이 걸러집니다.
     <br><br>
-    4번은 회의에서 결론이 안 난 사안이라 <b>"편하신 방향으로 정해 주시면 그에 맞추겠습니다"</b>로 결정권을 넘기고,
-    필요한 이유(QA 때 질의가 몰린다)만 뒤에 붙여 무게를 실었습니다.
+    <b>4번 QA 문단</b>은 톤이 좋습니다 — "금액 산정이 별도로 이뤄져야 할 수 있어 <b>참고차</b> 말씀드립니다"로
+    청구가 아니라 예고로 두었고, 마지막 문단에서 "저희가 적극 맞춰 진행"을 먼저 말한 뒤 피드백 최소화를 요청해
+    요구가 일방적으로 읽히지 않게 했습니다.
   </div>
 
   <p class="footnote">
