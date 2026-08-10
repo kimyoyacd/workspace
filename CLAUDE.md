@@ -14,6 +14,7 @@
 - 업무는 프로젝트 단위 관리
 - 응답은 간결하고 실무 중심
 - 한국어 소통 (별도 요청 시 영어)
+- **대외 메일·회신은 `.claude/library/mail-tone.md` 톤을 따른다** (담백하되 통보가 아닌 공유. 어미는 "~할 예정입니다")
 
 ## 5가지 핵심 원칙
 👉 자세한 내용은 `.claude/library/core-directives.md` 참조
@@ -45,6 +46,7 @@
 └── library/
     ├── core-directives.md     # 5가지 핵심 원칙
     ├── prompt-guide.md        # 프롬프트 생성 가이드
+    ├── mail-tone.md           # 대외 메일 톤 기준 (김효정 실장 문체)
     ├── project-note-rules.md  # 프로젝트 노트 요약/원본 로그 이원 구조 규칙
     ├── unit-rates.md
     ├── qc-checklist.md
