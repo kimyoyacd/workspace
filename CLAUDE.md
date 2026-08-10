@@ -39,7 +39,8 @@
 ├── agents/README.md           # 에이전트 상세 설명
 ├── skills/                    # 커스텀 스킬
 │   ├── list-deck-design/
-│   └── mx-deck-design/
+│   ├── mx-deck-design/
+│   └── tab-deck-design/
 ├── projects/                   # 프로젝트별 노트
 └── library/
     ├── core-directives.md     # 5가지 핵심 원칙
@@ -102,6 +103,14 @@
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
 - `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
+- `tab-deck-design` — 좌측 탭 SPA 문서 HTML 생성 (섹션 8~16개 장문용 · 리서치 덱·킥오프 준비·운영 매뉴얼 · 4색 분류 체계 · 폰트 CDN 없이 Artifact 발행 가능)
+
+### 덱 스킬 3종 구분
+| 상황 | 스킬 |
+|---|---|
+| 섹션 8개 이상, 회의 중 탭 눌러가며 볼 문서 | `tab-deck-design` |
+| 수치·차트 중심 에디토리얼 리포트 | `list-deck-design` |
+| 16:9 슬라이드형 제안서 | `mx-deck-design` |
 
 ## 프로젝트 관리
 - 신규 프로젝트: `.claude/projects/YYYYMM_프로젝트명.md` 형식
