@@ -21,6 +21,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13.5px;line-height:1.65;letter-spacing:-.015em;-webkit-font-smoothing:antialiased}
 button,input{font:inherit}
 a{color:inherit}
+.term .slug a,.term .file a,table.t td a,.footnote a{color:var(--pt-blue);text-decoration:none;border-bottom:1px solid rgba(46,83,249,.35);word-break:break-all}
+.term .slug a:hover,.term .file a:hover,table.t td a:hover,.footnote a:hover{background:var(--pt-blue-soft);border-bottom-color:var(--pt-blue)}
+@media print{.term .slug a,.term .file a,table.t td a{color:#000;border-bottom:0}}
 code.c{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap}
 
 .topbar{height:66px;background:#141414;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:40;box-shadow:0 2px 12px rgba(0,0,0,.16)}
@@ -256,14 +259,14 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
       <div class="top"><span class="name">보건복지부 AI 스마트홈 돌봄 사업</span><span class="slug">AX-Sprint 과제</span><span class="tag easy">공개 확인</span></div>
       <p class="myth">NHN이 <b>주관기관으로 선정</b>됐고, 실증 범위는 <b>경기도·전라남도 총 400가구</b>입니다. 도시·농촌 양쪽에서 검증합니다.</p>
       <p class="real" style="color:var(--pt-blue)"><b>의미 —</b> 이건 민간 앱이 아니라 <b>공공 사업</b>입니다. 접근성 준수가 권고가 아니라 요건일 가능성이 높고, 농촌 실증이 포함되므로 <b>네트워크 불안정이 예외가 아니라 상수</b>입니다(FR31·32의 배경).</p>
-      <div class="file">coindeskkorea.com/4679 · weekly.hankooki.com ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.coindeskkorea.com/4679" target="_blank" rel="noopener">coindeskkorea.com/4679</a> · <a href="https://weekly.hankooki.com/news/articleView.html?idxno=7163109" target="_blank" rel="noopener">weekly.hankooki.com</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">NHN와플랫 — AI 생활지원사</span><span class="slug">com.nhn.waplat</span><span class="tag new">최우선 확인</span></div>
+      <div class="top"><span class="name">NHN와플랫 — AI 생활지원사</span><span class="slug"><a href="https://play.google.com/store/apps/details?id=com.nhn.waplat" target="_blank" rel="noopener">com.nhn.waplat</a></span><span class="tag new">최우선 확인</span></div>
       <p class="myth">「와플랫 공공 — 알림 기반 AI생활지원사 플랫폼」 앱이 <b>이미 구글플레이에 실재합니다.</b> 와플랫은 NHN 시니어케어 법인으로, 2024년 7월 출시 후 <b>전국 38개 지자체·기관과 협약</b>했습니다.</p>
       <p class="real">기능명세서의 "AI 생활지원사 연동"(FR54·55)과 "AI 생활지원사 회원"(FR3)이 바로 이것으로 보입니다.</p>
       <p class="warnline"><b>확인 질문 —</b> 이번 돌봄종사자 APP은 <b>이 기존 앱의 개편입니까, 별도 신규입니까?</b> 개편이라면 현재 앱 화면 캡처 일체를 즉시 받아야 합니다. "UX 구조 변경 없이"의 실제 제약 범위가 여기서 결정됩니다.</p>
-      <div class="file">play.google.com/store/apps/details?id=com.nhn.waplat · waplat.co.kr ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://play.google.com/store/apps/details?id=com.nhn.waplat" target="_blank" rel="noopener">play.google.com/…id=com.nhn.waplat</a> · <a href="https://waplat.co.kr/" target="_blank" rel="noopener">waplat.co.kr</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
@@ -329,7 +332,7 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
     명세에 정의가 없어 과업량 산정이 불가능합니다. 미팅 전 확인이 필요합니다.
   </div>
 
-  <p class="footnote">작성 기준일 2026-08-10 · 출처: Figma 기능명세서 v0.1.0(node 67:13668) · IA v0.1.0(page 0:1) + 공개 자료 데스크 리서치. 실기기 설치·스크린샷 검증은 미실시.</p>
+  <p class="footnote">작성 기준일 2026-08-10 · 출처: <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=67-13668" target="_blank" rel="noopener">Figma 기능명세서 v0.1.0(node 67:13668)</a> · <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=0-1" target="_blank" rel="noopener">IA v0.1.0(page 0:1)</a> + 공개 자료 데스크 리서치. 실기기 설치·스크린샷 검증은 미실시.</p>
 </section>
 
 <!-- ════════════════ 01 확정·패턴·가설·미확인 ════════════════ -->
@@ -423,28 +426,28 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
       <p class="myth">장기요양요원이 가정방문급여(방문요양·방문목욕·방문간호)의 <b>서비스 시작·종료 시간과 내용을 실시간 전송</b>하는 앱.</p>
       <p class="real">재가급여전자관리시스템(RFID) 기반. 보호자가 앱을 설치하면 전송 내용을 실시간 통보받아 수급자 권리를 보호하는 구조. iOS는 앱스토어 미배포이며 공단 사이트 QR로 설치.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-orange-deep)"><b>우리 조건과의 차이 —</b> 태그(RFID) 기반 증빙. 우리 앱은 위치·태그를 쓰지 않으므로(FR48) <b>증빙 메커니즘이 다릅니다.</b> 가져올 것은 "제공 내용이 실시간으로 어딘가에 남는다"는 사실을 종사자에게 알려주는 방식뿐입니다.</p>
-      <div class="file">play.google.com/store/apps/details?id=kr.or.nhis.longtermcare ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://play.google.com/store/apps/details?id=kr.or.nhis.longtermcare&amp;hl=ko" target="_blank" rel="noopener">play.google.com/…id=kr.or.nhis.longtermcare</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">재가급여전자관리시스템 (RFID)</span><span class="slug">제도 · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">방문급여 제공 시 <b>태그로 시작·종료를 남기는</b> 국민건강보험공단 제도.</p>
       <p class="real">공단이 재가기관용 전산 가이드북을 배포. 기관·종사자 모두 이 절차를 전제로 업무 흐름이 짜여 있습니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-orange-deep)"><b>확인 필요 —</b> 우리 앱 사용자(요양보호사)가 <b>이 제도와 별개로 우리 앱에도 기록해야 하는지</b>, 즉 이중 입력이 발생하는지. 발생한다면 이는 UX가 아니라 제도 이슈이며, 앱이 할 수 있는 건 "중복 부담을 최소화한 입력 설계"뿐입니다.</p>
-      <div class="file">carefor.co.kr 공단 가이드북 PDF ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.carefor.co.kr/ct_att/contents_article/0/202402/44604/D0BLtemMIF.pdf" target="_blank" rel="noopener">carefor.co.kr — 공단 RFID 전산 가이드북 PDF</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">사회서비스 전자바우처 결제 앱</span><span class="slug">한국사회보장정보원 · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">장애인활동지원·지역사회서비스투자사업 등의 <b>바우처 결제를 전용단말기 대신 스마트폰으로</b> 처리하는 앱.</p>
       <p class="real">제공인력이 결제 수단으로 전용단말기와 스마트폰 중 하나를 선택. 공개 자료 기준 2곳 이상 제공기관에 소속된 제공인력이 전국 약 5만 명(전체의 약 20%).</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 시사점 —</b> <b>한 사람이 여러 기관에 소속된다</b>는 사실. 우리 앱도 종사자가 복수 수행기관에 속할 수 있는지 확인이 필요하고, 그렇다면 "지금 어느 기관 업무인지"가 화면에 상시 보여야 합니다.</p>
-      <div class="file">ssis.or.kr · play.google.com/…id=m.kr.or.socialservice ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.ssis.or.kr/lay1/bbs/S1T1910C1976/B/101/view.do?article_seq=122737" target="_blank" rel="noopener">ssis.or.kr 보도</a> · <a href="https://play.google.com/store/apps/details?id=m.kr.or.socialservice" target="_blank" rel="noopener">play.google.com/…id=m.kr.or.socialservice</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">아이돌봄서비스</span><span class="slug">idolbom.go.kr · KR</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">아이돌봄서비스</span><span class="slug"><a href="https://www.idolbom.go.kr/front/" target="_blank" rel="noopener">idolbom.go.kr</a> · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">시간제·영아종일제·질병감염아동지원·긴급돌봄 4개 유형의 <b>아동 돌봄 공공 서비스</b>.</p>
       <p class="real">공식 앱은 사업 소개·이용 안내·신청 중심. 아동 돌봄 영역이라 우리 프로젝트(노인 돌봄)와 대상은 다릅니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 시사점 —</b> <b>서비스 유형이 4개로 갈리는 구조를 어떻게 한 앱에서 다루는가.</b> 우리도 요양/생활 2종 분기가 있으므로 유형 전환·구분 표기 방식이 참고가 됩니다.</p>
-      <div class="file">idolbom.go.kr ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.idolbom.go.kr/front/" target="_blank" rel="noopener">idolbom.go.kr</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
@@ -455,110 +458,110 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
       <p class="myth">노인장기요양보험 종사 요양보호사가 <b>기관에 방문하지 않고</b> 업무를 처리하는 앱.</p>
       <p class="real">공개 설명 기준 <b>급여제공기록지</b>·<b>상태변화기록지</b> 작성, 방문목욕 차량일지 등을 앱에서 처리.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 시사점 —</b> 우리 명세의 REC-3 변화상태(신체·식사·인지 호전/유지/악화)가 <b>업계 표준 서식인 상태변화기록지와 같은 계열</b>입니다. 종사자가 이미 아는 서식 언어를 UI에서 유지하면 학습 비용이 거의 0이 됩니다. <b>서식을 예쁘게 재해석하려는 유혹을 경계해야 합니다.</b></p>
-      <div class="file">play.google.com/…id=com.peoplechains.onmomtouch.homecare ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://play.google.com/store/apps/details?id=com.peoplechains.onmomtouch.homecare&amp;hl=ko" target="_blank" rel="noopener">play.google.com/…id=com.peoplechains.onmomtouch.homecare</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">케어포</span><span class="slug">carefor.co.kr · KR</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">케어포</span><span class="slug"><a href="https://www.carefor.co.kr/" target="_blank" rel="noopener">carefor.co.kr</a> · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">시설·주야간보호·가정방문 업무를 관리하는 노인장기요양 관리 프로그램. <b>NFC 태그 출퇴근 체크판</b>을 별도 판매.</p>
       <p class="real">출입문 벽에 부착한 NFC 태그로 출퇴근을 체크하는 방식. 체크판은 별도 구매 품목.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-orange-deep)"><b>우리 조건과의 차이 —</b> 하드웨어 태그 의존. 우리는 태그·위치 없이 <b>시각만으로</b> 출퇴근을 기록합니다(FR20·21). 이 차이는 신뢰 설계 부담이 우리 쪽이 더 크다는 뜻입니다 — 중복 기록 방지와 기록 시각의 가시성이 그만큼 중요해집니다.</p>
-      <div class="file">carefor.co.kr/addservice ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.carefor.co.kr/addservice/info_nfc.php" target="_blank" rel="noopener">carefor.co.kr/addservice/info_nfc.php</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">케어네이션 (파트너)</span><span class="slug">kr.carenation.caregiver · KR</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">케어네이션 (파트너)</span><span class="slug"><a href="https://play.google.com/store/apps/details?id=kr.carenation.caregiver" target="_blank" rel="noopener">kr.carenation.caregiver</a> · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">간병인·병원동행인·요양보호사가 <b>일감을 찾는</b> 앱. 보호자용 앱(<code class="c">kr.carenation.protector</code>)과 <b>완전히 분리</b>돼 있습니다.</p>
       <p class="real">종사자용과 보호자용을 별개 앱으로 배포하는 구조.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 시사점 —</b> 국내 돌봄 플랫폼의 <b>표준 관행이 "종사자 앱과 보호자 앱을 분리"</b>라는 점. 우리 앱도 종사자 전용이므로, 보호자 대상 기능이 요구되면 그건 별도 과업임을 근거로 제시할 수 있습니다.</p>
-      <div class="file">play.google.com/…id=kr.carenation.caregiver ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://play.google.com/store/apps/details?id=kr.carenation.caregiver" target="_blank" rel="noopener">play.google.com/…id=kr.carenation.caregiver</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">케어닥</span><span class="slug">caredoc · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">간병인·요양보호사·케어코디의 <b>일자리 찾기</b> 앱. 역시 보호자용 앱과 분리 배포.</p>
       <p class="real">돌봄 종사자 대상 구인·매칭 중심. 방문 중 업무 기록보다 일감 수급이 주 목적.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-orange-deep)"><b>주의 —</b> 케어네이션·케어닥은 <b>매칭 플랫폼</b>입니다. 우리 앱은 이미 배정된 업무를 수행·기록하는 <b>업무 도구</b>이므로, 이들의 비주얼 톤(구직 앱 특유의 밝고 상업적인 톤)을 그대로 참조하면 방향이 어긋납니다.</p>
-      <div class="file">apps.apple.com/kr/app/…id1495648451 ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://apps.apple.com/kr/app/id1495648451" target="_blank" rel="noopener">apps.apple.com/kr/app/…id1495648451</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
   <div class="section-title"><h3>③ 해외 — 돌봄 종사자용 앱</h3><p>현장 기록 UX가 가장 성숙한 영역. 단, GPS 전제가 깔려 있어 선별 인용이 필요합니다</p></div>
   <div class="grid g2">
     <div class="term">
-      <div class="top"><span class="name">Birdie</span><span class="slug">birdie.care · UK</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">Birdie</span><span class="slug"><a href="https://www.birdie.care/" target="_blank" rel="noopener">birdie.care</a> · UK</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">영국 재가돌봄 플랫폼. 케어러 앱에 <b>오프라인 동작 · 음성→텍스트 방문기록 · eMAR · 디지털 바디맵</b>이 들어 있습니다.</p>
       <p class="real">공개 자료 기준: GPS 또는 QR 위치 검증 체크인·아웃 / 신호가 약한 지역에서 오프라인 작동 후 복귀 시 자동 동기화 / 방문 기록을 텍스트 또는 음성으로 입력 / PRN 프로토콜 포함 eMAR / 상처·욕창용 디지털 바디맵 / 타임스탬프 사진 / 읽음 확인이 있는 메시지 센터 / 인앱 타임시트.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> ① 오프라인 → 복귀 자동 동기화 흐름(우리 FR31·32와 정확히 같은 요구) ② 음성 입력을 <b>보조가 아닌 기본 입력</b>으로 두는 태도(우리 FR29와 같음) ③ 타임스탬프 사진.<br><b>버릴 것 —</b> GPS/QR 위치 검증(FR48 위배).</p>
-      <div class="file">birdie.care/product-features/carer-app ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.birdie.care/product-features/carer-app" target="_blank" rel="noopener">birdie.care/product-features/carer-app</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">AlayaCare</span><span class="slug">alayacare.com · CA/US</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">AlayaCare</span><span class="slug"><a href="https://alayacare.com/" target="_blank" rel="noopener">alayacare.com</a> · CA/US</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">케어워커 모바일 앱. <b>오프라인 모드가 "사전 다운로드" 방식</b>이라는 점이 특징입니다.</p>
       <p class="real">일정 확인, 방문 오퍼 응답, clock in/out, 임상 기록 열람·수정. 오프라인 모드는 <b>미리 데이터를 내려받아</b> 연결이 끊긴 상태에서 방문을 완료할 수 있게 하는 구조.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> 오프라인을 "실패 대응"이 아니라 <b>"미리 준비하는 상태"</b>로 다루는 관점. 우리 앱도 방문 전 화면(FR23)에서 필요한 데이터를 미리 확보해두면, 방문 중 연결이 끊겨도 종사자가 불안해하지 않습니다. <b>"오프라인 준비됨" 표시를 방문 전 화면에 두는 안</b>을 제안 후보로 검토할 만합니다.</p>
-      <div class="file">alayacare.com/platform · alayacare.zendesk.com 오프라인 모드 문서 ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://alayacare.com/platform/overview/mobile-app-for-real-time-access/" target="_blank" rel="noopener">alayacare.com/platform</a> · <a href="https://alayacare.zendesk.com/hc/en-us/articles/360025454831-What-is-available-in-Offline-Mode-on-Mobile" target="_blank" rel="noopener">alayacare.zendesk.com — 오프라인 모드 문서</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">Mobile Caregiver+</span><span class="slug">Netsmart/Tellus · US</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">HIPAA 준수 EVV 솔루션. 흐름이 <b>체크인 → 케어 태스크 체크 → 체크아웃</b> 세 동작으로 압축돼 있습니다.</p>
       <p class="real">미국 21st Century Cures Act에 따라 Medicaid 재원 방문(PCS·HHCS)의 전자적 검증이 의무화된 배경에서 나온 제품군.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> <b>핵심 업무를 3동작으로 줄인 단순함.</b> 우리 명세도 방문 전 → 방문 중 → 방문 기록 → 방문 종료 4단계입니다. 이 뼈대를 흐리지 않는 게 화면 설계의 1순위입니다.</p>
-      <div class="file">apps.apple.com/us/app/mobile-caregiver/id1273282237 ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://apps.apple.com/us/app/mobile-caregiver/id1273282237" target="_blank" rel="noopener">apps.apple.com/us/app/mobile-caregiver/id1273282237</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">カイポケ 訪問記録</span><span class="slug">kaipoke.biz · JP</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">カイポケ 訪問記録</span><span class="slug"><a href="https://ads.kaipoke.biz/home-visit/" target="_blank" rel="noopener">kaipoke.biz</a> · JP</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">일본 방문개호 기록 앱. <b>체크리스트 체크만으로 기록이 완성</b>되고, 스마트폰이 익숙하지 않은 헬퍼를 위한 <b>음성 입력</b>을 제공합니다.</p>
       <p class="real">공개 설명 기준: 실시 서비스를 체크하는 것만으로 기록 완료 / 음성 입력 기능 / 기록과 청구 데이터 자동 연동으로 종이 기록 불필요 / 보기 쉬운 화면을 명시적 설계 목표로 언급.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> 이 프로젝트와 <b>사용자 조건(고령·저디지털숙련)이 가장 유사한 사례</b>입니다. ① 자유 입력을 최소화하고 체크로 끝내는 구조 ② 음성 입력을 "잘 못 쓰는 사람을 위한 배려"로 명시적 포지셔닝 — 둘 다 우리 FR27·FR29와 직결됩니다.</p>
-      <div class="file">ads.kaipoke.biz/home-visit/function/visit-record.html ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://ads.kaipoke.biz/home-visit/function/visit-record.html" target="_blank" rel="noopener">ads.kaipoke.biz/home-visit/function/visit-record.html</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
   <div class="section-title"><h3>④ 필드서비스 — 돌봄은 아니지만 구조가 같은 앱</h3><p>방문 일정 · 현장 기록 · 오프라인이라는 뼈대가 동일합니다</p></div>
   <div class="grid g2">
     <div class="term">
-      <div class="top"><span class="name">Salesforce Field Service</span><span class="slug">salesforce.com · Global</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">Salesforce Field Service</span><span class="slug"><a href="https://www.salesforce.com/service/field-service-management/" target="_blank" rel="noopener">salesforce.com</a> · Global</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth"><b>오프라인 우선(offline-first) 설계.</b> "Briefcase"라는 필터 규칙으로 필요한 레코드를 미리 내려받습니다.</p>
       <p class="real">브리프케이스 = 어떤 레코드를 기기에 미리 받을지 결정하는 필터 규칙 모음. 사용자별 맞춤 데이터 부분집합이 기기와 함께 이동. 터치 서명 캡처, 작업 후 서비스 리포트 생성·발송.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> 오프라인을 <b>제품의 기본 전제로 설계</b>하는 방식. 우리 FR31·32도 같은 요구인데, 명세에는 "보존·동기화"만 있고 <b>사용자에게 어떻게 보여줄지가 비어 있습니다.</b> 이 빈칸을 우리가 채워야 합니다.</p>
-      <div class="file">help.salesforce.com — Offline Priming in the Field Service Mobile App ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://help.salesforce.com/s/articleView?id=service.mfs_offline_parent.htm&amp;language=en_US&amp;type=5" target="_blank" rel="noopener">help.salesforce.com — Offline Priming in the Field Service Mobile App</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
-      <div class="top"><span class="name">ServiceTitan Mobile</span><span class="slug">servicetitan.com · US</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">ServiceTitan Mobile</span><span class="slug"><a href="https://www.servicetitan.com/" target="_blank" rel="noopener">servicetitan.com</a> · US</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">Mobile 2.0의 <b>오프라인 아키텍처</b>가 강점으로 언급되는 현장 기술자 앱.</p>
       <p class="real">신호 없는 현장에서 인보이스 생성, 서명 캡처, 영수증 발행을 그 자리에서 처리.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> 필드서비스 업계 공통 요구가 <b>"오프라인 · GPS 시간 기록 · 사진과 서명 · 현장에서 완결"</b>이라는 점. 우리는 이 중 GPS와 서명이 빠진 조합입니다. <b>빠진 만큼 남은 수단(시각·사진·체크)의 신뢰도 표현이 더 정교해야 합니다.</b></p>
-      <div class="file">servicetitan.com/features/field-mobile-app ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.servicetitan.com/features/field-mobile-app" target="_blank" rel="noopener">servicetitan.com/features/field-mobile-app</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
   <div class="section-title"><h3>⑤ 추가 벤치마크 — 축별 보강</h3><p>구조적으로 배울 점이 뚜렷한 사례만 추렸습니다</p></div>
   <div class="grid g2">
     <div class="term">
-      <div class="top"><span class="name">아이돌보미 앱</span><span class="slug">idolbom.go.kr · KR 공공</span><span class="tag easy">업계 패턴</span></div>
+      <div class="top"><span class="name">아이돌보미 앱</span><span class="slug"><a href="https://www.idolbom.go.kr/front/" target="_blank" rel="noopener">idolbom.go.kr</a> · KR 공공</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">국내 공공 중 <b>가장 종사자 친화적</b>입니다. 활동일정 달력 · 활동일지 모바일 작성 · 연차 확인·신청 · <b>급여 상세 확인</b> · 알림센터.</p>
       <p class="real">복무관리시스템의 체크인이 <b>QR / 위치확인 / 활동일지 작성 3택1</b>입니다(2022-12-05 시범운영).</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> ① <b>연차·급여까지 "내 일" 관점으로 묶은 것.</b> 우리 앱도 근무일지·출퇴근·지출결의가 있으니 같은 계열입니다. ② 체크인을 단일 방식으로 강제하지 않은 것 — 우리는 시각 기록 단일이므로, <b>실패 시 대체 경로가 무엇인지</b>를 반드시 정의해야 합니다.</p>
-      <div class="file">idolbom.go.kr/front/board/notice/5768 ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.idolbom.go.kr/front/board/notice/5768" target="_blank" rel="noopener">idolbom.go.kr/front/board/notice/5768</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">하이케어</span><span class="slug">한국시니어연구소 · KR</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">공단 '롱텀' 양방향 연동. <b>RFID 태그 전송 내역과 오류 사항을 한 화면에서 확인·수정</b>하면 롱텀에 자동 반영됩니다.</p>
       <p class="real">방문요양센터 관리자 중심 B2B SaaS. 모바일 앱 존재(<code class="c">com.kslab.highcare_mobile</code>).</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 — 이번 조사에서 가장 유용한 발견입니다.</b> 정상 건이 아니라 <b>어긋난 건만 골라 보여주는 화면</b>이 이 카테고리의 실질적 핵심 기능입니다. 우리 앱에도 <b>"미전송·미기록만 모아 보는 뷰"</b>가 필요합니다.</p>
-      <div class="file">support.highcare.kr ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://support.highcare.kr" target="_blank" rel="noopener">support.highcare.kr</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">ServiceTitan — My Forms</span><span class="slug">US · 필드서비스</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">기술자가 <b>매일 아침 "My Forms"에서 오늘 완료해야 할 폼을 확인</b>합니다. Incomplete / Complete 상태 지표로 남은 항목을 추적합니다.</p>
       <p class="real">앱의 전 기능이 오프라인에서 동작하고, 폼도 오프라인 작성 후 재접속 시 동기화됩니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> <b>"오늘 내가 아직 안 낸 것" 리스트를 하루의 시작점에 두는 것.</b> 기록 누락 방지의 가장 단순하고 검증된 패턴입니다. 우리 홈(FR11·12)에 미전송·미기록 배지를 붙이는 근거가 됩니다.</p>
-      <div class="file">help.servicetitan.com — Add Technician Forms in FMA ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://help.servicetitan.com/v1/docs/add-technician-forms-in-fma" target="_blank" rel="noopener">help.servicetitan.com — Add Technician Forms in FMA</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">HHAeXchange+ · Log my Care · CareViewer</span><span class="slug">US · UK · JP</span><span class="tag easy">업계 패턴</span></div>
       <p class="myth">셋 다 <b>입력 수단을 사용자가 고르게</b> 합니다. HHAeXchange는 타이핑 / 음성 녹음 / 사진 3택, Log my Care는 기기 내장 받아쓰기, CareViewer는 손가락 입력 또는 음성.</p>
       <p class="real">CareViewer는 <b>누락 방지 자동 알림</b>을 명시적 기능으로 둡니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>가져올 것 —</b> 고령·저숙련 사용자에게 <b>단일 입력 강제는 곧 미기록</b>입니다. 우리 FR29는 STT + 사진이므로 이미 2택이지만, <b>키보드 입력도 항상 살아 있어야</b> 합니다(소음 환경에서 음성은 실패율이 높습니다).</p>
-      <div class="file">hhaexchange.com/solutions/providers/mobile-app · support.logmycare.co.uk · care-viewer.com ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://www.hhaexchange.com/solutions/providers/mobile-app" target="_blank" rel="noopener">hhaexchange.com/solutions/providers/mobile-app</a> · <a href="https://support.logmycare.co.uk/en/collections/794813-the-carer-app" target="_blank" rel="noopener">support.logmycare.co.uk</a> · <a href="https://care-viewer.com/" target="_blank" rel="noopener">care-viewer.com</a> ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 
@@ -572,15 +575,15 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   <div class="table-wrap"><table class="t" style="min-width:760px">
     <thead><tr><th style="min-width:150px">기준</th><th>수치</th><th>등급 / 성격</th><th>출처</th></tr></thead>
     <tbody>
-      <tr><td><b>KWCAG 2.2 — 명도 대비</b></td><td class="yes">4.5 : 1</td><td>기본. <b>화면 확대 가능한 콘텐츠는 3:1까지 완화</b></td><td>a11ykr.github.io/kwcag22</td></tr>
+      <tr><td><b>KWCAG 2.2 — 명도 대비</b></td><td class="yes">4.5 : 1</td><td>기본. <b>화면 확대 가능한 콘텐츠는 3:1까지 완화</b></td><td><a href="https://a11ykr.github.io/kwcag22/" target="_blank" rel="noopener">a11ykr.github.io/kwcag22</a></td></tr>
       <tr><td><b>KWCAG 2.2 — 구성</b></td><td>4원칙 · 14지침 · 33 검사항목</td><td>웹 기준. WebView 개발 시 적용 대상</td><td>동일</td></tr>
-      <tr><td><b>KS X 3253</b> 모바일 앱 콘텐츠 접근성 지침 2.0</td><td>19개 항목</td><td class="yes">국가표준. 「지능정보화 기본법」상 준수·인증 대상</td><td>webwatch.or.kr</td></tr>
+      <tr><td><b>KS X 3253</b> 모바일 앱 콘텐츠 접근성 지침 2.0</td><td>19개 항목</td><td class="yes">국가표준. 「지능정보화 기본법」상 준수·인증 대상</td><td><a href="http://www.webwatch.or.kr/MA/020201.html?MenuCD=220" target="_blank" rel="noopener">webwatch.or.kr</a></td></tr>
       <tr><td>└ KS X 3253 컨트롤 크기 구체 수치</td><td class="no">확인 필요</td><td class="no">PDF 원문 직접 확인 필요 — 스니펫으로 미확인</td><td class="no">—</td></tr>
-      <tr><td><b>WCAG 2.2 SC 2.5.8</b> Target Size (Minimum)</td><td>24 × 24 CSS px</td><td class="yes">AA — 5개 예외 있음</td><td>w3.org/TR/WCAG22</td></tr>
-      <tr><td><b>WCAG 2.2 SC 2.5.5</b> Target Size (Enhanced)</td><td>44 × 44 CSS px</td><td>AAA</td><td>WAI 이해문서</td></tr>
-      <tr><td><b>Material Design</b></td><td>48 × 48 dp</td><td>플랫폼 가이드(Android)</td><td>support.google.com/accessibility/android</td></tr>
+      <tr><td><b>WCAG 2.2 SC 2.5.8</b> Target Size (Minimum)</td><td>24 × 24 CSS px</td><td class="yes">AA — 5개 예외 있음</td><td><a href="https://www.w3.org/TR/WCAG22/#target-size-minimum" target="_blank" rel="noopener">w3.org/TR/WCAG22</a></td></tr>
+      <tr><td><b>WCAG 2.2 SC 2.5.5</b> Target Size (Enhanced)</td><td>44 × 44 CSS px</td><td>AAA</td><td><a href="https://a11ykr.github.io/wai/wcag22/understanding/target-size-enhanced.html" target="_blank" rel="noopener">WAI 이해문서</a></td></tr>
+      <tr><td><b>Material Design</b></td><td>48 × 48 dp</td><td>플랫폼 가이드(Android)</td><td><a href="https://support.google.com/accessibility/android/answer/7101858?hl=ko" target="_blank" rel="noopener">support.google.com/accessibility/android</a></td></tr>
       <tr><td><b>Apple HIG</b></td><td>44 × 44 pt</td><td>플랫폼 가이드(iOS)</td><td>동일 정리</td></tr>
-      <tr><td><b>서울디지털재단</b> 고령층 친화 표준</td><td class="yes">글자 14pt 이상 권장</td><td class="yes">고령 사용자 특화 — 우리 프로젝트에 가장 근접</td><td>smart.seoul.go.kr</td></tr>
+      <tr><td><b>서울디지털재단</b> 고령층 친화 표준</td><td class="yes">글자 14pt 이상 권장</td><td class="yes">고령 사용자 특화 — 우리 프로젝트에 가장 근접</td><td><a href="https://smart.seoul.go.kr/board/41/4901/board_view.do" target="_blank" rel="noopener">smart.seoul.go.kr</a></td></tr>
     </tbody>
   </table></div>
 
@@ -594,27 +597,27 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
       <div class="top"><span class="name">서울디지털재단 고령층 친화 디지털 접근성 표준</span><span class="slug">모바일웹·앱 10대 지침</span><span class="tag core">핵심 근거</span></div>
       <p class="myth">① 글자는 크고 선명하게 ② 필수 요소로만 구성 ③ 정보 구조는 단순·친숙하게 ④ 용어는 이해하기 쉽게 <b>⑤ 시스템 상태는 가시적으로</b> <b>⑥ 컨트롤은 행동을 유발하게</b> ⑦ 신속·정확한 조작 <b>⑧ 조작 결과 피드백 제공</b> <b>⑨ 오류 예방·복구 가능하게</b> ⑩ 심리적 부담 감소</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>이 문서에서 가장 중요한 발견입니다.</b> 이 프로젝트의 명제 3개가 위 지침과 <b>문장 단위로 대응</b>합니다 — "다음 행동을 빠르게 이해"=⑥, "기록 누락·실수 감소"=⑨, "완료·저장·전송 상태 인지"=⑤+⑧.<br>즉 <b>"따뜻한 앱이 아니라 업무 도구"라는 방향은 우리 취향이 아니라 공공 접근성 표준의 요구</b>입니다. 09번 검증 기준 탭에 매핑표를 넣어뒀습니다.</p>
-      <div class="file">smart.seoul.go.kr/board/41/4901 ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://smart.seoul.go.kr/board/41/4901/board_view.do" target="_blank" rel="noopener">smart.seoul.go.kr/board/41/4901</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">KRDS 범정부 UI/UX 디자인 시스템</span><span class="slug">행안부·디플정 · 2025.01 공개</span><span class="tag warn">활용 후보</span></div>
       <p class="myth">원칙·스타일·컴포넌트·기본패턴·서비스패턴 구성. 서체 <b>Pretendard GOV</b>. <b>각 컴포넌트 페이지에 WCAG 적합성이 명시</b>돼 있고 <b>Figma 파일도 제공</b>됩니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>제안 —</b> NHN 디자인 시스템이 없거나 늦게 나오면, <b>KRDS를 접근성 베이스라인으로 삼고 그 위에 NHN 브랜드 레이어를 얹는 2층 구조</b>를 제안합니다. 복지부 사업이라는 성격상 설득이 쉽고, <b>3주 일정에서 컴포넌트를 처음부터 만드는 리스크를 크게 줄입니다.</b></p>
       <p class="warnline">단, <b>민간 컨소시엄 사업에 KRDS 준수 의무가 있는지는 미확인</b>입니다. 킥오프에서 확인이 필요합니다.</p>
-      <div class="file">v04.krds.go.kr ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://v04.krds.go.kr/" target="_blank" rel="noopener">v04.krds.go.kr</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">Google Open Health Stack — Offline &amp; Sync 설계 가이드</span><span class="slug">헬스케어 도메인 공식 가이드</span><span class="tag core">규범 근거</span></div>
       <p class="myth">① 초기 동기화 시 <b>명확한 안내 + 소요 시간 예상치</b> ② <b>오프라인 / 동기화중 / 성공 / 실패 4상태 표시 바</b> ③ 적정 간격 백그라운드 동기화 ④ 주요 화면에 진행 표시 ⑤ <b>최근 갱신 타임스탬프</b> ⑥ 친화적 동기화 리마인더</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)"><b>왜 중요한가 —</b> 우리 FR31·32에는 "보존·동기화"만 있고 <b>사용자에게 어떻게 보일지가 비어 있습니다.</b> 그 빈칸을 채울 때 "우리 생각"이 아니라 <b>헬스케어 도메인 공식 가이드</b>를 근거로 제시할 수 있습니다.</p>
-      <div class="file">developers.google.com/open-health-stack/design/offline-sync-guideline ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://developers.google.com/open-health-stack/design/offline-sync-guideline" target="_blank" rel="noopener">developers.google.com/open-health-stack/design/offline-sync-guideline</a> ↗ · 확인 2026-08-10</div>
     </div>
     <div class="term">
       <div class="top"><span class="name">사용자 인구통계</span><span class="slug">매체 인용 · 원자료 재확인 필요</span><span class="tag warn">2차 출처</span></div>
       <p class="myth">요양보호사 <b>60세 이상 63.4%</b>, 재가급여 종사자 중 <b>70세 이상 20.2%</b>, 20대 이하는 1,080명. 전체 장기요양 종사인력 약 72.7만 명 중 요양보호사 65.4만 명.</p>
       <p class="warnline"><b>인용 주의 —</b> 이 수치는 <b>매체 보도 인용</b>이며 공단·복지부 원자료를 직접 확인하지 않았습니다. 클라이언트 문서에 쓸 때는 원자료 대조 후 사용하거나 "보도 인용"으로 명시해야 합니다.</p>
       <p class="real" style="margin-top:7px;color:var(--pt-blue)">확인된다면 <b>"통합 기능을 평면 나열하면 못 쓴다"는 것이 인구통계로 뒷받침</b>됩니다. 04번 현장 조건 분석의 근거가 추론에서 사실로 올라갑니다.</p>
-      <div class="file">v.daum.net/v/20251120131813218 (보도) ↗ · 확인 2026-08-10</div>
+      <div class="file"><a href="https://v.daum.net/v/20251120131813218" target="_blank" rel="noopener">v.daum.net/v/20251120131813218</a> (보도) ↗ · 확인 2026-08-10</div>
     </div>
   </div>
 </section>
@@ -1752,7 +1755,7 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   <p class="footnote">
     <b>이 문서에 대하여</b><br>
     작성일 2026-08-10 · 돌봄종사자 APP UX/UI 디자인 프로젝트 사전 리서치 및 킥오프 준비 자료.<br><br>
-    <b>확정 사실의 출처</b> — Figma 기능명세서 v0.1.0(node 67:13668) 및 IA v0.1.0(page 0:1).<br>
+    <b>확정 사실의 출처</b> — <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=67-13668" target="_blank" rel="noopener">Figma 기능명세서 v0.1.0 (node 67:13668)</a> · <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=0-1" target="_blank" rel="noopener">IA v0.1.0 (page 0:1)</a><br>
     <b>외부 사례의 출처</b> — 각 항목에 URL과 확인일(2026-08-10)을 표기. <b>공개 자료 기반 데스크 리서치</b>이며 실기기 설치·스크린샷 검증은 미실시. 따라서 03번 비교표의 홈 화면 정보구조·버튼 배치·비주얼 톤 항목은 대부분 <b>확인 필요</b>로 남아 있습니다.<br><br>
     <b>이 문서를 외부로 내보낼 때의 주의</b><br>
     · 비주얼 톤앤무드 3안의 컬러·타이포는 <b>제안이며 확정이 아님</b> — NHN 브랜드 가이드 확보 후 재조정 필요<br>

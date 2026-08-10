@@ -137,12 +137,45 @@ description: 좌측 탭 네비게이션 + 다크 상단바 구조의 단일 HTML
 | `.gloss-note` | 좌측 블루 바 안내문 | 탭당 1개 |
 | `.say` | 발화 예시 (who / msg) | 대사·질문 예시용 |
 
-### 출처 표기 (리서치 문서 필수)
+### 출처 표기 — 반드시 클릭 가능한 링크로
 
-리서치 성격의 탭에서는 모든 고유명사에 출처를 붙인다. `.term .file` 스타일 모노 라인:
+리서치 성격의 탭에서는 모든 고유명사에 출처를 붙인다.
+**출처 경로는 예외 없이 실제 `<a href>`로 만든다.** 도메인만 평문으로 적으면 독자가 URL을 손으로 옮겨 적어야 한다 —
+회의 중에 그 출처는 열리지 않고, 열리지 않는 출처는 없는 것과 같다.
 
 ```html
-<div class="file">birdie.care ↗ · 확인 2026-08-10</div>
+<div class="file">
+  <a href="https://www.birdie.care/product-features/carer-app" target="_blank" rel="noopener">birdie.care/product-features/carer-app</a>
+  ↗ · 확인 2026-08-10
+</div>
+```
+
+규칙:
+- **`target="_blank" rel="noopener"` 고정.** 문서를 읽던 자리를 잃지 않게 한다.
+- **출처가 여러 개면 앵커도 여러 개.** 하나로 묶어 첫 URL만 걸지 않는다. 구분자는 ` · `.
+- **표 안의 출처 셀도 링크로.** `<td>a11ykr.github.io/kwcag22</td>` 같은 평문 셀을 남기지 않는다.
+- **`.slug`처럼 도메인처럼 보이는 라벨도 링크로.** URL 모양인데 안 눌리면 그 자체가 마찰이다.
+- **표시 텍스트는 도메인+경로**로 두고 `https://`는 생략해 길이를 줄인다. 링크 대상은 전체 URL.
+- 확인일(`· 확인 YYYY-MM-DD`)은 링크 밖 평문.
+
+필요한 CSS:
+```css
+.term .slug a,.term .file a,table.t td a,.footnote a{
+  color:var(--pt-blue);text-decoration:none;
+  border-bottom:1px solid rgba(46,83,249,.35);word-break:break-all}
+.term .slug a:hover,.term .file a:hover,table.t td a:hover,.footnote a:hover{
+  background:var(--pt-blue-soft);border-bottom-color:var(--pt-blue)}
+@media print{.term .slug a,.term .file a,table.t td a{color:#000;border-bottom:0}}
+```
+
+발행 전 점검 — 앵커 밖에 남은 평문 도메인이 없어야 한다:
+```bash
+python3 -c "
+import re,sys
+s=open(sys.argv[1],encoding='utf-8').read().split('</style>',1)[1]
+st=re.sub(r'<a [^>]*>.*?</a>','',s,flags=re.S)
+d=re.findall(r'\b(?:[a-z0-9-]+\.)+(?:com|kr|net|org|biz|io|jp|uk|app|care)\b(?:/[^\s<·\"]*)?',st)
+print(sorted(set(d)) or 'OK')" <파일>
 ```
 
 출처 없는 고유명사는 문서에서 뺀다. 이게 리서치 덱과 그냥 의견서를 가르는 선이다.
@@ -186,3 +219,4 @@ favicon 1~2개 이모지 · title은 <title> 태그로 · description 한 문장
 - `.decision`(다크 히어로)을 탭마다 넣음 → 무게중심이 무너진다. 문서당 1~2개.
 - `<noscript>` 폴백 누락 → JS 차단 환경에서 첫 탭만 보이고 나머지는 사라진다.
 - 리서치 탭에서 출처 누락 → 문서 신뢰도가 통째로 날아간다.
+- **출처를 평문 도메인으로만 적음** → 회의 중에 아무도 그 출처를 열어보지 못한다. 열리지 않는 출처는 없는 것과 같다. 전부 `<a href target="_blank" rel="noopener">`로.

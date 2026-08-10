@@ -22,6 +22,9 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13.5px;line-height:1.65;letter-spacing:-.015em;-webkit-font-smoothing:antialiased}
 button,input{font:inherit}
 a{color:inherit}
+/* 출처 링크 — 평문 도메인 금지, 전부 클릭 가능하게 */
+.term .slug a,.term .file a,table.t td a,.footnote a{color:var(--pt-blue);text-decoration:none;border-bottom:1px solid rgba(46,83,249,.35);word-break:break-all}
+.term .slug a:hover,.term .file a:hover,table.t td a:hover,.footnote a:hover{background:var(--pt-blue-soft);border-bottom-color:var(--pt-blue)}
 code.c{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap}
 
 /* ── topbar ── */
@@ -288,10 +291,11 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   <div class="section-title"><h3>{구획 제목}</h3><p>{보조}</p></div>
   <div class="grid g2">
     <div class="term">
-      <div class="top"><span class="name">{이름}</span><span class="slug">{영문/슬러그}</span><span class="tag core">{분류}</span></div>
+      <div class="top"><span class="name">{이름}</span><span class="slug"><a href="{홈페이지 URL}" target="_blank" rel="noopener">{도메인}</a> · {국가}</span><span class="tag core">{분류}</span></div>
       <p class="myth">{한 줄 요지 — <b>핵심어는 형광펜</b>}</p>
       <p class="real">{본문}</p>
-      <div class="file">{도메인} ↗ · 확인 {YYYY-MM-DD}</div>
+      <!-- 출처는 반드시 실제 링크로. 여러 개면 앵커도 여러 개, 구분자는 ` · ` -->
+      <div class="file"><a href="{전체 URL}" target="_blank" rel="noopener">{도메인+경로}</a> ↗ · 확인 {YYYY-MM-DD}</div>
     </div>
   </div>
 </section>
