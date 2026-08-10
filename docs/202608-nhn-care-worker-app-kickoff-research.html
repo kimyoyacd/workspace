@@ -326,10 +326,37 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
     </div>
   </div>
 
-  <div class="gloss-note risk" style="margin-top:16px">
+  <div class="section-title"><h3>화면 ID 체계에 대하여</h3><p><code class="c">CG-HOME</code> 같은 코드는 업계 표준이 아니라 이 프로젝트 내부 약속입니다</p></div>
+  <div class="gloss-note">
+    <b>읽는 법 —</b> <code class="c">CG</code>는 CareGiver(돌봄종사자)의 약어로 보입니다. 기능명세서 헤더가 <code class="c">FS-CG-ALL</code>
+    (Functional Spec · CareGiver · ALL)입니다. 뒤에 화면 이름이 붙고, 변형이 있으면 접미사가 하나 더 붙는 구조입니다 —
+    <code class="c">CG-SCHED-ADD</code>(일정 등록) · <code class="c">CG-SCHED-REQ</code>(일정 요청) ·
+    <code class="c">CG-USER-DTL</code>(이용자 상세) · <code class="c">CG-EXP-LIST</code>(지출결의 내역).
+    <br><br>
+    이런 ID를 쓰는 <b>관행 자체는 표준</b>입니다. 기획·디자인·개발·QA가 같은 화면을 각자 다른 이름으로 부르는 걸 막아주기 때문입니다.
+    하지만 <b>코드 자체는 프로젝트마다 새로 만듭니다.</b> 다른 회사에서 <code class="c">CG-HOME</code>이라고 하면 통하지 않습니다.
+  </div>
+
+  <div class="gloss-note risk">
+    <b>⚠️ 두 문서가 서로 다른 체계를 씁니다 —</b> 기능명세서는 <code class="c">CG-*</code> ID를 쓰는데,
+    실제 <b>유저 플로우 문서에는 이 ID가 한 번도 나오지 않습니다.</b> 대신 시나리오 번호를 씁니다
+    (<code class="c">1. 출근 전</code> · <code class="c">2.1. 방문 전</code> · <code class="c">2.3. 돌봄 기록(요양)</code>).
+    <br><br>
+    두 문서를 잇는 <b>매핑표가 없다는 뜻</b>입니다. 이 상태로 디자인에 들어가면 "그 화면"이 서로 다른 걸 가리키는 일이 생깁니다.
+    킥오프에서 <b>ID ↔ 플로우 매핑표</b>를 요청해야 합니다. 없으면 우리가 만들어 승인받는 편이 안전합니다.
+  </div>
+
+  <div class="gloss-note risk">
     <b>지금 당장 답이 필요한 한 가지 —</b> 화면 ID에 <code class="c">CG-HOME</code>과 <code class="c">CG-HOME-L</code>이 <b>둘 다</b> 있습니다.
-    <code class="c">-L</code>이 큰 글씨(Large) 전용 홈 레이아웃이라면 <b>홈 화면만 2벌을 디자인해야 합니다.</b>
-    명세에 정의가 없어 과업량 산정이 불가능합니다. 미팅 전 확인이 필요합니다.
+    어느 쪽이든 <b>홈 화면은 2벌</b>이 됩니다.
+    <br><br>
+    유저 플로우 문서에서 <code class="c">1.1. 역할 별 화면</code>이라는 프레임을 찾았고, 그 안에 <b>홈 화면 2개가 나란히</b> 놓여 있습니다.
+    따라서 <code class="c">-L</code>은 큰 글씨(Large)보다 <b>역할 구분일 가능성이 높습니다</b> — 요양보호사용 홈과 생활지원사용 홈.
+    <span class="tag warn">가설</span>
+    <br><br>
+    <b>어느 쪽인지가 과업량을 크게 바꿉니다.</b> 큰 글씨 변형이면 홈 하나의 레이아웃 대응이지만,
+    <b>역할 구분이면 홈 말고 다른 화면들도 역할별로 갈라질 수 있습니다.</b>
+    기록 화면은 이미 요양 4단계 / 생활 3단계로 갈라져 있으니, 분기가 어디까지 번지는지 확인이 필요합니다.
   </div>
 
   <p class="footnote">작성 기준일 2026-08-10 · 출처: <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=67-13668" target="_blank" rel="noopener">Figma 기능명세서 v0.1.0(node 67:13668)</a> · <a href="https://www.figma.com/design/mlbVOnLJQUULWK80c3Fo1B/?node-id=0-1" target="_blank" rel="noopener">IA v0.1.0(page 0:1)</a> + 공개 자료 데스크 리서치. 실기기 설치·스크린샷 검증은 미실시.</p>
@@ -381,8 +408,11 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
       <tr><td><b>음성 입력</b></td><td><span class="tag core">확정</span></td><td>STT 구술 + 사진 첨부, 3분 제한·경고(FR29)</td><td>3분 초과 시 처리 방식 확인</td></tr>
       <tr><td><b>개인정보 등급</b></td><td><span class="tag core">확정</span></td><td>GREEN 마스킹 / ORANGE 암호화(FR46), 조회 로그 자동 기록(FR47)</td><td>등급별 표기 규칙 문서 요청</td></tr>
       <tr><td><b>앱 내 글자 크기</b></td><td><span class="tag core">확정</span></td><td>내 정보 → 서비스 설정 → 글자 크기 조정(FR50)</td><td class="yes">단계 수·배율 확인 — 과업량 직결</td></tr>
-      <tr><td><b>CG-HOME-L</b></td><td><span class="tag new">미확인</span></td><td>화면 ID만 존재. 정의 없음</td><td class="yes">최우선 확인 — 홈 2벌 여부</td></tr>
-      <tr><td><b>디자인 대상 화면 수</b></td><td><span class="tag new">미확인</span></td><td>화면 ID 28개는 확인. 상태·예외·빈 화면 포함 총량 불명</td><td class="yes">화면 목록(엑셀/시트) 요청</td></tr>
+      <tr><td><b>CG-HOME-L</b></td><td><span class="tag warn">가설</span></td><td>유저 플로우에 <code class="c">1.1. 역할 별 화면</code> 프레임이 있고 홈이 2개 놓여 있음 → <b>역할 구분(요양/생활)</b>일 가능성</td><td class="yes">최우선 확인 — 분기가 홈에만인지, 다른 화면까지인지</td></tr>
+      <tr><td><b>디자인 대상 화면 수</b></td><td><span class="tag warn">가설</span></td><td class="yes">유저 플로우 기준 모바일 프레임 <b>42~43개</b>(두 버전). 기능명세 ID 28개와 불일치. 상태·예외·빈 화면은 별도</td><td class="yes">확정 화면 목록 + 최신 버전 확인</td></tr>
+      <tr><td><b>유저 플로우 버전</b></td><td><span class="tag new">미확인</span></td><td class="yes">유저 플로우 문서가 <b>2벌</b> 존재(42개 / 43개). 후자에만 <code class="c">2.6. 긴급 안부 확인</code>이 있음</td><td class="yes">어느 쪽이 최신인지 확인</td></tr>
+      <tr><td><b>ID ↔ 플로우 매핑</b></td><td><span class="tag new">미확인</span></td><td class="yes">기능명세서는 <code class="c">CG-*</code>, 유저 플로우는 시나리오 번호. <b>두 체계를 잇는 매핑표 없음</b></td><td class="yes">매핑표 요청 또는 우리가 작성 후 승인</td></tr>
+      <tr><td><b>돌봄 기록 변형</b></td><td><span class="tag warn">가설</span></td><td class="yes">유저 플로우에 <b>요양 / 생활 / 전화</b> 3종. 기능명세서·IA에는 <b>"전화" 변형이 없음</b></td><td class="yes">전화 기반 돌봄 기록이 범위인지 확인</td></tr>
       <tr><td><b>NHN 디자인 시스템</b></td><td><span class="tag new">미확인</span></td><td>브랜드 가이드·컴포넌트 라이브러리 존재 여부 불명</td><td class="yes">있으면 즉시 공유 요청</td></tr>
       <tr><td><b>개발 방식</b></td><td><span class="tag new">미확인</span></td><td>Native / Hybrid / WebView 미확인. 지원 OS·최소 버전 미확인</td><td>모션·컴포넌트 정의 전 필수</td></tr>
       <tr><td><b>서명 첨부</b></td><td><span class="tag new">미확인</span></td><td>명세에 서명 관련 기능 없음. 사진 첨부만 존재(FR29·44)</td><td>범위 외인지 확인</td></tr>
@@ -396,9 +426,10 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   </table></div>
 
   <div class="gloss-note">
-    <b>집계 —</b> 확정 9 · 공개 확인 1 · 가설 2 · 미확인 12. 기능명세서 확보로 확정 비율이 크게 올랐지만,
-    <b>미확인 12건 중 6건(와플랫 앱 관계, 기록의 정산 근거 여부, 글자 크기 단계, CG-HOME-L, 화면 총량, 다크모드)이 직접 과업량 또는 설계 방향을 좌우합니다.</b>
-    이 6건은 킥오프 전·중에 반드시 닫아야 3주 일정이 성립합니다.
+    <b>집계 —</b> 확정 9 · 공개 확인 1 · 가설 5 · 미확인 12.<br><br>
+    유저 플로우 문서까지 확인해 <b>화면 총량이 42~43개</b>로 좁혀졌습니다(기능명세 ID 28개와 불일치 — 두 문서가 다른 체계를 씁니다).
+    <b>남은 최대 변수는 역할별 분기가 어디까지 번지느냐</b>입니다. 기록은 이미 요양/생활로 갈라져 있고, 홈도 갈라지는 정황이 있으며,
+    유저 플로우에는 명세에 없는 <b>전화 기반 돌봄 기록</b>까지 있습니다. 분기가 화면 전반으로 번지면 42개가 실질 60개가 됩니다.
   </div>
 </section>
 
@@ -1584,12 +1615,15 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
   </div>
 
   <div class="panel">
-    <h4>A. 미팅 전에 확인해야 하는 질문 <span class="tag core">8</span></h4>
+    <h4>A. 미팅 전에 확인해야 하는 질문 <span class="tag core">11</span></h4>
     <p style="font-size:11px;color:var(--muted);margin:0 0 10px">이 답이 없으면 미팅이 "확인 회의"가 되고 결정이 안 납니다. <b>1·2번은 하나만 고른다면 이것</b>입니다.</p>
     <ol>
       <li class="yes"><strong>「와플랫 공공 — AI 생활지원사 플랫폼」과 이번 앱은 같은 앱의 개편입니까, 별도 신규입니까?</strong> 같은 앱이라면 현재 화면 캡처 일체를 요청드립니다. "UX 구조 변경 없이"의 실제 제약 범위가 여기서 결정됩니다.</li>
       <li class="yes"><strong>이 앱의 기록이 급여 청구·바우처 결제·사업 실적 보고의 근거 데이터가 됩니까?</strong> 그렇다면 기록 화면의 최우선 위계는 '케어 품질'이 아니라 <b>'누락 없는 필수 항목 완결'</b>이 됩니다. 이 한 문장이 톤앤무드 3안 중 하나의 생사를 가릅니다.</li>
-      <li><strong><code class="c">CG-HOME-L</code>은 무엇입니까?</strong> 큰 글씨 전용 홈 레이아웃이라면 홈을 2벌 디자인해야 합니다.</li>
+      <li class="yes"><strong><code class="c">CG-HOME-L</code>의 <code class="c">-L</code>은 무엇입니까?</strong> 유저 플로우의 <code class="c">1.1. 역할 별 화면</code>을 보면 역할 구분(요양보호사/생활지원사)으로 보입니다. 맞다면 <b>역할별 분기가 홈에만 적용됩니까, 다른 화면에도 적용됩니까?</b> 이게 화면 수를 42개에서 60개 가까이로 늘릴 수 있습니다.</li>
+      <li class="yes"><strong>유저 플로우 문서가 2벌 있는데 어느 쪽이 최신입니까?</strong> 한쪽에만 <code class="c">2.6. 긴급 안부 확인</code>이 있고, 다른 쪽에만 <code class="c">2.3.2. 돌봄 기록(전화)</code>·<code class="c">1.1. 역할 별 화면</code>이 있습니다.</li>
+      <li><strong>기능명세서의 <code class="c">CG-*</code> ID와 유저 플로우의 시나리오 번호를 잇는 매핑표가 있습니까?</strong> 없으면 저희가 작성해 승인받겠습니다.</li>
+      <li><strong>유저 플로우의 <code class="c">2.3.2. 돌봄 기록(전화)</code>이 이번 범위입니까?</strong> 기능명세서와 IA에는 이 변형이 없습니다.</li>
       <li><strong>디자인 대상 화면의 총 개수는 몇 개입니까?</strong> 화면 ID 28개 외에 상태·예외·빈 화면을 포함한 목록이 필요합니다.</li>
       <li><strong>NHN 디자인 시스템·컴포넌트 라이브러리가 있습니까?</strong> 있다면 파일을 공유해 주십시오.</li>
       <li><strong>글자 크기 조정(FR50)은 몇 단계이고 배율은 얼마입니까?</strong> 아이콘·여백도 함께 커집니까?</li>
@@ -1658,9 +1692,9 @@ details.day .body p{font-size:11.5px;color:var(--ink2);line-height:1.7;margin:0 
         <td class="yes"><b>단일 승인권자 1인 지정을 킥오프에서 요구.</b> 피드백 취합 창구도 1인으로</td><td>킥오프</td>
       </tr>
       <tr>
-        <td><b>화면 수가 예상보다 많음</b></td><td><span class="tag new">높음</span></td>
-        <td>화면 ID 28개는 확인됐지만 상태·예외·빈 화면이 미집계</td>
-        <td class="yes">미팅 전 화면 목록 확보. 목록 확정 전에는 3주를 확약하지 않음</td><td>킥오프 전</td>
+        <td><b>역할별 분기가 화면 전반으로 번짐</b></td><td><span class="tag new">높음</span></td>
+        <td class="yes">유저 플로우 기준 42~43개. 그런데 기록은 요양/생활/전화 3종, 홈도 역할별 2벌 정황. 분기가 번지면 실질 60개 가까이</td>
+        <td class="yes">역할별 분기 범위를 킥오프에서 화면 단위로 확정. 확정 전 3주 미확약</td><td>킥오프</td>
       </tr>
       <tr>
         <td><b>글자 크기 대응(FR50) 검수량 폭증</b></td><td><span class="tag new">높음</span></td>
