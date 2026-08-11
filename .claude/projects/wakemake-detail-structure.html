@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C01 · 오늘 기분이 먼저다 — WAKEMAKE × OLIVEYOUNG 모바일 상세페이지 구조</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    background: #EBEBEB;
+    color: #111;
+    min-height: 100vh;
+  }
+
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* ── Page Header ── */
+  .page-header {
+    background: #111111;
+    border-radius: 20px;
+    padding: 44px 48px 48px;
+    margin-bottom: 48px;
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #666;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .header-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header-title span {
+    color: #E8502A;
+  }
+  .header-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #555;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Section Card ── */
+  .section-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    min-height: 520px;
+  }
+
+  /* ── Phone Panel (left) ── */
+  .phone-panel {
+    background: #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    border-right: 1px solid #E5E5E5;
+  }
+
+  .phone-frame {
+    width: 100%;
+    max-width: 375px;
+    border: 2px solid #333;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 0 6px rgba(0,0,0,0.04);
+    position: relative;
+  }
+
+  /* phone notch */
+  .phone-frame::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 20px;
+    background: #333;
+    border-radius: 0 0 12px 12px;
+    margin: 0 auto 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .phone-content {
+    position: relative;
+  }
+
+  /* ── Annotation Panel (right) ── */
+  .annotation-panel {
+    padding: 36px 36px 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #E8502A;
+  }
+
+  .section-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .anno-block {
+    border-top: 1px solid #EBEBEB;
+    padding-top: 16px;
+  }
+
+  .anno-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .anno-text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  .anno-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .anno-list li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .anno-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #E8502A;
+    font-weight: 700;
+  }
+
+  .design-pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #111;
+    color: #fff;
+    letter-spacing: 0.05em;
+    margin-right: 4px;
+    margin-top: 2px;
+  }
+
+  .design-pill.coral { background: #E8502A; }
+  .design-pill.olive { background: #2D4A3E; }
+  .design-pill.cream { background: #F5F0E8; color: #111; }
+
+  /* ── KEY COPY ── */
+  .key-copy {
+    background: #FFF8F5;
+    border-left: 3px solid #E8502A;
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #333;
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  /* ══════════════════════════════
+     S1 — 히어로 / 브랜드 스토리
+  ══════════════════════════════ */
+  .s1-hero {
+    background: linear-gradient(160deg, #F2B89A 0%, #E8502A 100%);
+    padding: 60px 28px 48px;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  }
+  .s1-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .s1-headline {
+    font-size: 38px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .s1-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .s1-scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════
+     S2 — 컬러 스토리
+  ══════════════════════════════ */
+  .s2-bg {
+    background: #FDFAF7;
+    padding: 48px 24px 40px;
+    min-height: 420px;
+  }
+  .s2-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .s2-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .s2-swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .swatch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .swatch-mood {
+    font-size: 9px;
+    color: #888;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ══════════════════════════════
+     S3 — 텍스처 & 발색
+  ══════════════════════════════ */
+  .s3-bg {
+    background: #111111;
+    padding: 52px 24px 44px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+  }
+  .s3-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .s3-circle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .s3-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8502A 0%, #C43A1A 60%, #8B2510 100%);
+    box-shadow: 0 0 40px rgba(232,80,42,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .s3-circle-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .s3-desc {
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .s3-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .s3-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #E8502A;
+    border: 1px solid #E8502A;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════
+     S4 — 브랜드 세계관
+  ══════════════════════════════ */
+  .s4-bg {
+    background: #F5F5F5;
+    padding: 52px 28px 44px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .s4-quote-mark {
+    font-size: 60px;
+    color: #E8502A;
+    line-height: 0.8;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-family: Georgia, serif;
+  }
+  .s4-quote {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .s4-quote em {
+    color: #E8502A;
+    font-style: italic;
+  }
+  .s4-body {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    border-top: 1px solid #DDD;
+    padding-top: 16px;
+  }
+
+  /* ══════════════════════════════
+     S5 — How To
+  ══════════════════════════════ */
+  .s5-bg {
+    background: #fff;
+    padding: 48px 24px 40px;
+    min-height: 400px;
+  }
+  .s5-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .s5-sub {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .s5-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .step-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #E8502A;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .step-img-box {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #F0EEF0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-img-icon {
+    font-size: 28px;
+    opacity: 0.5;
+  }
+  .step-desc {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════════
+     S6 — 올리브영 ONLY
+  ══════════════════════════════ */
+  .s6-bg {
+    background: #2D4A3E;
+    padding: 52px 28px 44px;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .s6-bg::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(180,150,80,0.2);
+    border-radius: 50%;
+  }
+  .s6-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 160px;
+    height: 160px;
+    border: 1px solid rgba(180,150,80,0.15);
+    border-radius: 50%;
+  }
+  .s6-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(180,150,80,0.15);
+    border: 1px solid rgba(180,150,80,0.5);
+    border-radius: 24px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .s6-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #B4964A;
+    border-radius: 50%;
+  }
+  .s6-badge-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #B4964A;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .s6-heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .s6-body {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .s6-urgency {
+    background: rgba(232,80,42,0.15);
+    border: 1px solid rgba(232,80,42,0.4);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #FF8060;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .s6-urgency::before {
+    content: '!';
+    width: 18px;
+    height: 18px;
+    background: #E8502A;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════
+     S7 — 리뷰 & 실착
+  ══════════════════════════════ */
+  .s7-bg {
+    background: #FAFAFA;
+    padding: 48px 20px 40px;
+    min-height: 440px;
+  }
+  .s7-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .s7-stars {
+    font-size: 18px;
+    color: #E8502A;
+    letter-spacing: 2px;
+  }
+  .s7-score {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.02em;
+  }
+  .s7-count {
+    font-size: 12px;
+    color: #999;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .s7-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .review-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid #ECECEC;
+  }
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .review-user {
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+  }
+  .review-stars {
+    font-size: 11px;
+    color: #E8502A;
+  }
+  .review-text {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.55;
+  }
+  .review-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .review-tag {
+    font-size: 10px;
+    background: #FFF0EB;
+    color: #E8502A;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* ══════════════════════════════
+     S8 — CTA
+  ══════════════════════════════ */
+  .s8-bg {
+    background: #fff;
+    padding: 48px 20px 36px;
+    min-height: 420px;
+  }
+  .s8-color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .s8-color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+  }
+  .s8-color-item.selected {
+    border-color: #E8502A;
+    background: #FFF8F5;
+  }
+  .s8-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.08);
+  }
+  .s8-color-name {
+    font-size: 9px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .s8-cta-btn {
+    width: 100%;
+    background: #E8502A;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .s8-delivery {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .s8-delivery span {
+    color: #E8502A;
+    font-weight: 700;
+  }
+
+  /* ══════════════════════════════
+     Flow Diagram
+  ══════════════════════════════ */
+  .flow-section {
+    background: #111;
+    border-radius: 16px;
+    padding: 44px 40px;
+    margin-top: 16px;
+  }
+  .flow-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .flow-timeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 108px;
+    position: relative;
+  }
+  .flow-node:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 14px;
+    color: #333;
+    font-size: 14px;
+    z-index: 2;
+  }
+  .flow-dot {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+  .flow-node-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .flow-node-role {
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    line-height: 1.3;
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ── PAGE HEADER ── -->
+  <header class="page-header">
+    <div class="header-tag">WAKEMAKE × OLIVEYOUNG · 모바일 상세페이지 구조 초안 · C01</div>
+    <h1 class="header-title">C01 · <span>오늘 기분이 먼저다</span></h1>
+    <div class="header-sub">모바일 세로 롱폼 JPG &nbsp;·&nbsp; 8섹션 구조 &nbsp;·&nbsp; Direction A 오전 빛 기준</div>
+  </header>
+
+
+  <!-- S1 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s1-hero">
+            <div class="s1-brand">WAKEMAKE × OLIVEYOUNG</div>
+            <h2 class="s1-headline">오늘 기분이<br>먼저다</h2>
+            <p class="s1-sub">립이 먼저 말한다.<br>색을 고르기 전, 기분을 골라라.</p>
+            <div class="s1-scroll-hint">&#8595; SCROLL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S1 · HERO</div>
+        <div class="section-name">히어로 /<br>브랜드 스토리</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">첫 2초 멈춤 구간. 브랜드 POV 선언. 카피가 이미지보다 먼저. Height 100vh 기준으로 스크롤 없이 완결되는 첫 인상.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>감성 헤드카피 1줄 (최대 10자)</li>
+          <li>서브 카피 1–2줄 (브랜드 세계관 암시)</li>
+          <li>브랜드명 + 채널명 태그라인</li>
+          <li>스크롤 유도 힌트 (최소)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+          <span class="design-pill coral">Direction A</span>
+          <span class="design-pill">자연광 무드</span>
+          <span class="design-pill">카피 퍼스트</span>
+        </div>
+        <div class="key-copy">"제품보다 POV가 먼저다. 브랜드가 믿는 것을 먼저 말하고, 제품은 그 증거로 등장한다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S2 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s2-bg">
+            <div class="s2-eyebrow">COLOR STORY</div>
+            <div class="s2-heading">기분으로<br>먼저 고른다</div>
+            <div class="s2-swatches">
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#C43A1A;"></div>
+                <div class="swatch-name">코랄 브릭</div>
+                <div class="swatch-mood">오전 카페<br>에서</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#F2B89A;"></div>
+                <div class="swatch-name">피치 누드</div>
+                <div class="swatch-mood">창가 햇살<br>아래</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#C4943A;"></div>
+                <div class="swatch-name">웜 골드</div>
+                <div class="swatch-mood">저녁 노을<br>한 컷</div>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch-circle" style="background:#D4B09A;"></div>
+                <div class="swatch-name">베이지 뮤트</div>
+                <div class="swatch-mood">주말 오후<br>여유</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S2 · COLOR STORY</div>
+        <div class="section-name">컬러 스토리 /<br>기분으로 먼저 고른다</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">"퍼스널컬러 타입" 언어 없음. "오늘 기분" 언어로 색 선택을 유도. 색 이름 자체가 감성 언어이자 마이크로카피.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>컬러 4종 스와치 (클로즈업 발색 이미지)</li>
+          <li>색 이름 — 감성 언어 기준 명명</li>
+          <li>컬러별 기분 한 줄 카피</li>
+          <li>선택 시 발색 클로즈업 전환 UX</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">KEY COPY EXAMPLES</div>
+        <div class="key-copy">
+          "코랄 브릭 — 오전 카페에서"<br>
+          "피치 누드 — 창가 햇살 아래"<br>
+          "웜 골드 — 저녁 노을 한 컷"
+        </div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">감성 네이밍</span>
+          <span class="design-pill cream">무퍼스널컬러 언어</span>
+          <span class="design-pill coral">기분 퍼스트</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S3 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#222;">
+      <div class="phone-frame" style="border-color:#444;">
+        <div class="phone-content">
+          <div class="s3-bg">
+            <div class="s3-eyebrow">TEXTURE &amp; PIGMENT</div>
+            <div class="s3-circle-wrap">
+              <div class="s3-circle">
+                <div class="s3-circle-label">발색<br>클로즈업</div>
+              </div>
+            </div>
+            <div class="s3-desc">
+              입술 위에서 번지지 않는<br>
+              벨벳 세미-매트 물성.<br>
+              6시간 후에도 중심 발색 유지.
+            </div>
+            <div class="s3-tags">
+              <span class="s3-tag">벨벳 물성</span>
+              <span class="s3-tag">비번짐</span>
+              <span class="s3-tag">6H 지속</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S3 · TEXTURE</div>
+        <div class="section-name">텍스처 &amp; 발색</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">구매 결정을 위한 실증 구간. 발림감·물성·지속력을 감각 언어로 설명. 성분 설명 없음 — 체험 설명.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>클로즈업 이미지 3–4장 (입술 위 실착)</li>
+          <li>텍스처 설명 2줄 — 감각 언어 기준</li>
+          <li>지속력 키워드 태그 3개 이내</li>
+          <li>다크 배경으로 발색 대비 극대화</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill" style="background:#222;">다크 섹션</span>
+          <span class="design-pill coral">실증 구간</span>
+          <span class="design-pill">감각 언어</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"성분을 설명하지 말고, 입술 위에서 어떤 기분인지를 설명하라."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S4 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#E8E8E8;">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s4-bg">
+            <div class="s4-quote-mark">"</div>
+            <div class="s4-quote">오늘 당신이 원하는<br>색을 <em>먼저 믿는다.</em></div>
+            <div class="s4-body">
+              WAKEMAKE는 트렌드를 따르지 않습니다.<br>
+              오늘 당신의 기분을 먼저 묻고,<br>
+              그 기분에 맞는 색을 설계합니다.<br><br>
+              컬러는 도구가 아닌, 오늘의 태도입니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S4 · BRAND WORLD</div>
+        <div class="section-name">브랜드 세계관 /<br>Why WAKEMAKE</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">Blue Bottle 방식 — POV 먼저, 제품은 증거. 브랜드가 믿는 것을 설명하는 구간. 소비자가 브랜드 철학에 공감하게 만든다.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>브랜드 철학 카피 3–4줄</li>
+          <li>핵심 인용구 1문장 (대형 타이포)</li>
+          <li>시그니처 이미지 1장 (자연광 포트레이트)</li>
+          <li>배경 크림 #F5F5F5, 타이포 대비 강조</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill cream">POV 선언</span>
+          <span class="design-pill coral">이탤릭 타이포</span>
+          <span class="design-pill">크림 배경</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"오늘 당신이 원하는 색을 먼저 믿는다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S5 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s5-bg">
+            <div class="s5-heading">How To Apply</div>
+            <div class="s5-sub">3 STEPS · 30 SECONDS</div>
+            <div class="s5-steps">
+              <div class="step-block">
+                <div class="step-num">1</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#128139;</div>
+                </div>
+                <div class="step-desc">입술 중앙에<br>가볍게 터치</div>
+              </div>
+              <div class="step-block">
+                <div class="step-num">2</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#10024;</div>
+                </div>
+                <div class="step-desc">바깥으로<br>자연스럽게 블렌딩</div>
+              </div>
+              <div class="step-block">
+                <div class="step-num">3</div>
+                <div class="step-img-box">
+                  <div class="step-img-icon">&#129710;</div>
+                </div>
+                <div class="step-desc">중앙 한 번 더<br>발색 완성</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S5 · HOW TO</div>
+        <div class="section-name">바르는 방법 /<br>How To Apply</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">사용법은 짧게. 이미지 3컷으로 끝. 텍스트 최소화. 구매 후 사용 경험에 대한 불안 제거 구간.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>Step 이미지 3컷 (손가락·립 클로즈업)</li>
+          <li>각 step 한 줄 설명 (10자 이내)</li>
+          <li>소요 시간 힌트 ("30초")</li>
+          <li>텍스트 최소화 — 이미지가 주인공</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">3컷 룰</span>
+          <span class="design-pill coral">텍스트 미니멀</span>
+          <span class="design-pill">불안 제거</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S6 -->
+  <div class="section-card">
+    <div class="phone-panel" style="background:#1A2E25;">
+      <div class="phone-frame" style="border-color:#3A5A4A;">
+        <div class="phone-content">
+          <div class="s6-bg">
+            <div class="s6-badge">
+              <div class="s6-badge-dot"></div>
+              <div class="s6-badge-text">OLIVE YOUNG ONLY</div>
+            </div>
+            <div class="s6-heading">이 시즌 WAKEMAKE는<br>올리브영에서만<br>만날 수 있습니다.</div>
+            <div class="s6-body">
+              전국 1,300+ 매장과 공식 앱에서만.<br>
+              시즌 한정 컬러는 재입고 없이 종료됩니다.
+            </div>
+            <div class="s6-urgency">잔여 수량 소진 시 판매 종료 · 재입고 미정</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S6 · EXCLUSIVE</div>
+        <div class="section-name">올리브영 ONLY /<br>채널 독점 섹션</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">스티커 대신 이야기로. "왜 여기서만?" 설명. Urgency 설계로 즉시 구매 전환 유도. 채널 신뢰를 브랜드 신뢰로 연결.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>ONLY 이유 2–3줄 (채널 독점 스토리)</li>
+          <li>시즌 한정 배지 (골드 컬러, 프리미엄 느낌)</li>
+          <li>재고 urgency 카피 (재입고 없음 강조)</li>
+          <li>다크 올리브 그린 배경 (#2D4A3E)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">KEY COPY</div>
+        <div class="key-copy">"이 시즌 WAKEMAKE는 올리브영에서만 만날 수 있습니다."</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill olive">다크 올리브</span>
+          <span class="design-pill" style="background:#B4964A;">골드 배지</span>
+          <span class="design-pill coral">Urgency</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S7 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s7-bg">
+            <div class="s7-rating-row">
+              <div class="s7-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="s7-score">4.9</div>
+              <div class="s7-count">(2,847)</div>
+            </div>
+            <div class="s7-reviews">
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-user">지은_뷰티 · 코랄 브릭</div>
+                  <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+                <div class="review-text">오전에 바르고 점심 지나도 발색이 살아있어요. 번지지 않는데 건조하지 않은 게 신기했어요. 색 이름처럼 진짜 카페에서 바른 느낌.</div>
+                <div class="review-tags">
+                  <span class="review-tag">발색 유지</span>
+                  <span class="review-tag">비번짐</span>
+                  <span class="review-tag">무건조</span>
+                </div>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-user">민채 · 피치 누드</div>
+                  <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+                <div class="review-text">평소에 웜톤이라 잘 안 사는 색인데 이건 달랐어요. 기분 설명이 딱 맞아서 믿고 골랐는데 대박. 재구매 확정.</div>
+                <div class="review-tags">
+                  <span class="review-tag">기분 적중</span>
+                  <span class="review-tag">재구매</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S7 · REVIEWS</div>
+        <div class="section-name">리뷰 &amp; 실착 /<br>사회적 증거</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">리뷰 3–4개. 발색/지속력/무드 키워드 중심 선별. 리뷰가 설득 마지막 단계 — CTA 직전 신뢰 확보 구간.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>별점 + 총 리뷰 수 (숫자 신뢰)</li>
+          <li>리뷰 발췌 2–3개 (실제 언어 그대로)</li>
+          <li>실착 이미지 2장 (다양한 피부톤)</li>
+          <li>키워드 태그 자동 추출 (발색·지속·무드)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill">사회적 증거</span>
+          <span class="design-pill coral">설득 최종 단계</span>
+          <span class="design-pill">실 언어 보존</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"가공된 리뷰보다 날 것의 언어가 더 강하다. 편집하되 왜곡하지 않는다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- S8 -->
+  <div class="section-card">
+    <div class="phone-panel">
+      <div class="phone-frame">
+        <div class="phone-content">
+          <div class="s8-bg">
+            <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:14px;letter-spacing:-0.01em;">컬러 선택</div>
+            <div class="s8-color-grid">
+              <div class="s8-color-item selected">
+                <div class="s8-swatch" style="background:#C43A1A;"></div>
+                <div class="s8-color-name">코랄 브릭</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#F2B89A;"></div>
+                <div class="s8-color-name">피치 누드</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#C4943A;"></div>
+                <div class="s8-color-name">웜 골드</div>
+              </div>
+              <div class="s8-color-item">
+                <div class="s8-swatch" style="background:#D4B09A;"></div>
+                <div class="s8-color-name">베이지 뮤트</div>
+              </div>
+            </div>
+            <div style="height:20px;"></div>
+            <div class="s8-cta-btn">장바구니 담기</div>
+            <div class="s8-delivery">오늘 <span>오후 2시</span> 이전 주문 시 내일 도착</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation-panel">
+      <div>
+        <div class="section-label">S8 · CTA</div>
+        <div class="section-name">최종 담기 /<br>구매 전환</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">PURPOSE</div>
+        <div class="anno-text">3번째 CTA. 컬러 라인업 마지막 노출. 충동 구매 유도. 재고·배송 정보로 즉시성 강화. 이 지점까지 내려온 유저는 구매 의향 최상단.</div>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">CONTENT CHECKLIST</div>
+        <ul class="anno-list">
+          <li>컬러 4종 선택 UI (선택된 컬러 강조)</li>
+          <li>담기 버튼 — 풀 위드, 코랄 (#E8502A)</li>
+          <li>배송 정보 한 줄 (오늘 주문 → 내일 도착)</li>
+          <li>재고 표시 옵션 (품절 임박 배지)</li>
+        </ul>
+      </div>
+      <div class="anno-block">
+        <div class="anno-label">DESIGN PRINCIPLE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="design-pill coral">풀위드 CTA</span>
+          <span class="design-pill">즉시성 강조</span>
+          <span class="design-pill">컬러 재노출</span>
+        </div>
+        <div class="key-copy" style="margin-top:10px;">"마지막 순간에도 선택의 이유를 준다. 컬러를 다시 보여주고, 배송으로 마감한다."</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FLOW DIAGRAM -->
+  <div class="flow-section">
+    <div class="flow-title">EMOTIONAL JOURNEY · 8섹션 플로우 다이어그램</div>
+
+    <div class="flow-timeline">
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#E8502A;">S1</div>
+        <div class="flow-node-name">히어로</div>
+        <div class="flow-node-role">POV 선언</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#F2A87A;">S2</div>
+        <div class="flow-node-name">컬러 스토리</div>
+        <div class="flow-node-role">감성 선택</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#333;">S3</div>
+        <div class="flow-node-name">텍스처</div>
+        <div class="flow-node-role">실증 확인</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#777;">S4</div>
+        <div class="flow-node-name">세계관</div>
+        <div class="flow-node-role">철학 공감</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#555;">S5</div>
+        <div class="flow-node-name">How To</div>
+        <div class="flow-node-role">불안 해소</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#2D4A3E;">S6</div>
+        <div class="flow-node-name">ONLY</div>
+        <div class="flow-node-role">희소성</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#C43A1A;">S7</div>
+        <div class="flow-node-name">리뷰</div>
+        <div class="flow-node-role">사회적 증거</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot" style="background:#E8502A;">S8</div>
+        <div class="flow-node-name">CTA</div>
+        <div class="flow-node-role">구매 전환</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;border-top:1px solid #222;padding-top:24px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#444;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">EMOTIONAL ARC</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#555;flex-shrink:0;">POV 선언</div>
+        <div style="flex:1;height:4px;background:linear-gradient(90deg,#E8502A,#F2B89A,#333,#777,#555,#2D4A3E,#C43A1A,#E8502A);border-radius:2px;"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#E8502A;flex-shrink:0;font-weight:700;">구매 완료</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;">
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">브랜딩</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">선택</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">신뢰</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">공감</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">해소</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">희소성</span>
+        <span style="font-size:10px;color:#444;font-family:'JetBrains Mono',monospace;">증거</span>
+        <span style="font-size:10px;color:#E8502A;font-family:'JetBrains Mono',monospace;font-weight:700;">전환</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
