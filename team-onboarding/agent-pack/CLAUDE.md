@@ -42,11 +42,15 @@ marketer (역할 오케스트레이터)
 └── brainstormer         ← CH4: 방향 후보 발산
 ```
 
-### 산출 포맷 — mx-deck-design 스킬 자동 연동
+### 산출 포맷 — mx-research-dashboard-design 스킬 자동 연동
 
-마케터 리서치 결과를 문서·HTML로 낼 때는 `mx-deck-design` 스킬의
-**`research-dashboard.html`** 구조(사이드바 + 12뷰 리서치 대시보드)를 따릅니다.
-슬라이드 덱(`template.html`)은 발표용 제안서에만 씁니다.
+마케터 리서치 결과를 문서·HTML로 낼 때는 **`mx-research-dashboard-design`** 스킬을 씁니다
+(좌측 사이드바 + 12뷰 탭 전환 구조). `mx-deck-design`(슬라이드 덱)은 발표용 제안서에만 씁니다.
+
+| 스킬 | 좌측 구조 | 용도 |
+|---|---|---|
+| `mx-deck-design` | 없음(순서대로 스크롤) | 발표용 제안서 |
+| `mx-research-dashboard-design` | nav-item 12개 탭 | **마케터 산출 표준** |
 
 ## 핵심 원칙
 
@@ -70,10 +74,13 @@ marketer (역할 오케스트레이터)
 │   └── brainstormer.md          ← 발산
 ├── library/prompts/
 │   └── wide-research.md         ← 와이드 리서치 사양
-└── skills/mx-deck-design/
-    ├── SKILL.md                     ← 덱 디자인 시스템
-    ├── template.html                ← 슬라이드 덱 골격 (발표용)
-    └── research-dashboard.html      ← ★ 마케터 산출 표준 (리서치 대시보드 12뷰)
+└── skills/
+    ├── mx-deck-design/
+    │   ├── SKILL.md              ← 슬라이드 덱 디자인 시스템 (발표용)
+    │   └── template.html
+    └── mx-research-dashboard-design/    ← ★ 마케터 산출 표준
+        ├── SKILL.md                     ← 좌측 탭 12뷰 대시보드 시스템
+        └── template.html
 ```
 
 ## 커스텀 에이전트·스킬 운영

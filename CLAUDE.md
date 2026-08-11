@@ -39,7 +39,8 @@
 ├── agents/README.md           # 에이전트 상세 설명
 ├── skills/                    # 커스텀 스킬
 │   ├── list-deck-design/
-│   └── mx-deck-design/
+│   ├── mx-deck-design/
+│   └── mx-research-dashboard-design/
 ├── projects/                   # 프로젝트별 노트
 └── library/
     ├── core-directives.md     # 5가지 핵심 원칙
@@ -100,8 +101,9 @@
 > 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
 ## 현재 등록된 스킬
-- `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
-- `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
+- `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일, 좌측은 앵커 목차)
+- `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (발표용 슬라이드, 위→아래 진행. Figma 데일리 미션 덱 실측 규격)
+- `mx-research-dashboard-design` — 마케터 산출 표준 (좌측 탭 12뷰 리서치·전략 대시보드, 모노톤+포인트 4색 출처 티어)
 
 ## 프로젝트 관리
 - 신규 프로젝트: `.claude/projects/YYYYMM_프로젝트명.md` 형식

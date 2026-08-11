@@ -1,4 +1,4 @@
-# 에이전트 이관 패키지 — 마케터 세트 (7파일 + 덱 스킬 + CLAUDE.md)
+# 에이전트 이관 패키지 — 마케터 세트 (7파일 + 덱 스킬 2종 + CLAUDE.md)
 
 > **이 폴더 하나면 "마케터 역할"을 다른 팀·워크스페이스에 통째로 이식할 수 있어요.**
 > RFP 분석 → 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산까지
@@ -21,11 +21,14 @@ agent-pack/
 │   └── brainstormer.md          ← 4단계: 방향 후보 발산
 ├── library/prompts/
 │   └── wide-research.md         ← 2단계: 경쟁사 30개 심화 조사 사양
-└── skills/mx-deck-design/       ← 산출 포맷: 리서치 결과를 표준 덱 HTML로 (출처 링크·케이스 그리드 자동)
+└── skills/
+    ├── mx-deck-design/                    ← 발표용 슬라이드 덱 (클라이언트 제안서)
+    └── mx-research-dashboard-design/      ← ★ 산출 포맷 표준 — 좌측 탭 12뷰 리서치 대시보드
 ```
 
 `marketer`가 지휘자, 나머지 5개가 연주자, `wide-research.md`가 악보,
-`mx-deck-design`이 무대 의상이에요 — 리서치 결과를 문서로 낼 때 자동으로 같은 덱 포맷이 나와요.
+`mx-research-dashboard-design`이 무대 의상이에요 — 리서치 결과를 문서로 낼 때 자동으로
+좌측 탭(00 요약 → 01 브리프 → … → 11 출처추적) 12뷰 대시보드 포맷이 나와요.
 **하나라도 빠지면 그 단계가 얕아지니 꼭 세트로 옮기세요.**
 
 ---
@@ -38,6 +41,7 @@ agent-pack/
    - `agents/` 내용물 → 새 저장소의 `.claude/agents/`
    - `library/prompts/wide-research.md` → 새 저장소의 `.claude/library/prompts/`
    - `skills/mx-deck-design/` → 새 저장소의 `.claude/skills/mx-deck-design/`
+   - `skills/mx-research-dashboard-design/` → 새 저장소의 `.claude/skills/mx-research-dashboard-design/`
    (폴더가 없으면 만들면 돼요. 경로만 같으면 끝.)
 3. **확인** — Claude Code로 그 저장소를 열고 **"시장조사 해줘 — [카테고리]"** 라고 불러보세요.
    출처 URL 붙은 브랜드 표 + 포지셔닝 맵이 나오면 성공.

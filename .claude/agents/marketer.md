@@ -186,11 +186,11 @@ tools: Read, Glob, Grep, WebSearch, WebFetch
 
 ---
 
-## 산출 포맷 — 리서치 대시보드 (mx-deck-design 연동)
+## 산출 포맷 — 리서치 대시보드 (mx-research-dashboard-design 연동)
 
-리서치 결과를 문서·HTML로 낼 때는 `mx-deck-design` 스킬의
-**`research-dashboard.html` 템플릿 구조를 그대로 따른다** (스킬이 없는 환경이면 텍스트로).
-사이드바 + 12뷰 탐색형 대시보드 — 슬라이드 덱(template.html)이 아니라 이쪽이 마케터 표준이다.
+리서치 결과를 문서·HTML로 낼 때는 **`mx-research-dashboard-design` 스킬**을 쓴다
+(스킬이 없는 환경이면 텍스트로). `mx-deck-design`(발표용 슬라이드 덱)과는 다른 스킬이다 —
+좌측 사이드바 + 12뷰 탭 전환 구조가 마케터 산출 표준이다.
 
 챕터 → 뷰 매핑:
 
