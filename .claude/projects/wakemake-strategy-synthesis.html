@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKEMAKE × OliveYoung 전략 종합 — Cluster → Strategy → Design Mood</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #EBEBEB;
+  --card:   #FFFFFF;
+  --ink:    #111111;
+  --ink2:   rgba(0,0,0,0.55);
+  --ink3:   rgba(0,0,0,0.35);
+  --border: rgba(0,0,0,0.09);
+  --coral:  #E8502A;
+  --magenta: #b7419a;
+  --sans:   'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --mono:   'JetBrains Mono', 'Fira Mono', monospace;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --link: #2454C7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 60px 120px;
+}
+
+/* ── COVER ── */
+.cover {
+  padding-bottom: 80px;
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cover-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.cover-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.cover-subtitle {
+  font-size: 14px;
+  color: var(--ink2);
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* ── SYNTHESIS TABLE ── */
+.synthesis-section {
+  margin-bottom: 80px;
+}
+
+.synthesis-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.synthesis-subtitle {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-bottom: 32px;
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 0;
+}
+
+.synthesis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.synthesis-table th {
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+  padding: 20px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
+.synthesis-table td {
+  padding: 28px 20px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.synthesis-table tr:last-child td {
+  border-bottom: none;
+}
+
+.col-category { width: 28%; }
+.col-strategy { width: 36%; }
+.col-mood { width: 36%; }
+
+/* ── CATEGORY COLUMN ── */
+.category-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 6px;
+}
+
+.category-desc {
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.5;
+}
+
+/* ── STRATEGY COLUMN ── */
+.strategy-concept {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.strategy-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.strategy-keyword {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--ink2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+
+/* ── MOOD COLUMN ── */
+.mood-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--magenta);
+  margin-bottom: 10px;
+}
+
+.mood-item { margin-bottom: 10px; }
+
+.mood-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--ink3);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.mood-value {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+/* ── FOOTER NOTE ── */
+.synthesis-note {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  margin-top: 40px;
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+.synthesis-note strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ── NEXT STEPS ── */
+.next-section {
+  margin-top: 80px;
+  padding-top: 80px;
+  border-top: 1px solid var(--border);
+}
+
+.next-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 12px;
+}
+
+.next-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.next-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.next-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+}
+
+.next-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+}
+
+.next-card-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .col-category, .col-strategy, .col-mood { width: 100% !important; }
+  .synthesis-table th, .synthesis-table td { padding: 16px; font-size: 12px; }
+  .next-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="cover">
+    <div class="cover-label">Strategy Synthesis</div>
+    <h1 class="cover-title">클러스터 → 브랜딩 전략 → 디자인 무드</h1>
+    <p class="cover-subtitle">시장 분석(State of K-Beauty PDP)을 기반으로 도출한 3개 카테고리 클러스터링. 각 클러스터는 고유한 브랜딩 전략 1개와 디자인 무드를 갖는다. 이 프레임이 3개 컨셉 개발의 근거가 된다.</p>
+  </section>
+
+  <section class="synthesis-section">
+    <div class="synthesis-title">2026 WAKEMAKE 브랜드 전략 체계</div>
+    <div class="synthesis-subtitle">Cluster × Strategy × Design Mood Matrix</div>
+
+    <div class="table-wrapper">
+      <table class="synthesis-table">
+        <thead>
+          <tr>
+            <th class="col-category">Category / Insight</th>
+            <th class="col-strategy">Strategy / Concept</th>
+            <th class="col-mood">Design Mood</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-category">
+              <div class="category-name">일상의 자신감</div>
+              <div class="category-desc">컬러로 일상을 채우는<br>일상적 표현력</div>
+            </td>
+            <td class="col-strategy">
+              <div class="strategy-concept">Subtle Confidence</div>
+              <div class="strategy-desc">"당신의 톤을 자연스럽게 드러낸다"</div>
+              <span class="strategy-keyword">감정 기반</span>
+              <span class="strategy-keyword">접근성</span>
+              <span class="strategy-keyword">일상적 우아함</span>
+            </td>
+            <td class="col-mood">
+              <div class="mood-title">Warm Gloss & Matte</div>
+              <div class="mood-item"><div class="mood-label">Color Palette</div><div class="mood-value">코랄, 피치, 웜 베이지</div></div>
+              <div class="mood-item"><div class="mood-label">Material</div><div class="mood-value">부드러운 매트, 서틀 글로스</div></div>
+              <div class="mood-item"><div class="mood-label">Photography</div><div class="mood-value">피부 클로즈업, 자연광, 건강한 톤</div></div>
+              <div class="mood-item"><div class="mood-label">Typography</div><div class="mood-value">좌우 균형잡힌 산세리프</div></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-category">
+              <div class="category-name">감성적 표현</div>
+              <div class="category-desc">개성을 색깔로 드러내는<br>감정적 정체성</div>
+            </td>
+            <td class="col-strategy">
+              <div class="strategy-concept">Daring Statement</div>
+              <div class="strategy-desc">"감정을 색깔로 말한다"</div>
+              <span class="strategy-keyword">정체성 표현</span>
+              <span class="strategy-keyword">트렌드</span>
+              <span class="strategy-keyword">대담함</span>
+            </td>
+            <td class="col-mood">
+              <div class="mood-title">Saturated Drama</div>
+              <div class="mood-item"><div class="mood-label">Color Palette</div><div class="mood-value">마젠타, 딥 보라, 스모키 톤</div></div>
+              <div class="mood-item"><div class="mood-label">Material</div><div class="mood-value">글로시 핀, 풍부한 발색</div></div>
+              <div class="mood-item"><div class="mood-label">Photography</div><div class="mood-value">스튜디오 라이팅, 고명도 대비</div></div>
+              <div class="mood-item"><div class="mood-label">Typography</div><div class="mood-value">압축된 고딕, 대담한 가중치</div></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="col-category">
+              <div class="category-name">정제된 리추얼</div>
+              <div class="category-desc">작은 의식의 가치<br>절제된 일상의 품격</div>
+            </td>
+            <td class="col-strategy">
+              <div class="strategy-concept">Minimalist Artisan</div>
+              <div class="strategy-desc">"절제가 곧 우아함이다"</div>
+              <span class="strategy-keyword">정직함</span>
+              <span class="strategy-keyword">프리미엄</span>
+              <span class="strategy-keyword">세련됨</span>
+            </td>
+            <td class="col-mood">
+              <div class="mood-title">Industrial & Graphic</div>
+              <div class="mood-item"><div class="mood-label">Color Palette</div><div class="mood-value">그레이스케일, 은은한 뉴트럴</div></div>
+              <div class="mood-item"><div class="mood-label">Material</div><div class="mood-value">마테 페이스, 종이 질감</div></div>
+              <div class="mood-item"><div class="mood-label">Photography</div><div class="mood-value">플랫 레이, 윤곽선 명확</div></div>
+              <div class="mood-item"><div class="mood-label">Typography</div><div class="mood-value">기하학적 라인, 심볼 강조</div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="synthesis-note">
+      <strong>프레임워크 설명:</strong> 각 클러스터는 20-30대 타깃의 서로 다른 메이크업 사용 경험을 대표한다. 모두 "감각적이고 트렌디한 색조 브랜드"라는 WAKEMAKE의 포지셔닝 아래 수렴되지만, 감정 표현 방식(subtle vs. daring vs. restrained)에 따라 시각 언어가 분화된다. 각 전략은 개별 컨셉(C01, C05, C04)의 근거이자 제약이다.
+    </div>
+  </section>
+
+  <section class="next-section">
+    <div class="next-label">Next Phase</div>
+    <h2 class="next-title">컨셉 전개 (Concept Development)</h2>
+    <div class="next-list">
+      <div class="next-card">
+        <div class="next-card-title">C01 오늘의 선택</div>
+        <div class="next-card-desc">Subtle Confidence 전략으로 일상의 감정 표현을 풍부하게 보여주는 컨셉. 따뜻한 색감 레이아웃과 감성적 카피.</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-title">C05 감정을 입히다</div>
+        <div class="next-card-desc">Daring Statement 전략으로 정체성과 감정을 명확하게 표현하는 컨셉. 포화도 높은 팔레트와 대담한 구성.</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-title">C04 절제의 미학</div>
+        <div class="next-card-desc">Minimalist Artisan 전략으로 절제와 우아함을 동시에 표현하는 컨셉. 그래픽 중심의 구조적 미니멀리즘.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
