@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김효정 사주 종합 분석</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+  :root {
+    --gold: #C4A055;
+    --gold-light: #E8D5A0;
+    --dark: #1C1008;
+    --brown: #5C3A1E;
+    --cream: #FAF6EE;
+    --wood: #2D6A4F;
+    --fire: #C0392B;
+    --earth: #8B6914;
+    --metal: #7B4F2E;
+    --water: #1A4A7A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F5EFE0;
+    font-family: 'Noto Serif KR', serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #1C0E04 0%, #3B1F08 50%, #1C0E04 100%);
+    padding: 52px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(196,160,85,0.18) 0%, transparent 70%);
+  }
+  .hero-seal {
+    font-size: 48px;
+    color: var(--gold);
+    letter-spacing: 12px;
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+  .hero h1 {
+    font-size: 32px;
+    color: #F5EFE0;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    opacity: 0.9;
+    margin-bottom: 6px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .hero-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto 0;
+  }
+
+  /* NAV */
+  .nav {
+    background: #2B1607;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .nav a {
+    color: var(--gold-light);
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+    border-right: 1px solid rgba(196,160,85,0.2);
+  }
+  .nav a:hover { background: rgba(196,160,85,0.15); color: var(--gold); }
+
+  /* CONTAINER */
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* SECTION */
+  .section {
+    background: var(--cream);
+    border: 1px solid var(--gold-light);
+    border-radius: 6px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .section-header {
+    background: linear-gradient(90deg, #2B1607, #3D2010);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .section-header .num {
+    background: var(--gold);
+    color: var(--dark);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 16px;
+    color: #F5EFE0;
+    letter-spacing: 3px;
+    font-weight: 500;
+  }
+  .section-header h2 small {
+    font-size: 11px;
+    color: var(--gold-light);
+    margin-left: 10px;
+    letter-spacing: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .section-body { padding: 24px; }
+
+  /* PILLARS */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .pillar {
+    text-align: center;
+    border-right: 1px solid var(--gold-light);
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar-header {
+    padding: 10px 6px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .pillar.shi .pillar-header { background: #4A2C10; }
+  .pillar.il .pillar-header { background: #8B0000; }
+  .pillar.wol .pillar-header { background: #4A2C10; }
+  .pillar.nyeon .pillar-header { background: #4A2C10; }
+  .pillar.il .pillar-header::after { content: ' ★'; color: #FFD700; }
+
+  .pillar-stem, .pillar-branch {
+    padding: 16px 8px;
+    border-bottom: 1px solid var(--gold-light);
+  }
+  .pillar-char {
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pillar-sub { font-size: 11px; font-family: 'Noto Sans KR', sans-serif; opacity: 0.8; }
+  .pillar-shin { font-size: 11px; color: var(--gold); font-family: 'Noto Sans KR', sans-serif; margin-top: 3px; }
+
+  .stem-water { color: var(--water); background: #EAF2FF; }
+  .stem-wood  { color: var(--wood);  background: #EAF5EE; }
+  .stem-metal { color: #7B3F00;      background: #FFF0E8; }
+  .branch-water  { color: var(--water); background: #EAF2FF; }
+  .branch-fire   { color: var(--fire);  background: #FEF0EE; }
+  .branch-earth  { color: var(--earth); background: #FBF5E6; }
+  .branch-metal2 { color: #7B3F00;      background: #FFF5EC; }
+
+  /* OHAENG BAR */
+  .ohaeng-table { width: 100%; border-collapse: collapse; }
+  .ohaeng-table td { padding: 8px 12px; vertical-align: middle; }
+  .ohaeng-label { width: 60px; font-size: 22px; font-weight: 700; text-align: center; }
+  .ohaeng-bar-cell { width: 60%; }
+  .ohaeng-bar-wrap { background: #e8e0d4; border-radius: 4px; height: 22px; overflow: hidden; }
+  .ohaeng-bar { height: 22px; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 11px; color: #fff; font-family: 'Noto Sans KR', sans-serif; transition: width 0.8s ease; }
+  .ohaeng-info { font-size: 12px; font-family: 'Noto Sans KR', sans-serif; color: #555; }
+  .bar-water { background: linear-gradient(90deg, #1A4A7A, #2E86C1); }
+  .bar-metal { background: linear-gradient(90deg, #7B3F00, #A04000); }
+  .bar-wood  { background: linear-gradient(90deg, #1B5E35, #2D8A52); }
+  .bar-fire  { background: linear-gradient(90deg, #8B0000, #C0392B); }
+  .bar-earth { background: linear-gradient(90deg, #7B5B00, #A07800); }
+
+  /* YONGSHIN */
+  .yongshin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .ys-card {
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .ys-icon { font-size: 26px; flex-shrink: 0; }
+  .ys-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .ys-desc { font-size: 12px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; opacity: 0.85; }
+  .ys-yong  { border-color: #2D6A4F; background: #F0FBF4; }
+  .ys-hee   { border-color: #1A4A7A; background: #EEF4FF; }
+  .ys-gi    { border-color: #C0392B; background: #FFF0EE; }
+  .ys-han   { border-color: #A07800; background: #FFFBEE; }
+  .ys-yong .ys-name { color: #2D6A4F; }
+  .ys-hee  .ys-name { color: #1A4A7A; }
+  .ys-gi   .ys-name { color: #C0392B; }
+  .ys-han  .ys-name { color: #A07800; }
+
+  /* DAEWOON */
+  .daewoon-timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .daewoon-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(196,160,85,0.2) 100%);
+  }
+  .dw-item {
+    position: relative;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid;
+    margin-left: 10px;
+  }
+  .dw-item::before {
+    content: '';
+    position: absolute;
+    left: -18px; top: 50%;
+    transform: translateY(-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: #FAF6EE;
+  }
+  .dw-normal { border-color: #ddd; background: #FAFAFA; }
+  .dw-yong   { border-color: #2D6A4F; background: #F0FBF4; }
+  .dw-best   { border-color: var(--gold); background: linear-gradient(135deg, #FFFBEE, #FFF5D0); }
+  .dw-best::before { background: var(--gold); }
+  .dw-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .dw-char { font-size: 22px; font-weight: 700; }
+  .dw-age  { font-size: 12px; font-family: 'Noto Sans KR', sans-serif; color: #666; }
+  .dw-period { font-size: 11px; font-family: 'Noto Sans KR', sans-serif; color: #888; }
+  .dw-desc { font-size: 12px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; color: #444; }
+  .dw-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-yong { background: #2D6A4F; color: #fff; }
+  .badge-best { background: var(--gold); color: var(--dark); }
+  .badge-now  { background: var(--fire); color: #fff; }
+
+  /* SIJUIL */
+  .sijuil-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .sj-card {
+    border: 1px solid var(--gold-light);
+    border-radius: 6px;
+    padding: 16px;
+    background: #fff;
+  }
+  .sj-card h4 {
+    font-size: 13px;
+    color: var(--brown);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gold-light);
+  }
+  .sj-card p {
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.8;
+    color: #444;
+  }
+  .sj-card .tag {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--brown);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  /* HEXAGRAM */
+  .hexagram-box {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .hex-symbol {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 18px;
+    background: #2B1607;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    min-width: 110px;
+  }
+  .hex-lines { font-size: 28px; line-height: 1.3; color: var(--gold); margin-bottom: 8px; }
+  .hex-name  { font-size: 12px; color: #F5EFE0; letter-spacing: 1px; font-family: 'Noto Sans KR', sans-serif; }
+  .hex-num   { font-size: 11px; color: var(--gold-light); font-family: 'Noto Sans KR', sans-serif; }
+  .hex-content h3 { font-size: 18px; color: var(--brown); margin-bottom: 8px; letter-spacing: 2px; }
+  .hex-quote {
+    background: #F0E8D8;
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .hex-quote small { font-size: 11px; color: #666; font-family: 'Noto Sans KR', sans-serif; display: block; margin-top: 4px; }
+  .hex-points { list-style: none; }
+  .hex-points li {
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.8;
+    padding: 4px 0;
+    color: #333;
+  }
+  .hex-points li::before { content: '☯ '; color: var(--gold); }
+
+  /* CURRENT */
+  .current-box {
+    background: linear-gradient(135deg, #1C0E04, #2D1A08);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 24px;
+    color: #FAF6EE;
+    margin-bottom: 16px;
+  }
+  .current-box h3 { font-size: 20px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px; }
+  .current-box .sub { font-size: 12px; color: var(--gold-light); font-family: 'Noto Sans KR', sans-serif; margin-bottom: 16px; }
+  .current-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cur-item {
+    flex: 1;
+    min-width: 160px;
+    background: rgba(196,160,85,0.12);
+    border: 1px solid rgba(196,160,85,0.4);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .cur-item .label { font-size: 11px; color: var(--gold-light); font-family: 'Noto Sans KR', sans-serif; margin-bottom: 6px; }
+  .cur-item .value { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+  .cur-item .detail { font-size: 11px; color: #D4C09A; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+
+  /* GUIDE TABLE */
+  .guide-table { width: 100%; border-collapse: collapse; }
+  .guide-table th {
+    background: #2B1607;
+    color: var(--gold);
+    padding: 10px 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: left;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .guide-table td {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-bottom: 1px solid #E8DEC8;
+    vertical-align: top;
+  }
+  .guide-table tr:nth-child(even) td { background: #F5EEE2; }
+  .guide-table .good { color: #1B5E35; font-weight: 500; }
+  .guide-table .bad  { color: #8B0000; font-weight: 500; }
+
+  /* HEALTH */
+  .health-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .health-card {
+    border-radius: 6px;
+    padding: 14px;
+    border: 1px solid;
+    text-align: center;
+  }
+  .health-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .health-card .organ { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .health-card .note  { font-size: 11px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; opacity: 0.85; }
+  .hc-wood  { border-color: #2D6A4F; background: #F0FBF4; }
+  .hc-water { border-color: #1A4A7A; background: #EEF4FF; }
+  .hc-fire  { border-color: #C0392B; background: #FFF0EE; }
+
+  /* ZIWEI */
+  .ziwei-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .zw-card {
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid var(--gold-light);
+    background: #fff;
+  }
+  .zw-card .gung { font-size: 11px; color: var(--gold); font-family: 'Noto Sans KR', sans-serif; margin-bottom: 4px; letter-spacing: 1px; }
+  .zw-card .content { font-size: 12px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; color: #444; }
+
+  /* FOOTER */
+  .footer {
+    background: #1C0E04;
+    border-top: 2px solid var(--gold);
+    padding: 28px 40px;
+    text-align: center;
+  }
+  .footer p { font-size: 11px; color: var(--gold-light); font-family: 'Noto Sans KR', sans-serif; line-height: 2; opacity: 0.8; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .sijuil-grid, .yongshin-grid, .health-grid, .ziwei-grid { grid-template-columns: 1fr; }
+    .hexagram-box { flex-direction: column; }
+    .nav { flex-wrap: wrap; }
+    .nav a { padding: 10px 12px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-seal">命 · 運 · 占</div>
+  <h1>김효정 <span>(金孝貞)</span></h1>
+  <div class="hero-sub">사주 명리학 · 자미두수 · 하락이수 · 기문둔갑 복합 분석</div>
+  <div class="hero-sub">1983년 11월 2일 · 오후 5시 30분 · 역삼동 · 여명(女命)</div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#wonkuk">원국</a>
+  <a href="#ohaeng">오행</a>
+  <a href="#yongshin">용신</a>
+  <a href="#daewoon">대운</a>
+  <a href="#now">현재</a>
+  <a href="#character">기질</a>
+  <a href="#ziwei">자미두수</a>
+  <a href="#hexagram">하락이수</a>
+  <a href="#health">건강</a>
+  <a href="#guide">실천</a>
+</nav>
+
+<div class="container">
+
+<!-- 1. 사주 원국 -->
+<div class="section" id="wonkuk">
+  <div class="section-header">
+    <div class="num">1</div>
+    <h2>사주 원국 <small>四柱原局</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="pillars-grid">
+
+      <!-- 時柱 -->
+      <div class="pillar shi">
+        <div class="pillar-header">時柱 시주</div>
+        <div class="pillar-stem stem-water">
+          <div class="pillar-char">癸</div>
+          <div class="pillar-sub">계수 · 水陰</div>
+          <div class="pillar-shin">정인(正印)</div>
+        </div>
+        <div class="pillar-branch branch-metal2">
+          <div class="pillar-char">酉</div>
+          <div class="pillar-sub">유 · 金陰</div>
+          <div class="pillar-shin">정관(正官)</div>
+        </div>
+      </div>
+
+      <!-- 日柱 -->
+      <div class="pillar il">
+        <div class="pillar-header">日柱 일주</div>
+        <div class="pillar-stem stem-wood">
+          <div class="pillar-char">甲</div>
+          <div class="pillar-sub">갑목 · 木陽</div>
+          <div class="pillar-shin" style="color:#C0392B; font-weight:700;">일간 (日干)</div>
+        </div>
+        <div class="pillar-branch branch-fire">
+          <div class="pillar-char" style="color:#C0392B;">午</div>
+          <div class="pillar-sub">오 · 火陽</div>
+          <div class="pillar-shin" style="color:#C0392B;">상관(傷官)</div>
+        </div>
+      </div>
+
+      <!-- 月柱 -->
+      <div class="pillar wol">
+        <div class="pillar-header">月柱 월주</div>
+        <div class="pillar-stem stem-metal">
+          <div class="pillar-char">庚</div>
+          <div class="pillar-sub">경금 · 金陽</div>
+          <div class="pillar-shin">편관·칠살</div>
+        </div>
+        <div class="pillar-branch branch-earth">
+          <div class="pillar-char">戌</div>
+          <div class="pillar-sub">술 · 土陽</div>
+          <div class="pillar-shin">편재(偏財)</div>
+        </div>
+      </div>
+
+      <!-- 年柱 -->
+      <div class="pillar nyeon">
+        <div class="pillar-header">年柱 연주</div>
+        <div class="pillar-stem stem-water">
+          <div class="pillar-char">癸</div>
+          <div class="pillar-sub">계수 · 水陰</div>
+          <div class="pillar-shin">정인(正印)</div>
+        </div>
+        <div class="pillar-branch branch-water">
+          <div class="pillar-char">亥</div>
+          <div class="pillar-sub">해 · 水陰</div>
+          <div class="pillar-shin">정인(正印)</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:16px; padding:12px 16px; background:#FFF8EE; border:1px solid var(--gold-light); border-radius:4px; font-size:12px; font-family:'Noto Sans KR',sans-serif; color:#555;">
+      ✦ <strong>일간 甲木(갑목)</strong> &nbsp;|&nbsp; 격국: <strong>잡기편재격(雜氣偏財格)</strong> &nbsp;|&nbsp; 신약(身弱) &nbsp;|&nbsp; 여명 순행(順行)
+    </div>
+  </div>
+</div>
+
+<!-- 2. 오행 분포 -->
+<div class="section" id="ohaeng">
+  <div class="section-header">
+    <div class="num">2</div>
+    <h2>오행 분포 <small>五行分布</small></h2>
+  </div>
+  <div class="section-body">
+    <table class="ohaeng-table">
+      <tr>
+        <td class="ohaeng-label" style="color:var(--water);">水</td>
+        <td class="ohaeng-bar-cell">
+          <div class="ohaeng-bar-wrap">
+            <div class="ohaeng-bar bar-water" style="width:75%">癸 · 亥 · 癸</div>
+          </div>
+        </td>
+        <td class="ohaeng-info">3개 · 인성(正印) 과다</td>
+      </tr>
+      <tr>
+        <td class="ohaeng-label" style="color:#7B3F00;">金</td>
+        <td class="ohaeng-bar-cell">
+          <div class="ohaeng-bar-wrap">
+            <div class="ohaeng-bar bar-metal" style="width:50%">庚 · 酉</div>
+          </div>
+        </td>
+        <td class="ohaeng-info">2개 · 관살(官殺) 강</td>
+      </tr>
+      <tr>
+        <td class="ohaeng-label" style="color:var(--wood);">木</td>
+        <td class="ohaeng-bar-cell">
+          <div class="ohaeng-bar-wrap">
+            <div class="ohaeng-bar bar-wood" style="width:25%">甲</div>
+          </div>
+        </td>
+        <td class="ohaeng-info" style="color:var(--fire); font-weight:700;">1개 · 일간 — 신약 ★</td>
+      </tr>
+      <tr>
+        <td class="ohaeng-label" style="color:var(--fire);">火</td>
+        <td class="ohaeng-bar-cell">
+          <div class="ohaeng-bar-wrap">
+            <div class="ohaeng-bar bar-fire" style="width:25%">午</div>
+          </div>
+        </td>
+        <td class="ohaeng-info">1개 · 상관(傷官)</td>
+      </tr>
+      <tr>
+        <td class="ohaeng-label" style="color:var(--earth);">土</td>
+        <td class="ohaeng-bar-cell">
+          <div class="ohaeng-bar-wrap">
+            <div class="ohaeng-bar bar-earth" style="width:25%">戌</div>
+          </div>
+        </td>
+        <td class="ohaeng-info">1개 · 편재(偏財)</td>
+      </tr>
+    </table>
+
+    <div style="margin-top:16px; padding:12px 16px; background:#FFEEF0; border-left:3px solid var(--fire); font-size:12px; font-family:'Noto Sans KR',sans-serif; line-height:1.8;">
+      <strong>신약(身弱) 판정 근거:</strong> 일간 甲木이 비겁 없이 홀로 서 있으며, 月支 戌은 土旺之節로 목기(木氣)가 쉬는 계절. 金(관살) 2개가 강하게 木을 극(剋)하며, 午戌 반합(半合)으로 화기(火氣)가 설기(洩氣)를 가중합니다.
+    </div>
+  </div>
+</div>
+
+<!-- 3. 용신 체계 -->
+<div class="section" id="yongshin">
+  <div class="section-header">
+    <div class="num">3</div>
+    <h2>용신 체계 <small>用神體系</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="yongshin-grid">
+      <div class="ys-card ys-yong">
+        <div class="ys-icon">🌲</div>
+        <div>
+          <div class="ys-name">용신(用神) — 木 비겁</div>
+          <div class="ys-desc">신약한 일간 甲木을 직접 강화. 비견·겁재(甲乙木)가 나타나는 환경, 방향, 색상이 길합니다. 동방(東)·청록색·나무 소재가 기운을 높입니다.</div>
+        </div>
+      </div>
+      <div class="ys-card ys-hee">
+        <div class="ys-icon">💧</div>
+        <div>
+          <div class="ys-name">희신(喜神) — 水 인성</div>
+          <div class="ys-desc">木을 생(生)하여 간접적으로 일간 보조. 지식·학습·직관력 강화. 이미 癸亥癸로 풍부하므로 과유불급 주의.</div>
+        </div>
+      </div>
+      <div class="ys-card ys-gi">
+        <div class="ys-icon">⚔️</div>
+        <div>
+          <div class="ys-name">기신(忌神) — 金·土</div>
+          <div class="ys-desc">庚(칠살)·酉(정관)이 木을 극(剋), 戌(편재)이 水(인성)를 극하여 용신 공급을 차단. 금속 환경·경쟁·통제적 구조를 피하세요.</div>
+        </div>
+      </div>
+      <div class="ys-card ys-han">
+        <div class="ys-icon">🔥</div>
+        <div>
+          <div class="ys-name">한신(閑神) — 火 식상</div>
+          <div class="ys-desc">설기(洩氣)이나 금(金)을 화극금(火克金)으로 제어하는 역할도 수행. 맥락에 따라 유용하게 작동합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 대운 흐름 -->
+<div class="section" id="daewoon">
+  <div class="section-header">
+    <div class="num">4</div>
+    <h2>대운 흐름 <small>大運 · 여명 순행</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="daewoon-timeline">
+
+      <div class="dw-item dw-normal">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--water);">辛亥</span>
+          <span class="dw-age">2~12세</span>
+          <span class="dw-period">1985~1995</span>
+        </div>
+        <div class="dw-desc">亥水 정인 강화. 감수성 풍부하고 예민한 유년기. 학습능력과 직관이 일찍 발달하며, 어머니·여성 어른과의 깊은 유대가 형성됩니다.</div>
+      </div>
+
+      <div class="dw-item dw-normal">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--water);">壬子</span>
+          <span class="dw-age">12~22세</span>
+          <span class="dw-period">1995~2005</span>
+        </div>
+        <div class="dw-desc">水 인성 극강. 학업 능력이 최고조에 달하고 지식 탐구 욕구가 강합니다. 다만 수기(水氣) 과다로 감정 혼란과 내면 고민이 깊어지는 시기.</div>
+      </div>
+
+      <div class="dw-item dw-normal">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--earth);">癸丑</span>
+          <span class="dw-age">22~32세</span>
+          <span class="dw-period">2005~2015</span>
+        </div>
+        <div class="dw-desc">丑中 금기(金氣) 가중으로 관살이 강화됩니다. 직업·관계에서 갈등과 시련이 나타나지만, 이를 통해 내면이 단단해지는 성장의 시기.</div>
+      </div>
+
+      <div class="dw-item dw-yong">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--wood);">甲寅</span>
+          <span class="dw-age">32~42세</span>
+          <span class="dw-period">2015~2025</span>
+          <span class="dw-badge badge-yong">용신 대운</span>
+        </div>
+        <div class="dw-desc">甲木(비견) + 寅木(비견)으로 용신이 강하게 활성화. 커리어 도약, 독립 브랜딩, 전문성 확립의 시기. 32세 이후 본격적인 상승이 시작됩니다.</div>
+      </div>
+
+      <div class="dw-item dw-best">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--wood); font-size:26px;">乙卯</span>
+          <span class="dw-age">42~52세</span>
+          <span class="dw-period">2025~2035</span>
+          <span class="dw-badge badge-best">전성기 절정</span>
+          <span class="dw-badge badge-now">현재 진행</span>
+        </div>
+        <div class="dw-desc" style="color:#2B1607; font-weight:500;">乙木(겁재) + 卯木(겁재) — 용신이 천간·지지 모두 자리. 甲寅에서 乙卯로 이어지는 <strong>연속 木 대운</strong>으로 32~52세 총 20년이 이 명조 최대 상승 구간. 독립·확장·확고한 전문 영역 구축의 전성기.</div>
+      </div>
+
+      <div class="dw-item dw-normal">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--fire);">丙辰</span>
+          <span class="dw-age">52~62세</span>
+          <span class="dw-period">2035~2045</span>
+        </div>
+        <div class="dw-desc">丙火 식상 활성화. 사회적 활동과 표현은 지속되나 辰土로 인한 소진 주의. 건강·체력 관리가 핵심 과제입니다.</div>
+      </div>
+
+      <div class="dw-item dw-normal">
+        <div class="dw-top">
+          <span class="dw-char" style="color:var(--fire);">丁巳</span>
+          <span class="dw-age">62~72세</span>
+          <span class="dw-period">2045~2055</span>
+        </div>
+        <div class="dw-desc">丁火 상관·巳火. 창의적 표현이 지속되고 풍요로운 여유의 노년기. 쌓아온 지혜가 빛을 발하는 시기.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 5. 현재 2026년 -->
+<div class="section" id="now">
+  <div class="section-header">
+    <div class="num">5</div>
+    <h2>현재 운기 <small>2026년 丙午年 · 만 42세</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="current-box">
+      <h3>乙卯 大運 × 丙午年</h3>
+      <div class="sub">용신 대운 진입 2년차 · 목화통명(木火通明) 구조</div>
+      <div class="current-row">
+        <div class="cur-item">
+          <div class="label">대운 에너지</div>
+          <div class="value">乙卯 木木</div>
+          <div class="detail">用神이 天干·地支 동시 활성화. 기도(氣道)가 활짝 열린 구조.</div>
+        </div>
+        <div class="cur-item">
+          <div class="label">세운 에너지</div>
+          <div class="value">丙午 火火</div>
+          <div class="detail">火가 기신 金을 화극금(火克金)으로 제어. 가시성·활동성 극대화.</div>
+        </div>
+        <div class="cur-item">
+          <div class="label">합산 판단</div>
+          <div class="value" style="color:#FFD700;">大 吉</div>
+          <div class="detail">木火通明 — 나무가 불을 만나 빛나는 해. 단, 과소진(過消盡) 주의.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:14px 18px; background:#F0FBF4; border:1px solid #2D6A4F; border-radius:6px; font-size:13px; font-family:'Noto Sans KR',sans-serif; line-height:1.9;">
+      <strong style="color:#2D6A4F;">💡 2026년 핵심 메시지:</strong> 乙卯 대운의 한가운데에서 가장 강력한 성장의 창(窓)이 열려 있습니다. 화뢰서합(火雷噬嗑) 괘의 메시지처럼 — <strong>지금 앞에 있는 장애물은 비켜가는 것이 아니라 씹어야 하는 것</strong>입니다. 결단하면 대길(大吉), 머뭇거리면 기회를 흘려보냅니다.
+    </div>
+  </div>
+</div>
+
+<!-- 6. 甲午 일주 기질 -->
+<div class="section" id="character">
+  <div class="section-header">
+    <div class="num">6</div>
+    <h2>甲午 일주 기질 분석 <small>日柱 心理·性情</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="sijuil-grid">
+      <div class="sj-card">
+        <h4>甲木 — 장남목의 기질</h4>
+        <div class="tag">핵심 기질</div>
+        <p>굽히지 않는 강인한 의지와 독립심. 조직의 부속으로 머물기를 거부하고 자기 방향을 향해 나아가는 나무의 성질. 리더십이 자연스럽게 발휘되며 자존심이 강합니다.</p>
+      </div>
+      <div class="sj-card">
+        <h4>午火 상관 — 일지의 불꽃</h4>
+        <div class="tag">표현과 창의</div>
+        <p>언어, 예술, 설득력의 중심. 자신만의 기준과 미학으로 세상을 바라보며 규범보다 감각을 따릅니다. 여명에서 일지 상관은 배우자와의 관계에서 독립성 유지를 필수 조건으로 만듭니다.</p>
+      </div>
+      <div class="sj-card">
+        <h4>癸亥癸 정인 — 물의 지성</h4>
+        <div class="tag">내면의 힘</div>
+        <p>풍부한 직관과 통찰력. 논리보다 직관으로 결론에 도달하는 경우가 많으며, 내면 세계가 깊고 영적·철학적 탐구에 자연스럽게 이끌립니다.</p>
+      </div>
+      <div class="sj-card">
+        <h4>庚 칠살 — 쇠도끼의 시련</h4>
+        <div class="tag">성장 동력</div>
+        <p>인생에서 반복적으로 나타나는 외부의 압박과 경쟁. 이를 回避하면 스트레스, 이를 제어하는 법을 배우면 가장 강력한 추진력과 리더십으로 전환됩니다.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding:14px 18px; background:#FFF8EE; border:1px solid var(--gold-light); border-radius:6px;">
+      <strong style="color:var(--brown);">직업·재능 방향:</strong>
+      <span style="font-size:12px; font-family:'Noto Sans KR',sans-serif; color:#444; line-height:1.9;">
+        &nbsp; 교육·연구·컨설팅·상담 &nbsp;|&nbsp; 강연·글쓰기·미디어 &nbsp;|&nbsp; 독립 전문직·브랜딩 &nbsp;|&nbsp; 콘텐츠 크리에이터<br>
+        ★ <strong>자신의 전문성을 직접 브랜드로 만드는 방향</strong>이 이 명조에 가장 큰 성취를 만듭니다.
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 7. 자미두수 -->
+<div class="section" id="ziwei">
+  <div class="section-header">
+    <div class="num">7</div>
+    <h2>자미두수 <small>紫微斗數 · 음력 9월 酉時 출생</small></h2>
+  </div>
+  <div class="section-body">
+    <p style="font-size:12px; font-family:'Noto Sans KR',sans-serif; color:#666; margin-bottom:16px; line-height:1.8;">
+      양력 1983년 11월 2일 → 음력 9월 26일 추산, 유시(酉時) 출생 기준. 자미두수 명반과 사주명리학의 교차 분석으로 패턴을 도출합니다.
+    </p>
+    <div class="ziwei-grid">
+      <div class="zw-card">
+        <div class="gung">명궁 (命宮)</div>
+        <div class="content">자립심이 강하고 독자적 세계관을 형성하는 기질. 타인의 판단보다 자신의 기준을 우선시하며, 독립적인 삶의 방향을 선택합니다.</div>
+      </div>
+      <div class="zw-card">
+        <div class="gung">관록궁 (官祿宮)</div>
+        <div class="content">전문직·기획·컨설팅·교육 분야에서 강점 발현. 창의적이고 지식 기반의 직업에서 두각. 사주의 甲木 독립 지향과 정확히 일치합니다.</div>
+      </div>
+      <div class="zw-card">
+        <div class="gung">재백궁 (財帛宮)</div>
+        <div class="content">스스로 개척하는 재물 흐름. 타인에 의존하지 않고 자신의 능력으로 재산을 만들며, 40대 이후 점진적으로 안정화됩니다.</div>
+      </div>
+      <div class="zw-card">
+        <div class="gung">부처궁 (夫妻宮)</div>
+        <div class="content">상호 독립성을 존중하는 파트너십이 오래 지속. 지배적이거나 권위적인 관계는 반드시 충돌. 지적 교류와 개인 공간 보장이 핵심입니다.</div>
+      </div>
+      <div class="zw-card">
+        <div class="gung">복덕궁 (福德宮)</div>
+        <div class="content">외적 성공보다 내면의 만족과 정신적 풍요를 중시. 영적·철학적 탐구가 진정한 행복의 원천이 됩니다.</div>
+      </div>
+      <div class="zw-card" style="background:#FFF8EE;">
+        <div class="gung" style="color:var(--gold);">사주와의 교차점</div>
+        <div class="content"><strong>3개 일치:</strong> 甲木 독립 지향 ↔ 명궁 자립 기질 / 癸亥 정인 지적 탐구 ↔ 복덕궁 내면 풍요 / 일지 상관 배우자 갈등 ↔ 부처궁 독립 파트너십 필요</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. 하락이수 -->
+<div class="section" id="hexagram">
+  <div class="section-header">
+    <div class="num">8</div>
+    <h2>하락이수 · 주역 <small>河洛理數 · 火雷噬嗑</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="hexagram-box">
+      <div class="hex-symbol">
+        <div class="hex-lines">☲<br>☳</div>
+        <div class="hex-name">火雷噬嗑</div>
+        <div class="hex-num">周易 第21卦</div>
+      </div>
+      <div class="hex-content">
+        <h3>화뢰서합 (火雷噬嗑)</h3>
+        <div class="hex-quote">
+          噬嗑 亨 利用獄
+          <small>"서합은 형통하니, 단호한 판단과 처리가 이롭다" — 周易 象辭</small>
+        </div>
+        <ul class="hex-points">
+          <li>일간 甲木(震卦 ☳) + 일지 午火(離卦 ☲)의 결합으로 도출된 본명괘(本命卦)</li>
+          <li>噬嗑의 象: 입 안에 장애물이 끼어 씹어 삼켜야 합쳐지는 형상 — 인생의 성취는 <strong>장애물을 직접 극복</strong>하는 과정으로 얻어집니다</li>
+          <li>上卦 離(☲ 지혜·밝음)가 위에 있어: 충분히 통찰한 후 행동하는 패턴이 최적</li>
+          <li>下卦 震(☳ 행동·돌파)이 아래에 있어: 파악이 끝나면 강하고 즉각적인 실행력 발동</li>
+          <li><strong>2026년 현재:</strong> 결단하면 大吉. 지금 앞에 있는 것은 비켜가는 것이 아니라 씹어야 하는 것</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. 건강 -->
+<div class="section" id="health">
+  <div class="section-header">
+    <div class="num">9</div>
+    <h2>건강 유의사항 <small>身體·養生</small></h2>
+  </div>
+  <div class="section-body">
+    <div class="health-grid">
+      <div class="health-card hc-wood">
+        <div class="icon">🌿</div>
+        <div class="organ" style="color:#2D6A4F;">木 약 — 간·담·신경계</div>
+        <div class="note">신약 사주로 木氣가 부족. 스트레스성 피로 누적과 신경계 긴장 주의. 충분한 수면과 정기적 휴식이 필수입니다.</div>
+      </div>
+      <div class="health-card hc-water">
+        <div class="icon">💧</div>
+        <div class="organ" style="color:#1A4A7A;">水 과다 — 신장·방광·림프</div>
+        <div class="note">水氣 과잉으로 냉증, 부종, 림프·순환계 문제 발생 가능. 따뜻한 음식·환경을 유지하고 수분 순환에 신경 쓰세요.</div>
+      </div>
+      <div class="health-card hc-fire">
+        <div class="icon">🔥</div>
+        <div class="organ" style="color:#C0392B;">午戌 합화 — 심장·혈압·안구</div>
+        <div class="note">火 에너지 과열 시 심혈관계와 안구 피로 주의. 丙午년(2026)처럼 화기가 강한 해에는 특히 순환기 관리가 중요합니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. 실천 가이드 -->
+<div class="section" id="guide">
+  <div class="section-header">
+    <div class="num">10</div>
+    <h2>실천 가이드 <small>運氣 활용 지침</small></h2>
+  </div>
+  <div class="section-body">
+    <table class="guide-table">
+      <tr>
+        <th>분류</th>
+        <th>✓ 추천 (용신 방향)</th>
+        <th>✗ 회피 (기신 방향)</th>
+      </tr>
+      <tr>
+        <td><strong>방향</strong></td>
+        <td class="good">동(東) · 동북방</td>
+        <td class="bad">서(西) · 서북방</td>
+      </tr>
+      <tr>
+        <td><strong>색상</strong></td>
+        <td class="good">청색 · 녹색 · 파란 계열</td>
+        <td class="bad">흰색 · 금색 · 은색</td>
+      </tr>
+      <tr>
+        <td><strong>환경</strong></td>
+        <td class="good">자연, 나무 소재, 개방감 있는 공간</td>
+        <td class="bad">폐쇄적·금속성 환경, 통제적 조직</td>
+      </tr>
+      <tr>
+        <td><strong>직업</strong></td>
+        <td class="good">독립 전문직, 교육, 강연, 창작, 컨설팅</td>
+        <td class="bad">권위주의적 조직 내 종속적 역할</td>
+      </tr>
+      <tr>
+        <td><strong>관계</strong></td>
+        <td class="good">지적 교류·상호 독립 존중하는 파트너</td>
+        <td class="bad">지배적·권위적·통제적인 관계</td>
+      </tr>
+      <tr>
+        <td><strong>건강</strong></td>
+        <td class="good">숲·나무·자연 접촉, 충분한 수면</td>
+        <td class="bad">과로, 금속 소음 환경, 극도의 경쟁</td>
+      </tr>
+      <tr>
+        <td><strong>핵심 덕목</strong></td>
+        <td class="good">결단 · 표현 · 자기 전문성 신뢰</td>
+        <td class="bad">우유부단 · 과도한 자기억제</td>
+      </tr>
+    </table>
+
+    <div style="margin-top:16px; padding:16px 18px; background:linear-gradient(135deg,#1C0E04,#2D1A08); border-radius:6px; color:#FAF6EE;">
+      <div style="font-size:14px; color:var(--gold); letter-spacing:2px; margin-bottom:8px; font-weight:700;">✦ 이 명조의 핵심 메시지</div>
+      <div style="font-size:13px; font-family:'Noto Sans KR',sans-serif; line-height:2; color:#E8D5A0;">
+        甲木은 어떤 바위틈에서도 위를 향해 자랍니다. 지금 乙卯 대운의 풍요로운 봄기운 속에서 — <strong style="color:#FFD700;">32세부터 쌓아온 모든 역량이 결실을 맺는 전성기</strong>가 한창 진행 중입니다.<br>
+        화뢰서합(火雷噬嗑)의 지혜로 통찰하고, 震의 행동력으로 앞으로 나아가세요.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p>
+    사주 명리학 · 자미두수(紫微斗數) · 하락이수(河洛理數) · 기문둔갑(奇門遁甲) 복합 분석<br>
+    분석 기준: 2026년 · 乙卯 大運 진행 중 · 일간 甲木(甲午日柱) 기준<br>
+    命 — 타고난 운명의 틀을 알고, 運 — 시간의 흐름을 읽고, 占 — 현재의 선택을 밝힌다
+  </p>
+</div>
+
+</body>
+</html>

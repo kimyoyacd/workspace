@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>넷마블 AI 업세일즈 — 전체 브리핑 대시보드</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg-dark:#0A0A0A;
+  --bg-light:#F5F5F5;
+  --surface:#FFFFFF;
+  --accent:#000DFF;
+  --accent-dim:rgba(0,13,255,0.15);
+  --accent-subtle:rgba(0,13,255,0.08);
+  --text-primary:#FFFFFF;
+  --text-dark:#0A0A0A;
+  --text-muted:rgba(255,255,255,0.5);
+  --text-muted-light:rgba(10,10,10,0.4);
+  --divider:rgba(255,255,255,0.12);
+  --divider-light:rgba(10,10,10,0.1);
+  --font-sans:'Space Grotesk','Pretendard','Inter',sans-serif;
+  --font-kr:'Pretendard','Space Grotesk','Inter',sans-serif;
+  --font-mono:'Space Mono','JetBrains Mono',monospace;
+  --space-xs:4px;
+  --space-sm:8px;
+  --space-md:16px;
+  --space-lg:24px;
+  --space-xl:40px;
+  --space-2xl:64px;
+  --space-3xl:80px;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--bg-dark);color:var(--text-primary);font-family:var(--font-kr);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+.container{max-width:1400px;margin:0 auto;padding:0 var(--space-xl);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-md);}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:var(--space-md);}
+.grid-5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:var(--space-md);}
+
+/* Hero */
+.hero{padding:var(--space-3xl) 0 var(--space-xl);border-bottom:1px solid var(--divider);}
+.hero-badge{display:inline-flex;align-items:center;gap:var(--space-sm);padding:6px 16px;background:var(--accent);border-radius:2px;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.12em;color:#FFFFFF;text-transform:uppercase;margin-bottom:var(--space-lg);}
+.hero h1{font-family:var(--font-sans);font-size:48px;font-weight:700;color:var(--text-primary);line-height:1.05;letter-spacing:-0.03em;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:17px;color:var(--text-muted);margin-top:var(--space-md);max-width:700px;line-height:1.7;}
+
+/* Section */
+section{padding:var(--space-2xl) 0;border-bottom:1px solid var(--divider);}
+section:last-child{border-bottom:none;}
+section.light{background:var(--bg-light);color:var(--text-dark);}
+section.light .section-title{color:var(--text-dark);}
+section.light .card{background:var(--surface);border-color:var(--divider-light);}
+section.light .card-title{color:var(--text-dark);}
+section.light .card-text{color:rgba(10,10,10,0.6);}
+section.light .card-label{color:var(--text-muted-light);}
+section.light .data-table th{background:var(--bg-light);color:var(--text-muted-light);border-bottom-color:var(--divider-light);}
+section.light .data-table td{color:var(--text-dark);border-bottom-color:var(--divider-light);}
+section.light .data-table tr:hover td{background:var(--bg-light);}
+section.light .quote{border-left-color:var(--accent);background:rgba(0,13,255,0.04);color:var(--text-dark);}
+section.light .quote-source{color:var(--text-muted-light);}
+section.light .section-desc{color:var(--text-muted-light);}
+
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:var(--space-lg);}
+.section-num{font-family:var(--font-sans);font-size:13px;font-weight:700;color:#FFFFFF;background:var(--accent);width:36px;height:36px;border-radius:2px;display:flex;align-items:center;justify-content:center;letter-spacing:0.05em;}
+.section-title{font-family:var(--font-sans);font-size:24px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;}
+.section-desc{font-size:14px;color:var(--text-muted);margin-top:-12px;margin-bottom:var(--space-lg);margin-left:50px;}
+
+/* Card */
+.card{background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;padding:var(--space-lg);transition:all 0.2s;}
+.card:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06);}
+.card-accent{background:var(--accent-subtle);border-color:rgba(0,13,255,0.2);}
+.card-accent:hover{background:var(--accent-dim);border-color:rgba(0,13,255,0.35);}
+.card-blue{background:var(--accent);border-color:var(--accent);color:#FFFFFF;}
+.card-blue .card-label{color:rgba(255,255,255,0.6);}
+.card-blue .card-title{color:#FFFFFF;}
+.card-blue .card-text{color:rgba(255,255,255,0.75);}
+.card-surface{background:var(--surface);border-color:var(--divider-light);color:var(--text-dark);}
+.card-surface .card-label{color:var(--text-muted-light);}
+.card-surface .card-title{color:var(--text-dark);}
+.card-surface .card-text{color:rgba(10,10,10,0.6);}
+
+.card-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:var(--space-sm);}
+.card-value{font-family:var(--font-sans);font-size:42px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-0.03em;}
+.card-title{font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
+.card-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;}
+
+/* Stat */
+.stat-row{display:flex;align-items:baseline;gap:6px;margin-top:10px;}
+.stat-num{font-family:var(--font-sans);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
+.stat-label{font-size:12px;color:var(--text-muted);}
+
+/* Table */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;}
+.data-table th{text-align:left;padding:12px 16px;background:rgba(255,255,255,0.04);color:var(--text-muted);font-family:var(--font-sans);font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--divider);}
+.data-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);color:var(--text-primary);}
+.data-table tr:hover td{background:rgba(255,255,255,0.03);}
+.data-table .highlight{color:var(--accent);font-weight:700;}
+.data-table .green{color:#10B981;font-weight:700;}
+.data-table .red{color:#EF4444;font-weight:700;}
+
+/* Tag */
+.tag{display:inline-flex;padding:3px 10px;border-radius:2px;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;}
+.tag-blue{background:var(--accent);color:#FFFFFF;}
+.tag-red{background:#EF4444;color:#FFFFFF;}
+.tag-green{background:#10B981;color:#FFFFFF;}
+.tag-yellow{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);}
+
+/* Flow */
+.flow{display:flex;align-items:center;gap:0;}
+.flow-step{flex:1;padding:var(--space-md);text-align:center;border-radius:2px;}
+.flow-arrow{font-family:var(--font-sans);font-size:20px;color:var(--text-muted);padding:0 var(--space-sm);flex-shrink:0;}
+
+/* Quote */
+.quote{border-left:3px solid var(--accent);padding:var(--space-md) 20px;background:var(--accent-subtle);border-radius:0 2px 2px 0;font-size:15px;color:var(--text-primary);line-height:1.7;margin:20px 0;}
+.quote-source{font-size:12px;color:var(--text-muted);margin-top:var(--space-sm);}
+
+/* Divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--divider),transparent);margin:var(--space-md) 0;}
+
+/* TOC */
+.toc{position:fixed;top:20px;right:20px;background:rgba(10,10,10,0.95);border:1px solid var(--divider);border-radius:2px;padding:var(--space-md);z-index:100;width:220px;max-height:calc(100vh - 40px);overflow-y:auto;backdrop-filter:blur(12px);}
+.toc-title{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+.toc a{display:block;padding:6px 10px;font-size:12px;color:var(--text-muted);text-decoration:none;border-radius:2px;transition:all 0.15s;margin-bottom:2px;}
+.toc a:hover{background:rgba(255,255,255,0.08);color:var(--text-primary);}
+.toc a.active{background:var(--accent);color:#FFFFFF;font-weight:600;}
+
+/* Priority Matrix */
+.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:2px;background:var(--divider);border-radius:2px;overflow:hidden;}
+.matrix-cell{background:rgba(255,255,255,0.03);padding:20px;}
+.matrix-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+.matrix-item{font-size:13px;color:var(--text-primary);padding:4px 0;}
+
+/* Responsive */
+@media(max-width:1500px){.toc{display:none;}}
+@media(max-width:900px){
+  .grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr;}
+  .container{padding:0 var(--space-md);}
+  .hero h1{font-size:28px;}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg-dark);}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+/* Accent text utility */
+.accent{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <a href="#conclusion">★ 결론</a>
+  <a href="#hero">Overview</a>
+  <a href="#killer-facts">! 핵심 수치</a>
+  <a href="#warning">⚡ 경고 신호</a>
+  <a href="#banner-system">01 배너 시스템</a>
+  <a href="#data-moat">02 데이터 독점</a>
+  <a href="#competitors">03 경쟁사 현황</a>
+  <a href="#agency-landscape">04 에이전시 지각변동</a>
+  <a href="#pain-points">05 Pain Points</a>
+  <a href="#roi">06 ROI 근거</a>
+  <a href="#framing">07 프레이밍 전략</a>
+  <a href="#ideas">08 아이디어 평가</a>
+  <a href="#priority">09 우선순위</a>
+  <a href="#roadmap">10 실행 로드맵</a>
+  <a href="#korea-market">11 한국 시장</a>
+  <a href="#sources">출처</a>
+</nav>
+
+<!-- ========================================== -->
+<!-- CONCLUSION FIRST -->
+<!-- ========================================== -->
+<section id="conclusion" style="background:var(--accent);padding:var(--space-3xl) 0 var(--space-2xl);">
+<div class="container">
+  <div style="font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:var(--space-lg);">EXECUTIVE SUMMARY &mdash; 이 문서의 결론</div>
+
+  <h2 style="font-family:var(--font-sans);font-size:40px;font-weight:700;color:#FFFFFF;line-height:1.15;letter-spacing:-0.02em;max-width:900px;">
+    HIVELAB이 넷마블에<br>AI 배너 시스템을 제안해야 하는 이유
+  </h2>
+
+  <div style="margin-top:var(--space-xl);display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-md);">
+    <div style="padding:var(--space-lg);background:rgba(255,255,255,0.12);border-radius:2px;">
+      <div style="font-family:var(--font-sans);font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:var(--space-sm);">1. 안 하면 뺏긴다</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7;">
+        Klarna는 에이전시 예산을 25% 삭감하고 AI로 직접 처리했다. CMO 39%가 에이전시 예산 삭감 계획. 넷마블도 자체 AI를 도입하면 HIVELAB 의뢰량은 자동으로 줄어든다.
+      </div>
+    </div>
+    <div style="padding:var(--space-lg);background:rgba(255,255,255,0.12);border-radius:2px;">
+      <div style="font-family:var(--font-sans);font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:var(--space-sm);">2. 할 수 있는 근거가 있다</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7;">
+        HIVELAB이 직접 만든 넷마블 소재 6,700개 — 다른 에이전시는 복제할 수 없는 데이터 해자. Publicis가 Epsilon 데이터로 업계 1위가 된 것과 동일한 논리.
+      </div>
+    </div>
+    <div style="padding:var(--space-lg);background:rgba(255,255,255,0.12);border-radius:2px;">
+      <div style="font-family:var(--font-sans);font-size:13px;font-weight:700;color:#FFFFFF;margin-bottom:var(--space-sm);">3. 넷마블이 바꿀 건 없다</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7;">
+        시스템 구매·설치·학습 불필요. "다음 납품물부터 AI 적용해주세요" 한 마디면 끝. 같은 예산으로 산출량 3배, CTR +47%, 제작 납기 80% 단축.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:var(--space-lg);padding:var(--space-md) var(--space-lg);background:rgba(0,0,0,0.2);border-radius:2px;display:flex;align-items:center;gap:var(--space-lg);">
+    <div style="font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;white-space:nowrap;">한 줄 요약</div>
+    <div style="font-size:16px;font-weight:600;color:#FFFFFF;line-height:1.5;">
+      "HIVELAB이 먼저 AI를 장착해서, 넷마블이 에이전시를 통하는 게 더 빠르고 정확하다는 것을 증명해야 한다. 6,700개 데이터가 그 증명의 연료."
+    </div>
+  </div>
+
+  <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-xl);font-size:13px;color:rgba(255,255,255,0.7);">
+    <div><strong style="color:#FFFFFF;">제안 방식:</strong> 보강, 대체 아님</div>
+    <div><strong style="color:#FFFFFF;">핵심 자산:</strong> 6,700개 소재 데이터</div>
+    <div><strong style="color:#FFFFFF;">차별화:</strong> Taste Layer + Data Flywheel</div>
+    <div><strong style="color:#FFFFFF;">넷마블 부담:</strong> 제로</div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- HERO -->
+<!-- ========================================== -->
+<div class="container" id="hero">
+  <div class="hero">
+    <div class="hero-badge">HIVELAB MAX LAB &times; NETMARBLE &middot; 2026.06</div>
+    <h1>넷마블 AI 업세일즈<br><span>전체 브리핑 대시보드</span></h1>
+    <p class="hero-sub">
+      리서치 데이터 &middot; 아이디어 평가 &middot; 프레젠테이션 근거 &middot; 실행 로드맵<br>
+      모든 내용을 한눈에 파악할 수 있도록 정리한 통합 문서입니다.
+    </p>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SECTION 0: KILLER FACTS -->
+<!-- ========================================== -->
+<section id="killer-facts">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">!</div>
+    <div class="section-title">넷마블 미팅 킬러 팩트</div>
+  </div>
+  <p class="section-desc">미팅 시 1장 요약용 — 임팩트 있는 수치 중심</p>
+
+  <div class="quote" style="font-size:16px;font-weight:600;">
+    넥슨은 NDC26에서 "한 달 걸리던 광고를 하루에" 공개 발표.<br>
+    크래프톤은 $7,000만을 AI에 투자하고 직원 97.6%가 AI 사용.<br>
+    게임 업계 상위 광고주는 분기 2,600개 소재를 제작하며, 소재 수명은 3~5일.<br>
+    AI 적용 시 CTR +47%, ROAS +72%, 제작 비용 -80%.<br>
+    <strong style="color:var(--accent);">HIVELAB만 보유한 넷마블 6,700개 소재 데이터가 이 시스템의 핵심 연료.</strong><br>
+    다른 에이전시는 이 데이터 없이 AI를 돌려도 넷마블에 최적화된 결과를 낼 수 없음.
+  </div>
+
+  <div class="grid-5" style="margin-top:var(--space-lg);">
+    <div class="card card-accent" style="text-align:center;">
+      <div class="card-label">CTR 향상</div>
+      <div class="card-value">+47%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">AI 생성 소재 평균</div>
+    </div>
+    <div class="card card-accent" style="text-align:center;">
+      <div class="card-label">ROAS 향상</div>
+      <div class="card-value">+72%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">AI 적용 최대치</div>
+    </div>
+    <div class="card card-accent" style="text-align:center;">
+      <div class="card-label">제작 비용</div>
+      <div class="card-value">-80%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">에이전시 실적 기준</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="card-label">생산성</div>
+      <div class="card-value">30x</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">넥슨 NDC26 발표</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="card-label">데이터 자산</div>
+      <div class="card-value">6,700<span style="font-size:18px;">+</span></div>
+      <div class="card-text" style="margin-top:var(--space-sm);">HIVELAB 독점</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- WARNING SIGNAL -->
+<!-- ========================================== -->
+<section id="warning" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num" style="background:#EF4444;">⚡</div>
+    <div class="section-title">경고 신호 — "안 하면 일어나는 일"</div>
+  </div>
+  <p class="section-desc">이건 예측이 아닙니다. 이미 글로벌에서 일어나고 있는 일입니다.</p>
+
+  <div class="card" style="border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.04);margin-bottom:var(--space-md);">
+    <div class="card-title" style="color:#EF4444;">Klarna — 클라이언트가 에이전시 없이 직접 한 사례</div>
+    <div class="card-text" style="margin-top:var(--space-sm);">
+      스웨덴 핀테크 기업 Klarna는 외부 에이전시에 맡기던 일을 AI로 직접 처리하기 시작했다.
+    </div>
+    <div class="grid-4" style="margin-top:var(--space-md);">
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:32px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">-25%</div>
+        <div class="card-text">에이전시 지출 삭감</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:32px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">853명</div>
+        <div class="card-text">AI가 대체한 인력 분</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:32px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">$6천만</div>
+        <div class="card-text">연간 절감액</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:32px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">6주→7일</div>
+        <div class="card-text">크리에이티브 사이클</div>
+      </div>
+    </div>
+    <div class="card-text" style="margin-top:var(--space-md);">
+      <strong style="color:var(--text-dark);">핵심:</strong> "에이전시가 안 바뀌면 클라이언트가 직접 한다"는 더 이상 위협이 아니라 현실.
+      넷마블도 자체 AI를 도입하면 HIVELAB 의뢰량이 <strong style="color:#EF4444;">25~60% 감소</strong>할 수 있다.
+    </div>
+    <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;">— <a href="https://www.campaignasia.com/article/klarna-cuts-marketing-agency-spend-by-25-aided-by-ai/496305" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Klarna 공식 보도</a>, <a href="https://digiday.com/marketing/how-klarna-is-using-ai-for-cost-savings-changing-extremely-frustrating-creative-processes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Digiday</a></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">CMO 39%</div>
+      <div class="card-title">에이전시 예산 삭감 계획</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">"AI 있으니까 그만큼 안 줘도 되지 않나?"<br><span style="font-size:11px;">— <a href="https://www.gartner.com/en/newsroom/press-releases/2025-05-12-gartner-2025-cmo-spend-survey-reveals-marketing-budgets-have-flatlined-at-seven-percent-of-overall-company-revenue" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Gartner 2025 CMO Survey</a></span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">에이전시 1/3</div>
+      <div class="card-title">"AI 쓰니까 깎아달라" 요청 경험</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">AI가 납품 시간을 3~4배 압축 → 시간 기반 과금 시 매출 자동 하락<br><span style="font-size:11px;">— <a href="https://productive.io/blog/agencies-in-the-ai-era/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Productive.io 2025 (n=180+)</a></span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">인하우스 82%</div>
+      <div class="card-title">기업이 자체 제작팀을 운영</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">2008년 42% → 2025년 82%. 마케팅 리더 60%가 AI로 에이전시 지출 삭감 완료<br><span style="font-size:11px;">— <a href="https://www.ana.net/miccontent/show/id/aa-2025-08-in-house-agency" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">ANA 2023</a>, <a href="https://finance.yahoo.com/sectors/technology/articles/typeface-brings-agentic-marketing-orchestration-130000077.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Typeface 2025</a></span></div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:var(--space-md);">
+    <strong style="color:var(--text-dark);">→ HIVELAB의 선택지:</strong> 넷마블이 직접 AI를 도입하기 전에, HIVELAB이 먼저 AI 시스템을 구축해서 "에이전시를 통하는 게 더 빠르고 정확하다"는 것을 증명해야 한다. 6,700개 데이터가 그 증명의 핵심 근거.
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 1: WHY THIS PLATFORM -->
+<!-- ========================================== -->
+<section id="banner-system" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">왜 지금, 이 플랫폼이 필요한가</div>
+  </div>
+  <p class="section-desc">Meta&middot;Google&middot;TikTok이 자체 AI 도구를 주는데, 왜 HIVELAB 플랫폼이 따로 필요한가? — 이 질문에 대한 답</p>
+
+  <!-- 2025 시장 현실 -->
+  <div class="section-header" style="margin-top:12px;">
+    <div class="section-num" style="background:#EF4444;">!</div>
+    <div class="section-title">2025 시장 현실 — 소재 수명이 절반으로 줄었다</div>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:var(--space-md);">
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">TikTok 소재 수명</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">3~7일</div>
+      <div class="card-text">리타겟팅 시 48시간</div>
+      <div class="card-text" style="font-size:10px;">— <a href="https://tikadtools.com/blog/tiktok-ad-frequency/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">TikAdTools 2026</a></div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">Meta Reels 소재 수명</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">7~14일</div>
+      <div class="card-text">고예산 시 5~10일</div>
+      <div class="card-text" style="font-size:10px;">— <a href="https://adlibrary.com/posts/ad-fatigue" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">AdLibrary 2025</a></div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">2023년 대비 수명 단축</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">6주→2주</div>
+      <div class="card-text">Meta Andromeda 알고리즘</div>
+      <div class="card-text" style="font-size:10px;">— <a href="https://advisible.com.au/creative-fatigue-meta-performance-guide/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Advisible 2025</a></div>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid #EF4444;">
+      <div class="card-label">4회 노출 후 전환율</div>
+      <div style="font-family:var(--font-sans);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">-45%</div>
+      <div class="card-text">Meta 내부 연구 (26,000건)</div>
+      <div class="card-text" style="font-size:10px;">— <a href="https://medium.com/@AnalyticsAtMeta/creative-fatigue-how-advertisers-can-improve-performance-by-managing-repeated-exposures-e76a0ea1084d" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Analytics at Meta 2023</a></div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:var(--space-lg);">
+    <div class="card">
+      <div class="card-label">주간 신규 소재 필요량 (고예산)</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:var(--accent);">8~15개</div>
+      <div class="card-text">월 $50K+ 지출 기준<br><span style="font-size:10px;">— <a href="https://theoptimizer.io/blog/meta-ads-creative-fatigue-how-to-detect-it-early-and-what-to-do-about-it" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">TheOptimizer 2025</a></span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">광고비 +33% vs 구매의향 +17%</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:#EF4444;">12% 갭</div>
+      <div class="card-text">"돈은 더 쓰는데 효과는 안 따라간다"<br><span style="font-size:10px;">— <a href="https://investor.shutterstock.com/news-releases/news-release-details/creative-impact-crisis-new-data-shows-why-consumer-connection" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Shutterstock 2025.10</a></span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">10~14일마다 교체 시</div>
+      <div style="font-family:var(--font-sans);font-size:28px;font-weight:800;color:#10B981;">+25%</div>
+      <div class="card-text">참여율 개선<br><span style="font-size:10px;">— <a href="https://tipsonblogging.com/2025/03/ad-fatigue-statistics/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">ZipDo / TipsOnBlogging 2025</a></span></div>
+    </div>
+  </div>
+
+  <!-- 플랫폼 AI 한계 -->
+  <div class="section-header">
+    <div class="section-num">VS</div>
+    <div class="section-title">플랫폼 AI 도구의 한계 — "자기 집 안에서만 작동한다"</div>
+  </div>
+  <p class="section-desc">Meta Advantage+, Google PMax, TikTok Symphony — 다 좋은 도구다. 하지만 근본적 한계가 있다.</p>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <table class="data-table">
+      <thead><tr><th>한계</th><th>무슨 뜻인가</th><th>넷마블에 미치는 영향</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Walled Garden</strong><br><span style="font-size:11px;">벽으로 둘러싸인 정원</span></td>
+          <td>Google은 Meta 데이터를 모르고, Meta는 TikTok을 모른다. 서로 데이터를 절대 공유하지 않는다.</td>
+          <td class="red">"Meta에서 잘 된 소재가 TikTok에선 왜 안 되는지" 플랫폼 AI는 답할 수 없다</td>
+        </tr>
+        <tr>
+          <td><strong>전환 뻥튀기</strong><br><span style="font-size:11px;">30~50% 과대 보고</span></td>
+          <td>같은 전환을 각 플랫폼이 자기 공이라고 중복 집계. 합산하면 실제보다 30~50% 많다.</td>
+          <td class="red">어디에 돈을 더 써야 하는지 판단 불가<br><span style="font-size:10px;">— <a href="https://www.cometly.com/post/cross-platform-ad-tracking-challenges" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Cometly 2025</a></span></td>
+        </tr>
+        <tr>
+          <td><strong>브랜드 맥락 부재</strong></td>
+          <td>Advantage+는 "클릭률 높은 이미지"는 찾지만, "넷마블 세븐나이츠 겨울 이벤트에 맞는 톤"은 모른다.</td>
+          <td class="red">IP 세계관에 안 맞는 소재가 자동 생성될 위험</td>
+        </tr>
+        <tr>
+          <td><strong>과거 학습 불가</strong></td>
+          <td>플랫폼 AI는 현재 캠페인 데이터만 사용. 3년간 축적된 HIVELAB 소재 데이터를 학습할 수 없다.</td>
+          <td class="red">매번 처음부터 학습 — "왜 작년에 잘 됐는지" 활용 불가</td>
+        </tr>
+        <tr>
+          <td><strong>Google PMax 논란</strong></td>
+          <td>증분 매출 10% 미만, 92%가 오디언스 시그널로 오히려 악화. "최악의 실행" — Digiday</td>
+          <td class="red">자동화에 맡기면 예산 낭비 위험<br><span style="font-size:10px;">— <a href="https://www.optmyzr.com/blog/performance-max-study/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Optmyzr 24,702건 분석</a></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote">
+    "디지털 광고비의 <strong>70%</strong>가 Walled Garden(폐쇄 생태계)을 통해 집행된다. 기업은 마케팅 인텔리전스에 대한 통제권을 포기한 채 도달 범위만 빌리고 있다."
+    <div class="quote-source">— <a href="https://www.aidigital.com/blog/walled-gardens-the-hidden-cost-for-digital-advertisers" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">AI Digital, "The Hidden Cost of Walled Garden Advertising" (2025)</a></div>
+  </div>
+
+  <!-- HIVELAB 플랫폼이 메우는 갭 -->
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num" style="background:var(--accent);">→</div>
+    <div class="section-title">HIVELAB AI 배너 리서치 플랫폼이 메우는 갭</div>
+  </div>
+  <p class="section-desc">플랫폼 AI가 "못 하는 것"을 HIVELAB 플랫폼이 한다. 이것이 존재 이유.</p>
+
+  <div class="grid-2" style="margin-bottom:var(--space-md);">
+    <div class="card" style="border-left:3px solid rgba(10,10,10,0.15);">
+      <div class="card-label" style="color:rgba(10,10,10,0.4);">플랫폼 AI (Advantage+ / PMax)</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 현재 캠페인 안에서만 최적화<br>
+        &bull; 자기 플랫폼 데이터만 사용<br>
+        &bull; "클릭률 높은 조합"은 찾지만 "왜"는 모름<br>
+        &bull; 브랜드 가이드&middot;IP 세계관 무시<br>
+        &bull; 플랫폼 간 비교 불가능<br>
+        &bull; 과거 소재 자산 활용 불가
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">HIVELAB AI 배너 리서치 플랫폼</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; <strong>6,700개 과거 소재</strong>에서 "무엇이 왜 잘 됐는지" 패턴 학습<br>
+        &bull; <strong>크로스 플랫폼</strong> 인사이트 — Meta&middot;Google&middot;TikTok&middot;네이버 통합 분석<br>
+        &bull; <strong>IP&middot;시즌&middot;이벤트별</strong> 최적 소재 추천 (Taste Layer)<br>
+        &bull; <strong>피로도 예측</strong> — 수명 소진 전에 교체 소재 준비<br>
+        &bull; <strong>근거 있는 제안</strong> — "이 디자인이 좋다"가 아니라 "이 패턴이 CTR 47% 높았다"<br>
+        &bull; <strong>원본 1개 → 40개 변형</strong> 자동 생성 (매체&middot;사이즈별)
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-blue" style="margin-bottom:var(--space-lg);">
+    <div style="font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:var(--space-sm);">핵심 요약</div>
+    <div style="font-size:16px;font-weight:600;color:#FFFFFF;line-height:1.7;">
+      Meta Advantage+는 "Meta 안에서 최적화"하고, Google PMax는 "Google 안에서 최적화"한다.<br>
+      하지만 넷마블이 필요한 건 <strong>"넷마블 IP에 맞는 소재를 모든 매체에서 최적화"</strong>하는 것이다.<br>
+      이걸 할 수 있는 건 넷마블 소재 6,700개를 직접 만든 HIVELAB뿐이다.
+    </div>
+  </div>
+
+  <!-- 넷마블 체감 변화 -->
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">넷마블이 체감하는 변화</div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <table class="data-table">
+      <thead><tr><th>기존 (시스템 없이)</th><th>AI 시스템 적용 후</th><th>넷마블 체감</th></tr></thead>
+      <tbody>
+        <tr><td>과거 레퍼런스를 기억에 의존</td><td>6,700개 자산에서 AI가 3초 만에 검색</td><td class="highlight">"왜 잘 됐는지 근거가 생겼네"</td></tr>
+        <tr><td>배너 10개 납품</td><td>원본 10개 + AI 변형 400개 납품</td><td class="highlight">"같은 예산으로 소재 커버리지가 달라졌다"</td></tr>
+        <tr><td>소재 죽으면 그때 새로 의뢰</td><td>피로도 예측 → 교체 소재 미리 준비</td><td class="highlight">"소재 빈 기간이 사라졌다"</td></tr>
+        <tr><td>매체별 성과를 따로 확인</td><td>크로스 플랫폼 통합 인사이트 제공</td><td class="highlight">"Meta에서 된 걸 TikTok에도 바로 테스트"</td></tr>
+        <tr><td>완성 후 성과 리포트 별도</td><td>납품 시 CTR 예측 + 다음 달 방향 포함</td><td class="highlight">"다음 방향을 먼저 제안해주니 의사결정이 빠르다"</td></tr>
+        <tr><td>임원 보고 자료 별도 요청</td><td>AI가 1장 요약 자동 생성, 납품 동봉</td><td class="highlight">보고 준비 시간 단축, 수치 오류 감소</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num">3T</div>
+    <div class="section-title">3-Track 제작 모델 — HIVELAB이 오케스트레이터가 되는 구조</div>
+  </div>
+  <p class="section-desc">모든 콘텐츠를 사람이 만들 필요 없다. 트랙별로 사람과 AI의 역할을 나눠야 한다. — <a href="https://www.aprco.com/resources/the-great-production-pivot" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">APR Co. 2026</a></p>
+
+  <div class="grid-3">
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">TRACK 1 · CRAFT</div>
+      <div class="card-title">히어로 캠페인 — 사람이 주도</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        대형 브랜드 영상, 론칭 핵심 소재<br>
+        HIVELAB 디자이너가 컨셉부터 완성까지 직접 제작<br>
+        AI는 레퍼런스 검색·초안 보조 역할
+      </div>
+      <div style="margin-top:var(--space-md);padding:8px 12px;background:rgba(0,13,255,0.06);border-radius:2px;font-size:12px;">사람 개입도: <strong>높음</strong></div>
+    </div>
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div class="card-label" style="color:#10B981;">TRACK 2 · MAKER</div>
+      <div class="card-title">소셜 콘텐츠 — 사람 + AI 협업</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        소셜 피드, 이벤트 배너, 빠른 대응 소재<br>
+        AI가 초안·변형 생성 → 디자이너가 방향 잡고 감수<br>
+        턴어라운드: 기존 3일 → 반나절
+      </div>
+      <div style="margin-top:var(--space-md);padding:8px 12px;background:rgba(16,185,129,0.06);border-radius:2px;font-size:12px;">사람 개입도: <strong>중간</strong></div>
+    </div>
+    <div class="card" style="border-left:3px solid rgba(10,10,10,0.3);">
+      <div class="card-label">TRACK 3 · ENGINE</div>
+      <div class="card-title">리사이징·변형 — AI가 전담</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        매체별 사이즈 변환, A/B 변형, 로컬라이징<br>
+        AI가 원본 1개 → 40개 변형 자동 생성<br>
+        디자이너는 최종 확인만
+      </div>
+      <div style="margin-top:var(--space-md);padding:8px 12px;background:rgba(10,10,10,0.04);border-radius:2px;font-size:12px;">사람 개입도: <strong>낮음</strong></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:var(--space-md);font-size:13px;color:var(--text-muted-light);">
+    예전에는 세 가지를 다 사람이 했다. 이제는 Craft에 사람을 집중하고, Engine은 AI에 맡긴다.<br>
+    <strong style="color:var(--text-dark);">AI가 전통적 제작 업무의 30~50%를 대체할 전망</strong> — <a href="https://www.aprco.com/resources/the-great-production-pivot" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">APR Co. 2026 Production Trends</a>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 5: DATA MOAT -->
+<!-- ========================================== -->
+<section id="data-moat">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title">6,700개 — 다른 에이전시가 복제할 수 없는 이유</div>
+  </div>
+
+  <div class="quote">
+    "마케팅 리더의 <strong>70% 이상</strong>이 AI 성과의 최대 병목은 모델이 아니라 <strong>데이터 품질</strong>이라고 답했다"
+    <div class="quote-source">— <a href="https://www.sparkleinsights.com/insights/proprietary-data-is-becoming-marketings-new-competitive-moat/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Sparkle Insights</a></div>
+  </div>
+
+  <div class="card card-accent" style="margin-bottom:20px;">
+    <div class="card-title" style="margin-bottom:var(--space-md);">HIVELAB 데이터 플라이휠</div>
+    <div class="flow">
+      <div class="flow-step" style="background:var(--accent);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:4px;">START</div>
+        <div style="font-size:14px;font-weight:700;color:#FFFFFF;">6,700개 기존 소재</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">LEARN</div>
+        <div style="font-size:14px;font-weight:700;">AI 학습</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">CREATE</div>
+        <div style="font-size:14px;font-weight:700;">새 소재 생성</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="background:rgba(255,255,255,0.06);border:1px solid var(--divider);">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">MEASURE</div>
+        <div style="font-size:14px;font-weight:700;">성과 데이터 수집</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="background:var(--accent);opacity:0.8;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:4px;">IMPROVE</div>
+        <div style="font-size:14px;font-weight:700;color:#FFFFFF;">모델 정밀도 향상</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">매월 반복 &rarr; 정밀도 가속화 &middot; 경쟁사는 이 초기 학습 데이터 자체가 없음</div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="margin-bottom:12px;">HIVELAB 데이터 우위 5가지</div>
+    <table class="data-table">
+      <thead><tr><th>우위</th><th>설명</th><th>경쟁사</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1st Party 소재 데이터</strong></td><td>넷마블 전 IP 배너 6,700개 직접 제작</td><td class="red">불가능</td></tr>
+        <tr><td><strong>캠페인 맥락</strong></td><td>시즌&middot;이벤트&middot;론칭 타이밍별 의도</td><td class="red">제작자만 앎</td></tr>
+        <tr><td><strong>IP별 성과 패턴</strong></td><td>어떤 비주얼이 어떤 IP에서 효과적인지</td><td class="red">히스토리 없음</td></tr>
+        <tr><td><strong>제작 프로세스 지식</strong></td><td>넷마블 승인 기준&middot;브랜드 가이드 내재화</td><td style="color:var(--text-muted);">신규 학습 필요</td></tr>
+        <tr><td><strong>연속성</strong></td><td>과거 &rarr; 현재 &rarr; 미래 연결된 데이터 체인</td><td class="red">단절</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card card-blue">
+    <div class="card-title">매드업(Madup) — 데이터 해자 벤치마크</div>
+    <div class="card-text" style="margin-top:8px;">
+      10년간 <strong>1조 원 이상</strong>의 광고 집행 데이터 축적 &rarr; AI 에이전트 "LEVER Xpert"로 마케팅 운영 90%+ 자동화<br>
+      3인&times;4시간 &rarr; 1인&times;1.5시간. 매출 502억 원, 영업이익 85억 원 (2025)<br><br>
+      CEO: <em>"1조원 광고 데이터는 실제 광고비를 집행해야만 얻을 수 있다"</em><br>
+      <strong>&rarr; HIVELAB도 동일 논리: 넷마블 소재 6,700개는 직접 만들어야만 얻을 수 있는 데이터</strong>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num" style="background:#000DFF;">TL</div>
+    <div class="section-title">Taste Layer — AI가 대체할 수 없는 HIVELAB의 진짜 경쟁력</div>
+  </div>
+  <p class="section-desc">"맛집은 레시피가 아니라 주방장의 감(感)이 만든다" — AI 시대에도 마찬가지다</p>
+
+  <div class="card card-accent" style="margin-bottom:var(--space-md);">
+    <div class="card-title" style="margin-bottom:var(--space-md);">Taste Layer란?</div>
+    <div class="card-text" style="font-size:15px;line-height:1.8;">
+      AI는 "어떤 이미지가 클릭률이 높은지" 패턴은 학습할 수 있다.<br>
+      하지만 <strong style="color:var(--accent);">"넷마블 세븐나이츠 겨울 이벤트에 이 톤이 맞는지"</strong>는 판단할 수 없다.<br><br>
+      <strong>Taste Layer</strong>는 브랜드&middot;IP&middot;시즌&middot;맥락을 이해한 사람만 가진 <strong style="color:var(--accent);">판단력의 층위</strong>다.<br>
+      쉽게 말하면: <em>"데이터가 '좋다'고 말해도, 브랜드에 안 맞으면 쓰면 안 된다"고 결정하는 능력</em>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">AI가 할 수 있는 것</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 과거 성과 패턴 분석<br>
+        &bull; 색상·레이아웃 최적화<br>
+        &bull; 사이즈 변형·대량 생산<br>
+        &bull; A/B 테스트 자동화
+      </div>
+    </div>
+    <div class="card" style="border:2px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">HIVELAB만 할 수 있는 것 (Taste Layer)</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; IP 세계관과 맞는 톤 판단<br>
+        &bull; 넷마블 내부 승인 기준 내재화<br>
+        &bull; "이건 법적으로 안 돼" 사전 차단<br>
+        &bull; 브랜드 가치를 지키면서 실험하는 감각
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">왜 중요한가</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        AI 도구는 누구나 살 수 있다.<br>
+        하지만 <strong>넷마블 IP에 대한 Taste Layer</strong>는 수년간 협업한 HIVELAB만 보유.<br>
+        <strong style="color:var(--accent);">이것이 에이전시 교체 비용을 높이는 진짜 해자(Moat).</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:var(--space-md);">
+    "AI가 만든 결과물 중 뭘 쓰고 뭘 버리는지 판단하는 사람이 가장 비싸진다"<br>
+    — <a href="https://www.bain.com/insights/marketers-agency-partnerships-are-strained-now-comes-ai/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Bain &amp; Company, 2025 Agency Value Chain Report</a>
+    <div class="quote-source">→ HIVELAB의 포지셔닝: AI 운전사가 아니라, AI 결과를 큐레이션하는 Taste Layer</div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 1: COMPETITOR AI STATUS -->
+<!-- ========================================== -->
+<section id="competitors" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title">경쟁사 AI 광고 투자 현황</div>
+  </div>
+  <p class="section-desc">동일 시장 게임사들의 실제 투자·성과 데이터 — 넷마블이 대응할 여지가 가장 크다</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>경쟁사</th><th>AI 활용</th><th>성과</th><th>격차</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>넥슨</strong> <span class="tag tag-red">NDC26 공개</span></td>
+          <td>AI 파이프라인 영상 광고 자동 제작</td>
+          <td>제작 1.5개월&rarr;<span class="highlight">1일</span> (30배), CTR <span class="highlight">14배</span>, CPI <span class="green">-20%</span></td>
+          <td><span class="tag tag-red">이미 양산</span></td>
+        </tr>
+        <tr>
+          <td><strong>크래프톤</strong> <span class="tag tag-yellow">AI First</span></td>
+          <td>GPU 슈퍼클러스터, 전사 AI 내재화</td>
+          <td><span class="highlight">$7,000만</span> 투자, 아트 16h&rarr;1h, 직원 <span class="highlight">97.6%</span> AI 사용</td>
+          <td><span class="tag tag-yellow">전사 내재화</span></td>
+        </tr>
+        <tr>
+          <td><strong>엔씨소프트</strong></td>
+          <td>VARCO LLM/Studio, AI 자회사 NC AI 분사</td>
+          <td>패션 10대 기업에 기술 수출, 신상품 <span class="green">50% 단축</span></td>
+          <td><span class="tag tag-yellow">외부 사업화</span></td>
+        </tr>
+        <tr>
+          <td><strong>웹젠</strong></td>
+          <td>Airbridge AI 크리에이티브 최적화</td>
+          <td>로그인율 <span class="highlight">+90%</span>, ROAS <span class="highlight">+300%</span></td>
+          <td><span class="tag tag-blue">적용 완료</span></td>
+        </tr>
+        <tr>
+          <td><strong>111%</strong> (Random Dice)</td>
+          <td>Moloco Cloud DSP AI 최적화</td>
+          <td>소재 <span class="highlight">150개</span> 추가, 매출 <span class="green">+14%</span></td>
+          <td><span class="tag tag-blue">적용 완료</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num">G</div>
+    <div class="section-title">글로벌 AI 광고 트렌드</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">글로벌 모바일 게임 UA 광고비</div>
+      <div class="card-value">$250억</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">2025년 기준 (Segwise)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">AI 게임 시장 성장</div>
+      <div class="card-value" style="font-size:28px;">$45.4억 &rarr; $811.9억</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">2025~2035, CAGR 33.6%</div>
+    </div>
+    <div class="card">
+      <div class="card-label">AI 생성 소재 비중 (2026 예상)</div>
+      <div class="card-value">~50%</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">전체 UA 소재 중 (Gamelight)</div>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-top:var(--space-md);">
+    <div class="card">
+      <div class="card-label">게임 개발자 AI 사용</div>
+      <div class="stat-row"><div class="stat-num">90%</div></div>
+      <div class="card-text">워크플로우 내 생성형 AI 활용</div>
+    </div>
+    <div class="card">
+      <div class="card-label">게임 경영진 AI 도입</div>
+      <div class="stat-row"><div class="stat-num">84%</div></div>
+      <div class="card-text">도입/테스트 중</div>
+    </div>
+    <div class="card">
+      <div class="card-label">광고주 AI 활용</div>
+      <div class="stat-row"><div class="stat-num">90%+</div></div>
+      <div class="card-text">어떤 형태로든 활용</div>
+    </div>
+    <div class="card">
+      <div class="card-label">한국 월 라이브 소재</div>
+      <div class="stat-row"><div class="stat-num">123개</div></div>
+      <div class="card-text">상위 광고주 평균 (YoY +20%)</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-md);">
+    <div class="card-title">플랫폼별 AI 광고 성과 (2026 벤치마크)</div>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>플랫폼</th><th>AI vs 수동 제작 CTR 차이</th></tr></thead>
+      <tbody>
+        <tr><td>Meta</td><td>AI가 <span class="highlight">+12%</span> 높음 (1.08% vs 0.96%)</td></tr>
+        <tr><td>Google Ads</td><td>AI 헤드라인이 <span class="highlight">+7%</span> 높음</td></tr>
+        <tr><td>TikTok</td><td>AI가 <span class="highlight">+4%</span> 높음</td></tr>
+        <tr><td><strong>전체 평균</strong></td><td>AI 생성 소재 CTR <span class="highlight">+47%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-md);">
+    <div class="card-title">글로벌 기업 사례</div>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>기업</th><th>AI 활용</th><th>성과</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Supercell</strong></td><td>AI Innovation Lab, UA 대량 개인화</td><td>3단계 AI 전략 수립</td></tr>
+        <tr><td><strong>Playrix</strong></td><td>플레이어블 광고 AI 생성</td><td>UA 트래픽 <span class="highlight">70%</span>가 플레이어블 광고</td></tr>
+        <tr><td><strong>Ace Games</strong></td><td>AppsFlyer + Layer AI</td><td>CTR <span class="highlight">+52%</span>, 성공 소재율 55%&rarr;<span class="highlight">80%</span></td></tr>
+        <tr><td><strong>Star Chef 2</strong></td><td>Admiral Media AI</td><td>ROAS <span class="highlight">+45%</span>, CTR <span class="highlight">+55%</span>, CAC <span class="green">-18%</span></td></tr>
+        <tr><td><strong>PURE App</strong></td><td>AI 로컬라이징 변형</td><td>CPI <span class="green">-74%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 4: AGENCY LANDSCAPE -->
+<!-- ========================================== -->
+<section id="agency-landscape">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title">글로벌 에이전시 지각변동 — 누가 살아남았나</div>
+  </div>
+  <p class="section-desc">같은 AI 충격을 맞았는데, 성장하는 곳과 무너지는 곳이 갈렸다. 차이는 전략.</p>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div class="card-title" style="margin-bottom:var(--space-md);">에이전시 성패 비교표 — 2024~2025 실적 기준</div>
+    <table class="data-table">
+      <thead><tr><th>에이전시</th><th>전략</th><th>결과</th><th>시사점</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>WPP</strong></td>
+          <td>전통 구조 유지 + AI 표면적 도입</td>
+          <td class="red">매출 -3.6%, 7,000명 감원</td>
+          <td>"AI 쓴다"만으로는 부족</td>
+        </tr>
+        <tr>
+          <td><strong>Publicis Groupe</strong></td>
+          <td>CoreAI 플랫폼 + 데이터 해자 (Epsilon 2.3억 소비자)</td>
+          <td class="green">유기적 성장 +6.6%, 업계 1위</td>
+          <td>데이터가 핵심 — HIVELAB과 동일 논리</td>
+        </tr>
+        <tr>
+          <td><strong>Accenture Song</strong></td>
+          <td>컨설팅 + 실행 통합, $200억 크리에이티브 조직</td>
+          <td class="green">세계 최대 광고 회사로 부상</td>
+          <td>전략+실행 합치면 가치 급증</td>
+        </tr>
+        <tr>
+          <td><strong>Brandtech Group</strong></td>
+          <td>AI-first 에이전시 (Pencil AI 인수)</td>
+          <td class="green">제작 -75% 비용, 속도 10배</td>
+          <td>AI를 도구가 아닌 사업모델로</td>
+        </tr>
+        <tr>
+          <td><strong>Superside</strong></td>
+          <td>SuperAI — 디자인 서비스 + AI 대량생산</td>
+          <td class="green">12시간 턴어라운드, 비용 -60~70%</td>
+          <td>대체 위협 — 빠르고 싸다</td>
+        </tr>
+        <tr>
+          <td><strong>전통 중소 에이전시</strong></td>
+          <td>기존 시간 기반 과금 유지</td>
+          <td class="red">CMO 39%가 예산 삭감 계획</td>
+          <td>변하지 않으면 도태</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-left:3px solid #EF4444;">
+      <div class="card-label" style="color:#EF4444;">무너진 에이전시의 공통점</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 시간 기반 과금 고수 — AI가 시간을 줄이면 매출도 줄어듦<br>
+        &bull; AI를 "비용 절감 도구"로만 인식<br>
+        &bull; 독자적 데이터 없이 범용 AI만 사용<br>
+        &bull; "예전처럼 하면 된다"는 관성
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div class="card-label" style="color:#10B981;">성장한 에이전시의 공통점</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 데이터 해자 구축 — 자체 데이터로 AI를 차별화<br>
+        &bull; 가격 모델 전환 — 결과물/성과 기반 과금<br>
+        &bull; Taste Layer 확보 — AI 위에 판단력을 얹음<br>
+        &bull; 오케스트레이터로 진화 — 직접 만드는 것 + AI 관리
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:var(--space-md);">
+    <strong>→ HIVELAB의 위치:</strong> 넷마블 6,700개 데이터 = Publicis의 Epsilon에 해당하는 자산.<br>
+    이것을 AI와 결합하면 "가격은 낮추되 가치는 높이는" 구조가 가능하다.<br>
+    안 하면? Klarna처럼 넷마블이 직접 하거나, Superside 같은 글로벌 플레이어에 빼앗긴다.
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 5: PAIN POINTS -->
+<!-- ========================================== -->
+<section id="pain-points">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title">대형 게임사 UA 광고 Pain Points</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">소재 물량 압박</div>
+      <div class="card-title">분기 2,600개 변형 필요</div>
+      <div class="card-text">YoY +25~30% 증가. 캠페인 스케일업 시 20개&rarr;1,000개 변형. 주간 2~3개 신규 컨셉 + 6~10개 변형 필요.</div>
+      <div class="stat-row"><div class="stat-num">10x</div><div class="stat-label">$50만 예산 대비 필요 소재</div></div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">크리에이티브 피로도</div>
+      <div class="card-title">소재 수명 3~5일</div>
+      <div class="card-text">4번째 반복 노출 시 전환율 <strong style="color:#EF4444;">-45%</strong>. 상위 캠페인 주간 소재 교체율 78% (2024년 41%에서 급상승).</div>
+      <div class="stat-row"><div class="stat-num" style="color:#EF4444;">-45%</div><div class="stat-label">4회 노출 후 전환율</div></div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--accent);">제작 병목</div>
+      <div class="card-title">캠페인당 80~120시간</div>
+      <div class="card-text">브리프&rarr;기획&rarr;디자인&rarr;리뷰&rarr;수정(4~5회)&rarr;승인&rarr;리사이징. 평균 2~3주 소요.</div>
+      <div class="stat-row"><div class="stat-num">4-5회</div><div class="stat-label">수정 사이클</div></div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:var(--space-md);">
+    <div class="card">
+      <div class="card-label">비용 구조</div>
+      <div class="card-text">배너 1세트: $500~$1,500<br>영상 1개: $800~$2,000<br>분기 2,600개 기준: 막대한 제작비</div>
+    </div>
+    <div class="card">
+      <div class="card-label">데이터 단절 + 매체 파편화</div>
+      <div class="card-text">성과 데이터가 다음 소재 제작에 반영되지 않는 사일로 구조. 네이버&middot;구글&middot;META&middot;TikTok 각각 사이즈/포맷이 다름.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 6: ROI -->
+<!-- ========================================== -->
+<section id="roi" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title">AI 배너 시스템 ROI 근거</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">제작 시간 & 비용 절감</div>
+      <table class="data-table" style="margin-top:12px;">
+        <thead><tr><th>지표</th><th>Before</th><th>After</th><th>절감률</th></tr></thead>
+        <tbody>
+          <tr><td>프로젝트 소요시간</td><td>2~3주</td><td>2~3일</td><td class="green">80~90%↓</td></tr>
+          <tr><td>캠페인 투입시간</td><td>80~120h</td><td>25~40h</td><td class="green">65~70%↓</td></tr>
+          <tr><td>배너 세트 비용</td><td>$500~$1,500</td><td>$50~$200</td><td class="green">85~90%↓</td></tr>
+          <tr><td>영상 소재 비용</td><td>$800~$2,000</td><td>$150~$400</td><td class="green">75~80%↓</td></tr>
+          <tr><td>수정 사이클</td><td>4~5회</td><td>1~2회</td><td class="green">60~70%↓</td></tr>
+          <tr><td>월간 산출량 (5인)</td><td>30~50개</td><td>100~150개</td><td class="highlight">3배↑</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">성과 개선 수치</div>
+      <table class="data-table" style="margin-top:12px;">
+        <thead><tr><th>지표</th><th>개선 수치</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td>CTR 평균</td><td class="highlight">+47%</td><td>Influencer Marketing Hub</td></tr>
+          <tr><td>ROAS</td><td class="highlight">최대 +72%</td><td>MixFlow 2025</td></tr>
+          <tr><td>CPI</td><td class="green">-40%</td><td>Segwise</td></tr>
+          <tr><td>CPA (앱)</td><td class="green">최대 -66%</td><td>Admiral Media</td></tr>
+          <tr><td>전환율</td><td class="highlight">+10~15%</td><td>Segwise</td></tr>
+          <tr><td>ARPU (리타겟팅)</td><td class="highlight">+33%</td><td>Bagelcode</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-md);">
+    <div class="card-title">에이전시 관점 실적 비교</div>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>항목</th><th>기존</th><th>AI 적용 후</th><th>절감</th></tr></thead>
+      <tbody>
+        <tr><td>캠페인 비용 (단건)</td><td>$15,960</td><td>$4,690</td><td class="green">70%↓</td></tr>
+        <tr><td>동일 예산 산출</td><td>소재 60개</td><td>소재 + 영상 + 60개 사이즈 변형</td><td class="green">-97%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-md);">
+    <div class="card-title">한국 AI 크리에이티브 실적 사례 (Draph Art)</div>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>클라이언트</th><th>AI 적용</th><th>결과</th></tr></thead>
+      <tbody>
+        <tr><td>패션 브랜드 A</td><td>마네킹&rarr;AI 모델 변환</td><td>제작 7일&rarr;<span class="highlight">1일</span> (85%↓)</td></tr>
+        <tr><td>주방가전 브랜드 B</td><td>AI 맥락형 광고</td><td>CTR <span class="highlight">+150%</span></td></tr>
+        <tr><td>가구 브랜드 C</td><td>AI 배경 제거/합성</td><td>월 제작량 <span class="highlight">3배</span>, 비용 <span class="green">-45%</span></td></tr>
+        <tr><td>중견기업 D</td><td>AI 전면 도입</td><td>주 50개+, 시간 <span class="green">-90%</span>, ROAS <span class="highlight">+200%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 7: FRAMING STRATEGY -->
+<!-- ========================================== -->
+<section id="framing">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-title">업세일즈 프레이밍 전략</div>
+  </div>
+  <p class="section-desc">핵심 원칙: "도구를 파는 게 아니라, 납품물이 달라진다"</p>
+
+  <div class="grid-2">
+    <div class="card card-accent">
+      <div class="card-label" style="color:var(--accent);">프레이밍 1: 보강, 대체 아님</div>
+      <div class="card-title">"HIVELAB 디자이너가 AI를 써서 넷마블에 더 많이, 더 빠르게, 더 근거 있게 납품합니다"</div>
+      <div class="card-text" style="margin-top:10px;">
+        &bull; 마케팅 리더 20%가 실행&rarr;전략 방향 전환 중<br>
+        &bull; 클라이언트 우려: "최종 결과물에 누가 책임지는가"<br>
+        &bull; HIVELAB 디자이너가 최종 품질을 검수 — "AI가 만들었네"가 아니라 "더 잘 만들었네"
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-label" style="color:var(--accent);">프레이밍 2: 결과를 판다</div>
+      <div class="card-title">"이 시스템을 구매하세요"가 아니라 "다음 납품물부터 이렇게 달라집니다"</div>
+      <div class="card-text" style="margin-top:10px;">
+        &bull; 가장 팔기 쉬운 AI = 짧은 피드백 루프 + 눈에 보이는 개선<br>
+        &bull; 배너 시스템: 납품 즉시 차이 체감, 1분기 내 측정 가능
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">프레이밍 3: 딜리버러블 &rarr; 어드바이저리</div>
+      <div class="card-title">배너 단가 &rarr; "월간 소재 팩 + 인사이트 리포트" 번들</div>
+      <div class="card-text" style="margin-top:10px;">단가 경쟁에서 벗어나 판단(judgment)에 대한 가격 설정</div>
+    </div>
+    <div class="card">
+      <div class="card-label">프레이밍 4: 넷마블이 할 일 = 없음</div>
+      <div class="card-title">도입 부담 제로가 최강의 세일즈 포인트</div>
+      <div class="card-text" style="margin-top:10px;">"다음 납품물에 AI 적용 요청"만 하면 끝. 시스템 구매/설치/학습 불필요.</div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:36px;">
+    <div class="section-num">$</div>
+    <div class="section-title">과금 모델 전환 — "시간 팔기"에서 "결과 팔기"로</div>
+  </div>
+  <p class="section-desc">AI가 시간을 줄여주면, 시간 기반 과금은 자동으로 매출이 줄어든다. 구조를 바꿔야 한다.</p>
+
+  <div class="grid-3" style="margin-bottom:var(--space-md);">
+    <div class="card" style="border-left:3px solid #EF4444;">
+      <div class="card-label" style="color:#EF4444;">현재 (위험)</div>
+      <div class="card-title">시간 기반 과금</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        "배너 10개 &times; 단가" 구조<br>
+        AI로 빨라지면 단가 인하 압력 ↑<br>
+        <strong style="color:#EF4444;">매출 자동 하락 구조</strong>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">전환 1: 구독형</div>
+      <div class="card-title">월간 소재 팩 리테이너</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        월 고정금액 → 소재 100개 + 인사이트 리포트<br>
+        예측 가능한 수익 + 클라이언트도 예산 관리 용이<br>
+        <strong style="color:var(--accent);">Superside, Brandtech 모두 이 모델</strong>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div class="card-label" style="color:#10B981;">전환 2: 성과 연동</div>
+      <div class="card-title">CTR/ROAS 기반 인센티브</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        기본료 + 성과 초과분 수수료<br>
+        "잘 만들면 더 받는" 구조 → 에이전시와 클라이언트 이해 일치<br>
+        <strong style="color:#10B981;">데이터 플라이휠이 있어야 가능한 모델</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <strong>핵심:</strong> 넷마블에 "가격을 깎아드립니다"가 아니라, "같은 비용으로 10배 더 받으실 수 있습니다"로 프레이밍.<br>
+    AI가 시간을 줄인 만큼, 늘어난 산출량과 인사이트가 HIVELAB의 새로운 가격 근거가 된다.
+    <div class="quote-source">— <a href="https://www.bain.com/insights/marketers-agency-partnerships-are-strained-now-comes-ai/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Bain &amp; Company, Agency Pricing in AI Era (2025)</a></div>
+  </div>
+
+  <div class="card" style="margin-top:20px;border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.06);">
+    <div class="card-title" style="color:#EF4444;">주의할 점</div>
+    <div class="grid-2" style="margin-top:12px;gap:var(--space-md);">
+      <div>
+        <div class="card-text">
+          AI 생성 광고라고 인지될 경우:<br>
+          프리미엄 인식 <strong style="color:#EF4444">-17%</strong>, 영감 점수 <strong style="color:#EF4444">-19%</strong>, 구매 의향 <strong style="color:#EF4444">-14%</strong><br>
+          <strong>&rarr; HIVELAB 디자이너가 최종 품질을 관리한다는 점 반드시 강조</strong>
+        </div>
+      </div>
+      <div>
+        <div class="card-text">
+          기업의 <strong style="color:#EF4444">80%</strong>가 생성형 AI에서 유의미한 수익 효과를 보지 못함 (전략 부재)<br>
+          <strong>&rarr; "단순 AI 도입"이 아니라 "6,700개 데이터 기반 맞춤 시스템" 차별화</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 8: 21 IDEAS -->
+<!-- ========================================== -->
+<section id="ideas" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div class="section-title">21개 아이디어 평가표</div>
+  </div>
+  <p class="section-desc">평가 기준: ★★★ 높음 | ★★☆ 보통 | ★☆☆ 낮음</p>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
+      <span class="tag tag-blue">A</span>
+      <div class="card-title" style="margin-bottom:0;">기존 제작 프로세스 + AI 강화</div>
+      <div class="card-text" style="margin-bottom:0;">&mdash; 지금 하고 있는 일에 AI를 얹으면</div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>#</th><th>아이디어</th><th>문제 해결</th><th>적합</th><th>실행</th><th>우선순위</th></tr></thead>
+      <tbody>
+        <tr><td>A1</td><td><strong>AI 배너 검색 시스템</strong> — 6,700개 자산 AI 즉시 검색</td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">즉시</span></td></tr>
+        <tr><td>A2</td><td><strong>AI 소재 x40 확장</strong> — 원본 1개 &rarr; 40개 변형</td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">즉시</span></td></tr>
+        <tr><td>A3</td><td><strong>데이터 기반 디자인 가이드</strong> — 성과 분석 &rarr; 다음 달 방향</td><td>★★★</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-green">즉시</span></td></tr>
+        <tr><td>A4</td><td><strong>승인 워크플로우 혁신</strong> — 8일&rarr;1일</td><td>★★★</td><td>★★☆</td><td>★★☆</td><td><span class="tag tag-yellow">협의 후</span></td></tr>
+        <tr><td>A5</td><td><strong>월간 소재 팩</strong> — AI 100개 + A/B + 임원 보고 번들</td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">즉시</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
+      <span class="tag tag-blue">B</span>
+      <div class="card-title" style="margin-bottom:0;">바이럴 & 팬덤</div>
+      <div class="card-text" style="margin-bottom:0;">&mdash; 만든 것이 퍼지는 구조</div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>#</th><th>아이디어</th><th>문제 해결</th><th>적합</th><th>실행</th><th>우선순위</th></tr></thead>
+      <tbody>
+        <tr><td>B1</td><td><strong>나노 크리에이터 100명 동시 시딩</strong></td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">즉시</span></td></tr>
+        <tr><td>B2</td><td><strong>숏폼 깔때기</strong> — 기존 영상 재편집 &rarr; Shorts</td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-blue">1~2주</span></td></tr>
+        <tr><td>B3</td><td><strong>논쟁 유발 콘텐츠</strong> — "RF 최강 종족은?"</td><td>★★☆</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">매주</span></td></tr>
+        <tr><td>B4</td><td><strong>사전등록→출시 버즈 설계</strong></td><td>★★★</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-yellow">일정 연동</span></td></tr>
+        <tr><td>B5</td><td><strong>팬 UGC 챌린지</strong> — 코스프레/팬아트/밈</td><td>★★☆</td><td>★★☆</td><td>★★☆</td><td><span class="tag tag-yellow">2개월</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom:var(--space-md);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
+      <span class="tag tag-blue">C</span>
+      <div class="card-title" style="margin-bottom:0;">IP 확장</div>
+      <div class="card-text" style="margin-bottom:0;">&mdash; 캐릭터를 게임 밖으로</div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>#</th><th>아이디어</th><th>문제 해결</th><th>적합</th><th>실행</th><th>우선순위</th></tr></thead>
+      <tbody>
+        <tr><td>C1</td><td><strong>게임 OST &rarr; 스트리밍</strong></td><td>★★☆</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-yellow">2개월</span></td></tr>
+        <tr><td>C2</td><td><strong>캐릭터 ASMR 시리즈</strong></td><td>★★☆</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-yellow">2개월</span></td></tr>
+        <tr><td>C3</td><td><strong>패션/라이프스타일 콜라보</strong></td><td>★★☆</td><td>★★★</td><td>★☆☆</td><td><span class="tag tag-red">3개월+</span></td></tr>
+        <tr><td>C4</td><td><strong>캐릭터 증권거래소</strong> — IP 성장 지수</td><td>★★☆</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-blue">1개월</span></td></tr>
+        <tr><td>C5</td><td><strong>IP 건강검진 구독</strong> — 팬덤 대시보드</td><td>★★☆</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-blue">1개월</span></td></tr>
+        <tr><td>C6</td><td><strong>매달 5가지 포맷 실험</strong></td><td>★★☆</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">매월</span></td></tr>
+        <tr><td>C7</td><td><strong>오늘의집/카페 시그니처</strong></td><td>★☆☆</td><td>★★☆</td><td>★☆☆</td><td><span class="tag tag-red">장기</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-md);">
+      <span class="tag tag-blue">D</span>
+      <div class="card-title" style="margin-bottom:0;">파트너십 확장 구조</div>
+      <div class="card-text" style="margin-bottom:0;">&mdash; 함께 성장하는 구조로 전환</div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>#</th><th>아이디어</th><th>문제 해결</th><th>적합</th><th>실행</th><th>우선순위</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td><strong>기존 계약 + AI 애드온</strong></td><td>★★★</td><td>★★★</td><td>★★★</td><td><span class="tag tag-green">즉시</span></td></tr>
+        <tr><td>D2</td><td><strong>리테이너 전환</strong> — 프로젝트 &rarr; 월간 고정</td><td>★★★</td><td>★★★</td><td>★★☆</td><td><span class="tag tag-yellow">3개월</span></td></tr>
+        <tr><td>D3</td><td><strong>IP 공동 투자</strong></td><td>★★☆</td><td>★★★</td><td>★☆☆</td><td><span class="tag tag-red">6개월+</span></td></tr>
+        <tr><td>D4</td><td><strong>넷마블 크리에이터 파트너스</strong></td><td>★★☆</td><td>★★★</td><td>★☆☆</td><td><span class="tag tag-red">6개월+</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 9: PRIORITY MATRIX -->
+<!-- ========================================== -->
+<section id="priority">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div class="section-title">우선순위 매트릭스</div>
+  </div>
+
+  <div class="matrix">
+    <div class="matrix-cell" style="border-bottom:1px solid var(--divider);">
+      <div class="matrix-label" style="color:#10B981;">높은 효과 &times; 즉시 실행</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A1</span> AI 배너 검색</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A2</span> 소재 x40 확장</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A3</span> 디자인 가이드</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">A5</span> 월간 소재 팩</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">B1</span> 나노 시딩</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">B2</span> 숏폼 깔때기</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">B3</span> 논쟁 콘텐츠</div>
+      <div class="matrix-item"><span class="tag tag-green" style="margin-right:6px;">D1</span> AI 애드온</div>
+    </div>
+    <div class="matrix-cell" style="border-bottom:1px solid var(--divider);">
+      <div class="matrix-label" style="color:var(--accent);">높은 효과 &times; 준비 필요</div>
+      <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">A4</span> 승인 혁신</div>
+      <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">B4</span> RF 런칭 팩</div>
+      <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">C4</span> 캐릭터 지수</div>
+      <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">C5</span> IP 건강검진</div>
+      <div class="matrix-item"><span class="tag tag-yellow" style="margin-right:6px;">D2</span> 리테이너 전환</div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-label" style="color:var(--accent);">실험적 &times; 즉시 실행</div>
+      <div class="matrix-item"><span class="tag tag-blue" style="margin-right:6px;">C6</span> 포맷 실험</div>
+      <div class="matrix-item"><span class="tag tag-blue" style="margin-right:6px;">B5</span> UGC 챌린지</div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-label" style="color:var(--text-muted);">장기 확장</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">C1</span> OST 스트리밍</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">C2</span> ASMR 시리즈</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">C3</span> 패션 콜라보</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">C7</span> 공간 확장</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">D3</span> 공동 투자</div>
+      <div class="matrix-item"><span class="tag tag-red" style="margin-right:6px;">D4</span> 크리에이터 파트너스</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 10: ROADMAP -->
+<!-- ========================================== -->
+<section id="roadmap" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title">실행 로드맵</div>
+  </div>
+
+  <div class="quote">
+    <strong>기존 납품 구조는 그대로입니다.</strong><br>
+    다음 납품물부터 산출량 3배, 제작 납기 80% 단축, CTR 근거 있는 소재가 함께 옵니다.<br>
+    <strong>데이터가 쌓일수록 정밀도가 높아지기 때문에, 시간이 지날수록 격차는 벌어집니다.</strong>
+  </div>
+
+  <div class="grid-4" style="margin-top:var(--space-lg);">
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div class="card-label" style="color:#10B981;">지금</div>
+      <div class="card-title">다음 납품물부터</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        기존 제작 + AI 소재 확장<br>
+        검색 시스템 + 인사이트 리포트<br><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
+        "추가 비용 없이 퀄리티가 올라갔네"
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent);">
+      <div class="card-label" style="color:var(--accent);">1개월</div>
+      <div class="card-title">성과 확인 후</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        IP 건강검진 대시보드<br>
+        캐릭터 지수 리포트 제안<br><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
+        "이 데이터로 예산 배분하면 되겠다"
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">2~3개월</div>
+      <div class="card-title">캠페인 확장</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        바이럴 패키지 실행<br>
+        월간 소재팩 리테이너 전환<br><br>
+        <strong style="color:var(--text-dark);">넷마블 체감:</strong><br>
+        "제작부터 유통까지 다 하네"
+      </div>
+    </div>
+    <div class="card" style="background:var(--text-dark);color:#FFFFFF;border-color:var(--text-dark);">
+      <div class="card-label" style="color:rgba(255,255,255,0.5);">6개월+</div>
+      <div class="card-title" style="color:#FFFFFF;">멀티 IP 확장</div>
+      <div class="card-text" style="margin-top:var(--space-sm);color:rgba(255,255,255,0.65);">
+        RF&middot;Solo Leveling 추가<br>
+        공동 투자 구조 전환<br><br>
+        <strong style="color:#FFFFFF;">넷마블 체감:</strong><br>
+        "IP별 소재 성과가 누적돼서 다음 의사결정이 빨라졌다"
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-lg);">
+    <div class="card-title" style="margin-bottom:var(--space-md);">기존 프로세스 vs 제안 프로세스</div>
+    <div class="grid-2" style="gap:var(--space-md);">
+      <div style="padding:var(--space-md);background:var(--bg-light);border-radius:2px;text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:var(--text-muted-light);text-transform:uppercase;margin-bottom:var(--space-sm);">현재</div>
+        <div style="font-size:14px;color:var(--text-dark);">의뢰 &rarr; 제작 &rarr; 납품 &rarr; <span style="color:#EF4444;">끝</span></div>
+      </div>
+      <div style="padding:var(--space-md);background:var(--accent);border-radius:2px;text-align:center;">
+        <div style="font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.12em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:var(--space-sm);">제안</div>
+        <div style="font-size:14px;color:#FFFFFF;">의뢰 &rarr; 제작 &rarr; <strong>AI 확장</strong> &rarr; 납품 + 인사이트 &rarr; <strong style="color:rgba(255,255,255,0.8);">다음 의뢰 반영 &circlearrowleft;</strong></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted-light);">데이터가 쌓일수록 정확도 &uarr; &mdash; 이것이 플라이휠</div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 11: KOREAN MARKET -->
+<!-- ========================================== -->
+<section id="korea-market">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title">한국 시장 참고 데이터</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">AI 도입 기업 현황 (Deloitte Korea)</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        전사 내재화 기업 <strong style="color:var(--accent);">3.7%</strong>에 불과 — 대부분 탐색·파일럿 단계.<br>
+        AI 도입 후 실제 매출 성장 달성: <strong style="color:var(--accent);">20%</strong> (기대치 74% 대비 낮음).<br>
+        원인: 전략 없는 도입, 데이터 품질 부재.<br>
+        <span style="margin-top:8px;display:block;font-size:12px;padding:8px;background:rgba(255,255,255,0.04);border:1px solid var(--divider);border-radius:2px;">
+          → HIVELAB의 6,700개 기반 맞춤 시스템은 데이터 부재 문제를 원천 해소
+        </span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">한국 광고 시장 AI 전환 추세</div>
+      <div class="card-text" style="margin-top:var(--space-sm);">
+        &bull; 한국 광고 시장 <strong style="color:var(--accent);">17.2조 원</strong> (2025), 디지털 60%<br>
+        &bull; AI 퍼포먼스 에이전시 성장: M.Plan.It <strong style="color:var(--accent);">+167%</strong>, Bom&Sense <strong style="color:var(--accent);">+108%</strong><br>
+        &bull; 전통 빅5 정체: 제일 +3%, 이노션 0%, HSAD -8%<br>
+        &bull; 2026 키워드: <strong>"AI 광고 물량전"</strong> — 소재 양이 UA 경쟁력<br>
+        &bull; 정부 AI 바우처: 기업당 최대 2억원 지원 가능 (총 8,900억 원)
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECTION 11: SOURCES -->
+<!-- ========================================== -->
+<section id="sources" class="light">
+<div class="container">
+  <div class="section-header">
+    <div class="section-num">S</div>
+    <div class="section-title">출처</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">게임 AI 광고 트렌드</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        <a href="https://segwise.ai/blog/ai-use-in-advertising-marketing-statistics" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Segwise AI Stats</a> &middot; Marketing-Interactive 2025 &middot; Digital Applied 2026 Benchmark &middot;
+        <a href="https://www.appsflyer.com/customers/ace-games/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">AppsFlyer &times; Ace Games</a> &middot; <a href="https://admiral.media/ai-generated-ad-creative-results/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Admiral Media AI Results</a> &middot; <a href="https://www.pocketgamer.biz/supercells-ai-masterplan-explained/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Supercell AI Masterplan</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">한국 게임사 사례</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        <a href="https://www.gamevu.co.kr/news/articleView.html?idxno=58023" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">GameVu NDC26</a> &middot; <a href="https://koreagamedesk.com/krafton-bets-big-on-ai-reshapes-gaming-industry-playbook/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">KoreaGameDesk (크래프톤)</a> &middot; <a href="https://www.kedglobal.com/korean-games/newsView/ked202507110006" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">KED Global (엔씨소프트)</a> &middot;
+        <a href="https://www.moloco.com/case-studies/koreas-leading-casual-game-publisher-111-percent-boosts-revenue-by-14-using-molocos-ml-powered-user-acquisition" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Moloco &times; 111%</a> &middot; <a href="https://www.airbridge.io/blog/2025-ai-trend-in-gaming-ua-driven-products-ad-creatives-monetization" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Airbridge &times; 웹젠</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">ROI & 비용 절감</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        <a href="https://www.cliprise.app/learn/workflows/marketing/marketing-agency-ai-content-cost-reduction-case-study" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">ClipRise Marketing Agency Case</a> &middot; <a href="https://influencermarketinghub.com/ai-in-advertising-examples/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Influencer Marketing Hub</a> &middot; <a href="https://mixflow.ai/blog/generative-ai-ad-performance-report-november-2025-benchmarks-vendor-comparisons-and-roi-secrets/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">MixFlow 2025 Report</a> &middot;
+        <a href="https://draph.art/blog/aimodel/2024_ai_ad_success_90percent_time_reduction" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Draph Art AI 사례</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">데이터 경쟁 우위</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        McKinsey AI Advantage &middot; AI Ireland (Proprietary Data Moat) &middot;
+        <a href="https://www.sparkleinsights.com/insights/proprietary-data-is-becoming-marketings-new-competitive-moat/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Sparkle Insights</a> &middot; AdExchanger 1st Party Data &middot; <a href="https://www.bloter.net/news/articleView.html?idxno=665843" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">매드업 데이터 해자 (Bloter)</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">업세일즈 전략</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        <a href="https://almcorp.com/blog/make-money-ai-digital-agencies-2026/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">ALM Corp (AI Marketing Sales)</a> &middot; CXL B2B Agency Strategy &middot;
+        Uplifted AI Creative Tools &middot; <a href="https://checkthat.ai/brands/superside" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Superside AI-Powered Agencies</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">에이전시 지각변동 & 경고 신호</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        <a href="https://www.gartner.com/en/newsroom/press-releases/2025-05-12-gartner-2025-cmo-spend-survey-reveals-marketing-budgets-have-flatlined-at-seven-percent-of-overall-company-revenue" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Gartner 2025 CMO Survey</a> &middot; <a href="https://www.campaignasia.com/article/klarna-cuts-marketing-agency-spend-by-25-aided-by-ai/496305" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Klarna 공식 보도</a> &middot; <a href="https://digiday.com/marketing/how-klarna-is-using-ai-for-cost-savings-changing-extremely-frustrating-creative-processes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Digiday Agency Cuts</a> &middot;
+        <a href="https://productive.io/blog/agencies-in-the-ai-era/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Productive.io 2025 (n=180+)</a> &middot; <a href="https://www.ana.net/miccontent/show/id/aa-2025-08-in-house-agency" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">ANA In-House Survey 2023</a> &middot; <a href="https://finance.yahoo.com/sectors/technology/articles/typeface-brings-agentic-marketing-orchestration-130000077.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Typeface 2025</a> &middot;
+        <a href="https://www.adweek.com/agencies/the-real-wpp-story-is-in-the-margin-not-the-revenue/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">WPP Annual Report 2024</a> &middot; <a href="https://www.campaignlive.com/article/global-agency-groups-report-card-h1-2025-wpp-revenue-hit-publicis-strides/1930174" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Publicis Groupe FY2024</a> &middot; <a href="https://www.adnews.com.au/news/accenture-song-revenue-hits-us20-billion-as-ai-demand-surges" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Accenture Song Revenue</a> &middot;
+        <a href="https://digiday.com/media/ai-developments-abound-at-agencies-brandtech-buys-pencil-huge-launches-live/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Brandtech Group / Pencil AI</a> &middot; <a href="https://checkthat.ai/brands/superside" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Superside SuperAI</a> &middot;
+        <a href="https://www.bain.com/insights/marketers-agency-partnerships-are-strained-now-comes-ai/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Bain &amp; Company Agency Value Chain 2025</a> &middot; <a href="https://www.aprco.com/resources/the-great-production-pivot" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">APR Co. 2026 Production Trends</a> &middot;
+        <a href="https://www.forrester.com/press-newsroom/forrester-agency-ai-workforce-2030/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Forrester AI Agency Forecast</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">한국 시장</div>
+      <div class="card-text" style="margin-top:var(--space-sm);font-size:11px;line-height:2;word-break:break-all;">
+        KPMG 게임 10대 트렌드 &middot; <a href="https://blog.nasmedia.co.kr/entry/2602mediaissue-naver254q" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">나스미디어 2025 전망</a> &middot; <a href="https://www.deloitte.com/kr/ko/issues/generative-ai/state-of-ai-in-enterprise.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Deloitte Korea AI 내재화</a> &middot;
+        Digital Today (네이버 AI) &middot; Consumer News (광고비)
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:48px 0 24px;color:var(--text-muted-light);font-size:12px;font-family:var(--font-sans);letter-spacing:0.08em;">
+    HIVELAB MAX LAB &times; NETMARBLE &middot; 2026.06 &middot; AI UPSALES BRIEFING DASHBOARD
+  </div>
+</div>
+</section>
+
+</body>
+</html>
