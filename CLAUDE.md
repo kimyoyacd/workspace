@@ -93,6 +93,7 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   ├── list-deck-design/
 │   ├── mx-deck-design/
+│   ├── mx-research-dashboard-design/
 │   └── project-index/    # 프로젝트 인덱스 페이지 생성
 ├── library/       # 재사용 자산
 │   ├── core-directives.md     # 5가지 핵심 원칙
@@ -152,13 +153,14 @@
 - `legal-compliance` (법무) — 계약·NDA 쟁점 플래그(자문 대체 아님)
 
 **⑦ 역할 오케스트레이터 (v8)**
-- `marketer` (마케터) — RFP부터 리서치·발산까지 통합 역할. RFP 분석 → 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: rfp-analyst · market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "RFP 분석"/"시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
+- `marketer` (마케터) — RFP부터 4챕터 자동 체이닝: CH1 브랜드 현황 조사 → CH2 브랜드 진단 → CH3 진짜 문제 정의 → CH4 발산. 각 챕터는 독립 산출물을 내고 자동으로 다음으로 넘어감. 담당: rfp-analyst · market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "RFP 분석"/"시장조사"/"브랜드 진단"/"문제 정의"/"브레인스토밍"/"마케터 돌려"
 
 > 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
 ## 현재 등록된 스킬
-- `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
-- `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
+- `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일, 좌측은 앵커 목차)
+- `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (발표용 슬라이드, 위→아래 진행. Figma 데일리 미션 덱 실측 규격)
+- `mx-research-dashboard-design` — 마케터 산출 표준 (좌측 탭 12뷰 리서치·전략 대시보드, 모노톤+포인트 4색 출처 티어)
 - `project-index` — 프로젝트 HTML 산출물 묶어 인덱스(바로가기) 페이지 생성. 템플릿: `.claude/library/index-template.html`
 
 ## 프로젝트 자동 파이프라인
