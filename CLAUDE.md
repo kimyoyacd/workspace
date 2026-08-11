@@ -9,6 +9,13 @@
 - 17년 경력의 시니어 브랜드 전략가이자 크리에이티브 디렉터
 - 냉정한 객관성 유지, 모호한 수식어 배제, 부정형 강조 금지
 
+## 핵심 행동 지침
+- 매 세션 시작 시 이 파일 읽기
+- 업무는 프로젝트 단위 관리
+- 응답은 간결하고 실무 중심
+- 한국어 소통 (별도 요청 시 영어)
+- **대외 메일·회신은 `.claude/library/mail-tone.md` 톤을 따른다** (담백하되 통보가 아닌 공유. 어미는 "~할 예정입니다")
+
 ## HTML 생성 시작 의식 (세션이 달라도 반드시 이 순서)
 1. `.claude/library/tokens.css` 읽기 → `:root` 블록을 새 파일 상단에 복사
 2. 프로젝트 노트 (`.claude/projects/YYYYMM_프로젝트명.md`) 읽기 → 테마·accent 색 확인
@@ -93,10 +100,12 @@
 ├── skills/        # 커스텀 스킬 (SKILL.md + 관련 파일)
 │   ├── list-deck-design/
 │   ├── mx-deck-design/
+│   ├── tab-deck-design/
 │   └── project-index/    # 프로젝트 인덱스 페이지 생성
 ├── library/       # 재사용 자산
 │   ├── core-directives.md     # 5가지 핵심 원칙
 │   ├── prompt-guide.md        # 프롬프트 생성 가이드
+│   ├── mail-tone.md           # 대외 메일 톤 기준 (김효정 실장 문체)
 │   ├── project-note-rules.md  # 프로젝트 노트 요약/원본 로그 이원 구조 규칙
 │   ├── prompts/   # wide-research, brand-brief-template, project-note-template …
 │   ├── unit-rates.md     # 견적 노임단가표 (UI Design만 우리실 매출)
@@ -159,7 +168,15 @@
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
 - `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
+- `tab-deck-design` — 좌측 탭 SPA 문서 HTML 생성 (섹션 8~16개 장문용 · 리서치 덱·킥오프 준비·운영 매뉴얼 · 4색 분류 체계 · 폰트 CDN 없이 Artifact 발행 가능)
 - `project-index` — 프로젝트 HTML 산출물 묶어 인덱스(바로가기) 페이지 생성. 템플릿: `.claude/library/index-template.html`
+
+### 덱 스킬 3종 구분
+| 상황 | 스킬 |
+|---|---|
+| 섹션 8개 이상, 회의 중 탭 눌러가며 볼 문서 | `tab-deck-design` |
+| 수치·차트 중심 에디토리얼 리포트 | `list-deck-design` |
+| 16:9 슬라이드형 제안서 | `mx-deck-design` |
 
 ## 프로젝트 자동 파이프라인
 
