@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>넷마블 피드백 미팅 회의록 &amp; AI 갭 대응 전략 · 2026.07.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#FFFFFF; --card:#F5F1EA; --ink:#1A1A1A; --ink-soft:#463F35;
+    --muted:#6E665A; --rule:#E4DED2; --rule-soft:#F2EDE3;
+    --accent:#FF6B35; --accent-ink:#C0480E; --accent-wash:#FFF0E7;
+    --blue:#0044FF; --blue-wash:#E8EDFF;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --kr:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--kr);
+    -webkit-font-smoothing:antialiased;line-height:1.7}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+  @media(max-width:640px){.wrap{padding:0 18px}}
+
+  header.top{border-bottom:1.5px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:5}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;gap:12px;flex-wrap:wrap}
+  .brandline{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .brandline b{color:var(--accent)}
+  nav{display:flex;gap:8px}
+  nav a{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-decoration:none;color:var(--muted);
+    border:1px solid var(--rule);border-radius:20px;padding:5px 14px}
+  nav a:hover{color:var(--ink);border-color:var(--ink)}
+
+  .ey{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink)}
+  .intro{padding:50px 0 8px}
+  .intro h1{font-size:clamp(27px,4.2vw,42px);font-weight:800;letter-spacing:-.02em;margin:12px 0 0;line-height:1.18;text-wrap:balance}
+  .intro p{color:var(--ink-soft);font-size:15.5px;margin:14px 0 0;max-width:66ch}
+
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  @media(max-width:760px){.facts{grid-template-columns:1fr 1fr}}
+  .facts .f{background:var(--card);border-radius:12px;padding:15px 18px}
+  .facts .f small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .facts .f b{font-size:14.5px}
+
+  .tldr{margin:30px 0 0;background:var(--ink);color:#D8D3C8;border-radius:16px;padding:32px 36px}
+  .tldr .ey{color:var(--accent)}
+  .tldr p{font-size:clamp(16px,2.1vw,21px);font-weight:700;line-height:1.55;margin:12px 0 0;color:#fff;letter-spacing:-.01em}
+  .tldr small{display:block;margin-top:14px;font-weight:400;font-size:14px;line-height:1.7}
+  .tldr b{color:var(--accent)}
+
+  .part{margin-top:70px;border-top:2px solid var(--ink);padding-top:14px}
+  .part .pt{display:flex;align-items:baseline;gap:14px}
+  .part .pnum{font-family:var(--mono);font-weight:700;font-size:13px;color:#fff;background:var(--ink);border-radius:7px;padding:5px 13px;letter-spacing:.08em}
+  .part .pnum.o{background:var(--accent)}
+  .part h1{font-size:clamp(23px,3vw,32px);font-weight:800;letter-spacing:-.02em;margin:0}
+  .part .psub{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin-top:8px}
+
+  section.ag{border-top:1px solid var(--rule);padding:42px 0;margin-top:42px}
+  section.ag:first-of-type{border-top:0;margin-top:8px}
+  .ag h2{display:flex;align-items:baseline;gap:14px;font-size:clamp(19px,2.4vw,24px);font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
+  .num{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700}
+  .who{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin-bottom:12px}
+  .lede{color:var(--ink-soft);font-size:15px;max-width:66ch;margin:8px 0 0}
+  .ag ul{margin:14px 0 0;padding-left:20px;font-size:14.5px;color:var(--ink-soft)}
+  .ag li{margin:7px 0}
+  .ag li b{color:var(--ink)}
+
+  .quote{margin:16px 0 0;background:var(--card);border-left:3px solid var(--ink);border-radius:8px;
+    padding:14px 18px;font-size:13.5px;color:var(--ink-soft)}
+  .quote .src{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em;display:block;margin-top:6px}
+  .decide{margin-top:18px;background:var(--blue-wash);border-left:3px solid var(--blue);border-radius:8px;padding:14px 18px;font-size:14px;color:var(--ink-soft)}
+  .decide b{color:var(--blue)}
+  .warn{margin-top:14px;background:var(--accent-wash);border-left:3px solid var(--accent);border-radius:8px;padding:14px 18px;font-size:14px;color:var(--ink-soft)}
+  .warn b{color:var(--accent-ink)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .cause{background:var(--card);border-radius:14px;padding:24px 26px}
+  .cause .tag2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent-ink);text-transform:uppercase}
+  .cause h3{font-size:18px;margin:8px 0 8px;letter-spacing:-.01em}
+  .cause p{font-size:14px;color:var(--ink-soft);margin:0}
+  .cause .q{margin-top:12px;font-size:13px;color:var(--muted);border-left:3px solid var(--rule);padding-left:12px}
+
+  .threat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px}
+  @media(max-width:760px){.threat{grid-template-columns:1fr}}
+  .threat .t{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
+  .threat .t h4{margin:0 0 8px;font-size:15.5px}
+  .threat .t p{margin:0;font-size:13.5px;color:var(--ink-soft)}
+
+  .move{border:1px solid var(--rule);border-radius:16px;padding:28px 30px;margin-top:20px;background:var(--paper)}
+  .move.star{border:1.5px solid var(--ink);box-shadow:0 1px 2px rgba(26,26,26,.04),0 10px 30px rgba(26,26,26,.06)}
+  .move-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .badge{font-family:var(--mono);font-weight:700;font-size:13px;color:#fff;background:var(--ink);
+    border-radius:7px;padding:5px 12px;letter-spacing:.04em}
+  .badge.a{background:var(--accent)}
+  .badge.b{background:var(--blue)}
+  .move h3{font-size:18.5px;margin:0;letter-spacing:-.01em}
+  .star-tag{font-family:var(--mono);font-size:11px;color:var(--accent-ink);letter-spacing:.08em}
+  .move p{font-size:14.5px;color:var(--ink-soft);margin:12px 0 0}
+  .move ul{margin:12px 0 0;padding-left:20px;font-size:14.5px;color:var(--ink-soft)}
+  .move li{margin:6px 0}
+  .move li b{color:var(--ink)}
+  .lane{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media(max-width:640px){.lane{grid-template-columns:1fr}}
+  .lane .l{border-radius:12px;padding:18px 20px;font-size:13.5px}
+  .lane .hi{background:var(--ink);color:#D8D3C8}
+  .lane .hi b{color:#fff;display:block;font-size:15px;margin-bottom:6px}
+  .lane .lo{background:var(--accent-wash);color:var(--ink-soft)}
+  .lane .lo b{color:var(--accent-ink);display:block;font-size:15px;margin-bottom:6px}
+
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    text-align:left;padding:10px 12px;border-bottom:1.5px solid var(--ink)}
+  td{padding:12px;border-bottom:1px solid var(--rule-soft);color:var(--ink-soft);vertical-align:top}
+  td b{color:var(--ink)}
+  td.owner{font-family:var(--mono);font-size:12px;white-space:nowrap}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:700;border-radius:5px;padding:2px 8px;letter-spacing:.04em}
+  .tag.h{background:var(--accent);color:#fff}
+  .tag.n{background:var(--ink);color:#fff}
+  .tag.j{background:var(--blue);color:#fff}
+
+  .todo h3{font-size:16px;margin:26px 0 8px;display:flex;align-items:center;gap:10px}
+  .pill{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:20px;padding:3px 12px;letter-spacing:.06em}
+  .pill.now{background:var(--accent);color:#fff}
+  .pill.soon{background:var(--ink);color:#fff}
+  .pill.par{background:var(--rule-soft);color:var(--muted)}
+  .todo ul{list-style:none;margin:0;padding:0}
+  .todo li{display:flex;gap:12px;align-items:flex-start;padding:10px 4px;border-bottom:1px solid var(--rule-soft);font-size:14.5px;color:var(--ink-soft)}
+  .todo li::before{content:"";flex:0 0 16px;height:16px;margin-top:5px;border:1.5px solid var(--muted);border-radius:4px}
+  .todo li b{color:var(--ink)}
+
+  .close{margin-top:60px;border-top:1.5px solid var(--ink);padding-top:34px}
+  .close p{font-size:clamp(16px,2vw,19px);font-weight:700;max-width:60ch;line-height:1.6;letter-spacing:-.01em}
+  .close .path{margin-top:16px;font-family:var(--mono);font-size:13px;color:var(--accent-ink);letter-spacing:.02em}
+
+  footer{border-top:1.5px solid var(--ink);margin-top:70px;padding:26px 0 64px;
+    font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.03em}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandline">NETMARBLE <span style="color:var(--muted)">×</span> <b>HIVELAB</b> · 07.10 회의록 &amp; AI 전략</div>
+    <nav>
+      <a href="#part1">PART 1 · 회의록</a>
+      <a href="#part2">PART 2 · 전략</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="ey">Internal · Minutes + Strategy</div>
+    <h1>넷마블이 말한 것, 그리고<br>우리가 할 것</h1>
+    <p>7월 10일 넷마블 피드백 미팅(70분)의 기록과 대응 전략을 한 문서로 묶었습니다.
+      <strong>PART 1</strong>은 녹음 전문 기반 회의록(무슨 이야기가 오갔나),
+      <strong>PART 2</strong>는 그로부터 도출한 내부 전략(그래서 무엇을 바꿀 것인가)입니다.</p>
+    <div class="facts">
+      <div class="f"><small>일시</small><b>2026.07.10 (금) 19:27</b></div>
+      <div class="f"><small>소요</small><b>70분 42초</b></div>
+      <div class="f"><small>참석</small><b>넷마블 본부장·팀장단 / 하이브랩</b></div>
+      <div class="f"><small>기록</small><b>녹음 전문 기반</b></div>
+    </div>
+    <div class="tldr">
+      <div class="ey">TL;DR</div>
+      <p>"하이브랩 디자인 퀄리티는 최고. 그런데 AI만 최하점.<br>
+        이유는 실력이 아니라 <b>① AI를 안 보이게 쓰고 ② TO가 쪼개져 느리기 때문</b>."</p>
+      <small>넷마블은 우리를 버리려는 게 아니라 <b>더 많이 쓰고 싶어서</b> 이 얘기를 꺼냈다 —
+        "받아줄 시스템·세팅·역량을 갖추는 게 우선." 내부 구조를 바꿔 <b>"준비됐다"는 신호(콜사인)</b>를 주면 요청은 얼마든지 준다고 약속.
+        공동 목표는 하반기 설문에서의 AI 수치 개선.</small>
+    </div>
+  </section>
+
+  <!-- ==================== PART 1 ==================== -->
+  <div class="part" id="part1">
+    <div class="pt"><span class="pnum">PART 1</span><h1>회의록 — 무슨 이야기가 오갔나</h1></div>
+    <div class="psub">MINUTES · 시간 순 안건 정리</div>
+  </div>
+
+  <section class="ag">
+    <h2><span class="num">01</span>하이브랩 발표 — 만족도 개선안 (전반부)</h2>
+    <div class="who">발표: 하이브랩 · 넷마블 이견 없이 접수 → 기본기로 이행</div>
+    <ul>
+      <li><b>간단 수정 기준</b> — 순수 카피 수정은 영상단에서 바로, 디자인 개입 시 검수. "간단 수정" 범위는 추후 협의.</li>
+      <li><b>기획 속도·품질</b> — 타이틀별 담당자 고정(장르·IP 이해도), 팀장→실장 2중 검수, 기획 2일 이내(월 요청→수 1차), 긴급 협의 대응.</li>
+      <li><b>다양성</b> — 영화·포스터·타 광고로 참고 확대, 카피에 유행어·밈 활용.</li>
+      <li><b>기획 선제안</b> — 대기 TO 발생 시 브랜드 가이드에 맞춘 자체 기획안 선제작.</li>
+      <li><b>AI 품질</b> — 손가락·관절·표정 기준 수립 + 내부 검수 강화, AI 리소스 사전 컨펌 방안 제안, 스파인 이슈 사전 체크.</li>
+      <li><b>사이즈 베리에이션</b> — 가능 범위·문제 여부 기준 정리 후 공유.</li>
+      <li><b>영상 방향성</b> — 원하는 톤(액션/전투감/시네마틱) 확인 후 사례와 함께 제안.</li>
+      <li><b>AI 월간 리포트</b> — 실사례 중심 개편(공개 범위는 넷마블 확인), 선제 아이디어 공유, 미수신자 확인·전달 정비, 게임별 실행 협의.</li>
+    </ul>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">02</span>본론 — "AI 점수가 왜 최하위인가"</h2>
+    <div class="who">제기: 넷마블 본부장 · 팀장단 순차 의견</div>
+    <p class="lede">전반 만족도·퀄리티·신뢰는 항상 높음. 그러나 <strong>AI 만족도는 함께 쓰는 타 파트너사 대비 최하</strong> —
+      "이 퀄리티의 영상을 뽑는 팀인데 점수가 왜 낮은지" 원인 규명을 요청. 팀장단 논의로 네 가지 원인이 드러남.</p>
+    <div class="grid2">
+      <div class="cause">
+        <div class="tag2">Cause 01</div>
+        <h3>AI를 쓰는데, 안 보이게 쓴다</h3>
+        <p>배경·리소스에 AI를 이미 쓰지만 알리지 않음 → 마케터 눈엔 디자이너 수작업으로 보임.</p>
+        <div class="q">"AI가 적용됐는지조차 알 수가 없다. 그러니 하이브랩은 AI를 안 써주고 있구나라고 느낀다."</div>
+      </div>
+      <div class="cause">
+        <div class="tag2">Cause 02 · 최다 반복</div>
+        <h3>TO가 쪼개져 느리고 번거롭다</h3>
+        <p>기획·이미지·영상 TO 분리 → 단계별 검수 핑퐁 → 급한 소재는 타 업체로, 하이브랩은 <strong>후순위</strong>.</p>
+        <div class="q">"목적과 그림이 명확할 때만 여기에 요청하게 되고, 그 손길이 점점 줄어들고 있다."</div>
+      </div>
+      <div class="cause">
+        <div class="tag2">Cause 03</div>
+        <h3>타 업체는 "키워드 → 완성물"</h3>
+        <p>키워드 한 줄이면 SB 없이 영상이 2~3일 내 도착. 거기서 오는 <strong>와우니스</strong>가 만족도 차이.</p>
+        <div class="q">"강호동 레벨업 AI 영상처럼 — 한 줄 던졌더니 리소스도 안 줬는데 영상이 왔다."</div>
+      </div>
+      <div class="cause">
+        <div class="tag2">Cause 04</div>
+        <h3>"AI 쓰려면 기획 TO 필요" 인식</h3>
+        <p>실제로는 SB에 "AI 활용해주세요" 한마디면 반영 가능한데, 별도 TO가 필요하다는 심리적 장벽 존재.</p>
+        <div class="q">"AI를 쓰려면 뭔가 기획 TO가 필요할 것 같다는 인식이 있습니다."</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">03</span>IP·AI 허용 범위 논쟁</h2>
+    <div class="who">하이브랩 소명 → 넷마블 반박 → 합의점 도출</div>
+    <ul>
+      <li>하이브랩: "IP 타이틀은 캐릭터 변형 불가 안내를 받아 AI 활용이 제한적."</li>
+      <li>넷마블: <b>"그 제약은 그 게임의 모든 파트너사 공통. 하이브랩에만 강화된 제약이 아니다"</b> — IP 제약은 점수 차이의 설명이 안 됨.</li>
+      <li>현황 — RF·뱀피르는 캐릭터 AI 변형까지 허용 / 세븐나이츠·몬길 등 IP 타이틀은 불가.</li>
+      <li><b>합의</b> — 넷마블이 오더에 "AI 활용해주세요"를 명시하면 하이브랩은 수행 가능. <b>"이 갭만 메우면 어느 정도 해결"</b>에 팀장단 동의.</li>
+      <li>추가 지적 — 이미지 AI는 이미 하고 있음(뱀피르). 체감 포인트는 <b>이미지→영상 사이의 단계·리드타임.</b></li>
+    </ul>
+    <div class="warn"><b>경고 —</b> 넷마블 내부 제작팀(디자이너·영상)도 AI로 키컷·키영상 제작 시작.
+      넷마블을 가장 잘 아는 내부 경쟁자. "하이브랩은 더더욱 방법을 찾으셔야 한다. 그게 더 위험하다."</div>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">04</span>구조 개편 요구 — TO 분절과 2단계 도약</h2>
+    <div class="who">넷마블 본부장 핵심 메시지</div>
+    <ul>
+      <li>이미지·영상·기획 TO 분리는 <b>"AI가 없던 시대의 관행"</b> — 내부적으로 바꿔볼 수 있는지 검토 요청.</li>
+      <li>실무자는 매일 지표를 보고 고성과 소재를 빨리 투입해야 하는 사람들 — <b>빠르고 잘해주는 파트너에게 손이 갈 수밖에 없음.</b> 강제 가이드로는 못 바꿈.</li>
+      <li>해결 방법론은 하이브랩이 만들고, 정해지면 넷마블이 내부에 "하이브랩엔 이렇게 요청하라" 디렉션.</li>
+      <li><b>2단계 도약론</b> — 기준점은 "지금 쓰는 타 업체 수준"(1단계). 손이 더 가는 파트너라면 그 이상의 <b>알파</b>(2단계)가 필요. 하이브랩의 알파는 10년 눈높이·퀄리티지만, 1단계가 안 붙어 보여줄 무대가 없음.</li>
+      <li>타 업체 AI 속도·퀄리티가 "깜짝 놀랄 만큼, 다달이 느껴질 만큼" 상승 — 연초에는 없던 격차.</li>
+    </ul>
+    <div class="quote">"지키다가 놓쳤습니다보다 해보다가 실수했습니다가 더 커뮤니케이션하기 쉬운 상황이다.
+      가이드라인 중시하다가 시대에 뒤떨어지지 않기를 바란다."
+      <span class="src">— 넷마블 본부장 (선집행·후보완 권고)</span></div>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">05</span>피드백 채널 · 커뮤니케이션</h2>
+    <div class="who">하이브랩 제안 → 넷마블 반응</div>
+    <ul>
+      <li>하이브랩 제안 — 데일리 TO 현황에 <b>이슈/건의 탭</b> 신설 → 넷마블 <b>회의적</b>("컴플레인 쓰는 느낌", "활용도 낮을 것").</li>
+      <li>절충 — 시트는 하이브랩 내부용으로 운영·필요 시 캡처 공유. <b>이슈는 리더끼리 감지·소통으로 조기 해소</b>, 안 풀리면 본부장 에스컬레이션.</li>
+      <li>하이브랩 요청 — 수정사항을 산발적 메신저 대신 <b>정리된 형태(SB/문서)</b>로 → 넷마블 수용.</li>
+      <li>담당자 커뮤니케이션 태도 이슈 — 발견 시 편하게 공유, 즉시 교정 약속.</li>
+    </ul>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">06</span>UA 검색 시스템 · 성과 데이터</h2>
+    <div class="who">하이브랩 시연 → 넷마블 피드백</div>
+    <ul>
+      <li>UA 검색/크롤링 시스템 — "공들인 시스템" 평가. 단 <b>노출·CTR은 채울 수 없는 구조</b>이며 유사 솔루션이 넷마블 내부에 이미 존재.</li>
+      <li>성과 숫자는 대외비로 공유 불가. 우회 확인법 두 가지 — ① 발주 소재는 모두 내부 상위 티어 분석 기반(전처리 완료본), ② 납품 소재가 광고에 많이 보이면 잘 나가는 것.</li>
+      <li>넷마블 약속 — 담당자에게 물으면 <b>"무슨 소재가 잘 나가요" 정성 정보는 답하도록 가이드.</b></li>
+      <li>시네마틱 — 하이브랩 AI 제작 약 2주(기존 대비 1/2~1/3). 넷마블: "시네마틱은 타 업체도 2~3주. <b>승부처는 30초 UA의 속도 싸움.</b>"</li>
+    </ul>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">07</span>결정 사항 &amp; 후속 조치</h2>
+    <div class="decide"><b>합의 —</b> 하이브랩이 내부 구조(TO·프로세스·AI 대응)를 정리해 <b>콜사인</b>을 주면
+      넷마블은 <b>요청을 얼마든지</b> 준다. "머릿속 기획을 말로만 던지는" 시범 1건도 진행.
+      공동 목표: <b>하반기 설문 AI 수치 개선.</b></div>
+    <table>
+      <thead><tr><th style="width:56%">액션</th><th>담당</th><th>기한</th></tr></thead>
+      <tbody>
+        <tr><td><b>TO 통합·프로세스 개편안 내부 검토 → 콜사인</b></td><td class="owner"><span class="tag h">하이브랩</span></td><td>최우선</td></tr>
+        <tr><td><b>타이틀별 AI 허용 범위 확정</b> — "AI 활용" 오더 명시 문화 정착</td><td class="owner"><span class="tag j">공동</span></td><td>단기</td></tr>
+        <tr><td><b>"말로 던진 기획 → 아웃풋" 시범 1건</b></td><td class="owner"><span class="tag j">공동</span></td><td>준비 후</td></tr>
+        <tr><td><b>AI 리포트 공개 가능 범위 확인</b></td><td class="owner"><span class="tag n">넷마블</span></td><td>차기 리포트 전</td></tr>
+        <tr><td><b>사이즈 베리에이션 기준 정리·공유</b></td><td class="owner"><span class="tag h">하이브랩</span></td><td>단기</td></tr>
+        <tr><td><b>수정사항 SB/문서 정리 전달</b></td><td class="owner"><span class="tag n">넷마블</span></td><td>상시</td></tr>
+        <tr><td><b>담당자 정성 성과정보 응답 가이드</b></td><td class="owner"><span class="tag n">넷마블</span></td><td>상시</td></tr>
+        <tr><td><b>영상 액션성 방향 전달 → 사례 제안</b></td><td class="owner"><span class="tag n">넷마블</span></td><td>건별</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== PART 2 ==================== -->
+  <div class="part" id="part2">
+    <div class="pt"><span class="pnum o">PART 2</span><h1>전략 — 그래서 무엇을 바꿀 것인가</h1></div>
+    <div class="psub">STRATEGY · 미팅 후 내부 논의 반영 · 대외 비공유</div>
+  </div>
+
+  <section class="ag">
+    <h2><span class="num">08</span>위협 요약 — 가만있으면 밀려난다</h2>
+    <div class="threat">
+      <div class="t"><h4>넷마블 내부 AI 제작팀</h4><p>내부 인력이 AI로 키컷·키영상 제작 시작 — 넷마블을 가장 잘 아는 경쟁자.</p></div>
+      <div class="t"><h4>타 업체의 속도</h4><p>AI 속도·퀄리티가 월 단위로 체감될 만큼 상승 중.</p></div>
+      <div class="t"><h4>올라간 기준선</h4><p>기준 = "다른 업체 정도". 손이 더 가면 그보다 뛰어난 무언가여야 선택받음.</p></div>
+    </div>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">09</span>우리의 무기 — 네 가지 대응</h2>
+
+    <div class="move star">
+      <div class="move-head">
+        <span class="badge a">A</span>
+        <h3>AI 전담팀 신설 — 어려운 일과 쉬운 일을 나눠 맡는다</h3>
+        <span class="star-tag">★ 대표 지시</span>
+      </div>
+      <p>기획·이미지·영상 팀을 거치지 않고, <b>키워드만 받으면 결과물까지 알아서 만드는 별도 팀</b>을 만든다.
+        들어온 요청을 어려운 것과 쉬운 것으로 나눠서 처리:</p>
+      <div class="lane">
+        <div class="l hi"><b>고난이도 · 앞단</b>시네마틱, 하이엔드, 정교한 연출 — 숙련 인력이 앞에서 순차 진행</div>
+        <div class="l lo"><b>저난이도 · 빠른 대응</b>키워드 던지면 바로 나가는 UA·라이브 소재 —
+          전담 담당을 별도로 두어 당일~2일 출고, 기동력 확보</div>
+      </div>
+      <p>효과: "급할 때 하이브랩에 던지면 빨리 나온다"는 경험 축적 → <b>후순위 탈출.</b></p>
+    </div>
+
+    <div class="move">
+      <div class="move-head"><span class="badge b">B</span><h3>통합 TO / 원스톱 — 계약·프로세스 개편</h3></div>
+      <ul>
+        <li><b>창구 하나 + 담당 매니저(PM) 한 명</b> — 넷마블은 키워드 하나만 던지면 끝.
+          담당 매니저가 요청을 보고 <b>"이건 영상팀에서 바로 제작" / "이건 기획을 먼저 거쳐서"</b>를 정해 내부에 나눠줌.
+          마케터가 어느 TO에 넣을지 고민할 필요가 없어짐. (미팅 후 내부 논의에서 방향 공감)</li>
+        <li><b>스토리보드(SB) 건너뛰기</b> — 이제는 영상을 3~5초 단위로 보며 피드백하는 시대.
+          간단한 건은 스토리보드 확인 없이 결과물부터 뽑고 마지막에 수정.</li>
+        <li>⚠️ 계약이 TO 개념 — <b>정산·과금 매핑을 영업과 사전 정리</b> 필수 (통합 요청의 TO 차감 방식).</li>
+        <li>실행 상세: <b>netmarble_ai_oneshot_plan.md</b> — 폼 5칸 · 검수 '고르기' · 4주 파일럿.</li>
+      </ul>
+    </div>
+
+    <div class="move">
+      <div class="move-head"><span class="badge">C</span><h3>AI를 "보이게" 하기 — 비용 거의 0, 즉효</h3></div>
+      <ul>
+        <li>납품 시 <b>"이 부분은 AI로 생성/변형했습니다" 역으로 명시</b> (배경·이펙트·연출 태깅).</li>
+        <li>리포트·산출물에 AI 적용 포인트 라벨링 → "하이브랩은 AI를 잘 쓰는구나" 체감.</li>
+        <li>실제로 쓰고 있는데 <b>안 알려서 손해 보는</b> 부분. 다음 납품부터 바로 시작.</li>
+      </ul>
+    </div>
+
+    <div class="move">
+      <div class="move-head"><span class="badge">D</span><h3>알파 — 2단계 도약</h3></div>
+      <ul>
+        <li><b>1단계(기준선)</b>: 경쟁사 수준의 AI 속도·원스톱 확보 — 이게 먼저.</li>
+        <li><b>2단계(알파)</b>: 그 위에 10년간 맞춰온 넷마블 눈높이·퀄리티를 얹기.</li>
+        <li>본부장 인정: 알파는 분명히 있다. 다만 기준선이 안 붙어 <b>보여줄 무대가 안 열린 상태.</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ag">
+    <h2><span class="num">10</span>액션 아이템 — 내부 준비</h2>
+    <div class="todo">
+      <h3><span class="pill now">즉시 · 이번 주</span></h3>
+      <ul>
+        <li><b>AI 전담 부서 신설안 초안</b> — 인원 구성, 고/저난이도 라인 분리, 리포팅 라인</li>
+        <li><b>쉬운 소재 빠른 출고 담당 정하기</b> — 어떤 소재를 "바로 출고"로 볼지 기준 + 목표 시간(당일~2일)</li>
+        <li><b>타이틀별 AI 허용 범위 표</b> — 캐릭터 변형 가능/불가, 배경·이펙트 범위 → 넷마블 확인 요청</li>
+        <li><b>"AI 적용 태깅" 즉시 시행</b> — 다음 납품물부터 명시</li>
+      </ul>
+      <h3><span class="pill soon">단기 · 2주</span></h3>
+      <ul>
+        <li><b>창구 통합 설계</b> — 요청이 오면 담당 매니저가 내부에 나눠주는 규칙 만들기 + 영업과 비용 정산 방식 협의</li>
+        <li><b>원스톱 파일럿 준비</b> — 타이틀 1개, 키워드→영상 2~3일, 4주 시범</li>
+        <li><b>"키워드 → 결과물" 데모 1건</b> — RF·뱀피르 등 AI 열린 타이틀로 자체 제작</li>
+        <li>AI 품질 기준 문서화(손·관절·표정), 스파인 사전 체크리스트</li>
+      </ul>
+      <h3><span class="pill par">병행</span></h3>
+      <ul>
+        <li>AI 월간 리포트에 <b>실사례 + 방향성 탐색안</b> 포함 (공개 범위는 넷마블 확인 후)</li>
+        <li>넷마블 내부 AI팀과 <b>경쟁 아닌 역할 분담</b> — 그들이 못 하는 고퀄·알파 영역 선점</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="close">
+    <div class="ey">Bottom Line</div>
+    <p>문제는 퀄리티가 아니라 속도·구조·가시성이다.<br>
+      "지키다가 뒤처지기"보다 "해보다가 실수하기" — 선집행, 후보완으로 무게추를 옮긴다.</p>
+    <p class="path">AI 전담 부서(기동력) → 통합 TO(원스톱) → AI 가시화 → 알파. 이제 실행 속도 싸움.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">HIVELAB INTERNAL · MINUTES + STRATEGY · 2026.07.10 미팅 녹음 전문 기반 · 관련: netmarble_ai_oneshot_plan.md</div>
+</footer>
+
+</body>
+</html>

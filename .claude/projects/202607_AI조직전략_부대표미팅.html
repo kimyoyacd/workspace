@@ -1,0 +1,375 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+:root{
+  --bg:#FFFFFF; --bg-card:#F5F1EA; --ink:#1A1A1A; --muted:#6E665A;
+  --rule:#E4DED2; --chip:#F2EDE3;
+  --accent:#FF6B35; --accent-soft:#FFD9C2;
+  --data:#C5BBDD; --data-strong:#A89BC8;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;font-size:16px;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 18px;}}
+
+/* nav */
+nav.top{position:sticky;top:0;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink);z-index:10;}
+nav.top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;gap:12px;flex-wrap:wrap;}
+.brand{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;}
+.brand b{color:var(--accent);}
+nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);text-decoration:none;border:1px solid var(--rule);border-radius:20px;padding:5px 13px;}
+nav.top a:hover{color:var(--ink);border-color:var(--ink);}
+.navlinks{display:flex;gap:8px;}
+
+/* hero */
+.hero{padding:72px 0 0;}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#fff;border-radius:20px;padding:5px 14px;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;margin-left:12px;}
+h1.chapter{font-size:clamp(44px,6.5vw,84px);font-weight:800;letter-spacing:-.04em;line-height:.98;margin:26px 0 0;text-wrap:balance;}
+h1.chapter em{font-style:italic;color:var(--accent);}
+.lede{font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.45;color:var(--ink);max-width:62ch;margin:28px 0 0;}
+.lede .hl{background:linear-gradient(180deg,transparent 55%,var(--accent-soft) 55%);padding:0 2px;}
+
+/* stat strip */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:56px 0 0;}
+@media(max-width:760px){.stat-strip{grid-template-columns:1fr 1fr;}}
+.stat{padding:26px 22px;border-left:1px solid var(--rule);}
+.stat:first-child{border-left:0;}
+@media(max-width:760px){.stat:nth-child(3){border-left:0;}.stat:nth-child(n+3){border-top:1px solid var(--rule);}}
+.stat .num{font-size:clamp(38px,4.6vw,58px);font-weight:700;letter-spacing:-.02em;font-feature-settings:"tnum";line-height:1;}
+.stat .num .unit{font-size:.5em;font-weight:600;color:var(--muted);}
+.stat .num.acc{color:var(--accent);}
+.stat .delta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;}
+.stat .label{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.4;}
+
+/* sections */
+section.sec{border-top:1px dashed var(--rule);margin-top:88px;padding-top:52px;}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--ink);border-radius:20px;padding:4px 13px;margin-bottom:18px;}
+.badge.op{border-color:var(--accent);color:var(--accent);}
+h2.shead{font-size:clamp(28px,3.2vw,42px);font-weight:700;letter-spacing:-.025em;line-height:1.12;text-wrap:balance;}
+h2.shead .no{color:var(--muted);margin-right:14px;}
+h2.shead em{font-style:italic;color:var(--accent);}
+.deck{font-size:17.5px;font-weight:500;color:var(--muted);margin:14px 0 0;max-width:64ch;line-height:1.5;}
+.body-p{margin:22px 0 0;max-width:70ch;color:var(--ink);}
+.body-p .hl{background:linear-gradient(180deg,transparent 55%,var(--accent-soft) 55%);padding:0 2px;font-weight:600;}
+.small-note{font-size:13px;color:var(--muted);margin-top:14px;font-family:var(--mono);letter-spacing:.02em;}
+
+/* card grid */
+.grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:32px;}
+.g3{grid-template-columns:repeat(3,1fr);} .g2{grid-template-columns:1fr 1fr;}
+@media(max-width:760px){.g3,.g2{grid-template-columns:1fr;}}
+.card{background:var(--bg-card);padding:24px 24px 26px;}
+.card .rank{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;}
+.card h4{font-size:17px;font-weight:700;margin-top:8px;letter-spacing:-.01em;}
+.card .share{font-size:26px;font-weight:700;font-feature-settings:"tnum";margin-top:6px;}
+.card .share.acc{color:var(--accent);}
+.card p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.55;}
+.card p b{color:var(--ink);font-weight:600;}
+
+/* data table */
+table.dt{width:100%;border-collapse:collapse;margin-top:30px;font-size:14.5px;}
+table.dt th{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--ink);}
+table.dt td{padding:14px;border-bottom:1px dashed var(--rule);vertical-align:top;line-height:1.5;}
+table.dt td b{font-weight:700;}
+
+/* pull quote */
+.pq{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:72px 0 0;padding:44px 0;display:grid;grid-template-columns:110px 1fr;gap:24px;}
+@media(max-width:640px){.pq{grid-template-columns:1fr;}}
+.pq .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:8px;}
+.pq blockquote{font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.32;text-wrap:balance;}
+.pq blockquote em{font-style:italic;color:var(--accent);}
+.pq cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:16px;}
+
+/* dark callout */
+.dark{background:var(--ink);color:var(--bg);margin-top:40px;padding:38px 40px;display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center;}
+@media(max-width:760px){.dark{grid-template-columns:1fr;}}
+.dark .dtag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.dark p{font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.85);}
+.dark p b{color:#fff;}
+.dark .bignum{font-size:clamp(56px,7vw,96px);font-weight:800;letter-spacing:-.03em;color:var(--accent);font-feature-settings:"tnum";line-height:1;text-align:right;}
+.dark .bignum .u{font-size:.34em;font-weight:600;color:rgba(255,255,255,.6);}
+@media(max-width:760px){.dark .bignum{text-align:left;}}
+
+/* diagram: as-is / to-be */
+.diag{margin-top:36px;}
+.diag-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.asis{display:flex;align-items:center;gap:10px;}
+.asis .box{flex:1;border:1px dashed var(--muted);background:var(--bg);padding:20px 14px;text-align:center;}
+.asis .box .t{font-weight:700;font-size:15px;}
+.asis .box .s{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:5px;}
+.asis .arr{font-family:var(--mono);color:var(--muted);font-size:18px;}
+.asis-note{font-size:13px;color:var(--muted);margin-top:12px;text-align:center;font-family:var(--mono);letter-spacing:.02em;}
+.tobe{border:1px solid var(--ink);background:var(--bg-card);padding:30px;margin-top:14px;}
+.tobe .th{font-size:19px;font-weight:800;letter-spacing:-.02em;}
+.tobe .ts{font-size:13.5px;color:var(--muted);margin-top:4px;}
+.lane{margin-top:16px;padding:18px 20px;background:var(--bg);border:1px dashed var(--rule);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;}
+@media(max-width:640px){.lane{grid-template-columns:1fr;}}
+.lane .lt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.lane .lt.acc{color:var(--accent);}
+.lane .ld{font-size:14px;margin-top:6px;line-height:1.55;}
+/* split bar for 60-70/30-40 */
+.split{width:220px;}
+@media(max-width:640px){.split{width:100%;}}
+.split .sb{display:flex;height:14px;border:1px solid var(--ink);}
+.split .sb .a{background:var(--accent);width:65%;}
+.split .sb .b{background:var(--data);width:35%;}
+.split .sl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;}
+
+/* checklist / roadmap */
+.steps{margin-top:32px;border-top:1px solid var(--ink);}
+.step{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:22px 0;border-bottom:1px dashed var(--rule);}
+@media(max-width:640px){.step{grid-template-columns:1fr;gap:6px;}}
+.step .when{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);padding-top:2px;}
+.step .what{font-size:14.5px;color:var(--muted);line-height:1.6;}
+.step .what b{color:var(--ink);font-weight:600;}
+
+/* question list */
+ol.qs{margin:32px 0 0;padding:0;list-style:none;counter-reset:q;}
+ol.qs li{counter-increment:q;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:20px 0;border-bottom:1px dashed var(--rule);}
+ol.qs li::before{content:"Q" counter(q);font-family:var(--mono);font-size:13px;font-weight:500;color:var(--accent);padding-top:3px;}
+ol.qs li .q{font-size:16.5px;font-weight:700;letter-spacing:-.01em;}
+ol.qs li .a{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.6;}
+
+/* aside note */
+.note{background:var(--bg-card);border:1px dashed var(--rule);padding:22px 26px;margin-top:28px;font-size:14.5px;color:var(--ink);line-height:1.65;max-width:78ch;}
+.note b{font-weight:700;}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;}
+
+footer{border-top:1px solid var(--ink);margin-top:96px;padding:28px 0 72px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;}
+</style>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand"><b>MAX실</b> · 부대표 미팅 브리핑 · 2026.07.13</div>
+    <div class="navlinks">
+      <a href="#perf">① 성과 리뷰</a>
+      <a href="#opinion">② 조직 방향</a>
+      <a href="#ask">합의</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <span class="pill">Briefing · 60min</span><span class="meta">두 꼭지 · 발표 김효정</span>
+  <h1 class="chapter">AI 성과 리뷰 &<br>향후 조직 방향에 대한 <em>의견</em></h1>
+  <p class="lede">지난 5개월, 개인 역량만으로 공수 200~400%를 절감했습니다. 오늘 전반부는 그 성과를 있는 그대로 보고드리고, 후반부는 <span class="hl">"결국 우리는 무엇을 파는 회사인가"</span>라는 질문에서 출발해 제 의견을 나눕니다.</p>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="num acc">400<span class="unit">%+</span></div><div class="delta">배달의민족 · 1인 완수</div><div class="label">기획-카피-디자인-영상 공수 절감 최대치</div></div>
+    <div class="stat"><div class="num">24<span class="unit">종</span></div><div class="delta">MAX실 OS · 6월 구축</div><div class="label">실 전체가 쓰는 에이전트 시스템</div></div>
+    <div class="stat"><div class="num">90<span class="unit">%</span></div><div class="delta">제일기획 · 언론 보도</div><div class="label">경쟁 대행사의 AI 배너 자동화 제작비 절감</div></div>
+    <div class="stat"><div class="num">9→20</div><div class="delta">증원 계획</div><div class="label">이 구조 위에 얹어야 할 인력 확장</div></div>
+  </div>
+</div>
+
+<!-- ① 성과 -->
+<section class="sec" id="perf">
+  <span class="badge">① 성과 보고</span>
+  <h2 class="shead"><span class="no">1.</span>성과의 본질 — 키워드 <em>세 개</em></h2>
+  <div class="grid g3">
+    <div class="card"><div class="rank">Keyword 01</div><h4>합성 시간 압축</h4><p>촬영→누끼→합성으로 <b>며칠</b> 걸리던 작업이 AI 생성으로 <b>몇 시간</b>에. 대표: 올리브영 모델 이미지.</p></div>
+    <div class="card"><div class="rank">Keyword 02</div><h4>없는 결과를 만든다</h4><p>실물도 촬영도 없이, <b>2D에서 아이디어를 확장</b>해 세상에 없는 장면·모델을 생성. 대표: 올리브영 가상 모델, 코웨이 인체 맵핑.</p></div>
+    <div class="card"><div class="rank">Keyword 03</div><h4>2D → 3D 영역 확장</h4><p>2D 디자이너가 <b>3D 결과물</b>(기기 해체 구조·오브제)까지 직접 제공. 대표: 코웨이 3D 해체, QQ Poker 오브제.</p></div>
+  </div>
+  <p class="body-p">이 셋이 겹쳐서 <span class="hl">"TF 3~5인 → 디렉터 1인"</span>이 반복 재현됐고(공수 200~400% 절감), 경쟁 PT에서 완성형 아웃풋을 선제 제시하는 제안 경쟁력이 됐습니다.</p>
+
+  <h2 class="shead" style="margin-top:72px;"><span class="no">1-1.</span>대표 사례 (~5월)</h2>
+  <div class="grid g3">
+    <div class="card"><div class="rank">CASE 01</div><h4>코웨이 안마의자</h4><div class="share acc">300%+</div><p>7인치 터치 GUI 전략 100% + 시안 80%. 비전공 <b>3D 기기 해체·인체 맵핑</b>까지 단독. NotebookLM → Claude → Midjourney·Higgsfield.</p></div>
+    <div class="card"><div class="rank">CASE 02</div><h4>배달의민족</h4><div class="share acc">400%+</div><p>아이콘+카피+<b>브랜드 영상</b>까지 1인 100% (비전공 카피·모션). ChatGPT → Midjourney → CapCut.</p></div>
+    <div class="card"><div class="rank">CASE 03</div><h4>QQ Poker</h4><div class="share acc">200%+</div><p>GUI 메인+서브안+<b>3D 오브제 80%</b>+제작 가이드. ChatGPT → Midjourney.</p></div>
+  </div>
+
+  <h2 class="shead" style="margin-top:72px;"><span class="no">2.</span>6월 — 개인기를 '시스템'으로 넓히기 시작</h2>
+  <div class="grid g3">
+    <div class="card"><div class="rank">올리브영 색조 PB 입찰</div><h4>순발력 → 재현 가능한 프로세스</h4><p>RFP 분석 에이전트로 리스크 <b>8건 선제 도출</b>(택1·택2 모순 등). AI 역량을 차별화 카드로 전략화 — 발색컷 AI 금지선은 컴플라이언스 경계로 구분.</p></div>
+    <div class="card"><div class="rank">올리브영 모델 파이프라인 · 최근</div><h4>4단계 재현 가능한 파이프라인</h4><p>모델 레퍼런스 정의 → AI 파이프라인 → 포즈·표정 베리에이션 테스트 → <b>상세페이지용 제품 적용 컷 셀렉</b>. 영상은 내부 담당자가 이어받아 제작 — <b>뒤에 제안할 통합 유닛의 축소판</b>. 제작 후기는 케이스북(aicoo.imweb.me)에 정리.</p></div>
+    <div class="card"><div class="rank">MAX실 OS 구축</div><h4>개인 역량의 조직 자산화</h4><p>에이전트 24종 · 자동화 트리거 맵 · 리스크 티어(0/1/2) · 견적 SoT 연결. 거버넌스는 처음부터 <b>"절대 위임 금지"</b> — 견적·계약·최종 OK는 항상 사람.</p></div>
+  </div>
+  <p class="body-p">5개월 만에 <span class="hl">개인기에서 재현 가능한 시스템으로</span> 한 단계 넘어왔습니다. 이 흐름을 실 전체와 신규 인력(9→20)까지 어떻게 넓힐지가 다음 화두 — 여기서부터는 제 의견입니다.</p>
+</section>
+
+<!-- ② 포지셔닝 -->
+<section class="sec" id="opinion">
+  <span class="badge op">② 제 의견</span>
+  <h2 class="shead"><span class="no">3.</span>결국 우리는 <em>무엇을 파는</em> 회사인가</h2>
+  <p class="deck">지금부터 나올 얘기는 기술·프로세스처럼 들릴 수 있는데, 회사는 이익집단이니 이 기술로 어떤 성과를 낼지, 어떤 시장 포지셔닝으로 먹힐지부터 정리하고 싶습니다.</p>
+
+  <p class="body-p">"우리 강점은 AI를 잘 쓰는 것"이라고 생각하기 쉬운데, 이건 방어가 안 됩니다. 범용 AI 템플릿 업체(제디터·드랩아트·키위스냅 등, 이미 상용화)도 AI를 씁니다. 제일기획도 AI 배너 자동화로 제작비 90%를 절감했습니다. 우리의 진짜 자산은 넷마블·코웨이·아모레퍼시픽·올리브영과 10년 넘게 쌓은 <span class="hl">"이 브랜드는 이런 걸 좋아하고 이런 건 절대 안 된다"는 맥락 데이터</span>입니다. 문제는 이게 각 담당자 머릿속과 개인 폴더에 흩어져 — 좋은 데이터와 히스토리는 있는데 적재적소에 모이지 못하고 나열만 되는 상태라는 것.</p>
+
+  <table class="dt">
+    <thead><tr><th style="width:20%"></th><th>지금 (암묵적)</th><th>앞으로 (제안)</th></tr></thead>
+    <tbody>
+      <tr><td><b>파는 것</b></td><td>디자인 잘하고 AI도 쓰는 대행사</td><td><b>고객사 브랜드 히스토리를 가장 깊게 보유한 AI 파트너</b></td></tr>
+      <tr><td><b>방어선</b></td><td>사람의 숙련도</td><td>데이터(고객별 맥락) — 아무도 복제 못 함</td></tr>
+      <tr><td><b>BCG式 표현</b></td><td>Deploy — 툴 끼워넣기</td><td>Enterprise IQ — 이기는 로직의 설계</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pq">
+    <div class="tag">Quote 01</div>
+    <div>
+      <blockquote>"제작(Production)의 가치는 빠르게 0으로 수렴하지만, 디자인이 비즈니스 문제를 해결하는 방식의 가치는 <em>그 어느 때보다 비싸지고</em> 있다."</blockquote>
+      <cite>고객도 미드저니·피그마 AI를 안다 — "AI 쓰면 하루면 되잖아요"라는 단가 압박(Commodity Trap)은 이미 시작됐다. 우리가 팔 것은 제작이 아니라 이 브랜드에 맞는 문제 해결.</cite>
+    </div>
+  </div>
+
+  <div class="note"><span class="nt">남편분의 "결국 MCP로 가야 한다"에 대한 답</span>MCP는 그릇이고, 담을 내용물은 이 데이터 자산입니다. 데이터 없이 그릇부터 만들면 또 하나의 범용 AI 툴이 될 뿐입니다. <b>순서는 데이터 축적이 먼저, 제품화(MCP)는 그다음.</b></div>
+</section>
+
+<!-- 왜 지금 -->
+<section class="sec">
+  <span class="badge op">② 제 의견</span>
+  <h2 class="shead"><span class="no">4.</span>왜 지금인가 — 신호 <em>세 가지</em></h2>
+  <div class="grid g3">
+    <div class="card"><div class="rank">Signal 01 · 넷마블 7/10</div><h4>실전 피드백</h4><p>퀄리티는 항상 최상위인데 <b>AI 항목만 타사 대비 낮음</b> — AI를 안 보이게 쓰고, 기획·이미지·영상 TO가 쪼개져 느리다는 게 이유. 타사는 "키워드 한 줄 → 2~3일 완성물".</p></div>
+    <div class="card"><div class="rank">Signal 02 · BCG</div><h4>Deploy가 아니라 Reshape</h4><p>기존 흐름에 AI만 끼우는 게 Deploy, 일하는 순서·조직을 바꾸는 게 Reshape. 골드만삭스는 100여 개 파편적 PoC 실패 후 <b>핵심 가치사슬 5~6개로 압축</b>. 우리 에이전트 24종도 지금은 Deploy — 이번 제안이 우리의 Reshape.</p></div>
+    <div class="card"><div class="rank">Signal 03 · 회사 내부</div><h4>4주 전 특허</h4><p>"PSD 콘텐츠 원본 기반 자산 자동 생성" — 레이어를 데이터화해 <b>브랜드 톤을 유지하며 자산 자동 생성</b>. 오늘 제안(데이터 자산화)이 회사 R&D 방향과 이미 맞닿아 있다. <i>(사내 대화 중 관찰 — 공식 재확인 필요)</i></p></div>
+  </div>
+  <p class="body-p">이 셋을 겹쳐보면 결론은 하나 — <span class="hl">에이전트를 몇 개 더 만드는 게 아니라, 조직 구조·프로세스·단가를 다시 설계해야 한다.</span></p>
+
+  <div class="dark">
+    <div>
+      <div class="dtag">MIT · GenAI Divide 2025</div>
+      <p>"다들 알아서 AI 쓰게 두면 조직도 바뀌지 않나?" — 데이터는 반대입니다. 조직 80%+가 AI를 도입했지만 <b>파일럿의 95%가 손익에 측정 가능한 영향을 못 냈습니다.</b> 개인 생산성만 오르고 조직 성과로 안 이어져서요. 병목은 툴이 아니라 <b>낡은 프로세스와의 미스매치.</b> 제 개인 성과(200~400%)가 자동으로 회사 성과가 되지 않는 이유이자, 프로세스 재설계를 오늘 안건으로 가져온 이유입니다.</p>
+    </div>
+    <div class="bignum">95<span class="u">% 실패</span></div>
+  </div>
+  <p class="small-note">출처: EO Korea "AI는 수단입니다… BCG 다큐멘터리" · BCG Henderson Institute "AI Will Reshape More Jobs Than It Replaces" · MIT NANDA "The GenAI Divide: State of AI in Business 2025"</p>
+</section>
+
+<!-- 핵심 제안 -->
+<section class="sec">
+  <span class="badge op">② 제 의견 · 핵심 제안</span>
+  <h2 class="shead"><span class="no">5.</span>기획·디자인·영상을 <em>하나의 유닛</em>으로</h2>
+  <p class="deck">지금 TO 구조(VM/VX/실장 %분리, 순차 진행)가 넷마블이 지적한 "분절"입니다. 기획·디자인·영상이 따로 도는 게 아니라 하나의 유닛으로 묶여 돌아가야 합니다.</p>
+
+  <p class="body-p">이 그림은 두 층입니다 — <span class="hl">회사 전체(전사 조직도)가 먼저 바뀌고, 그 안에서 유닛이 돕니다.</span> 전사 그림은 제 권한을 넘는 영역이라, 결정이 아니라 부대표님과 같이 그릴 초안으로 가져왔습니다.</p>
+
+  <div class="diag">
+    <div class="diag-lbl">1층 · 전사 조직도 AS-IS — 기능별 조직</div>
+    <div class="asis">
+      <div class="box"><div class="t">기획 조직</div><div class="s">리더 A</div></div>
+      <div class="arr">→</div>
+      <div class="box"><div class="t">디자인 조직(실)</div><div class="s">리더 B</div></div>
+      <div class="arr">→</div>
+      <div class="box"><div class="t">영상 조직</div><div class="s">리더 C</div></div>
+    </div>
+    <div class="asis-note">프로젝트마다 세 조직을 릴레이로 통과 → 조직마다 대기열 → 느림 (+ 영업 · 경영지원은 별도)</div>
+  </div>
+
+  <div class="diag">
+    <div class="diag-lbl">1층 · 전사 조직도 TO-BE 초안 — 고객 중심 유닛 + 공통 기반</div>
+    <div class="tobe" style="border-color:var(--ink);">
+      <div class="th">대표·부대표 — AI 전환을 경영진이 직접 챙김</div>
+      <div class="ts">BCG: 실무 리더 1명에게 맡긴 회사들은 실패</div>
+      <div class="lane"><div><div class="lt">고객 유닛 A·B·C — 게임(넷마블) / 뷰티·리테일(올리브영) / 가전·제조(코웨이·현대)</div><div class="ld">기능이 아니라 <b>고객군 중심</b>. 각 유닛 = 기획+디자인+영상+PM, 리더 1명.</div></div></div>
+      <div class="lane"><div><div class="lt">AI·데이터 기반팀</div><div class="ld">공용 도구(현 24종) · 브랜드 데이터 자산 · <b>특허 R&D 연결</b> · 보안 통로 관리 — 유닛들이 공유하는 밑바탕.</div></div></div>
+      <div class="lane"><div><div class="lt">영업·계약 / 경영지원·보안</div><div class="ld">접수 창구 일원화, <b>TO형 계약 → 상품형 계약 전환</b> 담당.</div></div></div>
+    </div>
+  </div>
+
+  <div class="diag">
+    <div class="diag-lbl">2층 · 유닛 내부 — 각 고객 유닛이 똑같이 갖는 구조</div>
+    <div class="tobe">
+      <div class="th">통합 유닛 (리더 1명 = 디렉터)</div>
+      <div class="ts">기획 + 디자인 + 영상이 한 팀으로 운영</div>
+      <div class="lane">
+        <div><div class="lt">정교트랙 · 고난이도</div><div class="ld">초반 1~2일 AI로 비주얼 방향 수십 개 → 3~5일 그리드·타이포 위계·정합성 검증 → 남은 기간은 리뷰어·디렉터가 디테일에 몰입하는 사람만의 구간. 퀄리티를 파는 자리.</div></div>
+      </div>
+      <div class="lane">
+        <div><div class="lt acc">패스트트랙 · 반복·저난이도</div><div class="ld">창구+PM 1명이 즉시 라우팅, 스토리보드 생략 가능, 당일~2일 출고.</div></div>
+        <div class="split">
+          <div class="sb"><div class="a"></div><div class="b"></div></div>
+          <div class="sl"><span>AI 60~70%</span><span>신입·주니어 30~40%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note"><span class="nt">작동 예시</span>클라이언트 전화 요청(예: 이벤트 페이지) → 통화 녹음 업로드 → AI가 자동 분류 + 유사 사례 정리 + 초안 방향까지 잡아 담당자 자동 배정. <b>PM이 미팅을 마치고 돌아오면 담당자는 이미 착수한 상태.</b></div>
+
+  <div class="note"><span class="nt">보안에 대하여</span>협업 툴(라인웍스 등) 자체를 바꾸자는 얘기가 아닙니다. 회사가 보안을 최우선에 두는 건 오히려 맞는 방향입니다 — 진짜 자산(브랜드 히스토리 데이터)이라면 더 지켜야 하니까요. 기존 툴은 그대로 두고, <b>별도의 통제된 데이터 인입 경로를 보안팀 검토 아래</b> 만드는 방향입니다.</div>
+</section>
+
+<!-- 유닛을 지탱하는 것 -->
+<section class="sec">
+  <span class="badge op">② 제 의견</span>
+  <h2 class="shead"><span class="no">6.</span>유닛을 지탱하는 것 — 성장 경로 · 인프라 · <em>단가</em></h2>
+
+  <div class="grid g3">
+    <div class="card"><div class="rank">Role 01</div><h4>빌더</h4><p><b>신입</b> — 패스트트랙에서 AI 결과물을 마무리·검수하며 실전으로 배움.</p></div>
+    <div class="card"><div class="rank">Role 02</div><h4>리뷰어</h4><p><b>시니어</b> — 브랜드 각색 검수 + Design Gatekeeper 운영.</p></div>
+    <div class="card"><div class="rank">Role 03</div><h4>디렉터</h4><p><b>실장</b> — 방향·최종 판단. 기획+디자인 경계를 넘나드는 인재상. 주제①의 성과가 이 인재상의 첫 사례이고, 저부터 계속 그런 사람으로 성장해야 합니다.</p></div>
+  </div>
+
+  <div class="dark">
+    <div>
+      <div class="dtag">BCG · 70% People Problem</div>
+      <p>AI 트랜스포메이션 성공의 <b>70%는 기술이 아니라 사람의 일하는 방식</b>에 달려 있다. 신입이 하던 초안·리서치를 AI가 흡수하며 "도제식 성장 사다리"가 무너질 위험 — <b>패스트트랙에 신입을 의도적으로 배치하는 이유</b>다. AI가 실행을 가져가도, 마무리·검수는 신입 몫으로 남긴다.</p>
+    </div>
+    <div class="bignum">70<span class="u">%</span></div>
+  </div>
+
+  <table class="dt">
+    <thead><tr><th style="width:26%">인프라</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td><b>Design Gatekeeper 공용화</b></td><td>밀러·피츠 법칙 등 BBD 가이드라인 + 10년간 쌓은 타이포·그리드 규칙(=Enterprise IQ의 실체) 중앙 주입 + Good/Bad 피드백 루프(목요일 스터디 튜닝). 검수 로그가 데이터 자산의 첫 벽돌.</td></tr>
+      <tr><td><b>디자인 메모리</b></td><td>미팅·협의 중 정책 변경을 시멘틱 요약으로 적재, 프롬프트·초안 시 호출. AI-사람 경계도 기록 — 쌓일수록 자동화 범위가 넓어진다. <b>이미 케이스북에 제작 후기를 쌓기 시작</b>했고, 지금은 사람이 읽는 기록 → AI가 검색·참조하는 자산으로 격상하는 게 이 액션.</td></tr>
+      <tr><td><b>세일즈 단계 시각화</b></td><td>인바운드 리서치 팩 자동 생성 + AI 와이어프레임 데모. 수주율 직결.</td></tr>
+      <tr><td><b>단가 재설계</b></td><td>패스트트랙은 건단가(시간당 단가와 분리) + "브랜드 각색" 프리미엄 별도 항목. 등급에 속도(SLA) 축 추가. <b>정교트랙 단가는 그대로 방어</b> — 두 상품을 분리해서 파는 게 핵심. 더 먼 지향점은 "파이프라인 구축·전환율 솔루션" 단위의 컨설팅형 과금.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 대비 + 로드맵 -->
+<section class="sec">
+  <span class="badge op">② 제 의견</span>
+  <h2 class="shead"><span class="no">7.</span>예측이 아니라 <em>대비</em> — 그리고 로드맵</h2>
+  <p class="deck">AI가 시장을 정확히 어떻게 바꿀지는 저도 예측할 수 없습니다. 이 유닛 구조는 어떻게 흘러가든 손해 없는 무후회(no-regret) 설계입니다 — 느리게 확산되면 정교트랙이 매출을 담당하고, 지금 속도면 두 트랙이 맞고, 빨라져도 이미 준비된 구조라 유리합니다. 효율화(지금 제안)가 먼저, 제품화(MCP)는 그다음입니다.</p>
+
+  <div class="steps">
+    <div class="step"><div class="when">0~30일</div><div class="what"><b>Gatekeeper 공용화 착수</b>(목요일 스터디) · 패스트트랙 템플릿 초안 · AI 보이게 태깅 · 기존 협업 툴은 그대로 두고 데이터 인입 경로 <b>보안팀 사전 협의</b></div></div>
+    <div class="step"><div class="when">30~60일</div><div class="what"><b>디자인 메모리</b>를 진행 프로젝트 1건에 적용·검증 · 패스트트랙 건단가 초안 · 역할별 권한 초안</div></div>
+    <div class="step"><div class="when">60~90일</div><div class="what"><b>세일즈 시각화</b> 신규 인바운드 1건 실전 · 일반 업계(올리브영·현대·코웨이 — 같은 니즈·다른 제약) 데모 1건 · 증원 온보딩에 유닛 구조 적용</div></div>
+  </div>
+</section>
+
+<!-- 역질문 -->
+<section class="sec">
+  <span class="badge op">② 제 의견 · 역질문</span>
+  <h2 class="shead"><span class="no">8.</span>제가 계속 고도화해도, 조직이 안 바뀌면 <em>소용없습니다</em></h2>
+  <p class="deck">다섯 가지만 여쭤봅니다 — 전부 예/아니오나 한 마디로 답하실 수 있는 것들입니다.</p>
+
+  <ol class="qs">
+    <li><div><div class="q">시범 유닛 하나, 제 선에서 만들어봐도 되나요?</div><div class="a">기획·디자인·영상 담당자를 한 팀으로 묶어 프로젝트 1건만 돌려보고 싶습니다. 다만 넷마블처럼 계약이 TO 단위인 고객은 정산 방식도 건드려야 해서 — 이건 제 선을 넘습니다. 어디까지 제가 하고, 어디부터 정해주셔야 하는지 선을 그어주세요.</div></div></li>
+    <li><div><div class="q">이 일을 잘했다는 걸 뭘로 평가받으면 되나요?</div><div class="a">제작비 절감인지, 신규 수주인지, 상장 준비용 스토리인지 — 뭘 보고 계신지에 따라 제가 힘을 쏟을 곳이 완전히 달라집니다.</div></div></li>
+    <li><div><div class="q">우리 실만 먼저 해보는 파일럿인가요, 처음부터 전사인가요?</div><div class="a">저희만 바꾸면 영업·타 실 단계에서 다시 느려질 수 있어서, 시작 범위를 알고 싶습니다.</div></div></li>
+    <li><div><div class="q">고객 미팅 녹음을 AI에 올리는 건 누구에게 검토받으면 되나요?</div><div class="a">보안 최우선 방침은 저도 지지합니다. 몰래 하지 않고 정식으로 검토받고 싶은데, 그 창구가 어디인지 알려주세요.</div></div></li>
+    <li><div><div class="q">하나만 먼저 한다면, 부대표님은 뭐부터 시키시겠어요?</div><div class="a">오늘 가장 듣고 싶은 답입니다.</div></div></li>
+  </ol>
+</section>
+
+<!-- 합의 -->
+<section class="sec" id="ask">
+  <span class="badge">미팅 종료 시</span>
+  <h2 class="shead"><span class="no">9.</span>오늘 얻어야 할 것 <em>네 가지</em></h2>
+  <div class="grid g2">
+    <div class="card"><div class="rank">공감 01</div><h4>포지셔닝</h4><p>"고객사 브랜드 히스토리를 가장 깊게 보유한 <b>AI 파트너</b>"라는 방향에 공감대.</p></div>
+    <div class="card"><div class="rank">승인 02</div><h4>통합 유닛</h4><p>Gatekeeper 공용화(목요일 스터디 착수) + <b>패스트트랙 검토 승인</b>.</p></div>
+    <div class="card"><div class="rank">공감 03</div><h4>성장 경로</h4><p>빌더→리뷰어→디렉터를 <b>채용 JD·승진 기준</b>에 반영할지 방향 공감.</p></div>
+    <div class="card"><div class="rank">답변 04</div><h4>역질문 5개</h4><p>권한 · 성과 정의 · 전사 범위 · 보안 창구 · 우선순위 — <b>최소한의 방향성</b>.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">MAX실 INTERNAL · 성과 보고 + 조직 방향 의견 · 2026.07.13 부대표 미팅 · 근거: 넷마블 7/10 회의록 · BCG 다큐멘터리 · 올리브영 RFP 분석 · 견적 SoT</div>
+</footer>
