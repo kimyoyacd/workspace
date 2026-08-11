@@ -1,0 +1,57 @@
+/*
+ * MAX실 마스터 디자인 토큰
+ * HTML 생성 시 :root 블록을 이 파일에서 그대로 복사한다.
+ * 라이트/다크 중 하나만 선택 — 프로젝트 내 혼용 금지.
+ */
+
+/* ── 라이트 테마 (클라이언트 제출용 · 제안서 · 덱 기본값) ── */
+:root {
+  --bg:     #EBEBEB;
+  --card:   #FFFFFF;
+  --ink:    #111111;
+  --ink2:   rgba(0,0,0,0.55);
+  --ink3:   rgba(0,0,0,0.35);
+  --border: rgba(0,0,0,0.09);
+
+  --coral:   #E8502A;   /* accent 1차 — 헤딩·강조 */
+  --magenta: #b7419a;   /* accent 2차 — 태그·레이블·보더 */
+
+  --sans:  'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', 'Fira Mono', monospace;
+
+  --radius:    14px;
+  --radius-sm: 8px;
+
+  --link: #2454C7;      /* 출처 링크 (WCAG AA) */
+}
+
+/* ── 다크 테마 (대시보드 · 내부 리포트 전용) ── */
+/*
+:root {
+  --bg:     #111111;
+  --card:   #1A1A1A;
+  --ink:    #FFFFFF;
+  --ink2:   rgba(255,255,255,0.65);
+  --ink3:   rgba(255,255,255,0.40);
+  --border: rgba(255,255,255,0.09);
+
+  --coral:   #E8502A;
+  --magenta: #b7419a;
+
+  --sans:  'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', 'Fira Mono', monospace;
+
+  --radius:    14px;
+  --radius-sm: 8px;
+
+  --link: #7EB3FF;      /* 출처 링크 다크 (WCAG AA) */
+}
+*/
+
+/* ── 출처(citation) 공통 패턴 ── */
+/*
+.stat-source { font-size: 10px; margin-top: 6px; }
+.stat-source a { color: var(--link); text-decoration: none; }
+.stat-source a:hover { text-decoration: underline; }
+.stat-source span { color: var(--ink3); }
+*/
