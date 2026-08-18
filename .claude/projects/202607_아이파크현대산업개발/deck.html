@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아이파크현대산업개발 — Wide Research Deck</title>
+<style>
+  :root {
+    --bg: #EBEBEB;
+    --card: #FFFFFF;
+    --ink: #111111;
+    --ink2: #4A4944;
+    --ink3: #8A8780;
+    --border: #E2E2E2;
+    --accent: #C1432B;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, sans-serif; background: var(--bg); margin: 0; color: var(--ink); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 60px 40px 100px; }
+
+  /* Hero */
+  .hero { padding: 20px 4px 48px; border-bottom: 1px solid var(--border); margin-bottom: 44px; }
+  .hero-eyebrow { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 10px; }
+  .hero-title { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; margin: 0 0 16px; text-wrap: balance; }
+  .hero-sub { font-size: 15px; color: var(--ink2); line-height: 1.6; max-width: 640px; }
+  .hero-meta { display: flex; gap: 24px; margin-top: 22px; font-size: 12px; color: var(--ink3); }
+  .hero-meta b { color: var(--ink2); }
+
+  .cat-card { background: var(--bg); border-radius: 16px; padding: 40px 44px 48px; margin-bottom: 40px; position: relative; }
+  .cat-label { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-title { font-size: 38px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; }
+  .cat-bullets { margin-bottom: 28px; }
+  .cat-bullets div { font-size: 14px; color: var(--ink2); margin-bottom: 4px; line-height: 1.5; }
+  .cat-bullets div::before { content: "· "; }
+  .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .brand-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; position: relative; }
+  .brand-mark { font-weight: 800; font-size: 15px; letter-spacing: -0.01em; padding-right: 56px; line-height: 1.3; }
+  .brand-meta { font-size: 10.5px; color: var(--ink3); line-height: 1.5; }
+  .brand-meta b { color: var(--ink2); font-weight: 700; }
+  .brand-desc { font-size: 11px; color: var(--ink2); line-height: 1.45; margin-top: 2px; }
+  .brand-source { font-size: 10px; margin-top: 6px; }
+  .brand-source a { color: #2454C7; text-decoration: none; }
+  .brand-source a:hover { text-decoration: underline; }
+  .tier-badge { font-size: 8.5px; font-weight: 700; color: #fff; background: #999; border-radius: 8px; padding: 2px 7px; position: absolute; top: 16px; right: 14px; white-space: nowrap; }
+  .tier-1 { background: #2D7A4F; }
+  .tier-2 { background: #C77A0F; }
+  .tier-3 { background: #6B7280; }
+  .tier-4 { background: #B23B3B; }
+  @media (max-width: 900px) { .brand-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .brand-grid { grid-template-columns: 1fr; } }
+
+  /* Highlight callout (full-bleed) */
+  .callout { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 40px; background: #1A1714; color: #fff; padding: 52px 48px; }
+  .callout-label { font-size: 12px; font-weight: 700; color: #E8A26B; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .callout-title { font-size: 30px; font-weight: 800; line-height: 1.25; margin: 0 0 18px; max-width: 720px; text-wrap: balance; }
+  .callout-body { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.82); max-width: 680px; }
+  .callout-src { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 16px; }
+  .callout-src a { color: #E8A26B; }
+
+  /* Trend cards */
+  .trend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .trend-card { background: var(--card); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .trend-num { font-size: 11px; font-weight: 700; color: #fff; background: var(--ink); border-radius: 20px; padding: 3px 10px; display: inline-block; width: fit-content; }
+  .trend-title { font-size: 19px; font-weight: 800; margin-top: 2px; line-height: 1.3; }
+  .trend-body { font-size: 12.5px; line-height: 1.55; color: var(--ink2); }
+  .trend-src { font-size: 10.5px; color: var(--ink3); margin-top: 4px; }
+  .trend-src a { color: #2454C7; text-decoration: none; }
+  @media (max-width: 800px) { .trend-grid { grid-template-columns: 1fr; } }
+
+  footer { font-size: 11px; color: var(--ink3); text-align: center; margin-top: 20px; line-height: 1.6; }
+  footer a { color: var(--ink3); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-eyebrow">WIDE RESEARCH DECK · 아이파크현대산업개발</div>
+    <h1 class="hero-title">아이파크홈앱 사전 질의서 대응<br>리서치 레퍼런스</h1>
+    <p class="hero-sub">design-trend-radar · reference-curator 에이전트 병행 조사 + 아이파크홈앱 사용자 매뉴얼(v1.82) 전량 정독. 모든 항목에 출처 URL을 표기했으며, 출처 미확인 사례는 별도 표기했습니다.</p>
+    <div class="hero-meta">
+      <div><b>작성일</b> 2026-07-03</div>
+      <div><b>레퍼런스</b> 18건 (국내 8 · 해외 5 · 자사/경쟁사 5)</div>
+      <div><b>분류</b> 3개 전략 그룹 + 1개 참고 클러스터</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Wide Research 핵심 발견</div>
+    <div class="callout-title">아이파크홈앱은 이미 고척아이파크에서 헬퍼로봇 · 자율주행 쓰레기수거로봇 호출 서비스를 도입해 운영하고 있습니다 (2025년~).</div>
+    <div class="callout-body">사전 질의서 3-7(로봇 라스트마일)은 신규 기능 제안이 아니라, 이미 갖춘 서비스를 어떻게 UX 고도화할지의 문제로 접근해야 합니다. 아래 로봇 라스트마일 클러스터에서 자사 사례와 국내외 벤치마크를 나란히 비교합니다.</div>
+    <div class="callout-src">출처: <a href="https://www.asiae.co.kr/article/2025121515550915663" target="_blank">아시아경제 (2025-12-15)</a> · <a href="https://www.goodkyung.com/news/articleView.html?idxno=287859" target="_blank">굿모닝경제</a></div>
+  </div>
+
+  <!-- Group A -->
+  <div class="cat-card">
+    <div class="cat-label">그룹 A</div>
+    <h2 class="cat-title">통합·일원화형 — 여러 앱을 하나로</h2>
+    <div class="cat-bullets">
+      <div>기존에 흩어져 있던 세대제어·AS·관리비 앱을 하나로 통합한 국내 건설사 사례</div>
+      <div>아이파크홈앱의 IA 재편·앱 통합 전략 수립 시 1차 벤치마크</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <span class="tier-badge tier-2">국내 1위</span>
+        <div class="brand-mark">홈닉 2.0</div>
+        <div class="brand-meta"><b>삼성물산 래미안</b> · 2024~</div>
+        <div class="brand-desc">세대제어+커뮤니티예약+관리비조회+공동구매 통합. 2025년 K-BPI 홈플랫폼 1위, 5만 가구 돌파(2025.1 기준).</div>
+        <div class="brand-source"><a href="https://news.nate.com/view/20250325n00060" target="_blank">K-BPI 1위 ↗</a> · <a href="https://news.samsungcnt.com/ko" target="_blank">5만가구 (2025-01) ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-2">통합 사례</span>
+        <div class="brand-mark">자이홈 (XiHOME)</div>
+        <div class="brand-meta"><b>GS건설</b> · 2024 통합</div>
+        <div class="brand-desc">자이앱(AS)+스페이스앱(스마트홈) 이원화 앱을 하나로 통합. 카드스택형 메인 UI.</div>
+        <div class="brand-source"><a href="https://www.hankyung.com/article/202411013572P" target="_blank">hankyung.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">확산 전략</span>
+        <div class="brand-mark">마이힐스 · 마이디에이치</div>
+        <div class="brand-meta"><b>현대건설</b> 힐스테이트</div>
+        <div class="brand-desc">38개 서비스 통합, 기존 입주단지에도 신기능 소급 적용. 닥터나우 비대면진료 연동.</div>
+        <div class="brand-source"><a href="https://www.hyundaimotorgroup.com/ko/news/CONT0000000000176794" target="_blank">hyundaimotorgroup.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">가전 연동</span>
+        <div class="brand-mark">푸르지오 스마트홈</div>
+        <div class="brand-meta"><b>대우건설</b></div>
+        <div class="brand-desc">삼성·LG 가전 21종 연동, 생활불편신고, 생활서비스(세탁·세차·돌봄) 준비중.</div>
+        <div class="brand-source"><a href="https://www.goodkyung.com/news/articleView.html?idxno=287590" target="_blank">goodkyung.com ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group B -->
+  <div class="cat-card">
+    <div class="cat-label">그룹 B</div>
+    <h2 class="cat-title">라이프스타일 슈퍼앱형 — 세대제어 너머 삶 전체</h2>
+    <div class="cat-bullets">
+      <div>세대제어를 넘어 헬스케어·중고거래·가사서비스까지 확장한 사례</div>
+      <div>아이파크의 "Life Service Platform" 방향과 가장 근접한 참고군</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <span class="tier-badge tier-1">방향 정합</span>
+        <div class="brand-mark">my THE H</div>
+        <div class="brand-meta"><b>현대건설</b> · KS-PBI 3년연속 1위</div>
+        <div class="brand-desc">세대제어+커뮤니티예약+AS 통합 앱. 오프라인 프로그램 'H컬처클럽'(영화관·도서관·골프연습장 전문업체 위탁 + 아이돌봄·가사·펫케어)과 연계 — 앱과 커뮤니티는 별개로 운영.</div>
+        <div class="brand-source"><a href="https://www.hankyung.com/article/2025071093011" target="_blank">KS-PBI 1위 ↗</a> · <a href="https://www.hankyung.com/article/202604074406i" target="_blank">H컬처클럽 ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">해외 · 임대주택</span>
+        <div class="brand-mark">Livly</div>
+        <div class="brand-meta"><b>미국</b> 멀티패밀리 레지던트앱</div>
+        <div class="brand-desc">어메니티예약+스마트키+청소.세탁 온디맨드+커뮤니티피드+소포알림 통합.</div>
+        <div class="brand-source"><a href="https://www.livly.io/for-residents" target="_blank">livly.io ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">해외 · 대형개발사</span>
+        <div class="brand-mark">住这儿 (Vanke Life)</div>
+        <div class="brand-meta"><b>중국</b> 완커(万科)</div>
+        <div class="brand-desc">관리비납부+가사서비스+가상주소(개인정보보호)+음성비서+중고거래까지 확장.</div>
+        <div class="brand-source"><a href="https://m.vanke.com" target="_blank">m.vanke.com ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group C: Robot -->
+  <div class="cat-card">
+    <div class="cat-label">그룹 C</div>
+    <h2 class="cat-title">로봇 라스트마일 — 오퍼레이션 기술결합형</h2>
+    <div class="cat-bullets">
+      <div>UX 설계가 로봇 벤더 하드웨어 API 스펙에 종속되는 클러스터</div>
+      <div>자사 사례(하단 tier-1)를 기준점으로, 국내외 벤치마크와 즉시 비교 가능</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <span class="tier-badge tier-1">자사 · 운영중</span>
+        <div class="brand-mark">아이파크 헬퍼로봇</div>
+        <div class="brand-meta"><b>고척아이파크</b> · 2025~</div>
+        <div class="brand-desc">앱으로 헬퍼로봇 호출, 자율주행 쓰레기수거로봇이 세대앞→엘리베이터 자동탑승→집하장 이송.</div>
+        <div class="brand-source"><a href="https://www.asiae.co.kr/article/2025121515550915663" target="_blank">asiae.co.kr ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-2">국내 표준</span>
+        <div class="brand-mark">딜리타워</div>
+        <div class="brand-meta"><b>우아한형제들</b> · 2021~</div>
+        <div class="brand-desc">배민 주문→로봇이 엘리베이터 자동탑승→세대앞 배송→알림톡. 알림 중심 단선 플로우.</div>
+        <div class="brand-source"><a href="https://robot.baemin.com" target="_blank">robot.baemin.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">국내 · 사옥</span>
+        <div class="brand-mark">루키 (Rookie)</div>
+        <div class="brand-meta"><b>네이버 1784</b></div>
+        <div class="brand-desc">로봇전용 엘리베이터 '로보포트'로 다층 자율배송. 국내 최고 완성도.</div>
+        <div class="brand-source"><a href="https://www.newspim.com/news/view/20260416000007" target="_blank">newspim.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">해외 표준</span>
+        <div class="brand-mark">Starship Technologies</div>
+        <div class="brand-meta"><b>미국</b> · 누적 900만 배송</div>
+        <div class="brand-desc">실시간 지도 트래킹+정밀 ETA+도착 음악+캐릭터 선택. 트래킹 UX 글로벌 표준.</div>
+        <div class="brand-source"><a href="https://www.starship.xyz/delivery-apps/" target="_blank">starship.xyz ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-2">신규 버티컬</span>
+        <div class="brand-mark">Serve Robotics × NoScrubs</div>
+        <div class="brand-meta"><b>미국 LA</b> · 2026-06</div>
+        <div class="brand-desc">음식배달 외 세탁물 자율배송 파일럿 개시. 국내엔 아직 없는 블루오션.</div>
+        <div class="brand-source"><a href="https://serverobotics.com/blog/autonomous-laundry-delivery-noscrubs-la" target="_blank">serverobotics.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-4">경쟁동향 · 주시필요</span>
+        <div class="brand-mark">모베드 (MobED)</div>
+        <div class="brand-meta"><b>현대건설</b> 압구정3구역</div>
+        <div class="brand-desc">앱 호출→AI 배차→로봇이 택배·음식·골프백·분리수거 대행. 통합 호출 콘셉트 이미 홍보 중.</div>
+        <div class="brand-source"><a href="https://www.mt.co.kr/estate/2026/05/11/2026051114204797834" target="_blank">mt.co.kr ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group D: unclassified -->
+  <div class="cat-card">
+    <div class="cat-label">그룹 D · 참고용</div>
+    <h2 class="cat-title">커뮤니티 예약 & 폐쇄몰 — 별도 판단 필요 클러스터</h2>
+    <div class="cat-bullets">
+      <div>사업성·제휴 구조 판단이 선행되어야 하는 영역 — 디자인 참고는 가능하나 실행은 경영전략팀 협의 필요</div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <span class="tier-badge tier-2">웹뷰 임베드</span>
+        <div class="brand-mark">더샵 AiQ 홈</div>
+        <div class="brand-meta"><b>포스코이앤씨</b></div>
+        <div class="brand-desc">커뮤니티·방문차량 예약을 WebView로 앱 내 노출. 저비용·빠른 구현형.</div>
+        <div class="brand-source"><a href="https://play.google.com/store/apps/details?id=com.poscoict.the_sharp_iot_app" target="_blank">Google Play ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-4">출처 재확인 필요</span>
+        <div class="brand-mark">WE센터</div>
+        <div class="brand-meta">커뮤니티시설 전문 위탁운영사</div>
+        <div class="brand-desc">전국 400여명 강사. 공식 페이지 접속 제한 — 검색 스니펫 기준, 인용 전 재확인 필요.</div>
+        <div class="brand-source"><a href="https://www.whocares.co.kr/wecenter" target="_blank">whocares.co.kr ↗</a> (접근제한)</div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-2">입주민 참여형</span>
+        <div class="brand-mark">홈니커스클럽</div>
+        <div class="brand-meta"><b>삼성물산</b> 공동구매</div>
+        <div class="brand-desc">입주민 제안형(좋아요 순위)+업체 제안형 이원 운영, 30여개 제휴사 멤버십.</div>
+        <div class="brand-source"><a href="https://www.hankyung.com/article/2024082793311" target="_blank">hankyung.com ↗</a></div>
+      </div>
+      <div class="brand-card">
+        <span class="tier-badge tier-3">패스 상품</span>
+        <div class="brand-mark">아파트너 커뮤니티패스</div>
+        <div class="brand-meta">스타벅스 연계 '더테라스'</div>
+        <div class="brand-desc">카페.헬스장.골프장 통합 이용권 + 공동구매 + 로컬스토어.</div>
+        <div class="brand-source"><a href="https://aptner.oopy.io" target="_blank">aptner.oopy.io ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trend section -->
+  <div class="cat-card">
+    <div class="cat-label">UX/UI 트렌드</div>
+    <h2 class="cat-title">아파트 라이프 플랫폼, 2026년 화면 설계 흐름</h2>
+    <div class="trend-grid">
+      <div class="trend-card">
+        <div class="trend-num">01</div>
+        <div class="trend-title">4단 메뉴 재편</div>
+        <div class="trend-body">기기제어 / 생활편의 / 커뮤니티 / 이색서비스로 IA를 재편하는 흐름. 홈닉이 '홈그라운드' · '라이프인사이드'로 이원화해 K-BPI 1위.</div>
+        <div class="trend-src"><a href="https://news.samsungcnt.com" target="_blank">news.samsungcnt.com</a></div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-num">02</div>
+        <div class="trend-title">선제적 브리핑 UI</div>
+        <div class="trend-body">명령형 버튼 나열 → 앱을 열자마자 오늘의 요약(에너지·택배·예약)을 카드로 먼저 보여주는 방식. Samsung Bespoke AI, Google Gemini가 2026년 이 방향으로 개편.</div>
+        <div class="trend-src"><a href="https://news.samsung.com/global" target="_blank">news.samsung.com</a> · <a href="https://thenextweb.com" target="_blank">thenextweb.com</a></div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-num">03</div>
+        <div class="trend-title">검색으로 바로 가는 정보 탐색</div>
+        <div class="trend-body">메뉴를 눌러 찾아가는 방식에서, 검색창에 '난방비' · '불편신고'라고 치면 바로 조회·접수 화면으로 가는 방식으로 이동 중.</div>
+        <div class="trend-src">아이파크홈앱 매뉴얼 분석 기반 제안</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-num">04</div>
+        <div class="trend-title">브랜드 리뉴얼과 앱 전략의 정합</div>
+        <div class="trend-body">IPARK이 2026년 4월 "Vision Becomes Life"로 라이프 플랫폼 전환을 공식 선언 — 앱 통합 전략의 상위 명분으로 직접 인용 가능.</div>
+        <div class="trend-src"><a href="https://www.seoul.co.kr/news/economy/industry/2026/04/29/20260429500254" target="_blank">seoul.co.kr</a></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Wide Research 포맷 — design-trend-radar · reference-curator 병행 조사, 3개 전략 그룹 + 1개 참고 클러스터로 분류.<br>
+    출처 미확인 항목(tier-4)은 재확인 전 클라이언트 제출 자료에 정식 인용하지 않는 것을 권장합니다.
+  </footer>
+
+</div>
+</body>
+</html>
