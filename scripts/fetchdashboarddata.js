@@ -5,7 +5,7 @@
  * - Google Sheets MAX_2026 리소스 시트(Time-Log) → resources(가동률)
  *
  * 필요 환경변수: NOTION_TOKEN (Notion internal integration token)
- * 실행: node scripts/fetch-dashboard-data.js
+ * 실행: node scripts/fetchdashboarddata.js
  * 출력: docs/dashboard-data.json + .claude/projects/dashboard-data.json
  */
 

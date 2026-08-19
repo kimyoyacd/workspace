@@ -36,7 +36,7 @@ jobs:
       - name: Fetch dashboard data
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        run: node scripts/fetch-dashboard-data.js
+        run: node scripts/fetchdashboarddata.js
 
       - name: Commit if changed
         run: |
