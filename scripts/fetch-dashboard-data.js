@@ -28,13 +28,124 @@ async function fetchProjects() {
   const projects = [];
   let cursor = undefined;
   do {
-    const resp = await fetch(`https://api.notion.com/v1/databases/${PROJECT_DB_ID}/query`, {
+    // 2025-09-03부터 Notion이 멀티 데이터소스 구조로 바뀌면서 database_id로 querying하는
+    // 구엔드포인트(v1/databases/{id}/query, 2022-06-28)가 이 DB(데이터소스 2개)에서
+    // "Could not find database" 404를 낸다. data_sources 엔드포인트로 전환.
+    const resp = await fetch(`https://api.notion.com/v1/data_sources/${PROJECT_DB_ID}/query`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
+        'Notion-Version': '2025-09-03',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ start_cursor: cursor, page_size: 100 }),
+    });
+    if (!resp.ok) throw new Error(`Notion API ${resp.status}: ${await resp.text()}`);
+    const data = await resp.json();
+    for (const page of data.results) {
+      const p = page.properties;
+      const status = p['상태']?.select?.name;
+      if (!status || !GROUP[status]) continue; // 완료·보관함·실주 제외
+      projects.push({
+        title: p['업무 명']?.title?.map(t => t.plain_text).join('') || '(제목 없음)',
+        group: GROUP[status],
+        status,
+        categories: p['카테고리']?.multi_select?.map(s => s.name) || [],
+        difficulty: p['난이도']?.select?.name || null,
+        startDate: p['날짜']?.date?.start || null,
+        endDate: p['종료 날짜']?.date?.start || p['날짜']?.date?.end || null,
+        notionUrl: page.url,
+      });
+    }
+    cursor = data.has_more ? data.next_cursor : undefined;
+  } while (cursor);
+  return projects;
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQ) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+async function fetchResources() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_TAB)}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Sheets ${resp.status}`);
+  const rows = parseCsv(await resp.text()).slice(1);
+
+  // 사람별 날짜별 시간 집계
+  const byPerson = {};
+  for (const r of rows) {
+    const [date, name, , , , hours] = r;
+    if (!date || !date.startsWith('20') || !name) continue;
+    const h = parseFloat(hours);
+    if (isNaN(h)) continue;
+    (byPerson[name] = byPerson[name] || {})[date] = (byPerson[name][date] || 0) + h;
+  }
+
+  // 개인별 최근 5 기록일 기준 가동률 (일 8h)
+  const NAMES = ['김효정','김창환','강민우','강승일','문경선','이지현','전한아','김지원','김준환'];
+  return NAMES.map(name => {
+    const days = Object.keys(byPerson[name] || {}).sort().reverse().slice(0, 5);
+    if (!days.length) return { name, utilRate: null };
+    const total = days.reduce((s, d) => s + byPerson[name][d], 0);
+    return { name, utilRate: Math.round(total / (days.length * 8) * 100), lastLog: days[0] };
+  });
+}
+
+function readPrev() {
+  try { return JSON.parse(fs.readFileSync('docs/dashboard-data.json', 'utf8')); }
+  catch { return null; }
+}
+
+async function main() {
+  const prev = readPrev();
+  const out = { fetchedAt: new Date().toISOString().slice(0, 19) };
+
+  // 실패 시 기존 데이터를 지우지 않는다. 빈 배열로 덮어쓰면 대시보드가 통째로 비어버린다.
+  try {
+    out.projects = await fetchProjects();
+    out.projectsFetchedAt = out.fetchedAt;
+  } catch (e) {
+    out.projects = (prev && prev.projects) || [];
+    out.projectsFetchedAt = (prev && prev.projectsFetchedAt) || (prev && prev.fetchedAt) || null;
+    out.projectsError = e.message;
+  }
+
+  try {
+    out.resources = await fetchResources();
+    out.resourcesFetchedAt = out.fetchedAt;
+  } catch (e) {
+    out.resources = (prev && prev.resources) || [];
+    out.resourcesFetchedAt = (prev && prev.resourcesFetchedAt) || (prev && prev.fetchedAt) || null;
+    out.resourcesError = e.message;
+  }
+
+  const json = JSON.stringify(out, null, 1);
+  for (const dest of ['docs/dashboard-data.json', '.claude/projects/dashboard-data.json']) {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, json);
+    console.log('wrote', dest);
+  }
+  if (out.projectsError) console.error('projects 오류:', out.projectsError);
+  if (out.resourcesError) console.error('resources 오류:', out.resourcesError);
+  if (out.projectsError && out.resourcesError) process.exitCode = 1;  // 둘 다 실패하면 Actions에서 빨간불로 보이게
+}
+
+main().catch(e => { console.error(e); process.exit(1); });      },
       body: JSON.stringify({ start_cursor: cursor, page_size: 100 }),
     });
     if (!resp.ok) throw new Error(`Notion API ${resp.status}: ${await resp.text()}`);
