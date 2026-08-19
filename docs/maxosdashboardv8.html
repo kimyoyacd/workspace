@@ -323,6 +323,14 @@ body {
 .tag-live { background: #dbeafe; color: #1d4ed8; }
 .sep { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
 
+/* DATA FRESHNESS */
+.freshness { margin: 0 0 16px; padding: 11px 14px; border-radius: 9px; font-size: 12px; line-height: 1.65; border-left: 3px solid; }
+.freshness b { font-weight: 800; }
+.freshness .fr-why { display: block; margin-top: 5px; font-size: 11px; color: var(--ink3); }
+.freshness.fresh { background: #F1FBF4; border-color: #22c55e; color: #166534; }
+.freshness.aging { background: #FFFBEB; border-color: #f59e0b; color: #92400e; }
+.freshness.stale { background: #FEF2F2; border-color: #ef4444; color: #991b1b; }
+
 /* GANTT */
 .gantt-wrap { margin-top: 20px; }
 .gantt-title { font-size: 12px; font-weight: 700; color: var(--ink3); margin-bottom: 8px; }
@@ -581,6 +589,8 @@ body {
   <h2 class="section-title">프로젝트 현황 보드</h2>
   <p class="section-desc">📡 <strong>SOT:</strong> Notion <a href="https://app.notion.com/p/2e79ff44ed51817a9138eac149de9f21" target="_blank" style="color:var(--sig);">2026 Project DB</a> · 가동률: <a href="https://docs.google.com/spreadsheets/d/1YZq8hWy_ZWZqfv_DUQzUheMcUJspU1ZUCSFA_EGizn0/edit" target="_blank" style="color:var(--sig);">MAX_2026 리소스 관리 시트</a> · <span id="last-updated" style="color:var(--ink3);">데이터 로드 중...</span></p>
 
+  <div id="data-freshness" class="freshness" style="display:none;"></div>
+
   <!-- 오늘 보드 (동적) -->
   <div class="today-board">
     <div class="today-board-head">
@@ -605,81 +615,19 @@ body {
     </div>
   </div>
 
-  <!-- 오늘 기준 스냅샷 (노션 7/20) -->
-  <div class="project-section">
-    <div class="project-section-header">
-      <h3>오늘 기준 스냅샷 <span style="font-size:11px;font-weight:400;color:var(--ink3);">· 노션 2026 Project DB · 2026-07-20 조회</span></h3>
-      <span class="section-badge badge-design">진행중 4 · 고정운영 3 · 완료 24</span>
-    </div>
-    <div class="kanban">
-      <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#3b82f6;"></span>진행중<span class="col-count">4</span></div>
-        <div class="project-item" style="border-left:3px solid #3b82f6;">
-          <div class="project-item-title">[비나]넥슨 히간이루실</div>
-          <div class="project-item-desc">Motion · 6/4 ~ 7/24 · 마감 임박(D-4)</div>
-          <span class="project-item-tag tag-live">넥슨</span>
-        </div>
-        <div class="project-item" style="border-left:3px solid #3b82f6;">
-          <div class="project-item-title">[제안]넥슨 년간운영 제안</div>
-          <div class="project-item-desc">Motion · 7/13 ~ 7/31 · 제안 진행중</div>
-          <span class="project-item-tag tag-live">넥슨</span>
-        </div>
-        <div class="project-item" style="border-left:3px solid #3b82f6;">
-          <div class="project-item-title">HTWO 공식 웹사이트 콘텐츠 모션</div>
-          <div class="project-item-desc">Motion · 난이도 M · 6/12 ~ 9/25</div>
-          <span class="project-item-tag tag-live">HTWO</span>
-        </div>
-        <div class="project-item" style="border-left:3px solid #3b82f6;">
-          <div class="project-item-title">넷마블 UA R&amp;D</div>
-          <div class="project-item-desc">Motion · 7/3 ~ 8/28</div>
-          <span class="project-item-tag tag-live">넷마블</span>
-        </div>
-      </div>
-      <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#8b5cf6;"></span>고정운영<span class="col-count">3</span></div>
-        <div class="project-item" style="border-left:3px solid #8b5cf6;">
-          <div class="project-item-title">넷마블 운영 최소 운영 3TO</div>
-          <div class="project-item-desc">Motion · 3/31 ~ 12/31 연간 운영</div>
-          <span class="project-item-tag tag-new">넷마블</span>
-        </div>
-        <div class="project-item" style="border-left:3px solid #8b5cf6;">
-          <div class="project-item-title">MX 센터 SNS</div>
-          <div class="project-item-desc">game · 난이도 M · 5/29 ~ 10/16</div>
-          <span class="project-item-tag tag-new">하이브랩</span>
-        </div>
-        <div class="project-item" style="border-left:3px solid #8b5cf6;">
-          <div class="project-item-title">넷마블 AI 시장 조사 및 분석</div>
-          <div class="project-item-desc">AI · 난이도 M · 3월 착수 후 고정운영 전환</div>
-          <span class="project-item-tag tag-new">넷마블</span>
-        </div>
-      </div>
-      <div class="kanban-col">
-        <div class="kanban-col-header"><span class="col-dot" style="background:#22c55e;"></span>완료 · 기타<span class="col-count">25</span></div>
-        <div class="project-item">
-          <div class="project-item-title">완료 24건</div>
-          <div class="project-item-desc">라이온하트 UA 영상 · NC 아이온 UA · AI R&amp;D 1차 · HTWO 웹사이트 리뉴얼 제안 등</div>
-        </div>
-        <div class="project-item">
-          <div class="project-item-title">검토중 1건</div>
-          <div class="project-item-desc">항목 미기입 — 노션에서 업무명 입력 필요</div>
-          <span class="project-item-tag tag-hold">데이터 정리 필요</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Gantt -->
   <div class="gantt-wrap">
-    <div class="gantt-title">간트차트 — MAX실 디자인 프로젝트 (7/1 ~ 12/31)</div>
+    <div class="gantt-title" id="gantt-title">간트차트 — MAX실 디자인 프로젝트</div>
     <div class="gantt-legend">
       <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#3b82f6;"></div>진행중</div>
       <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:repeating-linear-gradient(45deg,#f59e0b,#f59e0b 4px,#fde68a 4px,#fde68a 8px);"></div>홀딩/대기</div>
       <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:#22c55e;opacity:0.5;"></div>완료</div>
-      <div class="gantt-legend-item"><div style="width:12px;height:12px;border-left:2px dashed #ef4444;"></div>오늘(7/20)</div>
+      <div class="gantt-legend-item"><div style="width:12px;height:12px;border-left:2px dashed #ef4444;"></div><span id="gantt-today-label">오늘</span></div>
     </div>
     <div class="gantt-container">
       <div class="gantt-inner" id="gantt-max"></div>
     </div>
+    <div id="gantt-note" style="margin-top:8px;font-size:11px;color:var(--ink3);"></div>
   </div>
 
   <hr class="sep">
@@ -2048,12 +1996,14 @@ function toggleCollapse(header) {
   header.nextElementSibling.classList.toggle('expanded');
 }
 
-/* GANTT */
-const TOTAL = 122; // June 1 ~ Sep 30
-const TODAY = 26;  // June 26 = day 26
+/* GANTT — 데이터 기반 동적 렌더 (하드코딩 기준일 제거) */
+const DAY_MS = 86400000;
+let GANTT_START = new Date();   // 창 시작일 (fetch 후 재계산)
+let TOTAL = 122;                // 창 길이(일)
 
 function pct(d) { return ((d - 1) / TOTAL * 100).toFixed(3) + '%'; }
 function wpct(dur) { return (dur / TOTAL * 100).toFixed(3) + '%'; }
+function dayIndex(dateStr) { return Math.round((new Date(dateStr + 'T00:00:00') - GANTT_START) / DAY_MS) + 1; }
 
 function buildGantt(id, rows) {
   const el = document.getElementById(id);
@@ -2069,13 +2019,13 @@ function buildGantt(id, rows) {
       <div class="gantt-row-label" title="${r.name}">${r.name}</div>
       <div class="gantt-track">
         <div class="gantt-bar ${cls}" style="left:${pct(r.start)};width:${wpct(r.dur)}"></div>
-        <div class="gantt-today-line" style="left:${pct(TODAY)}"></div>
+        <div class="gantt-today-line" style="left:${pct(dayIndex(new Date().toISOString().slice(0,10)))}"></div>
       </div></div>`;
   });
   el.innerHTML = html;
 }
 
-// ══════════════ v7 실시간 연동 ══════════════════════════════════════
+// ══════════════ v8 실시간 연동 ══════════════════════════════════════
 // GitHub Actions가 매일 scripts/fetch-dashboard-data.js 를 실행해
 // .claude/projects/dashboard-data.json 을 자동 갱신한다. Apps Script 불필요.
 const DATA_URL = './dashboard-data.json';
@@ -2104,10 +2054,10 @@ function setSyncStatus(state, info) {
   const now   = info || '';
   if (!badge) return;
   badge.className = 'head-badge ' + (state === 'ok' ? 'sync-ok' : state === 'error' ? 'sync-err' : state === 'offline' ? 'sync-warn' : '');
-  if (state === 'ok')      { badge.textContent = '● 실시간 · 갱신 ' + now + ' · v7'; if (sub) sub.textContent = '노션/구글시트 실시간 연동 · ' + now + ' 기준'; }
-  else if (state === 'error')   { badge.textContent = '● 연결 오류 · v7'; if (sub) sub.textContent = '연결 실패: ' + now + ' — 캐시 데이터 표시 중'; }
-  else if (state === 'offline') { badge.textContent = '● 오프라인 모드 · v7'; if (sub) sub.textContent = 'dashboard-data.json 로드 실패'; }
-  else                          { badge.textContent = '● 연결 중... · v7'; }
+  if (state === 'ok')      { badge.textContent = '● 실시간 · 갱신 ' + now + ' · v8'; if (sub) sub.textContent = '노션/구글시트 실시간 연동 · ' + now + ' 기준'; }
+  else if (state === 'error')   { badge.textContent = '● 연결 오류 · v8'; if (sub) sub.textContent = '연결 실패: ' + now + ' — 캐시 데이터 표시 중'; }
+  else if (state === 'offline') { badge.textContent = '● 오프라인 모드 · v8'; if (sub) sub.textContent = 'dashboard-data.json 로드 실패'; }
+  else                          { badge.textContent = '● 연결 중... · v8'; }
 }
 
 // ── 헤더 통계 업데이트 ────────────────────────────────────
@@ -2269,6 +2219,7 @@ async function fetchLiveData() {
     } else {
       renderTodayBoard(projects);
       renderKanban(projects);
+      renderGantt(projects);
     }
 
     // 가동률 — 독립 처리
@@ -2284,6 +2235,7 @@ async function fetchLiveData() {
     }
 
     updateStats(projects, resources);
+    renderFreshness(data);
 
     const lastUpdEl = document.getElementById('last-updated');
     if (lastUpdEl) {
@@ -2294,6 +2246,7 @@ async function fetchLiveData() {
     setSyncStatus(hasErr ? 'error' : 'ok', data.fetchedAt ? data.fetchedAt.slice(5,16).replace('T',' ') : '');
   } catch (err) {
     setSyncStatus('error', err.message);
+    renderFreshness(null);
     renderTeam([]);
     const el = document.getElementById('projects-kanban-live');
     if (el) el.innerHTML = '<div class="live-loading" style="color:var(--danger);height:100px;">⚠️ 데이터 로드 실패: ' + esc(err.message) + '<br><span style="font-size:10px;margin-top:4px;display:block;">dashboard-data.json 파일이 같은 폴더에 있는지, GitHub Actions가 정상 실행됐는지 확인하세요</span></div>';
@@ -2307,29 +2260,122 @@ window.addEventListener('DOMContentLoaded', function() {
 // ════════════════════════════════════════════════════════════════════
 
 // 데이터 출처: Notion 2026 Project DB (collection://2e79ff44…5bf54) — SOT
-// 기준일 2026-06-26 → v6부터 실시간 · 간트는 아래 정적 스냅샷 유지
-buildGantt('gantt-max', [
-  // 진행중 [H] UI+Motion — 시작 3/24, 시작end 6/26 (종료필드 입력오류)
-  { name: '코웨이 GUI 컨설팅 및 구축 (3/24~6/26, H)',    start: 1,  dur: 26, type: 'wip'  },
-  // 고정운영 — 넷마블 운영 최소 운영 4TO (3/31~12/31)
-  { name: '[고정운영] 넷마블 운영 4TO (~12/31)',          start: 1,  dur: 122,type: 'wip'  },
-  // 진행예정 [H] Motion — 가디언 메이든 사전 런칭 준비 (5/1~ 종료미정)
-  { name: '가디언 메이든 사전 런칭 준비 (5/1~, H)',       start: 1,  dur: 30, type: 'hold' },
-  // 진행중 PPT — 회사 소개서 업데이트 (6/1~6/12)
-  { name: '회사 소개서 업데이트 PPT (6/1~6/12)',         start: 1,  dur: 12, type: 'done' },
-  // 진행예정 Motion — [비나] 넥슨 히간이루실 (6/4~6/12)
-  { name: '[비나] 넥슨 히간이루실 (6/4~6/12)',           start: 4,  dur: 9,  type: 'hold' },
-  // 진행중 [H] AI — 넷마블 AI 업세일즈 제안건 (6/5~6/26)
-  { name: '넷마블 AI 업세일즈 제안 (6/5~6/26, H)',      start: 5,  dur: 22, type: 'wip'  },
-  // 진행중 UI — 올리브영 제안 PB 상세 페이지 (6/15~6/19)
-  { name: '올리브영 PB 상세 페이지 제안 (6/15~6/19)',     start: 15, dur: 5,  type: 'done' },
-  // 진행중 [H] Motion — 현대 수소 홈페이지 구축 (6/22~6/27)
-  { name: '현대 수소 홈페이지 구축 (6/22~6/27, H)',      start: 22, dur: 6,  type: 'wip'  },
-  // 진행중 [M] Motion — YBM 브릿지 사이트 KV 모션 (6/24~6/26)
-  { name: 'YBM 브릿지 KV 모션 (6/24~6/26, M)',         start: 24, dur: 3,  type: 'wip'  },
-  // 진행중 [M] game — MX 센터 SNS (9/4~10/1, 9/30 클립)
-  { name: 'MX 센터 SNS (9/4~10/1, M)',                start: 96, dur: 27, type: 'wip'  },
-]);
+// v8부터 간트도 dashboard-data.json 기반. 정적 스냅샷·하드코딩 기준일 제거.
+function renderGantt(projects) {
+  const el = document.getElementById('gantt-max');
+  if (!el) return;
+  const today = new Date(new Date().toISOString().slice(0,10) + 'T00:00:00');
+
+  // 창: 오늘 -30일 ~ 오늘 +150일 (실제 데이터 범위에 맞춰 확장)
+  let winStart = new Date(today.getTime() - 30 * DAY_MS);
+  let winEnd   = new Date(today.getTime() + 150 * DAY_MS);
+
+  const rows = (projects || [])
+    .filter(p => p.startDate || p.endDate)
+    .filter(p => ['active','almost','fixed','upcoming','discuss','review','hold'].includes(p.group))
+    .map(p => {
+      const sd = new Date((p.startDate || p.endDate) + 'T00:00:00');
+      const ed = new Date((p.endDate || p.startDate) + 'T00:00:00');
+      return { title: p.title, group: p.group, status: p.status, sd, ed,
+               difficulty: p.difficulty, cats: (p.categories || []).join('/') };
+    })
+    .filter(r => r.ed >= winStart && r.sd <= winEnd)
+    .sort((a,b) => a.sd - b.sd);
+
+  if (!rows.length) {
+    el.innerHTML = '<div class="live-loading" style="height:80px;">표시할 일정 데이터가 없습니다</div>';
+    return;
+  }
+
+  // 창 시작은 고정(오늘-30일). 종료만 실제 데이터에 맞춰 늘리고, 이전 시작 막대는 잘라서 표시한다.
+  rows.forEach(r => { if (r.ed > winEnd) winEnd = new Date(r.ed); });
+  GANTT_START = winStart;
+  TOTAL = Math.max(30, Math.round((winEnd - winStart) / DAY_MS) + 1);
+
+  const fmt = d => (d.getMonth() + 1) + '/' + d.getDate();
+  const titleEl = document.getElementById('gantt-title');
+  if (titleEl) titleEl.textContent = '간트차트 — MAX실 디자인 프로젝트 (' + fmt(winStart) + ' ~ ' + fmt(winEnd) + ')';
+  const todayLabel = document.getElementById('gantt-today-label');
+  if (todayLabel) todayLabel.textContent = '오늘(' + fmt(today) + ')';
+
+  // 월 시작일 눈금
+  const labels = [], ltext = [];
+  const cur = new Date(winStart.getFullYear(), winStart.getMonth(), 1);
+  while (cur <= winEnd) {
+    if (cur >= winStart) { labels.push(Math.round((cur - winStart) / DAY_MS) + 1); ltext.push((cur.getMonth() + 1) + '월'); }
+    cur.setMonth(cur.getMonth() + 1);
+  }
+
+  let html = '<div class="gantt-header-row">';
+  labels.forEach((d, i) => { html += '<span class="gantt-header-label" style="left:' + pct(d) + '">' + ltext[i] + '</span>'; });
+  html += '</div>';
+
+  const todayLeft = pct(Math.round((today - winStart) / DAY_MS) + 1);
+  rows.forEach(r => {
+    const cls = r.ed < today ? 'gantt-bar-done' : (r.group === 'active' || r.group === 'almost' || r.group === 'fixed') ? 'gantt-bar-wip' : 'gantt-bar-hold';
+    const label = r.title + ' (' + fmt(r.sd) + '~' + fmt(r.ed) + (r.difficulty ? ', ' + r.difficulty : '') + ')';
+    const rawStart = Math.round((r.sd - winStart) / DAY_MS) + 1;
+    const startIdx = Math.max(1, rawStart);
+    const endIdx = Math.min(TOTAL, Math.round((r.ed - winStart) / DAY_MS) + 1);
+    const dur = Math.max(1, endIdx - startIdx + 1);
+    html += '<div class="gantt-row">' +
+      '<div class="gantt-row-label" title="' + esc(label) + '">' + esc(label) + '</div>' +
+      '<div class="gantt-track">' +
+        '<div class="gantt-bar ' + cls + '" style="left:' + pct(startIdx) + ';width:' + wpct(dur) + '"></div>' +
+        '<div class="gantt-today-line" style="left:' + todayLeft + '"></div>' +
+      '</div></div>';
+  });
+  el.innerHTML = html;
+
+  const total = (projects || []).filter(p => p.startDate || p.endDate).length;
+  const noteEl = document.getElementById('gantt-note');
+  if (noteEl) {
+    const hidden = total - rows.length;
+    noteEl.textContent = hidden > 0
+      ? '표시 ' + rows.length + '건 · 기간 밖(이미 종료됨) ' + hidden + '건 제외'
+      : '표시 ' + rows.length + '건';
+  }
+}
+
+// ── 데이터 신선도 배너 ────────────────────────────────────
+function renderFreshness(data) {
+  const el = document.getElementById('data-freshness');
+  if (!el) return;
+  el.style.display = 'block';
+
+  if (!data || !data.fetchedAt) {
+    el.className = 'freshness stale';
+    el.innerHTML = '<b>🔴 데이터 기준일을 확인할 수 없습니다.</b> dashboard-data.json을 불러오지 못했습니다.' +
+      '<span class="fr-why">확인 순서 — ① docs/dashboard-data.json 존재 여부 ② GitHub Actions "Refresh dashboard data" 실행 이력 ③ NOTION_TOKEN 시크릿</span>';
+    return;
+  }
+
+  const fetched = new Date(data.fetchedAt);
+  const days = Math.floor((Date.now() - fetched.getTime()) / DAY_MS);
+  const stamp = fetched.toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  // 리소스 시트 마지막 기록일 (가동률 신선도는 별도)
+  const logs = (data.resources || []).map(r => r.lastLog).filter(Boolean).sort();
+  const lastLog = logs.length ? logs[logs.length - 1] : null;
+  const logDays = lastLog ? Math.floor((Date.now() - new Date(lastLog + 'T00:00:00').getTime()) / DAY_MS) : null;
+
+  let cls = 'fresh', head;
+  if (days <= 2)      { cls = 'fresh'; head = '🟢 최신 데이터입니다. 기준일 <b>' + stamp + '</b> (' + days + '일 전)'; }
+  else if (days <= 7) { cls = 'aging'; head = '🟡 데이터가 <b>' + days + '일</b> 지났습니다. 기준일 ' + stamp; }
+  else                { cls = 'stale'; head = '🔴 데이터가 <b>' + days + '일</b> 갱신되지 않았습니다. 기준일 ' + stamp; }
+
+  let why = '';
+  if (days > 7) {
+    why = '자동 갱신(GitHub Actions · 매일 07:00 KST)이 돌지 않았을 때 이 상태가 됩니다. 예약 워크플로우는 기본 브랜치에서만 실행되므로, 워크플로우가 아직 main에 병합되지 않았거나 NOTION_TOKEN 시크릿이 없으면 파일이 그대로 멈춥니다.';
+  }
+  if (logDays !== null && logDays > 7) {
+    why += (why ? ' ' : '') + '가동률은 별개입니다 — 리소스 시트(Time-Log)의 마지막 기록이 ' + lastLog + '(' + logDays + '일 전)이라, 파이프라인이 정상이어도 숫자는 그대로입니다. 시트에 기록이 쌓여야 갱신됩니다.';
+  }
+
+  el.className = 'freshness ' + cls;
+  el.innerHTML = '<b>' + head + '</b>' + (why ? '<span class="fr-why">' + why + '</span>' : '');
+}
+
 </script>
 <script>
 // iframe 내부 스크롤 제거 — 콘텐츠 전체 높이로 자동 확장
