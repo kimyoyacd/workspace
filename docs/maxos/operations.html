@@ -402,6 +402,7 @@
     function applyParams(r) {
       if (r.tab === 'projects') {
         PJ_FILTER = r.params.due === '7' ? 'due7' : r.params.late === '1' ? 'late'
+                  : r.params.conflict === '1' ? 'conflict'
                   : r.params.group ? 'group:' + r.params.group : '';
         if (r.params.view && ['table', 'board', 'gantt'].indexOf(r.params.view) >= 0) {
           PJ_VIEW = r.params.view;
@@ -532,6 +533,7 @@
       if (!PJ_FILTER) return DB.projects;
       if (PJ_FILTER === 'due7') return DB.projects.filter(function (p) { return p.dueSoon; });
       if (PJ_FILTER === 'late') return DB.projects.filter(function (p) { return p.delayed; });
+      if (PJ_FILTER === 'conflict') return DB.projects.filter(function (p) { return p.dateConflict; });
       var g = PJ_FILTER.slice(6);
       return DB.projects.filter(function (p) { return p.group === g; });
     }
@@ -539,6 +541,7 @@
     function filterChipLabel() {
       if (PJ_FILTER === 'due7') return '이번 주 마감만';
       if (PJ_FILTER === 'late') return '마감일 지난 일만';
+      if (PJ_FILTER === 'conflict') return '날짜가 뒤집힌 일만';
       if (PJ_FILTER.indexOf('group:') === 0) {
         var m = MAXOS.groupMeta[PJ_FILTER.slice(6)];
         return m ? m.label + '만' : '';
