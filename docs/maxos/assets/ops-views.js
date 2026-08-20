@@ -13,16 +13,21 @@
     unlogged: { label: '기록이 없어요', cls: '', color: '#c9c7c0' }
   };
   var TEAM = [
-    { name: '김효정', role: '실장 · CD', team: 'CD', skills: ['CD', 'PM', 'Strategy', 'Business'] },
-    { name: '김창환', role: 'VM팀장 · 비주얼 리드', team: 'VM', skills: ['Motion', 'Branding', 'Direction'] },
-    { name: '강민우', role: 'VM파트장', team: 'VM', skills: ['Motion', 'UI', 'AE'] },
-    { name: '강승일', role: 'VM전임', team: 'VM', skills: ['Motion', 'Illustration', 'Design'] },
-    { name: '문경선', role: 'VM전임', team: 'VM', skills: ['Motion', 'Photoshop', 'Design'] },
-    { name: '이지현', role: 'VM전임', team: 'VM', skills: ['UI', 'Design', 'Figma'] },
-    { name: '전한아', role: 'VX파트장', team: 'VX', skills: ['UX', 'Figma', 'Prototyping'] },
-    { name: '김지원', role: 'VX전임', team: 'VX', skills: ['Front-End', 'React', 'Figma'] },
-    { name: '김준환', role: 'VX선임', team: 'VX', skills: ['UX', 'Figma', 'Design'] }
+    { name: '김효정', role: '실장 · CD', team: 'CD' },
+    { name: '김창환', role: 'VM팀장 · 비주얼 리드', team: 'VM' },
+    { name: '강민우', role: 'VM파트장', team: 'VM' },
+    { name: '강승일', role: 'VM전임', team: 'VM' },
+    { name: '문경선', role: 'VM전임', team: 'VM' },
+    { name: '이지현', role: 'VM전임', team: 'VM' },
+    { name: '전한아', role: 'VX파트장', team: 'VX' },
+    { name: '김지원', role: 'VX전임', team: 'VX' },
+    { name: '김준환', role: 'VX선임', team: 'VX' }
   ];
+  /* 역할은 사람마다 다르게 두지 않는다. 팀에 속한 사람은 아래 역할을 모두 맡는다. */
+  var TEAM_ROLES = {
+    VM: ['AI', 'Visual', 'Motion', 'Planning'],
+    VX: ['AI', 'Visual', 'Planning', 'Product']
+  };
   var TEAM_LABEL = { CD: '실장 · 크리에이티브 디렉션', VM: 'VM — 비주얼·모션', VX: 'VX — 프로덕트·경험' };
 
   function statusTag(p) {
@@ -135,15 +140,18 @@
       var members = TEAM.filter(function (m) { return m.team === tm; });
       return '<div class="org-col">' +
         '<div class="org-team"><b>' + esc(TEAM_LABEL[tm]) + '</b><span>' + members.length + '명</span></div>' +
+        '<div class="org-sk">' + TEAM_ROLES[tm].map(function (sk) { return '<span>' + esc(sk) + '</span>'; }).join('') +
+        '<span class="org-sk-tail">Designer</span></div>' +
+        '<p class="org-note">이 팀 사람은 위 역할을 모두 맡습니다.</p>' +
         '<div class="org-people">' + members.map(function (m) {
-          return '<div class="org-p"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small>' +
-            '<div class="org-sk">' + m.skills.map(function (sk) { return '<span>' + esc(sk) + '</span>'; }).join('') + '</div></div>';
+          return '<div class="org-p"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small></div>';
         }).join('') + '</div></div>';
     }).join('');
 
     el.innerHTML = '<div class="org">' +
       '<div class="org-top">' + lead.map(function (m) {
-        return '<div class="org-lead"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small></div>';
+        return '<div class="org-lead"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small>' +
+          '<p class="org-lead-note">두 팀을 총괄합니다</p></div>';
       }).join('') + '</div>' +
       '<div class="org-stem" aria-hidden="true"></div>' +
       '<div class="org-cols">' + cols + '</div>' +
@@ -234,6 +242,7 @@
     STATE_META: STATE_META,
     TEAM: TEAM,
     TEAM_LABEL: TEAM_LABEL,
+    TEAM_ROLES: TEAM_ROLES,
     statusTag: statusTag,
     catLabel: catLabel,
     ddayText: ddayText,

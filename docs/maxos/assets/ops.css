@@ -84,6 +84,7 @@
 }
 .org-lead b { display: block; font-size: 15px; }
 .org-lead small { font-size: 11.5px; color: var(--muted2); }
+.org-lead-note { font-size: 11px; color: var(--muted2); margin: 9px 0 0; }
 .org-stem { width: 1.5px; height: 26px; background: #d6d4cc; }
 .org-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; position: relative; }
 .org-cols::before {
@@ -99,8 +100,11 @@
 .org-p { background: var(--card); border: 1px solid var(--line); border-radius: 15px; padding: 12px 14px; }
 .org-p b { display: block; font-size: 13.5px; }
 .org-p small { display: block; font-size: 11px; color: var(--muted2); margin-top: 2px; }
-.org-sk { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 9px; }
-.org-sk span { font: 600 9.5px var(--mono); color: #6b6b66; background: #f0f0ed; border-radius: 999px; padding: 3px 7px; }
+/* 역할 태그 — 사람이 아니라 팀에 붙는다 */
+.org-sk { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.org-sk span { font: 600 10px var(--mono); color: #55554f; background: #ecece8; border-radius: 999px; padding: 4px 9px; }
+.org-sk .org-sk-tail { background: none; padding: 0 0 0 1px; color: var(--muted2); font-weight: 500; letter-spacing: 0.02em; }
+.org-note { font-size: 11.5px; color: var(--muted2); margin: 0 0 14px; }
 
 @media (max-width: 1280px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
