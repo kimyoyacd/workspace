@@ -28,6 +28,15 @@
 .branch.open{border-color:var(--black)}
 .b-head{width:100%;text-align:left;border:0;background:transparent;padding:16px 18px;cursor:pointer;display:block}
 .b-head:hover{background:#fcfcfa}
+.b-head:hover .pm{border-color:var(--black);background:var(--black);color:#fff}
+.pm{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid #cfcfca;background:#fff;
+    display:grid;place-items:center;font-size:17px;font-weight:400;line-height:1;color:#555;transition:.12s}
+.branch.open .pm{background:var(--black);border-color:var(--black);color:#fff}
+.b-hint{font-size:11.5px;color:var(--muted2);margin-top:9px}
+.stype{position:relative;padding-right:34px}
+.stype::after{content:'→';position:absolute;right:13px;top:50%;transform:translateY(-50%);color:#b5b2ab;font-size:13px}
+.stype:hover::after{color:var(--black)}
+.stype.on::after{content:'✓';color:#fff}
 .b-top{display:flex;align-items:baseline;gap:10px}
 .b-top b{font-size:16px;letter-spacing:-.035em}
 .b-top .cnt{margin-left:auto;font:600 10.5px var(--mono);color:var(--muted2);flex:none}
@@ -61,7 +70,8 @@
 .ag{display:inline-flex;align-items:center;gap:6px;font:600 10.5px var(--mono);padding:4px 9px;border-radius:8px;background:var(--black);color:#fff;margin:0 4px 5px 0;cursor:pointer;border:1.5px solid var(--black)}
 .ag.sk{background:#fff;color:var(--black)}
 .ag:hover{opacity:.82}
-.ag .cp{font-size:9px;opacity:.65}
+.ag .cp{font-size:9px;opacity:.7;border-left:1px solid rgba(255,255,255,.28);padding-left:6px}
+.ag.sk .cp{border-left-color:rgba(17,17,17,.2)}
 .agw{display:block;font-size:11px;color:var(--muted);line-height:1.5;margin-top:2px}
 .s-next{margin-top:auto;padding-top:11px;font-size:11.5px;color:var(--muted)}
 .step.gate .s-next{color:var(--text);font-weight:600}
@@ -98,25 +108,25 @@
     <div class="page-head">
       <div class="page-eyebrow">MAX OS · WORKFLOW</div>
       <h1 class="page-title">일의 흐름 한 장</h1>
-      <p class="page-desc">스킬 이름은 외우지 않아도 돼요. 지금 하는 일만 고르면 순서와 부를 것이 같이 나와요.</p>
+      <p class="page-desc">무엇을 만들지만 고르시면 됩니다. 순서와 도와줄 것이 함께 열립니다.</p>
     </div>
 
     <div class="crumb" id="crumb"></div>
 
     <section class="panel" style="padding:22px">
-      <div class="spine-label">진입 — 어떤 갈래를 펼쳐도 자리를 지켜요</div>
+      <div class="spine-label">시작 — 어떤 갈래를 펼쳐도 자리를 지킵니다</div>
       <div class="spine" id="entry"></div>
 
       <div class="branches" id="branches"></div>
 
-      <div class="spine-label">종료 — 여기서 끝나지 않고 첫 칸으로 돌아가요</div>
+      <div class="spine-label">마무리 — 여기서 끝나지 않고 첫 칸으로 돌아갑니다</div>
       <div class="spine end3" id="end"></div>
-      <div class="loop">↺ 여기서 꺼낸 걸 다음 일에 쓰면 지도의 첫 칸으로 돌아와요</div>
+      <div class="loop">↺ 여기서 꺼낸 걸 다음 일에 쓰면 다시 맨 앞으로 돌아옵니다</div>
     </section>
 
     <div class="side-grid">
       <article class="panel">
-        <div class="panel-head"><h2 style="font-size:16px">단계와 상관없이 항상 도는 것</h2></div>
+        <div class="panel-head"><h2 style="font-size:16px">단계와 상관없이 늘 거치는 것</h2></div>
         <table class="mini-tbl" id="always"></table>
       </article>
       <article class="panel">
@@ -155,25 +165,25 @@
 
   function agChips(list){
     return list.map(function(c){
-      return '<button class="ag'+(c.sk?' sk':'')+'" data-copy="'+esc(c.n)+'" title="눌러서 이름 복사">'+esc(c.n)+'<span class="cp">복사</span></button>'+
+      return '<button class="ag'+(c.sk?' sk':'')+'" data-copy="'+esc(c.n)+'" title="눌러서 이름 복사">'+esc(c.n)+'<span class="cp">⧉ 복사</span></button>'+
              '<span class="agw">'+esc(c.w)+'</span>';
     }).join('');
   }
 
   function stepsHtml(st){
     return '<div class="owner-bar">'+
-      '<span class="ob"><i>담당</i><span><b>이 일을 맡은 사람 한 명</b>이 1~3단계를 이어서 해요</span></span>'+
-      '<span class="ob"><i>디렉터</i><span>★ 표시된 곳에서 <b>방향만</b> 봐요</span></span></div>'+
+      '<span class="ob"><i>담당</i><span><b>맡은 사람 한 명</b>이 1~3단계를 끝까지 이어서 합니다</span></span>'+
+      '<span class="ob"><i>디렉터</i><span>★ 한 곳에서 <b>방향만</b> 봅니다</span></span></div>'+
       '<div class="steps">'+ st.steps.map(function(s,i){
         return '<div class="step'+(s.gate?' gate':'')+'">'+
           '<div class="s-no">STEP 0'+(i+1)+'</div>'+
           '<div class="s-ttl">'+esc(s.t)+'</div>'+
-          '<dl><dt>받을 것</dt><dd>'+esc(s.get)+'</dd><dt>만들 것</dt><dd>'+esc(s.make)+'</dd></dl>'+
-          '<div class="calls"><div class="ck">여기서 부르는 것</div>'+agChips(s.call)+'</div>'+
-          '<div class="s-next">'+(s.gate?'★ <b>디렉터 방향 컨펌</b> — 이대로 계속 갈지만 봐요':'다음 → '+esc(s.next))+'</div>'+
+          '<dl><dt>필요한 것</dt><dd>'+esc(s.get)+'</dd><dt>나오는 것</dt><dd>'+esc(s.make)+'</dd></dl>'+
+          '<div class="calls"><div class="ck">도와주는 것 · 눌러서 이름 복사</div>'+agChips(s.call)+'</div>'+
+          '<div class="s-next">'+(s.gate?'★ <b>디렉터가 방향을 봅니다</b> — 계속 갈지만 정해요':'다음 → '+esc(s.next))+'</div>'+
         '</div>';
       }).join('') +'</div>'+
-      '<p class="gate-tip">모든 흐름은 마지막에 <b>사람이 확인해요</b>를 거쳐요. 내보내기 직전 점검은 아래 「항상 도는 것」에 있어요.</p>';
+      '<p class="gate-tip">모든 흐름은 마지막에 <b>사람이 확인해요</b>를 거칩니다. 내보내기 직전 점검은 아래 「늘 거치는 것」에 있습니다.</p>';
   }
 
   function render(){
@@ -190,12 +200,15 @@
       var open=st.b&&st.b.id===b.id, dim=st.b&&!open;
       var cnt=b.subtypes.length>1? '하위 '+b.subtypes.length+'종' : '3단계';
       var h='<div class="branch'+(open?' open':'')+(dim?' dim':'')+'">'+
-        '<button class="b-head" data-b="'+b.id+'"><div class="b-top"><b>'+esc(b.label)+'</b><span class="cnt">'+cnt+(open?' · 펼침':'')+'</span></div>'+
-        '<div class="b-when">'+esc(b.when)+'</div></button>';
+        '<button class="b-head" data-b="'+b.id+'" aria-expanded="'+(open?'true':'false')+'">'+
+        '<div class="b-top"><b>'+esc(b.label)+'</b><span class="cnt">'+cnt+'</span>'+
+        '<span class="pm" aria-hidden="true">'+(open?'−':'＋')+'</span></div>'+
+        '<div class="b-when">'+esc(b.when)+'</div>'+
+        (open?'':'<div class="b-hint">＋ 를 누르면 순서가 열립니다</div>')+'</button>';
       if(open){
         h+='<div class="b-body">';
         if(b.subtypes.length>1){
-          h+='<div class="stypes">'+b.subtypes.map(function(s){
+          h+='<div class="b-hint" style="margin:0 0 9px">무엇을 만드는지 하나 고르시면 순서가 나옵니다</div><div class="stypes">'+b.subtypes.map(function(s){
             return '<button class="stype'+(st.s&&st.s.id===s.id?' on':'')+'" data-b="'+b.id+'" data-s="'+s.id+'">'+esc(s.label)+
                    (s.formal?'<small>'+esc(s.formal)+'</small>':'')+'</button>';
           }).join('')+'</div>';
@@ -213,7 +226,7 @@
       if(st.s && st.b.subtypes.length>1) c+=' › <b>'+esc(st.s.label)+'</b>';
       c+='</span>';
     } else {
-      c='<span>업무 유형을 고르면 순서가 열려요. 지금은 <b>4갈래</b>가 접혀 있어요.</span>';
+      c='<span>아래 <b>4갈래</b> 중 하나를 누르시면 순서가 열립니다.</span>';
     }
     $('#crumb').innerHTML=c;
 
