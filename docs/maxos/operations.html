@@ -141,7 +141,6 @@
         <a href="#gates" data-tab="gates">일정·승인</a>
         <a href="#capacity" data-tab="capacity">사람·업무 배정</a>
         <a href="#team" data-tab="team">우리 팀</a>
-        <a href="#clients" data-tab="clients">고객사 현황</a>
       </nav>
 
       <!-- ══════════ 한눈에 보기 ══════════ -->
@@ -177,20 +176,10 @@
           </article>
         </div>
 
-        <div class="grid-2 mt">
-          <article class="panel">
-            <div class="panel-head"><h2>오늘 살펴볼 일</h2></div>
-            <div id="ov-actions"></div>
-          </article>
-          <article class="panel">
-            <div class="panel-head"><h2>앞으로 2주 여력 예측</h2><span class="badge-nolink">연결 안 됨</span></div>
-            <div class="empty-big">
-              <div class="eicon">↗</div>
-              <b>아직 예측을 만들 수 없어요</b>
-              <p>배정된 시간 정보가 연결되면, 앞으로 2주 동안 누가 여유 있고 누가 바빠지는지 여기서 미리 볼 수 있어요.</p>
-            </div>
-          </article>
-        </div>
+        <article class="panel mt">
+          <div class="panel-head"><h2>오늘 살펴볼 일</h2></div>
+          <div id="ov-actions"></div>
+        </article>
 
         <div class="mt" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
           <span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span>
@@ -206,19 +195,9 @@
             <button data-view="board">카드로 보기</button>
             <button data-view="gantt">일정으로 보기</button>
           </div>
-          <select id="pj-group" aria-label="상태 필터">
-            <option value="">모든 상태</option>
-          </select>
-          <select id="pj-cat" aria-label="업무 유형 필터">
-            <option value="">모든 유형</option>
-          </select>
-          <select id="pj-quick" aria-label="빠른 필터">
-            <option value="">전체 기간</option>
-            <option value="due7">이번 주 마감</option>
-            <option value="late">마감일 지남</option>
-          </select>
+          <span id="pj-chip"></span>
           <span class="spacer"></span>
-          <input type="search" id="pj-search" placeholder="프로젝트 이름 검색" aria-label="프로젝트 검색" />
+          <span class="mono" id="pj-count" style="font-size:11px;color:var(--muted2)"></span>
         </div>
 
         <div id="pj-table" class="panel" style="padding:10px 6px">
@@ -241,7 +220,7 @@
               <button data-zoom="week" class="on">주</button>
               <button data-zoom="month">월</button>
             </div>
-            <span style="font-size:11.5px;color:var(--muted2)">프로젝트 일정은 실제 데이터, 세부 할 일(Task) 줄은 <span class="badge-sample">샘플 데이터</span> 예요</span>
+            <span style="font-size:11.5px;color:var(--muted2)">Notion 프로젝트의 시작일·마감일 기준이에요</span>
           </div>
           <div class="gantt-wrap"><div class="gantt" id="pj-gantt"></div></div>
           <div class="g-legend">
@@ -377,20 +356,6 @@
         <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
       </section>
 
-      <!-- ══════════ 고객사 현황 ══════════ -->
-      <section class="ops-section" id="sec-clients">
-        <article class="panel">
-          <div class="panel-head"><h2>고객사 현황</h2><span class="badge-nolink">연결 안 됨</span></div>
-          <div class="empty-big" style="padding:56px 20px">
-            <div class="eicon">◇</div>
-            <b>고객사 정보가 아직 연결되지 않았어요</b>
-            <p>Notion 고객사 DB가 연결되면 고객사별 진행 프로젝트·최근 접점·다음 일정·살펴볼 이슈를 여기서 볼 수 있어요.
-            지금은 각 프로젝트의 Notion 페이지에서 확인해 주세요.</p>
-            <div style="margin-top:18px"><a class="btn" href="#projects">진행 중인 일 보기</a></div>
-          </div>
-        </article>
-      </section>
-
     </main>
   </div>
 
@@ -409,8 +374,7 @@
       tasks: ['이번 주 할 일을 일정으로 확인해 보세요', '프로젝트별 세부 할 일과 담당·기간을 봐요.'],
       gates: ['결정을 기다리는 일이 있어요', '사람의 판단이 필요한 일들이 여기 모여요.'],
       capacity: ['누가 새 업무를 맡을 수 있나요?', '구성원별 업무 배정 상태를 확인하고 조정해요.'],
-      team: ['우리 팀', 'MAX실 구성원의 역할과 현재 상태를 봐요.'],
-      clients: ['고객사 현황', '고객사별 진행 상황과 다음 일정을 봐요.']
+      team: ['우리 팀', 'MAX실 구성원의 역할과 현재 상태를 봐요.']
     };
 
     /* ── 해시 라우팅: #tab&key=value ── */
@@ -437,9 +401,8 @@
 
     function applyParams(r) {
       if (r.tab === 'projects') {
-        if (r.params.due === '7') $('#pj-quick').value = 'due7';
-        if (r.params.late === '1') $('#pj-quick').value = 'late';
-        if (r.params.group) $('#pj-group').value = r.params.group;
+        PJ_FILTER = r.params.due === '7' ? 'due7' : r.params.late === '1' ? 'late'
+                  : r.params.group ? 'group:' + r.params.group : '';
         if (r.params.view && ['table', 'board', 'gantt'].indexOf(r.params.view) >= 0) {
           PJ_VIEW = r.params.view;
           $$('#pj-views button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-view') === PJ_VIEW); });
@@ -546,23 +509,9 @@
 
     /* ── 진행 중인 일 ── */
     var PJ_VIEW = 'table';
+    var PJ_FILTER = '';   /* '' | due7 | late | group:<key> — 홈에서 넘어온 딥링크 상태 */
+
     function initProjectFilters() {
-      var gsel = $('#pj-group');
-      MAXOS.groupOrder.forEach(function (g) {
-        if (!DB.projects.some(function (p) { return p.group === g; })) return;
-        var o = document.createElement('option');
-        o.value = g; o.textContent = MAXOS.groupMeta[g].label;
-        gsel.appendChild(o);
-      });
-      var cats = {};
-      DB.projects.forEach(function (p) { p.categories.forEach(function (c) { cats[c] = 1; }); });
-      Object.keys(cats).sort().forEach(function (c) {
-        var o = document.createElement('option');
-        o.value = c; o.textContent = c;
-        $('#pj-cat').appendChild(o);
-      });
-      ['pj-group', 'pj-cat', 'pj-quick'].forEach(function (id) { $('#' + id).addEventListener('change', renderProjects); });
-      $('#pj-search').addEventListener('input', renderProjects);
       $$('#pj-views button').forEach(function (b) {
         b.addEventListener('click', function () {
           PJ_VIEW = b.getAttribute('data-view');
@@ -580,14 +529,34 @@
     }
 
     function filteredProjects() {
-      var g = $('#pj-group').value, c = $('#pj-cat').value, q = ($('#pj-search').value || '').trim(), quick = $('#pj-quick').value;
-      return DB.projects.filter(function (p) {
-        if (g && p.group !== g) return false;
-        if (c && p.categories.indexOf(c) < 0) return false;
-        if (q && p.title.indexOf(q) < 0) return false;
-        if (quick === 'due7' && !p.dueSoon) return false;
-        if (quick === 'late' && !p.delayed) return false;
-        return true;
+      if (!PJ_FILTER) return DB.projects;
+      if (PJ_FILTER === 'due7') return DB.projects.filter(function (p) { return p.dueSoon; });
+      if (PJ_FILTER === 'late') return DB.projects.filter(function (p) { return p.delayed; });
+      var g = PJ_FILTER.slice(6);
+      return DB.projects.filter(function (p) { return p.group === g; });
+    }
+
+    function filterChipLabel() {
+      if (PJ_FILTER === 'due7') return '이번 주 마감만';
+      if (PJ_FILTER === 'late') return '마감일 지난 일만';
+      if (PJ_FILTER.indexOf('group:') === 0) {
+        var m = MAXOS.groupMeta[PJ_FILTER.slice(6)];
+        return m ? m.label + '만' : '';
+      }
+      return '';
+    }
+
+    function renderFilterChip() {
+      var el = $('#pj-chip');
+      var label = filterChipLabel();
+      el.innerHTML = label
+        ? '<button class="btn sm" id="pj-chip-btn" style="gap:7px">' + esc(label) + ' <span aria-hidden="true">✕</span></button>'
+        : '';
+      var btn = $('#pj-chip-btn');
+      if (btn) btn.addEventListener('click', function () {
+        PJ_FILTER = '';
+        location.hash = '#projects' + (PJ_VIEW !== 'table' ? '&view=' + PJ_VIEW : '');
+        renderProjects();
       });
     }
 
@@ -612,6 +581,8 @@
       $('#pj-board').style.display = PJ_VIEW === 'board' ? '' : 'none';
       $('#pj-gantt-wrap').style.display = PJ_VIEW === 'gantt' ? '' : 'none';
       var list = filteredProjects();
+      renderFilterChip();
+      $('#pj-count').textContent = list.length + '건';
 
       if (PJ_VIEW === 'table') {
         $('#pj-tbody').innerHTML = list.length ? list.map(function (p) {
@@ -687,7 +658,6 @@
 
       var rows = '';
       var sorted = withDates.slice().sort(function (a, b) { return a.start - b.start; });
-      var firstActive = sorted.filter(function (p) { return p.group === 'active'; })[0];
       sorted.forEach(function (p) {
         var bx = x(new Date(Math.max(p.start, lo)));
         var bw = Math.max(pxd, x(new Date(Math.min(p.end, hi))) - bx);
@@ -695,18 +665,6 @@
         rows += '<div class="g-row"><div class="g-label"><span>' + esc(p.title) + '</span><small>' + MAXOS.fmtDate(p.startDate) + ' ~ ' + MAXOS.fmtDate(p.endDate) + '</small></div>' +
           '<div class="g-bar" style="left:' + bx + 'px;width:' + bw + 'px" title="' + esc(p.title) + '"><i style="background:' + color + ';width:100%"></i></div></div>';
 
-        /* 첫 진행 중 프로젝트에 샘플 Task 하위 행 */
-        if (firstActive && p === firstActive) {
-          [['샘플 · 시안 A/B 제작', 0, 0.45], ['샘플 · 내부 검수·수정', 0.4, 0.75], ['샘플 · 최종 승인·납품', 0.7, 1]].forEach(function (tk) {
-            var span = p.end - p.start;
-            var s = new Date(p.start.getTime() + span * tk[1]);
-            var e = new Date(p.start.getTime() + span * tk[2]);
-            var tx = x(new Date(Math.max(s, lo)));
-            var tw = Math.max(pxd, x(new Date(Math.min(e, hi))) - tx);
-            rows += '<div class="g-row task"><div class="g-label"><span>└ ' + esc(tk[0]) + ' <span class="badge-sample" style="height:16px;font-size:9px;padding:0 6px;vertical-align:1px">샘플</span></span></div>' +
-              '<div class="g-bar" style="left:' + tx + 'px;width:' + tw + 'px"><i style="background:rgba(255,212,92,.7);width:100%"></i></div></div>';
-          });
-        }
       });
 
       var todayX = x(t);
