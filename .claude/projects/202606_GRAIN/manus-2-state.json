@@ -1,0 +1,52 @@
+{
+  "manus_2": {
+    "lens_translation_gate": {
+      "core_value": "정밀(Precision)-중력(Gravity)-행위(Gesture) 삼각 구조. 표면 노출은 정밀과 행위, 중력은 내부 철학",
+      "designer_lens": "진짜는 증명되어야 믿을 수 있다 — 정지된 사물은 증거가 될 수 없다",
+      "visual_proof": "소재 고유색만 사용, 공차·mm·초 단위 표기를 실제 그래픽 요소로 노출, 낙하선 중심 구도",
+      "motion_proof": "Grip → Flip → Fall → Settle (4박자 최소 단위)",
+      "human_touch_proof": "동일한 그립·각도로 반복 가능한 절차, 완료 후 손이 떠나는 프레임 필수"
+    },
+    "visual_identity_dna_file": "05-visual-dna.md",
+    "competitive_visual_code_summary": {
+      "overcrowded_codes": ["정지된 정물 프레젠테이션", "우드톤 따뜻한 내추럴 팔레트", "타임리스 감성 카피"],
+      "underused_codes": ["공차·측정 기호 기반 그래픽 시스템", "매크로 접사+하드라이트 촬영", "관절·개스킷·나사산 노출"],
+      "codes_to_avoid": ["브랜드 컬러 도입", "정물 사진 위주 리드샷", "선물용 럭셔리 소품 프레이밍"],
+      "visual_gap": ["작동 증거로서의 계측기 미학", "낙하선 중심 하드라이트 매크로 촬영", "각인된 공차 기호 심볼 시스템"]
+    },
+    "concept_territories": [
+      {"concept_name": "Instrument Grade", "core_idea": "캘리브레이션된 도구", "mood": "냉철·클리니컬", "strategy_fit_score": 9, "risk": "정서적 매력 저하"},
+      {"concept_name": "Gravity Cut", "core_idea": "찰나의 증거 샷", "mood": "긴장감·다이내믹", "strategy_fit_score": 7, "risk": "가벼운 챌린지 콘텐츠로 소비될 위험"},
+      {"concept_name": "Field Notes", "core_idea": "검증된 기록물", "mood": "탐사적·권위", "strategy_fit_score": 7, "risk": "빈티지로 오독 위험"},
+      {"concept_name": "Zero Point", "core_idea": "리셋 기준점", "mood": "미니멀·절제", "strategy_fit_score": 5, "risk": "웰니스 클리셰 근접"},
+      {"concept_name": "Suspended Load", "core_idea": "중력을 담는 장치", "mood": "사변적·극적", "strategy_fit_score": 6, "risk": "실행 난도 최상"},
+      {"concept_name": "Tolerance Mark", "core_idea": "공차기호의 그래픽화", "mood": "대담·컬렉터블", "strategy_fit_score": 4, "risk": "럭셔리 톤 훼손 위험"}
+    ],
+    "client_mood_matrix": [
+      {"concept": "Instrument Grade", "brand_fit": 5, "target_fit": 5, "market_diff": 4, "visual_scalability": 5, "execution_feasibility": 4, "risk_level": 5, "total": 28},
+      {"concept": "Gravity Cut", "brand_fit": 4, "target_fit": 4, "market_diff": 5, "visual_scalability": 3, "execution_feasibility": 4, "risk_level": 4, "total": 24},
+      {"concept": "Field Notes", "brand_fit": 4, "target_fit": 4, "market_diff": 3, "visual_scalability": 4, "execution_feasibility": 4, "risk_level": 5, "total": 24},
+      {"concept": "Zero Point", "brand_fit": 2, "target_fit": 3, "market_diff": 2, "visual_scalability": 3, "execution_feasibility": 4, "risk_level": 3, "total": 17},
+      {"concept": "Suspended Load", "brand_fit": 4, "target_fit": 3, "market_diff": 5, "visual_scalability": 2, "execution_feasibility": 2, "risk_level": 2, "total": 18},
+      {"concept": "Tolerance Mark", "brand_fit": 3, "target_fit": 2, "market_diff": 4, "visual_scalability": 3, "execution_feasibility": 3, "risk_level": 2, "total": 17}
+    ],
+    "living_system_gate": {
+      "instrument_grade": {"static_identity": "스틸그레이+스모크글라스, Suisse Mono 공차 타이포, 계측기 케이스", "motion_behavior": "Grip-Flip-Fall-Settle 실험실 슬로우모션, 실측 공차값 오버레이", "responsive_rule": "매체 축소 시 공차 표기 축약, 모노스페이스 정렬 유지", "variable_type_rule": "실제 낙하시간 실측값이 개체마다 달라 타이포 콘텐츠 자체로 가변", "generative_rule": "실측 데이터 입력값으로 인증서·각인 그래픽 자동 생성"},
+      "gravity_cut": {"static_identity": "다크차콜+브라스 하이라이트, Grotesk 대형 넘버링, 크롭 그리드", "motion_behavior": "Flip 모션블러+Fall 프레임정지 교차 스트로보 편집", "responsive_rule": "정적 배너 축소 시 Fall 절정 프레임 1장, 여백:피사체 6:4 유지", "variable_type_rule": "낙하시간 타이머 숫자가 실측 초단위로 실시간 카운트", "generative_rule": "크롭 각도·여백 위치를 실측 낙하각도 기반 자동 재배치"}
+    },
+    "brutalist_framework": {
+      "decision": "부분 적용",
+      "reason": "Exposed Structure/Raw Surface 원칙만 Instrument Grade의 공차 표기·소재 노출에 흡수, 거친 질감·비대칭·반정제 타이포 등 스타일적 브루탈리즘은 전면 배제",
+      "usable_elements": ["Exposed Structure(공차표기·조립선·개스킷 노출)", "Raw Surface(무광 텍스처·브러시드 마감선)", "Grid Honesty(정렬선 드러내는 레이아웃)"],
+      "avoid_elements": ["거친 콘크리트 질감", "의도적 비대칭·불완전 정렬", "무채색 단일 팔레트 전면화"],
+      "risk": "제작 파트너가 문자 그대로 해석해 프리미엄 톤 훼손 위험",
+      "mitigation": "Do/Don't 페어 이미지로 무드보드 명시, 소재 위계(3종) 고정 룰 문서화"
+    },
+    "concept_shortlist": [
+      {"role": "안전(메인)", "name": "Instrument Grade", "one_line": "캘리브레이션된 도구로서의 모래시계 — 정밀함이 곧 신뢰의 증거", "usage": "웹·제품샷"},
+      {"role": "차별화(보조)", "name": "Gravity Cut", "one_line": "중력이 작동하는 찰나를 포착한 증거 샷 — 행위 자체가 브랜드", "usage": "SNS 숏폼"},
+      {"role": "실험적 대안(3순위 보류)", "name": "Field Notes", "one_line": "검증된 기록물로서의 모래시계", "usage": "미채택, 예산/일정 이슈 시 대체 후보"}
+    ],
+    "director_decision_needed": []
+  }
+}
