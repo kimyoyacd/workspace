@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>MAX OS — 결과물 보관함</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+  <style>
+    /* ── 결과물 보관함 전용 ── */
+    .main * { word-break: keep-all; }
+
+    .lib-section { display: none; }
+    .lib-section.on { display: block; }
+
+    .lib-intro { margin: 0 2px 16px; max-width: 720px; }
+    .lib-intro h2 { font-size: 20px; letter-spacing: -0.04em; margin: 0 0 8px; display: flex; align-items: center; gap: 10px; }
+    .lib-intro h2 .ldot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .lib-intro p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.65; }
+
+    .promote-rule {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 13px 16px; margin: 14px 0 0; font-size: 12.5px; color: #555; max-width: 720px;
+    }
+    .promote-rule .pr-ic {
+      flex: none; width: 24px; height: 24px; border-radius: 8px;
+      background: var(--panel); border: 1px solid var(--line);
+      display: grid; place-items: center; font-size: 12px;
+    }
+    .promote-rule b { color: var(--text); }
+
+    /* 빈 상태 카드 */
+    .empty-card {
+      margin-top: 16px;
+      border: 1.5px dashed #d6d4cc; border-radius: var(--radius); background: var(--card);
+      padding: 44px 28px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .empty-ic {
+      width: 52px; height: 52px; border-radius: 18px;
+      background: var(--panel); border: 1px solid var(--line);
+      display: grid; place-items: center; font-size: 22px;
+    }
+    .empty-card h3 { margin: 2px 0 0; font-size: 16px; letter-spacing: -0.03em; }
+    .empty-card p { margin: 0; font-size: 13px; color: var(--muted); max-width: 420px; line-height: 1.65; }
+    .empty-card .btn { margin-top: 6px; }
+
+    /* 메타데이터 안내 표 */
+    .meta-panel { margin-top: 18px; }
+    .meta-panel .tbl td:first-child { font-weight: 700; white-space: nowrap; }
+    .meta-panel .tbl td:last-child { color: var(--muted); font-size: 12.5px; }
+
+    /* SoT 안내 */
+    .sot-flow {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      margin-top: 14px; font-size: 12.5px; font-weight: 650; color: #555;
+    }
+    .sot-flow .sf {
+      background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+      padding: 7px 14px;
+    }
+    .sot-flow .arr { color: #b5b5af; font-weight: 400; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    .info-card h4 { margin: 0 0 8px; font-size: 13.5px; font-weight: 750; }
+    .info-card p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .info-card ul { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .info-card li { font-size: 12.5px; color: #555; padding-left: 14px; position: relative; line-height: 1.5; }
+    .info-card li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: #cfcfca; }
+
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .empty-card { padding: 32px 18px; }
+    }
+  </style>
+</head>
+<body data-page="library">
+  <div class="app">
+    <main class="main">
+
+      <div class="page-head">
+        <div class="page-eyebrow">MAX OS · LIBRARY</div>
+        <h1 class="page-title">결과물 보관함</h1>
+        <p class="page-desc">승인을 통과한 결과물과 공식 기준 문서를 한곳에 모아요.</p>
+      </div>
+
+      <nav class="local-tabs" aria-label="보관함 분류 탭">
+        <a href="#all">전체 자산</a>
+        <a href="#identity">인물 Identity</a>
+        <a href="#product">제품·배경</a>
+        <a href="#typo">타이포</a>
+        <a href="#av">영상·사운드</a>
+        <a href="#sot">공식 기준 문서</a>
+        <a href="#learning">사용·학습</a>
+      </nav>
+
+      <!-- 전체 자산 -->
+      <section class="lib-section" id="sec-all">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--lavender)"></span>전체 자산</h2>
+          <p>워크플로우를 완료하고 검수를 통과한 이미지·영상·사운드·타이포 자산이 모두 여기에 모여요. 카테고리 탭에서 종류별로 나눠 볼 수 있어요.</p>
+        </div>
+        <div class="promote-rule">
+          <span class="pr-ic">✓</span>
+          <span><b>등록 조건</b> — 검수(Human Review·QA)를 통과해 승격된 자산만 보관함에 등록돼요. 작업 중인 시안이나 미검수 산출물은 올라오지 않아요.</span>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">▤</span>
+          <h3>아직 등록된 자산이 없어요</h3>
+          <p>워크플로우를 완료하고 검수를 통과하면 여기에 쌓여요. 자산 데이터 연결도 준비 중이에요.</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="start.html">새 업무 시작하기 →</a>
+        </div>
+        <div class="panel meta-panel">
+          <div class="panel-head" style="margin-bottom:10px">
+            <h2 style="font-size:16px">자산 카드에 기록될 정보</h2>
+            <span class="badge-nolink">연결 안 됨</span>
+          </div>
+          <p style="margin:0 0 12px;font-size:12.5px;color:var(--muted)">자산이 등록되면 카드마다 아래 필드가 함께 기록돼요. 재사용할 때 권리·출처를 바로 확인할 수 있어요.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>필드</th><th>무엇이 기록되나요</th></tr></thead>
+              <tbody>
+                <tr><td>카테고리</td><td>인물 Identity · 제품·배경 · 타이포 · 영상·사운드 중 어디에 속하는지</td></tr>
+                <tr><td>소스 프로젝트</td><td>이 자산이 만들어진 프로젝트와 클라이언트</td></tr>
+                <tr><td>권리 범위</td><td>사용 가능한 채널·국가·기간 등 권리 조건</td></tr>
+                <tr><td>프롬프트·모델</td><td>생성에 사용한 프롬프트와 AI 모델</td></tr>
+                <tr><td>버전</td><td>기준 이미지·파생본의 버전 이력</td></tr>
+                <tr><td>검수 상태</td><td>어떤 검수(QA·Human Review)를 통과했는지</td></tr>
+                <tr><td>재사용 횟수</td><td>다른 프로젝트에서 다시 사용된 횟수</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 인물 Identity -->
+      <section class="lib-section" id="sec-identity">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--orange)"></span>인물 Identity</h2>
+          <p>AI로 만든 인물의 기준 이미지(Identity Master)와 포즈·표정·앵글·의상 파생 에셋을 보관해요. 같은 인물을 여러 프로젝트에서 일관되게 다시 쓸 수 있게 하는 곳이에요.</p>
+        </div>
+        <div class="promote-rule">
+          <span class="pr-ic">✓</span>
+          <span><b>승격 조건</b> — 인물 Identity 9단계 중 7단계 <b>Identity &amp; Brand QA</b>(얼굴 일관성·해부학·브랜드·권리·왜곡 검사)를 통과한 자산만 등록돼요.</span>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">👤</span>
+          <h3>아직 등록된 자산이 없어요</h3>
+          <p>워크플로우를 완료하고 검수를 통과하면 여기에 쌓여요. 첫 인물 자산부터 만들어 볼까요?</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="workflows.html#visual-asset">워크플로우에서 시작하기 →</a>
+        </div>
+      </section>
+
+      <!-- 제품·배경 -->
+      <section class="lib-section" id="sec-product">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--blue)"></span>제품·배경</h2>
+          <p>제품·목업 이미지와 배경·공간·텍스처 에셋을 보관해요. 인물 자산과 같은 원리로 운영하되, 기준 이미지는 Asset Master로 관리해요.</p>
+        </div>
+        <div class="promote-rule">
+          <span class="pr-ic">✓</span>
+          <span><b>등록 조건</b> — 제품 정확도·브랜드 톤·권리 검수를 통과해 승격된 자산만 등록돼요.</span>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">◇</span>
+          <h3>아직 등록된 자산이 없어요</h3>
+          <p>워크플로우를 완료하고 검수를 통과하면 여기에 쌓여요.</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="workflows.html#visual-asset">워크플로우에서 시작하기 →</a>
+        </div>
+      </section>
+
+      <!-- 타이포 -->
+      <section class="lib-section" id="sec-typo">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--yellow)"></span>타이포</h2>
+          <p>타이포·카피 비주얼 에셋을 보관해요. 캠페인 헤드라인, KV용 레터링처럼 글자가 곧 비주얼이 되는 산출물이 대상이에요.</p>
+        </div>
+        <div class="promote-rule">
+          <span class="pr-ic">✓</span>
+          <span><b>등록 조건</b> — 브랜드 톤·가독성·권리 검수를 통과해 승격된 자산만 등록돼요.</span>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">Aa</span>
+          <h3>아직 등록된 자산이 없어요</h3>
+          <p>워크플로우를 완료하고 검수를 통과하면 여기에 쌓여요.</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="workflows.html#visual-asset">워크플로우에서 시작하기 →</a>
+        </div>
+      </section>
+
+      <!-- 영상·사운드 -->
+      <section class="lib-section" id="sec-av">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--green)"></span>영상·사운드</h2>
+          <p>최종 검수를 통과한 영상 본편·규격별 파생본과 음악·효과음·환경음 사운드 트랙을 보관해요. 스토리보드 CUT 카드도 함께 남아 재연출에 쓸 수 있어요.</p>
+        </div>
+        <div class="promote-rule">
+          <span class="pr-ic">✓</span>
+          <span><b>등록 조건</b> — 편집·사운드 믹싱까지 마치고 최종 검수를 통과한 결과물만 등록돼요.</span>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">▷</span>
+          <h3>아직 등록된 자산이 없어요</h3>
+          <p>워크플로우를 완료하고 검수를 통과하면 여기에 쌓여요.</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="workflows.html#video">워크플로우에서 시작하기 →</a>
+        </div>
+      </section>
+
+      <!-- 공식 기준 문서 (Project SoT) -->
+      <section class="lib-section" id="sec-sot">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--black)"></span>공식 기준 문서 (Project SoT)</h2>
+          <p>Project SoT는 프로젝트마다 하나씩 두는 <b>공식 기준 문서</b>예요. 확정된 방향·승인 기록·최종 산출물의 위치를 한 문서에 모아, "무엇이 최종인가"를 이 문서 하나로 판단해요.</p>
+        </div>
+        <div class="sot-flow" aria-label="SoT가 만들어지는 흐름">
+          <span class="sf">실행</span><span class="arr">→</span>
+          <span class="sf">Human Review</span><span class="arr">→</span>
+          <span class="sf">Project SoT 기록</span><span class="arr">→</span>
+          <span class="sf">승인 자산 보관</span>
+        </div>
+        <div class="two-col">
+          <div class="panel info-card">
+            <h4>지금은 어디서 보나요?</h4>
+            <p>현재는 각 프로젝트의 <b>Notion 페이지</b>가 공식 기준 문서 역할을 해요. 보관함 안으로 모으는 연결은 준비 중이에요.</p>
+            <div style="margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <a class="btn primary" href="operations.html#projects">진행 중인 일에서 Notion 링크 확인하기 →</a>
+              <span class="badge-nolink">연결 안 됨</span>
+            </div>
+          </div>
+          <div class="panel info-card">
+            <h4>공식 기준 문서에 담기는 것</h4>
+            <ul>
+              <li>확정된 방향과 결정 근거</li>
+              <li>Human Review·Gate 승인 기록</li>
+              <li>최종 산출물의 위치와 버전</li>
+              <li>자산화·재사용 결과</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 사용·학습 -->
+      <section class="lib-section" id="sec-learning">
+        <div class="lib-intro">
+          <h2><span class="ldot" style="background:var(--lavender)"></span>사용·학습</h2>
+          <p>자산이 실제로 어떻게 쓰였는지를 누적하는 곳이에요. 잘 된 것과 안 된 것을 함께 남겨서, 다음 프로젝트가 같은 시행착오를 반복하지 않게 해요.</p>
+        </div>
+        <div class="panel info-card" style="margin-top:14px;max-width:720px">
+          <h4>여기에 기록될 이력</h4>
+          <ul>
+            <li>사용처 — 어떤 프로젝트·채널에서 다시 쓰였는지</li>
+            <li>성과 — 사용 결과와 클라이언트 반응</li>
+            <li>프롬프트·모델 — 재현에 필요한 생성 조건</li>
+            <li>실패 이력 — 재작업 원인과 피해야 할 조합</li>
+          </ul>
+        </div>
+        <div class="empty-card">
+          <span class="empty-ic">◎</span>
+          <h3>아직 기록된 이력이 없어요</h3>
+          <p>자산이 등록되고 재사용되기 시작하면 사용·학습 이력이 여기에 쌓여요.</p>
+          <span class="badge-nolink">연결 안 됨</span>
+          <a class="btn primary" href="start.html">새 업무 시작하기 →</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="assets/shell.js"></script>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.local-tabs a');
+      var sections = document.querySelectorAll('.lib-section');
+
+      function show() {
+        var h = (location.hash || '#all').replace('#', '');
+        if (!document.getElementById('sec-' + h)) h = 'all';
+        sections.forEach(function (s) { s.classList.toggle('on', s.id === 'sec-' + h); });
+        tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('href') === '#' + h); });
+      }
+
+      window.addEventListener('hashchange', show);
+      show();
+
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof shellSetSync === 'function') shellSetSync('stale', '자산 데이터 연결 전');
+      });
+    })();
+  </script>
+</body>
+</html>

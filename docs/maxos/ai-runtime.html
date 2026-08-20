@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>MAX OS — AI와 일하기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+  <style>
+    /* ── AI와 일하기 전용 ── */
+    .main h1, .main h2, .main h3, .main h4, .main p, .main li, .main td, .main th, .main summary { word-break: keep-all; }
+
+    .tab-panel { display: none; }
+    .tab-panel.on { display: block; }
+
+    .sec { margin-bottom: 18px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .panel h3 { font-size: 15px; letter-spacing: -0.03em; margin: 0 0 8px; }
+    .panel p { margin: 0 0 10px; color: #555; font-size: 13.5px; line-height: 1.7; }
+    .panel p:last-child { margin-bottom: 0; }
+    .panel ul, .panel ol { margin: 6px 0 12px; padding-left: 20px; color: #555; font-size: 13.5px; line-height: 1.8; }
+    .panel ul:last-child, .panel ol:last-child { margin-bottom: 0; }
+    .panel li b { color: var(--text); }
+
+    /* 체크/금지 리스트 */
+    .do-list, .dont-list { list-style: none; padding-left: 0 !important; }
+    .do-list li, .dont-list li { position: relative; padding-left: 24px; margin-bottom: 4px; }
+    .do-list li::before { content: '✓'; position: absolute; left: 2px; font-weight: 800; color: var(--text); }
+    .dont-list li::before { content: '—'; position: absolute; left: 2px; font-weight: 800; color: var(--muted2); }
+
+    /* 단계 카드 (첫 실행 경로 등) */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4px; }
+    .step { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--panel); padding: 16px 16px 14px; }
+    .step i { font: 700 10px/1 var(--mono); letter-spacing: 0.14em; color: #8c8c86; display: block; margin-bottom: 10px; font-style: normal; }
+    .step b { display: block; font-size: 13.5px; margin-bottom: 5px; letter-spacing: -0.02em; }
+    .step p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.6; }
+
+    /* 아코디언 (Claude Code 8항목) */
+    details.acc { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--card); margin-bottom: 10px; overflow: hidden; }
+    details.acc summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px;
+      padding: 15px 18px; font-size: 14.5px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    details.acc summary::-webkit-details-marker { display: none; }
+    details.acc summary .acc-no { font: 700 10px/1 var(--mono); letter-spacing: 0.12em; color: #8c8c86; flex: none; width: 22px; }
+    details.acc summary .acc-hint { margin-left: auto; font-size: 11.5px; font-weight: 500; color: var(--muted2); text-align: right; }
+    details.acc summary .acc-caret { flex: none; width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 8px; display: grid; place-items: center; font-size: 11px; color: var(--muted); background: var(--panel); }
+    details.acc[open] summary { border-bottom: 1px solid var(--line-soft); }
+    details.acc[open] summary .acc-caret { background: var(--black); border-color: var(--black); color: #fff; }
+    .acc-body { padding: 6px 18px 18px; }
+
+    /* 6단 구조 필드 */
+    .fld { padding: 12px 0 2px; border-bottom: 1px dashed var(--line-soft); }
+    .fld:last-child { border-bottom: 0; }
+    .fld h4 { font: 700 10px/1.2 var(--mono); letter-spacing: 0.14em; color: #8c8c86; margin: 0 0 7px; text-transform: uppercase; }
+    .fld p { margin: 0 0 8px; font-size: 13px; color: #555; line-height: 1.7; }
+    .fld ul, .fld ol { margin: 0 0 8px; padding-left: 18px; font-size: 13px; color: #555; line-height: 1.8; }
+    .fld code, .panel code { font-family: var(--mono); font-size: 11.5px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px; color: var(--text); }
+
+    /* 파일 트리 */
+    .tree { font-family: var(--mono); font-size: 12px; line-height: 1.9; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px 18px; overflow-x: auto; white-space: pre; color: #444; margin: 0; }
+    .tree b { color: var(--text); font-weight: 700; }
+
+    /* 그룹 헤딩 (Agent 표) */
+    .grp-head { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; }
+    .grp-head:first-of-type { margin-top: 4px; }
+    .grp-head h3 { margin: 0; font-size: 14.5px; }
+    .name-mono { font-family: var(--mono); font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+    .say { color: var(--muted); font-size: 12.5px; }
+
+    /* 연결 상태 카드 */
+    .conn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .conn { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px 18px; display: flex; flex-direction: column; }
+    .conn-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .conn h3 { margin: 0; font-size: 15.5px; }
+    .conn small { display: block; font-size: 11.5px; color: var(--muted2); margin-top: 3px; font-weight: 500; }
+    .conn p { font-size: 12.5px; color: var(--muted); margin: 0 0 12px; line-height: 1.65; }
+    .conn .conn-foot { margin-top: auto; font: 500 10.5px/1.5 var(--mono); color: var(--muted2); }
+
+    /* 요청 예시 카드 */
+    .ask { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--panel); padding: 16px 18px 14px; }
+    .ask q { display: block; quotes: '“' '”'; font-size: 14px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .ask p { font-size: 12px; color: var(--muted); margin: 0 0 6px; line-height: 1.65; }
+    .ask p b { color: var(--text); }
+
+    /* 문제 해결 카드 */
+    .tr-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .tr-fld { padding: 10px 0 2px; border-bottom: 1px dashed var(--line-soft); }
+    .tr-fld:last-child { border-bottom: 0; }
+    .tr-fld h4 { font: 700 10px/1.2 var(--mono); letter-spacing: 0.14em; color: #8c8c86; margin: 0 0 6px; }
+    .tr-fld p { font-size: 13px; margin: 0 0 8px; }
+    .tr-fld ol { font-size: 13px; margin: 0 0 8px; padding-left: 18px; }
+
+    .owner-cap { font: 500 10.5px/1.4 var(--mono); color: var(--muted2); letter-spacing: 0.02em; margin: 20px 2px 6px; }
+
+    .inline-link { color: var(--text); font-weight: 650; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #cfcfca; }
+    .inline-link:hover { text-decoration-color: var(--text); }
+
+    @media (max-width: 1100px) {
+      .grid3, .steps { grid-template-columns: 1fr; }
+      .grid2, .conn-grid, .tr-row { grid-template-columns: 1fr; }
+      details.acc summary .acc-hint { display: none; }
+    }
+  </style>
+</head>
+<body data-page="ai">
+  <div class="app">
+    <main class="main">
+
+      <div class="page-head">
+        <div class="page-eyebrow">MAX OS · AI RUNTIME</div>
+        <h1 class="page-title">AI와 함께 일하는 방법을 알아보세요</h1>
+        <p class="page-desc">MAX실이 리서치·시안·영상·산출물 작업을 AI로 실행하는 공간이에요. Claude Code는 이 환경에서 쓰는 실행 도구 중 하나예요.</p>
+      </div>
+
+      <nav class="local-tabs" aria-label="AI와 일하기 탭">
+        <a href="#overview">개요</a>
+        <a href="#claude-code">Claude Code</a>
+        <a href="#structure">프로젝트 구조</a>
+        <a href="#agents">Agent·Skill</a>
+        <a href="#connections">연결 상태</a>
+        <a href="#guide">사용 가이드</a>
+        <a href="#trouble">문제 해결</a>
+      </nav>
+
+      <!-- ═══════════ 탭 1 · 개요 ═══════════ -->
+      <section class="tab-panel" id="tab-overview">
+        <article class="panel sec">
+          <div class="panel-head"><h2>AI 실행 환경이 무엇인가요</h2></div>
+          <p>말로 요청하면 AI가 리서치·검수·산출물 제작을 대신 실행해 주는 작업 공간이에요. 요청은 한국어 문장으로 하고, 결과는 문서·HTML·이미지 같은 파일로 받아요.</p>
+          <p>이 환경은 세 가지로 이루어져 있어요.</p>
+          <ul>
+            <li><b>실행 도구</b> — Claude Code(대화형 실행 도구·터미널에서 실행)를 기본으로 써요.</li>
+            <li><b>일하는 규칙</b> — 저장소의 <code>CLAUDE.md</code>가 톤·검수·산출물 기준을 정해요. AI는 매 세션 이 규칙을 먼저 읽어요.</li>
+            <li><b>이 정보가 연결된 곳</b> — Notion 프로젝트 DB·시간 기록 시트·GitHub 저장소가 연결돼 있어요. <a class="inline-link" href="#connections">연결 상태 탭</a>에서 확인할 수 있어요.</li>
+          </ul>
+        </article>
+
+        <div class="grid2 sec">
+          <article class="panel">
+            <div class="panel-head"><h2>이런 일을 맡길 수 있어요</h2></div>
+            <ul class="do-list">
+              <li>RFP 분석·시장조사·레퍼런스 수집 같은 <b>리서치</b></li>
+              <li>시안 검수·수치 검증·발송 전 점검 같은 <b>검수</b></li>
+              <li>제안서 덱·리포트·인덱스 페이지 같은 <b>HTML 산출물 제작</b></li>
+              <li>영상 스토리보드·무드보드·비주얼 프롬프트 같은 <b>제작 준비</b></li>
+              <li>견적 원가표·마진 시나리오 같은 <b>초안 계산</b></li>
+            </ul>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>이런 일은 맡기면 안 돼요</h2></div>
+            <p>아래 결정은 사람의 승인이 필요해요. AI는 초안과 근거까지만 만들어요.</p>
+            <ul class="dont-list">
+              <li>최종 견적가·마진 결정 — <b>실장이 확정</b>해요</li>
+              <li>클라이언트에게 보내는 최종 발송 — <b>사람이 검토 후 보내요</b></li>
+              <li>계약·NDA 판단 — 법무 검토를 대체하지 않아요</li>
+              <li>출처 없는 수치를 그대로 쓰는 일 — 검증 불가 수치는 <b>재검증 필요</b>로 표기해요</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="panel sec">
+          <div class="panel-head"><h2>처음이라면 이 순서로 시작하세요</h2></div>
+          <div class="steps">
+            <div class="step"><i>STEP 1</i><b>Claude Code 여는 방법 익히기</b><p>설치·저장소 열기·연결 확인까지, Claude Code 탭의 순서를 그대로 따라 하면 돼요.</p></div>
+            <div class="step"><i>STEP 2</i><b>첫 요청 한 문장 보내기</b><p>사용 가이드 탭의 예시 문장을 그대로 복사해서 보내 보세요. 결과 파일이 어디에 생기는지 확인해요.</p></div>
+            <div class="step"><i>STEP 3</i><b>내 업무로 실습하기</b><p>실제 진행 중인 일 하나를 골라 검수나 리서치부터 맡겨 보세요. 처음 시작하기 메뉴에 역할별 경로가 있어요.</p></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+            <a class="btn primary" href="#claude-code">Claude Code 시작 방법 보기</a>
+            <a class="btn" href="onboarding.html">처음 시작하기에서 실습 이어가기</a>
+          </div>
+        </article>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 2 · Claude Code ═══════════ -->
+      <section class="tab-panel" id="tab-claude-code">
+        <article class="panel sec">
+          <div class="panel-head"><h2>Claude Code 사용설명서</h2></div>
+          <p>Claude Code는 터미널에서 대화로 일을 시키는 실행 도구예요. 아래 여덟 항목을 순서대로 열어 보면 처음 설치부터 문제 해결까지 이어져요. 각 항목은 <b>언제 필요한가 → 준비물 → 따라 하기 → 정상 결과 → 실패 시 조치 → 관련 템플릿</b> 순서로 정리했어요.</p>
+        </article>
+
+        <details class="acc" open>
+          <summary><span class="acc-no">01</span>처음 시작<span class="acc-hint">무엇을 할 수 있는지 · 첫 실행</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>Claude Code를 한 번도 써 본 적이 없거나, 무엇을 맡겨도 되는지 감이 없을 때 읽어요.</p></div>
+            <div class="fld"><h4>준비물</h4><ul><li>회사 계정으로 로그인할 수 있는 상태</li><li>MAX실 작업 저장소(workspace)에 접근 권한</li></ul></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li>개요 탭에서 <b>맡길 수 있는 일 / 맡기면 안 되는 일</b>을 먼저 구분해요.</li><li>터미널에서 작업 저장소 폴더로 이동한 뒤 <code>claude</code>를 입력해 실행해요.</li><li>첫 요청으로 "지금 진행 중인 프로젝트 노트 목록 보여줘"처럼 읽기만 하는 요청을 보내요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>대화 화면이 열리고, <code>.claude/projects/</code> 안의 프로젝트 노트 목록을 답으로 받아요. 파일이 바뀌는 작업은 아직 일어나지 않아요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>실행 명령을 찾지 못하면 아래 <b>02 설치·연결</b>을 먼저 진행해요. 로그인 오류가 나면 계정 담당자(실장)에게 권한을 확인해요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>첫 요청 문장 예시는 <a class="inline-link" href="#guide">사용 가이드 탭</a>에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">02</span>설치·연결<span class="acc-hint">환경 확인 · 저장소 열기 · 도구 연결</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>새 컴퓨터를 받았거나, Claude Code가 실행되지 않거나, Notion·Figma 같은 외부 도구 연결(MCP)이 필요할 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><ul><li>터미널 사용이 가능한 컴퓨터</li><li>GitHub 계정과 저장소 접근 권한</li><li>연결할 도구의 계정(Notion·Google 등)</li></ul></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li>공식 설치 안내에 따라 Claude Code를 설치하고 로그인해요.</li><li>작업 저장소를 내 컴퓨터로 복제(clone)한 뒤 그 폴더에서 실행해요.</li><li>외부 도구 연결(MCP·Model Context Protocol, 도구를 AI에 이어주는 방식)은 연결 담당 안내에 따라 추가해요.</li><li>"CLAUDE.md 요약해줘"라고 보내 규칙 파일을 읽는지 확인해요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>실행하면 저장소 이름이 표시되고, CLAUDE.md 요약을 답으로 받아요. 연결한 도구는 <a class="inline-link" href="#connections">연결 상태 탭</a>의 표기와 같아야 해요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>저장소가 안 열리면 GitHub 권한을 먼저 확인해요. 도구 연결이 안 되면 <a class="inline-link" href="#trouble">문제 해결 탭의 연결 실패 항목</a>을 따라 해요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>연결 대상 목록은 <code>.claude/library/data-sources.md</code>(연결 주소록)에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">03</span>프로젝트 구조<span class="acc-hint">규칙·에이전트·산출물이 있는 곳</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>결과 파일이 어디에 생기는지, AI가 어떤 규칙을 따르는지 궁금할 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><p>없음 — 읽기만 하면 돼요.</p></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li><b>CLAUDE.md</b>(운영 규칙) → <b>.claude/</b>(에이전트·스킬·자산·프로젝트 노트) → <b>docs/</b>(산출물) 순서로 폴더를 열어 봐요.</li><li>진행 중인 프로젝트의 공식 기준 문서(Project SoT)를 <code>.claude/projects/YYYYMM_프로젝트명.md</code>에서 찾아 읽어요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>내 프로젝트의 노트 파일과 산출물 폴더 위치를 바로 짚을 수 있어요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>프로젝트 노트가 없으면 "○○ 프로젝트 노트 만들어줘"라고 요청해요. 규칙에 따라 자동으로 생성돼요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>자세한 폴더 설명은 <a class="inline-link" href="#structure">프로젝트 구조 탭</a>, 노트 작성 규칙은 <code>.claude/library/project-note-rules.md</code>에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">04</span>요청 작성법<span class="acc-hint">좋은 요청의 조건 · 수정 요청</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>결과가 기대와 다르게 나오거나, 요청을 몇 번씩 다시 쓰게 될 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><ul><li>클라이언트 이름과 이번 일의 목적</li><li>납기와 원하는 산출물 형태</li><li>참고자료(파일 위치·링크)</li></ul></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li>다섯 가지 필수 입력 — <b>클라이언트·목적·납기·산출물·참고자료</b> — 를 한 문단에 담아요.</li><li>수정할 때는 전체를 다시 쓰지 말고 <b>어느 부분을, 왜, 어떻게</b> 바꿀지 짚어서 말해요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>한 번의 요청으로 방향이 맞는 초안이 나오고, 수정 요청은 해당 부분만 바뀌어요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>결과가 계속 어긋나면 요청에 빠진 필수 입력이 없는지 확인하고, AI에게 "먼저 확인할 질문 있으면 물어봐"라고 요청해요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>바로 쓸 수 있는 예시 세 개가 <a class="inline-link" href="#guide">사용 가이드 탭</a>에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">05</span>Agent·Skill<span class="acc-hint">자동으로 붙는 전문가 도구</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>"검수해줘"라고만 했는데 여러 단계가 자동으로 실행되는 이유가 궁금할 때, 또는 특정 전문 작업을 정확히 부르고 싶을 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><p>없음 — 이름을 몰라도 자연어로 요청하면 알맞은 에이전트가 자동으로 붙어요.</p></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li>평소처럼 하고 싶은 일을 문장으로 요청해요. 예: "코웨이 시안 검수해줘".</li><li>AI가 어떤 에이전트를 쓰는지 실행 중에 표시돼요. 결과 요약에서 단계별 산출을 확인해요.</li><li>특정 에이전트를 지정하고 싶으면 이름을 함께 말해요. 예: "fact-checker로 이 수치 검증해줘".</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>검수 요청이면 검수 → 수치 검증 → 발송 전 점검이 파이프라인으로 이어지고, 각 단계 결과가 요약돼 나와요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>엉뚱한 에이전트가 붙으면 원하는 에이전트 이름을 지정해 다시 요청해요. 전체 목록은 <a class="inline-link" href="#agents">Agent·Skill 탭</a>에 있어요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>에이전트 정의 파일은 <code>.claude/agents/</code>, 스킬은 <code>.claude/skills/</code>에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">06</span>권한·사람의 승인<span class="acc-hint">자동 실행 범위 · 승인이 필요한 일</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>AI가 어디까지 알아서 하고, 어디부터 사람의 승인이 필요한지 경계를 알고 싶을 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><p>없음 — 규칙만 알면 돼요.</p></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li><b>자동 실행</b> — 리서치·초안·검수·저장소 안 파일 작업은 AI가 진행해요.</li><li><b>사람의 승인이 필요해요</b> — 최종 견적가·마진, 클라이언트 발송, 계약 판단은 반드시 사람이 확정한 뒤에 진행돼요. 진행 중 "잠깐" 또는 "여기서 멈춰"라고 하면 그 단계에서 대기해요.</li><li><b>금지 작업</b> — 출처 없는 수치 사용, 승인 없는 대외 발송은 규칙으로 막혀 있어요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>승인이 필요한 지점에서 AI가 멈추고 확인을 요청해요. 확인 전에는 다음 단계로 넘어가지 않아요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>승인 없이 진행된 것처럼 보이면 즉시 멈추게 하고, 결과물을 발송하기 전에 검수 파이프라인(design-critique → fact-checker → delivery-gate)을 다시 돌려요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>검수 기준은 <code>.claude/library/qc-checklist.md</code>, 대외 메일 톤은 <code>.claude/library/mail-tone.md</code>를 따라요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">07</span>문제 해결<span class="acc-hint">막혔을 때 여기부터</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>연결이 끊기거나, 파일이 충돌하거나, 결과가 요청과 다를 때예요.</p></div>
+            <div class="fld"><h4>준비물</h4><ul><li>문제가 난 요청 문장과 결과 화면</li><li>작업하던 파일 경로</li></ul></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li><a class="inline-link" href="#trouble">문제 해결 탭</a>에서 내 상황과 같은 케이스(연결 실패·파일 충돌·근거 부족·결과 불일치)를 찾아요.</li><li>케이스별 조치를 순서대로 따라 해요.</li><li>해결이 안 되면 문제 상황을 그대로 캡처해 실장(김효정)에게 공유해요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>네 가지 케이스 중 하나로 분류되고, 그 자리에서 조치 방법을 찾을 수 있어요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>같은 문제가 반복되면 이 페이지의 해당 항목을 업데이트하도록 요청해서 팀 전체가 같은 문제를 겪지 않게 해요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>케이스별 상세 조치는 <a class="inline-link" href="#trouble">문제 해결 탭</a>에 있어요.</p></div>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary><span class="acc-no">08</span>업데이트<span class="acc-hint">규칙·도구가 바뀌었을 때</span><span class="acc-caret">▾</span></summary>
+          <div class="acc-body">
+            <div class="fld"><h4>언제 필요한가</h4><p>CLAUDE.md 규칙·에이전트·스킬이 바뀌었거나, Claude Code 자체가 업데이트됐을 때 무엇이 달라졌는지 확인하려는 경우예요.</p></div>
+            <div class="fld"><h4>준비물</h4><p>저장소 최신 상태(git pull로 받아 둔 상태)</p></div>
+            <div class="fld"><h4>따라 하기</h4><ol><li>저장소를 최신으로 받은 뒤 "최근 CLAUDE.md와 에이전트 변경 내용 요약해줘"라고 요청해요.</li><li>바뀐 규칙이 내 업무에 영향을 주는지 — 특히 검수 기준·산출물 규칙 — 확인해요.</li><li>새 스킬·에이전트가 추가됐으면 예시 요청 한 번으로 동작을 익혀요.</li></ol></div>
+            <div class="fld"><h4>정상 결과</h4><p>무엇이 언제 바뀌었고, 내 작업 방식에서 무엇을 새로 익혀야 하는지 목록으로 받아요.</p></div>
+            <div class="fld"><h4>실패 시 조치</h4><p>업데이트 후 기존 요청이 다르게 동작하면, 변경 전 방식이 필요한 이유를 실장에게 공유하고 규칙 조정을 논의해요.</p></div>
+            <div class="fld"><h4>관련 템플릿</h4><p>자동화·스케줄 변경은 <code>.claude/library/automation.md</code>에서 함께 확인해요.</p></div>
+          </div>
+        </details>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 3 · 프로젝트 구조 ═══════════ -->
+      <section class="tab-panel" id="tab-structure">
+        <article class="panel sec">
+          <div class="panel-head"><h2>저장소가 이렇게 생겼어요</h2></div>
+          <p>AI가 일할 때 읽는 규칙과 만들어 내는 결과물이 전부 한 저장소 안에 있어요. 아래 다섯 곳만 알면 돼요.</p>
+          <pre class="tree">workspace/
+├── <b>CLAUDE.md</b>              ← 운영 규칙 · AI가 매 세션 처음 읽는 파일
+├── .claude/
+│   ├── <b>agents/</b>            ← 에이전트 정의 (전문가 역할 카드)
+│   ├── <b>skills/</b>            ← 스킬 (덱 디자인 등 반복 작업 묶음)
+│   ├── <b>library/</b>           ← 재사용 자산 (톤·토큰·견적표·체크리스트)
+│   └── <b>projects/</b>          ← 공식 기준 문서(Project SoT) · YYYYMM_프로젝트명.md
+└── <b>docs/</b>                  ← 산출물 (HTML 덱·리포트·이 사이트)</pre>
+        </article>
+
+        <div class="grid2 sec">
+          <article class="panel">
+            <h3><span class="tag">규칙</span>　CLAUDE.md</h3>
+            <p>MAX실이 일하는 방식의 원본이에요. 메일 톤, 검수 순서, 산출물 규칙, 파이프라인이 여기 적혀 있어요. AI는 어떤 요청이든 이 규칙 안에서 실행해요.</p>
+            <p>규칙을 바꾸고 싶으면 이 파일을 고치면 돼요 — 다음 세션부터 바로 적용돼요.</p>
+          </article>
+          <article class="panel">
+            <h3><span class="tag">전문가</span>　.claude/agents · .claude/skills</h3>
+            <p><b>에이전트</b>는 시안 검수, 견적 계산처럼 역할이 정해진 전문가 카드예요. <b>스킬</b>은 제안서 덱 만들기처럼 형식이 정해진 반복 작업 묶음이에요.</p>
+            <p>요청 내용에 맞는 것이 자동으로 붙어요. 목록은 <a class="inline-link" href="#agents">Agent·Skill 탭</a>에서 볼 수 있어요.</p>
+          </article>
+          <article class="panel">
+            <h3><span class="tag">기준</span>　.claude/projects — 공식 기준 문서(Project SoT)</h3>
+            <p>프로젝트마다 <code>YYYYMM_프로젝트명.md</code> 파일 하나가 그 프로젝트의 공식 기준 문서예요. 클라이언트·업무 범위·일정·견적·진행 메모가 여기에 쌓여요.</p>
+            <p>어떤 결정이 맞는지 헷갈릴 때는 항상 이 파일을 기준으로 판단해요.</p>
+          </article>
+          <article class="panel">
+            <h3><span class="tag">결과물</span>　docs — 산출물 위치</h3>
+            <p>AI가 만든 HTML 덱·리포트·인덱스 페이지가 <code>docs/</code> 아래에 저장돼요. 지금 보고 있는 이 사이트도 <code>docs/maxos/</code>에 있어요.</p>
+            <p>산출물은 커밋·푸시 후 미리보기 링크로 공유하는 것이 규칙이에요. 재사용 자산(폰트 토큰·인덱스 골조)은 <code>.claude/library/</code>에 있어요.</p>
+          </article>
+        </div>
+
+        <div class="state-note sec"><b>파일을 직접 옮기지 마세요.</b> 산출물 위치와 이름 규칙은 AI가 자동으로 지켜요. 위치가 이상하면 옮기는 대신 "규칙에 맞는 위치로 정리해줘"라고 요청해 주세요.</div>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 4 · Agent·Skill ═══════════ -->
+      <section class="tab-panel" id="tab-agents">
+        <article class="panel sec">
+          <div class="panel-head"><h2>에이전트는 요청에 맞춰 자동으로 붙어요</h2></div>
+          <p>에이전트 이름을 외울 필요는 없어요. "시안 검수해줘"처럼 하려는 일을 말하면 알맞은 에이전트가 자동으로 실행돼요. 특정 에이전트를 지정하고 싶을 때만 이름을 함께 말하면 돼요.</p>
+          <p><b>결과 확인 방법</b> — 실행 중에는 어떤 에이전트가 쓰이는지 표시되고, 끝나면 단계별 요약을 받아요. 검수 계열은 🟢🟡🔴 등급으로, 리서치 계열은 출처 링크와 함께 나와요. 최종 결과는 프로젝트의 공식 기준 문서(Project SoT)에 기록돼요.</p>
+        </article>
+
+        <article class="panel sec">
+          <div class="panel-head"><h2>등록된 에이전트 25종 · 7그룹</h2><span class="mono" style="color:var(--muted2)">기준: CLAUDE.md</span></div>
+
+          <div class="grp-head"><span class="tag orange"><span class="sdot" style="background:var(--orange)"></span>①</span><h3>수주·전략 — 일을 따오기 전 단계</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th style="width:180px">이름</th><th>무엇을 해 주나요</th><th style="width:250px">이렇게 불러요</th></tr></thead>
+            <tbody>
+              <tr><td class="name-mono">rfp-analyst</td><td>RFP를 명시 요구·숨은 니즈·미정의·위험으로 나눠 정리해요</td><td class="say">"이 RFP 분석해줘"</td></tr>
+              <tr><td class="name-mono">market-research</td><td>경쟁사를 조사해 포지셔닝 맵과 빈자리를 찾아요 (출처 포함)</td><td class="say">"경쟁사 분석해줘"</td></tr>
+              <tr><td class="name-mono">concept-director</td><td>핵심 제품의 관점을 한 문장으로 잡아 전 매체에 물려줘요</td><td class="say">"컨셉 방향 잡아줘"</td></tr>
+              <tr><td class="name-mono">brainstormer</td><td>아이디어를 넓게 발산하고 방향별 키워드를 뽑아요</td><td class="say">"브레인스토밍 해줘"</td></tr>
+              <tr><td class="name-mono">critic</td><td>비용·기간·역량·실현성·설득력을 점수로 냉정하게 평가해요</td><td class="say">"이 안 냉정하게 평가해줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag purple"><span class="sdot" style="background:var(--lavender)"></span>②</span><h3>디자인 인텔리전스 — 보는 눈을 빌리는 단계</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">design-trend-radar</td><td>최근 3개월 글로벌 디자인 트렌드를 출처와 함께 정리해요</td><td class="say" style="width:250px">"트렌드 봐줘"</td></tr>
+              <tr><td class="name-mono">reference-curator</td><td>카테고리별 레퍼런스를 출처와 함께 큐레이션해요</td><td class="say">"레퍼런스 찾아줘"</td></tr>
+              <tr><td class="name-mono">design-system-guardian</td><td>사내 디자인 시스템을 지켰는지 점검해요</td><td class="say">"시스템 기준 지켰는지 봐줘"</td></tr>
+              <tr><td class="name-mono">design-critique</td><td>시안을 여섯 영역으로 검수해 🟢🟡🔴로 알려줘요</td><td class="say">"코웨이 시안 검수해줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag blue"><span class="sdot" style="background:var(--blue)"></span>③</span><h3>디자인 생성 — 손을 빌리는 단계</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">visual-generator</td><td>키비주얼·목업 이미지를 생성해요</td><td class="say" style="width:250px">"키비주얼 시안 만들어줘"</td></tr>
+              <tr><td class="name-mono">moodboard-builder</td><td>레퍼런스와 생성 이미지를 엮어 무드보드를 만들어요</td><td class="say">"무드보드 만들어줘"</td></tr>
+              <tr><td class="name-mono">figma-bridge</td><td>코드와 Figma를 양방향으로 오가게 해요</td><td class="say">"이 화면 피그마로 보내줘"</td></tr>
+              <tr><td class="name-mono">storyboard-maker</td><td>영상·모션 콘티를 만들어요</td><td class="say">"30초 영상 콘티 잡아줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag green"><span class="sdot" style="background:var(--green)"></span>④</span><h3>검수 게이트 — 내보내기 전 마지막 관문</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">fact-checker</td><td>수치·인용을 반증부터 시도해 검증해요</td><td class="say" style="width:250px">"이 숫자 맞는지 확인해줘"</td></tr>
+              <tr><td class="name-mono">review-panel</td><td>기획·크리에이터·사업·마케팅·B2B 고객 다섯 관점으로 동시에 검토해요</td><td class="say">"다섯 관점으로 검토해줘"</td></tr>
+              <tr><td class="name-mono">delivery-gate</td><td>발송 직전에 표시 오류·개인정보·잘림을 점검해요</td><td class="say">"보내기 전에 점검해줘"</td></tr>
+              <tr><td class="name-mono">tone-guardian</td><td>대외 회신의 톤과 매너를 발송 전에 다듬어요</td><td class="say">"이 메일 톤 다듬어줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag yellow"><span class="sdot" style="background:var(--yellow)"></span>⑤</span><h3>운영·매출 — 실 운영을 챙기는 단계</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">project-manager</td><td>진행 현황·매출 달성율·가동률을 읽어 정리해요 (읽기 전용)</td><td class="say" style="width:250px">"이번 주 진행현황 정리해줘"</td></tr>
+              <tr><td class="name-mono">quote-accountant</td><td>원가표와 마진 시나리오를 계산해요 — 최종가는 실장이 정해요</td><td class="say">"이 건 견적 초안 잡아줘"</td></tr>
+              <tr><td class="name-mono">account-radar</td><td>반복 클라이언트의 히스토리·리스크를 미팅 전에 브리핑해요</td><td class="say">"미팅 전에 이 클라 브리핑해줘"</td></tr>
+              <tr><td class="name-mono">project-index</td><td>프로젝트 HTML 산출물을 모아 인덱스 페이지를 만들어요</td><td class="say">"산출물 인덱스 만들어줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag"><span class="sdot" style="background:#999"></span>⑥</span><h3>조직·채용·법무 — 조직을 받치는 단계</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">creative-director</td><td>시안 톤을 최종 확인하고 온보딩 팩을 만들어요</td><td class="say" style="width:250px">"시안 톤 최종 확인해줘"</td></tr>
+              <tr><td class="name-mono">hiring-radar</td><td>증원 채용 파이프라인을 관리해요</td><td class="say">"채용 상황 정리해줘"</td></tr>
+              <tr><td class="name-mono">vendor-radar</td><td>외주 풀과 외주비를 정리해요</td><td class="say">"외주 벤더 추천해줘"</td></tr>
+              <tr><td class="name-mono">legal-compliance</td><td>계약·NDA의 쟁점을 표시해요 — 법무 자문을 대체하지 않아요</td><td class="say">"이 계약서 쟁점 봐줘"</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="grp-head"><span class="tag orange"><span class="sdot" style="background:var(--orange)"></span>⑦</span><h3>역할 오케스트레이터 — 여러 단계를 한 번에</h3></div>
+          <div class="tbl-wrap"><table class="tbl">
+            <tbody>
+              <tr><td class="name-mono" style="width:180px">marketer</td><td>RFP 분석 → 시장조사 → 트렌드·레퍼런스 → 발산까지 리서치 전 과정을 순서대로 실행해요</td><td class="say" style="width:250px">"리서치 쭉 돌려줘"</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+
+        <article class="panel sec">
+          <div class="panel-head"><h2>등록된 스킬 4종</h2></div>
+          <p>스킬은 형식이 정해진 반복 작업 묶음이에요. 산출물 형태를 말하면 자동으로 선택돼요.</p>
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th style="width:180px">이름</th><th>무엇을 만들어 주나요</th><th style="width:270px">이런 상황에 자동으로 쓰여요</th></tr></thead>
+            <tbody>
+              <tr><td class="name-mono">tab-deck-design</td><td>좌측 탭으로 넘겨 보는 장문 문서 HTML</td><td class="say">섹션 8개 이상 · 회의 중 탭 눌러가며 볼 문서</td></tr>
+              <tr><td class="name-mono">list-deck-design</td><td>한국어 에디토리얼 리포트 HTML</td><td class="say">수치·차트 중심 리포트</td></tr>
+              <tr><td class="name-mono">mx-deck-design</td><td>MX실 표준 제안서·덱 HTML</td><td class="say">16:9 슬라이드형 제안서</td></tr>
+              <tr><td class="name-mono">project-index</td><td>프로젝트 산출물 바로가기 인덱스 페이지</td><td class="say">산출물이 2개 이상 쌓였을 때</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 5 · 연결 상태 ═══════════ -->
+      <section class="tab-panel" id="tab-connections">
+        <article class="panel sec">
+          <div class="panel-head"><h2>이 정보가 연결된 곳</h2></div>
+          <p>사이트와 AI가 읽는 데이터가 어디에서 오는지 보여줘요. 연결된 곳의 숫자는 매일 아침 7시에 자동으로 새로 불러와요.</p>
+        </article>
+
+        <div class="conn-grid sec">
+          <article class="conn">
+            <div class="conn-top"><div><h3>Notion — 프로젝트 DB</h3><small>진행 중인 일 · 마감 · 상태</small></div><span class="tag green"><span class="sdot" style="background:var(--green)"></span>연결됨</span></div>
+            <p>프로젝트 목록과 상태·일정의 원본이에요. 홈과 운영 현황의 숫자가 여기서 와요.</p>
+            <div class="conn-foot">매일 아침 7시 자동 갱신</div>
+          </article>
+          <article class="conn">
+            <div class="conn-top"><div><h3>Google Sheets — 시간 기록</h3><small>투입 시간 · 가동률</small></div><span class="tag green"><span class="sdot" style="background:var(--green)"></span>연결됨</span></div>
+            <p>팀원별 시간 기록의 원본이에요. 리소스 요약과 가동률 계산에 쓰여요.</p>
+            <div class="conn-foot">매일 아침 7시 자동 갱신</div>
+          </article>
+          <article class="conn">
+            <div class="conn-top"><div><h3>GitHub — 저장소</h3><small>규칙 · 산출물 · 자동 갱신 실행</small></div><span class="tag green"><span class="sdot" style="background:var(--green)"></span>연결됨</span></div>
+            <p>CLAUDE.md 규칙과 모든 산출물이 저장되는 곳이에요. 매일 아침 7시 자동 갱신도 이 저장소의 자동 작업(GitHub Actions)이 실행해요.</p>
+            <div class="conn-foot">산출물은 커밋·푸시 후 반영</div>
+          </article>
+          <article class="conn">
+            <div class="conn-top"><div><h3>Figma — 디자인 파일</h3><small>시안 · 컴포넌트</small></div><span class="badge-nolink">연결 안 됨</span></div>
+            <p>연결되면 시안을 코드와 Figma 사이에서 바로 주고받을 수 있어요. 아직 이 환경에는 연결되지 않았어요.</p>
+            <div class="conn-foot">연결 일정 미정</div>
+          </article>
+        </div>
+
+        <div class="state-note sec"><b>연결 표시가 실제와 다르게 보이나요?</b> 화면 하단의 데이터 기준 시각을 먼저 확인하고, <a class="inline-link" href="#trouble">문제 해결 탭의 연결 실패 항목</a>을 따라 해 주세요.</div>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 6 · 사용 가이드 ═══════════ -->
+      <section class="tab-panel" id="tab-guide">
+        <article class="panel sec">
+          <div class="panel-head"><h2>좋은 요청에는 다섯 가지가 들어가요</h2></div>
+          <p>이 다섯 가지를 한 문단에 담으면, 한 번의 요청으로 방향이 맞는 결과가 나와요. 없는 항목은 "없음"이라고 말해도 돼요 — 비워 두는 것보다 나아요.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+            <span class="tag">클라이언트 — 누구 일인가요</span>
+            <span class="tag">목적 — 왜 하나요</span>
+            <span class="tag">납기 — 언제까지 필요한가요</span>
+            <span class="tag">산출물 — 어떤 형태로 받을까요</span>
+            <span class="tag">참고자료 — 무엇을 보고 하면 되나요</span>
+          </div>
+        </article>
+
+        <article class="panel sec">
+          <div class="panel-head"><h2>이렇게 요청해 보세요</h2></div>
+          <div class="grid3">
+            <div class="ask">
+              <q>코웨이 시안 검수해줘</q>
+              <p><b>무슨 일이 생기나요</b> — 시안을 여섯 영역으로 검수하고 수치 검증·발송 전 점검까지 이어져요.</p>
+              <p><b>더 정확하게</b> — 시안 파일 위치와 "내일 오전 회신 예정"처럼 납기를 붙이면 우선순위가 잡혀요.</p>
+            </div>
+            <div class="ask">
+              <q>30초 브랜드 영상 스토리보드와 사운드 방향을 잡아줘</q>
+              <p><b>무슨 일이 생기나요</b> — 컷별 콘티와 음악·효과음 방향이 함께 나와요.</p>
+              <p><b>더 정확하게</b> — 브랜드 이름·전달 메시지·참고 영상 링크를 붙이면 톤이 처음부터 맞아요.</p>
+            </div>
+            <div class="ask">
+              <q>20대 여성 인물 에셋을 5개 포즈로 파생해줘</q>
+              <p><b>무슨 일이 생기나요</b> — 기준 인물에서 포즈 변형 에셋을 만들어요.</p>
+              <p><b>더 정확하게</b> — 기준 인물 이미지 위치와 쓰일 채널(상세페이지·배너)을 붙이면 규격까지 맞춰요.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel sec">
+          <div class="panel-head"><h2>수정은 이렇게 요청하세요</h2></div>
+          <p>전체를 다시 시키면 잘된 부분까지 바뀔 수 있어요. <b>어느 부분을 · 왜 · 어떻게</b> 세 가지를 짚어 주세요.</p>
+          <ul>
+            <li><b>어느 부분을</b> — "두 번째 섹션의 헤드카피가"</li>
+            <li><b>왜</b> — "클라이언트가 기능보다 감성을 원해서"</li>
+            <li><b>어떻게</b> — "제품 스펙 대신 사용 장면이 떠오르는 문장으로 바꿔줘"</li>
+          </ul>
+          <p>진행 중 방향이 걱정되면 "잠깐" 또는 "여기서 멈춰"라고 하면 그 단계에서 대기해요.</p>
+        </article>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+      <!-- ═══════════ 탭 7 · 문제 해결 ═══════════ -->
+      <section class="tab-panel" id="tab-trouble">
+        <article class="panel sec">
+          <div class="panel-head"><h2>막혔을 때는 네 가지 중 하나예요</h2></div>
+          <p>내 상황과 같은 카드를 찾아 순서대로 따라 해 주세요. 그래도 해결이 안 되면 문제 화면을 캡처해 실장(김효정)에게 공유해 주세요.</p>
+        </article>
+
+        <div class="tr-row sec">
+          <article class="panel">
+            <h3><span class="tag orange"><span class="sdot" style="background:var(--orange)"></span>케이스 1</span>　연결 실패</h3>
+            <div class="tr-fld"><h4>무슨 상황인가요</h4><p>Notion·시트 데이터가 안 불러와지거나, 화면에 "불러오지 못했어요"가 떠요.</p></div>
+            <div class="tr-fld"><h4>어떤 영향이 있나요</h4><p>숫자가 비어 보이거나 오래된 값으로 남아요. 이미 만든 산출물 파일은 영향받지 않아요.</p></div>
+            <div class="tr-fld"><h4>이렇게 해 보세요</h4><ol><li>화면 하단의 데이터 기준 시각을 확인해요 — 어제 아침 7시 이후면 정상 범위예요.</li><li>다음 자동 갱신(매일 아침 7시)까지 기다리거나, 급하면 원본(Notion·시트)을 직접 열어 확인해요.</li><li>이틀 이상 멈춰 있으면 실장에게 알려 갱신 작업 상태를 확인해요.</li></ol></div>
+          </article>
+
+          <article class="panel">
+            <h3><span class="tag yellow"><span class="sdot" style="background:var(--yellow)"></span>케이스 2</span>　파일 충돌</h3>
+            <div class="tr-fld"><h4>무슨 상황인가요</h4><p>같은 파일을 두 곳에서 고쳐서 저장소에 올릴 때 충돌(conflict) 메시지가 나와요.</p></div>
+            <div class="tr-fld"><h4>어떤 영향이 있나요</h4><p>해결 전까지 그 파일의 새 버전을 올릴 수 없어요. 다른 파일 작업은 그대로 할 수 있어요.</p></div>
+            <div class="tr-fld"><h4>이렇게 해 보세요</h4><ol><li>억지로 덮어쓰지 말고 멈춰요 — 다른 사람의 작업이 지워질 수 있어요.</li><li>AI에게 "이 충돌 상황 설명해주고 양쪽 변경을 살려서 합쳐줘"라고 요청해요.</li><li>합친 결과를 눈으로 확인한 뒤에 올려요.</li></ol></div>
+          </article>
+
+          <article class="panel">
+            <h3><span class="tag purple"><span class="sdot" style="background:var(--lavender)"></span>케이스 3</span>　근거 부족</h3>
+            <div class="tr-fld"><h4>무슨 상황인가요</h4><p>결과물의 수치·인용에 출처가 없거나, "재검증 필요" 표시가 붙어 있어요.</p></div>
+            <div class="tr-fld"><h4>어떤 영향이 있나요</h4><p>그대로 클라이언트에게 나가면 신뢰 문제가 생겨요. 발송 전에 반드시 걸러야 해요.</p></div>
+            <div class="tr-fld"><h4>이렇게 해 보세요</h4><ol><li>"fact-checker로 이 문서 수치 전부 검증해줘"라고 요청해요.</li><li>검증된 수치는 출처 링크가 붙고, 확인 안 되는 수치는 "업계 추정 · 재검증 필요"로 바뀌어요.</li><li>재검증 필요로 남은 수치는 빼거나, 원출처를 직접 찾아 붙인 뒤 내보내요.</li></ol></div>
+          </article>
+
+          <article class="panel">
+            <h3><span class="tag blue"><span class="sdot" style="background:var(--blue)"></span>케이스 4</span>　결과 불일치</h3>
+            <div class="tr-fld"><h4>무슨 상황인가요</h4><p>요청한 것과 다른 결과가 나왔어요 — 방향이 어긋났거나, 엉뚱한 형식으로 나왔어요.</p></div>
+            <div class="tr-fld"><h4>어떤 영향이 있나요</h4><p>다시 시키는 시간이 들어요. 원인을 안 잡으면 같은 어긋남이 반복돼요.</p></div>
+            <div class="tr-fld"><h4>이렇게 해 보세요</h4><ol><li>요청에 다섯 가지 필수 입력(클라이언트·목적·납기·산출물·참고자료)이 있었는지 확인해요.</li><li>전체 재요청 대신 "어느 부분을 · 왜 · 어떻게" 형식으로 수정을 요청해요.</li><li>프로젝트 기준과 어긋났다면 공식 기준 문서(Project SoT)를 같이 읽게 해요 — "이 프로젝트 노트 기준으로 다시 맞춰줘".</li></ol></div>
+          </article>
+        </div>
+
+        <div class="owner-cap">Owner: 미지정 · 버전 v1 · 최근 수정 2026-08-19</div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="assets/shell.js"></script>
+  <script src="assets/data.js"></script>
+  <script>
+    (function () {
+      var VALID = ['overview', 'claude-code', 'structure', 'agents', 'connections', 'guide', 'trouble'];
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.local-tabs a'));
+      var panels = Array.prototype.slice.call(document.querySelectorAll('.tab-panel'));
+
+      function show(id) {
+        if (VALID.indexOf(id) === -1) id = 'overview';
+        panels.forEach(function (p) { p.classList.toggle('on', p.id === 'tab-' + id); });
+        tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('href') === '#' + id); });
+        return id;
+      }
+
+      function fromHash() { show((location.hash || '').replace('#', '')); window.scrollTo(0, 0); }
+      window.addEventListener('hashchange', fromHash);
+      show((location.hash || '').replace('#', '') || 'overview');
+
+      // 사이드바 연결 상태 표기
+      if (window.MAXOS) {
+        MAXOS.fetchData().then(function (data) {
+          if (!data) { shellSetSync('err', '데이터 연결 안 됨'); return; }
+          var f = MAXOS.freshness(data);
+          shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

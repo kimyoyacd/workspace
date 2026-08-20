@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>MAX OS — 운영 현황</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+  <style>
+    h1, h2, h3, p, td, th { word-break: keep-all; }
+    .ops-section { display: none; }
+    .ops-section.on { display: block; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .mt { margin-top: 18px; }
+
+    /* KPI 스트립 */
+    .kpis.cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .kpis.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* 보기 전환 토글 */
+    .view-toggle { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); background: var(--card); border-radius: var(--radius-sm); }
+    .view-toggle button {
+      height: 32px; padding: 0 13px; border: 0; background: transparent;
+      border-radius: 10px; font-size: 12.5px; font-weight: 650; color: #5a5a5a; cursor: pointer;
+    }
+    .view-toggle button.on { background: var(--black); color: #fff; }
+
+    /* 필터 바 */
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+    .filter-bar select, .filter-bar input[type="search"] {
+      height: 36px; border: 1px solid var(--line); background: var(--card);
+      border-radius: 12px; padding: 0 11px; font-size: 12.5px; color: var(--text);
+    }
+    .filter-bar .spacer { flex: 1; }
+
+    /* 상태 세그먼트 바 */
+    .seg-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: #efefec; }
+    .seg-bar i { display: block; height: 100%; }
+    .seg-legend { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 14px; font-size: 12px; color: var(--muted); }
+    .seg-legend .sdot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+
+    /* 칸반 */
+    .kanban { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+    .kanban-col { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 12px; min-height: 120px; }
+    .kanban-col h4 { margin: 2px 4px 10px; font-size: 12.5px; display: flex; align-items: center; gap: 7px; }
+    .kanban-col h4 .cnt { margin-left: auto; font: 600 11px var(--mono); color: var(--muted2); }
+    .kcard { background: var(--card); border: 1px solid var(--line); border-radius: 13px; padding: 11px 12px; margin-bottom: 8px; font-size: 12.5px; display: block; text-decoration: none; color: var(--text); }
+    .kcard:hover { border-color: #cfcfca; }
+    .kcard b { display: block; font-size: 13px; letter-spacing: -0.02em; margin-bottom: 5px; }
+    .kcard .meta { color: var(--muted2); font-size: 11px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* 간트 */
+    .gantt-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+    .gantt { position: relative; min-width: 100%; }
+    .g-head { position: relative; height: 34px; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .g-tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--line-soft); font: 500 10px var(--mono); color: var(--muted2); padding: 9px 0 0 6px; white-space: nowrap; }
+    .g-row { position: relative; height: 44px; border-bottom: 1px solid var(--line-soft); }
+    .g-row.task { height: 36px; background: #fcfcfa; }
+    .g-label { position: sticky; left: 0; z-index: 3; float: left; width: 220px; height: 100%; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; background: rgba(255,255,255,0.96); border-right: 1px solid var(--line); font-size: 12px; font-weight: 650; }
+    .g-row.task .g-label { padding-left: 26px; font-weight: 500; font-size: 11.5px; color: var(--muted); background: rgba(252,252,250,0.96); }
+    .g-label small { font: 500 9.5px var(--mono); color: var(--muted2); font-weight: 400; }
+    .g-bar { position: absolute; top: 12px; height: 20px; border-radius: 7px; background: #e7e7e2; border: 1px solid #d9d9d3; overflow: hidden; }
+    .g-bar i { display: block; height: 100%; }
+    .g-row.task .g-bar { top: 9px; height: 16px; }
+    .g-today { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--orange); z-index: 2; }
+    .g-today::after {
+      content: '오늘'; position: absolute; top: 7px; left: 5px;
+      font: 650 9.5px var(--mono); color: var(--orange); white-space: nowrap;
+      background: #fff; border: 1px solid rgba(255,107,61,0.45);
+      border-radius: 999px; padding: 2px 7px; z-index: 3;
+    }
+    .g-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 12px 4px 2px; font-size: 11.5px; color: var(--muted); }
+
+    /* 주간 타임라인 (Task 샘플) */
+    .week-grid { display: grid; grid-template-columns: 150px repeat(7, 1fr); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; font-size: 12px; }
+    .week-grid > div { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: 9px 10px; background: var(--card); min-height: 42px; }
+    .week-grid .wh { background: var(--panel); font: 600 10.5px var(--mono); color: var(--muted); }
+    .week-grid .wl { font-weight: 650; background: var(--panel); }
+    .wbar { border-radius: 8px; padding: 4px 9px; font-size: 11px; font-weight: 650; margin: 1px 0; }
+
+    /* 리소스 */
+    .res-row { display: grid; grid-template-columns: 130px 1fr 170px; gap: 14px; align-items: center; padding: 12px 4px; border-bottom: 1px solid var(--line-soft); }
+    .res-row:last-child { border-bottom: 0; }
+    .res-name b { display: block; font-size: 13.5px; }
+    .res-name small { font-size: 11px; color: var(--muted2); }
+    .res-meta { text-align: right; font-size: 11px; color: var(--muted2); }
+    .res-meta .pct { font: 650 15px var(--mono); color: var(--text); display: block; margin-bottom: 3px; }
+
+    .warn-card { border: 1px solid rgba(255,107,61,0.35); background: rgba(255,107,61,0.05); border-radius: 16px; padding: 14px 16px; font-size: 13px; margin-bottom: 10px; }
+    .empty-big { text-align: center; padding: 40px 20px; color: var(--muted); }
+    .empty-big .eicon {
+      width: 44px; height: 44px; margin: 0 auto 12px;
+      border: 1.5px solid var(--line); border-radius: 15px; background: var(--panel);
+      display: grid; place-items: center; font-size: 18px; color: var(--muted2);
+    }
+    .empty-big b { display: block; color: var(--text); font-size: 15px; margin-bottom: 6px; }
+    .empty-big p { font-size: 12.5px; margin: 0 auto; max-width: 420px; }
+
+    /* 팀 카드 */
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .member { border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; background: var(--card); }
+    .member .mhead { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
+    .member .mava { width: 38px; height: 38px; border-radius: 13px; display: grid; place-items: center; font: 700 11px var(--mono); background: var(--panel); border: 1px solid var(--line); flex: none; }
+    .member b { display: block; font-size: 14px; }
+    .member small { font-size: 11px; color: var(--muted2); }
+    .member .skills { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+
+    @media (max-width: 1280px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpis.cols-5 { grid-template-columns: repeat(3, 1fr); }
+      .kpis.cols-5 .kpi:nth-child(5) { grid-column: span 2; }
+      .kpis.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .kpis.cols-5, .kpis.cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .res-row { grid-template-columns: 1fr; gap: 6px; }
+      .res-meta { text-align: left; }
+      .g-label { width: 140px; }
+    }
+  </style>
+</head>
+<body data-page="operations">
+  <div class="app">
+    <main class="main">
+
+      <div class="page-head">
+        <div class="page-eyebrow">MAX OS · OPERATIONS</div>
+        <h1 class="page-title" id="ops-title">한눈에 보기</h1>
+        <p class="page-desc" id="ops-desc"></p>
+      </div>
+
+      <nav class="local-tabs" id="ops-tabs" aria-label="운영 현황 탭">
+        <a href="#overview" data-tab="overview">한눈에 보기</a>
+        <a href="#projects" data-tab="projects">진행 중인 일</a>
+        <a href="#tasks" data-tab="tasks">이번 주 할 일</a>
+        <a href="#gates" data-tab="gates">일정·승인</a>
+        <a href="#capacity" data-tab="capacity">사람·업무 배정</a>
+        <a href="#team" data-tab="team">우리 팀</a>
+        <a href="#clients" data-tab="clients">고객사 현황</a>
+      </nav>
+
+      <!-- ══════════ 한눈에 보기 ══════════ -->
+      <section class="ops-section" id="sec-overview">
+        <div class="kpis cols-5">
+          <a class="kpi" href="#projects"><span class="kpi-label">지금 진행 중인 일</span><strong class="skel" data-kpi="active">0</strong><span class="kpi-sub">늘 하는 일 포함</span></a>
+          <a class="kpi" href="#projects&due=7"><span class="kpi-label">이번 주에 끝내야 할 일</span><strong class="skel" data-kpi="dueSoon">0</strong><span class="kpi-sub">7일 안에 마감</span></a>
+          <a class="kpi" href="#projects&late=1"><span class="kpi-label">마감일이 지난 일</span><strong class="skel" data-kpi="delayed">0</strong><span class="kpi-sub"><span class="badge-temp">임시 기준</span></span></a>
+          <a class="kpi" href="#projects&group=upcoming"><span class="kpi-label">곧 시작하는 일</span><strong class="skel" data-kpi="upcoming">0</strong><span class="kpi-sub">진행 예정</span></a>
+          <a class="kpi" href="#gates"><span class="kpi-label">확인을 기다리는 일</span><strong>—</strong><span class="kpi-sub"><span class="badge-nolink">연결 안 됨</span></span></a>
+        </div>
+
+        <div class="grid-2 mt">
+          <article class="panel">
+            <div class="panel-head"><h2>일의 진행 단계</h2><a class="more" href="#projects">진행 중인 일 보기 →</a></div>
+            <div class="seg-bar" id="ov-segbar"></div>
+            <div class="seg-legend" id="ov-seglegend"></div>
+            <div style="margin-top:20px">
+              <h3 style="font-size:13.5px;margin:0 0 10px">업무 유형 구성</h3>
+              <div id="ov-cats"></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head"><h2>사람·업무 배정 요약</h2><a class="more" href="#capacity">업무 배정 살펴보기 →</a></div>
+            <div class="kpis cols-4" id="ov-res">
+              <a class="kpi" href="#capacity&state=ok"><span class="kpi-label">지금 일하고 있어요</span><strong class="skel" data-res="activeCount">0</strong><span class="kpi-sub">명</span></a>
+              <a class="kpi" href="#capacity&state=idle"><span class="kpi-label">새 업무를 맡을 수 있어요</span><strong class="skel" data-res="idleCount">0</strong><span class="kpi-sub">명 <span class="badge-temp">임시 기준</span></span></a>
+              <a class="kpi" href="#capacity&state=over"><span class="kpi-label">업무가 많이 배정됐어요</span><strong class="skel" data-res="overCount">0</strong><span class="kpi-sub">명</span></a>
+              <a class="kpi" href="#capacity&state=unlogged"><span class="kpi-label">기록을 기다리고 있어요</span><strong class="skel" data-res="unloggedCount">0</strong><span class="kpi-sub">시간 기록 없음</span></a>
+            </div>
+            <p style="font-size:11px;color:var(--muted2);margin:12px 2px 0">평균 업무 배정률 <b id="ov-avg" class="mono">—</b> · 최근 5개 기록일 기준 <span class="badge-temp">임시 산식</span></p>
+          </article>
+        </div>
+
+        <div class="grid-2 mt">
+          <article class="panel">
+            <div class="panel-head"><h2>오늘 살펴볼 일</h2></div>
+            <div id="ov-actions"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>앞으로 2주 여력 예측</h2><span class="badge-nolink">연결 안 됨</span></div>
+            <div class="empty-big">
+              <div class="eicon">↗</div>
+              <b>아직 예측을 만들 수 없어요</b>
+              <p>배정된 시간 정보가 연결되면, 앞으로 2주 동안 누가 여유 있고 누가 바빠지는지 여기서 미리 볼 수 있어요.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+          <span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span>
+          <span class="mono" style="color:var(--muted2);font-size:10.5px">이 정보가 연결된 곳: Notion 프로젝트 DB · 시간 기록 시트 · 매일 아침 7시 자동 갱신</span>
+        </div>
+      </section>
+
+      <!-- ══════════ 진행 중인 일 ══════════ -->
+      <section class="ops-section" id="sec-projects">
+        <div class="filter-bar">
+          <div class="view-toggle" id="pj-views">
+            <button data-view="table" class="on">표로 보기</button>
+            <button data-view="board">카드로 보기</button>
+            <button data-view="gantt">일정으로 보기</button>
+          </div>
+          <select id="pj-group" aria-label="상태 필터">
+            <option value="">모든 상태</option>
+          </select>
+          <select id="pj-cat" aria-label="업무 유형 필터">
+            <option value="">모든 유형</option>
+          </select>
+          <select id="pj-quick" aria-label="빠른 필터">
+            <option value="">전체 기간</option>
+            <option value="due7">이번 주 마감</option>
+            <option value="late">마감일 지남</option>
+          </select>
+          <span class="spacer"></span>
+          <input type="search" id="pj-search" placeholder="프로젝트 이름 검색" aria-label="프로젝트 검색" />
+        </div>
+
+        <div id="pj-table" class="panel" style="padding:10px 6px">
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr>
+                <th>프로젝트</th><th>상태</th><th>업무 유형</th><th>난이도</th><th>시작</th><th>마감</th><th>D-day</th><th>공식 기준 문서</th>
+              </tr></thead>
+              <tbody id="pj-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="pj-board" class="kanban" style="display:none"></div>
+
+        <div id="pj-gantt-wrap" style="display:none">
+          <div class="filter-bar" style="margin-bottom:10px">
+            <div class="view-toggle" id="gt-zoom">
+              <button data-zoom="day">일</button>
+              <button data-zoom="week" class="on">주</button>
+              <button data-zoom="month">월</button>
+            </div>
+            <span style="font-size:11.5px;color:var(--muted2)">프로젝트 일정은 실제 데이터, 세부 할 일(Task) 줄은 <span class="badge-sample">샘플 데이터</span> 예요</span>
+          </div>
+          <div class="gantt-wrap"><div class="gantt" id="pj-gantt"></div></div>
+          <div class="g-legend">
+            <span><span class="sdot" style="background:var(--green);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>일정 안에 있어요</span>
+            <span><span class="sdot" style="background:var(--orange);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>마감일이 지났어요</span>
+            <span><span class="sdot" style="background:var(--lavender);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>곧 시작해요</span>
+            <span>날짜가 역전된 일은 일정에서 빼고 표로 보기에 <span class="tag yellow" style="height:18px;font-size:9.5px">일정 확인 필요</span>로 표시해요</span>
+            <span>의존 관계·중간 목표(Milestone)·승인 지점 표시는 Task 데이터 연결 후 제공돼요 <span class="badge-nolink">연결 안 됨</span></span>
+          </div>
+        </div>
+
+        <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
+      </section>
+
+      <!-- ══════════ 이번 주 할 일 (Task) ══════════ -->
+      <section class="ops-section" id="sec-tasks">
+        <div class="state-note" style="margin-bottom:16px">
+          <b>아직 세부 할 일(Task) 정보가 연결되지 않았어요.</b>
+          아래 화면은 연결 후의 모습을 보여주는 <span class="badge-sample">샘플 데이터</span>예요.
+          프로젝트별 할 일·담당자·기간·의존 관계를 관리하려면 Task 데이터를 어디에 기록할지 먼저 정해야 해요 (사람의 결정이 필요해요).
+        </div>
+
+        <div class="filter-bar">
+          <div class="view-toggle" id="tk-views">
+            <button data-view="week" class="on">주간 일정으로 보기</button>
+            <button data-view="kanban">보드로 보기</button>
+            <button data-view="list">목록으로 보기</button>
+          </div>
+          <span class="spacer"></span>
+          <span class="badge-sample">샘플 데이터</span>
+        </div>
+
+        <div id="tk-week" class="panel" style="padding:14px">
+          <div class="panel-head" style="margin-bottom:12px"><h2 id="tk-week-title" style="font-size:15px">이번 주</h2></div>
+          <div class="tbl-wrap"><div class="week-grid" id="tk-weekgrid" style="min-width:860px"></div></div>
+          <p style="font-size:11px;color:var(--muted2);margin:10px 2px 0">이름 없이 이어지는 색 칸은 앞선 날에 시작한 같은 일이 계속되는 거예요. 칸에 마우스를 올리면 일 이름이 보여요.</p>
+        </div>
+
+        <div id="tk-kanban" class="kanban" style="display:none"></div>
+
+        <div id="tk-list" class="panel" style="display:none;padding:10px 6px">
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>할 일</th><th>프로젝트</th><th>담당</th><th>기간</th><th>상태</th><th>의존</th></tr></thead>
+              <tbody id="tk-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════ 일정·승인 ══════════ -->
+      <section class="ops-section" id="sec-gates">
+        <div class="state-note" style="margin-bottom:16px">
+          <b>승인 요청 정보가 아직 연결되지 않았어요.</b>
+          연결되면 사람의 판단이 필요한 일들이 여기 줄을 서요. 요청한 사람·결정할 사람·기다린 시간·지연 시 영향까지 함께 보여드려요.
+          <span class="badge-nolink">연결 안 됨</span>
+        </div>
+        <div class="grid-3">
+          <article class="panel">
+            <div class="panel-head"><h2 style="font-size:16px">결과 검토를 기다려요</h2><span class="tag yellow">검토 · Human Review</span></div>
+            <div class="empty-big"><div class="eicon">◈</div><b>대기 중인 검토가 없어요</b><p>워크플로우에서 검토 요청이 만들어지면 여기에 표시돼요.</p></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2 style="font-size:16px">방향 결정을 기다려요</h2><span class="tag purple">방향 결정</span></div>
+            <div class="empty-big"><div class="eicon">◎</div><b>대기 중인 결정이 없어요</b><p>컨셉·캐스팅처럼 방향을 정해야 하는 일이 여기에 모여요.</p></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2 style="font-size:16px">최종 승인을 기다려요</h2><span class="tag orange">최종 승인</span></div>
+            <div class="empty-big"><div class="eicon">✓</div><b>대기 중인 승인이 없어요</b><p>발송·납품 전 마지막 확인이 필요한 일이 여기에 모여요.</p></div>
+          </article>
+        </div>
+        <article class="panel mt">
+          <div class="panel-head"><h2 style="font-size:16px">승인 판정은 이렇게 나눠요</h2></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span class="tag green"><span class="sdot" style="background:var(--green)"></span>바로 진행해도 돼요 (READY)</span>
+            <span class="tag blue"><span class="sdot" style="background:var(--blue)"></span>조건을 채우면 돼요 (CONDITIONAL)</span>
+            <span class="tag yellow"><span class="sdot" style="background:var(--yellow)"></span>수정이 필요해요 (REVISION)</span>
+            <span class="tag orange"><span class="sdot" style="background:var(--orange)"></span>진행이 막혔어요 (BLOCKED)</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin:12px 0 0">승인은 자동으로 처리하지 않아요. 결정할 사람이 근거를 확인한 뒤 직접 판정해요.</p>
+        </article>
+      </section>
+
+      <!-- ══════════ 사람·업무 배정 ══════════ -->
+      <section class="ops-section" id="sec-capacity">
+        <div class="kpis cols-4" id="cp-kpis">
+          <a class="kpi" href="#capacity&state=ok"><span class="kpi-label">지금 일하고 있어요</span><strong class="skel" data-res="activeCount">0</strong><span class="kpi-sub">명</span></a>
+          <a class="kpi" href="#capacity&state=idle"><span class="kpi-label">새 업무를 맡을 수 있어요</span><strong class="skel" data-res="idleCount">0</strong><span class="kpi-sub">명 <span class="badge-temp">임시 기준</span></span></a>
+          <a class="kpi" href="#capacity&state=over"><span class="kpi-label">업무가 많이 배정됐어요</span><strong class="skel" data-res="overCount">0</strong><span class="kpi-sub">명</span></a>
+          <a class="kpi" href="#capacity&state=unlogged"><span class="kpi-label">기록을 기다리고 있어요</span><strong class="skel" data-res="unloggedCount">0</strong><span class="kpi-sub">명</span></a>
+        </div>
+
+        <div id="cp-warns" class="mt"></div>
+
+        <article class="panel mt">
+          <div class="panel-head">
+            <h2>구성원별 업무 배정률</h2>
+            <select id="cp-filter" aria-label="상태 필터" style="height:34px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:12px;padding:0 10px">
+              <option value="">모두 보기</option>
+              <option value="ok">일하고 있는 사람</option>
+              <option value="idle">여유 있는 사람</option>
+              <option value="over">많이 배정된 사람</option>
+              <option value="unlogged">기록이 없는 사람</option>
+            </select>
+          </div>
+          <div id="cp-rows"></div>
+          <p style="font-size:11px;color:var(--muted2);margin:14px 2px 0">
+            산식: 최근 5개 기록일의 실제 시간 ÷ (기록일수 × 8시간) <span class="badge-temp">임시 산식 · 승인 전</span> ·
+            여유/많음 기준: 50% 이하 / 100% 초과 <span class="badge-temp">임시 기준 · 승인 전</span>
+          </p>
+        </article>
+
+        <div class="grid-2 mt">
+          <article class="panel">
+            <div class="panel-head"><h2 style="font-size:16px">누가 어떤 일에 얼마나 들어가 있나요?</h2><span class="badge-nolink">연결 안 됨</span></div>
+            <div class="empty-big"><div class="eicon">◫</div><b>배정 정보가 아직 없어요</b><p>사람과 프로젝트를 잇는 배정 시간이 연결되면, 구성원별 투입 프로젝트·배정 시간·다음 가용일을 여기서 볼 수 있어요.</p></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2 style="font-size:16px">프로젝트별 참여 인력</h2><span class="badge-nolink">연결 안 됨</span></div>
+            <div class="empty-big"><div class="eicon">◔</div><b>참여 정보가 아직 없어요</b><p>프로젝트별 참여자·역할·투입률과 아직 채워지지 않은 역할을 여기서 볼 수 있어요.</p></div>
+          </article>
+        </div>
+
+        <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span>
+          <span class="mono" style="color:var(--muted2);font-size:10.5px;margin-left:14px">이 정보가 연결된 곳: MAX_2026 시간 기록 시트</span>
+        </div>
+      </section>
+
+      <!-- ══════════ 우리 팀 ══════════ -->
+      <section class="ops-section" id="sec-team">
+        <p style="font-size:12.5px;color:var(--muted);margin:0 0 16px">역할·팀 정보는 수동으로 관리하는 내용이에요. 업무 배정률은 시간 기록 시트에서 자동으로 가져와요.</p>
+        <div id="team-groups"></div>
+        <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
+      </section>
+
+      <!-- ══════════ 고객사 현황 ══════════ -->
+      <section class="ops-section" id="sec-clients">
+        <article class="panel">
+          <div class="panel-head"><h2>고객사 현황</h2><span class="badge-nolink">연결 안 됨</span></div>
+          <div class="empty-big" style="padding:56px 20px">
+            <div class="eicon">◇</div>
+            <b>고객사 정보가 아직 연결되지 않았어요</b>
+            <p>Notion 고객사 DB가 연결되면 고객사별 진행 프로젝트·최근 접점·다음 일정·살펴볼 이슈를 여기서 볼 수 있어요.
+            지금은 각 프로젝트의 Notion 페이지에서 확인해 주세요.</p>
+            <div style="margin-top:18px"><a class="btn" href="#projects">진행 중인 일 보기</a></div>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="assets/shell.js"></script>
+  <script src="assets/data.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var $ = function (s, p) { return (p || document).querySelector(s); };
+    var $$ = function (s, p) { return Array.prototype.slice.call((p || document).querySelectorAll(s)); };
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+    var TAB_META = {
+      overview: ['한눈에 보기', '오늘의 프로젝트·사람·일정 상태를 1분 안에 확인하세요.'],
+      projects: ['지금 진행 중인 일을 확인해 보세요', '표·카드·일정으로 바꿔 가며 볼 수 있어요.'],
+      tasks: ['이번 주 할 일을 일정으로 확인해 보세요', '프로젝트별 세부 할 일과 담당·기간을 봐요.'],
+      gates: ['결정을 기다리는 일이 있어요', '사람의 판단이 필요한 일들이 여기 모여요.'],
+      capacity: ['누가 새 업무를 맡을 수 있나요?', '구성원별 업무 배정 상태를 확인하고 조정해요.'],
+      team: ['우리 팀', 'MAX실 구성원의 역할과 현재 상태를 봐요.'],
+      clients: ['고객사 현황', '고객사별 진행 상황과 다음 일정을 봐요.']
+    };
+
+    /* ── 해시 라우팅: #tab&key=value ── */
+    function parseHash() {
+      var h = (location.hash || '#overview').slice(1);
+      var parts = h.split('&');
+      var tab = parts.shift() || 'overview';
+      var params = {};
+      parts.forEach(function (p) { var kv = p.split('='); params[kv[0]] = decodeURIComponent(kv[1] || ''); });
+      if (!TAB_META[tab]) tab = 'overview';
+      return { tab: tab, params: params };
+    }
+
+    function route() {
+      var r = parseHash();
+      $$('#ops-tabs a').forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-tab') === r.tab); });
+      $$('.ops-section').forEach(function (s) { s.classList.toggle('on', s.id === 'sec-' + r.tab); });
+      $('#ops-title').textContent = TAB_META[r.tab][0];
+      $('#ops-desc').textContent = TAB_META[r.tab][1];
+      applyParams(r);
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', route);
+
+    function applyParams(r) {
+      if (r.tab === 'projects') {
+        if (r.params.due === '7') $('#pj-quick').value = 'due7';
+        if (r.params.late === '1') $('#pj-quick').value = 'late';
+        if (r.params.group) $('#pj-group').value = r.params.group;
+        if (r.params.view && ['table', 'board', 'gantt'].indexOf(r.params.view) >= 0) {
+          PJ_VIEW = r.params.view;
+          $$('#pj-views button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-view') === PJ_VIEW); });
+        }
+        renderProjects();
+      }
+      if (r.tab === 'tasks' && r.params.view && ['week', 'kanban', 'list'].indexOf(r.params.view) >= 0) {
+        TK_VIEW = r.params.view;
+        $$('#tk-views button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-view') === TK_VIEW); });
+        renderTasks();
+      }
+      if (r.tab === 'capacity' && r.params.state !== undefined) {
+        $('#cp-filter').value = r.params.state || '';
+        renderCapacityRows();
+      }
+    }
+
+    /* ── 데이터 로드 ── */
+    var DB = { projects: [], res: null, freshness: null, raw: null };
+
+    MAXOS.fetchData().then(function (data) {
+      if (data) {
+        DB.raw = data;
+        DB.projects = MAXOS.normalizeProjects(data);
+        DB.res = MAXOS.computeResources(data);
+        DB.freshness = MAXOS.freshness(data);
+      } else {
+        DB.freshness = { state: 'err', text: '최신 정보를 불러오지 못했어요' };
+      }
+      renderAll();
+      route();
+    });
+
+    function renderSrcBadges() {
+      var f = DB.freshness;
+      $$('[data-src]').forEach(function (el) {
+        el.className = 'src-badge' + (f.state === 'ok' ? '' : f.state === 'stale' ? ' stale' : ' err');
+        el.innerHTML = '<span class="sdot"></span>' + esc(f.text);
+      });
+      shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
+    }
+
+    /* ── 한눈에 보기 ── */
+    function renderOverview() {
+      var k = DB.raw ? MAXOS.computeKpis(DB.raw) : null;
+      $$('[data-kpi]').forEach(function (el) {
+        el.classList.remove('skel');
+        el.textContent = k ? k[el.getAttribute('data-kpi')] : '—';
+      });
+      $$('[data-res]').forEach(function (el) {
+        el.classList.remove('skel');
+        el.textContent = DB.res ? DB.res[el.getAttribute('data-res')] : '—';
+      });
+      $('#ov-avg').textContent = DB.res && DB.res.avgUtil !== null ? DB.res.avgUtil + '%' : '—';
+
+      /* 단계 분포 세그먼트 바 */
+      if (DB.projects.length) {
+        var counts = {};
+        DB.projects.forEach(function (p) { counts[p.group] = (counts[p.group] || 0) + 1; });
+        var total = DB.projects.length;
+        var bar = '', legend = '';
+        MAXOS.groupOrder.forEach(function (g) {
+          if (!counts[g]) return;
+          var m = MAXOS.groupMeta[g];
+          bar += '<i style="width:' + (counts[g] / total * 100) + '%;background:' + m.color + '" title="' + esc(m.label) + ' ' + counts[g] + '건"></i>';
+          legend += '<span><span class="sdot" style="background:' + m.color + '"></span>' + esc(m.label) + ' <b class="mono">' + counts[g] + '</b></span>';
+        });
+        $('#ov-segbar').innerHTML = bar;
+        $('#ov-seglegend').innerHTML = legend;
+
+        /* 업무 유형 구성 */
+        var cats = {};
+        DB.projects.forEach(function (p) { (p.categories.length ? p.categories : ['미분류']).forEach(function (c) { cats[c] = (cats[c] || 0) + 1; }); });
+        var max = Math.max.apply(null, Object.keys(cats).map(function (c) { return cats[c]; }));
+        var colors = ['var(--lavender)', 'var(--blue)', 'var(--green)', 'var(--yellow)', 'var(--orange)'];
+        $('#ov-cats').innerHTML = Object.keys(cats).sort(function (a, b) { return cats[b] - cats[a]; }).map(function (c, i) {
+          return '<div style="display:grid;grid-template-columns:90px 1fr 30px;gap:10px;align-items:center;margin-bottom:8px;font-size:12px">' +
+            '<span>' + esc(c) + '</span>' +
+            '<div class="hbar"><i style="width:' + (cats[c] / max * 100) + '%;background:' + colors[i % colors.length] + '"></i></div>' +
+            '<b class="mono" style="text-align:right">' + cats[c] + '</b></div>';
+        }).join('');
+      }
+
+      /* 오늘 살펴볼 일 */
+      var items = [];
+      DB.projects.filter(function (p) { return p.dateConflict; }).forEach(function (p) {
+        items.push({ icon: '🟡', text: '<b>' + esc(p.title) + '</b> — 마감일이 시작일보다 앞서 있어요. Notion에서 날짜를 확인해 주세요.', href: '#projects' });
+      });
+      DB.projects.filter(function (p) { return p.delayed; }).forEach(function (p) {
+        items.push({ icon: '🔴', text: '<b>' + esc(p.title) + '</b> — 마감일(' + MAXOS.fmtDate(p.endDate) + ')이 지났어요. 일정을 다시 정하거나 완료 처리해 주세요.', href: '#projects&late=1' });
+      });
+      DB.projects.filter(function (p) { return p.dueSoon; }).forEach(function (p) {
+        items.push({ icon: '🟠', text: '<b>' + esc(p.title) + '</b> — ' + p.dday + '일 뒤 마감이에요.', href: '#projects&due=7' });
+      });
+      if (DB.res) DB.res.list.filter(function (r) { return r.state === 'unlogged'; }).forEach(function (r) {
+        items.push({ icon: '⚪', text: '<b>' + esc(r.name) + '</b> 님의 업무 시간이 아직 기록되지 않았어요. 기록을 요청해 주세요.', href: '#capacity&state=unlogged' });
+      });
+      $('#ov-actions').innerHTML = items.length
+        ? items.slice(0, 8).map(function (it) {
+            return '<a href="' + it.href + '" style="display:flex;gap:10px;align-items:flex-start;padding:10px 4px;border-bottom:1px solid var(--line-soft);font-size:12.5px;text-decoration:none;color:var(--text)"><span>' + it.icon + '</span><span>' + it.text + '</span></a>';
+          }).join('') + (items.length > 8 ? '<p style="font-size:11px;color:var(--muted2);margin:10px 4px 0">외 ' + (items.length - 8) + '건이 더 있어요.</p>' : '')
+        : '<div class="empty-big"><div class="eicon">✓</div><b>오늘은 급하게 살펴볼 일이 없어요</b></div>';
+    }
+
+    /* ── 진행 중인 일 ── */
+    var PJ_VIEW = 'table';
+    function initProjectFilters() {
+      var gsel = $('#pj-group');
+      MAXOS.groupOrder.forEach(function (g) {
+        if (!DB.projects.some(function (p) { return p.group === g; })) return;
+        var o = document.createElement('option');
+        o.value = g; o.textContent = MAXOS.groupMeta[g].label;
+        gsel.appendChild(o);
+      });
+      var cats = {};
+      DB.projects.forEach(function (p) { p.categories.forEach(function (c) { cats[c] = 1; }); });
+      Object.keys(cats).sort().forEach(function (c) {
+        var o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        $('#pj-cat').appendChild(o);
+      });
+      ['pj-group', 'pj-cat', 'pj-quick'].forEach(function (id) { $('#' + id).addEventListener('change', renderProjects); });
+      $('#pj-search').addEventListener('input', renderProjects);
+      $$('#pj-views button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          PJ_VIEW = b.getAttribute('data-view');
+          $$('#pj-views button').forEach(function (x) { x.classList.toggle('on', x === b); });
+          renderProjects();
+        });
+      });
+      $$('#gt-zoom button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          GT_ZOOM = b.getAttribute('data-zoom');
+          $$('#gt-zoom button').forEach(function (x) { x.classList.toggle('on', x === b); });
+          renderGantt(filteredProjects());
+        });
+      });
+    }
+
+    function filteredProjects() {
+      var g = $('#pj-group').value, c = $('#pj-cat').value, q = ($('#pj-search').value || '').trim(), quick = $('#pj-quick').value;
+      return DB.projects.filter(function (p) {
+        if (g && p.group !== g) return false;
+        if (c && p.categories.indexOf(c) < 0) return false;
+        if (q && p.title.indexOf(q) < 0) return false;
+        if (quick === 'due7' && !p.dueSoon) return false;
+        if (quick === 'late' && !p.delayed) return false;
+        return true;
+      });
+    }
+
+    function statusTag(p) {
+      var m = MAXOS.groupMeta[p.group] || { label: p.status, color: 'var(--muted2)' };
+      return '<span class="tag" title="원본 상태: ' + esc(p.status) + '"><span class="sdot" style="background:' + m.color + '"></span>' + esc(m.label) + '</span>';
+    }
+    function catLabel(c) { /* 표기 통일: 라틴 소문자 태그 첫 글자만 대문자 (원본 값은 유지) */
+      return /^[a-z]/.test(c) ? c.charAt(0).toUpperCase() + c.slice(1) : c;
+    }
+    var DIFF_LABEL = { H: '상 · H', M: '중 · M', L: '하 · L' };
+    function ddayText(p) {
+      if (p.dateConflict) return '<span class="tag yellow" title="마감일(' + esc(p.endDate) + ')이 시작일(' + esc(p.startDate) + ')보다 앞서 있어요. Notion에서 날짜를 확인해 주세요."><span class="sdot" style="background:var(--yellow)"></span>일정 확인 필요</span>';
+      if (p.dday === null) return '<span style="color:var(--muted2)">—</span>';
+      if (p.dday < 0) return '<b class="mono" style="color:#d9471b">' + Math.abs(p.dday) + '일 지남</b>';
+      if (p.dday === 0) return '<b class="mono" style="color:#d9471b">오늘 마감</b>';
+      return '<b class="mono">D-' + p.dday + '</b>';
+    }
+
+    function renderProjects() {
+      $('#pj-table').style.display = PJ_VIEW === 'table' ? '' : 'none';
+      $('#pj-board').style.display = PJ_VIEW === 'board' ? '' : 'none';
+      $('#pj-gantt-wrap').style.display = PJ_VIEW === 'gantt' ? '' : 'none';
+      var list = filteredProjects();
+
+      if (PJ_VIEW === 'table') {
+        $('#pj-tbody').innerHTML = list.length ? list.map(function (p) {
+          return '<tr>' +
+            '<td style="font-weight:650;max-width:280px">' + esc(p.title) + '</td>' +
+            '<td>' + statusTag(p) + '</td>' +
+            '<td>' + (p.categories.map(function (c) { return '<span class="tag blue">' + esc(catLabel(c)) + '</span>'; }).join(' ') || '<span style="color:var(--muted2)">—</span>') + '</td>' +
+            '<td class="mono">' + (DIFF_LABEL[p.difficulty] || p.difficulty || '—') + '</td>' +
+            '<td class="mono">' + MAXOS.fmtDate(p.startDate) + '</td>' +
+            '<td class="mono">' + MAXOS.fmtDate(p.endDate) + '</td>' +
+            '<td>' + ddayText(p) + '</td>' +
+            '<td>' + (p.notionUrl ? '<a href="' + esc(p.notionUrl) + '" target="_blank" rel="noopener" style="color:#2454C7;text-decoration:none;font-size:12px">Notion에서 열기 ↗</a>' : '—') + '</td>' +
+            '</tr>';
+        }).join('') : '<tr><td colspan="8"><div class="empty-big"><b>조건에 맞는 일이 없어요</b><p>필터를 바꿔 보세요.</p></div></td></tr>';
+      }
+
+      if (PJ_VIEW === 'board') {
+        var cols = '';
+        MAXOS.groupOrder.forEach(function (g) {
+          var items = list.filter(function (p) { return p.group === g; });
+          if (!items.length) return;
+          var m = MAXOS.groupMeta[g];
+          cols += '<div class="kanban-col"><h4><span class="sdot" style="background:' + m.color + ';width:8px;height:8px;border-radius:50%;display:inline-block"></span>' + esc(m.label) + '<span class="cnt">' + items.length + '</span></h4>' +
+            items.map(function (p) {
+              return '<a class="kcard"' + (p.notionUrl ? ' href="' + esc(p.notionUrl) + '" target="_blank" rel="noopener"' : '') + '><b>' + esc(p.title) + '</b><span class="meta">' +
+                (p.endDate ? '<span class="mono">~' + MAXOS.fmtDate(p.endDate) + '</span>' : '') +
+                p.categories.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') +
+                (p.delayed ? '<span style="color:#d9471b;font-weight:700">마감 지남</span>' : '') +
+                '</span></a>';
+            }).join('') + '</div>';
+        });
+        $('#pj-board').innerHTML = cols || '<div class="empty-big" style="grid-column:1/-1"><b>조건에 맞는 일이 없어요</b></div>';
+      }
+
+      if (PJ_VIEW === 'gantt') renderGantt(list);
+    }
+
+    /* ── 간트 ── */
+    var GT_ZOOM = 'week';
+    var PXD = { day: 26, week: 9, month: 3 };
+    function renderGantt(list) {
+      var el = $('#pj-gantt');
+      var withDates = list.filter(function (p) { return p.start && p.end && !p.dateConflict; });
+      if (!withDates.length) { el.innerHTML = '<div class="empty-big"><b>일정이 입력된 일이 없어요</b><p>시작일과 마감일이 있는 프로젝트만 일정으로 볼 수 있어요.</p></div>'; return; }
+
+      var t = MAXOS.today0();
+      var min = new Date(Math.min.apply(null, withDates.map(function (p) { return p.start; })));
+      var max = new Date(Math.max.apply(null, withDates.map(function (p) { return p.end; })));
+      var lo = new Date(Math.max(min, t.getTime() - 45 * 86400000));
+      var hi = new Date(Math.min(max.getTime() + 14 * 86400000, t.getTime() + 170 * 86400000));
+      if (hi <= lo) hi = new Date(lo.getTime() + 30 * 86400000);
+      var pxd = PXD[GT_ZOOM];
+      var days = Math.round((hi - lo) / 86400000);
+      var W = 220 + days * pxd;
+
+      function x(d) { return 220 + Math.max(0, Math.round((d - lo) / 86400000)) * pxd; }
+
+      /* 눈금: 일=주 단위 라벨, 주/월=월 단위 라벨 */
+      var ticks = '';
+      var cur = new Date(lo);
+      cur.setDate(1); if (cur < lo) cur.setMonth(cur.getMonth() + 1);
+      while (cur <= hi) {
+        ticks += '<div class="g-tick" style="left:' + x(cur) + 'px">' + (cur.getMonth() + 1) + '월</div>';
+        cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+      }
+      if (GT_ZOOM === 'day') {
+        var wk = new Date(lo); wk.setDate(wk.getDate() + ((8 - wk.getDay()) % 7));
+        while (wk <= hi) {
+          ticks += '<div class="g-tick" style="left:' + x(wk) + 'px;border-left-style:dashed;color:#c0beb6">' + (wk.getMonth() + 1) + '/' + wk.getDate() + '</div>';
+          wk = new Date(wk.getTime() + 7 * 86400000);
+        }
+      }
+
+      var rows = '';
+      var sorted = withDates.slice().sort(function (a, b) { return a.start - b.start; });
+      var firstActive = sorted.filter(function (p) { return p.group === 'active'; })[0];
+      sorted.forEach(function (p) {
+        var bx = x(new Date(Math.max(p.start, lo)));
+        var bw = Math.max(pxd, x(new Date(Math.min(p.end, hi))) - bx);
+        var color = p.delayed ? 'rgba(255,107,61,.75)' : p.group === 'upcoming' ? 'rgba(139,124,246,.6)' : 'rgba(40,199,101,.65)';
+        rows += '<div class="g-row"><div class="g-label"><span>' + esc(p.title) + '</span><small>' + MAXOS.fmtDate(p.startDate) + ' ~ ' + MAXOS.fmtDate(p.endDate) + '</small></div>' +
+          '<div class="g-bar" style="left:' + bx + 'px;width:' + bw + 'px" title="' + esc(p.title) + '"><i style="background:' + color + ';width:100%"></i></div></div>';
+
+        /* 첫 진행 중 프로젝트에 샘플 Task 하위 행 */
+        if (firstActive && p === firstActive) {
+          [['샘플 · 시안 A/B 제작', 0, 0.45], ['샘플 · 내부 검수·수정', 0.4, 0.75], ['샘플 · 최종 승인·납품', 0.7, 1]].forEach(function (tk) {
+            var span = p.end - p.start;
+            var s = new Date(p.start.getTime() + span * tk[1]);
+            var e = new Date(p.start.getTime() + span * tk[2]);
+            var tx = x(new Date(Math.max(s, lo)));
+            var tw = Math.max(pxd, x(new Date(Math.min(e, hi))) - tx);
+            rows += '<div class="g-row task"><div class="g-label"><span>└ ' + esc(tk[0]) + ' <span class="badge-sample" style="height:16px;font-size:9px;padding:0 6px;vertical-align:1px">샘플</span></span></div>' +
+              '<div class="g-bar" style="left:' + tx + 'px;width:' + tw + 'px"><i style="background:rgba(255,212,92,.7);width:100%"></i></div></div>';
+          });
+        }
+      });
+
+      var todayX = x(t);
+      el.style.width = W + 'px';
+      el.innerHTML = '<div class="g-head" style="width:' + W + 'px">' + ticks + '</div>' + rows +
+        (t >= lo && t <= hi ? '<div class="g-today" style="left:' + todayX + 'px"></div>' : '');
+    }
+
+    /* ── 이번 주 할 일 (샘플) ── */
+    var TK_VIEW = 'week';
+    var SAMPLE_TASKS = [
+      { name: '메인 화면 시안 2안', proj: '샘플 프로젝트 A', who: '담당자 ㄱ', d0: 0, d1: 2, state: '진행 중', dep: '—' },
+      { name: '모션 키프레임 정리', proj: '샘플 프로젝트 A', who: '담당자 ㄴ', d0: 1, d1: 3, state: '진행 중', dep: '메인 화면 시안' },
+      { name: '상세페이지 카피 확정', proj: '샘플 프로젝트 B', who: '담당자 ㄷ', d0: 2, d1: 2, state: '검수 중', dep: '—' },
+      { name: '컨셉 방향 승인 요청', proj: '샘플 프로젝트 B', who: '담당자 ㄱ', d0: 3, d1: 3, state: '승인 대기', dep: '카피 확정' },
+      { name: '배너 규격 파생 6종', proj: '샘플 프로젝트 C', who: '담당자 ㄹ', d0: 3, d1: 5, state: '할 일', dep: '컨셉 승인' },
+      { name: '사운드 시안 검토', proj: '샘플 프로젝트 C', who: '담당자 ㄴ', d0: 4, d1: 5, state: '차단', dep: '외부 소스 대기' }
+    ];
+    var TK_COLORS = { '할 일': '#efefec', '진행 중': 'rgba(40,199,101,.25)', '검수 중': 'rgba(175,197,247,.4)', '승인 대기': 'rgba(255,212,92,.45)', '완료': 'rgba(40,199,101,.15)', '차단': 'rgba(255,107,61,.25)' };
+
+    function weekStart() {
+      var t = MAXOS.today0();
+      var d = new Date(t);
+      d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); /* 월요일 */
+      return d;
+    }
+
+    function renderTasks() {
+      $('#tk-week').style.display = TK_VIEW === 'week' ? '' : 'none';
+      $('#tk-kanban').style.display = TK_VIEW === 'kanban' ? '' : 'none';
+      $('#tk-list').style.display = TK_VIEW === 'list' ? '' : 'none';
+
+      var ws = weekStart();
+      var we = new Date(ws.getTime() + 6 * 86400000);
+      $('#tk-week-title').textContent = '이번 주 · ' + (ws.getMonth() + 1) + '/' + ws.getDate() + ' ~ ' + (we.getMonth() + 1) + '/' + we.getDate();
+
+      if (TK_VIEW === 'week') {
+        var yoil = ['월', '화', '수', '목', '금', '토', '일'];
+        var head = '<div class="wh"></div>' + yoil.map(function (y, i) {
+          var d = new Date(ws.getTime() + i * 86400000);
+          return '<div class="wh">' + y + ' <span style="color:#b5b2ab">' + (d.getMonth() + 1) + '/' + d.getDate() + '</span></div>';
+        }).join('');
+        var projs = {};
+        SAMPLE_TASKS.forEach(function (t) { (projs[t.proj] = projs[t.proj] || []).push(t); });
+        var body = Object.keys(projs).map(function (pj) {
+          var cells = ['<div class="wl">' + esc(pj) + ' <span class="badge-sample" style="height:18px;font-size:9px;padding:0 6px">샘플</span></div>'];
+          for (var i = 0; i < 7; i++) {
+            var inDay = projs[pj].filter(function (t) { return i >= t.d0 && i <= t.d1; });
+            cells.push('<div>' + inDay.map(function (t) {
+              return '<div class="wbar" style="background:' + TK_COLORS[t.state] + '" title="' + esc(t.name) + ' · ' + esc(t.who) + '">' + (i === t.d0 ? esc(t.name) : '&nbsp;') + '</div>';
+            }).join('') + '</div>');
+          }
+          return cells.join('');
+        }).join('');
+        $('#tk-weekgrid').innerHTML = head + body;
+      }
+
+      if (TK_VIEW === 'kanban') {
+        var states = ['할 일', '진행 중', '검수 중', '승인 대기', '완료', '차단'];
+        $('#tk-kanban').innerHTML = states.map(function (st) {
+          var items = SAMPLE_TASKS.filter(function (t) { return t.state === st; });
+          return '<div class="kanban-col"><h4>' + st + '<span class="cnt">' + items.length + '</span></h4>' +
+            items.map(function (t) {
+              return '<div class="kcard"><b>' + esc(t.name) + ' <span class="badge-sample" style="height:17px;font-size:9px;padding:0 6px">샘플</span></b><span class="meta"><span>' + esc(t.proj) + '</span><span>' + esc(t.who) + '</span>' + (t.dep !== '—' ? '<span>의존: ' + esc(t.dep) + '</span>' : '') + '</span></div>';
+            }).join('') + '</div>';
+        }).join('');
+      }
+
+      if (TK_VIEW === 'list') {
+        $('#tk-tbody').innerHTML = SAMPLE_TASKS.map(function (t) {
+          var d0 = new Date(ws.getTime() + t.d0 * 86400000), d1 = new Date(ws.getTime() + t.d1 * 86400000);
+          return '<tr><td style="font-weight:650">' + esc(t.name) + ' <span class="badge-sample" style="height:17px;font-size:9px;padding:0 6px">샘플</span></td><td>' + esc(t.proj) + '</td><td>' + esc(t.who) + '</td>' +
+            '<td class="mono">' + (d0.getMonth() + 1) + '/' + d0.getDate() + '~' + (d1.getMonth() + 1) + '/' + d1.getDate() + '</td>' +
+            '<td><span class="tag" style="background:' + TK_COLORS[t.state] + ';color:#333">' + t.state + '</span></td><td style="font-size:12px;color:var(--muted)">' + esc(t.dep) + '</td></tr>';
+        }).join('');
+      }
+    }
+    $$('#tk-views button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        TK_VIEW = b.getAttribute('data-view');
+        $$('#tk-views button').forEach(function (x) { x.classList.toggle('on', x === b); });
+        renderTasks();
+      });
+    });
+
+    /* ── 사람·업무 배정 ── */
+    var STATE_META = {
+      ok: { label: '적정이에요', cls: 'green', color: 'var(--green)' },
+      idle: { label: '여유 있어요', cls: 'purple', color: 'var(--lavender)' },
+      over: { label: '많이 배정됐어요', cls: 'orange', color: 'var(--orange)' },
+      unlogged: { label: '기록이 없어요', cls: '', color: '#c9c7c0' }
+    };
+
+    function renderCapacityRows() {
+      if (!DB.res) { $('#cp-rows').innerHTML = '<div class="empty-big"><b>정보를 불러오지 못했어요</b></div>'; return; }
+      var f = $('#cp-filter').value;
+      var list = DB.res.list.filter(function (r) { return !f || r.state === f; });
+      $('#cp-rows').innerHTML = list.length ? list.map(function (r) {
+        var m = STATE_META[r.state];
+        var w = r.utilRate === null ? 0 : Math.min(r.utilRate, 130) / 130 * 100;
+        return '<div class="res-row">' +
+          '<div class="res-name"><b>' + esc(r.name) + '</b><small>' + (r.lastLog ? '마지막 기록 ' + MAXOS.fmtDate(r.lastLog) : '업무 시간이 아직 기록되지 않았어요') + '</small></div>' +
+          '<div class="hbar" style="height:10px"><i style="width:' + w + '%;background:' + m.color + '"></i></div>' +
+          '<div class="res-meta"><span class="pct">' + (r.utilRate === null ? '—' : r.utilRate + '%') + '</span><span class="tag ' + m.cls + '"><span class="sdot" style="background:' + m.color + '"></span>' + m.label + '</span></div>' +
+          '</div>';
+      }).join('') : '<div class="empty-big"><b>조건에 맞는 사람이 없어요</b></div>';
+    }
+    $('#cp-filter').addEventListener('change', renderCapacityRows);
+
+    function renderCapacityWarns() {
+      if (!DB.res) return;
+      $('#cp-warns').innerHTML = DB.res.list.filter(function (r) { return r.state === 'over'; }).map(function (r) {
+        return '<div class="warn-card">⚠️ <b>' + esc(r.name) + '</b> 님의 최근 업무 배정률이 <b class="mono">' + r.utilRate + '%</b>예요. 이대로 진행하면 마감이 겹치거나 품질이 흔들릴 수 있어요. 업무 배정을 조정해 주세요.</div>';
+      }).join('');
+    }
+
+    /* ── 우리 팀 ── */
+    var TEAM = [
+      { name: '김효정', role: '실장 · CD', team: 'CD', skills: ['CD', 'PM', 'Strategy', 'Business'] },
+      { name: '김창환', role: 'VM팀장 · 비주얼 리드', team: 'VM', skills: ['Motion', 'Branding', 'Direction'] },
+      { name: '강민우', role: 'VM파트장', team: 'VM', skills: ['Motion', 'UI', 'AE'] },
+      { name: '강승일', role: 'VM전임', team: 'VM', skills: ['Motion', 'Illustration', 'Design'] },
+      { name: '문경선', role: 'VM전임', team: 'VM', skills: ['Motion', 'Photoshop', 'Design'] },
+      { name: '이지현', role: 'VM전임', team: 'VM', skills: ['UI', 'Design', 'Figma'] },
+      { name: '전한아', role: 'VX파트장', team: 'VX', skills: ['UX', 'Figma', 'Prototyping'] },
+      { name: '김지원', role: 'VX전임', team: 'VX', skills: ['Front-End', 'React', 'Figma'] },
+      { name: '김준환', role: 'VX선임', team: 'VX', skills: ['UX', 'Figma', 'Design'] }
+    ];
+    var TEAM_LABEL = { CD: '실장 · 크리에이티브 디렉션', VM: 'VM — 비주얼·모션', VX: 'VX — 프로덕트·경험' };
+
+    function renderTeam() {
+      var byUtil = {};
+      if (DB.res) DB.res.list.forEach(function (r) { byUtil[r.name] = r; });
+      var html = '';
+      ['CD', 'VM', 'VX'].forEach(function (tm) {
+        var members = TEAM.filter(function (m) { return m.team === tm; });
+        html += '<article class="panel mt" style="margin-top:' + (tm === 'CD' ? '0' : '18px') + '">' +
+          '<div class="panel-head"><h2 style="font-size:16px">' + TEAM_LABEL[tm] + '</h2><span class="mono" style="font-size:11px;color:var(--muted2)">' + members.length + '명</span></div>' +
+          '<div class="team-grid">' +
+          members.map(function (m) {
+            var r = byUtil[m.name];
+            var st = r ? STATE_META[r.state] : STATE_META.unlogged;
+            var w = r && r.utilRate !== null ? Math.min(r.utilRate, 130) / 130 * 100 : 0;
+            return '<div class="member"><div class="mhead"><div class="mava">' + m.team + '</div><div><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small></div>' +
+              '<span class="tag ' + st.cls + '" style="margin-left:auto"><span class="sdot" style="background:' + st.color + '"></span>' + st.label + '</span></div>' +
+              '<div class="hbar"><i style="width:' + w + '%;background:' + st.color + '"></i></div>' +
+              '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted2);margin-top:6px"><span>업무 배정률</span><b class="mono">' + (r && r.utilRate !== null ? r.utilRate + '%' : '기록 없음') + '</b></div>' +
+              '<div class="skills">' + m.skills.map(function (s) { return '<span class="tag">' + esc(s) + '</span>'; }).join('') + '</div>' +
+              '</div>';
+          }).join('') + '</div></article>';
+      });
+      $('#team-groups').innerHTML = html;
+    }
+
+    /* ── 전체 렌더 ── */
+    function renderAll() {
+      renderSrcBadges();
+      renderOverview();
+      initProjectFilters();
+      renderProjects();
+      renderTasks();
+      renderCapacityRows();
+      renderCapacityWarns();
+      renderTeam();
+    }
+  })();
+  </script>
+</body>
+</html>

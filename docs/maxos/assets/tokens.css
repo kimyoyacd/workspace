@@ -1,0 +1,33 @@
+/* MAX OS 마스터 디자인 토큰 — 기준: docs/max-os/MAX_OS_HOME_WIREFRAME.html + 05_DESIGN_SYSTEM_IMPLEMENTATION.md */
+:root {
+  color-scheme: light;
+
+  /* 기본 팔레트 */
+  --black: #111111;
+  --text: #181818;
+  --muted: #767676;
+  --muted2: #8a8a8a;
+  --line: #e6e6e2;
+  --line-soft: #f1efe9;
+  --soft: #f5f5f2;      /* 페이지 배경 */
+  --panel: #fafaf8;     /* 보조 서피스 */
+  --card: #ffffff;
+
+  /* 포인트 컬러 — 그래프·태그·상태점에만 사용 */
+  --orange: #ff6b3d;
+  --yellow: #ffd45c;
+  --lavender: #8b7cf6;
+  --blue: #afc5f7;
+  --green: #28c765;
+
+  /* 대표 그라데이션 — Hero 포인트·핵심 그래프 1곳만 */
+  --grad: linear-gradient(120deg, #ff6b3d 0%, #f0a0b8 46%, #8b7cf6 100%);
+
+  /* 형태 */
+  --radius: 24px;       /* 카드 20~28px */
+  --radius-sm: 14px;    /* 버튼 12~18px */
+
+  /* 타이포 */
+  --sans: Pretendard, "Pretendard Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", -apple-system, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+}
