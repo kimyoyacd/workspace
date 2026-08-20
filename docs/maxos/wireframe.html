@@ -117,6 +117,9 @@ td b{font-weight:650}
 .ob-k{font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--muted2);flex:none}
 .ob-v{font-size:12.5px;color:var(--muted);max-width:340px}
 .ob-v b{color:var(--text);font-weight:650}
+.ag{display:inline-block;font:600 10.5px var(--mono);padding:3px 8px;border-radius:7px;background:#111;color:#fff;margin:0 3px 3px 0;white-space:nowrap}
+.ag.sk{background:#fff;color:#111;border:1.5px solid #111}
+.agn{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
 .gtag{display:inline-block;font:600 10px var(--mono);padding:3px 8px;border-radius:999px;background:#f0f0ed;color:#3a3a36;white-space:nowrap}
 
 /* 이식 카드 */
@@ -375,7 +378,100 @@ td b{font-weight:650}
 
 <!-- 6 -->
 <section>
-  <div class="sec-head"><span class="sec-no">06</span><h2>운영 현황 — 탭 3개</h2></div>
+  <div class="sec-head"><span class="sec-no">06</span><h2>무엇을 부를지 — 외우지 않습니다</h2></div>
+  <p class="sec-desc">지금 에이전트 <b>30개</b>, 스킬 <b>9개</b>가 만들어져 있습니다. 이걸 외워서 상황마다 고르는 건 불가능합니다. 그래서 <b>단계가 자기가 부를 것을 알고 있게</b> 했습니다. 위 24칸(8유형 × 3단계)에 각각 박아 넣습니다.</p>
+
+  <div class="owner-bar" style="margin-bottom:20px">
+    <div class="ob-k">원칙</div>
+    <div class="ob-v" style="max-width:none"><b>이름을 외우지 않아요.</b> 단계를 열면 「여기서 부르는 것」이 이미 적혀 있고, 눌러서 그대로 복사해 쓰면 돼요.</div>
+  </div>
+
+  <div class="wlabel">단계 칩에 한 줄이 늘어납니다</div>
+  <div class="steps" style="grid-template-columns:1fr 1fr;max-width:760px">
+    <div class="step">
+      <div class="sno">STEP 01 · 지금</div>
+      <div class="sttl">상품 정보 모으기</div>
+      <dl><dt>받을 것</dt><dd>상품·캠페인 자료, 사진, 문구</dd><dt>만들 것</dt><dd>정보 정리표와 빠진 자료 요청 목록</dd></dl>
+      <div class="next">다음 → 바로 2단계로</div>
+    </div>
+    <div class="step" style="border-color:#111">
+      <div class="sno">STEP 01 · 바뀐 뒤</div>
+      <div class="sttl">상품 정보 모으기</div>
+      <dl><dt>받을 것</dt><dd>상품·캠페인 자료, 사진, 문구</dd><dt>만들 것</dt><dd>정보 정리표와 빠진 자료 요청 목록</dd>
+      <dt>여기서 부르는 것</dt><dd><span class="ag">rfp-analyst</span> <span class="agn">빠진 자료를 대신 찾아줘요</span></dd></dl>
+      <div class="next">다음 → 바로 2단계로</div>
+    </div>
+  </div>
+
+  <div class="wlabel" style="margin-top:26px">24칸 라우팅 — 이 표가 화면 안으로 들어갑니다</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:16%">유형</th><th style="width:28%">1단계</th><th style="width:28%">2단계</th><th style="width:28%">3단계</th></tr></thead>
+      <tbody>
+        <tr><td><b>제안서</b></td>
+          <td><span class="ag">marketer</span><span class="agn">RFP를 뜯어서 진짜 니즈까지</span></td>
+          <td><span class="ag">marketer</span> <span class="ag">concept-director</span><span class="agn">조사 이어서 → 관점 한 문장 고정</span></td>
+          <td><span class="ag sk">mx-deck-design</span> <span class="ag">visual-generator</span><span class="agn">덱 만들고 목업 넣기</span></td></tr>
+        <tr><td><b>앱·웹 화면</b></td>
+          <td><span class="ag">rfp-analyst</span> <span class="ag">reference-curator</span><span class="agn">요구사항 분해 + 참고 사례</span></td>
+          <td><span class="ag">design-system-guardian</span> <span class="ag">figma-bridge</span><span class="agn">시스템 지켰는지 + Figma 왕복</span></td>
+          <td><span class="ag">design-critique</span><span class="agn">눌러보기 전 결함 잡기</span></td></tr>
+        <tr><td><b>상품 상세페이지</b></td>
+          <td><span class="ag">rfp-analyst</span><span class="agn">빠진 자료 목록 뽑기</span></td>
+          <td><span class="ag">reference-curator</span> <span class="ag">visual-generator</span><span class="agn">레퍼런스 → 본문 비주얼</span></td>
+          <td><span class="ag">design-critique</span> <span class="ag">fact-checker</span><span class="agn">시안 검수 + 문구·수치 확인</span></td></tr>
+        <tr><td><b>콘텐츠·이벤트</b></td>
+          <td><span class="ag">rfp-analyst</span> <span class="ag">critic</span><span class="agn">목표 정리 + 현실성 점검</span></td>
+          <td><span class="ag">concept-director</span> <span class="ag">brainstormer</span> <span class="ag sk">storytelling</span><span class="agn">관점 → 발산 → 이야기 흐름</span></td>
+          <td><span class="ag">design-critique</span><span class="agn">퍼블리싱 전 검수</span></td></tr>
+        <tr><td><b>광고 배너</b></td>
+          <td><span class="ag">rfp-analyst</span><span class="agn">채널·규격 정리</span></td>
+          <td><span class="ag">brainstormer</span> <span class="ag">visual-generator</span> <span class="ag sk">viral-hooks</span><span class="agn">아이디어 → KV → 카피 첫 줄</span></td>
+          <td><span class="ag">design-system-guardian</span> <span class="ag">design-critique</span><span class="agn">규격·브랜드 검수</span></td></tr>
+        <tr><td><b>AI 이미지</b></td>
+          <td><span class="ag">moodboard-builder</span> <span class="ag">legal-compliance</span><span class="agn">후보 만들기 + 권리 범위 확인</span></td>
+          <td><span class="ag">visual-generator</span> <span class="ag sk">26raw-realism</span><span class="agn">포즈·표정 파생</span></td>
+          <td><span class="ag">design-critique</span><span class="agn">얼굴·손·브랜드 일관성</span></td></tr>
+        <tr><td><b>15·30초 영상</b></td>
+          <td><span class="ag">concept-director</span> <span class="ag">brainstormer</span><span class="agn">콘셉트·사운드 방향</span></td>
+          <td><span class="ag">storyboard-maker</span><span class="agn">컷별 콘티·키프레임</span></td>
+          <td><span class="ag">visual-generator</span> <span class="ag">design-critique</span><span class="agn">생성 → 검수</span></td></tr>
+        <tr><td><b>90초+ 영상</b></td>
+          <td><span class="ag">concept-director</span> <span class="ag">reference-curator</span><span class="agn">트리트먼트 방향</span></td>
+          <td><span class="ag">storyboard-maker</span><span class="agn">샷리스트까지</span></td>
+          <td><span class="ag">visual-generator</span> <span class="ag">review-panel</span><span class="agn">생성 → 5관점 검토</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wlabel" style="margin-top:26px">단계와 상관없이 항상 도는 것</div>
+  <div class="shift">
+    <div class="shift-card"><div class="k">내보내기 직전</div><p><span class="ag">delivery-gate</span> 잘림·PII·링크 점검 · <span class="ag">tone-guardian</span> 메일 톤 — <b>모든 흐름의 마지막에 자동으로</b> 들어갑니다.</p></div>
+    <div class="shift-card"><div class="k">숫자가 있으면</div><p><span class="ag">fact-checker</span> — 수치·인용이 들어간 산출물은 유형과 무관하게 통과해야 합니다.</p></div>
+  </div>
+
+  <div class="wlabel" style="margin-top:26px">프로젝트가 아닌 상황 — 여기는 목록이 필요합니다</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:34%">이럴 때</th><th>부르는 것</th></tr></thead>
+      <tbody>
+        <tr><td class="tdim">견적 뽑아야 할 때</td><td><span class="ag">quote-accountant</span><span class="agn">원가표 + 마진 시나리오 (최종가는 사람이)</span></td></tr>
+        <tr><td class="tdim">고객사 미팅 들어가기 전</td><td><span class="ag">account-radar</span><span class="agn">히스토리·리스크 브리핑</span></td></tr>
+        <tr><td class="tdim">현황·가동률 물어볼 때</td><td><span class="ag">project-manager</span><span class="agn">노션·시트 읽어서 정리 (읽기만)</span></td></tr>
+        <tr><td class="tdim">계약서·NDA 볼 때</td><td><span class="ag">legal-compliance</span><span class="agn">쟁점 플래그 (자문 대체 아님)</span></td></tr>
+        <tr><td class="tdim">외주 구할 때 / 채용</td><td><span class="ag">vendor-radar</span> <span class="ag">hiring-radar</span></td></tr>
+        <tr><td class="tdim">산출물 여러 개 묶을 때</td><td><span class="ag">project-index</span><span class="agn">인덱스 페이지 자동 생성</span></td></tr>
+        <tr><td class="tdim">긴 문서 한 장으로</td><td><span class="ag sk">tab-deck-design</span> <span class="ag sk">list-deck-design</span><span class="agn">섹션 8개↑ / 수치 리포트</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><span class="tag">정리 필요</span>CLAUDE.md에는 에이전트 25종·스킬 4종으로 적혀 있는데 실제로는 <b>30종·9종</b>입니다. 문서와 실물이 어긋나 있어 <b>한 번 맞춰야</b> 합니다. 안 쓰는 것은 이참에 지우는 편이 낫습니다.</div>
+</section>
+
+
+<section>
+  <div class="sec-head"><span class="sec-no">07</span><h2>운영 현황 — 탭 3개</h2></div>
   <p class="sec-desc">7개에서 3개로 줄였습니다. 데이터가 없는 탭은 만들지 않았습니다.</p>
   <div class="tbl-wrap">
     <table>
@@ -395,7 +491,7 @@ td b{font-weight:650}
 
 <!-- 7 -->
 <section>
-  <div class="sec-head"><span class="sec-no">07</span><h2>우리가 일하는 기준</h2></div>
+  <div class="sec-head"><span class="sec-no">08</span><h2>우리가 일하는 기준</h2></div>
   <p class="sec-desc">지금은 AX 이론만 들어가 있습니다. 노션 「MAX실 온보딩 가이드」의 실제 내용으로 바꾸되, AI 시대에 맞게 각색합니다.</p>
   <div class="tbl-wrap">
     <table>
@@ -414,7 +510,7 @@ td b{font-weight:650}
 
 <!-- 8 -->
 <section>
-  <div class="sec-head"><span class="sec-no">08</span><h2>확인 부탁드릴 것</h2></div>
+  <div class="sec-head"><span class="sec-no">09</span><h2>확인 부탁드릴 것</h2></div>
   <div class="tbl-wrap">
     <table>
       <thead><tr><th style="width:6%">#</th><th style="width:32%">확인할 것</th><th>제안</th></tr></thead>
