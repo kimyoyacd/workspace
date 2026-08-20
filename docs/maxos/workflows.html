@@ -84,11 +84,11 @@
 .loop{margin-top:14px;text-align:center;font:500 11px var(--mono);color:var(--muted2)}
 .gate-tip{font-size:11.5px;color:var(--muted);margin-top:12px}
 
-.side-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
-.mini-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
-.mini-tbl td{padding:9px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
-.mini-tbl tr:last-child td{border-bottom:0}
-.mini-tbl td:first-child{width:38%;padding-right:14px;color:var(--muted)}
+.always-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.always-item{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px 16px}
+.always-item .aw{font-size:13px;font-weight:700;letter-spacing:-.02em;display:block;margin-bottom:9px}
+.always-item .agw{margin-bottom:9px}
+.always-item .agw:last-child{margin-bottom:0}
 .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(12px);background:var(--black);color:#fff;padding:11px 18px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.2s;z-index:90}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -97,7 +97,7 @@
   .spine .snode:not(:last-child){margin-right:0}
   .spine .snode:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%) rotate(90deg)}
   .steps{grid-template-columns:1fr}
-  .side-grid{grid-template-columns:1fr}
+  .always-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -124,16 +124,11 @@
       <div class="loop">↺ 여기서 꺼낸 걸 다음 일에 쓰면 다시 맨 앞으로 돌아옵니다</div>
     </section>
 
-    <div class="side-grid">
-      <article class="panel">
-        <div class="panel-head"><h2 style="font-size:16px">단계와 상관없이 늘 거치는 것</h2></div>
-        <table class="mini-tbl" id="always"></table>
-      </article>
-      <article class="panel">
-        <div class="panel-head"><h2 style="font-size:16px">프로젝트가 아닌 일</h2></div>
-        <table class="mini-tbl" id="off"></table>
-      </article>
-    </div>
+    <article class="panel" style="margin-top:22px">
+      <div class="panel-head"><h2 style="font-size:16px">단계와 상관없이 늘 거치는 것</h2>
+        <span style="font-size:12px;color:var(--muted2)">어떤 갈래든 이 두 가지는 지나갑니다</span></div>
+      <div class="always-grid" id="always"></div>
+    </article>
 
     <p class="mono" style="color:var(--muted2);font-size:10.5px;margin-top:20px">
       원본 지도: Figma 전체 AX Product Flow ·
@@ -231,10 +226,7 @@
     $('#crumb').innerHTML=c;
 
     $('#always').innerHTML=F.always.map(function(a){
-      return '<tr><td>'+esc(a.when)+'</td><td>'+agChips(a.call)+'</td></tr>';
-    }).join('');
-    $('#off').innerHTML=F.offProject.map(function(o){
-      return '<tr><td>'+esc(o.s)+'</td><td>'+agChips(o.call)+'</td></tr>';
+      return '<div class="always-item"><span class="aw">'+esc(a.when)+'</span>'+agChips(a.call)+'</div>';
     }).join('');
   }
 

@@ -6,7 +6,6 @@
 (function () {
   var MENU = [
     { id: 'home',       label: '홈',              icon: '⌂', href: 'index.html' },
-    { id: 'operations', label: '운영 현황',        icon: '▦', href: 'operations.html' },
     { id: 'workflows',  label: '워크플로우',        icon: '↯', href: 'workflows.html' },
     { id: 'ai',         label: 'AI와 일하기',       icon: '✳', href: 'ai-runtime.html' },
     { id: 'roles',      label: '우리가 일하는 기준', icon: '◇', href: 'roles.html' },

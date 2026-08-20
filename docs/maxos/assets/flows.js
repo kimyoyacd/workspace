@@ -106,14 +106,5 @@ window.FLOWS = {
   always: [
     { when: '내보내기 직전', call: [{ n: 'delivery-gate', w: '잘림·PII·링크 점검' }, { n: 'tone-guardian', w: '메일 톤' }] },
     { when: '숫자가 들어가면', call: [{ n: 'fact-checker', w: '수치·인용 검증' }] }
-  ],
-  offProject: [
-    { s: '견적 뽑아야 할 때', call: [{ n: 'quote-accountant', w: '원가표 + 마진 시나리오 (최종가는 사람이)' }] },
-    { s: '고객사 미팅 들어가기 전', call: [{ n: 'account-radar', w: '히스토리·리스크 브리핑' }] },
-    { s: '현황·가동률 물어볼 때', call: [{ n: 'project-manager', w: '노션·시트 읽어서 정리 (읽기만)' }] },
-    { s: '계약서·NDA 볼 때', call: [{ n: 'legal-compliance', w: '쟁점 플래그 (자문 대체 아님)' }] },
-    { s: '외주 구할 때 / 채용', call: [{ n: 'vendor-radar', w: '외주 풀' }, { n: 'hiring-radar', w: '채용 파이프라인' }] },
-    { s: '산출물 여러 개 묶을 때', call: [{ n: 'project-index', w: '인덱스 페이지 자동 생성' }] },
-    { s: '긴 문서 한 장으로', call: [{ n: 'tab-deck-design', sk: 1, w: '섹션 8개↑' }, { n: 'list-deck-design', sk: 1, w: '수치 리포트' }] }
   ]
 };
