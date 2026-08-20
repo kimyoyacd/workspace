@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-08-19T17:29:02",
+ "fetchedAt": "2026-08-19T22:27:45",
  "projects": [
   {
    "title": "올리브 트리 ",
@@ -33,7 +33,7 @@
    "categories": [
     "UI"
    ],
-   "difficulty": null,
+   "difficulty": "H",
    "startDate": "2026-08-11",
    "endDate": "2026-08-10",
    "notionUrl": "https://app.notion.com/p/NHN-3b29ff44ed5180378c7bf02b304dc917"
@@ -57,7 +57,7 @@
    "categories": [
     "Motion"
    ],
-   "difficulty": null,
+   "difficulty": "H",
    "startDate": "2026-07-03",
    "endDate": "2026-07-24",
    "notionUrl": "https://app.notion.com/p/UA-R-D-3969ff44ed5180018acfc7a741bf6cf8"
@@ -69,7 +69,7 @@
    "categories": [
     "Motion"
    ],
-   "difficulty": "M",
+   "difficulty": "H",
    "startDate": "2026-06-12",
    "endDate": "2026-07-24",
    "notionUrl": "https://app.notion.com/p/HTWO-38f9ff44ed51803e9487d549e0e42cd8"
@@ -93,7 +93,7 @@
    "categories": [
     "Motion"
    ],
-   "difficulty": null,
+   "difficulty": "M",
    "startDate": "2026-03-31",
    "endDate": "2026-12-31",
    "notionUrl": "https://app.notion.com/p/2TO-3419ff44ed5180ce856bc5624aeae7a5"
@@ -115,13 +115,13 @@
    "categories": [
     "AI"
    ],
-   "difficulty": "M",
+   "difficulty": "L",
    "startDate": "2026-03-20",
    "endDate": "2026-03-27",
    "notionUrl": "https://app.notion.com/p/AI-3219ff44ed5180eda11bf81f881f43c4"
   }
  ],
- "projectsFetchedAt": "2026-08-19T17:29:02",
+ "projectsFetchedAt": "2026-08-19T22:27:45",
  "resources": [
   {
    "name": "김효정",
@@ -167,5 +167,5 @@
    "lastLog": "2026-05-08"
   }
  ],
- "resourcesFetchedAt": "2026-08-19T17:29:02"
+ "resourcesFetchedAt": "2026-08-19T22:27:45"
 }
