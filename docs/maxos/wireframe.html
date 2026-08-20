@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light" />
+<title>MAX OS 와이어프레임 v1</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+:root{
+  color-scheme:light;
+  --black:#111111; --text:#181818; --muted:#767676; --muted2:#8a8a8a;
+  --line:#e6e6e2; --line-soft:#f1efe9; --soft:#f5f5f2; --panel:#fafaf8; --card:#ffffff;
+  --orange:#ff6b3d; --yellow:#ffd45c; --lavender:#8b7cf6; --blue:#afc5f7; --green:#28c765;
+  --radius:24px; --radius-sm:14px;
+  --sans:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",-apple-system,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Consolas,monospace;
+  --wire:#c9c7c0;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--soft);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.65;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,li,td,th,span,b{word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:1180px;margin:0 auto;padding:44px 24px 90px}
+
+/* 문서 헤더 */
+.doc-head{margin-bottom:46px}
+.eyebrow{font:600 10px/1.2 var(--mono);letter-spacing:.2em;color:var(--muted2);margin-bottom:16px}
+.doc-head h1{font-size:clamp(30px,4vw,46px);line-height:1.14;letter-spacing:-.055em;margin:0 0 16px;font-weight:750}
+.doc-head p{font-size:15px;color:var(--muted);margin:0;max-width:660px}
+.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 11px;border-radius:999px;background:var(--card);border:1px solid var(--line);font:500 11px var(--mono);color:var(--muted)}
+
+/* 섹션 */
+section{margin-bottom:56px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.sec-no{font:700 11px var(--mono);color:var(--muted2);letter-spacing:.12em;padding-top:4px}
+.sec-head h2{font-size:26px;letter-spacing:-.045em;margin:0;font-weight:730}
+.sec-desc{font-size:14px;color:var(--muted);margin:0 0 22px;max-width:760px}
+
+/* 화면 프레임 */
+.screen{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.screen-bar{height:38px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 15px}
+.screen-bar i{width:9px;height:9px;border-radius:50%;background:#dedcd5;display:block}
+.screen-bar span{margin-left:8px;font:500 10.5px var(--mono);color:var(--muted2)}
+.screen-body{padding:26px 28px}
+
+/* 와이어 요소 */
+.wblock{border:1.5px dashed var(--wire);border-radius:12px;background:var(--panel);padding:12px 14px;color:var(--muted);font-size:12px}
+.wlabel{font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--muted2);text-transform:uppercase;margin-bottom:9px}
+.wbtn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:var(--radius-sm);background:var(--black);color:#fff;font-size:13px;font-weight:700}
+.wbtn.ghost{background:var(--card);color:var(--text);border:1px solid var(--line)}
+
+/* 주석 */
+.note{border-left:2px solid var(--wire);background:transparent;padding:2px 0 2px 14px;margin:14px 0 0;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--text);font-weight:650}
+.note .tag{display:inline-block;font:600 9.5px var(--mono);letter-spacing:.1em;color:var(--muted2);margin-right:7px;vertical-align:1px}
+
+/* 표 */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{text-align:left;font-size:11px;color:var(--muted2);font-weight:650;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--panel)}
+td{padding:12px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td b{font-weight:650}
+.tdim{color:var(--muted);font-size:12.5px}
+
+/* 홈 3버튼 */
+.home-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hcard{border:1.5px solid var(--line);border-radius:18px;padding:20px 20px 22px;background:var(--card);min-height:132px;display:flex;flex-direction:column}
+.hcard b{font-size:17px;letter-spacing:-.035em;margin-bottom:7px}
+.hcard span{font-size:12.5px;color:var(--muted);line-height:1.55}
+.hcard .no{font:600 9.5px var(--mono);color:var(--muted2);letter-spacing:.12em;margin-bottom:14px}
+.expand{margin-top:14px;border:1.5px dashed var(--wire);border-radius:16px;padding:18px 20px;background:var(--panel)}
+.expand .ex-title{font-size:14px;font-weight:700;margin-bottom:12px}
+.ex-list{margin:0;padding:0;list-style:none;font-size:12.5px;color:var(--muted)}
+.ex-list li{padding:7px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline}
+.ex-list li:last-child{border-bottom:0}
+.ex-list .n{font:600 11px var(--mono);color:var(--text);flex:none;min-width:52px}
+.ex-list .act{margin-left:auto;color:var(--muted2);font-size:11.5px;flex:none}
+
+/* 워크플로우 지도 */
+.map{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:22px;overflow-x:auto}
+.map-inner{min-width:900px}
+.spine{display:flex;align-items:stretch;gap:0}
+.snode{flex:1;border:1.5px solid var(--line);border-radius:14px;background:var(--panel);padding:12px 14px;min-width:0}
+.snode b{display:block;font-size:13px;letter-spacing:-.03em;margin-bottom:4px}
+.snode span{font-size:11px;color:var(--muted);line-height:1.5;display:block}
+.sarrow{flex:none;width:28px;display:grid;place-items:center;color:var(--wire);font-size:15px}
+.map-mid{margin:16px 0;padding:16px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.branch{border:1.5px solid var(--line);border-radius:16px;background:var(--card);padding:15px 17px;margin-bottom:10px}
+.branch:last-child{margin-bottom:0}
+.branch.open{border-color:var(--black);box-shadow:0 2px 0 rgba(17,17,17,.04)}
+.branch-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.branch-head b{font-size:15.5px;letter-spacing:-.035em}
+.branch-head .cnt{font:600 10.5px var(--mono);color:var(--muted2);margin-left:auto;flex:none}
+.branch-when{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.55}
+.subtypes{margin-top:13px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.stype{border:1.5px dashed var(--wire);border-radius:12px;background:var(--panel);padding:10px 12px;font-size:12.5px;font-weight:650}
+.stype small{display:block;font-weight:400;font-size:11px;color:var(--muted2);margin-top:3px}
+.loop{margin-top:14px;text-align:center;font:500 11px var(--mono);color:var(--muted2)}
+
+/* 단계 칩 */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.step{border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:14px 15px}
+.step .sno{font:700 10px var(--mono);color:var(--muted2);letter-spacing:.1em;margin-bottom:8px}
+.step .sttl{font-size:14px;font-weight:720;letter-spacing:-.03em;margin-bottom:10px;line-height:1.4}
+.step dl{margin:0;font-size:11.5px;line-height:1.6}
+.step dt{color:var(--muted2);font-size:10px;font-weight:600;letter-spacing:.06em;margin-top:7px}
+.step dt:first-child{margin-top:0}
+.step dd{margin:1px 0 0;color:var(--text)}
+.step .next{margin-top:11px;padding-top:9px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--muted)}
+.step .next b{color:var(--text);font-weight:650}
+
+/* 이식 카드 */
+.shift{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.shift-card{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:16px 18px}
+.shift-card .k{font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--muted2);margin-bottom:8px}
+.shift-card p{margin:0;font-size:13px;line-height:1.6}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:11.5px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:11px;border-radius:4px;vertical-align:-1px;margin-right:6px}
+.li-solid{border:1.5px solid var(--line);background:var(--card)}
+.li-dash{border:1.5px dashed var(--wire);background:var(--panel)}
+
+@media (max-width:900px){
+  .home-3{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .shift{grid-template-columns:1fr}
+  .spine{flex-direction:column;gap:8px}
+  .sarrow{width:auto;height:20px;transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+  <div class="eyebrow">MAX OS · WIREFRAME v1 · 2026.08.20</div>
+  <h1>일을 옮겨오는 자리부터<br />먼저 그렸습니다</h1>
+  <p>보기 좋은 화면이 아니라, MAX실이 지금 다른 데서 하고 있는 일을 하나씩 이 안으로 옮겨오기 위한 구조입니다. 화면 하나가 옮겨올 업무 하나에 대응합니다.</p>
+  <div class="meta-row">
+    <span class="chip">구조 3안 비교 → 「한 번에 하나씩」 채택</span>
+    <span class="chip">문장: 처음 보는 사람 기준</span>
+    <span class="chip">Figma 272-2 맵 확장 반영</span>
+  </div>
+</header>
+
+<!-- 0 -->
+<section>
+  <div class="sec-head"><span class="sec-no">00</span><h2>지금 어디서 하고 있고, 어디로 옮겨오나</h2></div>
+  <p class="sec-desc">화면을 정보 분류로 나누지 않았습니다. 지금 실제로 벌어지는 업무를 먼저 세고, 그 업무가 옮겨올 자리를 화면으로 만들었습니다.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:22%">실제 업무</th><th style="width:20%">지금 어디서</th><th style="width:12%">주기</th><th style="width:23%">옮겨올 화면</th><th>옮기면 달라지는 것</th></tr></thead>
+      <tbody>
+        <tr><td><b>프로젝트 상태 확인·정리</b></td><td class="tdim">Notion 2026 Project DB</td><td class="tdim">수시</td><td><b>운영 현황 · 진행 중인 일</b></td><td class="tdim">날짜 뒤집힘·완료 누락을 화면이 먼저 짚어줍니다</td></tr>
+        <tr><td><b>데일리 리소스 입력</b><br><span class="tdim">오전 예상 → 퇴근 전 실제</span></td><td class="tdim">Google Sheets 시간기록</td><td class="tdim">매일 2회</td><td><b>운영 현황 · 새 일 맡을 사람</b></td><td class="tdim">내 것만 넣던 숫자가 실 전체 여유로 보입니다</td></tr>
+        <tr><td><b>퇴근 3시간 전 야근 점검</b><br><span class="tdim">→ 업무 재분배 → 승인 신청</span></td><td class="tdim">구두·메신저</td><td class="tdim">야근 예상 시</td><td><b>미정 — 다음 단계 후보</b></td><td class="tdim">야근이 개인 문제에서 실 전체 재분배 문제로 바뀝니다</td></tr>
+        <tr><td><b>새 업무 시작할 때 방법 찾기</b></td><td class="tdim">사람에게 물어봄 · Figma 뒤짐</td><td class="tdim">수시</td><td><b>워크플로우 지도</b></td><td class="tdim">해본 사람만 알던 순서를 누구나 같은 자리에서 봅니다</td></tr>
+        <tr><td><b>AI 캐릭터 쓰기</b></td><td class="tdim">Figma 덱 6–7p·15–19p</td><td class="tdim">수시</td><td><b>워크플로우 · AI 이미지 만들기</b></td><td class="tdim">페이지 번호로 찾던 걸 골라서 바로 복사합니다</td></tr>
+        <tr><td><b>판단 기준 확인</b></td><td class="tdim">Notion 온보딩 가이드</td><td class="tdim">막힐 때</td><td><b>우리가 일하는 기준</b></td><td class="tdim">한 번 읽는 문서에서 막힐 때 여는 곳이 됩니다</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><span class="tag">이식 순서</span><b>① 보이게</b> (지금 여기) → <b>② 여기서 하게</b> (입력·점검) → <b>③ 여기서 결정하게</b> (재분배·승인). 한 번에 3단계로 가지 않습니다.</div>
+</section>
+
+<!-- 1 -->
+<section>
+  <div class="sec-head"><span class="sec-no">01</span><h2>전체 구조</h2></div>
+  <p class="sec-desc">좌측 메뉴 7개. 각 메뉴는 사용자가 속으로 묻는 질문 하나에 대응합니다.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:26%">메뉴</th><th>이 메뉴가 답하는 질문</th></tr></thead>
+      <tbody>
+        <tr><td><b>홈</b></td><td class="tdim">오늘 뭐부터 할지 한 번만 고르는 곳이에요.</td></tr>
+        <tr><td><b>운영 현황</b></td><td class="tdim">지금 돌아가는 일과 사람 여유를 숫자로 보는 곳이에요. 사이트의 숫자는 전부 여기에만 있어요.</td></tr>
+        <tr><td><b>워크플로우</b></td><td class="tdim">이 일을 어떤 순서로 만드는지, 단계마다 누가 무엇을 넘겨주는지 보는 곳이에요.</td></tr>
+        <tr><td><b>AI와 일하기</b></td><td class="tdim">Claude Code를 켜서 무엇을 어떻게 시키는지 예시로 배우는 곳이에요.</td></tr>
+        <tr><td><b>우리가 일하는 기준</b></td><td class="tdim">'이렇게 해도 되나' 싶을 때 규칙을 확인하는 곳이에요. 결정하는 사람 이름도 여기 있어요.</td></tr>
+        <tr><td><b>처음 시작하기</b></td><td class="tdim">입사 첫 주에 순서대로 따라가는 곳이에요.</td></tr>
+        <tr><td><b>도움말·지원</b></td><td class="tdim">규칙을 봐도 안 풀릴 때 사람을 찾는 곳이에요. 파일 권한 요청도 여기예요.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><span class="tag">뺀 것</span>새 업무 시작하기 · 결과물 보관함(Figma에서 관리) · 고객사 현황 · 이번 주 할 일(데이터 없음) · 일정·승인(데이터 없음) — 화면 9개에서 7개로.</div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="sec-head"><span class="sec-no">02</span><h2>홈 — 고를 게 셋뿐</h2></div>
+  <p class="sec-desc">처음 열면 버튼 세 개만 보입니다. 하나를 고르기 전에는 아래가 화면에 없습니다. 오늘 입사한 사람에게는 세 번째가 유일한 정답이라 앞의 둘과 같은 크기로 둡니다.</p>
+
+  <div class="screen">
+    <div class="screen-bar"><i></i><i></i><i></i><span>홈</span></div>
+    <div class="screen-body">
+      <div class="wlabel">HERO</div>
+      <div style="font-size:26px;font-weight:740;letter-spacing:-.045em;margin-bottom:8px">일이 들어오면, 여기서 시작해요</div>
+      <div style="font-size:13.5px;color:var(--muted);max-width:620px;margin-bottom:26px">MAX OS는 MAX실이 일하는 순서를 그대로 옮긴 곳이에요. 요청을 받는 순간부터 만들고, 확인받고, 다시 쓸 수 있게 모으는 데까지 이어져요.</div>
+
+      <div class="wlabel">오늘의 선택 — 같은 크기 버튼 3개</div>
+      <div class="home-3">
+        <div class="hcard"><div class="no">01</div><b>새 일 시작하기</b><span>방금 들어온 요청을 어떤 순서로 만들지 알려줘요</span></div>
+        <div class="hcard"><div class="no">02</div><b>하던 일 이어서 하기</b><span>지금 돌아가는 일 중에 손이 필요한 곳을 짚어줘요</span></div>
+        <div class="hcard"><div class="no">03</div><b>처음이라 둘러보기</b><span>MAX실이 일하는 방식을 5분 만에 훑어요</span></div>
+      </div>
+
+      <div class="expand">
+        <div class="wlabel" style="margin-bottom:12px">02를 누르면 이 자리에 열림 — 다른 걸 누르면 접힘</div>
+        <div class="ex-title">지금 손이 필요한 일</div>
+        <ul class="ex-list">
+          <li><span class="n">N건</span><span>마감일이 지났어요</span><span class="act">일정을 다시 잡거나 마감일을 고쳐 주세요</span></li>
+          <li><span class="n">N건</span><span>7일 안에 마감이에요</span><span class="act">남은 단계를 확인해 주세요</span></li>
+          <li><span class="n">N건</span><span>시작일이 마감일보다 늦어요</span><span class="act">노션에서 날짜를 고쳐 주세요</span></li>
+        </ul>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted2)">한 줄을 누르면 운영 현황에서 그 일들만 열려요. · 지금 돌아가는 일 전체 보기 →</div>
+      </div>
+
+      <div style="margin-top:20px;font:500 11px var(--mono);color:var(--muted2)">프로젝트 정보는 오늘 오전 7시에 노션에서 가져왔어요. 시간기록은 마지막 입력이 6월 25일이에요.</div>
+    </div>
+  </div>
+
+  <div class="note"><span class="tag">달라진 점</span>진행 건수·가동률 같은 <b>숫자를 홈에서 뺐습니다.</b> 숫자는 운영 현황 한 곳에만 두고, 홈은 손댈 곳만 짚습니다. 같은 블록을 두 화면에서 다시 읽는 일이 없어집니다.</div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="sec-head"><span class="sec-no">03</span><h2>워크플로우 지도 — 사이트의 중심</h2></div>
+  <p class="sec-desc">Figma 272-2 맵을 화면으로 옮기고, 빠져 있던 제작 플로우를 채웠습니다. 스킬 이름을 외우지 않아도 지금 하는 일만 고르면 순서가 열립니다.</p>
+
+  <div class="map">
+    <div class="map-inner">
+      <div class="wlabel">진입 — 어떤 갈래를 펼쳐도 자리를 지킴</div>
+      <div class="spine">
+        <div class="snode"><b>일이 들어와요</b><span>메일·미팅·메신저 어디로 오든 여기가 출발점이에요</span></div>
+        <div class="sarrow">→</div>
+        <div class="snode"><b>새 일인지, 하던 일인지 정해요</b><span>하던 일이면 운영 현황에서 그 일을 열고 돌아와요</span></div>
+        <div class="sarrow">→</div>
+        <div class="snode"><b>어떤 일인지 골라요</b><span>만들 결과물만 고르면 돼요</span></div>
+        <div class="sarrow">→</div>
+        <div class="snode"><b>작업 공간이 열려요</b><span>Figma 프로젝트 템플릿을 복제해 새 공간을 만들어요</span></div>
+      </div>
+
+      <div class="map-mid">
+        <div class="wlabel">갈래 — 처음엔 이름과 「언제 고르는지」만 보임</div>
+
+        <div class="branch">
+          <div class="branch-head"><b>제안서 만들기</b><span class="cnt">3단계</span></div>
+          <div class="branch-when">아직 우리 일로 확정되지 않아서 먼저 설득해야 할 때 골라요. 만드는 갈래가 아니라 앞단이고, 통과하면 아래 세 갈래 중 하나로 넘어가요. 정식 명칭은 제안·RFP예요.</div>
+        </div>
+
+        <div class="branch open">
+          <div class="branch-head"><b>화면·페이지·배너 만들기</b><span class="cnt">하위 4종 · 펼친 상태</span></div>
+          <div class="branch-when">확정된 일을 실제로 만들 때 골라요. 무엇을 만드는지에 따라 순서가 달라서 아래에서 한 번 더 골라요. 정식 명칭은 차례로 UI 구축, 운영성 상세페이지, 콘텐츠·이벤트 페이지, 마케팅 배너예요.</div>
+          <div class="subtypes">
+            <div class="stype">앱·웹 화면 만들기<small>UI 구축</small></div>
+            <div class="stype">상품 상세페이지 만들기<small>운영성 상세페이지</small></div>
+            <div class="stype">콘텐츠·이벤트 페이지 만들기<small>콘텐츠·이벤트 페이지</small></div>
+            <div class="stype">광고 배너 만들기<small>마케팅 배너</small></div>
+          </div>
+        </div>
+
+        <div class="branch">
+          <div class="branch-head"><b>AI 이미지 만들기</b><span class="cnt">3단계</span></div>
+          <div class="branch-when">AI로 만든 이미지가 필요할 때 골라요. 사람이 나오는 이미지가 기본이고, 제품·목업·배경·글자 이미지도 같은 순서로 만들어요. 정식 명칭은 AI 비주얼 에셋이에요.</div>
+        </div>
+
+        <div class="branch">
+          <div class="branch-head"><b>영상 만들기</b><span class="cnt">하위 2종</span></div>
+          <div class="branch-when">영상이 필요할 때 골라요. 길이에 따라 준비물이 달라서 몇 초짜리인지부터 골라요. 사운드 방향과 음원 권리 확인은 두 유형 모두에 들어 있어요.</div>
+          <div class="subtypes">
+            <div class="stype">15초·30초 영상</div>
+            <div class="stype">90초 넘는 영상</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wlabel">종료 — 여기서 끝나지 않고 첫 칸으로 돌아감</div>
+      <div class="spine">
+        <div class="snode"><b>사람이 확인해요 <span style="font-weight:400;color:var(--muted2)">(Human Review)</span></b><span>방향을 정할 때 한 번, 내보내기 전에 한 번. 통과·보완·다시 중 하나를 그 자리에서 정해요</span></div>
+        <div class="sarrow">→</div>
+        <div class="snode"><b>이 일의 기록으로 남겨요 <span style="font-weight:400;color:var(--muted2)">(Project SoT)</span></b><span>무엇을 왜 그렇게 정했는지 한곳에 모아요</span></div>
+        <div class="sarrow">→</div>
+        <div class="snode"><b>다시 쓰게 모아둬요 <span style="font-weight:400;color:var(--muted2)">(Asset Library)</span></b><span>검수를 지난 것만 올라가요. 지금은 Figma 자산 파일에 모아요</span></div>
+      </div>
+      <div class="loop">↺ 여기서 꺼낸 걸 다음 일에 쓰면 지도의 첫 칸으로 돌아와요</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="li-solid"></i>실제 화면 요소</span>
+    <span><i class="li-dash"></i>눌러야 열리는 것 · 아직 정하지 않은 것</span>
+  </div>
+
+  <div class="note" style="margin-top:20px"><span class="tag">Figma 대비</span>원본 맵의 <b>「운영 디자인 — 브리프·제작·디자인 QA」</b> 한 갈래가 <b>하위 4종으로 갈라졌습니다.</b> 영상 갈래가 15·30초 / 90초+로 갈라진 것과 같은 구조입니다.</div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="sec-head"><span class="sec-no">04</span><h2>단계 하나에 무엇이 들어가나</h2></div>
+  <p class="sec-desc">가장 여러 번 물으셨던 부분입니다. 단계 칩 하나는 네 줄입니다 — 굵은 제목, 맡는 사람·받을 것·만들 것, 그리고 다음 사람. 굵은 건 언제나 제목뿐이라 지금 눌러야 할 것과 부연이 눈으로 갈립니다.</p>
+
+  <div class="wlabel">「상품 상세페이지 만들기」를 눌렀을 때</div>
+  <div class="steps">
+    <div class="step">
+      <div class="sno">STEP 01</div>
+      <div class="sttl">상품 정보 모으기</div>
+      <dl>
+        <dt>맡는 사람</dt><dd>운영 매니저</dd>
+        <dt>받을 것</dt><dd>상품·캠페인 자료, 사진, 문구</dd>
+        <dt>만들 것</dt><dd>정보 정리표와 빠진 자료 요청 목록</dd>
+      </dl>
+      <div class="next">다음 → <b>비주얼 디자이너</b>가 이어받아요</div>
+    </div>
+    <div class="step">
+      <div class="sno">STEP 02</div>
+      <div class="sttl">읽는 순서 잡고 비주얼 만들기</div>
+      <dl>
+        <dt>맡는 사람</dt><dd>비주얼 디자이너</dd>
+        <dt>받을 것</dt><dd>정보 정리표</dd>
+        <dt>만들 것</dt><dd>정보 순서안과 본문 비주얼</dd>
+      </dl>
+      <div class="next">다음 → <b>크리에이티브 디렉터</b>가 방향을 확인해요</div>
+    </div>
+    <div class="step">
+      <div class="sno">STEP 03</div>
+      <div class="sttl">모바일까지 맞추고 검수하기</div>
+      <dl>
+        <dt>맡는 사람</dt><dd>비주얼 디자이너</dd>
+        <dt>받을 것</dt><dd>확정된 본문 비주얼</dd>
+        <dt>만들 것</dt><dd>기기별 페이지와 검수표 통과 기록</dd>
+      </dl>
+      <div class="next">다음 → <b>사람이 확인해요</b></div>
+    </div>
+  </div>
+
+  <div class="note"><span class="tag">왜 이 네 줄인가</span>「브리프 → 제작 → QA」만 있으면 목차입니다. <b>누가 맡고, 뭘 받아서, 뭘 만들어, 누구에게 넘기는지</b>가 있어야 오늘 바로 시작할 수 있는 순서가 됩니다. 이게 업무를 옮겨오는 최소 단위입니다.</div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="sec-head"><span class="sec-no">05</span><h2>전체 단계 목록 — 8개 유형 × 3단계</h2></div>
+  <p class="sec-desc">누락 여부를 한 번에 확인하시라고 전부 펼쳤습니다. 화면에서는 눌러야 열립니다.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:15%">갈래</th><th style="width:17%">하위 유형</th><th>1단계</th><th>2단계</th><th>3단계</th></tr></thead>
+      <tbody>
+        <tr><td><b>제안서 만들기</b></td><td class="tdim">제안·RFP</td><td class="tdim">요청 뜯어보기<br><span style="color:var(--muted2)">운영 매니저</span></td><td class="tdim">조사하고 방향 잡기<br><span style="color:var(--muted2)">크리에이티브 디렉터</span></td><td class="tdim">목업·제안서 만들기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td></tr>
+        <tr><td rowspan="4"><b>화면·페이지<br>·배너 만들기</b></td><td class="tdim">앱·웹 화면</td><td class="tdim">무엇을 만들지 정리하기<br><span style="color:var(--muted2)">UI 디자이너</span></td><td class="tdim">구조 잡고 화면 만들기<br><span style="color:var(--muted2)">UI 디자이너</span></td><td class="tdim">눌러보고 고치기<br><span style="color:var(--muted2)">UI 디자이너</span></td></tr>
+        <tr><td class="tdim">상품 상세페이지</td><td class="tdim">상품 정보 모으기<br><span style="color:var(--muted2)">운영 매니저</span></td><td class="tdim">읽는 순서 잡고 비주얼 만들기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td><td class="tdim">모바일까지 맞추고 검수하기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td></tr>
+        <tr><td class="tdim">콘텐츠·이벤트 페이지</td><td class="tdim">목표와 성공 기준 정하기<br><span style="color:var(--muted2)">운영 매니저</span></td><td class="tdim">콘셉트와 이야기 흐름 짜기<br><span style="color:var(--muted2)">크리에이티브 디렉터</span></td><td class="tdim">만들고 올려서 확인하기<br><span style="color:var(--muted2)">비주얼·모션 디자이너</span></td></tr>
+        <tr><td class="tdim">광고 배너</td><td class="tdim">메시지·채널·규격 정하기<br><span style="color:var(--muted2)">운영 매니저</span></td><td class="tdim">대표 한 장 만들기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td><td class="tdim">규격별로 늘리고 검수하기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td></tr>
+        <tr><td><b>AI 이미지 만들기</b></td><td class="tdim">AI 비주얼 에셋</td><td class="tdim">누구를 쓸지 고르고 권리 확인하기<br><span style="color:var(--muted2)">AI 크리에이티브 테크놀로지스트</span></td><td class="tdim">포즈·표정·앵글 늘리기<br><span style="color:var(--muted2)">AI 크리에이티브 테크놀로지스트</span></td><td class="tdim">화면에 넣고 다시 쓰기<br><span style="color:var(--muted2)">비주얼 디자이너</span></td></tr>
+        <tr><td rowspan="2"><b>영상 만들기</b></td><td class="tdim">15초·30초</td><td class="tdim">콘셉트·사운드 방향 정하기<br><span style="color:var(--muted2)">영상 디렉터</span></td><td class="tdim">스토리보드·키프레임 만들기<br><span style="color:var(--muted2)">모션 디자이너</span></td><td class="tdim">생성·편집·믹싱하기<br><span style="color:var(--muted2)">모션 디자이너</span></td></tr>
+        <tr><td class="tdim">90초 넘는 영상</td><td class="tdim">트리트먼트·사운드 방향 정하기<br><span style="color:var(--muted2)">영상 디렉터</span></td><td class="tdim">스토리보드·샷리스트 만들기<br><span style="color:var(--muted2)">영상 디렉터</span></td><td class="tdim">생성·편집·믹싱하고 검수하기<br><span style="color:var(--muted2)">모션 디자이너</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><span class="tag">확인 필요</span>맡는 사람의 <b>역할 이름</b>은 실제 MAX실 직무에 맞게 바꿔야 합니다. 지금은 온보딩 가이드의 역할 구분을 임시로 썼습니다.</div>
+</section>
+
+<!-- 6 -->
+<section>
+  <div class="sec-head"><span class="sec-no">06</span><h2>운영 현황 — 탭 3개</h2></div>
+  <p class="sec-desc">7개에서 3개로 줄였습니다. 데이터가 없는 탭은 만들지 않았습니다.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:18%">탭</th><th style="width:26%">답하는 질문</th><th>화면에 들어가는 것</th></tr></thead>
+      <tbody>
+        <tr><td><b>한눈에 보기</b></td><td class="tdim">지금 어디부터 손대면 되나요?</td><td class="tdim">조건·건수·다음에 할 일이 한 줄에 함께 있는 세 줄 + 숫자 둘(지금 돌아가는 일 / 새 일 맡을 수 있는 사람). 한 번에 열리는 목록은 하나.</td></tr>
+        <tr><td><b>진행 중인 일</b></td><td class="tdim">어떤 일이 돌아가고 있나요?</td><td class="tdim">한 줄에 다섯 — 일 이름 / 유형 / 상태 / 남은 날 / 노션에서 열기. 줄을 누르면 옆으로 상세가 열리고 「이 일의 흐름 보기」로 워크플로우 지도와 이어집니다.</td></tr>
+        <tr><td><b>새 일 맡을 사람</b></td><td class="tdim">누가 새 일을 더 맡을 수 있나요?</td><td class="tdim">먼저 한 문장으로 답 → 이름 목록(이름 / 상태 / 마지막 기록일). 기록 없는 사람은 숫자에서 뺍니다. 많이 한 순서로 줄 세우지 않습니다.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="shift" style="margin-top:16px">
+    <div class="shift-card"><div class="k">아직 없는 것</div><p>승인 대기 · 배정 시간 · 위험 신호 · 결과물 목록. 데이터가 연결되면 그 자리에 생깁니다. <b>빈 껍데기 탭은 만들지 않습니다.</b></p></div>
+    <div class="shift-card"><div class="k">평가 아님</div><p>사람 여유 숫자는 <b>다음 일을 어디에 얹을지 정할 때만</b> 봅니다. 많이 한 순서로 줄 세우지 않고, 오래된 기록은 흐리게 표시합니다.</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section>
+  <div class="sec-head"><span class="sec-no">07</span><h2>우리가 일하는 기준</h2></div>
+  <p class="sec-desc">지금은 AX 이론만 들어가 있습니다. 노션 「MAX실 온보딩 가이드」의 실제 내용으로 바꾸되, AI 시대에 맞게 각색합니다.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:26%">섹션</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td><b>AI와 사람의 역할 나누기</b></td><td class="tdim">기준과 도구는 한곳에서 만들어 다 같이 쓰고, 결과물의 품질은 그 일을 맡은 사람이 책임져요.</td></tr>
+        <tr><td><b>결정하는 사람</b></td><td class="tdim">일 종류별로 결정하는 사람이 한 명씩 정해져 있어요. 내 첫 업무의 결정권자를 여기서 찾으면 돼요.</td></tr>
+        <tr><td><b>사람이 꼭 보는 두 지점</b></td><td class="tdim">방향을 정할 때와 내보내기 직전. 통과·보완·다시 중 하나를 그 자리에서 정하고 이유를 한 줄 남겨요.</td></tr>
+        <tr><td><b>잘 만든 것의 기준</b></td><td class="tdim">브랜드 톤에 맞는지, 사실이 맞는지, 다음에 다시 쓸 수 있는지 세 가지로 봐요.</td></tr>
+        <tr><td><b>써도 되는 범위</b></td><td class="tdim">사람 얼굴·상표·음악은 어디까지 써도 되는지 미리 정해 뒀어요.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><span class="tag">막힌 지점</span>저장소가 <b>공개</b>라 근로시간·재택·인사 규정을 그대로 실을 수 없습니다. <b>일하는 방식·협업·품질·저작권만 싣고 인사 규정은 노션 링크</b>로 두는 안을 제안합니다.</div>
+</section>
+
+<!-- 8 -->
+<section>
+  <div class="sec-head"><span class="sec-no">08</span><h2>확인 부탁드릴 것</h2></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:6%">#</th><th style="width:32%">확인할 것</th><th>제안</th></tr></thead>
+      <tbody>
+        <tr><td class="tdim">1</td><td><b>「퇴근 3시간 전 야근 점검」을 화면으로 만들지</b></td><td class="tdim">규정은 이미 있고(2026-08-03~), 데이터도 있고, 매일 일어나는데 지금은 구두로만 합니다. 문화를 바꾸는 지점이라 <b>다음 단계 1순위</b>로 제안합니다.</td></tr>
+        <tr><td class="tdim">2</td><td><b>단계별 「맡는 사람」 역할 이름</b></td><td class="tdim">지금은 임시입니다. 실제 MAX실 직무명으로 확정 필요.</td></tr>
+        <tr><td class="tdim">3</td><td><b>온보딩 가이드 공개 범위</b></td><td class="tdim">일하는 방식만 싣고 인사 규정은 노션 링크.</td></tr>
+        <tr><td class="tdim">4</td><td><b>워크플로우 상단 탭 5개 없애기</b></td><td class="tdim">지도 한 장으로 합칩니다. 탭 고르기도 선택이니까요.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div style="text-align:center;font:500 10.5px var(--mono);color:var(--muted2);padding-top:20px;border-top:1px solid var(--line)">
+  MAX OS Wireframe v1 · 구조 3안 비교 후 「한 번에 하나씩」 채택 · 2026.08.20
+</div>
+
+</div>
+</body>
+</html>
