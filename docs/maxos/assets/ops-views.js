@@ -128,30 +128,26 @@
     }).join('');
   }
 
-  /* ── 우리 팀 ── */
-  function renderTeam(el, res, opts) {
-    opts = opts || {};
-    var byUtil = {};
-    if (res) res.list.forEach(function (r) { byUtil[r.name] = r; });
-    var html = '';
-    ['CD', 'VM', 'VX'].forEach(function (tm, i) {
+  /* ── 우리 실 — 조직도. 배정률은 위 「사람·업무 배정」에 이미 있으므로 여기선 안 쓴다 ── */
+  function renderOrg(el) {
+    var lead = TEAM.filter(function (m) { return m.team === 'CD'; });
+    var cols = ['VM', 'VX'].map(function (tm) {
       var members = TEAM.filter(function (m) { return m.team === tm; });
-      html += '<article class="panel" style="margin-top:' + (i === 0 ? '0' : '18px') + '">' +
-        '<div class="panel-head"><h2 style="font-size:16px">' + TEAM_LABEL[tm] + '</h2><span class="mono" style="font-size:11px;color:var(--muted2)">' + members.length + '명</span></div>' +
-        '<div class="team-grid">' +
-        members.map(function (m) {
-          var r = byUtil[m.name];
-          var st = r ? STATE_META[r.state] : STATE_META.unlogged;
-          var w = r && r.utilRate !== null ? Math.min(r.utilRate, 130) / 130 * 100 : 0;
-          return '<div class="member"><div class="mhead"><div class="mava">' + m.team + '</div><div><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small></div>' +
-            '<span class="tag ' + st.cls + '" style="margin-left:auto"><span class="sdot" style="background:' + st.color + '"></span>' + st.label + '</span></div>' +
-            '<div class="hbar"><i style="width:' + w + '%;background:' + st.color + '"></i></div>' +
-            '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted2);margin-top:6px"><span>업무 배정률</span><b class="mono">' + (r && r.utilRate !== null ? r.utilRate + '%' : '기록 없음') + '</b></div>' +
-            (opts.skills === false ? '' : '<div class="skills">' + m.skills.map(function (s) { return '<span class="tag">' + esc(s) + '</span>'; }).join('') + '</div>') +
-            '</div>';
-        }).join('') + '</div></article>';
-    });
-    el.innerHTML = html;
+      return '<div class="org-col">' +
+        '<div class="org-team"><b>' + esc(TEAM_LABEL[tm]) + '</b><span>' + members.length + '명</span></div>' +
+        '<div class="org-people">' + members.map(function (m) {
+          return '<div class="org-p"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small>' +
+            '<div class="org-sk">' + m.skills.map(function (sk) { return '<span>' + esc(sk) + '</span>'; }).join('') + '</div></div>';
+        }).join('') + '</div></div>';
+    }).join('');
+
+    el.innerHTML = '<div class="org">' +
+      '<div class="org-top">' + lead.map(function (m) {
+        return '<div class="org-lead"><b>' + esc(m.name) + '</b><small>' + esc(m.role) + '</small></div>';
+      }).join('') + '</div>' +
+      '<div class="org-stem" aria-hidden="true"></div>' +
+      '<div class="org-cols">' + cols + '</div>' +
+      '</div>';
   }
 
   /* ── 진행 단계 세그먼트 + 업무 유형 구성 ── */
@@ -245,7 +241,7 @@
     renderGantt: renderGantt,
     renderCapacityRows: renderCapacityRows,
     renderCapacityWarns: renderCapacityWarns,
-    renderTeam: renderTeam,
+    renderOrg: renderOrg,
     renderSegments: renderSegments,
     renderCategories: renderCategories,
     loadCurve: loadCurve,

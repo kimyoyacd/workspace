@@ -11,15 +11,6 @@
   <link rel="stylesheet" href="assets/ops.css" />
   <style>
     h1, h2, h3, p, td, th { word-break: keep-all; }
-    .ops-section { display: none; }
-    .ops-section.on { display: block; }
-
-    /* 이번 주 할 일(샘플) 주간 그리드 — 이 페이지에서만 쓴다 */
-    .week-grid { display: grid; grid-template-columns: 150px repeat(7, 1fr); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; font-size: 12px; }
-    .week-grid > div { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: 9px 10px; background: var(--card); min-height: 42px; }
-    .week-grid .wh { background: var(--panel); font: 600 10.5px var(--mono); color: var(--muted); }
-    .week-grid .wl { font-weight: 650; background: var(--panel); }
-    .wbar { border-radius: 8px; padding: 4px 9px; font-size: 11px; font-weight: 650; margin: 1px 0; }
   </style>
 </head>
 <body data-page="operations">
@@ -28,107 +19,29 @@
 
       <div class="page-head">
         <div class="page-eyebrow">MAX OS · OPERATIONS</div>
-        <h1 class="page-title" id="ops-title">한눈에 보기</h1>
-        <p class="page-desc" id="ops-desc"></p>
+        <h1 class="page-title">지금 진행 중인 일</h1>
+        <p class="page-desc">표로 전체를 확인하고 Notion 원본으로 넘어갑니다. 카드·일정으로 보시려면 홈에서 보시면 됩니다.</p>
       </div>
 
-      <nav class="local-tabs" id="ops-tabs" aria-label="운영 현황 탭">
-        <a href="#projects" data-tab="projects">진행 중인 일</a>
-        <a href="#tasks" data-tab="tasks">이번 주 할 일</a>
-        <a href="#gates" data-tab="gates">일정·승인</a>
-      </nav>
+      <div class="filter-bar">
+        <span id="pj-chip"></span>
+        <span style="font-size:12px;color:var(--muted2)">카드·일정으로 보시려면 <a href="index.html" style="color:var(--black);font-weight:700;text-decoration:none">홈</a>에서 보시면 됩니다</span>
+        <span class="spacer"></span>
+        <span class="mono" id="pj-count" style="font-size:11px;color:var(--muted2)"></span>
+      </div>
 
-      <!-- ══════════ 진행 중인 일 ══════════ -->
-      <section class="ops-section" id="sec-projects">
-        <div class="filter-bar">
-          <span id="pj-chip"></span>
-          <span style="font-size:12px;color:var(--muted2)">카드·일정으로 보시려면 <a href="index.html" style="color:var(--black);font-weight:700;text-decoration:none">홈</a>에서 보시면 됩니다</span>
-          <span class="spacer"></span>
-          <span class="mono" id="pj-count" style="font-size:11px;color:var(--muted2)"></span>
+      <div id="pj-table" class="panel" style="padding:10px 6px">
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr>
+              <th>프로젝트</th><th>상태</th><th>업무 유형</th><th>난이도</th><th>시작</th><th>마감</th><th>D-day</th><th>공식 기준 문서</th>
+            </tr></thead>
+            <tbody id="pj-tbody"></tbody>
+          </table>
         </div>
+      </div>
 
-        <div id="pj-table" class="panel" style="padding:10px 6px">
-          <div class="tbl-wrap">
-            <table class="tbl">
-              <thead><tr>
-                <th>프로젝트</th><th>상태</th><th>업무 유형</th><th>난이도</th><th>시작</th><th>마감</th><th>D-day</th><th>공식 기준 문서</th>
-              </tr></thead>
-              <tbody id="pj-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
-      </section>
-
-      <!-- ══════════ 이번 주 할 일 (Task) ══════════ -->
-      <section class="ops-section" id="sec-tasks">
-        <div class="state-note" style="margin-bottom:16px">
-          <b>아직 세부 할 일(Task) 정보가 연결되지 않았어요.</b>
-          아래 화면은 연결 후의 모습을 보여주는 <span class="badge-sample">샘플 데이터</span>예요.
-          프로젝트별 할 일·담당자·기간·의존 관계를 관리하려면 Task 데이터를 어디에 기록할지 먼저 정해야 해요 (사람의 결정이 필요해요).
-        </div>
-
-        <div class="filter-bar">
-          <div class="view-toggle" id="tk-views">
-            <button data-view="week" class="on">주간 일정으로 보기</button>
-            <button data-view="kanban">보드로 보기</button>
-            <button data-view="list">목록으로 보기</button>
-          </div>
-          <span class="spacer"></span>
-          <span class="badge-sample">샘플 데이터</span>
-        </div>
-
-        <div id="tk-week" class="panel" style="padding:14px">
-          <div class="panel-head" style="margin-bottom:12px"><h2 id="tk-week-title" style="font-size:15px">이번 주</h2></div>
-          <div class="tbl-wrap"><div class="week-grid" id="tk-weekgrid" style="min-width:860px"></div></div>
-          <p style="font-size:11px;color:var(--muted2);margin:10px 2px 0">이름 없이 이어지는 색 칸은 앞선 날에 시작한 같은 일이 계속되는 거예요. 칸에 마우스를 올리면 일 이름이 보여요.</p>
-        </div>
-
-        <div id="tk-kanban" class="kanban" style="display:none"></div>
-
-        <div id="tk-list" class="panel" style="display:none;padding:10px 6px">
-          <div class="tbl-wrap">
-            <table class="tbl">
-              <thead><tr><th>할 일</th><th>프로젝트</th><th>담당</th><th>기간</th><th>상태</th><th>의존</th></tr></thead>
-              <tbody id="tk-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════ 일정·승인 ══════════ -->
-      <section class="ops-section" id="sec-gates">
-        <div class="state-note" style="margin-bottom:16px">
-          <b>승인 요청 정보가 아직 연결되지 않았어요.</b>
-          연결되면 사람의 판단이 필요한 일들이 여기 줄을 서요. 요청한 사람·결정할 사람·기다린 시간·지연 시 영향까지 함께 보여드려요.
-          <span class="badge-nolink">연결 안 됨</span>
-        </div>
-        <div class="grid-3">
-          <article class="panel">
-            <div class="panel-head"><h2 style="font-size:16px">결과 검토를 기다려요</h2><span class="tag yellow">검토 · Human Review</span></div>
-            <div class="empty-big"><div class="eicon">◈</div><b>대기 중인 검토가 없어요</b><p>워크플로우에서 검토 요청이 만들어지면 여기에 표시돼요.</p></div>
-          </article>
-          <article class="panel">
-            <div class="panel-head"><h2 style="font-size:16px">방향 결정을 기다려요</h2><span class="tag purple">방향 결정</span></div>
-            <div class="empty-big"><div class="eicon">◎</div><b>대기 중인 결정이 없어요</b><p>컨셉·캐스팅처럼 방향을 정해야 하는 일이 여기에 모여요.</p></div>
-          </article>
-          <article class="panel">
-            <div class="panel-head"><h2 style="font-size:16px">최종 승인을 기다려요</h2><span class="tag orange">최종 승인</span></div>
-            <div class="empty-big"><div class="eicon">✓</div><b>대기 중인 승인이 없어요</b><p>발송·납품 전 마지막 확인이 필요한 일이 여기에 모여요.</p></div>
-          </article>
-        </div>
-        <article class="panel mt">
-          <div class="panel-head"><h2 style="font-size:16px">승인 판정은 이렇게 나눠요</h2></div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <span class="tag green"><span class="sdot" style="background:var(--green)"></span>바로 진행해도 돼요 (READY)</span>
-            <span class="tag blue"><span class="sdot" style="background:var(--blue)"></span>조건을 채우면 돼요 (CONDITIONAL)</span>
-            <span class="tag yellow"><span class="sdot" style="background:var(--yellow)"></span>수정이 필요해요 (REVISION)</span>
-            <span class="tag orange"><span class="sdot" style="background:var(--orange)"></span>진행이 막혔어요 (BLOCKED)</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin:12px 0 0">승인은 자동으로 처리하지 않아요. 결정할 사람이 근거를 확인한 뒤 직접 판정해요.</p>
-        </article>
-      </section>
+      <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
 
     </main>
   </div>
@@ -143,75 +56,20 @@
     var $$ = function (s, p) { return Array.prototype.slice.call((p || document).querySelectorAll(s)); };
     function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
-    var TAB_META = {
-      projects: ['지금 진행 중인 일', '표로 전체를 확인하고 Notion 원본으로 넘어갑니다.'],
-      tasks: ['이번 주 할 일', '프로젝트별 세부 할 일과 담당·기간을 봅니다.'],
-      gates: ['결정을 기다리는 일', '사람의 판단이 필요한 일이 여기 모입니다.']
-    };
+    var DB = { projects: [], freshness: null };
+    var PJ_FILTER = '';   /* '' | due7 | late | conflict | group:<key> — 홈에서 넘어온 딥링크 */
 
-    /* ── 해시 라우팅: #tab&key=value ── */
-    function parseHash() {
-      var h = (location.hash || '#projects').slice(1);
-      var parts = h.split('&');
-      var tab = parts.shift() || 'projects';
-      var params = {};
-      parts.forEach(function (p) { var kv = p.split('='); params[kv[0]] = decodeURIComponent(kv[1] || ''); });
-      if (!TAB_META[tab]) tab = 'projects';
-      return { tab: tab, params: params };
+    /* ── 딥링크: #projects&late=1 처럼 넘어온 필터를 읽는다 ── */
+    function readHash() {
+      var parts = (location.hash || '').slice(1).split('&');
+      parts.shift();                       /* 앞의 탭 이름은 옛 링크 호환용으로 버린다 */
+      var q = {};
+      parts.forEach(function (p) { var kv = p.split('='); q[kv[0]] = decodeURIComponent(kv[1] || ''); });
+      PJ_FILTER = q.due === '7' ? 'due7' : q.late === '1' ? 'late'
+                : q.conflict === '1' ? 'conflict'
+                : q.group ? 'group:' + q.group : '';
     }
-
-    function route() {
-      var r = parseHash();
-      $$('#ops-tabs a').forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-tab') === r.tab); });
-      $$('.ops-section').forEach(function (s) { s.classList.toggle('on', s.id === 'sec-' + r.tab); });
-      $('#ops-title').textContent = TAB_META[r.tab][0];
-      $('#ops-desc').textContent = TAB_META[r.tab][1];
-      applyParams(r);
-      window.scrollTo(0, 0);
-    }
-    window.addEventListener('hashchange', route);
-
-    function applyParams(r) {
-      if (r.tab === 'projects') {
-        PJ_FILTER = r.params.due === '7' ? 'due7' : r.params.late === '1' ? 'late'
-                  : r.params.conflict === '1' ? 'conflict'
-                  : r.params.group ? 'group:' + r.params.group : '';
-        renderProjects();
-      }
-      if (r.tab === 'tasks' && r.params.view && ['week', 'kanban', 'list'].indexOf(r.params.view) >= 0) {
-        TK_VIEW = r.params.view;
-        $$('#tk-views button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-view') === TK_VIEW); });
-        renderTasks();
-      }
-    }
-
-    /* ── 데이터 로드 ── */
-    var DB = { projects: [], res: null, freshness: null, raw: null };
-
-    MAXOS.fetchData().then(function (data) {
-      if (data) {
-        DB.raw = data;
-        DB.projects = MAXOS.normalizeProjects(data);
-        DB.res = MAXOS.computeResources(data);
-        DB.freshness = MAXOS.freshness(data);
-      } else {
-        DB.freshness = { state: 'err', text: '최신 정보를 불러오지 못했어요' };
-      }
-      renderAll();
-      route();
-    });
-
-    function renderSrcBadges() {
-      var f = DB.freshness;
-      $$('[data-src]').forEach(function (el) {
-        el.className = 'src-badge' + (f.state === 'ok' ? '' : f.state === 'stale' ? ' stale' : ' err');
-        el.innerHTML = '<span class="sdot"></span>' + esc(f.text);
-      });
-      shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
-    }
-
-    /* ── 진행 중인 일 ── */
-    var PJ_FILTER = '';   /* '' | due7 | late | group:<key> — 홈에서 넘어온 딥링크 상태 */
+    window.addEventListener('hashchange', function () { readHash(); renderProjects(); });
 
     function filteredProjects() {
       if (!PJ_FILTER) return DB.projects;
@@ -242,7 +100,7 @@
       var btn = $('#pj-chip-btn');
       if (btn) btn.addEventListener('click', function () {
         PJ_FILTER = '';
-        location.hash = '#projects';
+        history.replaceState(null, '', location.pathname + location.search);
         renderProjects();
       });
     }
@@ -268,89 +126,26 @@
       }).join('') : '<tr><td colspan="8"><div class="empty-big"><b>조건에 맞는 일이 없어요</b><p>필터를 지우고 다시 보세요.</p></div></td></tr>';
     }
 
-    /* ── 이번 주 할 일 (샘플) ── */
-    var TK_VIEW = 'week';
-    var SAMPLE_TASKS = [
-      { name: '메인 화면 시안 2안', proj: '샘플 프로젝트 A', who: '담당자 ㄱ', d0: 0, d1: 2, state: '진행 중', dep: '—' },
-      { name: '모션 키프레임 정리', proj: '샘플 프로젝트 A', who: '담당자 ㄴ', d0: 1, d1: 3, state: '진행 중', dep: '메인 화면 시안' },
-      { name: '상세페이지 카피 확정', proj: '샘플 프로젝트 B', who: '담당자 ㄷ', d0: 2, d1: 2, state: '검수 중', dep: '—' },
-      { name: '컨셉 방향 승인 요청', proj: '샘플 프로젝트 B', who: '담당자 ㄱ', d0: 3, d1: 3, state: '승인 대기', dep: '카피 확정' },
-      { name: '배너 규격 파생 6종', proj: '샘플 프로젝트 C', who: '담당자 ㄹ', d0: 3, d1: 5, state: '할 일', dep: '컨셉 승인' },
-      { name: '사운드 시안 검토', proj: '샘플 프로젝트 C', who: '담당자 ㄴ', d0: 4, d1: 5, state: '차단', dep: '외부 소스 대기' }
-    ];
-    var TK_COLORS = { '할 일': '#efefec', '진행 중': 'rgba(40,199,101,.25)', '검수 중': 'rgba(175,197,247,.4)', '승인 대기': 'rgba(255,212,92,.45)', '완료': 'rgba(40,199,101,.15)', '차단': 'rgba(255,107,61,.25)' };
-
-    function weekStart() {
-      var t = MAXOS.today0();
-      var d = new Date(t);
-      d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); /* 월요일 */
-      return d;
-    }
-
-    function renderTasks() {
-      $('#tk-week').style.display = TK_VIEW === 'week' ? '' : 'none';
-      $('#tk-kanban').style.display = TK_VIEW === 'kanban' ? '' : 'none';
-      $('#tk-list').style.display = TK_VIEW === 'list' ? '' : 'none';
-
-      var ws = weekStart();
-      var we = new Date(ws.getTime() + 6 * 86400000);
-      $('#tk-week-title').textContent = '이번 주 · ' + (ws.getMonth() + 1) + '/' + ws.getDate() + ' ~ ' + (we.getMonth() + 1) + '/' + we.getDate();
-
-      if (TK_VIEW === 'week') {
-        var yoil = ['월', '화', '수', '목', '금', '토', '일'];
-        var head = '<div class="wh"></div>' + yoil.map(function (y, i) {
-          var d = new Date(ws.getTime() + i * 86400000);
-          return '<div class="wh">' + y + ' <span style="color:#b5b2ab">' + (d.getMonth() + 1) + '/' + d.getDate() + '</span></div>';
-        }).join('');
-        var projs = {};
-        SAMPLE_TASKS.forEach(function (t) { (projs[t.proj] = projs[t.proj] || []).push(t); });
-        var body = Object.keys(projs).map(function (pj) {
-          var cells = ['<div class="wl">' + esc(pj) + ' <span class="badge-sample" style="height:18px;font-size:9px;padding:0 6px">샘플</span></div>'];
-          for (var i = 0; i < 7; i++) {
-            var inDay = projs[pj].filter(function (t) { return i >= t.d0 && i <= t.d1; });
-            cells.push('<div>' + inDay.map(function (t) {
-              return '<div class="wbar" style="background:' + TK_COLORS[t.state] + '" title="' + esc(t.name) + ' · ' + esc(t.who) + '">' + (i === t.d0 ? esc(t.name) : '&nbsp;') + '</div>';
-            }).join('') + '</div>');
-          }
-          return cells.join('');
-        }).join('');
-        $('#tk-weekgrid').innerHTML = head + body;
-      }
-
-      if (TK_VIEW === 'kanban') {
-        var states = ['할 일', '진행 중', '검수 중', '승인 대기', '완료', '차단'];
-        $('#tk-kanban').innerHTML = states.map(function (st) {
-          var items = SAMPLE_TASKS.filter(function (t) { return t.state === st; });
-          return '<div class="kanban-col"><h4>' + st + '<span class="cnt">' + items.length + '</span></h4>' +
-            items.map(function (t) {
-              return '<div class="kcard"><b>' + esc(t.name) + ' <span class="badge-sample" style="height:17px;font-size:9px;padding:0 6px">샘플</span></b><span class="meta"><span>' + esc(t.proj) + '</span><span>' + esc(t.who) + '</span>' + (t.dep !== '—' ? '<span>의존: ' + esc(t.dep) + '</span>' : '') + '</span></div>';
-            }).join('') + '</div>';
-        }).join('');
-      }
-
-      if (TK_VIEW === 'list') {
-        $('#tk-tbody').innerHTML = SAMPLE_TASKS.map(function (t) {
-          var d0 = new Date(ws.getTime() + t.d0 * 86400000), d1 = new Date(ws.getTime() + t.d1 * 86400000);
-          return '<tr><td style="font-weight:650">' + esc(t.name) + ' <span class="badge-sample" style="height:17px;font-size:9px;padding:0 6px">샘플</span></td><td>' + esc(t.proj) + '</td><td>' + esc(t.who) + '</td>' +
-            '<td class="mono">' + (d0.getMonth() + 1) + '/' + d0.getDate() + '~' + (d1.getMonth() + 1) + '/' + d1.getDate() + '</td>' +
-            '<td><span class="tag" style="background:' + TK_COLORS[t.state] + ';color:#333">' + t.state + '</span></td><td style="font-size:12px;color:var(--muted)">' + esc(t.dep) + '</td></tr>';
-        }).join('');
-      }
-    }
-    $$('#tk-views button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        TK_VIEW = b.getAttribute('data-view');
-        $$('#tk-views button').forEach(function (x) { x.classList.toggle('on', x === b); });
-        renderTasks();
+    function renderSrcBadges() {
+      var f = DB.freshness;
+      $$('[data-src]').forEach(function (el) {
+        el.className = 'src-badge' + (f.state === 'ok' ? '' : f.state === 'stale' ? ' stale' : ' err');
+        el.innerHTML = '<span class="sdot"></span>' + esc(f.text);
       });
-    });
+      shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
+    }
 
-    /* ── 전체 렌더 ── */
-    function renderAll() {
+    readHash();
+    MAXOS.fetchData().then(function (data) {
+      if (data) {
+        DB.projects = MAXOS.normalizeProjects(data);
+        DB.freshness = MAXOS.freshness(data);
+      } else {
+        DB.freshness = { state: 'err', text: '최신 정보를 불러오지 못했어요' };
+      }
       renderSrcBadges();
       renderProjects();
-      renderTasks();
-    }
+    });
   })();
   </script>
 </body>

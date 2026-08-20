@@ -6,6 +6,7 @@
 (function () {
   var MENU = [
     { id: 'home',       label: '홈',              icon: '⌂', href: 'index.html' },
+    { id: 'operations', label: '진행 중인 일',      icon: '▦', href: 'operations.html' },
     { id: 'workflows',  label: '워크플로우',        icon: '↯', href: 'workflows.html' },
     { id: 'ai',         label: 'AI와 일하기',       icon: '✳', href: 'ai-runtime.html' },
     { id: 'roles',      label: '우리가 일하는 기준', icon: '◇', href: 'roles.html' },
@@ -32,9 +33,6 @@
       '<a class="brand" href="index.html">MAX OS<i></i></a>' +
       '<div class="topbar-spacer"></div>' +
       '<input class="search" placeholder="통합 검색" aria-label="통합 검색" title="검색은 데이터 연결 후 사용할 수 있어요" readonly />' +
-      '<a class="icon-btn" href="operations.html#gates" aria-label="확인을 기다리는 일 보기" title="확인을 기다리는 일 보기">' +
-      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>' +
-      '<span class="dot" id="shell-noti-dot" style="display:none"></span></a>' +
       '<select class="org-select" aria-label="조직 선택"><option>MAX실</option></select>' +
       '<div class="avatar" aria-label="김효정 프로필" title="김효정 · 실장"></div>';
 

@@ -82,8 +82,8 @@
     .curve-axis span.r { transform: none; right: 0; }
     .curve-axis span.now { color: var(--orange); font-weight: 650; }
     .curve-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); margin: 18px -24px -18px; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
-    .curve-nums button { background: var(--card); padding: 15px 18px 17px; border: 0; cursor: pointer; text-align: left; font: inherit; color: inherit; display: block; width: 100%; }
-    .curve-nums button:hover { background: #fcfcfa; }
+    .curve-nums button, .curve-nums a { background: var(--card); padding: 15px 18px 17px; border: 0; cursor: pointer; text-align: left; font: inherit; color: inherit; display: block; width: 100%; text-decoration: none; }
+    .curve-nums button:hover, .curve-nums a:hover { background: #fcfcfa; }
     .curve-nums span { font-size: 11.5px; color: var(--muted); display: block; }
     .curve-nums strong { display: block; font-size: 34px; line-height: 1; margin: 9px 0 6px; letter-spacing: -0.06em; font-weight: 750; }
     .curve-nums small { font-size: 10.5px; color: var(--muted2); }
@@ -98,17 +98,6 @@
     .pv-bar .spacer { flex: 1; }
     .pv-bar .cnt { font: 500 11px var(--mono); color: var(--muted2); }
 
-    .attention { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .attention .wide { grid-column: 1 / -1; }
-    .attention a, .attention .off {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 11px 14px; border: 1px solid var(--line); border-radius: 14px;
-      background: var(--panel); font-size: 12.5px; text-decoration: none; color: var(--text);
-    }
-    .attention a:hover { background: var(--card); border-color: #cfcfca; }
-    .attention .act { display: block; font-style: normal; font-size: 11.5px; font-weight: 700; color: #8c8c86; margin-top: 5px; }
-    .attention a:hover .act { color: var(--black); }
-    .attention .off { opacity: .85; }
 
     /* 배정 KPI는 아래 목록을 좁히는 버튼 */
     #hm-res-kpis button { text-align: left; border: 0; cursor: pointer; font: inherit; color: inherit; }
@@ -121,7 +110,6 @@
 
     @media (max-width: 1280px) {
       .today { grid-template-columns: 1fr; }
-      .attention { grid-template-columns: 1fr; }
       .res-2col { grid-template-columns: 1fr; }
     }
     @media (max-width: 1023px) {
@@ -182,17 +170,6 @@
       </div>
 
       <!-- ── 접이식 섹션 — ＋ 를 누르면 열립니다 ── -->
-      <section class="fold" data-fold="attention" data-open="1">
-        <button class="f-head" type="button" aria-expanded="true">
-          <span class="pm" aria-hidden="true">−</span>
-          <span class="f-title">지금 살펴볼 일</span>
-          <span class="f-sum" id="hm-attention-sum">세는 중…</span>
-        </button>
-        <div class="f-body">
-          <div class="attention" id="hm-attention"></div>
-        </div>
-      </section>
-
       <section class="fold" data-fold="projects" data-open="1">
         <button class="f-head" type="button" aria-expanded="true">
           <span class="pm" aria-hidden="true">−</span>
@@ -260,15 +237,15 @@
         </div>
       </section>
 
-      <section class="fold" data-fold="team" data-open="0">
+      <section class="fold" data-fold="org" data-open="0">
         <button class="f-head" type="button" aria-expanded="false">
           <span class="pm" aria-hidden="true">＋</span>
-          <span class="f-title">우리 팀</span>
-          <span class="f-sum">9명 · 3그룹</span>
+          <span class="f-title">우리 실</span>
+          <span class="f-sum">9명 · 실장 + 2팀</span>
         </button>
         <div class="f-body" hidden>
-          <div id="hm-team"></div>
-          <p class="f-note">역할은 손으로 관리하고, 배정률은 시간 기록 시트에서 가져옵니다.</p>
+          <div id="hm-org"></div>
+          <p class="f-note">누가 어느 팀인지만 봅니다. 배정률은 바로 위 「사람·업무 배정」에서 보시면 됩니다. 소속·역할은 손으로 관리합니다.</p>
         </div>
       </section>
 
@@ -318,7 +295,6 @@
       renderCurve();
       OPSVIEW.renderSegments($('#hm-segbar'), $('#hm-seglegend'), DB.projects);
       OPSVIEW.renderCategories($('#hm-cats'), DB.projects);
-      renderAttention();
       renderProjects();
 
       $$('[data-res]').forEach(function (el) {
@@ -327,7 +303,7 @@
       });
       OPSVIEW.renderCapacityWarns($('#hm-warns'), DB.res);
       OPSVIEW.renderCapacityRows($('#hm-res-rows'), DB.res, '');
-      OPSVIEW.renderTeam($('#hm-team'), DB.res);
+      OPSVIEW.renderOrg($('#hm-org'));
 
       /* 접힌 채로도 상태가 보이도록 머리글에 요약 한 줄 */
       $('#hm-proj-sum').textContent = DB.projects.length + '건';
@@ -369,46 +345,21 @@
       var conflict = DB.projects.filter(function (p) { return p.dateConflict; }).length;
       var defs = [
         { label: '진행 중', n: k ? k.active : null, sub: '아래에서 카드·일정으로 보기', go: 'projects' },
-        { label: '이번 주 마감', n: k ? k.dueSoon : null, sub: '7일 안에 끝내야 해요', go: 'attention' },
-        { label: '살펴볼 일', n: k ? k.delayed + conflict : null, sub: '마감 지남 · 날짜 뒤집힘', go: 'attention' }
+        { label: '이번 주 마감', n: k ? k.dueSoon : null, sub: '눌러서 그 일들만 보기', href: 'operations.html#p&due=7' },
+        { label: '살펴볼 일', n: k ? k.delayed + conflict : null, sub: '마감 지남 · 날짜 뒤집힘', href: 'operations.html#p&late=1' }
       ];
       $('#hm-nums').innerHTML = defs.map(function (d) {
         var z = d.n === 0 ? ' class="zero"' : '';
-        return '<button type="button" data-go="' + d.go + '"' + z + '><span>' + esc(d.label) + '</span>' +
+        var body = '<span>' + esc(d.label) + '</span>' +
           '<strong>' + (d.n === null ? '—' : String(d.n).padStart(2, '0')) + '</strong>' +
-          '<small>' + esc(d.sub) + '</small></button>';
+          '<small>' + esc(d.sub) + '</small>';
+        return d.href
+          ? '<a href="' + d.href + '"' + z + '>' + body + '</a>'
+          : '<button type="button" data-go="' + d.go + '"' + z + '>' + body + '</button>';
       }).join('');
       $$('#hm-nums button').forEach(function (b) {
         b.addEventListener('click', function () { openFold(b.getAttribute('data-go'), true); });
       });
-    }
-
-    /* ── 지금 살펴볼 일 ── */
-    function renderAttention() {
-      /* 항목을 누르면 화면이 아니라 고칠 수 있는 곳(Notion 원본)으로 바로 간다 */
-      var items = [];
-      DB.projects.filter(function (p) { return p.dateConflict; }).forEach(function (p) {
-        items.push({ icon: '🟡', text: '<b>' + esc(p.title) + '</b> — 마감일이 시작일보다 앞서 있어요. 날짜를 고쳐 주세요.', url: p.notionUrl, act: 'Notion에서 날짜 고치기' });
-      });
-      DB.projects.filter(function (p) { return p.delayed; }).forEach(function (p) {
-        items.push({ icon: '🔴', text: '<b>' + esc(p.title) + '</b> — 마감일(' + MAXOS.fmtDate(p.endDate) + ')이 지났어요.', url: p.notionUrl, act: '일정 다시 잡기' });
-      });
-      DB.projects.filter(function (p) { return p.dueSoon; }).forEach(function (p) {
-        items.push({ icon: '🟠', text: '<b>' + esc(p.title) + '</b> — ' + p.dday + '일 뒤 마감이에요.', url: p.notionUrl, act: '남은 단계 확인' });
-      });
-      if (DB.res) DB.res.list.filter(function (r) { return r.state === 'unlogged'; }).forEach(function (r) {
-        items.push({ icon: '⚪', text: '<b>' + esc(r.name) + '</b> 님의 업무 시간이 아직 기록되지 않았어요.', url: null, act: '기록 요청' });
-      });
-      $('#hm-attention-sum').innerHTML = items.length ? '<b>' + items.length + '건</b>' : '없어요';
-      $('#hm-attention').innerHTML = items.length
-        ? items.map(function (it) {
-            var body = '<span>' + it.icon + '</span><span>' + it.text +
-              '<em class="act">' + esc(it.act) + (it.url ? ' ↗' : '') + '</em></span>';
-            return it.url
-              ? '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + body + '</a>'
-              : '<div class="off">' + body + '</div>';
-          }).join('')
-        : '<div class="empty-big wide"><div class="eicon">✓</div><b>오늘은 급하게 살펴볼 일이 없어요</b></div>';
     }
 
     /* ── 진행 중인 일: 카드 · 일정 ── */
@@ -473,7 +424,7 @@
     function whenOpened(name) {
       if (name === 'projects') renderProjects();
       if (name === 'capacity') OPSVIEW.renderCapacityRows($('#hm-res-rows'), DB.res, $('#hm-res-filter').value);
-      if (name === 'team') OPSVIEW.renderTeam($('#hm-team'), DB.res);
+      if (name === 'org') OPSVIEW.renderOrg($('#hm-org'));
     }
 
     function applyResFilter(v) {

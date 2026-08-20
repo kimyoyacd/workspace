@@ -75,23 +75,43 @@
 .empty-big p { font-size: 12.5px; margin: 0 auto; max-width: 420px; }
 
 /* 팀 카드 */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.member { border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; background: var(--card); }
-.member .mhead { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
-.member .mava { width: 38px; height: 38px; border-radius: 13px; display: grid; place-items: center; font: 700 11px var(--mono); background: var(--panel); border: 1px solid var(--line); flex: none; }
-.member b { display: block; font-size: 14px; }
-.member small { font-size: 11px; color: var(--muted2); }
-.member .skills { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+/* ── 우리 실 조직도 — 수치 없이 소속만 구분한다 ── */
+.org { display: flex; flex-direction: column; align-items: center; }
+.org-top { display: flex; justify-content: center; }
+.org-lead {
+  border: 1.5px solid var(--black); border-radius: 18px; background: var(--card);
+  padding: 14px 26px; text-align: center; min-width: 200px;
+}
+.org-lead b { display: block; font-size: 15px; }
+.org-lead small { font-size: 11.5px; color: var(--muted2); }
+.org-stem { width: 1.5px; height: 26px; background: #d6d4cc; }
+.org-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; position: relative; }
+.org-cols::before {
+  content: ''; position: absolute; top: -13px; left: 25%; right: 25%;
+  height: 1.5px; background: #d6d4cc;
+}
+.org-col { border: 1px solid var(--line); border-radius: 20px; background: var(--panel); padding: 16px 18px 18px; position: relative; }
+.org-col::before { content: ''; position: absolute; top: -13px; left: 50%; width: 1.5px; height: 13px; background: #d6d4cc; }
+.org-team { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.org-team b { font-size: 14px; letter-spacing: -0.03em; }
+.org-team span { font: 500 11px var(--mono); color: var(--muted2); }
+.org-people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.org-p { background: var(--card); border: 1px solid var(--line); border-radius: 15px; padding: 12px 14px; }
+.org-p b { display: block; font-size: 13.5px; }
+.org-p small { display: block; font-size: 11px; color: var(--muted2); margin-top: 2px; }
+.org-sk { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 9px; }
+.org-sk span { font: 600 9.5px var(--mono); color: #6b6b66; background: #f0f0ed; border-radius: 999px; padding: 3px 7px; }
 
 @media (max-width: 1280px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .org-people { grid-template-columns: 1fr; }
   .kpis.cols-5 { grid-template-columns: repeat(3, 1fr); }
   .kpis.cols-5 .kpi:nth-child(5) { grid-column: span 2; }
   .kpis.cols-4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .team-grid { grid-template-columns: 1fr; }
+  .org-cols { grid-template-columns: 1fr; }
+  .org-cols::before { display: none; }
   .kpis.cols-5, .kpis.cols-4 { grid-template-columns: repeat(2, 1fr); }
   .res-row { grid-template-columns: 1fr; gap: 6px; }
   .res-meta { text-align: left; }
