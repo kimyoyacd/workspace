@@ -1,0 +1,171 @@
+{
+ "fetchedAt": "2026-08-19T22:27:45",
+ "projects": [
+  {
+   "title": "올리브 트리 ",
+   "group": "upcoming",
+   "status": "진행예정",
+   "categories": [
+    "Motion",
+    "UA"
+   ],
+   "difficulty": null,
+   "startDate": "2026-09-15",
+   "endDate": "2026-10-09",
+   "notionUrl": "https://app.notion.com/p/3bb9ff44ed5180b6b129d9b2bf4ffdfd"
+  },
+  {
+   "title": "스마일게이트 이클립스 ",
+   "group": "active",
+   "status": "진행중",
+   "categories": [
+    "Motion"
+   ],
+   "difficulty": "M",
+   "startDate": "2026-08-21",
+   "endDate": "2026-09-17",
+   "notionUrl": "https://app.notion.com/p/3bb9ff44ed5180f7ae28f175b6b5d576"
+  },
+  {
+   "title": "NHN돌봄 앱 디자인 ",
+   "group": "active",
+   "status": "진행중",
+   "categories": [
+    "UI"
+   ],
+   "difficulty": "H",
+   "startDate": "2026-08-11",
+   "endDate": "2026-08-10",
+   "notionUrl": "https://app.notion.com/p/NHN-3b29ff44ed5180378c7bf02b304dc917"
+  },
+  {
+   "title": "NHN 숏폼 드라마 영상 제작 (부분 엔드 카드 삽입,편집 수준 예상)",
+   "group": "upcoming",
+   "status": "진행예정",
+   "categories": [
+    "Motion"
+   ],
+   "difficulty": null,
+   "startDate": "2026-09-10",
+   "endDate": "2026-09-18",
+   "notionUrl": "https://app.notion.com/p/NHN-3b19ff44ed5180d6b22ae75fc5667c6c"
+  },
+  {
+   "title": "넷마블 UA  R&D",
+   "group": "fixed",
+   "status": "고정운영",
+   "categories": [
+    "Motion"
+   ],
+   "difficulty": "H",
+   "startDate": "2026-07-03",
+   "endDate": "2026-07-24",
+   "notionUrl": "https://app.notion.com/p/UA-R-D-3969ff44ed5180018acfc7a741bf6cf8"
+  },
+  {
+   "title": "[프로젝트]HTWO 공식 웹사이트 콘텐츠 모션",
+   "group": "active",
+   "status": "진행중",
+   "categories": [
+    "Motion"
+   ],
+   "difficulty": "H",
+   "startDate": "2026-06-12",
+   "endDate": "2026-07-24",
+   "notionUrl": "https://app.notion.com/p/HTWO-38f9ff44ed51803e9487d549e0e42cd8"
+  },
+  {
+   "title": "MX 센터 SNS",
+   "group": "fixed",
+   "status": "고정운영",
+   "categories": [
+    "game"
+   ],
+   "difficulty": "M",
+   "startDate": "2026-05-29",
+   "endDate": "2026-06-04",
+   "notionUrl": "https://app.notion.com/p/MX-SNS-3799ff44ed51805dad98c33639f4c8fc"
+  },
+  {
+   "title": "넷마블 운영 최소 운영 2TO",
+   "group": "fixed",
+   "status": "고정운영",
+   "categories": [
+    "Motion"
+   ],
+   "difficulty": "M",
+   "startDate": "2026-03-31",
+   "endDate": "2026-12-31",
+   "notionUrl": "https://app.notion.com/p/2TO-3419ff44ed5180ce856bc5624aeae7a5"
+  },
+  {
+   "title": "올리브트리 ",
+   "group": "review",
+   "status": "검토중",
+   "categories": [],
+   "difficulty": null,
+   "startDate": null,
+   "endDate": null,
+   "notionUrl": "https://app.notion.com/p/32c9ff44ed5180aba53cddb2f3e04407"
+  },
+  {
+   "title": "넷마블 AI 시장 조사 및 분석 ",
+   "group": "fixed",
+   "status": "고정운영",
+   "categories": [
+    "AI"
+   ],
+   "difficulty": "L",
+   "startDate": "2026-03-20",
+   "endDate": "2026-03-27",
+   "notionUrl": "https://app.notion.com/p/AI-3219ff44ed5180eda11bf81f881f43c4"
+  }
+ ],
+ "projectsFetchedAt": "2026-08-19T22:27:45",
+ "resources": [
+  {
+   "name": "김효정",
+   "utilRate": 50,
+   "lastLog": "2026-05-06"
+  },
+  {
+   "name": "김창환",
+   "utilRate": 75,
+   "lastLog": "2026-05-07"
+  },
+  {
+   "name": "강민우",
+   "utilRate": 45,
+   "lastLog": "2026-05-04"
+  },
+  {
+   "name": "강승일",
+   "utilRate": null
+  },
+  {
+   "name": "문경선",
+   "utilRate": null
+  },
+  {
+   "name": "이지현",
+   "utilRate": 13,
+   "lastLog": "2026-05-04"
+  },
+  {
+   "name": "전한아",
+   "utilRate": 111,
+   "lastLog": "2026-06-25"
+  },
+  {
+   "name": "김지원",
+   "utilRate": 50,
+   "lastLog": "2026-05-04"
+  },
+  {
+   "name": "김준환",
+   "utilRate": 69,
+   "lastLog": "2026-05-08"
+  }
+ ],
+ "resourcesFetchedAt": "2026-08-19T22:27:45"
+}

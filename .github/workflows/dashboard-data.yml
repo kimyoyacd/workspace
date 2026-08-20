@@ -1,0 +1,59 @@
+name: Refresh dashboard data
+
+# 주의: schedule 트리거는 "기본 브랜치(main)"에 있는 워크플로우만 실행된다.
+# 이 파일이 PR 브랜치에만 있으면 예약 실행은 영원히 돌지 않는다 → dashboard-data.json 이 멈춘다.
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 매일 07:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dashboard-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check NOTION_TOKEN
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          if [ -z "$NOTION_TOKEN" ]; then
+            echo "::error::NOTION_TOKEN 시크릿이 없습니다. Settings > Secrets and variables > Actions 에 등록하세요."
+            exit 1
+          fi
+
+      - name: Fetch dashboard data
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/fetch-dashboard-data.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/dashboard-data.json .claude/projects/dashboard-data.json
+          if git diff --cached --quiet; then
+            echo "변경 없음 — 커밋 생략"
+          else
+            git commit -m "chore: dashboard-data.json 자동 갱신"
+            git push
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 대시보드 데이터 갱신" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          node -e "const d=require('./docs/dashboard-data.json');console.log(JSON.stringify({fetchedAt:d.fetchedAt,projects:(d.projects||[]).length,resources:(d.resources||[]).length,projectsError:d.projectsError||null,resourcesError:d.resourcesError||null},null,1))" >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
