@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>MAX OS — 홈</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+  <link rel="stylesheet" href="assets/ops.css" />
+  <style>
+    /* ── 히어로 — 여백을 크게 두고 인삿말과 한 문장만 ── */
+    .hero {
+      border-radius: 27px; background: var(--card); border: 1px solid var(--line);
+      padding: 44px 46px 38px; position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start;
+    }
+    .hello { font-size: clamp(38px, 4.4vw, 62px); font-weight: 800; letter-spacing: -0.06em; margin: 0; line-height: 1; }
+    .hero h1 {
+      font-size: clamp(26px, 2.9vw, 40px); line-height: 1.2; letter-spacing: -0.055em;
+      margin: 78px 0 0; font-weight: 740; max-width: 780px;
+    }
+    .hero-sub { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    .hero-sub p { font-size: 14px; color: #767672; margin: 0; }
+    .hero-sub .chips { font: 500 11px var(--mono); color: #a3a39d; letter-spacing: 0.04em; }
+    .hero-quick { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+    .hero-quick a {
+      display: flex; align-items: center; gap: 11px;
+      font-size: 14px; font-weight: 700; text-decoration: none; color: var(--text); white-space: nowrap;
+    }
+    .hero-quick .pl {
+      flex: none; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--black); color: #fff; display: grid; place-items: center; font-size: 15px; line-height: 1;
+    }
+    .hero-quick a:hover { color: #000; }
+    .hero-quick a:hover .pl { background: var(--orange); }
+    .hero-accent {
+      position: absolute; width: 340px; height: 340px; border-radius: 50%; right: -130px; bottom: -220px;
+      background: radial-gradient(circle at 20% 25%, rgba(255,107,61,.34), rgba(139,124,246,.18) 45%, rgba(175,197,247,.02) 70%);
+      filter: blur(8px); pointer-events: none;
+    }
+
+    /* ── 섹션 제목 ── */
+    .sec-label { margin: 30px 2px 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .sec-label h2 { font-size: 17px; letter-spacing: -0.035em; margin: 0; }
+    .sec-label a { font-size: 12px; color: var(--muted); text-decoration: none; font-weight: 650; }
+    .sec-label a:hover { color: var(--black); }
+
+    /* ── 접이식 섹션 — 워크플로우 지도와 같은 ＋ 패턴 ── */
+    .fold { border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--card); margin-top: 18px; overflow: hidden; }
+    .fold.open { border-color: var(--black); }
+    .f-head {
+      width: 100%; text-align: left; border: 0; background: transparent; cursor: pointer;
+      padding: 18px 22px; display: flex; align-items: center; gap: 14px;
+    }
+    .f-head:hover { background: #fcfcfa; }
+    .f-head:hover .pm { border-color: var(--black); background: var(--black); color: #fff; }
+    .pm {
+      flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #cfcfca; background: #fff;
+      display: grid; place-items: center; font-size: 17px; font-weight: 400; line-height: 1; color: #555; transition: .12s;
+    }
+    .fold.open .pm { background: var(--black); border-color: var(--black); color: #fff; }
+    .f-title { font-size: 17px; font-weight: 720; letter-spacing: -0.035em; }
+    .f-sum { font-size: 12.5px; color: var(--muted); margin-left: auto; text-align: right; }
+    .f-sum b { color: var(--text); }
+    .f-body { padding: 4px 22px 22px; border-top: 1px solid var(--line-soft); }
+    .f-body[hidden] { display: none; }
+    .f-note { font-size: 11.5px; color: var(--muted2); margin: 14px 2px 0; }
+    .f-note a { color: var(--black); font-weight: 700; text-decoration: none; }
+
+    /* ── 오늘의 운영: 곡선 + 숫자 3 ── */
+    .today { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; }
+    .curve-card { padding: 22px 24px 18px; }
+    .curve-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+    .curve-head h3 { font-size: 16px; letter-spacing: -0.035em; margin: 0; }
+    .curve-head span { font-size: 11.5px; color: var(--muted2); }
+    .curve-box { height: 132px; margin: 6px -6px 0; }
+    .curve-axis { position: relative; height: 14px; font: 500 10px var(--mono); color: #a8a8a2; margin-top: 2px; }
+    .curve-axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+    .curve-axis span.l { transform: none; left: 0; }
+    .curve-axis span.r { transform: none; right: 0; }
+    .curve-axis span.now { color: var(--orange); font-weight: 650; }
+    .curve-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); margin: 18px -24px -18px; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
+    .curve-nums button, .curve-nums a { background: var(--card); padding: 15px 18px 17px; border: 0; cursor: pointer; text-align: left; font: inherit; color: inherit; display: block; width: 100%; text-decoration: none; }
+    .curve-nums button:hover, .curve-nums a:hover { background: #fcfcfa; }
+    .curve-nums span { font-size: 11.5px; color: var(--muted); display: block; }
+    .curve-nums strong { display: block; font-size: 34px; line-height: 1; margin: 9px 0 6px; letter-spacing: -0.06em; font-weight: 750; }
+    .curve-nums small { font-size: 10.5px; color: var(--muted2); }
+    .curve-nums .zero strong { color: #c2c2bb; }
+
+    .stage-card { padding: 22px 24px; }
+    .stage-card h3 { font-size: 16px; letter-spacing: -0.035em; margin: 0 0 14px; }
+    .stage-card h4 { font-size: 13px; margin: 20px 0 10px; }
+
+    /* ── 진행 중인 일 ── */
+    .pv-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .pv-bar .spacer { flex: 1; }
+    .pv-bar .cnt { font: 500 11px var(--mono); color: var(--muted2); }
+
+
+    /* 배정 KPI는 아래 목록을 좁히는 버튼 */
+    #hm-res-kpis button { text-align: left; border: 0; cursor: pointer; font: inherit; color: inherit; }
+    #hm-res-kpis button:hover { background: #fcfcfa; }
+    #hm-res-kpis button.on { background: #f0f0ed; box-shadow: inset 0 0 0 1.5px var(--black); }
+
+    /* 구성원 배정률은 2열로 — 넓은 화면에서 오른쪽이 비지 않게 */
+    .res-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+    .res-2col .res-row { grid-template-columns: 110px 1fr 150px; }
+
+    @media (max-width: 1280px) {
+      .today { grid-template-columns: 1fr; }
+      .res-2col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1023px) {
+      .hero { grid-template-columns: 1fr; gap: 26px; padding: 30px 26px 28px; }
+      .hero h1 { margin-top: 26px; }
+      .hero-quick { flex-direction: row; flex-wrap: wrap; gap: 10px 20px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 24px 22px; }
+      .curve-nums { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="home">
+  <div class="app">
+    <main class="main">
+
+      <section class="hero">
+        <div>
+          <p class="hello">Hello <span aria-hidden="true">👋</span></p>
+          <h1>일이 들어온 순간부터<br />실행 · 검수 · 자산화까지,<br />MAX실의 일하는 방식을 연결합니다.</h1>
+          <div class="hero-sub">
+            <p>누구나 같은 기준으로 시작하고, 사람은 중요한 판단에 집중합니다.</p>
+            <span class="chips">운영 · 워크플로우 · 학습 · 자산</span>
+          </div>
+        </div>
+        <nav class="hero-quick" aria-label="바로가기">
+          <a href="workflows.html"><span class="pl" aria-hidden="true">＋</span>업무 시작하기</a>
+          <a href="ai-runtime.html"><span class="pl" aria-hidden="true">＋</span>AI와 일하기</a>
+          <a href="onboarding.html"><span class="pl" aria-hidden="true">＋</span>처음 사용하기</a>
+        </nav>
+        <div class="hero-accent"></div>
+      </section>
+
+      <!-- ── 오늘의 운영 ── -->
+      <div class="sec-label">
+        <h2>오늘의 운영</h2>
+      </div>
+
+      <div class="today">
+        <article class="panel curve-card">
+          <div class="curve-head">
+            <h3>동시에 돌아가는 일</h3>
+            <span id="hm-curve-note">지난 6주 ~ 앞으로 8주 · 주 단위</span>
+          </div>
+          <div class="curve-box" id="hm-curve"></div>
+          <div class="curve-axis" id="hm-axis"></div>
+          <div class="curve-nums" id="hm-nums"></div>
+        </article>
+
+        <article class="panel stage-card">
+          <h3>일의 진행 단계</h3>
+          <div class="seg-bar" id="hm-segbar"></div>
+          <div class="seg-legend" id="hm-seglegend"></div>
+          <h4>업무 유형 구성</h4>
+          <div id="hm-cats"></div>
+        </article>
+      </div>
+
+      <!-- ── 접이식 섹션 — ＋ 를 누르면 열립니다 ── -->
+      <section class="fold" data-fold="projects" data-open="1">
+        <button class="f-head" type="button" aria-expanded="true">
+          <span class="pm" aria-hidden="true">−</span>
+          <span class="f-title">진행 중인 일</span>
+          <span class="f-sum" id="hm-proj-sum">세는 중…</span>
+        </button>
+        <div class="f-body">
+          <div class="pv-bar">
+            <div class="view-toggle" id="hm-views">
+              <button data-view="board" class="on" type="button">카드로 보기</button>
+              <button data-view="gantt" type="button">일정으로 보기</button>
+            </div>
+            <span id="hm-zoom-wrap" style="display:none">
+              <span class="view-toggle" id="hm-zoom">
+                <button data-zoom="day" type="button">일</button>
+                <button data-zoom="week" class="on" type="button">주</button>
+                <button data-zoom="month" type="button">월</button>
+              </span>
+            </span>
+          </div>
+
+          <div class="kanban" id="hm-board"></div>
+
+          <div id="hm-gantt-wrap" style="display:none">
+            <div class="gantt-wrap"><div class="gantt" id="hm-gantt"></div></div>
+            <div class="g-legend">
+              <span><span style="background:var(--green);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>일정 안에 있어요</span>
+              <span><span style="background:var(--orange);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>마감일이 지났어요</span>
+              <span><span style="background:var(--lavender);display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span>곧 시작해요</span>
+              <span>날짜가 뒤집힌 일은 일정에서 빼고 <span class="tag yellow" style="height:18px;font-size:9.5px">일정 확인 필요</span>로 표시해요</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fold" data-fold="capacity" data-open="0">
+        <button class="f-head" type="button" aria-expanded="false">
+          <span class="pm" aria-hidden="true">＋</span>
+          <span class="f-title">사람·업무 배정</span>
+          <span class="f-sum" id="hm-cap-sum">세는 중…</span>
+        </button>
+        <div class="f-body" hidden>
+          <div class="kpis cols-4" id="hm-res-kpis">
+            <button class="kpi" type="button" data-state="ok"><span class="kpi-label">지금 일하고 있어요</span><strong class="skel" data-res="activeCount">0</strong><span class="kpi-sub">명</span></button>
+            <button class="kpi" type="button" data-state="idle"><span class="kpi-label">새 업무를 맡을 수 있어요</span><strong class="skel" data-res="idleCount">0</strong><span class="kpi-sub">명 <span class="badge-temp">임시 기준</span></span></button>
+            <button class="kpi" type="button" data-state="over"><span class="kpi-label">업무가 많이 배정됐어요</span><strong class="skel" data-res="overCount">0</strong><span class="kpi-sub">명</span></button>
+            <button class="kpi" type="button" data-state="unlogged"><span class="kpi-label">기록을 기다리고 있어요</span><strong class="skel" data-res="unloggedCount">0</strong><span class="kpi-sub">시간 기록 없음</span></button>
+          </div>
+          <div id="hm-warns" class="mt"></div>
+          <div class="panel-head mt" style="margin-bottom:6px">
+            <h3 style="font-size:15px;margin:0">구성원별 업무 배정률</h3>
+            <select id="hm-res-filter" aria-label="상태로 좁혀 보기" style="height:34px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:12px;padding:0 10px">
+              <option value="">모두 보기</option>
+              <option value="ok">일하고 있는 사람</option>
+              <option value="idle">여유 있는 사람</option>
+              <option value="over">많이 배정된 사람</option>
+              <option value="unlogged">기록이 없는 사람</option>
+            </select>
+          </div>
+          <div class="res-2col" id="hm-res-rows"></div>
+          <p class="f-note">
+            위 네 칸을 누르면 목록이 그 사람들만 보입니다 · 산식: 최근 5개 기록일의 실제 시간 ÷ (기록일수 × 8시간)
+            <span class="badge-temp">임시 산식 · 승인 전</span> · 여유/많음 기준: 50% 이하 / 100% 초과 <span class="badge-temp">임시 기준 · 승인 전</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="fold" data-fold="org" data-open="0">
+        <button class="f-head" type="button" aria-expanded="false">
+          <span class="pm" aria-hidden="true">＋</span>
+          <span class="f-title">우리 실</span>
+          <span class="f-sum">9명 · 실장 + 2팀</span>
+        </button>
+        <div class="f-body" hidden>
+          <div id="hm-org"></div>
+          <p class="f-note">누가 어느 팀인지만 봅니다. 배정률은 바로 위 「사람·업무 배정」에서 보시면 됩니다. 소속·역할은 손으로 관리합니다.</p>
+        </div>
+      </section>
+
+      <div class="mt" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="src-badge" id="hm-src"><span class="sdot"></span>데이터 확인 중…</span>
+        <span class="mono" style="color:var(--muted2);font-size:10.5px">이 정보가 연결된 곳: Notion 프로젝트 DB · 시간 기록 시트 · 매일 아침 7시 자동 갱신</span>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="assets/shell.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/ops-views.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var $ = function (s) { return document.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+    var esc = OPSVIEW.esc;
+    var DB = { projects: [], res: null, kpis: null, freshness: null };
+    var VIEW = 'board', ZOOM = 'week';
+
+    /* 인사 옆 날짜 자리는 두지 않는다 — 히어로는 인삿말과 한 문장만 */
+
+    initFolds();
+
+    MAXOS.fetchData().then(function (data) {
+      if (data) {
+        DB.projects = MAXOS.normalizeProjects(data);
+        DB.res = MAXOS.computeResources(data);
+        DB.kpis = MAXOS.computeKpis(data);
+        DB.freshness = MAXOS.freshness(data);
+      } else {
+        DB.freshness = { state: 'err', text: '최신 정보를 불러오지 못했어요' };
+      }
+      render();
+    });
+
+    function render() {
+      var f = DB.freshness;
+      var src = $('#hm-src');
+      src.className = 'src-badge' + (f.state === 'ok' ? '' : f.state === 'stale' ? ' stale' : ' err');
+      src.innerHTML = '<span class="sdot"></span>' + esc(f.text);
+      shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
+
+      renderCurve();
+      OPSVIEW.renderSegments($('#hm-segbar'), $('#hm-seglegend'), DB.projects);
+      OPSVIEW.renderCategories($('#hm-cats'), DB.projects);
+      renderProjects();
+
+      $$('[data-res]').forEach(function (el) {
+        el.classList.remove('skel');
+        el.textContent = DB.res ? DB.res[el.getAttribute('data-res')] : '—';
+      });
+      OPSVIEW.renderCapacityWarns($('#hm-warns'), DB.res);
+      OPSVIEW.renderCapacityRows($('#hm-res-rows'), DB.res, '');
+      OPSVIEW.renderOrg($('#hm-org'));
+
+      /* 접힌 채로도 상태가 보이도록 머리글에 요약 한 줄 */
+      $('#hm-proj-sum').textContent = DB.projects.length + '건';
+      if (DB.res) {
+        var over = DB.res.overCount, idle = DB.res.idleCount;
+        $('#hm-cap-sum').innerHTML = '여유 <b>' + idle + '명</b> · 많이 배정 <b>' + over + '명</b>' +
+          (DB.res.avgUtil !== null ? ' · 평균 <b>' + DB.res.avgUtil + '%</b>' : '');
+      } else {
+        $('#hm-cap-sum').textContent = '불러오지 못했어요';
+      }
+    }
+
+    /* ── 곡선 + 숫자 3 ── */
+    function renderCurve() {
+      var pts = OPSVIEW.loadCurve(DB.projects, 6, 8);
+      var svg = OPSVIEW.sparkline(pts, 520, 132);
+      $('#hm-curve').innerHTML = svg ||
+        '<div class="empty-big" style="padding:26px 10px"><b>일정이 입력된 일이 없어요</b><p>시작일과 마감일이 있어야 곡선을 그릴 수 있어요.</p></div>';
+      var note = $('#hm-curve-note');
+      var nowPt = pts.filter(function (p) { return p.isNow; })[0];
+      var maxN = pts.length ? Math.max.apply(null, pts.map(function (p) { return p.n; })) : 0;
+      note.textContent = svg
+        ? '이번 주 ' + (nowPt ? nowPt.n : 0) + '건 · 가장 몰리는 주 ' + maxN + '건 · 주 단위'
+        : '지난 6주 ~ 앞으로 8주 · 주 단위';
+
+      if (svg) {
+        var first = pts[0].week, last = pts[pts.length - 1].week;
+        var nowIdx = 0;
+        pts.forEach(function (p, i) { if (p.isNow) nowIdx = i; });
+        /* 곡선의 오늘 점과 라벨 위치를 맞춘다 (좌우 10px 패딩을 SVG와 동일하게 환산) */
+        var pct = (10 + nowIdx * ((520 - 20) / (pts.length - 1))) / 520 * 100;
+        $('#hm-axis').innerHTML =
+          '<span class="l">' + (first.getMonth() + 1) + '/' + first.getDate() + '</span>' +
+          '<span class="now" style="left:' + pct.toFixed(1) + '%">오늘</span>' +
+          '<span class="r">' + (last.getMonth() + 1) + '/' + last.getDate() + '</span>';
+      } else { $('#hm-axis').innerHTML = ''; }
+
+      var k = DB.kpis;
+      var conflict = DB.projects.filter(function (p) { return p.dateConflict; }).length;
+      var defs = [
+        { label: '진행 중', n: k ? k.active : null, sub: '아래에서 카드·일정으로 보기', go: 'projects' },
+        { label: '이번 주 마감', n: k ? k.dueSoon : null, sub: '눌러서 그 일들만 보기', href: 'operations.html#p&due=7' },
+        { label: '살펴볼 일', n: k ? k.delayed + conflict : null, sub: '마감 지남 · 날짜 뒤집힘', href: 'operations.html#p&late=1' }
+      ];
+      $('#hm-nums').innerHTML = defs.map(function (d) {
+        var z = d.n === 0 ? ' class="zero"' : '';
+        var body = '<span>' + esc(d.label) + '</span>' +
+          '<strong>' + (d.n === null ? '—' : String(d.n).padStart(2, '0')) + '</strong>' +
+          '<small>' + esc(d.sub) + '</small>';
+        return d.href
+          ? '<a href="' + d.href + '"' + z + '>' + body + '</a>'
+          : '<button type="button" data-go="' + d.go + '"' + z + '>' + body + '</button>';
+      }).join('');
+      $$('#hm-nums button').forEach(function (b) {
+        b.addEventListener('click', function () { openFold(b.getAttribute('data-go'), true); });
+      });
+    }
+
+    /* ── 진행 중인 일: 카드 · 일정 ── */
+    function renderProjects() {
+      if ($('.fold[data-fold="projects"] .f-body').hidden) return;   /* 접혀 있으면 열릴 때 그린다 */
+      $('#hm-board').style.display = VIEW === 'board' ? '' : 'none';
+      $('#hm-gantt-wrap').style.display = VIEW === 'gantt' ? '' : 'none';
+      $('#hm-zoom-wrap').style.display = VIEW === 'gantt' ? '' : 'none';
+      if (VIEW === 'board') OPSVIEW.renderBoard($('#hm-board'), DB.projects);
+      else OPSVIEW.renderGantt($('#hm-gantt'), DB.projects, ZOOM);
+    }
+
+    $$('#hm-views button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        VIEW = b.getAttribute('data-view');
+        $$('#hm-views button').forEach(function (x) { x.classList.toggle('on', x === b); });
+        renderProjects();
+      });
+    });
+    $$('#hm-zoom button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        ZOOM = b.getAttribute('data-zoom');
+        $$('#hm-zoom button').forEach(function (x) { x.classList.toggle('on', x === b); });
+        OPSVIEW.renderGantt($('#hm-gantt'), DB.projects, ZOOM);
+      });
+    });
+    /* ── 접이식: ＋ 를 누르면 열린다. 열림 상태는 다음에 와도 그대로 ── */
+    function initFolds() {
+      $$('.fold').forEach(function (sec) {
+        var key = 'maxos.home.fold.' + sec.getAttribute('data-fold');
+        var head = sec.querySelector('.f-head');
+        var body = sec.querySelector('.f-body');
+        var saved = null;
+        try { saved = localStorage.getItem(key); } catch (e) {}
+        var open = saved === null ? sec.getAttribute('data-open') === '1' : saved === '1';
+
+        function paint() {
+          sec.classList.toggle('open', open);
+          body.hidden = !open;
+          head.setAttribute('aria-expanded', open ? 'true' : 'false');
+          sec.querySelector('.pm').textContent = open ? '−' : '＋';
+        }
+        paint();
+        head.addEventListener('click', function () {
+          open = !open;
+          try { localStorage.setItem(key, open ? '1' : '0'); } catch (e) {}
+          paint();
+          if (open) whenOpened(sec.getAttribute('data-fold'));
+        });
+      });
+    }
+
+    /* 다른 곳에서 특정 섹션을 열고 그리로 데려간다 */
+    function openFold(name, scroll) {
+      var sec = document.querySelector('.fold[data-fold="' + name + '"]');
+      if (!sec) return;
+      if (!sec.classList.contains('open')) sec.querySelector('.f-head').click();
+      if (scroll) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* 접혀 있던 동안 못 그린 것을 열릴 때 그린다 */
+    function whenOpened(name) {
+      if (name === 'projects') renderProjects();
+      if (name === 'capacity') OPSVIEW.renderCapacityRows($('#hm-res-rows'), DB.res, $('#hm-res-filter').value);
+      if (name === 'org') OPSVIEW.renderOrg($('#hm-org'));
+    }
+
+    function applyResFilter(v) {
+      $('#hm-res-filter').value = v;
+      $$('#hm-res-kpis button').forEach(function (x) { x.classList.toggle('on', !!v && x.getAttribute('data-state') === v); });
+      OPSVIEW.renderCapacityRows($('#hm-res-rows'), DB.res, v);
+    }
+    $('#hm-res-filter').addEventListener('change', function () { applyResFilter(this.value); });
+    $$('#hm-res-kpis button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('data-state');
+        applyResFilter($('#hm-res-filter').value === v ? '' : v);   /* 같은 칸을 다시 누르면 해제 */
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

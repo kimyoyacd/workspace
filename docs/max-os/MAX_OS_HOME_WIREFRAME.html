@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAX OS 홈 와이어프레임</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --black:#111111;
+      --text:#181818;
+      --muted:#767676;
+      --line:#e6e6e2;
+      --soft:#f3f3f0;
+      --white:#ffffff;
+      --orange:#ff6b3d;
+      --yellow:#ffd45c;
+      --lavender:#8b7cf6;
+      --blue:#afc5f7;
+      --green:#28c765;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--soft);color:var(--text);font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif}
+    button,input{font:inherit}
+    body{width:1920px;height:1080px;padding:24px;overflow:hidden}
+    .app{width:1872px;height:1032px;margin:auto;background:#fafaf8;border:1px solid #deded9;border-radius:30px;overflow:hidden;box-shadow:0 14px 45px rgba(20,20,20,.06);display:grid;grid-template-columns:224px 1fr;grid-template-rows:82px 1fr}
+    .topbar{grid-column:1/3;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94);padding:0 28px;gap:30px}
+    .brand{font-size:24px;font-weight:800;letter-spacing:-.05em;width:180px;white-space:nowrap}
+    .brand i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:8px;background:linear-gradient(135deg,var(--orange),var(--lavender));vertical-align:3px}
+    .global{display:flex;gap:6px;align-items:center;flex:1}
+    .global a{padding:11px 15px;border-radius:14px;font-size:14px;font-weight:650;color:#656565;text-decoration:none;white-space:nowrap}
+    .global a.active{background:var(--black);color:white}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .search{width:208px;height:42px;border:1px solid var(--line);background:#f7f7f5;border-radius:14px;padding:0 14px;color:#888;font-size:13px}
+    .icon-btn{width:42px;height:42px;border:1px solid var(--line);background:white;border-radius:14px;display:grid;place-items:center;font-size:16px}
+    .primary{height:42px;padding:0 18px;border:0;border-radius:14px;background:var(--black);color:white;font-size:13px;font-weight:700}
+    .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#ece4dc,#c9c2b9);border:3px solid white;box-shadow:0 0 0 1px var(--line)}
+    .sidebar{grid-row:2;background:#fff;border-right:1px solid var(--line);padding:24px 18px;display:flex;flex-direction:column}
+    .side-label{font-size:10px;letter-spacing:.18em;color:#999;margin:0 12px 12px;text-transform:uppercase}
+    .side-nav{display:flex;flex-direction:column;gap:7px}
+    .side-nav a{height:48px;border-radius:15px;padding:0 13px;display:flex;align-items:center;gap:12px;color:#555;text-decoration:none;font-size:14px;font-weight:600}
+    .side-nav a.active{background:#f0f0ed;color:#111}
+    .side-icon{width:25px;height:25px;border:1.5px solid #cfcfca;border-radius:9px;display:grid;place-items:center;font-size:11px;color:#111;background:white}
+    .side-nav a.active .side-icon{background:#111;color:#fff;border-color:#111}
+    .side-divider{height:1px;background:var(--line);margin:18px 8px}
+    .side-foot{margin-top:auto;padding:14px 12px 0;border-top:1px solid var(--line)}
+    .status{display:flex;align-items:center;gap:8px;font-size:11px;color:#737373;margin-bottom:10px}
+    .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(40,199,101,.1)}
+    .profile{font-size:12px;line-height:1.55}.profile b{display:block;font-size:13px}.profile span{color:#8a8a8a}
+    .main{grid-column:2;grid-row:2;padding:22px;overflow:auto;background:#f5f5f2}
+    .hero{height:350px;border-radius:27px;background:#fff;border:1px solid var(--line);padding:34px 38px;position:relative;overflow:hidden;display:grid;grid-template-columns:1.4fr .85fr;gap:50px}
+    .eyebrow{font:600 10px/1.2 "IBM Plex Mono",monospace;letter-spacing:.18em;color:#777;margin-bottom:18px}
+    .hello{font-size:34px;font-weight:760;letter-spacing:-.045em;margin:0 0 38px}
+    .hero h1{font-size:45px;line-height:1.11;letter-spacing:-.055em;margin:0;max-width:800px;font-weight:740}
+    .hero p{font-size:15px;color:#686868;margin:20px 0 0;letter-spacing:-.02em}
+    .hero-right{padding-top:25px;display:flex;flex-direction:column;gap:10px;align-items:stretch}
+    .quick{height:54px;border:1px solid var(--line);border-radius:17px;background:#fff;padding:0 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:650}
+    .quick .plus{width:27px;height:27px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;font-size:18px;font-weight:400}
+    .quick.main-quick{background:#111;color:#fff;border-color:#111}
+    .quick.main-quick .plus{background:linear-gradient(135deg,var(--orange),var(--lavender));color:#111}
+    .hero-meta{position:absolute;left:38px;bottom:26px;font:500 10px/1.2 monospace;color:#8e8e8e;letter-spacing:.12em}
+    .hero-accent{position:absolute;width:330px;height:330px;border-radius:50%;right:-150px;bottom:-210px;background:radial-gradient(circle at 20% 25%,rgba(255,107,61,.42),rgba(139,124,246,.22) 45%,rgba(175,197,247,.02) 70%);filter:blur(7px)}
+    .overview{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:18px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px 26px;min-height:210px}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+    .panel-head h2{font-size:20px;letter-spacing:-.04em;margin:0}.panel-head a{font-size:12px;color:#777;text-decoration:none}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+    .kpi{height:128px;background:#fff;padding:19px 18px 15px;position:relative}
+    .kpi-label{font-size:12px;color:#777}.kpi strong{display:block;font-size:39px;line-height:1;margin:14px 0 10px;letter-spacing:-.055em}
+    .tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;font-size:10px;font-weight:700;background:#f0f0ee;color:#555}
+    .tag.purple{background:rgba(139,124,246,.13);color:#6657d8}.tag.orange{background:rgba(255,107,61,.13);color:#d9471b}.tag.green{background:rgba(40,199,101,.14);color:#198648}.tag.yellow{background:rgba(255,212,92,.26);color:#8b6b00}
+    .mini-line{position:absolute;right:15px;bottom:18px;width:48px;height:19px}
+    .mini-line svg{width:100%;height:100%}
+    .queue{display:flex;flex-direction:column;gap:9px}
+    .queue-item{height:41px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;align-items:end;padding-top:9px;gap:12px}
+    .queue-item:first-child{border-top:0;padding-top:0}
+    .queue-title{font-size:13px;font-weight:650}.queue-sub{font-size:10px;color:#8a8a8a;margin-top:4px}
+    .resource-counts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    .resource-count{height:128px;background:#fff;padding:19px 20px;position:relative}
+    .resource-count span{display:block;font-size:12px;color:#777}
+    .resource-count strong{display:block;font-size:52px;line-height:1;margin:18px 0 8px;letter-spacing:-.06em}
+    .resource-count small{font-size:11px;color:#888}
+    .resource-count i{position:absolute;right:18px;top:19px;width:10px;height:10px;border-radius:50%}
+    .resource-count.active i{background:var(--green)}.resource-count.idle i{background:var(--lavender)}
+    .path-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px;padding-bottom:22px}
+    .path{height:196px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+    .path-top{display:flex;align-items:flex-start;justify-content:space-between}.path-no{font:600 10px monospace;color:#8c8c8c;letter-spacing:.12em}.path-icon{width:35px;height:35px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:16px;background:#fafaf8}
+    .path h3{font-size:18px;margin:25px 0 8px;letter-spacing:-.04em}.path p{margin:0;color:#777;font-size:12px;line-height:1.5}.path a{margin-top:auto;font-size:12px;font-weight:750;color:#111;text-decoration:none}
+    .color-rule{position:absolute;left:22px;right:22px;bottom:0;height:4px;border-radius:4px 4px 0 0;opacity:.9}
+    .g1{background:linear-gradient(90deg,var(--orange),var(--lavender))}.g2{background:linear-gradient(90deg,var(--lavender),var(--blue))}.g3{background:linear-gradient(90deg,var(--yellow),var(--orange),var(--lavender))}.g4{background:linear-gradient(90deg,var(--blue),var(--green))}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">MAX OS<i></i></div>
+      <nav class="global" aria-label="전역 메뉴">
+        <a class="active" href="#">홈</a>
+        <a href="#">운영 현황</a>
+        <a href="#">워크플로우</a>
+        <a href="#">AI 실행 환경</a>
+        <a href="#">온보딩</a>
+        <a href="#">자산·학습</a>
+      </nav>
+      <div class="top-actions">
+        <input class="search" value="통합 검색" aria-label="통합 검색" readonly />
+        <button class="icon-btn" aria-label="알림">●</button>
+        <button class="primary">업무 시작하기</button>
+        <div class="avatar" aria-label="김효정 프로필"></div>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <div class="side-label">홈 메뉴</div>
+      <nav class="side-nav" aria-label="홈 세부 메뉴">
+        <a class="active" href="#"><span class="side-icon">⌂</span><span>홈</span></a>
+        <a href="#"><span class="side-icon">↗</span><span>오늘의 운영</span></a>
+        <a href="#"><span class="side-icon">＋</span><span>업무 시작</span></a>
+        <a href="#"><span class="side-icon">◎</span><span>처음이라면</span></a>
+        <a href="#"><span class="side-icon">↺</span><span>최근 업데이트</span></a>
+      </nav>
+      <div class="side-divider"></div>
+      <nav class="side-nav">
+        <a href="#"><span class="side-icon">?</span><span>도움말·지원</span></a>
+      </nav>
+      <div class="side-foot">
+        <div class="status"><span class="status-dot"></span>시스템 정상 연결</div>
+        <div class="profile"><b>김효정</b><span>운영 매니저 · MAX실</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">MAX OS · HOME</div>
+          <div class="hello">Hello 👋</div>
+          <h1>일이 들어온 순간부터<br>실행·검수·자산화까지,<br>MAX실의 일하는 방식을 연결합니다.</h1>
+          <p>오늘의 운영을 확인하거나 업무 유형에 맞는 워크플로우를 시작하세요.</p>
+        </div>
+        <div class="hero-right">
+          <button class="quick"><span>운영 현황 보기</span><span class="plus">＋</span></button>
+          <button class="quick main-quick"><span>새 업무 시작하기</span><span class="plus">↗</span></button>
+          <button class="quick"><span>처음 사용하기</span><span class="plus">＋</span></button>
+        </div>
+        <div class="hero-meta">2026.08.19 · 수요일　/　마지막 동기화 09:42</div>
+        <div class="hero-accent"></div>
+      </section>
+
+      <section class="overview">
+        <article class="panel">
+          <div class="panel-head"><h2>오늘의 운영</h2><a href="#">전체 현황 보기 →</a></div>
+          <div class="kpis">
+            <div class="kpi"><span class="kpi-label">진행 중 업무</span><strong>9</strong><span class="tag purple">전주 대비 +2</span><div class="mini-line"><svg viewBox="0 0 48 19"><path d="M1 15 C8 4,13 16,21 10 S34 3,47 5" fill="none" stroke="#8b7cf6" stroke-width="2"/></svg></div></div>
+            <div class="kpi"><span class="kpi-label">7일 내 마감</span><strong>3</strong><span class="tag orange">확인 필요</span><div class="mini-line"><svg viewBox="0 0 48 19"><path d="M1 5 C9 5,13 16,23 12 S37 13,47 3" fill="none" stroke="#ff6b3d" stroke-width="2"/></svg></div></div>
+            <div class="kpi"><span class="kpi-label">검수 대기</span><strong>4</strong><span class="tag yellow">Human Gate</span><div class="mini-line"><svg viewBox="0 0 48 19"><path d="M1 15 L12 11 L21 13 L31 4 L47 8" fill="none" stroke="#d5a900" stroke-width="2"/></svg></div></div>
+            <div class="kpi"><span class="kpi-label">위험 프로젝트</span><strong>2</strong><span class="tag orange">상세 확인</span><div class="mini-line"><svg viewBox="0 0 48 19"><path d="M1 16 C9 13,14 6,21 9 S35 8,47 4" fill="none" stroke="#ff6b3d" stroke-width="2"/></svg></div></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><h2>리소스 요약</h2><a href="#">담당자별 현황 보기 →</a></div>
+          <div class="resource-counts">
+            <div class="resource-count active"><span>가동 리소스</span><strong>12</strong><small>현재 업무 배정 인원</small><i></i></div>
+            <div class="resource-count idle"><span>유휴 리소스</span><strong>3</strong><small>추가 배정 가능 인원</small><i></i></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="path-row" aria-label="업무 진입 경로">
+        <article class="path"><div class="path-top"><span class="path-no">01 · WORKFLOW</span><span class="path-icon">⌘</span></div><h3>UI 구축·콘텐츠 제작</h3><p>UI 구축 · 운영성 상세페이지 · 콘텐츠·이벤트 페이지 · 마케팅 배너</p><a href="#">워크플로우 시작 →</a><div class="color-rule g1"></div></article>
+        <article class="path"><div class="path-top"><span class="path-no">02 · ASSET</span><span class="path-icon">◇</span></div><h3>AI 비주얼 에셋</h3><p>인물 · 연령 · 포즈 · 제품 · 배경 · 타이포 아카이브</p><a href="#">에셋 제작 시작 →</a><div class="color-rule g2"></div></article>
+        <article class="path"><div class="path-top"><span class="path-no">03 · VIDEO</span><span class="path-icon">▷</span></div><h3>AI 영상·필름</h3><p>15·30초 · 게임 영상 · 브랜드 필름 · 시네마틱 · 사운드</p><a href="#">영상 제작 시작 →</a><div class="color-rule g3"></div></article>
+        <article class="path"><div class="path-top"><span class="path-no">04 · ONBOARDING</span><span class="path-icon">＋</span></div><h3>처음이라면</h3><p>팀문화 · 일하는 방식 · Claude Code · 첫 업무 실습</p><a href="#">온보딩 시작 →</a><div class="color-rule g4"></div></article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

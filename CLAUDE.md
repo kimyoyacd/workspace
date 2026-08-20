@@ -217,13 +217,26 @@
 **⑧ 역할 오케스트레이터 (v8)**
 - `marketer` (마케터) — RFP부터 리서치·발산까지 통합 역할. RFP 분석 → 시장조사 → 와이드 리서치 → 디자인 리서치(트렌드·레퍼런스) → 발산을 순서대로. 담당: rfp-analyst · market-research · design-trend-radar · reference-curator · brainstormer. 트리거 "RFP 분석"/"시장조사"/"경쟁사 분석"/"트렌드 봐줘"/"레퍼런스 찾아줘"/"브레인스토밍"/"리서치 쭉 돌려줘"
 
+**⑨ 브랜드 제안 파이프라인 (풀 프로세스 전용)** — 파이프라인 A의 3단계 구조를 순서대로 태우는 전용 그룹. 개별 호출보다 `brand-pipeline` 하나로 시작하는 것을 권장.
+- `brand-pipeline` (오케스트레이터) — Manus 1 → Manus 2 → Runable 3을 게이트 통과 조건과 함께 진행. 트리거 "브랜드 제안 시작"/"풀 프로세스"/"처음부터 해줘"
+- `manus-1` (1차) — 경쟁 리서치·포지셔닝·BX 비주얼 프롬프트. 슬라이드 생성 금지, 출력은 manus_1_state만
+- `manus-2` (2차) — 비주얼 아이덴티티 추출 + 컨셉·무드보드 발산. manus_1_state 없으면 시작 안 함
+- `runable-3` (3차) — 브랜드 시스템화 + 최종 슬라이드. slide_generation_ready=true일 때만 슬라이드 생성
+
 > 자동화 트리거(스케줄·이벤트·티어)는 `.claude/library/automation.md` 참조.
 
 ## 현재 등록된 스킬
 - `list-deck-design` — 한국어 에디토리얼 리포트 HTML 생성 (stateofaidesign.com 스타일)
 - `mx-deck-design` — MX실 표준 제안서/덱 HTML 생성 (Figma 데일리 미션 덱 실측 규격 · 유연 레이아웃 · MAXOS v8 포인트 팔레트)
 - `tab-deck-design` — 좌측 탭 SPA 문서 HTML 생성 (섹션 8~16개 장문용 · 리서치 덱·킥오프 준비·운영 매뉴얼 · 4색 분류 체계 · 폰트 CDN 없이 Artifact 발행 가능)
-- `project-index` — 프로젝트 HTML 산출물 묶어 인덱스(바로가기) 페이지 생성. 템플릿: `.claude/library/index-template.html`
+- `project-index` — 프로젝트 HTML 산출물 묶어 인덱스(바로가기) 페이지 생성. 템플릿: `.claude/library/index-template.html` ※ 동명 에이전트와 중복 — 정리 대상
+
+**글쓰기 스킬 (모든 텍스트 산출물에 적용)**
+- `anti-ai-writing` — 최종 필터. "AI가 쓴 티" 제거. 모든 글의 마지막에
+- `dumbify` — 읽기 난도·인지 부담 낮추기. 설명형·강의용 콘텐츠
+- `storytelling` — 내러티브·토킹헤드 대본. 훅 이후의 시청을 붙잡는 구조
+- `viral-hooks` — 첫 문장(훅) 전용. 릴스·카드뉴스 1p·뉴스레터 제목
+- `voice-dna` — 내 목소리 프로필 생성·적용
 
 ### 덱 스킬 3종 구분
 | 상황 | 스킬 |

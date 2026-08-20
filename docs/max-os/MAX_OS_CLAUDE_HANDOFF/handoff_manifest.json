@@ -1,0 +1,27 @@
+{
+  "name": "MAX OS Claude Code Handoff",
+  "version": "1.2.0",
+  "updated_at": "2026-08-19",
+  "precedence": [
+    "00_README_HANDOFF.md",
+    "01_SOURCE_OF_TRUTH.md",
+    "02_PAGE_NAV_CONTENT_SPEC.md",
+    "03_MANUAL_PLAYBOOK_ARCHITECTURE.md",
+    "04_DATA_METRIC_CONTRACT.md",
+    "05_DESIGN_SYSTEM_IMPLEMENTATION.md",
+    "06_CLAUDE_CODE_MASTER_PROMPT.md",
+    "07_QA_ACCEPTANCE.md",
+    "08_REQUIRED_INPUTS_TEMPLATE.md",
+    "09_OPERATIONS_DASHBOARD_DETAIL_SPEC.md"
+  ],
+  "references": {
+    "visual_style": "../MAX_OS_HOME_WIREFRAME.html",
+    "home_balanced_reference": "references/MAX_OS_HOME_BALANCED_REFERENCE.png",
+    "operations_overview_reference": "references/MAX_OS_OPERATIONS_OVERVIEW_REFERENCE.png",
+    "operations_task_gantt_reference": "references/OPERATIONS_TASK_GANTT_REFERENCE.png",
+    "product_ia": "../MAX_OS_SITE_IA_CLAUDE_CODE_BRIEF.md",
+    "ax_benchmark": "../AI_NATIVE_AX_OPERATING_MODEL_BENCHMARK.md",
+    "figma_ax_flow_node": "272:2"
+  },
+  "sample_values_are_production_data": false
+}

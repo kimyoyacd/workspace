@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>MAX OS — 운영 현황</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/shell.css" />
+  <link rel="stylesheet" href="assets/ops.css" />
+  <style>
+    h1, h2, h3, p, td, th { word-break: keep-all; }
+  </style>
+</head>
+<body data-page="operations">
+  <div class="app">
+    <main class="main">
+
+      <div class="page-head">
+        <div class="page-eyebrow">MAX OS · OPERATIONS</div>
+        <h1 class="page-title">지금 진행 중인 일</h1>
+        <p class="page-desc">표로 전체를 확인하고 Notion 원본으로 넘어갑니다. 카드·일정으로 보시려면 홈에서 보시면 됩니다.</p>
+      </div>
+
+      <div class="filter-bar">
+        <span id="pj-chip"></span>
+        <span style="font-size:12px;color:var(--muted2)">카드·일정으로 보시려면 <a href="index.html" style="color:var(--black);font-weight:700;text-decoration:none">홈</a>에서 보시면 됩니다</span>
+        <span class="spacer"></span>
+        <span class="mono" id="pj-count" style="font-size:11px;color:var(--muted2)"></span>
+      </div>
+
+      <div id="pj-table" class="panel" style="padding:10px 6px">
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr>
+              <th>프로젝트</th><th>상태</th><th>업무 유형</th><th>난이도</th><th>시작</th><th>마감</th><th>D-day</th><th>공식 기준 문서</th>
+            </tr></thead>
+            <tbody id="pj-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt"><span class="src-badge" data-src><span class="sdot"></span>데이터 확인 중…</span></div>
+
+    </main>
+  </div>
+
+  <script src="assets/shell.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/ops-views.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var $ = function (s, p) { return (p || document).querySelector(s); };
+    var $$ = function (s, p) { return Array.prototype.slice.call((p || document).querySelectorAll(s)); };
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+    var DB = { projects: [], freshness: null };
+    var PJ_FILTER = '';   /* '' | due7 | late | conflict | group:<key> — 홈에서 넘어온 딥링크 */
+
+    /* ── 딥링크: #projects&late=1 처럼 넘어온 필터를 읽는다 ── */
+    function readHash() {
+      var parts = (location.hash || '').slice(1).split('&');
+      parts.shift();                       /* 앞의 탭 이름은 옛 링크 호환용으로 버린다 */
+      var q = {};
+      parts.forEach(function (p) { var kv = p.split('='); q[kv[0]] = decodeURIComponent(kv[1] || ''); });
+      PJ_FILTER = q.due === '7' ? 'due7' : q.late === '1' ? 'late'
+                : q.conflict === '1' ? 'conflict'
+                : q.group ? 'group:' + q.group : '';
+    }
+    window.addEventListener('hashchange', function () { readHash(); renderProjects(); });
+
+    function filteredProjects() {
+      if (!PJ_FILTER) return DB.projects;
+      if (PJ_FILTER === 'due7') return DB.projects.filter(function (p) { return p.dueSoon; });
+      if (PJ_FILTER === 'late') return DB.projects.filter(function (p) { return p.delayed; });
+      if (PJ_FILTER === 'conflict') return DB.projects.filter(function (p) { return p.dateConflict; });
+      var g = PJ_FILTER.slice(6);
+      return DB.projects.filter(function (p) { return p.group === g; });
+    }
+
+    function filterChipLabel() {
+      if (PJ_FILTER === 'due7') return '이번 주 마감만';
+      if (PJ_FILTER === 'late') return '마감일 지난 일만';
+      if (PJ_FILTER === 'conflict') return '날짜가 뒤집힌 일만';
+      if (PJ_FILTER.indexOf('group:') === 0) {
+        var m = MAXOS.groupMeta[PJ_FILTER.slice(6)];
+        return m ? m.label + '만' : '';
+      }
+      return '';
+    }
+
+    function renderFilterChip() {
+      var el = $('#pj-chip');
+      var label = filterChipLabel();
+      el.innerHTML = label
+        ? '<button class="btn sm" id="pj-chip-btn" style="gap:7px">' + esc(label) + ' <span aria-hidden="true">✕</span></button>'
+        : '';
+      var btn = $('#pj-chip-btn');
+      if (btn) btn.addEventListener('click', function () {
+        PJ_FILTER = '';
+        history.replaceState(null, '', location.pathname + location.search);
+        renderProjects();
+      });
+    }
+
+    var statusTag = OPSVIEW.statusTag, catLabel = OPSVIEW.catLabel, ddayText = OPSVIEW.ddayText;
+    var DIFF_LABEL = OPSVIEW.DIFF_LABEL;
+
+    function renderProjects() {
+      var list = filteredProjects();
+      renderFilterChip();
+      $('#pj-count').textContent = list.length + '건';
+      $('#pj-tbody').innerHTML = list.length ? list.map(function (p) {
+        return '<tr>' +
+          '<td style="font-weight:650;max-width:280px">' + esc(p.title) + '</td>' +
+          '<td>' + statusTag(p) + '</td>' +
+          '<td>' + (p.categories.map(function (c) { return '<span class="tag blue">' + esc(catLabel(c)) + '</span>'; }).join(' ') || '<span style="color:var(--muted2)">—</span>') + '</td>' +
+          '<td class="mono">' + (DIFF_LABEL[p.difficulty] || p.difficulty || '—') + '</td>' +
+          '<td class="mono">' + MAXOS.fmtDate(p.startDate) + '</td>' +
+          '<td class="mono">' + MAXOS.fmtDate(p.endDate) + '</td>' +
+          '<td>' + ddayText(p) + '</td>' +
+          '<td>' + (p.notionUrl ? '<a href="' + esc(p.notionUrl) + '" target="_blank" rel="noopener" style="color:#2454C7;text-decoration:none;font-size:12px">Notion에서 열기 ↗</a>' : '—') + '</td>' +
+          '</tr>';
+      }).join('') : '<tr><td colspan="8"><div class="empty-big"><b>조건에 맞는 일이 없어요</b><p>필터를 지우고 다시 보세요.</p></div></td></tr>';
+    }
+
+    function renderSrcBadges() {
+      var f = DB.freshness;
+      $$('[data-src]').forEach(function (el) {
+        el.className = 'src-badge' + (f.state === 'ok' ? '' : f.state === 'stale' ? ' stale' : ' err');
+        el.innerHTML = '<span class="sdot"></span>' + esc(f.text);
+      });
+      shellSetSync(f.state, f.state === 'ok' ? '시스템 정상 연결' : f.text);
+    }
+
+    readHash();
+    MAXOS.fetchData().then(function (data) {
+      if (data) {
+        DB.projects = MAXOS.normalizeProjects(data);
+        DB.freshness = MAXOS.freshness(data);
+      } else {
+        DB.freshness = { state: 'err', text: '최신 정보를 불러오지 못했어요' };
+      }
+      renderSrcBadges();
+      renderProjects();
+    });
+  })();
+  </script>
+</body>
+</html>
