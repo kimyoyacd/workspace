@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRAIN — Manus 2 Visual Identity System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F5F1EA;
+      --ink: #1A1A1A;
+      --muted: #6E665A;
+      --rule: #E4DED2;
+      --chip: #F2EDE3;
+      --accent: #FF6B35;
+      --accent-soft: #FFD9C2;
+      --data: #C5BBDD;
+      --data-strong: #A89BC8;
+      --brass: #B8860B;
+      --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --maxw: 1200px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 80px 40px; }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-top: 80px;
+      margin-bottom: 24px;
+      padding-top: 40px;
+      border-top: 1px dashed var(--rule);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    p { font-size: 16px; margin-bottom: 16px; line-height: 1.55; }
+
+    .lede {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.45;
+      margin-bottom: 48px;
+      color: var(--ink);
+    }
+
+    em { color: var(--accent); font-style: italic; }
+
+    .chapter-meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* Stat Strip */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      padding: 1px;
+      margin: 64px 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .stat {
+      background: var(--bg);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .stat .num {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .stat .unit {
+      font-size: 0.4em;
+      font-weight: 600;
+    }
+
+    .stat .delta {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .stat .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      padding: 32px 24px;
+    }
+
+    .card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* Color Palette */
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 40px 0;
+    }
+
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-box {
+      width: 100%;
+      aspect-ratio: 1;
+      margin-bottom: 12px;
+      border: 1px solid var(--rule);
+    }
+
+    .color-name {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .color-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Matrix Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      margin: 40px 0;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--chip);
+      padding: 16px 12px;
+      text-align: left;
+      font-weight: 700;
+      border-right: 1px dashed var(--rule);
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    th:last-child { border-right: none; }
+
+    td {
+      padding: 16px 12px;
+      border-right: 1px dashed var(--rule);
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    td:last-child { border-right: none; }
+
+    tr:last-child td { border-bottom: none; }
+
+    .score {
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    /* DNA Lens Section */
+    .dna-section {
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      padding: 40px;
+      margin: 32px 0;
+    }
+
+    .dna-section h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .dna-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .dna-content h5 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+    }
+
+    .dna-content p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* Concept Card */
+    .concept-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--rule);
+      padding: 40px;
+      margin: 48px 0;
+    }
+
+    .concept-card h3 {
+      margin-top: 0;
+      padding-top: 0;
+      border: none;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .concept-subtitle {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    .concept-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    .concept-meta-item {
+      font-size: 14px;
+    }
+
+    .concept-meta-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .concept-meta-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .concept-text {
+      margin-bottom: 24px;
+    }
+
+    .concept-bullet {
+      display: grid;
+      grid-template-columns: 8px 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .concept-bullet::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Typography System */
+    .type-sample {
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .type-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .type-display {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .type-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* Image Grid */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 40px 0;
+    }
+
+    .image-cell {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Pull Quote */
+    .pull-quote {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      margin: 64px 0;
+      padding: 48px 0;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .quote-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .quote-text {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .quote-text em { color: var(--accent); }
+
+    /* Risk Matrix */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 40px 0;
+    }
+
+    .risk-item {
+      background: var(--bg-card);
+      border: 1px dashed var(--rule);
+      padding: 24px;
+    }
+
+    .risk-item h5 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .risk-item p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 40px 20px; }
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .dna-content { grid-template-columns: 1fr; }
+      .concept-meta { grid-template-columns: 1fr; }
+      .pull-quote { grid-template-columns: 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="chapter-meta">MANUS 2</div>
+    <h1>Visual <em>Identity</em> System</h1>
+    <p class="lede">브랜드 전략을 시각의 선택지로 번역하는 과정. 8렌즈의 Visual Identity DNA와 6개 컨셉 영역을 평가하여 최종 2개 컨셉 선정.</p>
+
+    <!-- Opening Stat Strip -->
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">8<span class="unit"></span></div>
+        <div class="delta">렌즈</div>
+        <div class="label">Visual DNA 추출 기준</div>
+      </div>
+      <div class="stat">
+        <div class="num">6<span class="unit"></span></div>
+        <div class="delta">컨셉</div>
+        <div class="label">Concept Territory 발산</div>
+      </div>
+      <div class="stat">
+        <div class="num">2<span class="unit"></span></div>
+        <div class="delta">최종</div>
+        <div class="label">Shortlist 선정</div>
+      </div>
+      <div class="stat">
+        <div class="num">9.5<span class="unit">/10</span></div>
+        <div class="delta">★ 최고</div>
+        <div class="label">Strategy Fit Score</div>
+      </div>
+    </div>
+
+    <!-- Core Message -->
+    <div class="pull-quote">
+      <div class="quote-label">BRAND POV</div>
+      <div class="quote-text">We don't sell <em>hourglasses.</em> We sell the <em>weight of a moment.</em></div>
+    </div>
+
+    <!-- Section 1: Visual Identity DNA -->
+    <h2>Visual Identity <em>DNA</em> (8렌즈)</h2>
+    <p>브랜드가 가져야 할 시각 언어를 8개 렌즈로 정의. 각 렌즈는 포지셔닝 전략을 감각으로 번역함.</p>
+
+    <!-- Color Palette -->
+    <h3>1. Color Palette</h3>
+    <div class="color-palette">
+      <div class="color-swatch">
+        <div class="color-box" style="background: #B8860B;"></div>
+        <div class="color-name">Brushed Brass</div>
+        <div class="color-code">#B8860B</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background: #F0EDE6;"></div>
+        <div class="color-name">Cloud Dancer</div>
+        <div class="color-code">#F0EDE6</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background: #FDB833;"></div>
+        <div class="color-name">Amber</div>
+        <div class="color-code">#FDB833</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background: #2B2B2B;"></div>
+        <div class="color-name">Deep Charcoal</div>
+        <div class="color-code">#2B2B2B</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background: #1A1A1A;"></div>
+        <div class="color-name">Matte Black</div>
+        <div class="color-code">#1A1A1A</div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background: #F5F3F0;"></div>
+        <div class="color-name">Cream/Angora</div>
+        <div class="color-code">#F5F3F0</div>
+      </div>
+    </div>
+
+    <!-- DNA Sections -->
+    <div class="dna-section">
+      <h4>2. Form Language (형태 언어)</h4>
+      <div class="dna-content">
+        <div>
+          <h5>권장 방향</h5>
+          <p>모래시계 전형의 비율(1:2:1)을 유지하되, 각 챔버의 벽 두께를 강조. 황동 링의 두께감으로 무게를 표현. 유리 내부의 광학 특성 활용(기포, 굴절) — 불완전함이 개성</p>
+        </div>
+        <div>
+          <h5>피해야 할 방향</h5>
+          <p>곡선 남용 (세련됨의 함정: 소재 진정성 상실). 장식 요소 추가 금지. 극단적 축소/확대 (사용 불편성 > 미감)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>3. Material Selection (소재)</h4>
+      <div class="dna-content">
+        <div>
+          <h5>핵심 3가지</h5>
+          <p><strong>1. Brass (황동)</strong> — 온기, 내구성, 에이징 스토리의 정점. 매트 마감만.</p>
+          <p><strong>2. Borosilicate Glass</strong> — 투명도 높음, 온도 변화에 강함. 기포는 불완전함이 증거.</p>
+          <p><strong>3. Natural Sand</strong> — 입자성 강조, Slow/Fast/Heavy 시리즈별 물리 특성 다름</p>
+        </div>
+        <div>
+          <h5>권장 원칙</h5>
+          <p>모든 소재는 "사용할수록 변한다" 서사를 가져야 함. 제조 과정의 불규칙성을 마케팅 포인트로 (AI 완벽함 거부). 소재 투명성: 이 황동은 어디서, 이 모래는 어떤 특성.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>4. Typography (타이포그래피)</h4>
+      <div class="dna-content">
+        <div>
+          <h5>서체</h5>
+          <p><strong>Display</strong> — Neue Helvetica / DM Sans</p>
+          <p><strong>Body</strong> — IBM Plex Sans / Inter</p>
+          <p>단일 산세리프 고수. 저래그 정렬만. 자간 1.5배 이상 (호흡감).</p>
+        </div>
+        <div>
+          <h5>타이포 규칙</h5>
+          <p>크기 대비 최소. 색상: Deep Charcoal만. 텍스트는 "조용히 강렬하게" (침묵의 럭셔리). 자간의 여백이 호흡이 됨.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>5. Photography Style</h4>
+      <div class="dna-content">
+        <div>
+          <h5>3가지 스타일 결합</h5>
+          <p><strong>A. Ambient Realism</strong> — 자연광(오후 4시), 창문 그림자, 필름 그레인, 3200K 이상</p>
+          <p><strong>B. Through-the-Glass</strong> — 유리 내부 굴절, 반사, 매크로 기포·입자</p>
+          <p><strong>C. Hand+Object</strong> — 손이 protagonist, 뒤집는 행위 포착</p>
+        </div>
+        <div>
+          <h5>핵심 원칙</h5>
+          <p>3가지 스타일을 조화. 제품 정물사진이 아니라 "행위의 기록". 불완전함이 증거 (지문, 그림자, 필름 그레인). 매크로 디테일 사용 (입자가 개별 보이는 수준).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>6. Composition & Layout</h4>
+      <div class="dna-content">
+        <div>
+          <h5>여백 전략</h5>
+          <p>제품 40%, 배경(여백) 60%, 손 30~40%.</p>
+          <p>광원: 한 개만 (창문). 각도: 45도 측광. 위치: 제품 왼쪽 또는 뒤쪽 (림라이트).</p>
+        </div>
+        <div>
+          <h5>권장 원칙</h5>
+          <p>여백이 침묵. 배경 정보 최소. 한 번에 하나의 이야기만. 시간 흐름이 보이게 (모래 낙하 중 포착). 완벽한 조명 금지 (불자연스러움).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>7. Symbol System (3개 상징)</h4>
+      <div class="dna-content">
+        <div>
+          <h5>상징 정의</h5>
+          <p><strong>1. 모래 낙하 궤적</strong> — 상부→하부 수직선. 시간의 흐름, 중력, 불가역성.</p>
+          <p><strong>2. 비워진 공간</strong> — Cloud Dancer 상부 구. 가능성, 새로운 시작, 선택.</p>
+          <p><strong>3. 손의 행위</strong> — 회전 제스처. 의도, 선택, 개인화.</p>
+        </div>
+        <div>
+          <h5>디자인 규칙</h5>
+          <p>기본: 24px (12px 배수). 선폭: 1.5px (가는 선). 라운드: 2px (각짐 금지). 손그려진 듯한 온기. 세 가지가 한 시스템 이루기 (일관성).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dna-section">
+      <h4>8. Motion & Behavior</h4>
+      <div class="dna-content">
+        <div>
+          <h5>모션 원칙</h5>
+          <p><strong>실시간 속도</strong> — 슬로우모션 금지. 1배속 그대로 재생.</p>
+          <p><strong>Loop 영상</strong> — Seamless (첫=마지막). ASMR 콘텐츠.</p>
+          <p><strong>전환</strong> — Fade 3초. 스케일보다 opacity. 텍스트 애니메이션 없음.</p>
+        </div>
+        <div>
+          <h5>콘텐츠 형식</h5>
+          <p>Instagram Reel: 9:16, 15~30초. Website Hero: 16:9, Loop 5초. Email: GIF, 2~3초. 과다한 전환 효과 금지. 음악 오버레이 최소.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Competitive Visual Code -->
+    <h2>Competitive Visual <em>Code</em> Summary</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h4>이미 과밀한 코드</h4>
+        <p><strong>1. Minimal + White Background</strong> — HAY, Craighill 중복 (차별화 불가)</p>
+        <p><strong>2. Productivity Language</strong> — 기능성 강조 → 럭셔리 불가</p>
+        <p><strong>3. Heritage Craft</strong> — 과거 중심 → 젊은 세대 진입 어려움</p>
+      </div>
+      <div class="card">
+        <h4>아직 덜 쓰인 코드</h4>
+        <p><strong>1. Through-the-Glass POV</strong> — 유리 굴절 시그니처 가능</p>
+        <p><strong>2. Sand as Texture</strong> — 입자성을 아이덴티티로</p>
+        <p><strong>3. Hand + Ritual</strong> — 거의 없음, 감정 전달 최강</p>
+      </div>
+    </div>
+
+    <!-- Section 3: 6개 Concept Territories -->
+    <h2>6개 Concept <em>Territories</em></h2>
+
+    <table>
+      <tr>
+        <th>컨셉</th>
+        <th>핵심 아이디어</th>
+        <th>무드</th>
+        <th>컬러</th>
+        <th>포토그래피</th>
+        <th>점수</th>
+      </tr>
+      <tr>
+        <td><strong>Gravity Well</strong></td>
+        <td>중력이 시간을 만든다</td>
+        <td>물리적, 무거움</td>
+        <td>Brass + Charcoal</td>
+        <td>극접사, 매크로</td>
+        <td class="score">9/10</td>
+      </tr>
+      <tr>
+        <td><strong>Ritual Moment</strong></td>
+        <td>뒤집기가 일상을 구획</td>
+        <td>개인적, 의도적</td>
+        <td>Brass + Amber</td>
+        <td>Hand+Object, 회전</td>
+        <td class="score">9.5/10 ⭐</td>
+      </tr>
+      <tr>
+        <td><strong>Patina Becoming</strong></td>
+        <td>사용할수록 깊어짐</td>
+        <td>열린, 노화</td>
+        <td>Brass→Verdigris</td>
+        <td>비포/애프터</td>
+        <td class="score">8/10</td>
+      </tr>
+      <tr>
+        <td><strong>Sensory Precision</strong></td>
+        <td>입자성이 증거</td>
+        <td>과학적, 신비</td>
+        <td>Amber + Clear</td>
+        <td>매크로, 회절</td>
+        <td class="score">7.5/10</td>
+      </tr>
+      <tr>
+        <td><strong>Temporal Stillness</strong></td>
+        <td>흐르는 것을 보며 정지</td>
+        <td>명상적, 선禪</td>
+        <td>Cloud + Charcoal</td>
+        <td>여백 75%, 대칭</td>
+        <td class="score">7/10</td>
+      </tr>
+      <tr>
+        <td><strong>Geological Time</strong></td>
+        <td>지질학적 시간 축소판</td>
+        <td>거대한, 구조적</td>
+        <td>Cream + Amber</td>
+        <td>지사진, 층</td>
+        <td class="score">6.5/10</td>
+      </tr>
+    </table>
+
+    <!-- Section 4: Client×Mood Matrix -->
+    <h2>Client × Mood <em>Matrix</em></h2>
+    <p>각 컨셉을 Brand Fit, Target Fit, Differentiation, Scalability, Feasibility, Risk 6개 기준으로 평가 (각 /5).</p>
+
+    <table>
+      <tr>
+        <th>컨셉</th>
+        <th>Brand Fit</th>
+        <th>Target Fit</th>
+        <th>Differentiation</th>
+        <th>Scalability</th>
+        <th>Feasibility</th>
+        <th>Risk</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td><strong>Gravity Well</strong></td>
+        <td>5</td>
+        <td>5</td>
+        <td>4</td>
+        <td>4</td>
+        <td>5</td>
+        <td>4</td>
+        <td class="score">27/30</td>
+      </tr>
+      <tr>
+        <td><strong>Ritual Moment</strong></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td class="score">27/30 ⭐</td>
+      </tr>
+      <tr>
+        <td><strong>Patina Becoming</strong></td>
+        <td>4</td>
+        <td>5</td>
+        <td>5</td>
+        <td>4</td>
+        <td>3</td>
+        <td>3</td>
+        <td class="score">24/30</td>
+      </tr>
+      <tr>
+        <td><strong>Sensory Precision</strong></td>
+        <td>4</td>
+        <td>4</td>
+        <td>5</td>
+        <td>3</td>
+        <td>4</td>
+        <td>3</td>
+        <td class="score">23/30</td>
+      </tr>
+      <tr>
+        <td><strong>Temporal Stillness</strong></td>
+        <td>3</td>
+        <td>4</td>
+        <td>3</td>
+        <td>5</td>
+        <td>5</td>
+        <td>4</td>
+        <td class="score">24/30</td>
+      </tr>
+      <tr>
+        <td><strong>Geological Time</strong></td>
+        <td>3</td>
+        <td>3</td>
+        <td>5</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+        <td class="score">17/30</td>
+      </tr>
+    </table>
+
+    <!-- Brutalist Framework -->
+    <h2>Brutalist Framework <em>Evaluation</em></h2>
+    <div style="background: var(--bg-card); border: 1px dashed var(--rule); padding: 40px; margin: 40px 0;">
+      <h3 style="margin-top: 0; padding-top: 0; border: none;">적용 수준: 부분 적용 (Selective Brutalism)</h3>
+      <p><strong>권장 용어:</strong> "Honest Minimalism" 또는 "Material Brutalism"</p>
+      <div class="dna-content">
+        <div>
+          <h5>✅ 적용 가능</h5>
+          <p><strong>Exposed Structure</strong> — 황동 링 구조 노출, 유리 기포</p>
+          <p><strong>Raw Surface</strong> — 매트 황동, 필film 그레인, 지문 자국</p>
+          <p><strong>Typographic Force</strong> — 최소 타입, 최대 여백</p>
+        </div>
+        <div>
+          <h5>❌ 비적용</h5>
+          <p><strong>Anti-Polish</strong> — 정제 필요 (거친 느낌 제외)</p>
+          <p><strong>Functional Tension</strong> — 럭셔리 시장 가독성 우선</p>
+          <p><strong>최종 평가:</strong> 물성 진정성만 강조, 시각적 완성도는 높게</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Concept Shortlist -->
+    <h2>Concept <em>Shortlist</em> (최종 2개)</h2>
+
+    <!-- Ritual Moment -->
+    <div class="concept-card">
+      <h3>Ritual Moment ⭐⭐⭐</h3>
+      <div class="concept-subtitle">감정 + 개인화 중심 | Strategy Fit 9.5/10</div>
+
+      <div class="concept-meta">
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">핵심 정의</div>
+          <div class="concept-meta-value">뒤집는 행위를 세상에서 가장 중요한 순간으로 재정의</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">포지셔닝</div>
+          <div class="concept-meta-value">"The moment you turn it, everything else stops."</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">주인공</div>
+          <div class="concept-meta-value">손 (다양한 피부톤, 나이, 문화)</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">채널</div>
+          <div class="concept-meta-value">Instagram / TikTok (UGC 기반)</div>
+        </div>
+      </div>
+
+      <div class="concept-text">
+        <h4>선택 이유</h4>
+        <div class="concept-bullet">Strategy Fit Score 9.5/10 (최고)</div>
+        <div class="concept-bullet">POV "Weight of a moment" 정렬도 최강</div>
+        <div class="concept-bullet">개인화 및 콘텐츠 확장성 무한대</div>
+        <div class="concept-bullet">타깃 감정 공명 최상 ("이 행위가 나를 정의한다")</div>
+        <div class="concept-bullet">소셜 미디어 자연 발생 (UGC 기반)</div>
+      </div>
+
+      <div style="border-top: 1px dashed var(--rule); padding-top: 24px; margin-top: 24px;">
+        <h4>비주얼 방향</h4>
+        <p><strong>컬러:</strong> Brushed Brass + Amber Sand + Cloud Dancer</p>
+        <p><strong>타이포:</strong> IBM Plex Sans (행위 동사: "turn", "choose", "begin")</p>
+        <p><strong>포토그래피:</strong> Hand+Object 중심, 회전 중단 포착, 다양한 손의 정직함</p>
+        <p><strong>패키지:</strong> Cloud Dancer 박스 + 손잡이 (개봉 경험 강조)</p>
+        <p><strong>모션:</strong> Stop-motion 또는 슬로우 비디오 (실시간), ASMR</p>
+      </div>
+
+      <h4>AI 생성 시각 레퍼런스 (Higgsfield Nano Banana 2)</h4>
+      <div class="image-grid">
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065833_7ade4e93-248f-4338-ab51-b004ffdd6291.png" alt="손과 의례"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065840_ac7a9d9c-3b85-4900-b012-3c5f98b1fc05.png" alt="손의 회전 클로즈업"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065845_a2afa17c-a369-448b-b3b1-63f186091953.png" alt="미니멀 워크스페이스"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065850_ac99bc4f-a46a-43b9-938d-9a0fc12faa61.png" alt="황동 링 매크로"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065856_f9a45733-bbf9-4773-b5e9-390548995f15.png" alt="모래 낙하 순간"></div>
+      </div>
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--muted);">출처: Higgsfield Nano Banana 2 Lite AI 생성 (2026-07-01)</p>
+
+      <div class="risk-grid">
+        <div class="risk-item">
+          <h5>⚠️ 리스크</h5>
+          <p>제품이 아닌 손에만 주목 가능. 문화적 제스처 차이.</p>
+        </div>
+        <div class="risk-item">
+          <h5>✓ 보완 장치</h5>
+          <p>제품 샷 별도 시리즈. "#MyRitual" UGC 공모. 지역별 의례 존중.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gravity Well -->
+    <div class="concept-card">
+      <h3>Gravity Well ⭐⭐</h3>
+      <div class="concept-subtitle">물성 + 오브제 중심 | Strategy Fit 9/10</div>
+
+      <div class="concept-meta">
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">핵심 정의</div>
+          <div class="concept-meta-value">중력이 시간을 만든다. 모래의 무게가 증거다.</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">포지셔닝</div>
+          <div class="concept-meta-value">"Weight is proof. This is what 30 minutes weighs."</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">주인공</div>
+          <div class="concept-meta-value">제품 (모래 입자, 유리 기포, 황동 질감)</div>
+        </div>
+        <div class="concept-meta-item">
+          <div class="concept-meta-label">채널</div>
+          <div class="concept-meta-value">Website + Print (프리미엄)</div>
+        </div>
+      </div>
+
+      <div class="concept-text">
+        <h4>선택 이유</h4>
+        <div class="concept-bullet">Strategy Fit Score 9/10 (매우 높음)</div>
+        <div class="concept-bullet">POV "Weight of a moment" 물리적 구현</div>
+        <div class="concept-bullet">명확한 차별화 (Through-the-Glass POV)</div>
+        <div class="concept-bullet">럭셔리 포지셔닝 최강 (오브제로서의 존재감)</div>
+        <div class="concept-bullet">콘텐츠 최소주의 (제품에만 집중)</div>
+      </div>
+
+      <div style="border-top: 1px dashed var(--rule); padding-top: 24px; margin-top: 24px;">
+        <h4>비주얼 방향</h4>
+        <p><strong>컬러:</strong> Brushed Brass + Deep Charcoal + Cloud Dancer</p>
+        <p><strong>타이포:</strong> Neue Helvetica Bold (명사 중심: "weight", "proof", "moment")</p>
+        <p><strong>포토그래피:</strong> 극접사(macro), 모래 입자 개별 포착, 섬광 없는 주광</p>
+        <p><strong>패키지:</strong> 검정 무광 박스 + emboss 로고 없음</p>
+        <p><strong>모션:</strong> 모래 낙하 1배속 15초 반복, ASMR 콘텐츠</p>
+      </div>
+
+      <h4>AI 생성 시각 레퍼런스 (Higgsfield Nano Banana 2)</h4>
+      <div class="image-grid">
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065902_ec5269c2-b65c-4b4e-9371-3718ede3617f.png" alt="모래 입자 매크로"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065907_b13697d9-b122-4d92-94c9-5e69c825f601.png" alt="유리 굴절 Through-the-Glass"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065913_eb11ac43-0847-4ac5-8cb3-30352eb8cd07.png" alt="황동 링 텍스처"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065919_2113ef70-3666-43ce-ab16-860ef6dc80fc.png" alt="미니멀 제품 샷"></div>
+        <div class="image-cell"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xRL15Rqznvjzwppcb2PjNb6rfo/hf_20260701_065926_b909419a-7137-4353-ab26-852fe73aaba1.png" alt="건축적 구성"></div>
+      </div>
+      <p style="font-family: var(--mono); font-size: 11px; color: var(--muted);">출처: Higgsfield Nano Banana 2 Lite AI 생성 (2026-07-01)</p>
+
+      <div class="risk-grid">
+        <div class="risk-item">
+          <h5>⚠️ 리스크</h5>
+          <p>너무 차갑거나 학술적 느낌. 콘텐츠 반복성.</p>
+        </div>
+        <div class="risk-item">
+          <h5>✓ 보완 장치</h5>
+          <p>매크로 라이브러리 1000+ 이미지. 아트 필터 협업. 과학 콘텐츠 에세이.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Message -->
+    <div class="pull-quote">
+      <div class="quote-label">통합 메시지</div>
+      <div class="quote-text">Two concepts. <em>One vision.</em> Different senses, same strategy.</div>
+    </div>
+
+    <!-- Closing -->
+    <h2>Next <em>Phase</em></h2>
+    <p>Manus 2 Visual Identity System 완료. 다음 단계는 P1 Product Design Brief 실행입니다.</p>
+    <p style="margin-bottom: 40px;"><strong>예상 일정:</strong> CAD 모델 설계 → 프로토타입 제작 → 스튜디오 렌탈 → P1 촬영 (8-12주)</p>
+
+    <div style="text-align: center; padding: 40px 0; border-top: 1px dashed var(--rule); color: var(--muted); font-family: var(--mono); font-size: 12px;">
+      Manus 2 Visual Identity Architecture 완료 | 2026-06-30 | BX 아트디렉터
+    </div>
+  </div>
+</body>
+</html>

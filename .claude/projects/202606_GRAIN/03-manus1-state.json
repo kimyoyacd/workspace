@@ -1,0 +1,705 @@
+{
+  "schema_version": "manus_1_v1",
+  "brand": "GRAIN",
+  "generated_at": "2026-06-30",
+  "status": "gate_1_passed",
+
+  "step1_project_intake": {
+    "brand_name": "GRAIN",
+    "category": "Premium Desk Object",
+    "product": "Hourglass — Slow Sand / Fast Sand / Heavy Sand (3 series)",
+    "market": "Global (Korea origin, global lifestyle channel target)",
+    "target_customer": "30–50s, wellness + collecting dual pursuit, adults who buy ritual",
+    "price_range_usd": "$150–$400",
+    "brand_goal": "AI creative portfolio + public case study asset",
+    "core_challenge": "Claim whitespace: Luxury + Functional utility",
+    "avoid_impression": ["productivity tool", "timer", "efficiency", "excessive minimalism"],
+    "desired_impression": ["density of time", "ritual of act", "weight of material", "choosing slowness"],
+    "confirmed_pov": "We don't sell hourglasses. We sell the weight of a moment.",
+    "design_principles": [
+      "Sand is the proof",
+      "Slowness is the message",
+      "Put the act at the center"
+    ],
+    "anti_direction": [
+      "No productivity language: focus, Pomodoro, efficiency, mindful, productive",
+      "No excessive minimalism: erasing material physicality with cleanliness"
+    ]
+  },
+
+  "step2_competitor_30": [
+    {
+      "id": 1, "name": "Assouline", "country": "France", "market": "Global Ultra-Luxury",
+      "category": "Heritage Craft", "price_usd": "$700+",
+      "target": "UHNW, luxury collectors, hotel buyers",
+      "core_message": "Books are symbols. Time is a symbol. We make both.",
+      "positioning": "Ultra-luxury cultural object at the apex",
+      "visual_language": "Pebbled leather, 24K gold detail, dark luxury palette",
+      "packaging": "Luxury case, art book style box",
+      "color_material": "Pebbled Leather, Gold, Bronze, Dark Tones",
+      "distribution": "Flagship + Hotel + D2C",
+      "content_tone": "Heritage storytelling, luxury lifestyle, Forbes-level editorial",
+      "strengths": ["Confirmed luxury positioning", "High collectible value", "Heritage story"],
+      "weaknesses": ["$700+ entry barrier", "Difficult modern customer access"],
+      "learn": "Elevating functional objects to luxury cultural objects",
+      "avoid": "Over-heritage — GRAIN speaks through present materials and acts",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 1"
+    },
+    {
+      "id": 2, "name": "Anframa", "country": "Spain", "market": "Europe Premium",
+      "category": "Heritage Craft", "price_usd": "$300–$1,500 (Hypothesis)",
+      "target": "Craft collectors, premium gift buyers",
+      "core_message": "Spanish gold inlay craft heritage",
+      "positioning": "European artisan craft hourglass brand",
+      "visual_language": "Gold inlay pattern, traditional Spanish craft aesthetic",
+      "color_material": "Gold Inlay, Dark Wood, Traditional Palette",
+      "distribution": "Gallery + Specialty retail",
+      "strengths": ["Unique craft technique", "Strong European heritage"],
+      "weaknesses": ["Limited global accessibility", "No digital channel"],
+      "learn": "Gold inlay craft as brand signature technique",
+      "avoid": "Traditional craft over-emphasis",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 3"
+    },
+    {
+      "id": 3, "name": "Craighill", "country": "USA", "market": "Global Design",
+      "category": "Precision Minimal", "price_usd": "$30–$300",
+      "target": "Designers, developers, EDC collectors",
+      "core_message": "Precision craft that finds wonder in ratio, weight, and touch",
+      "positioning": "Precision minimal desk objects balancing wonder and real functionality",
+      "visual_language": "Clean studio, geometric precision, brass + stainless",
+      "color_material": "Brass, Stainless Steel, Aluminum",
+      "distribution": "D2C + premium retail",
+      "content_tone": "Craft process, precision detail, desk setup",
+      "strengths": ["Clear brand philosophy", "Good price accessibility", "Strong community"],
+      "weaknesses": ["Cannot expand to luxury tier", "Cold and mechanical impression"],
+      "learn": "Wonder + real functionality balance as brand language",
+      "avoid": "Cold mechanical precision — GRAIN has warmth and material weight",
+      "cluster": "Precision Minimal", "trend_tag": "T3", "source_tier": "Tier 1"
+    },
+    {
+      "id": 4, "name": "ONO Roller", "country": "USA", "market": "Global Wellness",
+      "category": "Precision Minimal", "price_usd": "$45–$140+",
+      "positioning": "Precision wellness tool adjacent to medical space",
+      "cluster": "Precision Minimal", "trend_tag": "T3", "source_tier": "Tier 2"
+    },
+    {
+      "id": 5, "name": "MetaEDC", "country": "USA", "market": "Global EDC Collector",
+      "category": "Precision Minimal", "price_usd": "$20–$650",
+      "positioning": "Ultra-premium EDC fidget for collectors",
+      "cluster": "Precision Minimal", "trend_tag": "T3", "source_tier": "Tier 2"
+    },
+    {
+      "id": 6, "name": "Art of Play", "country": "USA", "market": "Global Gift",
+      "category": "Sensory Play", "price_usd": "$20–$200",
+      "positioning": "Premium gift curation platform",
+      "cluster": "Sensory Play", "trend_tag": "T1", "source_tier": "Tier 2"
+    },
+    {
+      "id": 7, "name": "Speks", "country": "USA", "market": "Global",
+      "category": "Sensory Play", "price_usd": "$20–$40",
+      "positioning": "Magnetic sensory play object",
+      "cluster": "Sensory Play", "trend_tag": "T1", "source_tier": "Tier 2"
+    },
+    {
+      "id": 8, "name": "Uncommon Goods", "country": "USA", "market": "Global",
+      "category": "Sensory Play", "price_usd": "$60–$100",
+      "positioning": "Unique magnetic sand decorative object",
+      "cluster": "Sensory Play", "trend_tag": "T1", "source_tier": "Tier 2"
+    },
+    {
+      "id": 9, "name": "JustHourglasses", "country": "USA", "market": "Global",
+      "category": "Sensory Play / Functional Ritual", "price_usd": "$30–$120",
+      "positioning": "Sand timer specialist for mindfulness and meditation",
+      "cluster": "Sensory Play", "trend_tag": "T6", "source_tier": "Tier 1"
+    },
+    {
+      "id": 10, "name": "Werkstätte Carl Auböck", "country": "Austria", "market": "Global Premium",
+      "category": "Heritage Craft", "price_usd": "$150–$2000+",
+      "target": "Design collectors, interior specialists, luxury gift buyers",
+      "core_message": "Four generations of hands — same molds, same workshop",
+      "positioning": "Living heritage of functional brass craft objects",
+      "visual_language": "Bronze/brass patina, hand finish, classic Vienna studio photography",
+      "packaging": "Craft box, simple wrapping — product itself is the package",
+      "color_material": "Brushed Brass, Bronze, Bone, Leather",
+      "distribution": "Premium galleries (Sigmar London, PAMONO, 1stDibs)",
+      "content_tone": "Archive-focused, manufacturing process photos, minimal editing",
+      "strengths": ["150-year heritage + real function + material patina story"],
+      "weaknesses": ["Low accessibility", "No digital channel"],
+      "learn": "Converting aging material into brand asset",
+      "avoid": "Museum brand impression — must maintain living sensory feeling",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 2"
+    },
+    {
+      "id": 11, "name": "L'Objet", "country": "USA", "market": "Global Ultra-Luxury",
+      "category": "Ultra-Luxury Tabletop", "price_usd": "$300–$5000+",
+      "target": "UHNW, luxury home decor collectors, gift buyers",
+      "core_message": "24K gold, porcelain, brass — elevating daily life to art. 20-year craft story.",
+      "positioning": "Luxury craft brand elevating everyday objects to artworks",
+      "visual_language": "Jewelry-style product shots, gold-centered palette, maximal texture",
+      "color_material": "24K Gold, Platinum, Coral, Marble, Porcelain",
+      "distribution": "D2C + luxury department stores + galleries",
+      "strengths": ["Confirmed luxury positioning", "Material variety", "Global distribution"],
+      "weaknesses": ["Entry barrier too high", "Low utility"],
+      "learn": "Making craft story the core of marketing",
+      "avoid": "Over-decoration — GRAIN speaks through material itself",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 2"
+    },
+    {
+      "id": 12, "name": "Maison Balzac", "country": "Australia", "market": "Global Lifestyle",
+      "category": "Luxury Lifestyle Objects", "price_usd": "$80–$400",
+      "target": "30–50s women, home aesthetic seekers, gift buyers",
+      "core_message": "Jewellery for the table — sensory experience through everyday acts",
+      "positioning": "Home objects from pure imagination, jewel-toned glass + scent brand",
+      "visual_language": "Jewel-toned glass, curved forms, intense color palette, studio still life",
+      "color_material": "Jewel Tones (Sapphire, Emerald, Amber), Hand-blown Glass, Ceramics",
+      "distribution": "D2C + premium concept stores",
+      "strengths": ["Visual impact", "Strong color identity", "High gift demand"],
+      "weaknesses": ["Color-dependent — lacks material depth"],
+      "learn": "Positioning everyday acts as sensory experiences",
+      "avoid": "Excessive color — GRAIN speaks through the material's own color",
+      "cluster": "Sensory Luxury", "trend_tag": "T7", "source_tier": "Tier 2"
+    },
+    {
+      "id": 13, "name": "Fferrone Design", "country": "USA / Italy", "market": "Global Design Collector",
+      "category": "Luxury Handcrafted Glass Objects", "price_usd": "$200–$600+",
+      "target": "Design collectors, architecture sensibility holders, Michelin restaurant buyers",
+      "core_message": "Blown by Czech artisans without molds — impossible to replicate",
+      "positioning": "Intersection of architectural form and glass craft, collectible functional objects",
+      "visual_language": "Borosilicate glass transparency, geometric forms, matte background studio",
+      "color_material": "Clear/Smoke/Amber Borosilicate Glass",
+      "distribution": "D2C + Art Institute Chicago + Michelin restaurant partners",
+      "strengths": ["'Cannot be replicated' scarcity story", "Art Institute collection"],
+      "weaknesses": ["Low brand awareness", "Narrow target"],
+      "learn": "Using craft process as product value evidence",
+      "avoid": "Excessive abstraction — GRAIN grounds through act and materiality",
+      "cluster": "Craft Collectible", "trend_tag": "T7", "source_tier": "Tier 2"
+    },
+    {
+      "id": 14, "name": "Ugmonk (Hourglass)", "country": "USA", "market": "Global D2C Design",
+      "category": "Functional Desk Object", "price_usd": "$68–$88",
+      "target": "Deep work seekers, designers, developers, productivity interest",
+      "core_message": "Focus on this 25 minutes, without digital distraction",
+      "positioning": "Tool of focus ritual, desk object balancing function and aesthetics",
+      "visual_language": "Clean studio, amber/clear glass, light wood or walnut base",
+      "color_material": "Amber/Clear Glass, Walnut/Maple Wood (Hightide Japan OEM)",
+      "distribution": "D2C focused",
+      "content_tone": "Deep work lifestyle, minimal desk setup, honest product photography",
+      "strengths": ["Clear use context (Pomodoro)", "Loyal community", "Price accessibility"],
+      "weaknesses": ["Trapped in productivity tool frame", "No material depth"],
+      "learn": "Designing the act (focus) as a ritual of product use",
+      "avoid": "Pomodoro and productivity language — GRAIN's core Anti-direction",
+      "cluster": "Functional Ritual", "trend_tag": "T6", "source_tier": "Tier 1"
+    },
+    {
+      "id": 15, "name": "Hightide (Japan)", "country": "Japan", "market": "Global",
+      "category": "Japanese Lifestyle Stationery & Objects", "price_usd": "$7–$60",
+      "target": "Japanese culture enthusiasts, stationery collectors",
+      "core_message": "Reinterpreting American/European nostalgia through Japanese sensibility",
+      "positioning": "Retro Japanese lifestyle stationery, completion of daily objects",
+      "color_material": "Retro Pastels, Clear Glass, Beige/Cream",
+      "distribution": "D2C + stationery concept stores + Japanese design shops",
+      "strengths": ["Japanese craft story", "Price accessibility", "Strong community"],
+      "weaknesses": ["Cannot position as luxury ($7–$60 range)"],
+      "learn": "Japanese artisan OEM structure — supply chain reference",
+      "avoid": "Low-price general-purpose image",
+      "cluster": "Sensory Play", "trend_tag": "T4", "source_tier": "Tier 1"
+    },
+    {
+      "id": 16, "name": "Kikkerland", "country": "USA", "market": "Global Mass",
+      "category": "Novelty / Sensory Play Objects", "price_usd": "$17–$25",
+      "target": "Gift buyers, sensory play interest, mass consumers",
+      "core_message": "Original designs discovered traveling the world — making life more enjoyable",
+      "positioning": "Quirky sensory objects, dominant player in mass gift market",
+      "color_material": "Black Magnetic Sand, Beechwood Base, Borosilicate Glass",
+      "distribution": "Amazon + large retailers + gift specialty stores",
+      "strengths": ["Price accessibility", "Wide distribution", "Visual interest"],
+      "weaknesses": ["No premium image", "No collectible value", "No brand depth"],
+      "learn": "Visual interest of magnetic sand — reference as content material",
+      "avoid": "Gift shop positioning, mass production impression",
+      "cluster": "Sensory Play", "trend_tag": "T1", "source_tier": "Tier 1"
+    },
+    {
+      "id": 17, "name": "HAY", "country": "Denmark", "market": "Global Scandinavian Design",
+      "category": "Scandinavian Design Objects", "price_usd": "$15–$200",
+      "target": "Design-conscious 30–50s, interior interest, gift buyers",
+      "core_message": "Bringing 1950–60s Scandinavian furniture innovation to the present",
+      "positioning": "Modern standard of colorful Danish design",
+      "color_material": "Vivid Colors, Powder-coated Metal, Plastic, Ceramic",
+      "distribution": "D2C + Design Within Reach + global concept stores",
+      "strengths": ["Strong brand awareness", "Global distribution", "Wide product line"],
+      "weaknesses": ["Cannot position as luxury", "Cold minimal impression"],
+      "learn": "Artist collaboration edition model (Emma Kohlmann × HAY)",
+      "avoid": "Scandinavian cold minimalism — GRAIN's Anti-direction",
+      "cluster": "Precision Minimal", "trend_tag": "T1", "source_tier": "Tier 2"
+    },
+    {
+      "id": 18, "name": "Areaware", "country": "USA", "market": "Global (Closed 2026, acquired by Piecework)",
+      "category": "Playful Collectible Design Objects", "price_usd": "$20–$150",
+      "target": "Designy people — design-conscious mass consumers",
+      "core_message": "Friendly objects for designy people",
+      "positioning": "Playful design objects based on independent artist collaboration",
+      "color_material": "Various — Blob shapes, Graphic prints, Mixed materials",
+      "distribution": "D2C + concept stores + New York boutiques",
+      "strengths": ["Strong artist network", "Unique object position", "Community base"],
+      "weaknesses": ["Closed 2026 (tariff/margin issues) — failed luxury entry"],
+      "learn": "Artist collaboration + royalty structure for unique edition operation model",
+      "avoid": "Friendly position — GRAIN is serious and heavy",
+      "cluster": "Sensory Play", "trend_tag": "T6", "source_tier": "Tier 1"
+    },
+    {
+      "id": 19, "name": "Fredericks & Mae", "country": "USA", "market": "Brooklyn-based",
+      "category": "Artisanal Gift Objects", "price_usd": "$30–$250",
+      "target": "Design-conscious gift buyers, 30–50s creatives",
+      "core_message": "A studio reveling in the art of the gift",
+      "positioning": "Adult toys in brass and handcraft, gift experience design brand",
+      "color_material": "Brass, Hand-dipped Candles, Japanese Tsuiki Technique",
+      "distribution": "D2C + premium concept stores",
+      "strengths": ["Brass handcraft + gift experience design strength", "Japanese Tsuiki technique brass box"],
+      "weaknesses": ["Ambiguous luxury positioning", "Low global awareness"],
+      "learn": "Designing gift experience as brand philosophy + brass material utilization",
+      "avoid": "Craft brand typical over-emphasis on handcraft",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 2"
+    },
+    {
+      "id": 20, "name": "Objects of Common Interest (OoCI)", "country": "Greece (Athens) / USA (Brooklyn)",
+      "market": "Global Gallery Market",
+      "category": "Art/Design Studio", "price_usd": "$500–$5000+ (Hypothesis — gallery pricing)",
+      "target": "Art collectors, architecture/design specialists, gallery buyers",
+      "core_message": "Still life installations — exploring object-space relationships",
+      "positioning": "Poetic exploration between material and space, studio at boundary of art and design",
+      "visual_language": "Surreal scale staging, material juxtaposition, dramatic lighting",
+      "distribution": "Noguchi Museum, Vitra Design Museum, Nilufar Gallery Milan",
+      "strengths": ["Art world credibility", "Distinctive formal language"],
+      "weaknesses": ["No mass accessibility", "Opaque pricing", "No utility"],
+      "learn": "Unexpected scale and material juxtaposition — surreal visual reference",
+      "avoid": "Gallery-only position — GRAIN must be practically purchasable",
+      "cluster": "Art Object", "trend_tag": "T8", "source_tier": "Tier 2"
+    },
+    {
+      "id": 21, "name": "Rituals", "country": "Netherlands", "market": "Global (expanding to Asia)",
+      "category": "Wellness Ritual Brand", "price_usd": "$15–$80",
+      "target": "30–50s wellness seekers, urban office workers",
+      "core_message": "Turning daily acts into rituals — finding happiness slowly",
+      "positioning": "Best-marketed ritual brand — packaging everyday products as ritual",
+      "color_material": "Black, Gold, Bamboo, Stone",
+      "distribution": "Dedicated stores + department stores + D2C",
+      "strengths": ["Dominant in ritual language", "Global distribution"],
+      "weaknesses": ["Not an object brand (consumable-centered)"],
+      "learn": "Most successful case of converting ritual into brand language",
+      "avoid": "Using same language as Rituals — GRAIN differentiates through concrete materiality",
+      "cluster": "Functional Ritual", "trend_tag": "T6", "source_tier": "Tier 2"
+    },
+    {
+      "id": 22, "name": "Aesop", "country": "Australia", "market": "Global (Natura & Co group)",
+      "category": "Apothecary Luxury", "price_usd": "$40–$200",
+      "target": "Intellectual consumers, 30–50s cultural sensibility, logo-free luxury seekers",
+      "core_message": "Neue Helvetica + amber glass + craft label — brand recognized without logo",
+      "positioning": "Quintessence of intellectual minimalism, apothecary luxury where material is the brand",
+      "visual_language": "Amber glass, matte black cap, craft label, Neue Helvetica",
+      "color_material": "Amber, Matte Black, Kraft Brown, Glass",
+      "distribution": "Dedicated stores (interior is brand experience) + D2C",
+      "content_tone": "Literary text, philosophical quotes, quiet space photography",
+      "strengths": ["Brand language consistency", "Completion of sensory luxury", "Strong fandom"],
+      "weaknesses": ["Consumable-centered — no collectible object value"],
+      "learn": "Making material (amber glass) into a brand signature",
+      "avoid": "Excessive literary text — GRAIN puts materiality first",
+      "cluster": "Sensory Luxury", "trend_tag": "T7", "source_tier": "Tier 1"
+    },
+    {
+      "id": 23, "name": "Byredo", "country": "Sweden", "market": "Global Luxury Lifestyle",
+      "category": "Luxury Lifestyle Brand", "price_usd": "$90–$400+",
+      "target": "Luxury fashion sensibility holders, 20–40s global consumers",
+      "core_message": "Luxury in silence — only those who know, know without a logo",
+      "positioning": "Textbook of sensory luxury — logo felt through embossing/debossing",
+      "visual_language": "All-black base + minimal type, embossing texture, achromatic palette",
+      "color_material": "Matte Black, Warm Off-White, Brass Hardware",
+      "distribution": "Flagship + select shops + duty-free + D2C",
+      "strengths": ["Brand consistency", "Completion of sensory luxury"],
+      "weaknesses": ["Not an object brand (consumable)"],
+      "learn": "Creating brand recognition through package material without logo",
+      "avoid": "All-black excessive minimalism — GRAIN has the color of material (Amber, Brass)",
+      "cluster": "Sensory Luxury", "trend_tag": "T7", "source_tier": "Tier 1"
+    },
+    {
+      "id": 24, "name": "Norm Architects", "country": "Denmark", "market": "Global",
+      "category": "Sensory Scandinavian Design Studio",
+      "price_usd": "Project-based (product collabs $100–$500)",
+      "target": "Architecture/interior specialists, premium sensory consumers",
+      "core_message": "Same mood convergence across all media — slowness is a system",
+      "positioning": "Completion of Scandinavian sensory system, philosophy of muted palette + natural light",
+      "visual_language": "Muted beige, natural light, 60%+ whitespace, still-life composition",
+      "color_material": "Warm Neutrals, Natural Materials, Muted Tones",
+      "strengths": ["Highest level of cross-media consistency", "Philosophical depth of visual language"],
+      "weaknesses": ["Cannot reach mass audience", "Not a product sales brand"],
+      "learn": "The best case of implementing slowness is the message as a visual system",
+      "avoid": "Too quiet — no story impression. GRAIN has the narrative of material",
+      "cluster": "Art Object", "trend_tag": "T7", "source_tier": "Tier 1"
+    },
+    {
+      "id": 25, "name": "Assouline (Hourglass specific)", "country": "France",
+      "category": "Heritage Craft", "price_usd": "$700",
+      "cluster": "Heritage Craft", "trend_tag": "T4", "source_tier": "Tier 1",
+      "note": "See #1 main profile — hourglass-specific sub-entry"
+    },
+    {
+      "id": 26, "name": "Oblist", "country": "Global", "market": "Online curation platform",
+      "category": "Designer Desk Accessories Curation", "price_usd": "$50–$500 (platform, not brand)",
+      "cluster": "Distribution Channel",
+      "learn": "Registering here gives direct exposure to target customers — distribution channel reference",
+      "avoid": "Platform dependency — GRAIN's own story comes first",
+      "source_tier": "Tier 2"
+    },
+    {
+      "id": 27, "name": "Ugmonk (Full Brand)", "country": "USA", "market": "Global D2C",
+      "category": "Precision Desk Objects", "price_usd": "$20–$200",
+      "note": "See #14 for hourglass profile. Full brand includes Gather desk organizer.",
+      "cluster": "Functional Ritual", "trend_tag": "T6", "source_tier": "Tier 1"
+    },
+    {
+      "id": 28, "name": "세이투셰 (Say2She)", "country": "Korea", "market": "Korea Domestic",
+      "category": "Korean Premium Lifestyle Object", "price_krw": "₩50,000–₩300,000 (Hypothesis)",
+      "target": "Korean 20–40s design sensibility",
+      "core_message": "Breaking boundaries between product and artwork — witty reinterpretation",
+      "positioning": "Korean brand that turns ordinary objects into special beings",
+      "cluster": "Local Lifestyle", "trend_tag": "T6",
+      "learn": "Korean lifestyle object market entry reference — concept store distribution structure",
+      "avoid": "Wit/humor position — GRAIN is serious and heavy",
+      "source_tier": "Tier 3"
+    },
+    {
+      "id": 29, "name": "OBgE", "country": "Korea", "market": "Korea Domestic",
+      "category": "Korean Premium Male Lifestyle Object", "price_krw": "₩50,000–₩500,000 (Hypothesis)",
+      "target": "30–50s men, premium lifestyle interest",
+      "positioning": "Korean male premium lifestyle brand",
+      "cluster": "Local Lifestyle", "trend_tag": "T6",
+      "learn": "Korean male premium object market — GRAIN male target positioning reference",
+      "source_tier": "Tier 3"
+    },
+    {
+      "id": 30, "name": "IKEA [Reference Baseline]", "country": "Global", "market": "Global Mass",
+      "category": "Mass Market", "price_usd": "$5–$50",
+      "note": "Reference contrast — definition of what GRAIN must avoid",
+      "cluster": "Mass Market", "source_tier": "Tier 1"
+    }
+  ],
+
+  "step3_clusters": [
+    {
+      "cluster_id": "A", "cluster_name": "Heritage Craft",
+      "brands": ["Assouline", "Anframa", "Werkstätte Carl Auböck", "L'Objet", "Fredericks & Mae"],
+      "price_range": "$150–$5,000+",
+      "material_signature": "Brass, Leather, 24K Gold, Patina",
+      "story_type": "Heritage, Artisan, Generational succession",
+      "weakness": "Difficult new customer entry, weak digital channel",
+      "trend_tag": "T4", "trend_tag_name": "Nostalgia/Serif/Craft"
+    },
+    {
+      "cluster_id": "B", "cluster_name": "Precision Minimal",
+      "brands": ["Craighill", "ONO Roller", "MetaEDC", "HAY", "Ugmonk (full)"],
+      "price_range": "$20–$650",
+      "material_signature": "Stainless, Aluminum, Brass (surface treatment emphasis)",
+      "story_type": "Precision manufacturing, function-form balance",
+      "weakness": "Cannot expand to luxury, weak material depth, cold mechanical impression",
+      "trend_tag": "T3", "trend_tag_name": "Motion/3D/Living Identity"
+    },
+    {
+      "cluster_id": "C", "cluster_name": "Sensory Play",
+      "brands": ["Art of Play", "Speks", "Uncommon Goods", "JustHourglasses", "Kikkerland", "Hightide", "Areaware"],
+      "price_range": "$7–$200",
+      "material_signature": "Mixed materials, magnetic material, glass",
+      "story_type": "Joy, sensory stimulation, gift",
+      "weakness": "Cannot position as luxury, no brand depth, low collectible value",
+      "trend_tag": "T1+T2", "trend_tag_name": "Maximal Color + Expressive Type"
+    },
+    {
+      "cluster_id": "D", "cluster_name": "Sensory Luxury",
+      "brands": ["Maison Balzac", "Aesop", "Byredo"],
+      "price_range": "$40–$400",
+      "material_signature": "Amber glass, matte black, ceramics",
+      "story_type": "Silent luxury, material is the brand",
+      "weakness": "Consumable-centered, no collectible object value",
+      "trend_tag": "T7", "trend_tag_name": "Beauty/Clean/Apothecary/Editorial Luxury"
+    },
+    {
+      "cluster_id": "E", "cluster_name": "Functional Ritual",
+      "brands": ["Ugmonk (Hourglass)", "Rituals", "JustHourglasses"],
+      "price_range": "$15–$120",
+      "material_signature": "Glass, Wood, Stone",
+      "story_type": "Everyday as ritual — focus, meditation, wellness",
+      "weakness": "Productivity tool frame limitation, cannot expand to luxury",
+      "trend_tag": "T6", "trend_tag_name": "AI x Human Touch"
+    },
+    {
+      "cluster_id": "F", "cluster_name": "Art Object",
+      "brands": ["Objects of Common Interest", "Norm Architects", "Fferrone Design"],
+      "price_range": "$200–$5,000+",
+      "material_signature": "Resin, glass, marble, experimental materials",
+      "story_type": "Intersection of architecture, art, and design",
+      "weakness": "No mass accessibility, no utility, distribution limitation",
+      "trend_tag": "T5+T8", "trend_tag_name": "Brutalism/Anti-design + Premium IP/Cinematic"
+    },
+    {
+      "cluster_id": "G", "cluster_name": "Local Lifestyle",
+      "brands": ["세이투셰", "OBgE"],
+      "price_range_krw": "₩50,000–₩500,000",
+      "story_type": "Korean sensibility lifestyle objects",
+      "weakness": "Weak global positioning, unclear brand story depth",
+      "trend_tag": "T6", "trend_tag_name": "AI x Human Touch"
+    }
+  ],
+
+  "step4_positioning_maps": {
+    "recommended_map": "C",
+    "recommended_axes": {
+      "x_axis": "Minimal ↔ Expressive",
+      "y_axis": "Functional ↔ Emotional"
+    },
+    "grain_position_x": "Mid-Minimal (material expressiveness, not formal excess)",
+    "grain_position_y": "Emotional (ritual, weight, materiality of time)",
+    "whitespace_confirmed": true,
+    "whitespace_description": "No brand occupies Emotional + Mid-Minimal with a functional permanent object at $150–$400. Aesop/Byredo are closest but are consumables, not collectible objects.",
+    "map_a": {
+      "axes": "Ritual ↔ Utility × Heritage ↔ Future",
+      "grain_quadrant": "Ritual + Future",
+      "description": "GRAIN in Ritual area, Future position. Heritage Craft brands at Ritual+Heritage. Ugmonk/MetaEDC at Function+Future. Only GRAIN can claim Ritual+Future."
+    },
+    "map_b": {
+      "axes": "Gravity ↔ Levity × Refined ↔ Raw",
+      "grain_quadrant": "Gravity + Mid (between Refined and Raw)",
+      "description": "GRAIN at intersection of Weight and texture — refined yet living material. No competitor in this space."
+    },
+    "map_c_recommended": {
+      "axes": "Functional ↔ Emotional × Minimal ↔ Expressive",
+      "grain_quadrant": "Emotional + Mid-Minimal",
+      "description": "GRAIN in Emotional area, Minimal-Mid position. Sensory brands occupy emotion space but are consumables. GRAIN differentiates as functional permanent object. Clearest whitespace."
+    }
+  },
+
+  "step5_preference_analysis": {
+    "primary_target": {
+      "age": "35–50",
+      "location": "Korea/Global urban",
+      "income": "Upper-middle and above",
+      "occupation": ["Creative Director", "Architect", "Brand Manager", "Writer", "Senior knowledge worker"],
+      "behavior": "Conscious consumption, values object history, prefers physical experience over SNS",
+      "purchase_tendency": "Buys less but invests in quality, values collectible worth"
+    },
+    "secondary_target": {
+      "age": "25–35",
+      "description": "Design/lifestyle interest, gift purchase purpose"
+    },
+    "key_selection_criteria": [
+      {
+        "rank": 1, "criterion": "Material authenticity",
+        "description": "Is this really brass and glass? No cheap feel?",
+        "brand_language": "The sand is proof. The brass is proof. The glass is proof."
+      },
+      {
+        "rank": 2, "criterion": "Collectible/heirloom value",
+        "description": "Must still be on the desk in 5 years",
+        "brand_language": "It ages with you."
+      },
+      {
+        "rank": 3, "criterion": "Ritualization of act",
+        "description": "Does the act of turning itself become a special moment?",
+        "brand_language": "The turn is the ritual."
+      }
+    ],
+    "avoidance_criteria": [
+      "Productivity language — Pomodoro timer, focus tool, efficiency → immediate exit",
+      "Excessive minimalism — empty background, perfect render, fingerprint-free surface → factory product feel",
+      "Gift shop impression — Amazon delivery box, gift set bundle, mass retail image → purchase refusal"
+    ],
+    "preferred_visual_language": [
+      "Late afternoon (4PM) natural light + window shadows",
+      "Compositions where hands are visible (hands as protagonist, product as supporting)",
+      "Viewpoint from inside glass (refraction/distortion)",
+      "Brass fingerprints, glass bubbles, individual sand grains — imperfection as proof",
+      "Muted warm neutral background (Cloud Dancer to Angora range)"
+    ],
+    "preferred_message_structure": [
+      "Assertion: This is the weight of 30 minutes.",
+      "Paradox: We made something slow, in an age that wants everything fast.",
+      "Material description: 3,600 seconds of sand. One brass chamber. Infinite iterations of now.",
+      "Act description: Turn it. The moment you've been waiting for begins."
+    ],
+    "avoid_message_structure": ["List", "Effect claim", "Comparison"],
+    "purchase_triggers": [
+      "Visual shock — glass refraction or brass close-up photo",
+      "Gift justification — birthday/anniversary/promotion gift spending reason",
+      "Edition scarcity — 3-type collection (Slow/Fast/Heavy Sand)",
+      "Space fit — lifestyle image triggering desk imagination"
+    ],
+    "share_triggers": [
+      "ASMR sand falling video — highest Save + Share rate",
+      "Material close-up photo",
+      "Carousel knowledge content (Physics of Hourglasses / Why Brass Changes)",
+      "Unboxing experience — weight of package opening moment"
+    ],
+    "heritage_spectrum_position": "Preserve material heritage (brass/glass/sand), speak about it in present language. Does not sell the past; speaks the physical truth of material in today's language.",
+    "strategic_implications": [
+      "Target thinks long before purchase but has very low post-purchase regret — First impression visuals are everything",
+      "Gift positioning lowers entry barrier while reducing price resistance",
+      "Luxury consumers prioritize Brand Story over Functional Specs — material narrative and production process are core"
+    ]
+  },
+
+  "step6_market_gap_positioning": {
+    "occupied_spaces": [
+      {"space": "Ultra-Luxury Heritage", "brands": ["Assouline", "L'Objet"], "characteristics": "$700+, low accessibility"},
+      {"space": "Brass Craft Heritage", "brands": ["Werkstätte Auböck"], "characteristics": "Europe-centered, weak digital"},
+      {"space": "Focus Tool Timer", "brands": ["Ugmonk", "JustHourglasses"], "characteristics": "$68–120, productivity language"},
+      {"space": "Sensory Play Gift", "brands": ["Art of Play", "Kikkerland"], "characteristics": "$20–200, gift shop impression"},
+      {"space": "Scandinavian Minimal", "brands": ["HAY", "Craighill"], "characteristics": "Cold and mechanical"},
+      {"space": "Ritual Lifestyle Consumable", "brands": ["Rituals", "Aesop", "Byredo"], "characteristics": "Consumable-centered"}
+    ],
+    "whitespace": {
+      "description": "Triangle: Material Luxury + Practical Price + Ritual Language",
+      "price_range": "$150–$400",
+      "material_authenticity": "Brass + glass at Carl Auböck level but in contemporary language",
+      "ritual_positioning": "Ritual language: implementing Rituals brand language as objects",
+      "global_dtc": "Korean origin but English-first global communication",
+      "collecting_structure": "3 series (Slow/Fast/Heavy Sand) → set completion psychology"
+    },
+    "unmet_target_needs": [
+      "Practical object to sense time without productivity language — currently none",
+      "Premium hourglass in brass+glass at $150–$400 — currently none",
+      "Hourglass with collectible series structure — currently none",
+      "Content-type premium object discoverable on SNS — currently none"
+    ],
+    "entry_rationale": [
+      "Category gap: No global D2C brand in premium (>$150) functional hourglass market",
+      "Timing: Slow luxury trend + ASMR/sensory content culture intersection",
+      "Material advantage: Brass+glass has highest AI image generation quality",
+      "Collecting culture: 1 purchase → 3-set completion psychology → LTV naturally rises"
+    ],
+    "positioning_statement": "GRAIN is the only hourglass that earns its place on your desk not by measuring time, but by making you feel it.",
+    "brand_promise": "We make objects that turn the abstract into material — time into weight, a moment into gravity, sand into proof.",
+    "strategic_keywords_10": ["Sediment", "Patina", "Deliberate", "Grain", "Witness", "Ritual", "Weight", "Meridian", "Amber", "Stillness"],
+    "strategic_keywords_5": ["Grain", "Weight", "Ritual", "Witness", "Sediment"],
+    "strategic_keywords_final_3": ["Weight", "Ritual", "Grain"]
+  },
+
+  "step7_visual_prompts": {
+    "prompt_A_studio": {
+      "type": "Studio Product Shot (Material and Texture)",
+      "role_objective": "Luxury product photographer for GRAIN. Single hero shot communicating material weight, tactile richness, quiet luxury without lifestyle context.",
+      "layout_geometry": "Center composition, 15 degree tilt. Hourglass 60% frame. Camera slightly elevated 10 degrees. 40% breathing room below.",
+      "environment_lighting": "Warm ambient fill from large left window source (45 degrees). Directed spot from directly above for crisp shadow pool. Rim light from behind-right through glass — internal glow effect. No flash.",
+      "physics_blending": "Sand in mid-fall — half passed. Individual grains visible in macro. Brass shows hairline micro-scratches (aged first-use patina). Glass reveals one micro-bubble. Proof of material.",
+      "human_touch_layer": "No human. Single fingerprint smudge on brass lower chamber (slightly out of focus, bottom-right) — evidence of use.",
+      "negative_constraints": [
+        "NO white background",
+        "NO AI-perfect smoothness on metal",
+        "NO drop shadow",
+        "NO text overlay",
+        "NO props (books/coffee/plants)",
+        "NO color saturation boost",
+        "Brass color: #B08D57",
+        "Background: Pantone Cloud Dancer #F0EDE6"
+      ]
+    },
+    "prompt_B_surreal": {
+      "type": "Surreal Composition (Unexpected Scale and Context)",
+      "role_objective": "Surrealist art director for GRAIN. Stop scroll by placing hourglass in unexpected but emotionally resonant environment.",
+      "layout_geometry": "Widescreen 16:9. Hourglass at human scale (~1.5m) on salt flat. Shot from waist height, slight upward tilt. Hourglass in left-third. Right two-thirds: open sky amber-to-pale-blue-grey.",
+      "environment_lighting": "Golden hour. Long dramatic shadow extending right. Sand inside casts amber light onto salt flat — warm circle of light on ground. Wind-blown dust partially obscures base.",
+      "physics_blending": "Sand inside appears made of same salt particles as ground — inside/outside boundary ambiguous. Brass fully oxidized green-bronze (patina at maximum). Glass slightly fogged.",
+      "human_touch_layer": "No human. Single hand-sized impression in salt flat beside hourglass base — as if someone knelt here before shot.",
+      "negative_constraints": [
+        "NO CGI-smooth sand (must look like real photography with grain)",
+        "NO unrealistic physics",
+        "NO text",
+        "NO brand logo",
+        "NO other objects",
+        "Must feel like found photograph not rendered visualization",
+        "Film grain overlay at 15%"
+      ]
+    },
+    "prompt_C_lifestyle": {
+      "type": "Lifestyle Context (Hand, Act, Space)",
+      "role_objective": "Lifestyle photographer capturing the exact moment of ritual — the turning of GRAIN hourglass. Subject is the act, not the object. Hand is protagonist.",
+      "layout_geometry": "Vertical 4:5 format. Hand enters from right, fingers curled around upper brass chamber, mid-turn. Hourglass at 90 degree tilt. Camera: eye-level to hand, shallow depth of field f/1.8.",
+      "environment_lighting": "Late afternoon (4PM) natural light through window — warm orange cast. Long horizontal shadow of window frame crossing desk. Desk: aged oak with visible wood grain. Background: unfocused books, ceramic cup, soft warm blur.",
+      "physics_blending": "Sand caught mid-suspension — frozen between two states. Some grains clinging to glass wall; others beginning their fall. Skin and brass occupying same temperature visually.",
+      "human_touch_layer": "Hand of a 40-year-old — not young, not aged. Short clean nails. No rings. Slight crease on palm. Someone who does things deliberately.",
+      "negative_constraints": [
+        "NO fashion-forward hand styling",
+        "NO generic stock-photo pose",
+        "NO full body visible",
+        "NO ambient tech (no phone, laptop, screen glow)",
+        "NO lifestyle overcrowding (one object, one hand, one act)",
+        "Color temperature: 3200K warm (no cool tones)",
+        "Brass must never look gold — brass, aged, used, honest"
+      ]
+    }
+  },
+
+  "step8_gate1_checklist": {
+    "confirmed_pov": "We don't sell hourglasses. We sell the weight of a moment.",
+    "pov_confirmed": true,
+    "pov_necessity": "All competitors position as time measurement (function) or decoration (appearance). Nobody uses making you feel time physically — experience-centered language. This gap is GRAIN's entry basis.",
+    "different_belief_from_competitors": {
+      "competitor_belief": "Hourglasses are tools for measuring time or decorative objects",
+      "grain_belief": "Hourglasses are physical evidence of time. The act of watching sand fall is the experience itself."
+    },
+    "target_emotional_response": [
+      "Right — I am not buying a tool. I am buying this weight.",
+      "If I put this on my desk, it expresses who I am.",
+      "Have you ever watched 30 minutes with your eyes? This is that 30 minutes."
+    ],
+    "competitor_30_analysis": true,
+    "positioning_maps_3_presented": true,
+    "recommended_map": "Map C (Functional to Emotional × Minimal to Expressive)",
+    "whitespace_confirmed": true,
+    "whitespace_description": "$150–$400 / Ritual language / Global D2C — no incumbent brand",
+    "final_3_keywords": ["Weight", "Ritual", "Grain"],
+    "visual_prompts_3_sets": true,
+    "gate_1_status": "PASSED"
+  },
+
+  "trend_context": {
+    "macro_trends": [
+      {"trend": "Slow Luxury", "relevance": "High", "source": "Stocksy Visual Insights 2026"},
+      {"trend": "Conscious Glamour (Brass+Glass)", "relevance": "High", "source": "ShaolinMart Home Decor Trends 2026"},
+      {"trend": "Ambient Realism", "relevance": "High", "source": "The Drum Signs of Life 2026"},
+      {"trend": "Through-the-Glass Photography", "relevance": "High", "source": "krisztiansipos.com 2026"},
+      {"trend": "Pantone Cloud Dancer", "relevance": "Medium", "source": "Pantone 2026"},
+      {"trend": "ASMR Save Content", "relevance": "High", "source": "Metricool Instagram Study 2026"},
+      {"trend": "Curation Collecting", "relevance": "High", "source": "It's Nice That Graphic Trends 2026"}
+    ],
+    "declining_trends": [
+      "Cold Scandinavian minimalism (empty background + perfect solo shot)",
+      "AI perfect render image overuse — fingerprints/irregularities signal premium"
+    ],
+    "color_palette": {
+      "base": "Cloud Dancer #F0EDE6 (Pantone 11-4201)",
+      "secondary": "Angora (warm off-white)",
+      "accent": "Brushed Brass #B08D57",
+      "tertiary": "Amber (time-sealed color)"
+    }
+  },
+
+  "mood_keywords": {
+    "final_10": ["Sediment", "Patina", "Deliberate", "Grain", "Witness", "Ritual", "Weight", "Meridian", "Amber", "Stillness"],
+    "final_5": ["Grain", "Weight", "Ritual", "Witness", "Sediment"],
+    "final_3": ["Weight", "Ritual", "Grain"],
+    "mood_groups": {
+      "GRAVITY": {
+        "description": "Materiality and weight",
+        "references": ["Carl Auböck", "Objects of Common Interest", "Indresano Studios", "Josh Caudwell"],
+        "essence": "Material weight, patina, aging. Things that deepen the longer they exist."
+      },
+      "SILENCE": {
+        "description": "Understated premium",
+        "references": ["Maison Margiela", "Loro Piana", "Aesop", "Norm Architects", "Byredo"],
+        "essence": "System recognizable without logo. Sans-serif, matte, monochrome palette."
+      },
+      "ACT": {
+        "description": "Act and ritual",
+        "references": ["Ugmonk Hourglass", "Hightide Japan", "Hand+Object Photography", "Assouline"],
+        "essence": "The moment of turning is the center of brand experience."
+      }
+    }
+  }
+}

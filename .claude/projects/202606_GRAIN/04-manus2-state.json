@@ -1,0 +1,531 @@
+{
+  "schema_version": "manus_2_v1",
+  "brand": "GRAIN",
+  "generated_at": "2026-06-30",
+  "status": "gate_2_passed",
+
+  "gate2_lens_translation": {
+    "core_value": "시간을 물리적 증거로 변환하는 경험 설계",
+    "designer_lens": "물질의 이력 (무게, 노화, 의례, 선택)",
+    "core_beliefs": [
+      "시간은 추상적 개념이 아니라 육체적 경험",
+      "무게는 중요성의 증거",
+      "노화는 가치의 깊어짐",
+      "의례는 선택으로서의 행위"
+    ],
+    "visual_proof": {
+      "temporal_materialization": "모래 입자의 개별성 + 유리 내 기포 (imperfection as proof)",
+      "weight_evidence": "황동의 두께감 + 손 안의 밀도 + 그림자의 깊이",
+      "usage_accumulation": "황동의 미세 긁힘 + 지문 자국 + 기포와 결",
+      "ritualization_center": "손(protagonist) + 제품(supporting act) 구도",
+      "contemporaneity": "Cloud Dancer 배경 + 오후 자연광 + 필름 그레인"
+    },
+    "motion_proof": [
+      "느린 낙하: Slow Sand 시리즈의 시간 가시화",
+      "회전의 의례화: 중력을 거스르는 선택",
+      "Loop 영상: 무한 반복의 시간 순환 비유",
+      "손의 행위성: 시간을 물리적으로 소유하는 감각"
+    ],
+    "human_touch_proof": [
+      "패키징 개봉 순간의 무게감",
+      "첫 사용 기록: 지문, 손때, 필름 그레인",
+      "패티나 진화의 서사화",
+      "개인화 선택: Slow/Fast/Heavy Sand 중 선택",
+      "사용자 사진 콘텐츠: 실제 책상과 손"
+    ]
+  },
+
+  "visual_identity_dna_8_lenses": {
+    "form": {
+      "essence": "모래시계의 형태 언어 (대칭성, 협착점, 중력 저항)",
+      "recommended": [
+        "모래시계 전형의 비율(1:2:1) 유지",
+        "각 챔버의 벽 두께감으로 무게 표현",
+        "유리 내부의 광학 특성 활용 (기포, 굴절)"
+      ],
+      "avoid": [
+        "곡선 남용",
+        "장식 요소 추가",
+        "극단적 축소/확대"
+      ]
+    },
+    "color": {
+      "primary": {
+        "brushed_brass": "#B08D57",
+        "cloud_dancer": "#F0EDE6",
+        "amber": "#FDB833 to #8B4513",
+        "deep_charcoal": "#2B2B2B",
+        "matte_black": "#1A1A1A",
+        "cream_angora": "#F5F3F0"
+      },
+      "strategy": "브랜드 주색 없음 (Brass는 재료색), 배경 항상 Cloud Dancer, 웜톤 일관성",
+      "recommended": [
+        "전 매체에서 웜 톤 일관성 (3200K 이상)",
+        "Brass와 Amber만이 시각적 따뜻함",
+        "사진 보정 최소화 (필름 그레인만)"
+      ],
+      "avoid": [
+        "차가운 블루/그레이",
+        "고채도 컬러",
+        "White background"
+      ]
+    },
+    "material": {
+      "brass": {
+        "characteristic": "구리와 아연 합금, 사용할수록 산화",
+        "reason": "온기, 내구성, 에이징 스토리",
+        "finish": "Brushed (매트)",
+        "form": "링 + 베이스",
+        "aging": "시간이 지날수록 더 깊어짐"
+      },
+      "borosilicate_glass": {
+        "characteristic": "온도 변화에 강함, 투명도 높음, 기포 자연 발생",
+        "thickness": "3mm 이상 (무게감)",
+        "finish": "무광 또는 frosted",
+        "bubbles": "불완전함이 증거"
+      },
+      "natural_sand": {
+        "series": "Slow/Fast/Heavy Sand (각기 다른 밀도)",
+        "finish": "무가공",
+        "grain_size": "매크로에서 개별 입자 보이는 수준"
+      },
+      "strategy": "모든 소재는 '사용할수록 변한다' 서사를 가져야 함"
+    },
+    "typography": {
+      "display": "Neue Helvetica / DM Sans",
+      "body": "IBM Plex Sans / Inter",
+      "accent": "Crimson Text (매우 제한적)",
+      "rules": {
+        "alignment": "왼쪽 정렬만",
+        "letter_spacing": "1.5배 이상",
+        "size_ratio": "72pt:14pt 명확함만",
+        "color": "Deep Charcoal #2B2B2B만"
+      },
+      "philosophy": "텍스트는 조용히 강렬하게, 자간의 여백이 호흡"
+    },
+    "photography": {
+      "three_styles": [
+        {
+          "name": "Ambient Realism",
+          "essence": "환경적 현실성",
+          "elements": [
+            "자연광 (오후 4시)",
+            "창문 그림자 포함",
+            "먼지/필름 그레인",
+            "색온도 3200K 이상"
+          ]
+        },
+        {
+          "name": "Through-the-Glass",
+          "essence": "유리를 통한 시점",
+          "elements": [
+            "유리 내부 굴절",
+            "왜곡된 손·책상·배경",
+            "반사 + 투명도 대조",
+            "매크로 기포/입자"
+          ]
+        },
+        {
+          "name": "Hand+Object",
+          "essence": "손과 물체의 상호작용",
+          "elements": [
+            "손이 protagonist",
+            "제품은 supporting act",
+            "뒤집는 행위의 순간",
+            "30~50대 손의 정직함"
+          ]
+        }
+      ]
+    },
+    "composition": {
+      "space_allocation": {
+        "product": "40%",
+        "background": "60%",
+        "hands": "30~40%"
+      },
+      "natural_light": {
+        "source": "한 개 (창문)",
+        "angle": "45도 측광",
+        "position": "왼쪽 또는 뒤쪽 (림라이트)",
+        "shadow": "자연 그림자만",
+        "reflection": "제품 자체 반사만"
+      },
+      "options": [
+        "센터 앙글: 수직 프레임, 대칭",
+        "오프센터: 수평 프레임, 손 입장",
+        "클로즈업: 매크로 극대",
+        "전체 신: 책상 풍경"
+      ]
+    },
+    "symbol_icon": {
+      "sand_falling_trajectory": {
+        "visual": "상부 구에서 하부 구로 향하는 수직선",
+        "abstraction": "단순 점들의 열 (•••••)",
+        "meaning": "시간의 흐름, 중력, 불가역성"
+      },
+      "empty_chamber": {
+        "visual": "흰색/Cloud Dancer 컬러의 상부 구",
+        "meaning": "가능성, 새로운 시작, 선택"
+      },
+      "hand_gesture": {
+        "visual": "엄지손가락 + 검지의 회전 제스처",
+        "meaning": "의도, 선택, 개인화"
+      },
+      "icon_grid": {
+        "unit": "24px 기본 (12px 배수)",
+        "stroke": "1.5px",
+        "rounding": "2px"
+      }
+    },
+    "motion_behavior": {
+      "real_time_speed": "슬로우모션 금지 (1배속 실시간)",
+      "loop_seamless": "첫 프레임 = 마지막 프레임",
+      "transition": "페이드 인/아웃 3초, opacity 우선",
+      "platform_formats": {
+        "instagram_reel": "9:16, 15~30초",
+        "tiktok": "9:16, 15초",
+        "website_hero": "16:9, 5초 loop",
+        "email": "GIF, 2~3초 반복"
+      }
+    }
+  },
+
+  "competitive_visual_code": {
+    "overcrowded_codes_3": [
+      {
+        "code": "Minimal + White Background",
+        "occupants": ["HAY", "Craighill", "Norm Architects"],
+        "problem": "차별화 불가능, 따뜻함 부족",
+        "grain_strategy": "Cloud Dancer + 자연광"
+      },
+      {
+        "code": "Productivity Language",
+        "occupants": ["Ugmonk", "JustHourglasses", "Rituals"],
+        "problem": "기능성 강조 → 럭셔리 불가",
+        "grain_strategy": "의례 언어로 대체"
+      },
+      {
+        "code": "Heritage Craft Narrative",
+        "occupants": ["Assouline", "Carl Auböck", "Fredericks & Mae"],
+        "problem": "과거 중심 → 진입 어려움",
+        "grain_strategy": "소재 유산을 현대 언어로 재해석"
+      }
+    ],
+    "underused_codes_3": [
+      {
+        "code": "Through-the-Glass POV",
+        "occupants": ["Objects of Common Interest (일부)"],
+        "advantage": "신선함, 시각적 충격, 물성 강조",
+        "grain_opportunity": "Borosilicate Glass의 굴절/기포를 시그니처로"
+      },
+      {
+        "code": "Sand as Texture/Graphic Material",
+        "occupants": ["Kikkerland (일부)"],
+        "advantage": "유니크함, ASMR 콘텐츠 용이",
+        "grain_opportunity": "매크로 포토/애니메이션에서 입자성을 아이덴티티로"
+      },
+      {
+        "code": "Hand + Ritual as Visual Protagonist",
+        "occupants": ["거의 없음"],
+        "advantage": "감정 전달, 행위성, 개인화",
+        "grain_opportunity": "실제 사용자의 손 (다양한 피부톤, 나이) 포토 시리즈"
+      }
+    ],
+    "codes_to_avoid_3": [
+      "AI Rendering Perfection (럭셔리에서는 인간의 흔적이 가치)",
+      "Scandinavian Cold Minimalism (차갑고 따뜻함 상실)",
+      "Maximal Luxury (과다 장식/레이어링)"
+    ],
+    "visual_whitespace_3": [
+      "글로벌 D2C 럭셔리 오브제 브랜드의 부재",
+      "감각적 럭셔리의 permanent object 버전 부재",
+      "사용자 다양성을 표현하는 오브제 브랜드 부재"
+    ]
+  },
+
+  "concept_territories_6": [
+    {
+      "id": 1,
+      "name": "Gravity Well",
+      "core_idea": "중력이 시간을 만든다",
+      "mood": ["물리적", "무거움", "결정적"],
+      "color_palette": "Brushed Brass + Deep Charcoal + Cloud Dancer",
+      "material": "황동(두꺼운 링) + Borosilicate Glass(3mm+) + Heavy Sand",
+      "typography": "Helvetica Bold + lowercase + 왼쪽 정렬",
+      "photography": "극접사, 섬광 없는 주광",
+      "package": "검정 무광 박스, emboss 없음",
+      "motion": "모래 낙하 1배속 매크로",
+      "strategy_fit_score": "9/10",
+      "risk": "너무 차갑거나 무거울 수 있음"
+    },
+    {
+      "id": 2,
+      "name": "Ritual Moment",
+      "core_idea": "뒤집는 행위가 일상을 구획한다",
+      "mood": ["개인적", "의도적", "순간"],
+      "color_palette": "Brushed Brass + Amber Sand + Cloud Dancer",
+      "material": "황동(감각적 마감) + Glass(투명도 극대) + Slow Sand",
+      "typography": "Plex Sans + 행위 동사 강조",
+      "photography": "Hand+Object 중심, 회전 중단 포착",
+      "package": "Cloud Dancer 박스, 손잡이",
+      "motion": "Stop-motion/슬로우 회전 (실시간)",
+      "strategy_fit_score": "9.5/10 ⭐",
+      "risk": "제품이 아닌 손에만 주목 가능"
+    },
+    {
+      "id": 3,
+      "name": "Patina Becoming",
+      "core_idea": "사용할수록 깊어지는 물성의 이력",
+      "mood": ["열린", "부식적", "노화의 미학"],
+      "color_palette": "Brushed Brass(산화) + Verdigris + Cloud Dancer",
+      "material": "고순도 황동(빠른 산화) + 자연 유리 기포",
+      "typography": "Plex Sans + 시간성 단어",
+      "photography": "비포/애프터 시리즈",
+      "package": "자연 종이박스, 년도 각인",
+      "motion": "Time-lapse 산화 (24시간→24시간 압축)",
+      "strategy_fit_score": "8/10",
+      "risk": "제품이 낡아 보일 수 있음"
+    },
+    {
+      "id": 4,
+      "name": "Sensory Precision",
+      "core_idea": "모래의 입자성이 시간의 증거다",
+      "mood": ["과학적", "신비로운", "촉각적"],
+      "color_palette": "Amber + Clear Glass + Brushed Brass",
+      "material": "극세 입자 모래 + 보로실리케이트 유리(기포 강조)",
+      "typography": "Crimson Text (제한적) + 과학 용어",
+      "photography": "매크로 + Through-the-Glass, 회절",
+      "package": "투명 비닐",
+      "motion": "ASMR 콘텐츠, 확대-축소 줌",
+      "strategy_fit_score": "7.5/10",
+      "risk": "너무 학술적이거나 추상적"
+    },
+    {
+      "id": 5,
+      "name": "Temporal Stillness",
+      "core_idea": "흐르는 것을 보며 정지한다",
+      "mood": ["명상적", "선禪적", "고요"],
+      "color_palette": "Cloud Dancer + Matte Black + Amber(모래만)",
+      "material": "엄선된 황동 + 완벽한 투명도 유리",
+      "typography": "Plex Sans + 2배 자간 + 최소 텍스트",
+      "photography": "미니멀 배경, 여백 75% 극대",
+      "package": "Cloud Dancer 박스",
+      "motion": "극도로 느린 pan 카메라 (15초)",
+      "strategy_fit_score": "7/10",
+      "risk": "차갑고 차별화 약함"
+    },
+    {
+      "id": 6,
+      "name": "Geological Time",
+      "core_idea": "모래는 지질학적 시간의 축소판이다",
+      "mood": ["거대한", "생각 깊은", "구조적"],
+      "color_palette": "Cream(고대 지층) + Amber + Brushed Brass",
+      "material": "다양한 지역의 모래 컬렉션 + 황동 환",
+      "typography": "Helvetica + 지질학 용어",
+      "photography": "지사진 스타일, 수평층(스트라타)",
+      "package": "천연 종이박스",
+      "motion": "지층 Stop-motion",
+      "strategy_fit_score": "6.5/10",
+      "risk": "교육적, 럭셔리 손상"
+    }
+  ],
+
+  "concept_evaluation_matrix": {
+    "scores": {
+      "gravity_well": 27,
+      "ritual_moment": 27,
+      "patina_becoming": 24,
+      "sensory_precision": 23,
+      "temporal_stillness": 24,
+      "geological_time": 17
+    },
+    "ranking": [
+      {
+        "rank": 1,
+        "concept": "Ritual Moment",
+        "total": "27/30",
+        "brand_fit": 5,
+        "target_fit": 5,
+        "market_diff": 5,
+        "visual_scale": 5,
+        "execution": 4,
+        "risk_level": 3
+      },
+      {
+        "rank": 2,
+        "concept": "Gravity Well",
+        "total": "27/30",
+        "brand_fit": 5,
+        "target_fit": 5,
+        "market_diff": 4,
+        "visual_scale": 4,
+        "execution": 5,
+        "risk_level": 4
+      }
+    ]
+  },
+
+  "living_system_gate": {
+    "gravity_well": {
+      "static": "제품만 노출, 여백 극대 (60%), 매크로 모래/기포",
+      "motion": "모래 낙하 1배속, 15초 반복, 효과음 최소",
+      "responsive": "데스크톱 60% 여백, 태블릿 중앙, 모바일 좌측",
+      "variable_type": "Bold/Regular 2단계, 자간만 변화",
+      "generative": "모래 입자 다양한 클로즈업 자동 생성, 조명각도 변형"
+    },
+    "ritual_moment": {
+      "static": "손 + 제품 75:25, 다양한 손(피부톤/나이), 책상 풍경",
+      "motion": "슬로우 비디오 0.7배속, 회전음 + 모래음",
+      "responsive": "데스크톱 50:50, 태블릿 60:40, 모바일 70:30",
+      "variable_type": "행위 동사 중심, 소문자 일관",
+      "generative": "다양한 손(20~50대, M/F, 피부톤), 지역별 책상, 손 각도"
+    },
+    "patina_becoming": {
+      "static": "비포/애프터 카루셀, 같은 제품의 시간 변화",
+      "motion": "Time-lapse 24시간 압축 또는 5년 30초",
+      "responsive": "데스크톱 좌우 비교, 태블릿 상하, 모바일 슬라이더",
+      "variable_type": "시간 동사 ("becoming", "aging"), 연도 표기",
+      "generative": "AI 패티나 분석, 계절별 산화, 디지털 타임라인"
+    }
+  },
+
+  "brutalist_framework": {
+    "application_level": "부분 적용 (Selective Brutalism)",
+    "applicable_principles": [
+      "Exposed Structure: 황동 링의 나선, 유리 기포, 모래층 노출",
+      "Raw Surface: 매트 황동, 필름 그레인, 지문 자국 보존",
+      "Typographic Force: 최소 타입, 최대 여백, 크기와 자간만으로 계층화"
+    ],
+    "inapplicable_principles": [
+      "Anti-Polish Detail: 럭셔리 완성도 필요",
+      "Functional Tension: 높은 가독성 요구"
+    ],
+    "terminology": "Honest Minimalism 또는 Material Brutalism"
+  },
+
+  "concept_shortlist_final": [
+    {
+      "rank": 1,
+      "name": "Ritual Moment",
+      "strategy_fit_score": "9.5/10",
+      "one_line_definition": "뒤집는 행위를 세상에서 가장 중요한 순간으로 재정의",
+      "positioning_sentence": "The moment you turn it, everything else stops. This is the weight of your choice.",
+      "selection_reason": [
+        "최고의 전략 적합도",
+        "POV 정렬도 최강",
+        "개인화 및 확장성 무한대",
+        "타깃 감정 공명 최상",
+        "소셜 미디어 자연 발생"
+      ],
+      "strategic_connection": [
+        "럭셔리: 개인의 의도, 선택",
+        "웰니스: 의례, 명상",
+        "컬렉팅: 다양한 손의 기록"
+      ],
+      "visual_direction": "손(protagonist) + 다양한 책상 + 의도적 감정",
+      "package_direction": "개봉 경험 강조, 손잡이, 이름 각인 옵션",
+      "copy_direction": "행위 동사 중심 (turn/choose/begin), 현재형, 개인 대사",
+      "risks_solutions": [
+        {
+          "risk": "제품 미노출",
+          "solution": "제품 샷 별도 시리즈 (Gravity Well 참조)"
+        },
+        {
+          "risk": "문화적 차이",
+          "solution": "다양한 손의 크기/제스처 수용"
+        }
+      ],
+      "complementary_measures": [
+        "UGC 공모전: #MyRitual",
+        "지역별 의례 방식 존중"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Gravity Well",
+      "strategy_fit_score": "9/10",
+      "one_line_definition": "중력이 시간을 만든다. 모래의 무게가 증거다.",
+      "positioning_sentence": "Weight is proof. The moment is here. The sand has arrived.",
+      "selection_reason": [
+        "매우 높은 전략 적합도",
+        "POV 물리적 구현",
+        "명확한 차별화 (Through-the-Glass)",
+        "럭셔리 포지셔닝 최강",
+        "콘텐츠 최소주의"
+      ],
+      "strategic_connection": [
+        "럭셔리: 물성의 엄격함, 미니멀",
+        "웰니스: 중력의 신비, 물리 법칙",
+        "컬렉팅: 오브제 극대화"
+      ],
+      "visual_direction": "제품 (입자/기포) + Cloud Dancer 배경만 + 침묵",
+      "package_direction": "검정 무광 박스, 검정 벨벳 내부, 제품 자체가 언어",
+      "copy_direction": "명사/형용사 중심, 시적 언어, 최소 텍스트",
+      "risks_solutions": [
+        {
+          "risk": "차갑거나 학술적 느낌",
+          "solution": "웰니스+감정 톤 미묘하게 혼합"
+        },
+        {
+          "risk": "콘텐츠 반복성",
+          "solution": "매크로 각도/입자/색상 변형"
+        }
+      ],
+      "complementary_measures": [
+        "매크로 라이브러리 구축 (1000개+ 이미지)",
+        "아트 필터 협업 (미술관 전시 스타일)",
+        "과학 콘텐츠 (모래의 물리학)"
+      ]
+    }
+  ],
+
+  "alternative_shortlist": {
+    "rank_3": "Patina Becoming",
+    "score": "8/10",
+    "definition": "이 황동은 당신의 시간과 함께 나이 든다",
+    "exclusion_reason": "상위 2개에 비해 초기 매출 영향 제한적",
+    "alternative_use_point": "연 2회 이상 시즌 캠페인, Year 2 Collection 테마"
+  },
+
+  "gate2_checklist": {
+    "core_value_definition": true,
+    "designer_lens_extraction": true,
+    "visual_proof_6": true,
+    "motion_behavior_proof": true,
+    "human_touch_proof": true,
+    "dna_8_lenses": true,
+    "visual_code_summary": true,
+    "6_territories": true,
+    "territory_matrix": true,
+    "client_mood_matrix": true,
+    "living_system_gate": true,
+    "brutalist_framework": true,
+    "shortlist_2_3": true,
+    "gate_2_status": "PASSED"
+  },
+
+  "strategic_summary": {
+    "dual_positioning_strategy": [
+      {
+        "concept": "Ritual Moment",
+        "axis": "Emotional + 개인화",
+        "target": "개인의 의례를 소중하게 여기는 사람",
+        "channels": ["Instagram", "TikTok", "UGC"],
+        "content": "사용자의 손, 다양한 책상, 일상 정황"
+      },
+      {
+        "concept": "Gravity Well",
+        "axis": "Functional + 물성",
+        "target": "오브제 자체의 가치를 이해하는 수집가",
+        "channels": ["Website", "프리미엄 매거진", "편집숍"],
+        "content": "극접사, 물리 법칙, 무게감"
+      }
+    ],
+    "unified_message": "We don't sell hourglasses. We sell the weight of a moment.",
+    "proof_strategy": "두 컨셉이 함께 약속을 증명: Ritual Moment (당신의 선택) + Gravity Well (모래가 증거)"
+  },
+
+  "next_phase": "Manus 3 — Package Design & Digital System (상세 설계 및 실행)",
+  "completion_date": "2026-06-30",
+  "manus_2_status": "COMPLETE"
+}

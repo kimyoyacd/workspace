@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GRAIN · Visual Mood Board</title>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-card: #F5F1EA;
+    --ink: #1A1A1A;
+    --muted: #6E665A;
+    --rule: #E4DED2;
+    --chip: #F2EDE3;
+    --accent: #FF6B35;
+    --accent-soft: #FFD9C2;
+    --brass: #B8860B;
+    --cloud: #F9F5F0;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+  html { background-color: #FFFFFF; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+  }
+  .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--brass); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  .intro {
+    padding: 56px 0;
+    border-bottom: 1px dashed var(--rule);
+    margin-bottom: 72px;
+  }
+  .intro h1 {
+    font-size: 64px; font-weight: 800; letter-spacing: -0.04em;
+    line-height: 1; margin: 0 0 24px;
+  }
+  .intro p {
+    font-size: 18px; color: var(--muted);
+    max-width: 70ch; line-height: 1.5;
+  }
+
+  .concept-section {
+    margin-bottom: 96px;
+  }
+  .concept-section h2 {
+    font-size: 44px; font-weight: 800; letter-spacing: -0.03em;
+    margin: 0 0 12px;
+  }
+  .concept-section .subtitle {
+    font-size: 16px; color: var(--muted); margin-bottom: 32px;
+  }
+
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .mood-item {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .mood-image {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, var(--chip) 0%, var(--rule) 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mood-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .mood-label {
+    padding: 16px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--mono);
+    background: var(--bg);
+    text-align: center;
+  }
+
+  .color-palette {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .color-item {
+    text-align: center;
+  }
+  .color-box {
+    width: 100%;
+    height: 100px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .color-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .color-code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .typography-sample {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    padding: 24px;
+    border-radius: 4px;
+    margin: 32px 0;
+  }
+  .type-group {
+    margin-bottom: 32px;
+  }
+  .type-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .type-sample {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .reference-links {
+    background: var(--bg-card);
+    border: 1px dashed var(--rule);
+    padding: 24px;
+    border-radius: 4px;
+    margin: 32px 0;
+  }
+  .reference-links h3 {
+    font-size: 16px; font-weight: 700; margin: 0 0 16px;
+  }
+  .reference-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .reference-links li {
+    margin-bottom: 12px;
+  }
+  .reference-links a {
+    color: var(--brass);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .reference-links a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    border-top: 1px solid var(--ink);
+    padding: 32px 0 56px;
+    font-size: 12px; color: var(--muted);
+    margin-top: 96px;
+  }
+
+  @media (max-width: 800px) {
+    .mood-grid { grid-template-columns: 1fr; }
+    .color-palette { grid-template-columns: repeat(2, 1fr); }
+    .intro h1 { font-size: 40px; }
+    .concept-section h2 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner wrap">
+    <div class="brand"><span class="dot"></span> GRAIN</div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="intro">
+    <h1>Visual Mood Board</h1>
+    <p>Ritual Moment + Gravity Well 두 컨셉의 감각 언어를 시각으로 구현. 참고 이미지 + 컬러 팔레트 + 타이포그래피 시스템.</p>
+  </div>
+
+  <!-- RITUAL MOMENT -->
+  <section class="concept-section">
+    <h2>Ritual Moment</h2>
+    <p class="subtitle">손과 의례 중심 · "당신의 선택, 당신의 시간" · Strategy Fit 9.5/10</p>
+
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
+      <strong>핵심 감각</strong>: 따뜻한 톤 (Brushed Brass + Cloud Dancer + Amber) · 자연광 · 손의 행위성 · 라이프스타일 맥락 · ASMR 음향
+    </p>
+
+    <div class="mood-grid">
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1506003613325-db0c2c0c6b0f?w=400&q=80" alt="Hands holding object ritual">
+        </div>
+        <div class="mood-label">① 손과 오브젝트 상호작용</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1567437382358-27ba474d2e22?w=400&q=80" alt="Warm natural light desk">
+        </div>
+        <div class="mood-label">② 오후 자연광 + 책상</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=80" alt="Minimal workspace">
+        </div>
+        <div class="mood-label">③ 명상적 공간</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1503914957469-8e1fc9118b88?w=400&q=80" alt="Brass and gold tones">
+        </div>
+        <div class="mood-label">④ Brushed Brass 톤</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Hands in motion">
+        </div>
+        <div class="mood-label">⑤ 행위 중심 포토</div>
+      </div>
+    </div>
+
+    <div class="reference-links">
+      <h3>참고 브랜드 & 사례</h3>
+      <ul>
+        <li>→ <a href="https://jmeeksapothecary.com/blogs/news/jmeeksapothecary-x-gonebazaar">JMeeks Apothecary: Ritual ambient lighting + hands</a></li>
+        <li>→ <a href="https://medium.com/@mianzi.in/designing-the-invisible-how-ambient-lighting-shapes-emotion-mindfulness-and-everyday-rituals-in-8aa2d31e7494">Designing Rituals with Ambient Lighting</a></li>
+        <li>→ <a href="https://www.pinterest.com/pin/skincare-ritual-aesthetic-with-natural-ambient-lighting-in-2025--75153887529211341/">Pinterest: Ritual aesthetic with natural lighting</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GRAVITY WELL -->
+  <section class="concept-section">
+    <h2>Gravity Well</h2>
+    <p class="subtitle">물성과 무게 중심 · "모래가 증거다" · Strategy Fit 9/10</p>
+
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
+      <strong>핵심 감각</strong>: 차가운 톤 (Brushed Brass + Charcoal) · 극접사 · 기하학적 구도 · 소재의 정직함 · 과학적 정밀성
+    </p>
+
+    <div class="mood-grid">
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1617638924702-92f37fcb18e3?w=400&q=80" alt="Macro product detail">
+        </div>
+        <div class="mood-label">① 매크로 극접사</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1535556311336-69f2b4bd0f61?w=400&q=80" alt="Glass and transparency">
+        </div>
+        <div class="mood-label">② Through-the-glass</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1578762315503-18b2c6d62f9c?w=400&q=80" alt="Brass texture">
+        </div>
+        <div class="mood-label">③ 황동 표면 디테일</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1484807352052-010ce3a2e3b7?w=400&q=80" alt="Minimal architecture">
+        </div>
+        <div class="mood-label">④ 기하학적 구도</div>
+      </div>
+      <div class="mood-item">
+        <div class="mood-image">
+          <img src="https://images.unsplash.com/photo-1616081822241-4473541becf0?w=400&q=80" alt="Product precision">
+        </div>
+        <div class="mood-label">⑤ 건축적 질서</div>
+      </div>
+    </div>
+
+    <div class="reference-links">
+      <h3>참고 브랜드 & 사례</h3>
+      <ul>
+        <li>→ <a href="https://www.patrickparrish.com/artist/carl-aubock">Carl Auböck Workshop: Minimalist brass objects</a></li>
+        <li>→ <a href="https://www.productphoto.com/our-portfolio/macro-close-ups-product-photography/">Product Photo: Macro close-up techniques</a></li>
+        <li>→ <a href="https://petapixel.com/2026/05/31/easy-macro-photography-tips-for-incredible-close-up-photos/">PetaPixel: Macro photography guide</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COLOR PALETTE -->
+  <section>
+    <h2 style="font-size: 44px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 32px;">Color Palette</h2>
+
+    <div class="color-palette">
+      <div class="color-item">
+        <div class="color-box" style="background: #B8860B;"></div>
+        <div class="color-name">Brushed Brass</div>
+        <div class="color-code">#B8860B</div>
+      </div>
+      <div class="color-item">
+        <div class="color-box" style="background: #F9F5F0;"></div>
+        <div class="color-name">Cloud Dancer</div>
+        <div class="color-code">#F9F5F0</div>
+      </div>
+      <div class="color-item">
+        <div class="color-box" style="background: #F5EBE0;"></div>
+        <div class="color-name">Angora</div>
+        <div class="color-code">#F5EBE0</div>
+      </div>
+    </div>
+
+    <div class="color-palette" style="margin-top: 24px;">
+      <div class="color-item">
+        <div class="color-box" style="background: #FDB833;"></div>
+        <div class="color-name">Amber</div>
+        <div class="color-code">#FDB833</div>
+      </div>
+      <div class="color-item">
+        <div class="color-box" style="background: #2B2B2B;"></div>
+        <div class="color-name">Charcoal</div>
+        <div class="color-code">#2B2B2B</div>
+      </div>
+      <div class="color-item">
+        <div class="color-box" style="background: #1A1A1A;"></div>
+        <div class="color-name">Deep Black</div>
+        <div class="color-code">#1A1A1A</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section>
+    <h2 style="font-size: 44px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 32px;">Typography System</h2>
+
+    <div class="typography-sample">
+      <div class="type-group">
+        <div class="type-label">Display / H1</div>
+        <div class="type-sample">The Weight of a Moment</div>
+        <div style="font-size: 12px; color: var(--muted);">Helvetica Neue · 800 · -0.04em</div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-label">Section Head / H2</div>
+        <div class="type-sample" style="font-size: 28px;">어디에 우리의 빈자리가 있는가.</div>
+        <div style="font-size: 12px; color: var(--muted);">Plex Sans · 700 · -0.02em</div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-label">Body Text</div>
+        <div style="font-size: 16px; line-height: 1.55; letter-spacing: 0.015em;">뒤집는 행위가 의례가 되는 오브젝트. 시간을 측정하지만 생산성 언어는 피한다. 어른이 컬렉팅하고 싶어 하는 무게감.</div>
+        <div style="font-size: 12px; color: var(--muted);">16px · 1.5배 자간</div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-label">Meta / Numbers</div>
+        <div style="font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums;">30 brands · 12 trends · 2 concepts · $150–$400</div>
+        <div style="font-size: 12px; color: var(--muted);">JetBrains Mono · Tabular-nums</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>GRAIN · Visual Mood Board · 2026 · AI Creative Experiment</div>
+    <div>Reference: Carl Auböck · JMeeks Apothecary · Unsplash Photography</div>
+  </footer>
+
+</main>
+
+</body>
+</html>
